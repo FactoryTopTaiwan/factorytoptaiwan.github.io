@@ -1,0 +1,81 @@
+{
+  "name": "Teamwork Automation",
+  "legalName": "Teamwork Automation Machinery Co., Ltd.",
+  "altName": "FaTop Automation",
+  "origin": "https://fatop-global.com",
+  "founded": "1992",
+  "city": "Taichung",
+  "country": "Taiwan",
+
+  "tagline": "Machines that build electric motors",
+  "description": "Winding, insulation, insertion, fusing, balancing and testing equipment for brushed, brushless and universal motors — supplied as individual machines or complete turnkey production lines. Built in Taichung, Taiwan since 1992.",
+
+  "hero": {
+    "titleLead": "The machines that build",
+    "titleAccent": "electric motors.",
+    "lede": "Winding, insulation, slot insertion, fusing, balancing and end-of-line testing — for brushed, brushless and universal motors. Supplied as single machines or as a complete production line, engineered in Taichung, Taiwan since 1992.",
+    "meta": [
+      "Turnkey lines delivered to Taiwan-listed manufacturers",
+      "Export-ready documentation and support",
+      "Reply within one business day"
+    ]
+  },
+
+  "stats": [
+    { "value": "1992", "label": "Founded in Taichung, Taiwan — three decades of motor production equipment" },
+    { "value": "38",   "label": "Machines in the current catalogue, 28 of them published by model number" },
+    { "value": "8",    "label": "Production families, from brushed armatures to BLDC stators" },
+    { "value": "7",    "label": "Process stages covered in-house, winding through final test" }
+  ],
+
+  "processChain": [
+    "Winding", "Slot insulation", "Wedge insertion", "Fusing",
+    "Turning & embossing", "Balancing", "Varnish & bake", "Testing"
+  ],
+
+  "cta": {
+    "eyebrow": "Start a conversation",
+    "title": "Send us the motor, we will tell you the line.",
+    "lede": "Give us the stator or armature you need to produce, the output you are planning for, and we will come back with a machine selection or a full line proposal. No account, no gated specifications.",
+    "note": "We reply within one business day. Specifications are never gated — only the full PDF catalogue asks for an email."
+  },
+
+  "nav": [
+    { "label": "Products",  "href": "/products/",  "key": "products" },
+    { "label": "Turnkey lines", "href": "/turnkey/", "key": "turnkey" },
+    { "label": "Solutions", "href": "/solutions/", "key": "solutions" },
+    { "label": "Support",   "href": "/support/",   "key": "support" },
+    { "label": "About",     "href": "/about/",     "key": "about" }
+  ],
+
+  "footer": {
+    "columns": [
+      {
+        "heading": "Products",
+        "links": [
+          { "label": "All machines", "href": "/products/" },
+          { "label": "Winding machines", "href": "/products/winding-machines/" },
+          { "label": "Rotor equipment", "href": "/products/motor-rotor-equipment/" },
+          { "label": "Brushless motor equipment", "href": "/products/brushless-motor-equipment/" },
+          { "label": "Turnkey lines", "href": "/turnkey/" }
+        ]
+      },
+      {
+        "heading": "Company",
+        "links": [
+          { "label": "About", "href": "/about/" },
+          { "label": "Support", "href": "/support/" },
+          { "label": "Catalogue", "href": "/catalog/" },
+          { "label": "Contact", "href": "/contact/" }
+        ]
+      },
+      {
+        "heading": "Contact",
+        "links": [
+          { "label": "Request a quotation", "href": "/contact/" },
+          { "label": "Book a video call", "href": "/contact/#call" }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,159 @@
+/* ==========================================================================
+   Design tokens
+   Engineered, high-contrast, generous. One accent, reserved for interaction,
+   emphasis and data highlights — never decoration.
+   ========================================================================== */
+
+:root {
+  /* ---- Type ------------------------------------------------------------
+     System stack for now: zero network cost, excellent LCP. Swap in a
+     self-hosted variable font here and nothing else needs to change. */
+  --font-sans: "Segoe UI Variable Display", "Segoe UI", -apple-system,
+               BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Cascadia Mono", "SF Mono", "JetBrains Mono", Consolas,
+               "Liberation Mono", monospace;
+
+  /* Fluid scale, 320px → 1600px viewport */
+  --step--1: clamp(0.833rem, 0.80rem + 0.16vw, 0.9rem);
+  --step-0:  clamp(1rem, 0.96rem + 0.20vw, 1.125rem);
+  --step-1:  clamp(1.20rem, 1.12rem + 0.40vw, 1.50rem);
+  --step-2:  clamp(1.44rem, 1.30rem + 0.70vw, 2.00rem);
+  --step-3:  clamp(1.73rem, 1.49rem + 1.19vw, 2.67rem);
+  --step-4:  clamp(2.07rem, 1.70rem + 1.87vw, 3.55rem);
+  --step-5:  clamp(2.49rem, 1.92rem + 2.85vw, 4.74rem);
+
+  --leading-tight: 1.04;
+  --leading-snug: 1.22;
+  --leading-body: 1.62;
+  --measure: 68ch;
+
+  /* ---- Space — 4px base ------------------------------------------------ */
+  --sp-1: 0.25rem;  --sp-2: 0.5rem;   --sp-3: 0.75rem;  --sp-4: 1rem;
+  --sp-5: 1.5rem;   --sp-6: 2rem;     --sp-7: 3rem;     --sp-8: 4rem;
+  --sp-9: 6rem;     --sp-10: 8rem;    --sp-11: 12rem;
+
+  /* Section rhythm shrinks on small screens */
+  --section-y: clamp(3.5rem, 2rem + 7vw, 8rem);
+
+  /* ---- Layout ---------------------------------------------------------- */
+  --max-page: 1560px;
+  --max-prose: 72ch;
+  --gutter: clamp(1.25rem, 0.5rem + 3vw, 4rem);
+  --radius: 2px;      /* engineered, not friendly */
+  --radius-lg: 3px;
+  --border: 1px;
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 140ms;
+  --dur: 260ms;
+  --dur-slow: 620ms;
+
+  --z-header: 100;
+  --z-overlay: 200;
+}
+
+/* ==========================================================================
+   Colour — dark is the default rendering; light is fully supported.
+   Accent is a single hue in two strengths:
+     --accent         bright, for graphics, borders, active states
+     --accent-ink     darkened enough to carry white text at AA
+   ========================================================================== */
+
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg:            #08090B;
+  --bg-raised:     #0E1013;
+  --bg-sunken:     #050608;
+  --surface:       #14171B;
+  --surface-hover: #1B1F24;
+
+  --line:          #23282F;
+  --line-strong:   #333A43;
+
+  --ink:           #F2F4F7;   /* 18.1:1 on --bg */
+  --ink-muted:     #A2ACB9;   /*  8.7:1 */
+  --ink-faint:     #7A838E;   /*  5.2:1 on --bg, 4.8:1 on --surface */
+
+  --accent:        #FF6B1A;
+  --accent-hover:  #FF833F;
+  --accent-ink:    #FF6B1A;   /* on dark, the bright orange carries #08090B text */
+  --accent-on:     #10120E;   /* text colour that sits on --accent-ink */
+  --accent-weak:   rgba(255, 107, 26, 0.12);
+  --accent-line:   rgba(255, 107, 26, 0.34);
+
+  --focus:         #63B3FF;
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.6);
+  --shadow-2: 0 12px 32px -12px rgba(0, 0, 0, 0.8);
+
+  /* Machine imagery reads best against a graphite vignette */
+  --media-bg: radial-gradient(120% 120% at 50% 0%, #1A1F25 0%, #0B0D10 72%);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg:            #FFFFFF;
+  --bg-raised:     #F7F8F9;
+  --bg-sunken:     #EFF1F3;
+  --surface:       #FFFFFF;
+  --surface-hover: #F4F6F8;
+
+  --line:          #E1E5EA;
+  --line-strong:   #C6CDD5;
+
+  --ink:           #0B0E12;   /* 18.9:1 on white */
+  --ink-muted:     #4E5761;   /*  8.0:1 */
+  --ink-faint:     #626B75;   /*  5.4:1 on --bg, 4.8:1 on --bg-sunken */
+
+  --accent:        #E2540A;
+  --accent-hover:  #C2470A;
+  --accent-ink:    #B8420A;   /* 5.6:1 with white text — AA for normal text */
+  --accent-on:     #FFFFFF;
+  --accent-weak:   rgba(226, 84, 10, 0.09);
+  --accent-line:   rgba(226, 84, 10, 0.30);
+
+  --focus:         #0B5FCC;
+
+  --shadow-1: 0 1px 2px rgba(11, 14, 18, 0.07);
+  --shadow-2: 0 14px 34px -14px rgba(11, 14, 18, 0.22);
+
+  --media-bg: radial-gradient(120% 120% at 50% 0%, #F2F4F6 0%, #E3E7EB 72%);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    color-scheme: light;
+
+    --bg:            #FFFFFF;
+    --bg-raised:     #F7F8F9;
+    --bg-sunken:     #EFF1F3;
+    --surface:       #FFFFFF;
+    --surface-hover: #F4F6F8;
+
+    --line:          #E1E5EA;
+    --line-strong:   #C6CDD5;
+
+    --ink:           #0B0E12;
+    --ink-muted:     #4E5761;
+    --ink-faint:     #6B747E;
+
+    --accent:        #E2540A;
+    --accent-hover:  #C2470A;
+    --accent-ink:    #B8420A;
+    --accent-on:     #FFFFFF;
+    --accent-weak:   rgba(226, 84, 10, 0.09);
+    --accent-line:   rgba(226, 84, 10, 0.30);
+
+    --focus:         #0B5FCC;
+
+    --shadow-1: 0 1px 2px rgba(11, 14, 18, 0.07);
+    --shadow-2: 0 14px 34px -14px rgba(11, 14, 18, 0.22);
+
+    --media-bg: radial-gradient(120% 120% at 50% 0%, #F2F4F6 0%, #E3E7EB 72%);
+  }
+}

@@ -1,0 +1,44 @@
+# ---------------------------------------------------------------------------
+# THIS REPOSITORY IS PUBLIC. Anything committed here is world-readable.
+# Only original, publishable website content belongs here. Working notes and
+# third-party reference material are kept local and never copied in.
+# ---------------------------------------------------------------------------
+
+# Safety net: if reference material is ever copied in here by mistake, ignore it.
+research/
+notes/
+HANDOFF.md
+CLAUDE-full.md
+*-internal.md
+*-private.md
+
+# Secrets — belt and braces; nothing of the sort should ever exist here
+.env
+.env.*
+*.key
+*.pem
+*.pfx
+*credentials*
+*secret*
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Scratch / temp
+*.tmp
+*.log
+scratch/
+tmp/
+
+# Downloaded originals before WebP conversion. Only the converted derivatives
+# in assets/images/ are published; these are large, regenerable, and would
+# double the repository size for no benefit.
+_media/

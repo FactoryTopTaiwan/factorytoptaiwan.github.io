@@ -1,0 +1,82 @@
+{
+  "totals": { "products": 38, "models": 28, "families": 8, "withSpecs": 12 },
+
+  "families": [
+    {
+      "slug": "winding-machines",
+      "name": "Winding Machines",
+      "sourceName": "Winding machine",
+      "count": 9,
+      "summary": "Air-coil, armature and stator winding across brushed, brushless and universal motors. Servo-driven wire placement, programmable tension, and multi-station configurations for higher throughput.",
+      "models": ["TWM-917", "TWM-929", "TWM-955", "TWM-901", "TWM-901S", "TWM-902S", "TWM-702", "TWM-308A", "TWM-WB001"]
+    },
+    {
+      "slug": "motor-rotor-equipment",
+      "name": "Rotor & Armature Equipment",
+      "sourceName": "Motor Rotor Production Related Equipment",
+      "count": 12,
+      "summary": "The complete armature route: slot insulation and wedge insertion, hook-type winding, commutator slot cutting and assembly, shaft embossing, welding and fusing, turning, balancing, varnish bake and final test.",
+      "models": ["TWM-308A", "TWM-606", "TWM-202S", "TWM-910", "TWM-319A", "TWM-RF30S", "TWM-IP01", "TWM-IW01", "TWM-LA01", "TWM-301A"]
+    },
+    {
+      "slug": "brushless-motor-equipment",
+      "name": "Brushless Motor Equipment",
+      "sourceName": "Brushless Motor Production Related Equipment",
+      "count": 4,
+      "summary": "Dedicated BLDC stator preparation — horizontal and vertical slot insulation paper insertion, wedge insertion, and stator fusing. The equipment behind e-mobility, drone and cooling-fan motor programmes.",
+      "models": ["TWM-SP001", "TWM-AP01", "TWM-ISW001", "TWA-RF30S"]
+    },
+    {
+      "slug": "modular-production-lines",
+      "name": "Modular Production Lines",
+      "sourceName": "Automatic Modular Production Line",
+      "count": 5,
+      "summary": "Standard machine modules linked into a running line — bobbin production, cooling-fan motor assembly, and configurable winding cells. Capacity is added by adding modules, not by replacing the line.",
+      "models": []
+    },
+    {
+      "slug": "custom-production-equipment",
+      "name": "Custom Production Equipment",
+      "sourceName": "Automatic Customized Production Equipment",
+      "count": 3,
+      "summary": "Purpose-built automation where a catalogue machine does not fit: automatic feeding systems, turntable assembly cells and vibration-feed assembly equipment, designed around the part.",
+      "models": ["TWM-915"]
+    },
+    {
+      "slug": "robotic-production-lines",
+      "name": "Robotic Production Lines",
+      "sourceName": "Robot Automatic Production Line",
+      "count": 2,
+      "summary": "SCARA and six-axis integration for handling, loading and inter-station transfer — used where cycle time or part geometry rules out fixed automation.",
+      "models": []
+    },
+    {
+      "slug": "motor-stator-equipment",
+      "name": "Stator Equipment",
+      "sourceName": "Motor Stator Production Related Equipment",
+      "count": 2,
+      "summary": "Stator slot insulation paper insertion and varnish bake, for brushed and universal motor stators.",
+      "models": ["TWM-ISP01", "TWM-301A"]
+    },
+    {
+      "slug": "semiconductor-equipment",
+      "name": "Semiconductor Process Equipment",
+      "sourceName": "Semiconductor Sealing Testing Process Equipment",
+      "count": 1,
+      "summary": "Sealing and testing process equipment built for semiconductor packaging — the same motion, vision and control platform applied outside motor production.",
+      "models": []
+    }
+  ],
+
+  "turnkey": {
+    "eyebrow": "Turnkey production lines",
+    "title": "One supplier, from bare wire to a tested motor.",
+    "lede": "Most equipment vendors cover a slice of the process and leave you to integrate the rest. We build every stage — winding, insulation, insertion, fusing, turning, balancing, varnish and test — which means one specification, one commissioning schedule, and one team accountable for line output.",
+    "points": [
+      "Line layout, cycle time and footprint agreed before build",
+      "Modules from the standard catalogue wherever they fit, custom where they do not",
+      "Commissioned on site, with operator and maintenance training",
+      "Delivered to Taiwan-listed manufacturers as complete lines"
+    ]
+  }
+}
