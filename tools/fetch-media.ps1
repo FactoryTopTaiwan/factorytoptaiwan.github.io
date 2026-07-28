@@ -43,28 +43,14 @@ foreach ($d in @($OrigDir, $OutDir)) {
     if (-not (Test-Path $d)) { New-Item -ItemType Directory -Path $d -Force | Out-Null }
 }
 
-# ---------------------------------------------------------------------------
-# Slugs
-#   The old CMS slugs are mostly good, readable English, so they are kept --
-#   they are what any existing inbound link points at. One product is served
-#   from a Chinese filename (馬達轉子繞線機.html) and arrives percent-encoded;
-#   that cannot be a public URL, so it is regenerated from the title.
-# ---------------------------------------------------------------------------
-
-function Get-CleanSlug {
-    param([string]$Slug, [string]$Title)
-    if ($Slug -and $Slug -notmatch '%' -and $Slug -notmatch '[^\x00-\x7F]') { return $Slug }
-    $s = $Title.ToLowerInvariant()
-    $s = $s -replace '[^a-z0-9]+', '-'
-    $s = $s -replace '(^-+|-+$)', ''
-    return $s
-}
+. (Join-Path $PSScriptRoot 'slug.ps1')
 
 # ---------------------------------------------------------------------------
 # Collect every image, keyed by product
 # ---------------------------------------------------------------------------
 
 $products = Get-Content $Source -Raw -Encoding UTF8 | ConvertFrom-Json
+$slugMap  = Resolve-ProductSlugs -Products $products
 
 $kinds = [ordered]@{
     gallery_images = 'gallery'
@@ -75,7 +61,7 @@ $kinds = [ordered]@{
 
 $jobs = New-Object System.Collections.Generic.List[object]
 foreach ($p in $products) {
-    $slug = Get-CleanSlug -Slug $p.slug -Title $p.title
+    $slug = $slugMap[$p.slug]
     foreach ($field in $kinds.Keys) {
         $urls = $p.$field
         if (-not $urls) { continue }

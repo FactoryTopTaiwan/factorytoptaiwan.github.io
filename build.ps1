@@ -212,6 +212,17 @@ if ($Clean) {
 
 $site      = Read-Json 'site.json'
 $catalogue = Read-Json 'catalogue.json'
+$data      = Read-Json 'products.json'
+
+# Attach each family's cover photo and its product list, so templates can render
+# a category card or a family page without doing any lookups themselves.
+foreach ($f in $catalogue.families) {
+    $cover = $null
+    if ($data.covers.PSObject.Properties[$f.slug]) { $cover = $data.covers.($f.slug) }
+    $members = @($data.products | Where-Object { $_.family -eq $f.slug })
+    Add-Member -InputObject $f -NotePropertyName 'cover'    -NotePropertyValue $cover   -Force
+    Add-Member -InputObject $f -NotePropertyName 'products' -NotePropertyValue $members -Force
+}
 
 $layout = Read-Template 'layout.html'
 
@@ -222,9 +233,10 @@ function Build-Page {
         [hashtable]$Page        # page-level values: title, description, url
     )
     $scope = @{
-        site    = $site
-        page    = $Page
-        catalog = $catalogue
+        site     = $site
+        page     = $Page
+        catalog  = $catalogue
+        products = $data.products
     }
     $body = Expand-Template -Template (Read-Template $Template) -Scope $scope
     $scope['content'] = $body
@@ -233,12 +245,30 @@ function Build-Page {
 }
 
 # --- Home -------------------------------------------------------------------
+
+# Lead with the flagship BLDC machine: it is the growth story, and it is one of
+# the few products with a spec sheet, a feature image and video already.
+$feature = $data.products | Where-Object { $_.model -eq 'TWM-929' } | Select-Object -First 1
+if (-not $feature) { $feature = $data.products | Where-Object { $_.hero } | Select-Object -First 1 }
+
+# Two supporting shots for the turnkey section, from different process stages so
+# the pair reads as a chain rather than two views of the same machine.
+$shots = @()
+foreach ($m in @('TWM-308A', 'TWM-RF30S')) {
+    $s = $data.products | Where-Object { $_.model -eq $m -and $_.hero } | Select-Object -First 1
+    if ($s) { $shots += $s }
+}
+if ($shots.Count -lt 2) {
+    $shots = @($data.products | Where-Object { $_.hero -and $_.slug -ne $feature.slug } | Select-Object -First 2)
+}
+
 Build-Page -Template 'home.html' -Out 'index.html' -Page @{
-    title       = $site.tagline
-    titleSuffix = $false
-    description = $site.description
-    url         = '/'
-    nav         = 'home'
+    title        = $site.tagline
+    description  = $site.description
+    url          = '/'
+    nav          = 'home'
+    feature      = $feature
+    processShots = $shots
 }
 
 Copy-Assets

@@ -315,14 +315,56 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 
 .hero {
   position: relative;
-  display: grid;
-  align-items: end;
-  min-height: min(86svh, 54rem);
-  padding-block: var(--sp-10) var(--sp-8);
+  padding-block: var(--sp-9) var(--sp-8);
   background: var(--media-bg);
   overflow: hidden;
   border-bottom: var(--border) solid var(--line);
 }
+
+/* Copy left, machine right. The incumbents in this category (Trumpf, DMG Mori)
+   lead with the machine as an object of engineering rather than a stock scene,
+   and an editorial split keeps the headline legible without an overlay
+   scrim fighting the photography. */
+.hero__layout {
+  position: relative;
+  display: grid;
+  gap: var(--sp-7);
+  align-items: center;
+}
+@media (min-width: 62rem) {
+  .hero__layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
+    gap: var(--sp-9);
+    min-height: min(78svh, 46rem);
+  }
+}
+
+.hero__media {
+  position: relative;
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-raised);
+  overflow: hidden;
+}
+.hero__media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+.hero__media figcaption {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5);
+  background: linear-gradient(to top, rgba(4, 5, 7, 0.88), transparent);
+  color: #F2F4F7;
+  font-size: var(--step--1);
+}
+.hero__media .model { font-weight: 620; color: #FF8A47; }
 
 /* Engineering grid, drawn not photographed. Replaced by machine video later. */
 .hero__grid {
@@ -428,8 +470,6 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 15rem;
-  padding: var(--sp-5);
   background: var(--surface);
   border: var(--border) solid var(--line);
   border-radius: var(--radius);
@@ -438,6 +478,27 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   transition: border-color var(--dur) var(--ease-out),
               background var(--dur) var(--ease-out),
               transform var(--dur) var(--ease-out);
+}
+
+.cat__media {
+  position: relative;
+  background: var(--media-bg);
+  border-bottom: var(--border) solid var(--line);
+  overflow: hidden;
+}
+.cat__media img {
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.cat:hover .cat__media img { transform: scale(1.035); }
+
+.cat__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--sp-5);
 }
 .cat:hover {
   border-color: var(--accent-line);
@@ -459,10 +520,9 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   font-size: var(--step--1);
   font-variant-numeric: tabular-nums;
   color: var(--ink-faint);
-  margin-bottom: var(--sp-5);
+  margin-bottom: var(--sp-3);
 }
 .cat__name {
-  margin-top: auto;
   font-size: var(--step-2);
   font-weight: 620;
   letter-spacing: -0.025em;
@@ -487,16 +547,31 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   .split--flip > :first-child { order: 2; }
 }
 
+/* Two-up machine detail. Reads as evidence beside the claim, which is how the
+   incumbents present process capability. */
 .split__media {
-  aspect-ratio: 4 / 3;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-4);
+}
+.split__media figure {
+  margin: 0;
   background: var(--media-bg);
   border: var(--border) solid var(--line);
   border-radius: var(--radius);
-  display: grid; place-items: center;
-  color: var(--ink-faint);
+  overflow: hidden;
+}
+.split__media img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+.split__media figcaption {
+  padding: var(--sp-3) var(--sp-4);
+  border-top: var(--border) solid var(--line);
+  font-family: var(--font-mono);
   font-size: var(--step--1);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  color: var(--ink-muted);
 }
 
 .chain {

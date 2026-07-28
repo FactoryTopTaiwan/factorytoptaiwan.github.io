@@ -1,0 +1,2109 @@
+{
+    "generated":  "2026-07-28",
+    "covers":  {
+                   "winding-machines":  {
+                                            "src":  "/assets/images/stator-production-line/gallery-02-1000w.webp",
+                                            "srcset":  "/assets/images/stator-production-line/gallery-02-400w.webp 400w, /assets/images/stator-production-line/gallery-02-800w.webp 800w, /assets/images/stator-production-line/gallery-02-1000w.webp 1000w",
+                                            "width":  1000,
+                                            "height":  989,
+                                            "alt":  "Winding Machines - In-Slot Brushless Motor Stator Automatic Winding Machine",
+                                            "fromModel":  "TWM-902S",
+                                            "fromSlug":  "stator-production-line"
+                                        },
+                   "motor-rotor-equipment":  {
+                                                 "src":  "/assets/images/armature-slot-wedge-inserting-machine/gallery-02-1000w.webp",
+                                                 "srcset":  "/assets/images/armature-slot-wedge-inserting-machine/gallery-02-400w.webp 400w, /assets/images/armature-slot-wedge-inserting-machine/gallery-02-800w.webp 800w, /assets/images/armature-slot-wedge-inserting-machine/gallery-02-1000w.webp 1000w",
+                                                 "width":  1000,
+                                                 "height":  750,
+                                                 "alt":  "Rotor \u0026 Armature Equipment - Armature slot wedge inserting machine",
+                                                 "fromModel":  "TWM-IW01",
+                                                 "fromSlug":  "armature-slot-wedge-inserting-machine"
+                                             },
+                   "brushless-motor-equipment":  {
+                                                     "src":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-1000w.webp",
+                                                     "srcset":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-400w.webp 400w, /assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-800w.webp 800w, /assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-1000w.webp 1000w",
+                                                     "width":  1000,
+                                                     "height":  750,
+                                                     "alt":  "Brushless Motor Equipment - Vertical brushless motor slot insulation paper inserting machine",
+                                                     "fromModel":  "TWM-AP01",
+                                                     "fromSlug":  "vertical-brushless-motor-slot-insulation-paper-inserting-machine"
+                                                 },
+                   "modular-production-lines":  {
+                                                    "src":  "/assets/images/automatic-winding-machine-product-series/gallery-07-1000w.webp",
+                                                    "srcset":  "/assets/images/automatic-winding-machine-product-series/gallery-07-400w.webp 400w, /assets/images/automatic-winding-machine-product-series/gallery-07-800w.webp 800w, /assets/images/automatic-winding-machine-product-series/gallery-07-1000w.webp 1000w",
+                                                    "width":  1000,
+                                                    "height":  750,
+                                                    "alt":  "Modular Production Lines - Automatic Winding Machine Product Series",
+                                                    "fromModel":  "",
+                                                    "fromSlug":  "automatic-winding-machine-product-series"
+                                                },
+                   "custom-production-equipment":  {
+                                                       "src":  "/assets/images/turntable-automatic-assembling-equipment/gallery-03-1000w.webp",
+                                                       "srcset":  "/assets/images/turntable-automatic-assembling-equipment/gallery-03-400w.webp 400w, /assets/images/turntable-automatic-assembling-equipment/gallery-03-800w.webp 800w, /assets/images/turntable-automatic-assembling-equipment/gallery-03-1000w.webp 1000w",
+                                                       "width":  1000,
+                                                       "height":  750,
+                                                       "alt":  "Custom Production Equipment - Turntable Automatic Assembling Equipment",
+                                                       "fromModel":  "",
+                                                       "fromSlug":  "turntable-automatic-assembling-equipment"
+                                                   },
+                   "robotic-production-lines":  {
+                                                    "src":  "/assets/images/application-of-six-axis-robotic-arm/gallery-02-800w.webp",
+                                                    "srcset":  "/assets/images/application-of-six-axis-robotic-arm/gallery-02-400w.webp 400w, /assets/images/application-of-six-axis-robotic-arm/gallery-02-800w.webp 800w",
+                                                    "width":  800,
+                                                    "height":  941,
+                                                    "alt":  "Robotic Production Lines - Application of six-axis robotic arm",
+                                                    "fromModel":  "",
+                                                    "fromSlug":  "application-of-six-axis-robotic-arm"
+                                                },
+                   "motor-stator-equipment":  {
+                                                  "src":  "/assets/images/varnish-bake-twm-301a/gallery-03-1000w.webp",
+                                                  "srcset":  "/assets/images/varnish-bake-twm-301a/gallery-03-400w.webp 400w, /assets/images/varnish-bake-twm-301a/gallery-03-800w.webp 800w, /assets/images/varnish-bake-twm-301a/gallery-03-1000w.webp 1000w",
+                                                  "width":  1000,
+                                                  "height":  750,
+                                                  "alt":  "Stator Equipment - Varnish bake",
+                                                  "fromModel":  "TWM-301A",
+                                                  "fromSlug":  "varnish-bake-twm-301a"
+                                              },
+                   "semiconductor-equipment":  {
+                                                   "src":  "/assets/images/semiconductor-sealing-testing-process-equipment/gallery-03-800w.webp",
+                                                   "srcset":  "/assets/images/semiconductor-sealing-testing-process-equipment/gallery-03-400w.webp 400w, /assets/images/semiconductor-sealing-testing-process-equipment/gallery-03-800w.webp 800w",
+                                                   "width":  800,
+                                                   "height":  962,
+                                                   "alt":  "Semiconductor Process Equipment - Semiconductor Sealing Testing Process Equipment",
+                                                   "fromModel":  "",
+                                                   "fromSlug":  "semiconductor-sealing-testing-process-equipment"
+                                               }
+               },
+    "products":  [
+                     {
+                         "slug":  "air-coil-winding-machine",
+                         "model":  "TWM-917",
+                         "title":  "Air Coil Winding Machine",
+                         "family":  "winding-machines",
+                         "familyName":  "Winding Machines",
+                         "hero":  {
+                                      "src":  "/assets/images/air-coil-winding-machine/gallery-03-800w.webp",
+                                      "srcset":  "/assets/images/air-coil-winding-machine/gallery-03-400w.webp 400w, /assets/images/air-coil-winding-machine/gallery-03-800w.webp 800w",
+                                      "width":  800,
+                                      "height":  600,
+                                      "alt":  "TWM-917 Air Coil Winding Machine"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/air-coil-winding-machine/gallery-01-400w.webp",
+                                             "srcset":  "/assets/images/air-coil-winding-machine/gallery-01-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  723,
+                                             "alt":  "TWM-917 Air Coil Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/air-coil-winding-machine/gallery-02-400w.webp",
+                                             "srcset":  "/assets/images/air-coil-winding-machine/gallery-02-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  527,
+                                             "alt":  "TWM-917 Air Coil Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/air-coil-winding-machine/gallery-03-800w.webp",
+                                             "srcset":  "/assets/images/air-coil-winding-machine/gallery-03-400w.webp 400w, /assets/images/air-coil-winding-machine/gallery-03-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  600,
+                                             "alt":  "TWM-917 Air Coil Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/air-coil-winding-machine/gallery-04-400w.webp",
+                                             "srcset":  "/assets/images/air-coil-winding-machine/gallery-04-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  533,
+                                             "alt":  "TWM-917 Air Coil Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/air-coil-winding-machine/gallery-05-400w.webp",
+                                             "srcset":  "/assets/images/air-coil-winding-machine/gallery-05-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  533,
+                                             "alt":  "TWM-917 Air Coil Winding Machine"
+                                         }
+                                     ],
+                         "spec":  {
+                                      "src":  "/assets/images/air-coil-winding-machine/spec-01.webp",
+                                      "srcset":  "/assets/images/air-coil-winding-machine/spec-01.webp 506w",
+                                      "width":  506,
+                                      "height":  139,
+                                      "alt":  "TWM-917 Air Coil Winding Machine - published specifications"
+                                  },
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  true,
+                         "imageCount":  5
+                     },
+                     {
+                         "slug":  "armature-welding-machine",
+                         "model":  "TWM-RF30S",
+                         "title":  "Armature Welding Machine",
+                         "family":  "motor-rotor-equipment",
+                         "familyName":  "Rotor \u0026 Armature Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/armature-welding-machine/gallery-06-1000w.webp",
+                                      "srcset":  "/assets/images/armature-welding-machine/gallery-06-400w.webp 400w, /assets/images/armature-welding-machine/gallery-06-800w.webp 800w, /assets/images/armature-welding-machine/gallery-06-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  936,
+                                      "alt":  "TWM-RF30S Armature Welding Machine"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/armature-welding-machine/gallery-01-800w.webp",
+                                             "srcset":  "/assets/images/armature-welding-machine/gallery-01-400w.webp 400w, /assets/images/armature-welding-machine/gallery-01-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  994,
+                                             "alt":  "TWM-RF30S Armature Welding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/armature-welding-machine/gallery-02-400w.webp",
+                                             "srcset":  "/assets/images/armature-welding-machine/gallery-02-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  428,
+                                             "alt":  "TWM-RF30S Armature Welding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/armature-welding-machine/gallery-03-315w.webp",
+                                             "srcset":  "/assets/images/armature-welding-machine/gallery-03-315w.webp 315w",
+                                             "width":  315,
+                                             "height":  232,
+                                             "alt":  "TWM-RF30S Armature Welding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/armature-welding-machine/gallery-04-289w.webp",
+                                             "srcset":  "/assets/images/armature-welding-machine/gallery-04-289w.webp 289w",
+                                             "width":  289,
+                                             "height":  403,
+                                             "alt":  "TWM-RF30S Armature Welding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/armature-welding-machine/gallery-05-400w.webp",
+                                             "srcset":  "/assets/images/armature-welding-machine/gallery-05-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  553,
+                                             "alt":  "TWM-RF30S Armature Welding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/armature-welding-machine/gallery-06-1000w.webp",
+                                             "srcset":  "/assets/images/armature-welding-machine/gallery-06-400w.webp 400w, /assets/images/armature-welding-machine/gallery-06-800w.webp 800w, /assets/images/armature-welding-machine/gallery-06-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  936,
+                                             "alt":  "TWM-RF30S Armature Welding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/armature-welding-machine/gallery-07-400w.webp",
+                                             "srcset":  "/assets/images/armature-welding-machine/gallery-07-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  334,
+                                             "alt":  "TWM-RF30S Armature Welding Machine"
+                                         }
+                                     ],
+                         "spec":  {
+                                      "src":  "/assets/images/armature-welding-machine/spec-01.webp",
+                                      "srcset":  "/assets/images/armature-welding-machine/spec-01.webp 505w",
+                                      "width":  505,
+                                      "height":  164,
+                                      "alt":  "TWM-RF30S Armature Welding Machine - published specifications"
+                                  },
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  true,
+                         "imageCount":  7
+                     },
+                     {
+                         "slug":  "automatic-multi-axes-coil-winding-machine",
+                         "model":  "TWM-WB001",
+                         "title":  "Automatic Multi-axes Coil Winding Machine",
+                         "family":  "winding-machines",
+                         "familyName":  "Winding Machines",
+                         "hero":  {
+                                      "src":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-06-1000w.webp",
+                                      "srcset":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-06-400w.webp 400w, /assets/images/automatic-multi-axes-coil-winding-machine/gallery-06-800w.webp 800w, /assets/images/automatic-multi-axes-coil-winding-machine/gallery-06-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  750,
+                                      "alt":  "TWM-WB001 Automatic Multi-axes Coil Winding Machine"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-01-1000w.webp",
+                                             "srcset":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-01-400w.webp 400w, /assets/images/automatic-multi-axes-coil-winding-machine/gallery-01-800w.webp 800w, /assets/images/automatic-multi-axes-coil-winding-machine/gallery-01-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  756,
+                                             "alt":  "TWM-WB001 Automatic Multi-axes Coil Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-02-1000w.webp",
+                                             "srcset":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-02-400w.webp 400w, /assets/images/automatic-multi-axes-coil-winding-machine/gallery-02-800w.webp 800w, /assets/images/automatic-multi-axes-coil-winding-machine/gallery-02-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  756,
+                                             "alt":  "TWM-WB001 Automatic Multi-axes Coil Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-03-800w.webp",
+                                             "srcset":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-03-400w.webp 400w, /assets/images/automatic-multi-axes-coil-winding-machine/gallery-03-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  711,
+                                             "alt":  "TWM-WB001 Automatic Multi-axes Coil Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-04-400w.webp",
+                                             "srcset":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-04-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  572,
+                                             "alt":  "TWM-WB001 Automatic Multi-axes Coil Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-05-400w.webp",
+                                             "srcset":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-05-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  533,
+                                             "alt":  "TWM-WB001 Automatic Multi-axes Coil Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-06-1000w.webp",
+                                             "srcset":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-06-400w.webp 400w, /assets/images/automatic-multi-axes-coil-winding-machine/gallery-06-800w.webp 800w, /assets/images/automatic-multi-axes-coil-winding-machine/gallery-06-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-WB001 Automatic Multi-axes Coil Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-07-1000w.webp",
+                                             "srcset":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-07-400w.webp 400w, /assets/images/automatic-multi-axes-coil-winding-machine/gallery-07-800w.webp 800w, /assets/images/automatic-multi-axes-coil-winding-machine/gallery-07-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-WB001 Automatic Multi-axes Coil Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-08-400w.webp",
+                                             "srcset":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-08-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  533,
+                                             "alt":  "TWM-WB001 Automatic Multi-axes Coil Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-09-1000w.webp",
+                                             "srcset":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-09-400w.webp 400w, /assets/images/automatic-multi-axes-coil-winding-machine/gallery-09-800w.webp 800w, /assets/images/automatic-multi-axes-coil-winding-machine/gallery-09-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-WB001 Automatic Multi-axes Coil Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-10-1000w.webp",
+                                             "srcset":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-10-400w.webp 400w, /assets/images/automatic-multi-axes-coil-winding-machine/gallery-10-800w.webp 800w, /assets/images/automatic-multi-axes-coil-winding-machine/gallery-10-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-WB001 Automatic Multi-axes Coil Winding Machine"
+                                         }
+                                     ],
+                         "spec":  {
+                                      "src":  "/assets/images/automatic-multi-axes-coil-winding-machine/spec-01.webp",
+                                      "srcset":  "/assets/images/automatic-multi-axes-coil-winding-machine/spec-01.webp 500w",
+                                      "width":  500,
+                                      "height":  164,
+                                      "alt":  "TWM-WB001 Automatic Multi-axes Coil Winding Machine - published specifications"
+                                  },
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  true,
+                         "imageCount":  10
+                     },
+                     {
+                         "slug":  "automatic-stuff-type-armature-winding-machine",
+                         "model":  "TWM-702",
+                         "title":  "Automatic Stuff Type Armature Winding Machine",
+                         "family":  "winding-machines",
+                         "familyName":  "Winding Machines",
+                         "hero":  {
+                                      "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-06-1000w.webp",
+                                      "srcset":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-06-400w.webp 400w, /assets/images/automatic-stuff-type-armature-winding-machine/gallery-06-800w.webp 800w, /assets/images/automatic-stuff-type-armature-winding-machine/gallery-06-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  750,
+                                      "alt":  "TWM-702 Automatic Stuff Type Armature Winding Machine"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-01-1000w.webp",
+                                             "srcset":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-01-400w.webp 400w, /assets/images/automatic-stuff-type-armature-winding-machine/gallery-01-800w.webp 800w, /assets/images/automatic-stuff-type-armature-winding-machine/gallery-01-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  1000,
+                                             "alt":  "TWM-702 Automatic Stuff Type Armature Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-02-800w.webp",
+                                             "srcset":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-02-400w.webp 400w, /assets/images/automatic-stuff-type-armature-winding-machine/gallery-02-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  450,
+                                             "alt":  "TWM-702 Automatic Stuff Type Armature Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-03-800w.webp",
+                                             "srcset":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-03-400w.webp 400w, /assets/images/automatic-stuff-type-armature-winding-machine/gallery-03-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  909,
+                                             "alt":  "TWM-702 Automatic Stuff Type Armature Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-04-800w.webp",
+                                             "srcset":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-04-400w.webp 400w, /assets/images/automatic-stuff-type-armature-winding-machine/gallery-04-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  536,
+                                             "alt":  "TWM-702 Automatic Stuff Type Armature Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-05-400w.webp",
+                                             "srcset":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-05-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  533,
+                                             "alt":  "TWM-702 Automatic Stuff Type Armature Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-06-1000w.webp",
+                                             "srcset":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-06-400w.webp 400w, /assets/images/automatic-stuff-type-armature-winding-machine/gallery-06-800w.webp 800w, /assets/images/automatic-stuff-type-armature-winding-machine/gallery-06-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-702 Automatic Stuff Type Armature Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-07-800w.webp",
+                                             "srcset":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-07-400w.webp 400w, /assets/images/automatic-stuff-type-armature-winding-machine/gallery-07-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  984,
+                                             "alt":  "TWM-702 Automatic Stuff Type Armature Winding Machine"
+                                         }
+                                     ],
+                         "spec":  {
+                                      "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/spec-01.webp",
+                                      "srcset":  "/assets/images/automatic-stuff-type-armature-winding-machine/spec-01.webp 507w",
+                                      "width":  507,
+                                      "height":  213,
+                                      "alt":  "TWM-702 Automatic Stuff Type Armature Winding Machine - published specifications"
+                                  },
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  true,
+                         "imageCount":  7
+                     },
+                     {
+                         "slug":  "bobbin",
+                         "model":  "",
+                         "title":  "Automatic Bobbin Production Line",
+                         "family":  "modular-production-lines",
+                         "familyName":  "Modular Production Lines",
+                         "hero":  {
+                                      "src":  "/assets/images/bobbin/gallery-05-1000w.webp",
+                                      "srcset":  "/assets/images/bobbin/gallery-05-400w.webp 400w, /assets/images/bobbin/gallery-05-800w.webp 800w, /assets/images/bobbin/gallery-05-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  750,
+                                      "alt":  "Automatic Bobbin Production Line"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/bobbin/gallery-01-400w.webp",
+                                             "srcset":  "/assets/images/bobbin/gallery-01-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  533,
+                                             "alt":  "Automatic Bobbin Production Line"
+                                         },
+                                         {
+                                             "src":  "/assets/images/bobbin/gallery-02-1000w.webp",
+                                             "srcset":  "/assets/images/bobbin/gallery-02-400w.webp 400w, /assets/images/bobbin/gallery-02-800w.webp 800w, /assets/images/bobbin/gallery-02-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "Automatic Bobbin Production Line"
+                                         },
+                                         {
+                                             "src":  "/assets/images/bobbin/gallery-03-400w.webp",
+                                             "srcset":  "/assets/images/bobbin/gallery-03-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  566,
+                                             "alt":  "Automatic Bobbin Production Line"
+                                         },
+                                         {
+                                             "src":  "/assets/images/bobbin/gallery-04-800w.webp",
+                                             "srcset":  "/assets/images/bobbin/gallery-04-400w.webp 400w, /assets/images/bobbin/gallery-04-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  711,
+                                             "alt":  "Automatic Bobbin Production Line"
+                                         },
+                                         {
+                                             "src":  "/assets/images/bobbin/gallery-05-1000w.webp",
+                                             "srcset":  "/assets/images/bobbin/gallery-05-400w.webp 400w, /assets/images/bobbin/gallery-05-800w.webp 800w, /assets/images/bobbin/gallery-05-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "Automatic Bobbin Production Line"
+                                         },
+                                         {
+                                             "src":  "/assets/images/bobbin/gallery-06-1000w.webp",
+                                             "srcset":  "/assets/images/bobbin/gallery-06-400w.webp 400w, /assets/images/bobbin/gallery-06-800w.webp 800w, /assets/images/bobbin/gallery-06-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "Automatic Bobbin Production Line"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  6
+                     },
+                     {
+                         "slug":  "commutator-slot-cutting",
+                         "model":  "TWM-606",
+                         "title":  "Commutator slot cutting",
+                         "family":  "motor-rotor-equipment",
+                         "familyName":  "Rotor \u0026 Armature Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/commutator-slot-cutting/gallery-01-1000w.webp",
+                                      "srcset":  "/assets/images/commutator-slot-cutting/gallery-01-400w.webp 400w, /assets/images/commutator-slot-cutting/gallery-01-800w.webp 800w, /assets/images/commutator-slot-cutting/gallery-01-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  750,
+                                      "alt":  "TWM-606 Commutator slot cutting"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/commutator-slot-cutting/gallery-01-1000w.webp",
+                                             "srcset":  "/assets/images/commutator-slot-cutting/gallery-01-400w.webp 400w, /assets/images/commutator-slot-cutting/gallery-01-800w.webp 800w, /assets/images/commutator-slot-cutting/gallery-01-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-606 Commutator slot cutting"
+                                         },
+                                         {
+                                             "src":  "/assets/images/commutator-slot-cutting/gallery-02-400w.webp",
+                                             "srcset":  "/assets/images/commutator-slot-cutting/gallery-02-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  300,
+                                             "alt":  "TWM-606 Commutator slot cutting"
+                                         },
+                                         {
+                                             "src":  "/assets/images/commutator-slot-cutting/gallery-03-400w.webp",
+                                             "srcset":  "/assets/images/commutator-slot-cutting/gallery-03-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  631,
+                                             "alt":  "TWM-606 Commutator slot cutting"
+                                         },
+                                         {
+                                             "src":  "/assets/images/commutator-slot-cutting/gallery-04-400w.webp",
+                                             "srcset":  "/assets/images/commutator-slot-cutting/gallery-04-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  530,
+                                             "alt":  "TWM-606 Commutator slot cutting"
+                                         }
+                                     ],
+                         "spec":  {
+                                      "src":  "/assets/images/commutator-slot-cutting/spec-01.webp",
+                                      "srcset":  "/assets/images/commutator-slot-cutting/spec-01.webp 508w",
+                                      "width":  508,
+                                      "height":  204,
+                                      "alt":  "TWM-606 Commutator slot cutting - published specifications"
+                                  },
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  true,
+                         "imageCount":  4
+                     },
+                     {
+                         "slug":  "hook-type-armature-automatic-winding-machine-vertical",
+                         "model":  "TWM955",
+                         "title":  "Hook Type Armature Automatic Winding Machine (Vertical)",
+                         "family":  "winding-machines",
+                         "familyName":  "Winding Machines",
+                         "hero":  {
+                                      "src":  "/assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-04-1000w.webp",
+                                      "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-04-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-04-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-04-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  750,
+                                      "alt":  "TWM955 Hook Type Armature Automatic Winding Machine (Vertical)"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-01-1000w.webp",
+                                             "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-01-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-01-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-01-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  990,
+                                             "alt":  "TWM955 Hook Type Armature Automatic Winding Machine (Vertical)"
+                                         },
+                                         {
+                                             "src":  "/assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-02-400w.webp",
+                                             "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-02-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  486,
+                                             "alt":  "TWM955 Hook Type Armature Automatic Winding Machine (Vertical)"
+                                         },
+                                         {
+                                             "src":  "/assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-03-800w.webp",
+                                             "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-03-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-03-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  593,
+                                             "alt":  "TWM955 Hook Type Armature Automatic Winding Machine (Vertical)"
+                                         },
+                                         {
+                                             "src":  "/assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-04-1000w.webp",
+                                             "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-04-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-04-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-04-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM955 Hook Type Armature Automatic Winding Machine (Vertical)"
+                                         },
+                                         {
+                                             "src":  "/assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-05-400w.webp",
+                                             "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-05-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  533,
+                                             "alt":  "TWM955 Hook Type Armature Automatic Winding Machine (Vertical)"
+                                         }
+                                     ],
+                         "spec":  {
+                                      "src":  "/assets/images/hook-type-armature-automatic-winding-machine-vertical/spec-01.webp",
+                                      "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-vertical/spec-01.webp 506w",
+                                      "width":  506,
+                                      "height":  249,
+                                      "alt":  "TWM955 Hook Type Armature Automatic Winding Machine (Vertical) - published specifications"
+                                  },
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  true,
+                         "imageCount":  5
+                     },
+                     {
+                         "slug":  "out-slot-brushless-motor-stator-automatic-winding-machine",
+                         "model":  "TWM-929",
+                         "title":  "Out-Slot Brushless Motor Stator Automatic Winding Machine",
+                         "family":  "winding-machines",
+                         "familyName":  "Winding Machines",
+                         "hero":  {
+                                      "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-08-1000w.webp",
+                                      "srcset":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-08-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-08-800w.webp 800w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-08-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  750,
+                                      "alt":  "TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-01-378w.webp",
+                                             "srcset":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-01-378w.webp 378w",
+                                             "width":  378,
+                                             "height":  567,
+                                             "alt":  "TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-02-800w.webp",
+                                             "srcset":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-02-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-02-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  750,
+                                             "alt":  "TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-03-400w.webp",
+                                             "srcset":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-03-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  423,
+                                             "alt":  "TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-04-400w.webp",
+                                             "srcset":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-04-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  761,
+                                             "alt":  "TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-05-1000w.webp",
+                                             "srcset":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-05-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-05-800w.webp 800w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-05-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  706,
+                                             "alt":  "TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-06-400w.webp",
+                                             "srcset":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-06-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  533,
+                                             "alt":  "TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-07-400w.webp",
+                                             "srcset":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-07-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  533,
+                                             "alt":  "TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-08-1000w.webp",
+                                             "srcset":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-08-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-08-800w.webp 800w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-08-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-09-400w.webp",
+                                             "srcset":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-09-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  632,
+                                             "alt":  "TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine"
+                                         }
+                                     ],
+                         "spec":  {
+                                      "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/spec-01.webp",
+                                      "srcset":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/spec-01.webp 508w",
+                                      "width":  508,
+                                      "height":  212,
+                                      "alt":  "TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine - published specifications"
+                                  },
+                         "feature":  {
+                                         "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/feature-01.webp",
+                                         "srcset":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/feature-01.webp 1920w",
+                                         "width":  1920,
+                                         "height":  1080,
+                                         "alt":  "TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine - features"
+                                     },
+                         "app":  {
+                                     "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/app-01.webp",
+                                     "srcset":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/app-01.webp 1920w",
+                                     "width":  1920,
+                                     "height":  1080,
+                                     "alt":  "TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine - applications"
+                                 },
+                         "hasSpec":  true,
+                         "imageCount":  9
+                     },
+                     {
+                         "slug":  "scara",
+                         "model":  "",
+                         "title":  "Application of SCARA",
+                         "family":  "robotic-production-lines",
+                         "familyName":  "Robotic Production Lines",
+                         "hero":  {
+                                      "src":  "/assets/images/scara/gallery-01-400w.webp",
+                                      "srcset":  "/assets/images/scara/gallery-01-400w.webp 400w",
+                                      "width":  400,
+                                      "height":  281,
+                                      "alt":  "Application of SCARA"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/scara/gallery-01-400w.webp",
+                                             "srcset":  "/assets/images/scara/gallery-01-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  281,
+                                             "alt":  "Application of SCARA"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  1
+                     },
+                     {
+                         "slug":  "servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly",
+                         "model":  "TWM-202S",
+                         "title":  "Servo motor/Hydraulic Pressure (Rotor\\Commutator\\impeller assembly)",
+                         "family":  "motor-rotor-equipment",
+                         "familyName":  "Rotor \u0026 Armature Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-03-1000w.webp",
+                                      "srcset":  "/assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-03-400w.webp 400w, /assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-03-800w.webp 800w, /assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-03-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  750,
+                                      "alt":  "TWM-202S Servo motor/Hydraulic Pressure (Rotor\\Commutator\\impeller assembly)"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-01-400w.webp",
+                                             "srcset":  "/assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-01-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  615,
+                                             "alt":  "TWM-202S Servo motor/Hydraulic Pressure (Rotor\\Commutator\\impeller assembly)"
+                                         },
+                                         {
+                                             "src":  "/assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-02-400w.webp",
+                                             "srcset":  "/assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-02-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  898,
+                                             "alt":  "TWM-202S Servo motor/Hydraulic Pressure (Rotor\\Commutator\\impeller assembly)"
+                                         },
+                                         {
+                                             "src":  "/assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-03-1000w.webp",
+                                             "srcset":  "/assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-03-400w.webp 400w, /assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-03-800w.webp 800w, /assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-03-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-202S Servo motor/Hydraulic Pressure (Rotor\\Commutator\\impeller assembly)"
+                                         },
+                                         {
+                                             "src":  "/assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-04-800w.webp",
+                                             "srcset":  "/assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-04-400w.webp 400w, /assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-04-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  711,
+                                             "alt":  "TWM-202S Servo motor/Hydraulic Pressure (Rotor\\Commutator\\impeller assembly)"
+                                         },
+                                         {
+                                             "src":  "/assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-05-386w.webp",
+                                             "srcset":  "/assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-05-386w.webp 386w",
+                                             "width":  386,
+                                             "height":  999,
+                                             "alt":  "TWM-202S Servo motor/Hydraulic Pressure (Rotor\\Commutator\\impeller assembly)"
+                                         },
+                                         {
+                                             "src":  "/assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-06-400w.webp",
+                                             "srcset":  "/assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-06-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  644,
+                                             "alt":  "TWM-202S Servo motor/Hydraulic Pressure (Rotor\\Commutator\\impeller assembly)"
+                                         }
+                                     ],
+                         "spec":  {
+                                      "src":  "/assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/spec-01.webp",
+                                      "srcset":  "/assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/spec-01.webp 504w",
+                                      "width":  504,
+                                      "height":  172,
+                                      "alt":  "TWM-202S Servo motor/Hydraulic Pressure (Rotor\\Commutator\\impeller assembly) - published specifications"
+                                  },
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  true,
+                         "imageCount":  6
+                     },
+                     {
+                         "slug":  "shaft-embossing",
+                         "model":  "TWM-910",
+                         "title":  "Shaft embossing",
+                         "family":  "motor-rotor-equipment",
+                         "familyName":  "Rotor \u0026 Armature Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/shaft-embossing/gallery-03-1000w.webp",
+                                      "srcset":  "/assets/images/shaft-embossing/gallery-03-400w.webp 400w, /assets/images/shaft-embossing/gallery-03-800w.webp 800w, /assets/images/shaft-embossing/gallery-03-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  656,
+                                      "alt":  "TWM-910 Shaft embossing"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/shaft-embossing/gallery-01-400w.webp",
+                                             "srcset":  "/assets/images/shaft-embossing/gallery-01-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  525,
+                                             "alt":  "TWM-910 Shaft embossing"
+                                         },
+                                         {
+                                             "src":  "/assets/images/shaft-embossing/gallery-02-400w.webp",
+                                             "srcset":  "/assets/images/shaft-embossing/gallery-02-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  533,
+                                             "alt":  "TWM-910 Shaft embossing"
+                                         },
+                                         {
+                                             "src":  "/assets/images/shaft-embossing/gallery-03-1000w.webp",
+                                             "srcset":  "/assets/images/shaft-embossing/gallery-03-400w.webp 400w, /assets/images/shaft-embossing/gallery-03-800w.webp 800w, /assets/images/shaft-embossing/gallery-03-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  656,
+                                             "alt":  "TWM-910 Shaft embossing"
+                                         },
+                                         {
+                                             "src":  "/assets/images/shaft-embossing/gallery-04-1000w.webp",
+                                             "srcset":  "/assets/images/shaft-embossing/gallery-04-400w.webp 400w, /assets/images/shaft-embossing/gallery-04-800w.webp 800w, /assets/images/shaft-embossing/gallery-04-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-910 Shaft embossing"
+                                         }
+                                     ],
+                         "spec":  {
+                                      "src":  "/assets/images/shaft-embossing/spec-01.webp",
+                                      "srcset":  "/assets/images/shaft-embossing/spec-01.webp 508w",
+                                      "width":  508,
+                                      "height":  87,
+                                      "alt":  "TWM-910 Shaft embossing - published specifications"
+                                  },
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  true,
+                         "imageCount":  4
+                     },
+                     {
+                         "slug":  "three-in-one-automatic-turning-machine",
+                         "model":  "TWM-LA01",
+                         "title":  "Three in one automatic turning machine",
+                         "family":  "motor-rotor-equipment",
+                         "familyName":  "Rotor \u0026 Armature Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/three-in-one-automatic-turning-machine/gallery-02-400w.webp",
+                                      "srcset":  "/assets/images/three-in-one-automatic-turning-machine/gallery-02-400w.webp 400w",
+                                      "width":  400,
+                                      "height":  355,
+                                      "alt":  "TWM-LA01 Three in one automatic turning machine"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/three-in-one-automatic-turning-machine/gallery-01-400w.webp",
+                                             "srcset":  "/assets/images/three-in-one-automatic-turning-machine/gallery-01-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  633,
+                                             "alt":  "TWM-LA01 Three in one automatic turning machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/three-in-one-automatic-turning-machine/gallery-02-400w.webp",
+                                             "srcset":  "/assets/images/three-in-one-automatic-turning-machine/gallery-02-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  355,
+                                             "alt":  "TWM-LA01 Three in one automatic turning machine"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  2
+                     },
+                     {
+                         "slug":  "horizontal-brushless-motor-slot-insulation-paper-inserting-machine",
+                         "model":  "TWM-SP001",
+                         "title":  "Horizontal brushless motor slot insulation paper inserting machine",
+                         "family":  "brushless-motor-equipment",
+                         "familyName":  "Brushless Motor Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/gallery-03-1000w.webp",
+                                      "srcset":  "/assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/gallery-03-400w.webp 400w, /assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/gallery-03-800w.webp 800w, /assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/gallery-03-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  750,
+                                      "alt":  "TWM-SP001 Horizontal brushless motor slot insulation paper inserting machine"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-800w.webp",
+                                             "srcset":  "/assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-400w.webp 400w, /assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  450,
+                                             "alt":  "TWM-SP001 Horizontal brushless motor slot insulation paper inserting machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/gallery-02-400w.webp",
+                                             "srcset":  "/assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/gallery-02-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  533,
+                                             "alt":  "TWM-SP001 Horizontal brushless motor slot insulation paper inserting machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/gallery-03-1000w.webp",
+                                             "srcset":  "/assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/gallery-03-400w.webp 400w, /assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/gallery-03-800w.webp 800w, /assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/gallery-03-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-SP001 Horizontal brushless motor slot insulation paper inserting machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/gallery-04-800w.webp",
+                                             "srcset":  "/assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/gallery-04-400w.webp 400w, /assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/gallery-04-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  661,
+                                             "alt":  "TWM-SP001 Horizontal brushless motor slot insulation paper inserting machine"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  4
+                     },
+                     {
+                         "slug":  "motor-stator-slot-insulation-paper-inserting-machine",
+                         "model":  "TWM-ISP01",
+                         "title":  "Motor stator slot insulation paper inserting machine",
+                         "family":  "motor-stator-equipment",
+                         "familyName":  "Stator Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/motor-stator-slot-insulation-paper-inserting-machine/gallery-02-800w.webp",
+                                      "srcset":  "/assets/images/motor-stator-slot-insulation-paper-inserting-machine/gallery-02-400w.webp 400w, /assets/images/motor-stator-slot-insulation-paper-inserting-machine/gallery-02-800w.webp 800w",
+                                      "width":  800,
+                                      "height":  754,
+                                      "alt":  "TWM-ISP01 Motor stator slot insulation paper inserting machine"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/motor-stator-slot-insulation-paper-inserting-machine/gallery-01-400w.webp",
+                                             "srcset":  "/assets/images/motor-stator-slot-insulation-paper-inserting-machine/gallery-01-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  664,
+                                             "alt":  "TWM-ISP01 Motor stator slot insulation paper inserting machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/motor-stator-slot-insulation-paper-inserting-machine/gallery-02-800w.webp",
+                                             "srcset":  "/assets/images/motor-stator-slot-insulation-paper-inserting-machine/gallery-02-400w.webp 400w, /assets/images/motor-stator-slot-insulation-paper-inserting-machine/gallery-02-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  754,
+                                             "alt":  "TWM-ISP01 Motor stator slot insulation paper inserting machine"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  2
+                     },
+                     {
+                         "slug":  "armature-slot-insulation-paper-inserting-machine",
+                         "model":  "TWM-IP01",
+                         "title":  "Armature slot insulation paper inserting machine",
+                         "family":  "motor-rotor-equipment",
+                         "familyName":  "Rotor \u0026 Armature Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/armature-slot-insulation-paper-inserting-machine/gallery-02-1000w.webp",
+                                      "srcset":  "/assets/images/armature-slot-insulation-paper-inserting-machine/gallery-02-400w.webp 400w, /assets/images/armature-slot-insulation-paper-inserting-machine/gallery-02-800w.webp 800w, /assets/images/armature-slot-insulation-paper-inserting-machine/gallery-02-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  750,
+                                      "alt":  "TWM-IP01 Armature slot insulation paper inserting machine"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/armature-slot-insulation-paper-inserting-machine/gallery-01-400w.webp",
+                                             "srcset":  "/assets/images/armature-slot-insulation-paper-inserting-machine/gallery-01-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  676,
+                                             "alt":  "TWM-IP01 Armature slot insulation paper inserting machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/armature-slot-insulation-paper-inserting-machine/gallery-02-1000w.webp",
+                                             "srcset":  "/assets/images/armature-slot-insulation-paper-inserting-machine/gallery-02-400w.webp 400w, /assets/images/armature-slot-insulation-paper-inserting-machine/gallery-02-800w.webp 800w, /assets/images/armature-slot-insulation-paper-inserting-machine/gallery-02-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-IP01 Armature slot insulation paper inserting machine"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  2
+                     },
+                     {
+                         "slug":  "armature-slot-wedge-inserting-machine",
+                         "model":  "TWM-IW01",
+                         "title":  "Armature slot wedge inserting machine",
+                         "family":  "motor-rotor-equipment",
+                         "familyName":  "Rotor \u0026 Armature Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/armature-slot-wedge-inserting-machine/gallery-02-1000w.webp",
+                                      "srcset":  "/assets/images/armature-slot-wedge-inserting-machine/gallery-02-400w.webp 400w, /assets/images/armature-slot-wedge-inserting-machine/gallery-02-800w.webp 800w, /assets/images/armature-slot-wedge-inserting-machine/gallery-02-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  750,
+                                      "alt":  "TWM-IW01 Armature slot wedge inserting machine"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/armature-slot-wedge-inserting-machine/gallery-01-400w.webp",
+                                             "srcset":  "/assets/images/armature-slot-wedge-inserting-machine/gallery-01-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  646,
+                                             "alt":  "TWM-IW01 Armature slot wedge inserting machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/armature-slot-wedge-inserting-machine/gallery-02-1000w.webp",
+                                             "srcset":  "/assets/images/armature-slot-wedge-inserting-machine/gallery-02-400w.webp 400w, /assets/images/armature-slot-wedge-inserting-machine/gallery-02-800w.webp 800w, /assets/images/armature-slot-wedge-inserting-machine/gallery-02-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-IW01 Armature slot wedge inserting machine"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  2
+                     },
+                     {
+                         "slug":  "vertical-slot-wedge-inserting-machine",
+                         "model":  "TWM-ISW001",
+                         "title":  "Vertical slot wedge inserting machine",
+                         "family":  "brushless-motor-equipment",
+                         "familyName":  "Brushless Motor Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-03-1000w.webp",
+                                      "srcset":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-03-400w.webp 400w, /assets/images/vertical-slot-wedge-inserting-machine/gallery-03-800w.webp 800w, /assets/images/vertical-slot-wedge-inserting-machine/gallery-03-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  1000,
+                                      "alt":  "TWM-ISW001 Vertical slot wedge inserting machine"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-01-378w.webp",
+                                             "srcset":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-01-378w.webp 378w",
+                                             "width":  378,
+                                             "height":  567,
+                                             "alt":  "TWM-ISW001 Vertical slot wedge inserting machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-02-800w.webp",
+                                             "srcset":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-02-400w.webp 400w, /assets/images/vertical-slot-wedge-inserting-machine/gallery-02-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  824,
+                                             "alt":  "TWM-ISW001 Vertical slot wedge inserting machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-03-1000w.webp",
+                                             "srcset":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-03-400w.webp 400w, /assets/images/vertical-slot-wedge-inserting-machine/gallery-03-800w.webp 800w, /assets/images/vertical-slot-wedge-inserting-machine/gallery-03-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  1000,
+                                             "alt":  "TWM-ISW001 Vertical slot wedge inserting machine"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  3
+                     },
+                     {
+                         "slug":  "cooling-fan-motor-automatic-production-line",
+                         "model":  "",
+                         "title":  "Cooling fan motor automatic production line",
+                         "family":  "modular-production-lines",
+                         "familyName":  "Modular Production Lines",
+                         "hero":  {
+                                      "src":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-01-1000w.webp",
+                                      "srcset":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-01-400w.webp 400w, /assets/images/cooling-fan-motor-automatic-production-line/gallery-01-800w.webp 800w, /assets/images/cooling-fan-motor-automatic-production-line/gallery-01-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  990,
+                                      "alt":  "Cooling fan motor automatic production line"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-01-1000w.webp",
+                                             "srcset":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-01-400w.webp 400w, /assets/images/cooling-fan-motor-automatic-production-line/gallery-01-800w.webp 800w, /assets/images/cooling-fan-motor-automatic-production-line/gallery-01-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  990,
+                                             "alt":  "Cooling fan motor automatic production line"
+                                         },
+                                         {
+                                             "src":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-02-800w.webp",
+                                             "srcset":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-02-400w.webp 400w, /assets/images/cooling-fan-motor-automatic-production-line/gallery-02-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  609,
+                                             "alt":  "Cooling fan motor automatic production line"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  2
+                     },
+                     {
+                         "slug":  "application-of-six-axis-robotic-arm",
+                         "model":  "",
+                         "title":  "Application of six-axis robotic arm",
+                         "family":  "robotic-production-lines",
+                         "familyName":  "Robotic Production Lines",
+                         "hero":  {
+                                      "src":  "/assets/images/application-of-six-axis-robotic-arm/gallery-02-800w.webp",
+                                      "srcset":  "/assets/images/application-of-six-axis-robotic-arm/gallery-02-400w.webp 400w, /assets/images/application-of-six-axis-robotic-arm/gallery-02-800w.webp 800w",
+                                      "width":  800,
+                                      "height":  941,
+                                      "alt":  "Application of six-axis robotic arm"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/application-of-six-axis-robotic-arm/gallery-01-800w.webp",
+                                             "srcset":  "/assets/images/application-of-six-axis-robotic-arm/gallery-01-400w.webp 400w, /assets/images/application-of-six-axis-robotic-arm/gallery-01-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  560,
+                                             "alt":  "Application of six-axis robotic arm"
+                                         },
+                                         {
+                                             "src":  "/assets/images/application-of-six-axis-robotic-arm/gallery-02-800w.webp",
+                                             "srcset":  "/assets/images/application-of-six-axis-robotic-arm/gallery-02-400w.webp 400w, /assets/images/application-of-six-axis-robotic-arm/gallery-02-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  941,
+                                             "alt":  "Application of six-axis robotic arm"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  2
+                     },
+                     {
+                         "slug":  "vertical-brushless-motor-slot-insulation-paper-inserting-machine",
+                         "model":  "TWM-AP01",
+                         "title":  "Vertical brushless motor slot insulation paper inserting machine",
+                         "family":  "brushless-motor-equipment",
+                         "familyName":  "Brushless Motor Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-1000w.webp",
+                                      "srcset":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-400w.webp 400w, /assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-800w.webp 800w, /assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  750,
+                                      "alt":  "TWM-AP01 Vertical brushless motor slot insulation paper inserting machine"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-1000w.webp",
+                                             "srcset":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-400w.webp 400w, /assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-800w.webp 800w, /assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-AP01 Vertical brushless motor slot insulation paper inserting machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-02-800w.webp",
+                                             "srcset":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-02-400w.webp 400w, /assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-02-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  875,
+                                             "alt":  "TWM-AP01 Vertical brushless motor slot insulation paper inserting machine"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  2
+                     },
+                     {
+                         "slug":  "hook-type-armature-automatic-winding-machine",
+                         "model":  "TWM-308A",
+                         "title":  "Hook-Type Armature Automatic Winding Machine",
+                         "family":  "motor-rotor-equipment",
+                         "familyName":  "Rotor \u0026 Armature Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/hook-type-armature-automatic-winding-machine/gallery-01-1000w.webp",
+                                      "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine/gallery-01-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine/gallery-01-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine/gallery-01-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  906,
+                                      "alt":  "TWM-308A Hook-Type Armature Automatic Winding Machine"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/hook-type-armature-automatic-winding-machine/gallery-01-1000w.webp",
+                                             "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine/gallery-01-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine/gallery-01-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine/gallery-01-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  906,
+                                             "alt":  "TWM-308A Hook-Type Armature Automatic Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/hook-type-armature-automatic-winding-machine/gallery-02-800w.webp",
+                                             "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine/gallery-02-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine/gallery-02-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  922,
+                                             "alt":  "TWM-308A Hook-Type Armature Automatic Winding Machine"
+                                         }
+                                     ],
+                         "spec":  {
+                                      "src":  "/assets/images/hook-type-armature-automatic-winding-machine/spec-01.webp",
+                                      "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine/spec-01.webp 516w",
+                                      "width":  516,
+                                      "height":  254,
+                                      "alt":  "TWM-308A Hook-Type Armature Automatic Winding Machine - published specifications"
+                                  },
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  true,
+                         "imageCount":  2
+                     },
+                     {
+                         "slug":  "armature-testing-machine",
+                         "model":  "TMW-RT533",
+                         "title":  "Armature Testing Machine",
+                         "family":  "motor-rotor-equipment",
+                         "familyName":  "Rotor \u0026 Armature Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/armature-testing-machine/gallery-02-800w.webp",
+                                      "srcset":  "/assets/images/armature-testing-machine/gallery-02-400w.webp 400w, /assets/images/armature-testing-machine/gallery-02-800w.webp 800w",
+                                      "width":  800,
+                                      "height":  875,
+                                      "alt":  "TMW-RT533 Armature Testing Machine"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/armature-testing-machine/gallery-01-280w.webp",
+                                             "srcset":  "/assets/images/armature-testing-machine/gallery-01-280w.webp 280w",
+                                             "width":  280,
+                                             "height":  888,
+                                             "alt":  "TMW-RT533 Armature Testing Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/armature-testing-machine/gallery-02-800w.webp",
+                                             "srcset":  "/assets/images/armature-testing-machine/gallery-02-400w.webp 400w, /assets/images/armature-testing-machine/gallery-02-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  875,
+                                             "alt":  "TMW-RT533 Armature Testing Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/armature-testing-machine/gallery-03-400w.webp",
+                                             "srcset":  "/assets/images/armature-testing-machine/gallery-03-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  512,
+                                             "alt":  "TMW-RT533 Armature Testing Machine"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  3
+                     },
+                     {
+                         "slug":  "varnish-bake",
+                         "model":  "TWM-301A",
+                         "title":  "Varnish bake",
+                         "family":  "motor-rotor-equipment",
+                         "familyName":  "Rotor \u0026 Armature Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/varnish-bake/gallery-03-1000w.webp",
+                                      "srcset":  "/assets/images/varnish-bake/gallery-03-400w.webp 400w, /assets/images/varnish-bake/gallery-03-800w.webp 800w, /assets/images/varnish-bake/gallery-03-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  750,
+                                      "alt":  "TWM-301A Varnish bake"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/varnish-bake/gallery-01-1000w.webp",
+                                             "srcset":  "/assets/images/varnish-bake/gallery-01-400w.webp 400w, /assets/images/varnish-bake/gallery-01-800w.webp 800w, /assets/images/varnish-bake/gallery-01-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-301A Varnish bake"
+                                         },
+                                         {
+                                             "src":  "/assets/images/varnish-bake/gallery-02-800w.webp",
+                                             "srcset":  "/assets/images/varnish-bake/gallery-02-400w.webp 400w, /assets/images/varnish-bake/gallery-02-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  676,
+                                             "alt":  "TWM-301A Varnish bake"
+                                         },
+                                         {
+                                             "src":  "/assets/images/varnish-bake/gallery-03-1000w.webp",
+                                             "srcset":  "/assets/images/varnish-bake/gallery-03-400w.webp 400w, /assets/images/varnish-bake/gallery-03-800w.webp 800w, /assets/images/varnish-bake/gallery-03-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-301A Varnish bake"
+                                         },
+                                         {
+                                             "src":  "/assets/images/varnish-bake/gallery-04-800w.webp",
+                                             "srcset":  "/assets/images/varnish-bake/gallery-04-400w.webp 400w, /assets/images/varnish-bake/gallery-04-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  565,
+                                             "alt":  "TWM-301A Varnish bake"
+                                         },
+                                         {
+                                             "src":  "/assets/images/varnish-bake/gallery-05-1000w.webp",
+                                             "srcset":  "/assets/images/varnish-bake/gallery-05-400w.webp 400w, /assets/images/varnish-bake/gallery-05-800w.webp 800w, /assets/images/varnish-bake/gallery-05-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  535,
+                                             "alt":  "TWM-301A Varnish bake"
+                                         },
+                                         {
+                                             "src":  "/assets/images/varnish-bake/gallery-06-1000w.webp",
+                                             "srcset":  "/assets/images/varnish-bake/gallery-06-400w.webp 400w, /assets/images/varnish-bake/gallery-06-800w.webp 800w, /assets/images/varnish-bake/gallery-06-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  813,
+                                             "alt":  "TWM-301A Varnish bake"
+                                         },
+                                         {
+                                             "src":  "/assets/images/varnish-bake/gallery-07-400w.webp",
+                                             "srcset":  "/assets/images/varnish-bake/gallery-07-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  300,
+                                             "alt":  "TWM-301A Varnish bake"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  7
+                     },
+                     {
+                         "slug":  "turning-machine-for-armature-outer-diameter-of-commutator",
+                         "model":  "TWM-319A",
+                         "title":  "Turning Machine for armature outer diameter of commutator",
+                         "family":  "motor-rotor-equipment",
+                         "familyName":  "Rotor \u0026 Armature Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/gallery-03-1000w.webp",
+                                      "srcset":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/gallery-03-400w.webp 400w, /assets/images/turning-machine-for-armature-outer-diameter-of-commutator/gallery-03-800w.webp 800w, /assets/images/turning-machine-for-armature-outer-diameter-of-commutator/gallery-03-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  750,
+                                      "alt":  "TWM-319A Turning Machine for armature outer diameter of commutator"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/gallery-01-400w.webp",
+                                             "srcset":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/gallery-01-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  595,
+                                             "alt":  "TWM-319A Turning Machine for armature outer diameter of commutator"
+                                         },
+                                         {
+                                             "src":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/gallery-02-1000w.webp",
+                                             "srcset":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/gallery-02-400w.webp 400w, /assets/images/turning-machine-for-armature-outer-diameter-of-commutator/gallery-02-800w.webp 800w, /assets/images/turning-machine-for-armature-outer-diameter-of-commutator/gallery-02-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-319A Turning Machine for armature outer diameter of commutator"
+                                         },
+                                         {
+                                             "src":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/gallery-03-1000w.webp",
+                                             "srcset":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/gallery-03-400w.webp 400w, /assets/images/turning-machine-for-armature-outer-diameter-of-commutator/gallery-03-800w.webp 800w, /assets/images/turning-machine-for-armature-outer-diameter-of-commutator/gallery-03-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-319A Turning Machine for armature outer diameter of commutator"
+                                         },
+                                         {
+                                             "src":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/gallery-04-400w.webp",
+                                             "srcset":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/gallery-04-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  542,
+                                             "alt":  "TWM-319A Turning Machine for armature outer diameter of commutator"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  4
+                     },
+                     {
+                         "slug":  "balancing",
+                         "model":  "TMW-515/NB-307A",
+                         "title":  "Balancing",
+                         "family":  "motor-rotor-equipment",
+                         "familyName":  "Rotor \u0026 Armature Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/balancing/gallery-03-400w.webp",
+                                      "srcset":  "/assets/images/balancing/gallery-03-400w.webp 400w",
+                                      "width":  400,
+                                      "height":  566,
+                                      "alt":  "TMW-515/NB-307A Balancing"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/balancing/gallery-01-121w.webp",
+                                             "srcset":  "/assets/images/balancing/gallery-01-121w.webp 121w",
+                                             "width":  121,
+                                             "height":  111,
+                                             "alt":  "TMW-515/NB-307A Balancing"
+                                         },
+                                         {
+                                             "src":  "/assets/images/balancing/gallery-02-400w.webp",
+                                             "srcset":  "/assets/images/balancing/gallery-02-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  318,
+                                             "alt":  "TMW-515/NB-307A Balancing"
+                                         },
+                                         {
+                                             "src":  "/assets/images/balancing/gallery-03-400w.webp",
+                                             "srcset":  "/assets/images/balancing/gallery-03-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  566,
+                                             "alt":  "TMW-515/NB-307A Balancing"
+                                         },
+                                         {
+                                             "src":  "/assets/images/balancing/gallery-04-400w.webp",
+                                             "srcset":  "/assets/images/balancing/gallery-04-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  556,
+                                             "alt":  "TMW-515/NB-307A Balancing"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  4
+                     },
+                     {
+                         "slug":  "automatic-modular-production-line",
+                         "model":  "",
+                         "title":  "Automatic Modular Production Line",
+                         "family":  "modular-production-lines",
+                         "familyName":  "Modular Production Lines",
+                         "hero":  {
+                                      "src":  "/assets/images/automatic-modular-production-line/gallery-03-1000w.webp",
+                                      "srcset":  "/assets/images/automatic-modular-production-line/gallery-03-400w.webp 400w, /assets/images/automatic-modular-production-line/gallery-03-800w.webp 800w, /assets/images/automatic-modular-production-line/gallery-03-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  750,
+                                      "alt":  "Automatic Modular Production Line"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/automatic-modular-production-line/gallery-01-800w.webp",
+                                             "srcset":  "/assets/images/automatic-modular-production-line/gallery-01-400w.webp 400w, /assets/images/automatic-modular-production-line/gallery-01-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  467,
+                                             "alt":  "Automatic Modular Production Line"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-modular-production-line/gallery-02-1000w.webp",
+                                             "srcset":  "/assets/images/automatic-modular-production-line/gallery-02-400w.webp 400w, /assets/images/automatic-modular-production-line/gallery-02-800w.webp 800w, /assets/images/automatic-modular-production-line/gallery-02-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  990,
+                                             "alt":  "Automatic Modular Production Line"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-modular-production-line/gallery-03-1000w.webp",
+                                             "srcset":  "/assets/images/automatic-modular-production-line/gallery-03-400w.webp 400w, /assets/images/automatic-modular-production-line/gallery-03-800w.webp 800w, /assets/images/automatic-modular-production-line/gallery-03-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "Automatic Modular Production Line"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-modular-production-line/gallery-04-1000w.webp",
+                                             "srcset":  "/assets/images/automatic-modular-production-line/gallery-04-400w.webp 400w, /assets/images/automatic-modular-production-line/gallery-04-800w.webp 800w, /assets/images/automatic-modular-production-line/gallery-04-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  756,
+                                             "alt":  "Automatic Modular Production Line"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-modular-production-line/gallery-05-800w.webp",
+                                             "srcset":  "/assets/images/automatic-modular-production-line/gallery-05-400w.webp 400w, /assets/images/automatic-modular-production-line/gallery-05-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  565,
+                                             "alt":  "Automatic Modular Production Line"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-modular-production-line/gallery-06-800w.webp",
+                                             "srcset":  "/assets/images/automatic-modular-production-line/gallery-06-400w.webp 400w, /assets/images/automatic-modular-production-line/gallery-06-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  609,
+                                             "alt":  "Automatic Modular Production Line"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-modular-production-line/gallery-07-324w.webp",
+                                             "srcset":  "/assets/images/automatic-modular-production-line/gallery-07-324w.webp 324w",
+                                             "width":  324,
+                                             "height":  233,
+                                             "alt":  "Automatic Modular Production Line"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  7
+                     },
+                     {
+                         "slug":  "automatic-winding-machine-product-series",
+                         "model":  "",
+                         "title":  "Automatic Winding Machine Product Series",
+                         "family":  "modular-production-lines",
+                         "familyName":  "Modular Production Lines",
+                         "hero":  {
+                                      "src":  "/assets/images/automatic-winding-machine-product-series/gallery-07-1000w.webp",
+                                      "srcset":  "/assets/images/automatic-winding-machine-product-series/gallery-07-400w.webp 400w, /assets/images/automatic-winding-machine-product-series/gallery-07-800w.webp 800w, /assets/images/automatic-winding-machine-product-series/gallery-07-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  750,
+                                      "alt":  "Automatic Winding Machine Product Series"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/automatic-winding-machine-product-series/gallery-01-400w.webp",
+                                             "srcset":  "/assets/images/automatic-winding-machine-product-series/gallery-01-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  566,
+                                             "alt":  "Automatic Winding Machine Product Series"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-winding-machine-product-series/gallery-02-1000w.webp",
+                                             "srcset":  "/assets/images/automatic-winding-machine-product-series/gallery-02-400w.webp 400w, /assets/images/automatic-winding-machine-product-series/gallery-02-800w.webp 800w, /assets/images/automatic-winding-machine-product-series/gallery-02-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  756,
+                                             "alt":  "Automatic Winding Machine Product Series"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-winding-machine-product-series/gallery-03-1000w.webp",
+                                             "srcset":  "/assets/images/automatic-winding-machine-product-series/gallery-03-400w.webp 400w, /assets/images/automatic-winding-machine-product-series/gallery-03-800w.webp 800w, /assets/images/automatic-winding-machine-product-series/gallery-03-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  756,
+                                             "alt":  "Automatic Winding Machine Product Series"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-winding-machine-product-series/gallery-04-1000w.webp",
+                                             "srcset":  "/assets/images/automatic-winding-machine-product-series/gallery-04-400w.webp 400w, /assets/images/automatic-winding-machine-product-series/gallery-04-800w.webp 800w, /assets/images/automatic-winding-machine-product-series/gallery-04-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  756,
+                                             "alt":  "Automatic Winding Machine Product Series"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-winding-machine-product-series/gallery-05-800w.webp",
+                                             "srcset":  "/assets/images/automatic-winding-machine-product-series/gallery-05-400w.webp 400w, /assets/images/automatic-winding-machine-product-series/gallery-05-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  711,
+                                             "alt":  "Automatic Winding Machine Product Series"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-winding-machine-product-series/gallery-06-1000w.webp",
+                                             "srcset":  "/assets/images/automatic-winding-machine-product-series/gallery-06-400w.webp 400w, /assets/images/automatic-winding-machine-product-series/gallery-06-800w.webp 800w, /assets/images/automatic-winding-machine-product-series/gallery-06-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "Automatic Winding Machine Product Series"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-winding-machine-product-series/gallery-07-1000w.webp",
+                                             "srcset":  "/assets/images/automatic-winding-machine-product-series/gallery-07-400w.webp 400w, /assets/images/automatic-winding-machine-product-series/gallery-07-800w.webp 800w, /assets/images/automatic-winding-machine-product-series/gallery-07-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "Automatic Winding Machine Product Series"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  7
+                     },
+                     {
+                         "slug":  "automatic-modular-production-line-2",
+                         "model":  "",
+                         "title":  "Automatic Modular Production Line",
+                         "family":  "modular-production-lines",
+                         "familyName":  "Modular Production Lines",
+                         "hero":  {
+                                      "src":  "/assets/images/automatic-modular-production-line-2/gallery-03-1000w.webp",
+                                      "srcset":  "/assets/images/automatic-modular-production-line-2/gallery-03-400w.webp 400w, /assets/images/automatic-modular-production-line-2/gallery-03-800w.webp 800w, /assets/images/automatic-modular-production-line-2/gallery-03-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  733,
+                                      "alt":  "Automatic Modular Production Line"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/automatic-modular-production-line-2/gallery-01-1000w.webp",
+                                             "srcset":  "/assets/images/automatic-modular-production-line-2/gallery-01-400w.webp 400w, /assets/images/automatic-modular-production-line-2/gallery-01-800w.webp 800w, /assets/images/automatic-modular-production-line-2/gallery-01-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  733,
+                                             "alt":  "Automatic Modular Production Line"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-modular-production-line-2/gallery-02-1000w.webp",
+                                             "srcset":  "/assets/images/automatic-modular-production-line-2/gallery-02-400w.webp 400w, /assets/images/automatic-modular-production-line-2/gallery-02-800w.webp 800w, /assets/images/automatic-modular-production-line-2/gallery-02-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  733,
+                                             "alt":  "Automatic Modular Production Line"
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-modular-production-line-2/gallery-03-1000w.webp",
+                                             "srcset":  "/assets/images/automatic-modular-production-line-2/gallery-03-400w.webp 400w, /assets/images/automatic-modular-production-line-2/gallery-03-800w.webp 800w, /assets/images/automatic-modular-production-line-2/gallery-03-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  733,
+                                             "alt":  "Automatic Modular Production Line"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  3
+                     },
+                     {
+                         "slug":  "semiconductor-sealing-testing-process-equipment",
+                         "model":  "",
+                         "title":  "Semiconductor Sealing Testing Process Equipment",
+                         "family":  "semiconductor-equipment",
+                         "familyName":  "Semiconductor Process Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/semiconductor-sealing-testing-process-equipment/gallery-03-800w.webp",
+                                      "srcset":  "/assets/images/semiconductor-sealing-testing-process-equipment/gallery-03-400w.webp 400w, /assets/images/semiconductor-sealing-testing-process-equipment/gallery-03-800w.webp 800w",
+                                      "width":  800,
+                                      "height":  962,
+                                      "alt":  "Semiconductor Sealing Testing Process Equipment"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/semiconductor-sealing-testing-process-equipment/gallery-01-400w.webp",
+                                             "srcset":  "/assets/images/semiconductor-sealing-testing-process-equipment/gallery-01-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  545,
+                                             "alt":  "Semiconductor Sealing Testing Process Equipment"
+                                         },
+                                         {
+                                             "src":  "/assets/images/semiconductor-sealing-testing-process-equipment/gallery-02-800w.webp",
+                                             "srcset":  "/assets/images/semiconductor-sealing-testing-process-equipment/gallery-02-400w.webp 400w, /assets/images/semiconductor-sealing-testing-process-equipment/gallery-02-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  876,
+                                             "alt":  "Semiconductor Sealing Testing Process Equipment"
+                                         },
+                                         {
+                                             "src":  "/assets/images/semiconductor-sealing-testing-process-equipment/gallery-03-800w.webp",
+                                             "srcset":  "/assets/images/semiconductor-sealing-testing-process-equipment/gallery-03-400w.webp 400w, /assets/images/semiconductor-sealing-testing-process-equipment/gallery-03-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  962,
+                                             "alt":  "Semiconductor Sealing Testing Process Equipment"
+                                         },
+                                         {
+                                             "src":  "/assets/images/semiconductor-sealing-testing-process-equipment/gallery-04-800w.webp",
+                                             "srcset":  "/assets/images/semiconductor-sealing-testing-process-equipment/gallery-04-400w.webp 400w, /assets/images/semiconductor-sealing-testing-process-equipment/gallery-04-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  973,
+                                             "alt":  "Semiconductor Sealing Testing Process Equipment"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  4
+                     },
+                     {
+                         "slug":  "automatic-feeding-system",
+                         "model":  "TWM-915",
+                         "title":  "Automatic Feeding System",
+                         "family":  "custom-production-equipment",
+                         "familyName":  "Custom Production Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/automatic-feeding-system/gallery-01-800w.webp",
+                                      "srcset":  "/assets/images/automatic-feeding-system/gallery-01-400w.webp 400w, /assets/images/automatic-feeding-system/gallery-01-800w.webp 800w",
+                                      "width":  800,
+                                      "height":  974,
+                                      "alt":  "TWM-915 Automatic Feeding System"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/automatic-feeding-system/gallery-01-800w.webp",
+                                             "srcset":  "/assets/images/automatic-feeding-system/gallery-01-400w.webp 400w, /assets/images/automatic-feeding-system/gallery-01-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  974,
+                                             "alt":  "TWM-915 Automatic Feeding System"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  1
+                     },
+                     {
+                         "slug":  "turntable-automatic-assembling-equipment",
+                         "model":  "",
+                         "title":  "Turntable Automatic Assembling Equipment",
+                         "family":  "custom-production-equipment",
+                         "familyName":  "Custom Production Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/turntable-automatic-assembling-equipment/gallery-03-1000w.webp",
+                                      "srcset":  "/assets/images/turntable-automatic-assembling-equipment/gallery-03-400w.webp 400w, /assets/images/turntable-automatic-assembling-equipment/gallery-03-800w.webp 800w, /assets/images/turntable-automatic-assembling-equipment/gallery-03-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  750,
+                                      "alt":  "Turntable Automatic Assembling Equipment"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/turntable-automatic-assembling-equipment/gallery-01-1000w.webp",
+                                             "srcset":  "/assets/images/turntable-automatic-assembling-equipment/gallery-01-400w.webp 400w, /assets/images/turntable-automatic-assembling-equipment/gallery-01-800w.webp 800w, /assets/images/turntable-automatic-assembling-equipment/gallery-01-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "Turntable Automatic Assembling Equipment"
+                                         },
+                                         {
+                                             "src":  "/assets/images/turntable-automatic-assembling-equipment/gallery-02-800w.webp",
+                                             "srcset":  "/assets/images/turntable-automatic-assembling-equipment/gallery-02-400w.webp 400w, /assets/images/turntable-automatic-assembling-equipment/gallery-02-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  600,
+                                             "alt":  "Turntable Automatic Assembling Equipment"
+                                         },
+                                         {
+                                             "src":  "/assets/images/turntable-automatic-assembling-equipment/gallery-03-1000w.webp",
+                                             "srcset":  "/assets/images/turntable-automatic-assembling-equipment/gallery-03-400w.webp 400w, /assets/images/turntable-automatic-assembling-equipment/gallery-03-800w.webp 800w, /assets/images/turntable-automatic-assembling-equipment/gallery-03-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "Turntable Automatic Assembling Equipment"
+                                         },
+                                         {
+                                             "src":  "/assets/images/turntable-automatic-assembling-equipment/gallery-04-1000w.webp",
+                                             "srcset":  "/assets/images/turntable-automatic-assembling-equipment/gallery-04-400w.webp 400w, /assets/images/turntable-automatic-assembling-equipment/gallery-04-800w.webp 800w, /assets/images/turntable-automatic-assembling-equipment/gallery-04-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "Turntable Automatic Assembling Equipment"
+                                         },
+                                         {
+                                             "src":  "/assets/images/turntable-automatic-assembling-equipment/gallery-05-800w.webp",
+                                             "srcset":  "/assets/images/turntable-automatic-assembling-equipment/gallery-05-400w.webp 400w, /assets/images/turntable-automatic-assembling-equipment/gallery-05-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  836,
+                                             "alt":  "Turntable Automatic Assembling Equipment"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  5
+                     },
+                     {
+                         "slug":  "vibration-feeding-assembling-equipment",
+                         "model":  "",
+                         "title":  "Vibration Feeding Assembling Equipment",
+                         "family":  "custom-production-equipment",
+                         "familyName":  "Custom Production Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/vibration-feeding-assembling-equipment/gallery-01-800w.webp",
+                                      "srcset":  "/assets/images/vibration-feeding-assembling-equipment/gallery-01-400w.webp 400w, /assets/images/vibration-feeding-assembling-equipment/gallery-01-800w.webp 800w",
+                                      "width":  800,
+                                      "height":  677,
+                                      "alt":  "Vibration Feeding Assembling Equipment"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/vibration-feeding-assembling-equipment/gallery-01-800w.webp",
+                                             "srcset":  "/assets/images/vibration-feeding-assembling-equipment/gallery-01-400w.webp 400w, /assets/images/vibration-feeding-assembling-equipment/gallery-01-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  677,
+                                             "alt":  "Vibration Feeding Assembling Equipment"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  1
+                     },
+                     {
+                         "slug":  "stator-fusing",
+                         "model":  "TWA-RF30S",
+                         "title":  "Stator fusing",
+                         "family":  "brushless-motor-equipment",
+                         "familyName":  "Brushless Motor Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/stator-fusing/gallery-03-1000w.webp",
+                                      "srcset":  "/assets/images/stator-fusing/gallery-03-400w.webp 400w, /assets/images/stator-fusing/gallery-03-800w.webp 800w, /assets/images/stator-fusing/gallery-03-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  562,
+                                      "alt":  "TWA-RF30S Stator fusing"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/stator-fusing/gallery-01-1000w.webp",
+                                             "srcset":  "/assets/images/stator-fusing/gallery-01-400w.webp 400w, /assets/images/stator-fusing/gallery-01-800w.webp 800w, /assets/images/stator-fusing/gallery-01-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  572,
+                                             "alt":  "TWA-RF30S Stator fusing"
+                                         },
+                                         {
+                                             "src":  "/assets/images/stator-fusing/gallery-02-400w.webp",
+                                             "srcset":  "/assets/images/stator-fusing/gallery-02-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  711,
+                                             "alt":  "TWA-RF30S Stator fusing"
+                                         },
+                                         {
+                                             "src":  "/assets/images/stator-fusing/gallery-03-1000w.webp",
+                                             "srcset":  "/assets/images/stator-fusing/gallery-03-400w.webp 400w, /assets/images/stator-fusing/gallery-03-800w.webp 800w, /assets/images/stator-fusing/gallery-03-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  562,
+                                             "alt":  "TWA-RF30S Stator fusing"
+                                         },
+                                         {
+                                             "src":  "/assets/images/stator-fusing/gallery-04-1000w.webp",
+                                             "srcset":  "/assets/images/stator-fusing/gallery-04-400w.webp 400w, /assets/images/stator-fusing/gallery-04-800w.webp 800w, /assets/images/stator-fusing/gallery-04-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  562,
+                                             "alt":  "TWA-RF30S Stator fusing"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  4
+                     },
+                     {
+                         "slug":  "stator-production-line",
+                         "model":  "TWM-902S",
+                         "title":  "In-Slot Brushless Motor Stator Automatic Winding Machine",
+                         "family":  "winding-machines",
+                         "familyName":  "Winding Machines",
+                         "hero":  {
+                                      "src":  "/assets/images/stator-production-line/gallery-02-1000w.webp",
+                                      "srcset":  "/assets/images/stator-production-line/gallery-02-400w.webp 400w, /assets/images/stator-production-line/gallery-02-800w.webp 800w, /assets/images/stator-production-line/gallery-02-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  989,
+                                      "alt":  "TWM-902S In-Slot Brushless Motor Stator Automatic Winding Machine"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/stator-production-line/gallery-01-378w.webp",
+                                             "srcset":  "/assets/images/stator-production-line/gallery-01-378w.webp 378w",
+                                             "width":  378,
+                                             "height":  567,
+                                             "alt":  "TWM-902S In-Slot Brushless Motor Stator Automatic Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/stator-production-line/gallery-02-1000w.webp",
+                                             "srcset":  "/assets/images/stator-production-line/gallery-02-400w.webp 400w, /assets/images/stator-production-line/gallery-02-800w.webp 800w, /assets/images/stator-production-line/gallery-02-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  989,
+                                             "alt":  "TWM-902S In-Slot Brushless Motor Stator Automatic Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/stator-production-line/gallery-03-800w.webp",
+                                             "srcset":  "/assets/images/stator-production-line/gallery-03-400w.webp 400w, /assets/images/stator-production-line/gallery-03-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  762,
+                                             "alt":  "TWM-902S In-Slot Brushless Motor Stator Automatic Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/stator-production-line/gallery-04-400w.webp",
+                                             "srcset":  "/assets/images/stator-production-line/gallery-04-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  533,
+                                             "alt":  "TWM-902S In-Slot Brushless Motor Stator Automatic Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/stator-production-line/gallery-05-800w.webp",
+                                             "srcset":  "/assets/images/stator-production-line/gallery-05-400w.webp 400w, /assets/images/stator-production-line/gallery-05-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  599,
+                                             "alt":  "TWM-902S In-Slot Brushless Motor Stator Automatic Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/stator-production-line/gallery-06-800w.webp",
+                                             "srcset":  "/assets/images/stator-production-line/gallery-06-400w.webp 400w, /assets/images/stator-production-line/gallery-06-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  827,
+                                             "alt":  "TWM-902S In-Slot Brushless Motor Stator Automatic Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/stator-production-line/gallery-07-800w.webp",
+                                             "srcset":  "/assets/images/stator-production-line/gallery-07-400w.webp 400w, /assets/images/stator-production-line/gallery-07-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  533,
+                                             "alt":  "TWM-902S In-Slot Brushless Motor Stator Automatic Winding Machine"
+                                         },
+                                         {
+                                             "src":  "/assets/images/stator-production-line/gallery-08-400w.webp",
+                                             "srcset":  "/assets/images/stator-production-line/gallery-08-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  423,
+                                             "alt":  "TWM-902S In-Slot Brushless Motor Stator Automatic Winding Machine"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  8
+                     },
+                     {
+                         "slug":  "two-poles-type-stator-winding-machine-with-one-axle",
+                         "model":  "TWM-901S",
+                         "title":  "Two Poles Type Stator Winding Machine (with one axle)",
+                         "family":  "winding-machines",
+                         "familyName":  "Winding Machines",
+                         "hero":  {
+                                      "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-02-1000w.webp",
+                                      "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-02-400w.webp 400w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-02-800w.webp 800w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-02-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  906,
+                                      "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle)"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-01-800w.webp",
+                                             "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-01-400w.webp 400w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-01-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  706,
+                                             "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle)"
+                                         },
+                                         {
+                                             "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-02-1000w.webp",
+                                             "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-02-400w.webp 400w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-02-800w.webp 800w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-02-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  906,
+                                             "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle)"
+                                         },
+                                         {
+                                             "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-03-400w.webp",
+                                             "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-03-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  419,
+                                             "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle)"
+                                         },
+                                         {
+                                             "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-04-248w.webp",
+                                             "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-04-248w.webp 248w",
+                                             "width":  248,
+                                             "height":  307,
+                                             "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle)"
+                                         }
+                                     ],
+                         "spec":  {
+                                      "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/spec-01.webp",
+                                      "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/spec-01.webp 508w",
+                                      "width":  508,
+                                      "height":  231,
+                                      "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle) - published specifications"
+                                  },
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  true,
+                         "imageCount":  4
+                     },
+                     {
+                         "slug":  "two-poles-type-stator-winding-machine-with-two-axes",
+                         "model":  "TWM-901",
+                         "title":  "Two Poles Type Stator Winding Machine with one Axis",
+                         "family":  "winding-machines",
+                         "familyName":  "Winding Machines",
+                         "hero":  {
+                                      "src":  "/assets/images/two-poles-type-stator-winding-machine-with-two-axes/gallery-04-1000w.webp",
+                                      "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-two-axes/gallery-04-400w.webp 400w, /assets/images/two-poles-type-stator-winding-machine-with-two-axes/gallery-04-800w.webp 800w, /assets/images/two-poles-type-stator-winding-machine-with-two-axes/gallery-04-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  906,
+                                      "alt":  "TWM-901 Two Poles Type Stator Winding Machine with one Axis"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/two-poles-type-stator-winding-machine-with-two-axes/gallery-01-400w.webp",
+                                             "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-two-axes/gallery-01-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  497,
+                                             "alt":  "TWM-901 Two Poles Type Stator Winding Machine with one Axis"
+                                         },
+                                         {
+                                             "src":  "/assets/images/two-poles-type-stator-winding-machine-with-two-axes/gallery-02-800w.webp",
+                                             "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-two-axes/gallery-02-400w.webp 400w, /assets/images/two-poles-type-stator-winding-machine-with-two-axes/gallery-02-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  573,
+                                             "alt":  "TWM-901 Two Poles Type Stator Winding Machine with one Axis"
+                                         },
+                                         {
+                                             "src":  "/assets/images/two-poles-type-stator-winding-machine-with-two-axes/gallery-03-800w.webp",
+                                             "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-two-axes/gallery-03-400w.webp 400w, /assets/images/two-poles-type-stator-winding-machine-with-two-axes/gallery-03-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  706,
+                                             "alt":  "TWM-901 Two Poles Type Stator Winding Machine with one Axis"
+                                         },
+                                         {
+                                             "src":  "/assets/images/two-poles-type-stator-winding-machine-with-two-axes/gallery-04-1000w.webp",
+                                             "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-two-axes/gallery-04-400w.webp 400w, /assets/images/two-poles-type-stator-winding-machine-with-two-axes/gallery-04-800w.webp 800w, /assets/images/two-poles-type-stator-winding-machine-with-two-axes/gallery-04-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  906,
+                                             "alt":  "TWM-901 Two Poles Type Stator Winding Machine with one Axis"
+                                         }
+                                     ],
+                         "spec":  {
+                                      "src":  "/assets/images/two-poles-type-stator-winding-machine-with-two-axes/spec-01.webp",
+                                      "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-two-axes/spec-01.webp 508w",
+                                      "width":  508,
+                                      "height":  231,
+                                      "alt":  "TWM-901 Two Poles Type Stator Winding Machine with one Axis - published specifications"
+                                  },
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  true,
+                         "imageCount":  4
+                     },
+                     {
+                         "slug":  "varnish-bake-twm-301a",
+                         "model":  "TWM-301A",
+                         "title":  "Varnish bake",
+                         "family":  "motor-stator-equipment",
+                         "familyName":  "Stator Equipment",
+                         "hero":  {
+                                      "src":  "/assets/images/varnish-bake-twm-301a/gallery-03-1000w.webp",
+                                      "srcset":  "/assets/images/varnish-bake-twm-301a/gallery-03-400w.webp 400w, /assets/images/varnish-bake-twm-301a/gallery-03-800w.webp 800w, /assets/images/varnish-bake-twm-301a/gallery-03-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  750,
+                                      "alt":  "TWM-301A Varnish bake"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/varnish-bake-twm-301a/gallery-01-1000w.webp",
+                                             "srcset":  "/assets/images/varnish-bake-twm-301a/gallery-01-400w.webp 400w, /assets/images/varnish-bake-twm-301a/gallery-01-800w.webp 800w, /assets/images/varnish-bake-twm-301a/gallery-01-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-301A Varnish bake"
+                                         },
+                                         {
+                                             "src":  "/assets/images/varnish-bake-twm-301a/gallery-02-800w.webp",
+                                             "srcset":  "/assets/images/varnish-bake-twm-301a/gallery-02-400w.webp 400w, /assets/images/varnish-bake-twm-301a/gallery-02-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  676,
+                                             "alt":  "TWM-301A Varnish bake"
+                                         },
+                                         {
+                                             "src":  "/assets/images/varnish-bake-twm-301a/gallery-03-1000w.webp",
+                                             "srcset":  "/assets/images/varnish-bake-twm-301a/gallery-03-400w.webp 400w, /assets/images/varnish-bake-twm-301a/gallery-03-800w.webp 800w, /assets/images/varnish-bake-twm-301a/gallery-03-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-301A Varnish bake"
+                                         },
+                                         {
+                                             "src":  "/assets/images/varnish-bake-twm-301a/gallery-04-800w.webp",
+                                             "srcset":  "/assets/images/varnish-bake-twm-301a/gallery-04-400w.webp 400w, /assets/images/varnish-bake-twm-301a/gallery-04-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  565,
+                                             "alt":  "TWM-301A Varnish bake"
+                                         },
+                                         {
+                                             "src":  "/assets/images/varnish-bake-twm-301a/gallery-05-1000w.webp",
+                                             "srcset":  "/assets/images/varnish-bake-twm-301a/gallery-05-400w.webp 400w, /assets/images/varnish-bake-twm-301a/gallery-05-800w.webp 800w, /assets/images/varnish-bake-twm-301a/gallery-05-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  535,
+                                             "alt":  "TWM-301A Varnish bake"
+                                         },
+                                         {
+                                             "src":  "/assets/images/varnish-bake-twm-301a/gallery-06-1000w.webp",
+                                             "srcset":  "/assets/images/varnish-bake-twm-301a/gallery-06-400w.webp 400w, /assets/images/varnish-bake-twm-301a/gallery-06-800w.webp 800w, /assets/images/varnish-bake-twm-301a/gallery-06-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  813,
+                                             "alt":  "TWM-301A Varnish bake"
+                                         },
+                                         {
+                                             "src":  "/assets/images/varnish-bake-twm-301a/gallery-07-400w.webp",
+                                             "srcset":  "/assets/images/varnish-bake-twm-301a/gallery-07-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  300,
+                                             "alt":  "TWM-301A Varnish bake"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  7
+                     },
+                     {
+                         "slug":  "hook-type-armature-automatic-winding-machine-horizontal",
+                         "model":  "TWM-308A",
+                         "title":  "Hook Type Armature Automatic Winding Machine (Horizontal)",
+                         "family":  "winding-machines",
+                         "familyName":  "Winding Machines",
+                         "hero":  {
+                                      "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-01-1000w.webp",
+                                      "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-01-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-01-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-01-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  990,
+                                      "alt":  "TWM-308A Hook Type Armature Automatic Winding Machine (Horizontal)"
+                                  },
+                         "gallery":  [
+                                         {
+                                             "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-01-1000w.webp",
+                                             "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-01-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-01-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-01-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  990,
+                                             "alt":  "TWM-308A Hook Type Armature Automatic Winding Machine (Horizontal)"
+                                         },
+                                         {
+                                             "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-02-800w.webp",
+                                             "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-02-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-02-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  630,
+                                             "alt":  "TWM-308A Hook Type Armature Automatic Winding Machine (Horizontal)"
+                                         },
+                                         {
+                                             "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-03-800w.webp",
+                                             "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-03-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-03-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  627,
+                                             "alt":  "TWM-308A Hook Type Armature Automatic Winding Machine (Horizontal)"
+                                         },
+                                         {
+                                             "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-04-800w.webp",
+                                             "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-04-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-04-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  922,
+                                             "alt":  "TWM-308A Hook Type Armature Automatic Winding Machine (Horizontal)"
+                                         }
+                                     ],
+                         "spec":  null,
+                         "feature":  null,
+                         "app":  null,
+                         "hasSpec":  false,
+                         "imageCount":  4
+                     }
+                 ]
+}

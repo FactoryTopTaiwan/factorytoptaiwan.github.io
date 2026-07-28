@@ -2,24 +2,42 @@
   <div class="hero__grid" aria-hidden="true"></div>
   <div class="hero__glow" aria-hidden="true"></div>
 
-  <div class="shell hero__inner">
-    <h1 class="hero__title">
-      {{site.hero.titleLead}} <em>{{site.hero.titleAccent}}</em>
-    </h1>
+  <div class="shell hero__layout">
+    <div class="hero__inner">
+      <h1 class="hero__title">
+        {{site.hero.titleLead}} <em>{{site.hero.titleAccent}}</em>
+      </h1>
 
-    <p class="lede hero__lede">{{site.hero.lede}}</p>
+      <p class="lede hero__lede">{{site.hero.lede}}</p>
 
-    <div class="hero__actions">
-      <a class="btn btn--primary btn--lg" href="/products/">
-        Browse {{catalog.totals.products}} machines
-        <span class="btn__arrow" aria-hidden="true">→</span>
-      </a>
-      <a class="btn btn--ghost btn--lg" href="/turnkey/">See turnkey lines</a>
+      <div class="hero__actions">
+        <a class="btn btn--primary btn--lg" href="/products/">
+          Browse {{catalog.totals.products}} machines
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="btn btn--ghost btn--lg" href="/turnkey/">See turnkey lines</a>
+      </div>
+
+      <p class="hero__meta">
+        {{#each site.hero.meta}}<span>{{.}}</span>{{/each}}
+      </p>
     </div>
 
-    <p class="hero__meta">
-      {{#each site.hero.meta}}<span>{{.}}</span>{{/each}}
-    </p>
+    {{#if page.feature}}
+    <figure class="hero__media">
+      <!-- eager + fetchpriority: this is the LCP element, so it must not wait -->
+      <img src="{{page.feature.hero.src}}"
+           srcset="{{page.feature.hero.srcset}}"
+           sizes="(min-width: 62rem) 50vw, 100vw"
+           width="{{page.feature.hero.width}}" height="{{page.feature.hero.height}}"
+           alt="{{page.feature.hero.alt}}"
+           loading="eager" fetchpriority="high" decoding="async">
+      <figcaption>
+        <span class="model">{{page.feature.model}}</span>
+        <span>{{page.feature.title}}</span>
+      </figcaption>
+    </figure>
+    {{/if}}
   </div>
 </section>
 
@@ -53,11 +71,21 @@
     <div class="cat-grid">
       {{#each catalog.families}}
       <a class="cat" href="/products/{{slug}}/" data-reveal>
-        <span class="cat__count">{{count}} machines</span>
-        <span class="cat__name">{{name}}</span>
-        {{#if models}}
-        <span class="cat__models">{{models.0}} · {{models.1}} · {{models.2}}</span>
+        {{#if cover}}
+        <span class="cat__media">
+          <img src="{{cover.src}}" srcset="{{cover.srcset}}"
+               sizes="(min-width: 90rem) 25vw, (min-width: 62rem) 33vw, (min-width: 40rem) 50vw, 100vw"
+               width="{{cover.width}}" height="{{cover.height}}"
+               alt="{{cover.alt}}" loading="lazy" decoding="async">
+        </span>
         {{/if}}
+        <span class="cat__body">
+          <span class="cat__count">{{count}} machines</span>
+          <span class="cat__name">{{name}}</span>
+          {{#if models}}
+          <span class="cat__models">{{models.0}} · {{models.1}} · {{models.2}}</span>
+          {{/if}}
+        </span>
       </a>
       {{/each}}
     </div>
@@ -81,7 +109,17 @@
         </p>
       </div>
 
-      <div class="split__media" data-reveal>Line photography to be supplied</div>
+      <div class="split__media" data-reveal>
+        {{#each page.processShots}}
+        <figure>
+          <img src="{{hero.src}}" srcset="{{hero.srcset}}"
+               sizes="(min-width: 62rem) 25vw, 50vw"
+               width="{{hero.width}}" height="{{hero.height}}"
+               alt="{{hero.alt}}" loading="lazy" decoding="async">
+          <figcaption>{{model}}</figcaption>
+        </figure>
+        {{/each}}
+      </div>
     </div>
   </div>
 </section>
