@@ -17,15 +17,16 @@
     "lede": "Winding, slot insulation, wedge insertion, fusing, turning, balancing and end-of-line testing — supplied as single machines or as one integrated production line. Designing and building motor production equipment in Taichung, Taiwan since 1992.",
     "meta": [
       "Over 20 listed public companies guided through new plant launches",
-      "Exported to the USA, India, China, Japan and Southeast Asia",
+      "Machines running in more than 20 countries",
       "Remote diagnostics on any PLC-equipped machine"
     ]
   },
 
+  "_statsOrderNote": "Two of these read 20+. Keep 1992 between them — set side by side they look like a duplication error rather than two separate facts.",
   "stats": [
     { "value": "20+",  "label": "Listed public companies guided through new plant and project launches" },
     { "value": "1992", "label": "Building motor production equipment in Taichung, Taiwan" },
-    { "value": "5",    "label": "Export markets — USA, India, China, Japan and Southeast Asia" },
+    { "value": "20+",  "label": "Countries running our equipment — the USA, India, Vietnam, China, Japan and beyond" },
     { "value": "2006", "label": "Semiconductor equipment since, alongside motors — a rare combination" }
   ],
 

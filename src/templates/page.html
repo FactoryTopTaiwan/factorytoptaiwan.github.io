@@ -1,0 +1,110 @@
+<section class="section section--tight">
+  <div class="shell">
+    <div class="section__head section__head--split">
+      <div>
+        <p class="eyebrow">{{page.eyebrow}}</p>
+        <h1>{{page.heading}}</h1>
+      </div>
+      <p class="lede">{{page.lede}}</p>
+    </div>
+  </div>
+</section>
+
+{{#if page.blocks}}
+{{#each page.blocks}}
+<section class="section section--tight">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">{{eyebrow}}</p>
+      <h2>{{title}}</h2>
+    </div>
+    {{#if body}}<p class="lede">{{body}}</p>{{/if}}
+    {{#if items}}
+    <div class="panels">
+      {{#each items}}
+      <div class="panel">
+        <h3>{{title}}</h3>
+        <p>{{body}}</p>
+      </div>
+      {{/each}}
+    </div>
+    {{/if}}
+    {{#if bullets}}
+    <ul class="bullets">
+      {{#each bullets}}<li>{{.}}</li>{{/each}}
+    </ul>
+    {{/if}}
+  </div>
+</section>
+{{/each}}
+{{/if}}
+
+{{#if page.timeline}}
+<section class="section section--sunken">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">History</p>
+      <h2>Thirty-plus years, in the order it happened</h2>
+    </div>
+    <ol class="timeline">
+      {{#each page.timeline}}
+      <li>
+        <span class="timeline__year model">{{year}}</span>
+        <span class="timeline__event">{{event}}</span>
+      </li>
+      {{/each}}
+    </ol>
+  </div>
+</section>
+{{/if}}
+
+{{#if page.industries}}
+<section class="section">
+  <div class="shell">
+    <div class="panels">
+      {{#each page.industries}}
+      <div class="panel">
+        <h3>{{name}}</h3>
+        <p>{{summary}}</p>
+        <ul class="bullets bullets--tight">
+          {{#each parts}}<li>{{.}}</li>{{/each}}
+        </ul>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</section>
+{{/if}}
+
+{{#if page.showContact}}
+<section class="section section--sunken">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">Reach us</p>
+      <h2>Taichung, Taiwan</h2>
+    </div>
+    <dl class="factlist factlist--wide">
+      <div><dt>Email</dt><dd><a href="mailto:{{company.contact.email}}">{{company.contact.email}}</a></dd></div>
+      <div><dt>Telephone</dt><dd><a href="tel:{{company.contact.phone}}">{{company.contact.phone}}</a></dd></div>
+      <div><dt>Mobile</dt><dd><a href="tel:{{company.contact.mobile}}">{{company.contact.mobile}}</a></dd></div>
+      <div><dt>Address</dt><dd>{{company.contact.addressEn}}</dd></div>
+      <div><dt>Response</dt><dd>{{company.contact.responseCommitment}}</dd></div>
+    </dl>
+  </div>
+</section>
+{{/if}}
+
+<section class="cta-band">
+  <div class="shell cta-band__inner">
+    <p class="eyebrow">{{site.cta.eyebrow}}</p>
+    <h2>{{site.cta.title}}</h2>
+    <p class="lede" style="margin-top:var(--sp-5)">{{site.cta.lede}}</p>
+    <div class="cta-band__actions">
+      <a class="btn btn--primary btn--lg" href="mailto:{{company.contact.email}}">
+        Email the engineering team
+        <span class="btn__arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn--ghost btn--lg" href="/products/">Browse {{catalog.totals.products}} machines</a>
+    </div>
+    <p class="cta-band__note">{{site.cta.note}}</p>
+  </div>
+</section>

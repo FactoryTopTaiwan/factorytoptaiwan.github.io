@@ -1,0 +1,62 @@
+<section class="section section--tight">
+  <div class="shell">
+    <div class="section__head section__head--split">
+      <div>
+        <p class="eyebrow">The catalogue</p>
+        <h1>{{catalog.totals.products}} machines across {{catalog.totals.families}} families</h1>
+      </div>
+      <p class="lede">
+        Every stage of motor production, from the first turn of wire to the final
+        electrical test. {{catalog.totals.models}} machines carry a published model
+        number; {{catalog.totals.withSpecs}} have specifications published today and
+        the rest are being transcribed.
+      </p>
+    </div>
+
+    <div class="cat-grid">
+      {{#each catalog.families}}
+      <a class="cat" href="/products/{{slug}}/">
+        {{#if cover}}
+        <span class="cat__media">
+          <img src="{{cover.src}}" srcset="{{cover.srcset}}"
+               sizes="(min-width: 90rem) 25vw, (min-width: 62rem) 33vw, (min-width: 40rem) 50vw, 100vw"
+               width="{{cover.width}}" height="{{cover.height}}"
+               alt="{{cover.alt}}" loading="lazy" decoding="async">
+        </span>
+        {{/if}}
+        <span class="cat__body">
+          <span class="cat__count">{{count}} machines</span>
+          <span class="cat__name">{{name}}</span>
+        </span>
+      </a>
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+<section class="section section--sunken">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">Every machine</p>
+      <h2>Full index by model</h2>
+    </div>
+
+    <div class="tablewrap">
+      <table class="idx">
+        <thead>
+          <tr><th scope="col">Model</th><th scope="col">Machine</th><th scope="col">Family</th><th scope="col">Specifications</th></tr>
+        </thead>
+        <tbody>
+          {{#each products}}
+          <tr>
+            <td class="model">{{#if model}}{{model}}{{else}}—{{/if}}</td>
+            <td><a href="/products/{{slug}}/">{{title}}</a></td>
+            <td>{{familyName}}</td>
+            <td>{{#if hasSpec}}Published{{else}}On request{{/if}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

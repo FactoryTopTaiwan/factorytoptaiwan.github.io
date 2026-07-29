@@ -213,6 +213,7 @@ if ($Clean) {
 $site      = Read-Json 'site.json'
 $catalogue = Read-Json 'catalogue.json'
 $data      = Read-Json 'products.json'
+$company   = Read-Json 'company.json'
 
 # Attach each family's cover photo and its product list, so templates can render
 # a category card or a family page without doing any lookups themselves.
@@ -236,6 +237,7 @@ function Build-Page {
         site     = $site
         page     = $Page
         catalog  = $catalogue
+        company  = $company
         products = $data.products
     }
     $body = Expand-Template -Template (Read-Template $Template) -Scope $scope
@@ -271,10 +273,123 @@ Build-Page -Template 'home.html' -Out 'index.html' -Page @{
     processShots = $shots
 }
 
+$urls = New-Object System.Collections.Generic.List[string]
+$urls.Add('/')
+
+# --- Catalogue index --------------------------------------------------------
+Build-Page -Template 'products.html' -Out 'products\index.html' -Page @{
+    title       = ("All {0} machines for motor production" -f $catalogue.totals.products)
+    description = ("The complete Teamwork Automation catalogue: {0} machines across {1} families, covering winding, slot insulation, wedge insertion, fusing, turning, balancing and test." -f $catalogue.totals.products, $catalogue.totals.families)
+    url         = '/products/'
+    nav         = 'products'
+}
+$urls.Add('/products/')
+
+# --- One page per family ----------------------------------------------------
+foreach ($f in $catalogue.families) {
+    Build-Page -Template 'family.html' -Out ("products\{0}\index.html" -f $f.slug) -Page @{
+        title       = $f.name
+        description = $f.summary
+        url         = ("/products/{0}/" -f $f.slug)
+        nav         = 'products'
+        family      = $f
+    }
+    $urls.Add(("/products/{0}/" -f $f.slug))
+}
+
+# --- One page per machine ---------------------------------------------------
+foreach ($p in $data.products) {
+    # Siblings from the same family give the buyer somewhere to go when this
+    # machine is close but not right.
+    $siblings = @($data.products |
+        Where-Object { $_.family -eq $p.family -and $_.slug -ne $p.slug } |
+        Select-Object -First 3)
+
+    $stage = 'Motor production'
+    if ($p.familyName) { $stage = $p.familyName }
+
+    $motorTypes = 'Brushed, brushless and universal motors'
+    if ($p.title -match 'Brushless|BLDC')      { $motorTypes = 'Brushless (BLDC) motors' }
+    elseif ($p.title -match 'Armature|Commutator|Varnish') { $motorTypes = 'Brushed and universal motors' }
+    elseif ($p.title -match 'Semiconductor')   { $motorTypes = 'Semiconductor packaging, not motor production' }
+
+    $summary = ("{0} built by Teamwork Automation in Taichung, Taiwan. Supplied as a standalone machine or integrated into a complete production line." -f $p.title)
+    if ($p.model) {
+        $summary = ("{0} is a {1} built by Teamwork Automation in Taichung, Taiwan. Supplied as a standalone machine or integrated into a complete production line." -f $p.model, $p.title.ToLowerInvariant())
+    }
+
+    $t = $p.title
+    if ($p.model) { $t = ("{0} {1}" -f $p.model, $p.title) }
+
+    Build-Page -Template 'product.html' -Out ("products\{0}\index.html" -f $p.slug) -Page @{
+        title       = $t
+        description = $summary
+        url         = ("/products/{0}/" -f $p.slug)
+        nav         = 'products'
+        product     = $p
+        siblings    = $siblings
+        copy        = @{ summary = $summary; stage = $stage; motorTypes = $motorTypes }
+    }
+    $urls.Add(("/products/{0}/" -f $p.slug))
+}
+
+# --- Standing pages ---------------------------------------------------------
+$pages = @(
+    @{ out='turnkey';   nav='turnkey';   title='Turnkey production lines';
+       eyebrow=$catalogue.turnkey.eyebrow; heading=$catalogue.turnkey.title; lede=$catalogue.turnkey.lede
+       description='Complete motor production lines planned, built and commissioned by one supplier — layout, workstation count, traceability and remote monitoring included.'
+       blocks=@(
+         @{ eyebrow='Scope'; title='What is included'; bullets=$catalogue.turnkey.points },
+         @{ eyebrow='On the line'; title=$company.capabilities.title; bullets=$company.capabilities.points }
+       ) },
+    @{ out='solutions'; nav='solutions'; title='Industries we build for';
+       eyebrow='Solutions'; heading='The motors our machines are built around'
+       lede='Automotive, two-wheel and e-mobility, power tools, drone and micro BLDC, appliance, and semiconductor packaging. The machine is specified against the part, so the industry decides the tooling.'
+       description='Motor production equipment for automotive, e-mobility, power tools, drone motors, appliances and semiconductor packaging.'
+       industries=$company.industries },
+    @{ out='about';     nav='about';     title='About Teamwork Automation';
+       eyebrow='About'; heading=$company.positioning.line; lede=$company.positioning.summary
+       description='Teamwork Automation has built motor production equipment in Taichung, Taiwan since 1992, and has guided more than twenty listed manufacturers through new plant launches.'
+       timeline=$company.timeline
+       blocks=@( @{ eyebrow='How we work'; title='Five ways a project reaches us'; items=$company.services } ) },
+    @{ out='support';   nav='support';   title='Support and service';
+       eyebrow='Support'; heading='Repair without borders.'
+       lede='Any machine with a PLC can carry the remote monitoring module. When something stops, an engineer connects over the internet and diagnoses it — a fault eight thousand kilometres away does not have to wait for a flight to be booked.'
+       description='Remote diagnostics, installation, operator training and spare parts for Teamwork Automation motor production equipment.'
+       blocks=@( @{ eyebrow='On the line'; title='What the monitoring module gives you'; bullets=$company.capabilities.points } )
+       showContact=$true },
+    @{ out='contact';   nav='contact';   title='Contact and quotations';
+       eyebrow='Contact'; heading='Tell us the part. We will tell you the line.'
+       lede='Send the stator, armature or rotor you need to produce, along with the output you are planning for. Specifications are never gated and there is no account to create.'
+       description='Request a quotation, ask for a specification, or book a video call with the Teamwork Automation engineering team in Taichung, Taiwan.'
+       showContact=$true },
+    @{ out='catalog';   nav='catalog';   title='Catalogue downloads';
+       eyebrow='Catalogue'; heading='The full catalogue, on request'
+       lede='Machine specifications on this site are open — nothing behind a form. The complete printed catalogue is available on request so we know who to follow up with.'
+       description='Request the full Teamwork Automation machine catalogue.'
+       showContact=$true }
+)
+
+foreach ($pg in $pages) {
+    $p = @{} + $pg
+    $p['url'] = ("/{0}/" -f $pg.out)
+    Build-Page -Template 'page.html' -Out ("{0}\index.html" -f $pg.out) -Page $p
+    $urls.Add(("/{0}/" -f $pg.out))
+}
+
+# --- 404 --------------------------------------------------------------------
+Build-Page -Template 'page.html' -Out '404.html' -Page @{
+    title       = 'Page not found'
+    description = 'That page does not exist.'
+    url         = '/404.html'
+    eyebrow     = '404'
+    heading     = 'That page is not here.'
+    lede        = 'The link may be out of date, or the page may have moved during the site rebuild. The full machine catalogue is the best place to pick the thread back up.'
+}
+
 Copy-Assets
 
 # --- robots.txt / sitemap ---------------------------------------------------
-$urls = @('/')
 $sitemap = New-Object System.Text.StringBuilder
 [void]$sitemap.AppendLine('<?xml version="1.0" encoding="UTF-8"?>')
 [void]$sitemap.AppendLine('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
