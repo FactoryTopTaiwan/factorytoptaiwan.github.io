@@ -1,0 +1,118 @@
+{
+  "_source": "Facts taken from the client's own 2026 Company Introduction and 2025 Teamwork Company Profile (Google Drive, owned by iverson.hsu@fatop-global.com). Figures are the client's own published claims and must not be inflated, rounded up, or embellished. Material owned by any other account is deliberately excluded.",
+
+  "positioning": {
+    "line": "Automation equipment for motor production — not motors.",
+    "summary": "Teamwork Automation designs and builds the machinery that manufactures electric motors: winding, insulation, insertion, fusing, turning, balancing, varnish and test. Founded in Taichung in 1992 to replace manual motor assembly with machines, and shipping complete production lines rather than isolated equipment."
+  },
+
+  "proof": [
+    {
+      "value": "20+",
+      "label": "Listed public companies guided through new plant and project launches"
+    },
+    {
+      "value": "1992",
+      "label": "Building motor production equipment in Taichung, Taiwan"
+    },
+    {
+      "value": "5",
+      "label": "Export markets: USA, India, China, Japan and Southeast Asia"
+    },
+    {
+      "value": "2006",
+      "label": "Semiconductor equipment since — the rare builder working across both motors and electronics"
+    }
+  ],
+
+  "services": [
+    {
+      "title": "Standalone machinery",
+      "body": "Individual machines from the catalogue, specified against your stator, armature or rotor."
+    },
+    {
+      "title": "Turnkey production lines",
+      "body": "Workstations integrated into one automated line, with the conveying method chosen for your throughput. Integrated, automated, unmanned."
+    },
+    {
+      "title": "Full customisation",
+      "body": "Where no catalogue machine fits the part, the equipment is designed around it."
+    },
+    {
+      "title": "Project consultation and delivery",
+      "body": "Plant planning from zero, not just equipment supply. Line layout, workstation count and commissioning."
+    },
+    {
+      "title": "Remote worldwide support",
+      "body": "Any PLC-equipped machine can carry the remote monitoring module. Engineers diagnose over the internet, so a fault in another timezone does not wait for a flight."
+    }
+  ],
+
+  "timeline": [
+    { "year": "1992–1993", "event": "Founded in Taichung. Focus on the motor industry, and the first winding machine." },
+    { "year": "2001",      "event": "First automation line delivered. The start of a working relationship with listed public companies." },
+    { "year": "2005–2006", "event": "The TWM-702 stuffing-type winding machine becomes the dominant machine in the Taiwan market." },
+    { "year": "2006",      "event": "Semiconductor sealing and testing equipment delivered — a second industry, at a higher precision class." },
+    { "year": "2023–2024", "event": "First drone motor automation production line, followed by a drone motor line exported to the USA." },
+    { "year": "2023–2024", "event": "Hairpin motor development begins, with customer prototyping — the stator technology behind EV traction motors." },
+    { "year": "2025–2026", "event": "FaTop Automation launched to serve export customers directly." }
+  ],
+
+  "industries": [
+    {
+      "slug": "automotive",
+      "name": "Automotive",
+      "summary": "Motors that go into a vehicle before it ever moves under its own power.",
+      "parts": ["Electric seat adjustment motor", "Wiper connecting rod assembly", "Engine high-voltage ignition coil", "Water tank cooling fan motor", "Starter motor", "Power steering motor"]
+    },
+    {
+      "slug": "e-mobility",
+      "name": "E-mobility & two-wheelers",
+      "summary": "Scooter, motorbike and electric-bike drivetrains, plus the hairpin stator work behind EV traction motors.",
+      "parts": ["Starter motor (ACG)", "Fuel pump production equipment", "Electric power motor for scooters", "Engine high-voltage ignition coil", "Hairpin stators"]
+    },
+    {
+      "slug": "power-tools",
+      "name": "Power tools",
+      "summary": "High-volume universal and brushless motors where cycle time decides the margin.",
+      "parts": ["Electric drill", "Grinder", "Table saw", "Engraving machine", "Vacuum cleaner", "Waxing machine"]
+    },
+    {
+      "slug": "drone-motors",
+      "name": "Drone & micro BLDC",
+      "summary": "Out-slot and in-slot brushless stators at small diameters, where slot fill and repeatability decide flight time. First dedicated line delivered 2023, exported to the USA.",
+      "parts": ["Drone motors", "Gimbal motors", "Cooling fan motors", "Micro BLDC motors"]
+    },
+    {
+      "slug": "appliance",
+      "name": "Appliance & fitness",
+      "summary": "Consumer and building equipment motors produced at consumer-market cost.",
+      "parts": ["Ceiling fan", "Air-conditioning electronic parts", "RO water dispenser", "Treadmill", "Exercise bike"]
+    },
+    {
+      "slug": "semiconductor",
+      "name": "Semiconductor",
+      "summary": "Sealing and testing process equipment since 2006 — the same motion, vision and control platform held to a tighter precision class.",
+      "parts": ["Sealing process equipment", "Testing process equipment"]
+    }
+  ],
+
+  "capabilities": {
+    "title": "What a Teamwork line does that a set of machines does not",
+    "points": [
+      "Barcode and laser part marking, so every unit is traceable through the line",
+      "Manufacturing data collection into a central system",
+      "A production information board on the floor, showing line state in real time",
+      "Remote equipment monitoring and maintenance over the internet"
+    ]
+  },
+
+  "contact": {
+    "phone": "+886-4-2533-8618",
+    "mobile": "+886-985-213-506",
+    "email": "iverson.hsu@fatop-global.com",
+    "addressLocal": "台中市潭子區勝利八街53巷46之2號",
+    "addressEn": "No. 46-2, Lane 53, Shengli 8th St, Tanzi District, Taichung, Taiwan",
+    "responseCommitment": "We reply within one business day."
+  }
+}

@@ -2,7 +2,8 @@
   "name": "Teamwork Automation",
   "legalName": "Teamwork Automation Machinery Co., Ltd.",
   "altName": "FaTop Automation",
-  "origin": "https://fatop-global.com",
+  "_originNote": "Canonical URLs must point at the host that actually serves this content. fatop-global.com currently resolves to a Squarespace 'Coming Soon' page, so pointing canonical there would hand ranking signals to an empty site. Switch this to https://fatop-global.com the moment that domain is pointed at GitHub Pages.",
+  "origin": "https://factorytoptaiwan.github.io",
   "founded": "1992",
   "city": "Taichung",
   "country": "Taiwan",
@@ -11,21 +12,21 @@
   "description": "Winding, insulation, insertion, fusing, balancing and testing equipment for brushed, brushless and universal motors — supplied as individual machines or complete turnkey production lines. Built in Taichung, Taiwan since 1992.",
 
   "hero": {
-    "titleLead": "The machines that build",
+    "titleLead": "We build the machines that build",
     "titleAccent": "electric motors.",
-    "lede": "Winding, insulation, slot insertion, fusing, balancing and end-of-line testing — for brushed, brushless and universal motors. Supplied as single machines or as a complete production line, engineered in Taichung, Taiwan since 1992.",
+    "lede": "Winding, slot insulation, wedge insertion, fusing, turning, balancing and end-of-line testing — supplied as single machines or as one integrated production line. Designing and building motor production equipment in Taichung, Taiwan since 1992.",
     "meta": [
-      "Turnkey lines delivered to Taiwan-listed manufacturers",
-      "Export-ready documentation and support",
-      "Reply within one business day"
+      "Over 20 listed public companies guided through new plant launches",
+      "Exported to the USA, India, China, Japan and Southeast Asia",
+      "Remote diagnostics on any PLC-equipped machine"
     ]
   },
 
   "stats": [
-    { "value": "1992", "label": "Founded in Taichung, Taiwan — three decades of motor production equipment" },
-    { "value": "38",   "label": "Machines in the current catalogue, 28 of them published by model number" },
-    { "value": "8",    "label": "Production families, from brushed armatures to BLDC stators" },
-    { "value": "7",    "label": "Process stages covered in-house, winding through final test" }
+    { "value": "20+",  "label": "Listed public companies guided through new plant and project launches" },
+    { "value": "1992", "label": "Building motor production equipment in Taichung, Taiwan" },
+    { "value": "5",    "label": "Export markets — USA, India, China, Japan and Southeast Asia" },
+    { "value": "2006", "label": "Semiconductor equipment since, alongside motors — a rare combination" }
   ],
 
   "processChain": [
@@ -35,8 +36,8 @@
 
   "cta": {
     "eyebrow": "Start a conversation",
-    "title": "Send us the motor, we will tell you the line.",
-    "lede": "Give us the stator or armature you need to produce, the output you are planning for, and we will come back with a machine selection or a full line proposal. No account, no gated specifications.",
+    "title": "Send us the part. We will tell you the line.",
+    "lede": "Tell us the stator, armature or rotor you need to produce and the output you are planning for, and we will come back with a machine selection or a full line layout. We have planned plants from zero for more than twenty listed manufacturers; the conversation starts with your part, not our catalogue.",
     "note": "We reply within one business day. Specifications are never gated — only the full PDF catalogue asks for an email."
   },
 

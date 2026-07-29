@@ -71,12 +71,13 @@
   "turnkey": {
     "eyebrow": "Turnkey production lines",
     "title": "One supplier, from bare wire to a tested motor.",
-    "lede": "Most equipment vendors cover a slice of the process and leave you to integrate the rest. We build every stage — winding, insulation, insertion, fusing, turning, balancing, varnish and test — which means one specification, one commissioning schedule, and one team accountable for line output.",
+    "lede": "Most equipment vendors cover a slice of the process and leave you to integrate the rest. We build every stage — winding, insulation, insertion, fusing, turning, balancing, varnish and test — and we plan the plant itself, not only the machines in it. That is what over twenty listed manufacturers brought us in to do.",
     "points": [
-      "Line layout, cycle time and footprint agreed before build",
-      "Modules from the standard catalogue wherever they fit, custom where they do not",
-      "Commissioned on site, with operator and maintenance training",
-      "Delivered to Taiwan-listed manufacturers as complete lines"
+      "Plant planned from zero: line layout, workstation count, conveying method and footprint",
+      "Catalogue modules wherever they fit, purpose-built equipment where they do not",
+      "Barcode and laser marking for unit-level traceability across the line",
+      "Production data collected centrally, with a floor board showing line state live",
+      "Remote monitoring on any PLC-equipped machine — faults diagnosed over the internet"
     ]
   }
 }

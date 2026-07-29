@@ -30,7 +30,10 @@ $images    = Get-Content $ImagesIn  -Raw -Encoding UTF8 | ConvertFrom-Json
 $catalogue = Get-Content $Catalogue -Raw -Encoding UTF8 | ConvertFrom-Json
 
 . (Join-Path $PSScriptRoot 'slug.ps1')
+. (Join-Path $PSScriptRoot 'classify.ps1')
 $slugMap = Resolve-ProductSlugs -Products $raw
+
+$OrigRoot = Join-Path $SiteRoot '_media\original'
 
 # sourceName (as it appears in the scraped breadcrumb) -> family slug
 $familyBySource = @{}
@@ -95,17 +98,36 @@ foreach ($p in $raw) {
     $entry = $null
     if ($images.PSObject.Properties[$slug]) { $entry = $images.$slug }
 
-    $gallery = New-Object System.Collections.Generic.List[object]
-    $spec    = $null
-    $feature = $null
-    $app     = $null
+    $equipment = New-Object System.Collections.Generic.List[object]
+    $workpiece = New-Object System.Collections.Generic.List[object]
+    $gallery   = New-Object System.Collections.Generic.List[object]
+    $spec      = $null
+    $feature   = $null
+    $app       = $null
 
     if ($entry) {
         foreach ($img in @($entry.images)) {
             $obj = New-ImageObject -Entry $img -Alt $altBase
             if (-not $obj) { continue }
             switch ($img.kind) {
-                'gallery' { $gallery.Add($obj) }
+                'gallery' {
+                    # Separate the machine from the part it makes. This company
+                    # sells automation equipment; leading with a photo of a
+                    # customer's motor tells a procurement engineer the wrong
+                    # thing about who they are talking to.
+                    $orig = Join-Path $OrigRoot ("{0}\gallery-{1:d2}.jpg" -f $slug, $img.index)
+                    $kind = 'workpiece'
+                    if (Test-Path $orig) { $kind = Get-PhotoKind -Path $orig }
+                    Add-Member -InputObject $obj -NotePropertyName 'shows' -NotePropertyValue $kind -Force
+                    if ($kind -eq 'equipment') {
+                        $obj.alt = "$altBase in operation"
+                        $equipment.Add($obj)
+                    } else {
+                        $obj.alt = "$altBase - finished part produced on this machine"
+                        $workpiece.Add($obj)
+                    }
+                    $gallery.Add($obj)
+                }
                 'spec'    { if (-not $spec)    { $obj.alt = "$altBase - published specifications"; $spec = $obj } }
                 'feature' { if (-not $feature) { $obj.alt = "$altBase - features"; $feature = $obj } }
                 'app'     { if (-not $app)     { $obj.alt = "$altBase - applications"; $app = $obj } }
@@ -113,10 +135,14 @@ foreach ($p in $raw) {
         }
     }
 
-    # The widest gallery image is the one worth leading with.
+    # Lead with the machine, always. Only fall back to a workpiece photo when
+    # the catalogue has no equipment shot at all -- 15 products are in that
+    # position and need photography from the client.
     $hero = $null
-    if ($gallery.Count -gt 0) {
-        $hero = @($gallery | Sort-Object { -$_.width })[0]
+    if ($equipment.Count -gt 0) {
+        $hero = @($equipment | Sort-Object { -$_.width })[0]
+    } elseif ($workpiece.Count -gt 0) {
+        $hero = @($workpiece | Sort-Object { -$_.width })[0]
     }
 
     $products.Add([pscustomobject]@{
@@ -126,9 +152,12 @@ foreach ($p in $raw) {
         family     = $famSlug
         familyName = $famName
         hero       = $hero
+        heroShows  = $(if ($equipment.Count -gt 0) { 'equipment' } elseif ($workpiece.Count -gt 0) { 'workpiece' } else { $null })
         # .ToArray(), not @($gallery): the array subexpression operator throws
         # "Argument types do not match" on a Generic.List[object] in PS 5.1.
         gallery    = $gallery.ToArray()
+        equipment  = $equipment.ToArray()
+        workpiece  = $workpiece.ToArray()
         spec       = $spec
         feature    = $feature
         app        = $app
@@ -144,7 +173,13 @@ foreach ($p in $raw) {
 
 $covers = [ordered]@{}
 foreach ($f in $catalogue.families) {
-    $inFamily = @($products | Where-Object { $_.family -eq $f.slug -and $_.hero })
+    # A category card must show equipment. Prefer a product in this family that
+    # actually has a machine photograph, before falling back on width.
+    $withEquip = @($products | Where-Object { $_.family -eq $f.slug -and $_.heroShows -eq 'equipment' })
+    $inFamily  = $withEquip
+    if ($inFamily.Count -eq 0) {
+        $inFamily = @($products | Where-Object { $_.family -eq $f.slug -and $_.hero })
+    }
     if ($inFamily.Count -eq 0) { continue }
     $best = @($inFamily | Sort-Object { -$_.hero.width })[0]
     $covers[$f.slug] = [pscustomobject]@{
