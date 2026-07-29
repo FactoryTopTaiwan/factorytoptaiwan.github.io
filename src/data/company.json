@@ -1,5 +1,7 @@
 {
-  "_source": "Facts taken from the client's own 2026 Company Introduction and 2025 Teamwork Company Profile (Google Drive, owned by iverson.hsu@fatop-global.com). Figures are the client's own published claims and must not be inflated, rounded up, or embellished. Material owned by any other account is deliberately excluded.",
+  "_source": "Facts drawn from the client's own 2026 Company Introduction and 2025 Teamwork Company Profile in Google Drive. Figures are their published claims and must not be inflated, rounded up or embellished.",
+
+  "_writingRule": "Never carry a sentence across from the source documents. Take the fact, then write it fresh. This applies to the client's own material, not only to competitor research: reusing the old wording drags the old site's phrasing problems into the new one, and duplicate text between fatop.com.tw and this site splits their search ranking. Part names, model numbers and specification values are identifiers, not prose, and are used exactly as published.",
 
   "positioning": {
     "line": "Automation equipment for motor production — not motors.",
@@ -32,7 +34,7 @@
     },
     {
       "title": "Turnkey production lines",
-      "body": "Workstations integrated into one automated line, with the conveying method chosen for your throughput. Integrated, automated, unmanned."
+      "body": "Separate workstations linked into a single line, with the transfer method chosen against the throughput you are planning for. The target is a line that runs a shift without an operator standing at it."
     },
     {
       "title": "Full customisation",
@@ -49,13 +51,13 @@
   ],
 
   "timeline": [
-    { "year": "1992–1993", "event": "Founded in Taichung. Focus on the motor industry, and the first winding machine." },
-    { "year": "2001",      "event": "First automation line delivered. The start of a working relationship with listed public companies." },
-    { "year": "2005–2006", "event": "The TWM-702 stuffing-type winding machine becomes the dominant machine in the Taiwan market." },
-    { "year": "2006",      "event": "Semiconductor sealing and testing equipment delivered — a second industry, at a higher precision class." },
-    { "year": "2023–2024", "event": "First drone motor automation production line, followed by a drone motor line exported to the USA." },
-    { "year": "2023–2024", "event": "Hairpin motor development begins, with customer prototyping — the stator technology behind EV traction motors." },
-    { "year": "2025–2026", "event": "FaTop Automation launched to serve export customers directly." }
+    { "year": "1992–1993", "event": "The company opens in Taichung with a single purpose: take the manual work out of motor assembly. A winding machine is the first thing it builds." },
+    { "year": "2001",      "event": "Individual machines give way to a linked line. It is the first of the plant projects that listed manufacturers would later bring us in on." },
+    { "year": "2005–2006", "event": "The TWM-702 armature winder becomes the machine most Taiwanese motor plants of its class are running." },
+    { "year": "2006",      "event": "Sealing and testing equipment ships to a semiconductor customer. A second industry, held to a tighter tolerance than motors ask for." },
+    { "year": "2023–2024", "event": "A production line built specifically for drone motors. The second one goes to a customer in the United States." },
+    { "year": "2023–2024", "event": "Hairpin stator work starts, prototyping with customers. Hairpin is what EV traction motors are wound with, so this is where the next decade is." },
+    { "year": "2025–2026", "event": "FaTop Automation opens as the route for buyers outside Taiwan to reach us directly." }
   ],
 
   "industries": [
