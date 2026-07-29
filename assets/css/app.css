@@ -296,6 +296,34 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   :root:not([data-theme]) .theme-toggle__moon { display: block; }
 }
 
+/* Language switcher. Only languages with real pages are listed — see the note
+   in site.json. Chinese points out to the existing Taiwanese site. */
+.langs { display: none; align-items: center; gap: var(--sp-3); padding-inline-end: var(--sp-3);
+         border-inline-end: var(--border) solid var(--line); }
+@media (min-width: 48rem) { .langs { display: flex; } }
+.langs__link { font-size: var(--step--1); color: var(--ink-muted); text-decoration: none; white-space: nowrap; }
+.langs__link:hover { color: var(--ink); text-decoration: underline; }
+.langs__link--current { color: var(--ink); font-weight: 620; }
+
+/* Persistent conversion band above the footer, on every page. The one thing a
+   buyer should always be one click from is a person. */
+.banner { background: var(--accent-ink); color: var(--accent-on); }
+.banner__inner {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: var(--sp-4) var(--sp-6);
+  padding-block: var(--sp-5);
+  color: inherit; text-decoration: none;
+}
+.banner__text { display: grid; gap: var(--sp-1); }
+.banner__text strong { font-size: var(--step-1); letter-spacing: -0.02em; }
+.banner__text span { font-size: var(--step--1); opacity: 0.88; }
+.banner__action {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  font-weight: 620; white-space: nowrap;
+  border-bottom: 2px solid currentColor; padding-bottom: 2px;
+}
+.banner__inner:hover .btn__arrow { transform: translateX(3px); }
+
 .header__cta { display: none; }
 @media (min-width: 48rem) { .header__cta { display: inline-flex; } }
 

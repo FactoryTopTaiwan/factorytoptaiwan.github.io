@@ -42,6 +42,19 @@
     "note": "We reply within one business day. Specifications are never gated — only the full PDF catalogue asks for an email."
   },
 
+  "_langNote": "Only languages that actually have pages may appear in the switcher. Listing 日本語 before the Japanese pages exist would repeat the 404 problem that shipped on 2026-07-29. Planned order: Japanese first (Nittoku's home market), then German (Elmotec, GROB, Aumann territory), then Spanish (Mexico, and the PLASTIMAGEN customer base). Translation must be done properly — machine translation of slot liner, knurling or fusing will be wrong, and wrong technical vocabulary is worse than no page.",
+  "languages": [
+    { "code": "en",    "label": "English",  "href": "/",                          "current": true,  "external": false },
+    { "code": "zh-TW", "label": "中文",      "href": "https://www.fatop.com.tw/",  "current": false, "external": true }
+  ],
+  "languagesPlanned": ["ja", "de", "es"],
+
+  "banner": {
+    "title": "Tell us the part you need to produce.",
+    "body": "Specifications are open, there is no account to create, and an engineer answers — not a form robot.",
+    "action": "Contact us here"
+  },
+
   "nav": [
     { "label": "Products",  "href": "/products/",  "key": "products" },
     { "label": "Turnkey lines", "href": "/turnkey/", "key": "turnkey" },

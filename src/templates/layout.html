@@ -6,6 +6,9 @@
 <title>{{page.title}} — {{site.name}}</title>
 <meta name="description" content="{{page.description}}">
 <link rel="canonical" href="{{site.origin}}{{page.url}}">
+{{#each site.languages}}
+<link rel="alternate" hreflang="{{code}}" href="{{href}}">
+{{/each}}
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{{site.name}}">
@@ -66,6 +69,16 @@
     </nav>
 
     <div class="header__actions">
+      <nav class="langs" aria-label="Language">
+        {{#each site.languages}}
+        {{#if external}}
+        <a class="langs__link" href="{{href}}" hreflang="{{code}}" rel="alternate">{{label}}</a>
+        {{else}}
+        <span class="langs__link langs__link--current" aria-current="true">{{label}}</span>
+        {{/if}}
+        {{/each}}
+      </nav>
+
       <button class="theme-toggle" type="button" id="theme-toggle"
               aria-label="Switch between light and dark theme">
         <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -94,6 +107,19 @@
 <main id="main">
 {{{content}}}
 </main>
+
+<aside class="banner">
+  <a class="banner__inner shell" href="/contact/">
+    <span class="banner__text">
+      <strong>{{site.banner.title}}</strong>
+      <span>{{site.banner.body}}</span>
+    </span>
+    <span class="banner__action">
+      {{site.banner.action}}
+      <span class="btn__arrow" aria-hidden="true">→</span>
+    </span>
+  </a>
+</aside>
 
 <footer class="footer">
   <div class="shell">
