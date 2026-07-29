@@ -288,13 +288,13 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 }
 .theme-toggle:hover { color: var(--ink); border-color: var(--line-strong); }
 .theme-toggle svg { width: 1.125rem; height: 1.125rem; }
-:root[data-theme="light"] .theme-toggle__moon,
-:root:not([data-theme]) .theme-toggle__moon { display: none; }
-:root[data-theme="dark"] .theme-toggle__sun { display: none; }
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme]) .theme-toggle__sun { display: none; }
-  :root:not([data-theme]) .theme-toggle__moon { display: block; }
-}
+
+/* Exactly one icon shows, and it names the state the reader is IN, not the one
+   the next press will produce. No data-theme attribute means auto. */
+.theme-toggle__auto, .theme-toggle__sun, .theme-toggle__moon { display: none; }
+:root:not([data-theme]) .theme-toggle__auto { display: block; }
+:root[data-theme="light"] .theme-toggle__sun { display: block; }
+:root[data-theme="dark"]  .theme-toggle__moon { display: block; }
 
 /* Language switcher. Only languages with real pages are listed — see the note
    in site.json. Chinese points out to the existing Taiwanese site. */

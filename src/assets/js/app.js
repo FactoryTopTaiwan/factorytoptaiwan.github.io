@@ -7,17 +7,41 @@
   var root = document.documentElement;
   var toggle = document.getElementById('theme-toggle');
 
-  function currentTheme() {
-    var set = root.getAttribute('data-theme');
-    if (set) return set;
-    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  /* Three states: auto, light, dark. Auto is the absence of data-theme, which
+     lets the CSS fall through to prefers-color-scheme — so the page follows
+     whatever the device is doing, including a sunset schedule. Without it there
+     is no way back to the device setting once the button has been pressed. */
+  var MODES = ['auto', 'light', 'dark'];
+  var LABELS = {
+    auto:  'Appearance: follow device',
+    light: 'Appearance: light',
+    dark:  'Appearance: dark'
+  };
+
+  function storedMode() {
+    var m = root.getAttribute('data-theme');
+    return (m === 'light' || m === 'dark') ? m : 'auto';
+  }
+
+  function applyMode(mode) {
+    if (mode === 'auto') {
+      root.removeAttribute('data-theme');
+      try { localStorage.removeItem('theme'); } catch (e) {}
+    } else {
+      root.setAttribute('data-theme', mode);
+      try { localStorage.setItem('theme', mode); } catch (e) {}
+    }
+    if (toggle) {
+      toggle.setAttribute('aria-label', LABELS[mode]);
+      toggle.setAttribute('title', LABELS[mode]);
+    }
   }
 
   if (toggle) {
+    applyMode(storedMode());
     toggle.addEventListener('click', function () {
-      var next = currentTheme() === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('theme', next); } catch (e) {}
+      var next = MODES[(MODES.indexOf(storedMode()) + 1) % MODES.length];
+      applyMode(next);
     });
   }
 
