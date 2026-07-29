@@ -23,21 +23,15 @@
       </p>
     </div>
 
-    {{#if page.feature}}
     <figure class="hero__media">
       <!-- eager + fetchpriority: this is the LCP element, so it must not wait -->
-      <img src="{{page.feature.hero.src}}"
-           srcset="{{page.feature.hero.srcset}}"
-           sizes="(min-width: 62rem) 50vw, 100vw"
-           width="{{page.feature.hero.width}}" height="{{page.feature.hero.height}}"
-           alt="{{page.feature.hero.alt}}"
+      <img src="{{site.heroImage.src}}"
+           srcset="{{site.heroImage.srcset}}"
+           sizes="(min-width: 62rem) 52vw, 100vw"
+           width="{{site.heroImage.width}}" height="{{site.heroImage.height}}"
+           alt="{{site.heroImage.alt}}"
            loading="eager" fetchpriority="high" decoding="async">
-      <figcaption>
-        <span class="model">{{page.feature.model}}</span>
-        <span>{{page.feature.title}}</span>
-      </figcaption>
     </figure>
-    {{/if}}
   </div>
 </section>
 

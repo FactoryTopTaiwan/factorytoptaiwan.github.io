@@ -6,12 +6,21 @@
 
 :root {
   /* ---- Type ------------------------------------------------------------
-     System stack for now: zero network cost, excellent LCP. Swap in a
-     self-hosted variable font here and nothing else needs to change. */
-  --font-sans: "Segoe UI Variable Display", "Segoe UI", -apple-system,
-               BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "Cascadia Mono", "SF Mono", "JetBrains Mono", Consolas,
-               "Liberation Mono", monospace;
+     The stack adapts to the reader's hardware by itself: each name resolves
+     only on its own platform, so order is what makes it work. Apple tokens go
+     first -- an iPhone or Mac with Microsoft Office installed also has Segoe
+     UI, and listing Segoe first would hand Apple users a Windows typeface
+     instead of SF Pro. Roboto follows for Android, then Segoe for Windows.
+
+     Zero network cost, so no font swap and no layout shift on 4G. Swap in a
+     self-hosted variable face here and nothing else has to change. */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+               Roboto, "Segoe UI Variable Text", "Segoe UI",
+               "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+  /* Tabular figures for model numbers and specification values. Apple and
+     Android first again, for the same reason. */
+  --font-mono: ui-monospace, "SF Mono", "Roboto Mono", "Cascadia Mono",
+               "JetBrains Mono", Consolas, "Liberation Mono", monospace;
 
   /* Fluid scale, 320px → 1600px viewport */
   --step--1: clamp(0.833rem, 0.80rem + 0.16vw, 0.9rem);
