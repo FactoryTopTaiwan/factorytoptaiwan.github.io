@@ -1,0 +1,92 @@
+{
+  "_purpose": "Corrections applied to the client's published English, benchmarked against the terms the international equipment builders use (Nittoku, Marsilli, Odawara, Elmotec-Statomat, GROB, Aumann; Globe Tool & Engineering and Windamatic in the USA). The client has authorised correcting their data and wording where it is wrong. Specification VALUES are never changed — only the words. Anything marked confirm:true needs the client to agree before it goes live.",
+
+  "corrections": [
+    {
+      "was": "Shaft embossing",
+      "now": "Shaft knurling",
+      "confirm": false,
+      "why": "Embossing raises a pattern in sheet or flat stock. Creating a knurl on a shaft so the armature core or commutator holds an interference fit is knurling, universally. 'Shaft embossing' returns almost nothing in this industry; 'shaft knurling machine' is the term buyers search."
+    },
+    {
+      "was": "Insertion of slot cell",
+      "now": "Slot liner insertion",
+      "confirm": false,
+      "why": "A literal rendering of 槽絕緣. The insulating paper placed in a stator or armature slot is a slot liner (or slot insulation paper). 'Slot cell' is not used by any of the reference builders."
+    },
+    {
+      "was": "Air Coil Winding Machine",
+      "now": "Air-core coil winding machine",
+      "confirm": false,
+      "why": "The coil is wound without a core, so the precise term is air-core. 'Air coil' reads as a typo to a native technical reader."
+    },
+    {
+      "was": "Turning Machine for armature outer diameter of commutator",
+      "now": "Commutator turning machine",
+      "confirm": false,
+      "why": "The original is a description, not a product name, and it is ambiguous about whether the armature OD or the commutator OD is machined. The industry names the operation after the feature being turned."
+    },
+    {
+      "was": "Balancing",
+      "now": "Dynamic balancing machine",
+      "confirm": false,
+      "why": "'Balancing' names a process, not a machine. Rotors are dynamically balanced, and the distinction from static balancing matters to a buyer."
+    },
+    {
+      "was": "Varnish bake",
+      "now": "Varnish impregnation and bake",
+      "confirm": false,
+      "why": "Baking is the second half of the operation. Naming only the bake hides the impregnation step, which is the part that determines insulation class."
+    },
+    {
+      "was": "TMW-RT533",
+      "now": "TWM-RT533",
+      "confirm": true,
+      "why": "Every other model on the site uses the TWM prefix. TMW appears on exactly two products and looks like a transposition, but a model number is an identifier and must be confirmed, not assumed."
+    },
+    {
+      "was": "TMW-515/NB-307A",
+      "now": "TWM-515 / NB-307A",
+      "confirm": true,
+      "why": "Same TMW/TWM transposition. Also, two model numbers separated by a slash with no space reads as one part number; if these are two machines they should be listed separately."
+    },
+    {
+      "was": "Automatic Stuff Type Armature Winding Machine",
+      "now": "Automatic stuffing-type armature winding machine",
+      "confirm": true,
+      "why": "'Stuff type' is not idiomatic; 'stuffing' is the process. Worth confirming whether this is what the rest of the industry calls needle winding, because the searchable term differs."
+    },
+    {
+      "was": "Motor Rotor Production Related Equipment",
+      "now": "Rotor & Armature Equipment",
+      "confirm": false,
+      "why": "'Production Related Equipment' is filler. The family covers both wound armatures and rotors, and naming both is what a buyer scans for."
+    },
+    {
+      "was": "Semiconductor Sealing Testing Process Equipment",
+      "now": "Semiconductor sealing and testing equipment",
+      "confirm": false,
+      "why": "Four stacked nouns. Sealing and testing are two operations and need the conjunction."
+    }
+  ],
+
+  "duplicatesToReconcile": [
+    {
+      "issue": "TWM-308A appears twice",
+      "detail": "'Hook-Type Armature Automatic Winding Machine' and 'Hook Type Armature Automatic Winding Machine (Horizontal)' carry the same model number under two URLs. Either they are one machine listed twice, or they are horizontal and vertical variants that need distinct model numbers."
+    },
+    {
+      "issue": "TWM-301A appears twice",
+      "detail": "'Varnish bake' is listed under both the rotor and the stator family with the same model number."
+    },
+    {
+      "issue": "Two products both named 'Automatic Modular Production Line'",
+      "detail": "Identical titles, different pages. They need distinguishing names or merging."
+    }
+  ],
+
+  "housekeeping": [
+    { "was": "Vedios", "now": "Videos", "where": "Drive folder name" },
+    { "was": "Exibitions", "now": "Exhibitions", "where": "Drive folder name" }
+  ]
+}
