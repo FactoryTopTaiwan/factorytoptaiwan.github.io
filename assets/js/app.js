@@ -63,6 +63,32 @@
     });
   }
 
+  /* ---- Mobile navigation -------------------------------------------------
+     The button shipped without this, so below 64rem the entire navigation was
+     unreachable — the control was there, announced itself as a menu, and did
+     nothing. */
+  var navToggle = document.querySelector('.nav-toggle');
+  var nav = document.querySelector('.nav');
+  if (navToggle && nav) {
+    var setNav = function (open) {
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.classList.toggle('nav-open', open);
+    };
+    navToggle.addEventListener('click', function () {
+      setNav(navToggle.getAttribute('aria-expanded') !== 'true');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
+        setNav(false);
+        navToggle.focus();
+      }
+    });
+    // A link inside the panel should close it on the way out
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setNav(false);
+    });
+  }
+
   /* ---- Header hairline on scroll ---------------------------------------- */
   var header = document.getElementById('site-header');
   if (header) {

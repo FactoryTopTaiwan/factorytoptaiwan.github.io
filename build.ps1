@@ -265,8 +265,37 @@ function Build-Page {
         [string]$Out,           # output path relative to root
         [hashtable]$Page        # page-level values: title, description, url
     )
+    # Point each language at the SAME page in that locale, not at its home page.
+    # Switching language must not cost the reader their place -- landing back on
+    # the home page reads as "the switch did not work".
+    $here = [string]$Page['url']
+    $langs = @()
+    foreach ($l in $site.languages) {
+        $href = $l.href
+        if (-not $l.external) {
+            $bare = $here
+            foreach ($other in $Locales) {
+                if ($other.url -and $bare.StartsWith($other.url + '/')) {
+                    $bare = $bare.Substring($other.url.Length); break
+                }
+                if ($other.url -and $bare -eq ($other.url + '/')) { $bare = '/'; break }
+            }
+            $target = $l.code
+            $pfx = ''
+            foreach ($other in $Locales) { if ($other.lang -eq $target) { $pfx = $other.url } }
+            $href = $pfx + $bare
+            if (-not $href) { $href = '/' }
+        }
+        $langs += [pscustomobject]@{
+            code = $l.code; label = $l.label; href = $href
+            current = $l.current; external = $l.external
+        }
+    }
+    $localSite = $site.PSObject.Copy()
+    Add-Member -InputObject $localSite -NotePropertyName 'languages' -NotePropertyValue $langs -Force
+
     $scope = @{
-        site     = $site
+        site     = $localSite
         page     = $Page
         catalog  = $catalogue
         company  = $company

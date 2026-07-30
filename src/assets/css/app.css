@@ -953,3 +953,36 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 [lang="ja"] h1, [lang="ja"] h2 { letter-spacing: -0.01em; }
 [lang="ja"] .hero__title { letter-spacing: 0; line-height: 1.18; }
 [lang="ja"] .lede { line-height: 1.8; }
+/* ==========================================================================
+   Mobile navigation
+   The toggle shipped with no behaviour behind it, so below 64rem the whole
+   navigation was unreachable. The panel drops out of the header rather than
+   covering the page, so the reader keeps their context.
+   ========================================================================== */
+@media (max-width: 63.99rem) {
+  body.nav-open .nav {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    position: absolute;
+    inset-block-start: 100%;
+    inset-inline: 0;
+    z-index: var(--z-overlay);
+    margin: 0;
+    padding: var(--sp-2) var(--gutter) var(--sp-4);
+    background: var(--bg);
+    border-block-end: var(--border) solid var(--line);
+    box-shadow: var(--shadow-2);
+  }
+  body.nav-open .nav .nav__link {
+    padding: var(--sp-4) 0;
+    font-size: var(--step-1);
+    border-block-end: var(--border) solid var(--line);
+  }
+  body.nav-open .nav .nav__link:last-child { border-block-end: 0; }
+  .header { position: sticky; }
+  .header__inner { position: static; }
+  .header { --nav-anchor: 1; }
+}
+.header .shell { position: relative; }
