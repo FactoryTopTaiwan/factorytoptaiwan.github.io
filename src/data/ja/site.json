@@ -85,6 +85,7 @@
     "seeTurnkey": "ターンキーラインを見る",
     "bookCall": "オンライン打ち合わせを予約",
     "specifications": "仕様",
+    "specHeading": "この機械の対応範囲",
     "specsPublished": "仕様公開済み",
     "specsOnRequest": "仕様はお問い合わせください",
     "category": "カテゴリー",
@@ -99,6 +100,7 @@
     "outputParts": "この機械で生産される部品",
     "fullIndex": "型式別 全機種一覧",
     "everyMachine": "全機種",
+    "footerNote": "モーター生産の自動化設備を製造して",
     "appearanceAuto": "表示: 端末に合わせる",
     "appearanceLight": "表示: ライト",
     "appearanceDark": "表示: ダーク"

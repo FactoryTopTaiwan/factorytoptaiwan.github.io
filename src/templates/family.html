@@ -1,7 +1,7 @@
-<nav class="crumbs" aria-label="Breadcrumb">
+<nav class="crumbs" aria-label="{{site.ui.breadcrumb}}">
   <div class="shell">
-    <a href="{{site.urlPrefix}}/">Home</a> <span aria-hidden="true">/</span>
-    <a href="{{site.urlPrefix}}/products/">Products</a> <span aria-hidden="true">/</span>
+    <a href="{{site.urlPrefix}}/">{{site.ui.home}}</a> <span aria-hidden="true">/</span>
+    <a href="{{site.urlPrefix}}/products/">{{site.ui.products}}</a> <span aria-hidden="true">/</span>
     <span aria-current="page">{{page.family.name}}</span>
   </div>
 </nav>
@@ -30,7 +30,7 @@
         <span class="cat__body">
           {{#if model}}<span class="cat__count model">{{model}}</span>{{/if}}
           <span class="cat__name">{{title}}</span>
-          {{#if hasSpec}}<span class="cat__models">Specifications published</span>{{/if}}
+          {{#if hasSpec}}<span class="cat__models">{{site.ui.specsPublished}}</span>{{/if}}
         </span>
       </a>
       {{/each}}
@@ -44,7 +44,7 @@
     <h2>{{site.cta.title}}</h2>
     <p class="lede" style="margin-top:var(--sp-5)">{{site.cta.lede}}</p>
     <div class="cta-band__actions">
-      <a class="btn btn--primary btn--lg" href="{{site.urlPrefix}}/contact/">Request a quotation
+      <a class="btn btn--primary btn--lg" href="{{site.urlPrefix}}/contact/">{{site.ui.requestQuote}}
         <span class="btn__arrow" aria-hidden="true">→</span></a>
       <a class="btn btn--ghost btn--lg" href="{{site.urlPrefix}}/products/">All {{catalog.totals.products}} machines</a>
     </div>

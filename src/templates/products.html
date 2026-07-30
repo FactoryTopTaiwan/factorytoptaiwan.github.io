@@ -25,7 +25,7 @@
         </span>
         {{/if}}
         <span class="cat__body">
-          <span class="cat__count">{{count}} machines</span>
+          <span class="cat__count">{{count}} {{site.ui.machines}}</span>
           <span class="cat__name">{{name}}</span>
         </span>
       </a>
@@ -37,14 +37,14 @@
 <section class="section section--sunken">
   <div class="shell">
     <div class="section__head">
-      <p class="eyebrow">Every machine</p>
-      <h2>Full index by model</h2>
+      <p class="eyebrow">{{site.ui.everyMachine}}</p>
+      <h2>{{site.ui.fullIndex}}</h2>
     </div>
 
     <div class="tablewrap">
       <table class="idx">
         <thead>
-          <tr><th scope="col">Model</th><th scope="col">Machine</th><th scope="col">Family</th><th scope="col">Specifications</th></tr>
+          <tr><th scope="col">{{site.ui.model}}</th><th scope="col">{{site.ui.machine}}</th><th scope="col">{{site.ui.family}}</th><th scope="col">{{site.ui.specifications}}</th></tr>
         </thead>
         <tbody>
           {{#each products}}
@@ -52,7 +52,7 @@
             <td class="model">{{#if model}}{{model}}{{else}}—{{/if}}</td>
             <td><a href="{{site.urlPrefix}}/products/{{slug}}/">{{title}}</a></td>
             <td>{{familyName}}</td>
-            <td>{{#if hasSpec}}Published{{else}}On request{{/if}}</td>
+            <td>{{#if hasSpec}}{{site.ui.specsPublished}}{{else}}{{site.ui.specsOnRequest}}{{/if}}</td>
           </tr>
           {{/each}}
         </tbody>

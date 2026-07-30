@@ -15,7 +15,7 @@
           Browse {{catalog.totals.products}} machines
           <span class="btn__arrow" aria-hidden="true">→</span>
         </a>
-        <a class="btn btn--ghost btn--lg" href="{{site.urlPrefix}}/turnkey/">See turnkey lines</a>
+        <a class="btn btn--ghost btn--lg" href="{{site.urlPrefix}}/turnkey/">{{site.ui.seeTurnkey}}</a>
       </div>
 
       <p class="hero__meta">
@@ -74,7 +74,7 @@
         </span>
         {{/if}}
         <span class="cat__body">
-          <span class="cat__count">{{count}} machines</span>
+          <span class="cat__count">{{count}} {{site.ui.machines}}</span>
           <span class="cat__name">{{name}}</span>
           {{#if models}}
           <span class="cat__models">{{models.0}} · {{models.1}} · {{models.2}}</span>
@@ -126,10 +126,10 @@
 
     <div class="cta-band__actions">
       <a class="btn btn--primary btn--lg" href="{{site.urlPrefix}}/contact/">
-        Request a quotation
+        {{site.ui.requestQuote}}
         <span class="btn__arrow" aria-hidden="true">→</span>
       </a>
-      <a class="btn btn--ghost btn--lg" href="{{site.urlPrefix}}/contact/#call">Book a video call</a>
+      <a class="btn btn--ghost btn--lg" href="{{site.urlPrefix}}/contact/#call">{{site.ui.bookCall}}</a>
     </div>
 
     <p class="cta-band__note">{{site.cta.note}}</p>
