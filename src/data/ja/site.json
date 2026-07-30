@@ -1,0 +1,136 @@
+{
+  "_purpose": "Japanese locale. Not a market-entry translation — English carries the marketing, this exists so European and American buyers see a Japanese version. Its only job is to be exactly right. Industry terms are used as the Japanese motor-equipment trade uses them: 巻線機, 電機子, 整流子, スロット絶縁紙, ヒュージング, ワニス含浸, ローレット加工, バランシング. Where a term was uncertain it has been left for the client to confirm rather than guessed at.",
+
+  "name": "Teamwork Automation",
+  "legalName": "協群自動化機械股份有限公司",
+  "altName": "FaTop Automation",
+  "origin": "https://factorytoptaiwan.github.io",
+  "founded": "1992",
+  "city": "台中",
+  "country": "台湾",
+
+  "tagline": "電動モーターを生産する機械",
+  "description": "ブラシ付き・ブラシレス（BLDC）・ユニバーサルモーター向けの巻線、スロット絶縁、ウェッジ挿入、ヒュージング、バランシング、検査設備。単体機械としても、生産ライン一式としても供給いたします。1992年より台湾・台中で製造。",
+
+  "heroImage": {
+    "src": "/assets/images/_hero/teamwork-automation-motor-production-machines-1920w.webp",
+    "srcset": "/assets/images/_hero/teamwork-automation-motor-production-machines-800w.webp 800w, /assets/images/_hero/teamwork-automation-motor-production-machines-1400w.webp 1400w, /assets/images/_hero/teamwork-automation-motor-production-machines-1920w.webp 1920w",
+    "width": 1920,
+    "height": 680,
+    "alt": "協群自動化のモーター生産設備3台 — 巻線機、組立機、検査装置"
+  },
+
+  "hero": {
+    "titleLead": "電動モーターを生産する、",
+    "titleAccent": "その機械をつくる。",
+    "lede": "巻線、スロット絶縁、ウェッジ挿入、ヒュージング、旋削、バランシング、そして最終検査まで。単体の機械としても、統合された生産ライン一式としても供給いたします。1992年より台湾・台中にてモーター生産設備を設計・製造しています。",
+    "meta": [
+      "上場企業20社以上の新工場立ち上げを支援",
+      "20か国以上で当社設備が稼働",
+      "PLC搭載機は遠隔診断に対応"
+    ]
+  },
+
+  "stats": [
+    { "value": "20+",  "label": "新工場・新規プロジェクトの立ち上げを支援した上場企業数" },
+    { "value": "1992", "label": "台湾・台中でモーター生産設備を製造" },
+    { "value": "20+",  "label": "当社設備が稼働する国 — 米国、インド、ベトナム、中国、日本ほか" },
+    { "value": "2006", "label": "モーターに加え半導体設備を手がけて — 数少ない両分野対応メーカー" }
+  ],
+
+  "processChain": [
+    "巻線", "スロット絶縁", "ウェッジ挿入", "ヒュージング",
+    "旋削・ローレット加工", "バランシング", "ワニス含浸・焼成", "検査"
+  ],
+
+  "cta": {
+    "eyebrow": "お問い合わせ",
+    "title": "つくりたい部品をお知らせください。ラインをご提案します。",
+    "lede": "生産される固定子・電機子・回転子と、想定される生産量をお知らせください。機械の選定、あるいはライン全体のレイアウトをご提案いたします。上場メーカー20社以上の工場をゼロから計画してきました。お話はカタログからではなく、御社の部品から始まります。",
+    "note": "1営業日以内にご返信します。仕様は公開しており、閲覧に登録は不要です。"
+  },
+
+  "banner": {
+    "title": "つくりたい部品をお知らせください。",
+    "body": "仕様は公開、登録も不要です。フォームの自動応答ではなく、技術者が直接お答えします。",
+    "action": "お問い合わせはこちら"
+  },
+
+  "languages": [
+    { "code": "en",    "label": "English",  "href": "/",                          "current": false, "external": false },
+    { "code": "ja",    "label": "日本語",    "href": "/ja/",                       "current": true,  "external": false },
+    { "code": "zh-TW", "label": "中文",      "href": "https://www.fatop.com.tw/",  "current": false, "external": true }
+  ],
+
+  "nav": [
+    { "label": "製品",         "href": "/ja/products/",  "key": "products" },
+    { "label": "ターンキーライン", "href": "/ja/turnkey/",   "key": "turnkey" },
+    { "label": "対応産業",      "href": "/ja/solutions/", "key": "solutions" },
+    { "label": "サポート",      "href": "/ja/support/",   "key": "support" },
+    { "label": "会社概要",      "href": "/ja/about/",     "key": "about" }
+  ],
+
+  "ui": {
+    "skipToContent": "本文へ",
+    "primaryNav": "メインナビゲーション",
+    "language": "言語",
+    "openMenu": "メニューを開く",
+    "requestQuote": "見積もりを依頼",
+    "breadcrumb": "パンくずリスト",
+    "home": "ホーム",
+    "products": "製品",
+    "machines": "機種",
+    "allMachines": "全{n}機種を見る",
+    "seeTurnkey": "ターンキーラインを見る",
+    "bookCall": "オンライン打ち合わせを予約",
+    "specifications": "仕様",
+    "specsPublished": "仕様公開済み",
+    "specsOnRequest": "仕様はお問い合わせください",
+    "category": "カテゴリー",
+    "processStage": "工程",
+    "motorTypes": "対応モーター",
+    "model": "型式",
+    "machine": "機種",
+    "family": "分類",
+    "relatedMachines": "関連機種",
+    "sameStage": "同一工程",
+    "output": "生産物",
+    "outputParts": "この機械で生産される部品",
+    "fullIndex": "型式別 全機種一覧",
+    "everyMachine": "全機種",
+    "appearanceAuto": "表示: 端末に合わせる",
+    "appearanceLight": "表示: ライト",
+    "appearanceDark": "表示: ダーク"
+  },
+
+  "footer": {
+    "columns": [
+      {
+        "heading": "製品",
+        "links": [
+          { "label": "全機種", "href": "/ja/products/" },
+          { "label": "巻線機", "href": "/ja/products/winding-machines/" },
+          { "label": "回転子・電機子設備", "href": "/ja/products/motor-rotor-equipment/" },
+          { "label": "ブラシレスモーター設備", "href": "/ja/products/brushless-motor-equipment/" },
+          { "label": "ターンキーライン", "href": "/ja/turnkey/" }
+        ]
+      },
+      {
+        "heading": "会社",
+        "links": [
+          { "label": "会社概要", "href": "/ja/about/" },
+          { "label": "サポート", "href": "/ja/support/" },
+          { "label": "カタログ", "href": "/ja/catalog/" },
+          { "label": "お問い合わせ", "href": "/ja/contact/" }
+        ]
+      },
+      {
+        "heading": "お問い合わせ",
+        "links": [
+          { "label": "見積もりを依頼", "href": "/ja/contact/" },
+          { "label": "オンライン打ち合わせを予約", "href": "/ja/contact/#call" }
+        ]
+      }
+    ]
+  }
+}

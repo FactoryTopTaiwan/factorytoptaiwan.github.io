@@ -32,7 +32,7 @@ $OutDir  = $Root
 # tools\fetch-media.ps1, and -Clean must not throw away a 157-image download.
 $Generated = @('index.html', 'products', 'solutions', 'turnkey', 'about',
                'support', 'contact', 'catalog', 'assets\css', 'assets\js',
-               'sitemap.xml', 'robots.txt', '404.html')
+               'sitemap.xml', 'robots.txt', '404.html', 'ja')
 
 # ---------------------------------------------------------------------------
 # Template engine
@@ -204,25 +204,57 @@ Write-Host ""
 if ($Clean) {
     Write-Host "Cleaning previous output" -ForegroundColor Yellow
     foreach ($g in $Generated) {
-        $p = Join-Path $OutDir $g
-        if (Test-Path $p) { Remove-Item $p -Recurse -Force; Write-Host ("  - {0}" -f $g) -ForegroundColor DarkGray }
+        $OutPfx = Join-Path $OutDir $g
+        if (Test-Path $OutPfx) { Remove-Item $OutPfx -Recurse -Force; Write-Host ("  - {0}" -f $g) -ForegroundColor DarkGray }
     }
     Write-Host ""
 }
 
-$site      = Read-Json 'site.json'
-$catalogue = Read-Json 'catalogue.json'
-$data      = Read-Json 'products.json'
-$company   = Read-Json 'company.json'
+# ---------------------------------------------------------------------------
+# Locales
+#   English is the primary language and carries the marketing. Other locales
+#   exist so buyers see them, and their only job is to be exactly right, so a
+#   locale overlays only the files it actually translates -- anything it does
+#   not provide falls through to English rather than being machine-filled.
+# ---------------------------------------------------------------------------
 
-# Attach each family's cover photo and its product list, so templates can render
-# a category card or a family page without doing any lookups themselves.
-foreach ($f in $catalogue.families) {
-    $cover = $null
-    if ($data.covers.PSObject.Properties[$f.slug]) { $cover = $data.covers.($f.slug) }
-    $members = @($data.products | Where-Object { $_.family -eq $f.slug })
-    Add-Member -InputObject $f -NotePropertyName 'cover'    -NotePropertyValue $cover   -Force
-    Add-Member -InputObject $f -NotePropertyName 'products' -NotePropertyValue $members -Force
+function Read-LocaleJson {
+    param([string]$Name, [string]$Locale)
+    $base = Read-Json $Name
+    if (-not $Locale) { return $base }
+    $path = Join-Path $DataDir ("{0}\{1}" -f $Locale, $Name)
+    if (-not (Test-Path $path)) { return $base }
+    $over = Get-Content $path -Raw -Encoding UTF8 | ConvertFrom-Json
+    # Shallow overlay: a translated key wins, an absent one keeps the English.
+    foreach ($ovProp in $over.PSObject.Properties) {
+        Add-Member -InputObject $base -NotePropertyName $ovProp.Name -NotePropertyValue $ovProp.Value -Force
+    }
+    return $base
+}
+
+$data    = Read-Json 'products.json'
+$company = Read-Json 'company.json'
+
+# Locale code, output folder, url prefix. Empty code is English at the root.
+$Locales = @(
+    @{ code = '';   dir = '';     url = '';    lang = 'en' },
+    @{ code = 'ja'; dir = 'ja\';  url = '/ja'; lang = 'ja' }
+)
+
+function Add-FamilyExtras {
+    param($Catalogue, [string]$UrlPrefix)
+    foreach ($f in $Catalogue.families) {
+        $cover = $null
+        if ($data.covers.PSObject.Properties[$f.slug]) { $cover = $data.covers.($f.slug) }
+        $members = @($data.products | Where-Object { $_.family -eq $f.slug } | ForEach-Object {
+            $c = $_.PSObject.Copy()
+            Add-Member -InputObject $c -NotePropertyName 'href' -NotePropertyValue ("{0}/products/{1}/" -f $UrlPrefix, $_.slug) -Force
+            $c
+        })
+        Add-Member -InputObject $f -NotePropertyName 'cover'    -NotePropertyValue $cover   -Force
+        Add-Member -InputObject $f -NotePropertyName 'products' -NotePropertyValue $members -Force
+        Add-Member -InputObject $f -NotePropertyName 'href'     -NotePropertyValue ("{0}/products/{1}/" -f $UrlPrefix, $f.slug) -Force
+    }
 }
 
 $layout = Read-Template 'layout.html'
@@ -246,6 +278,25 @@ function Build-Page {
     Write-Page -RelativePath $Out -Html $html
 }
 
+$urls = New-Object System.Collections.Generic.List[string]
+
+foreach ($loc in $Locales) {
+
+$site      = Read-LocaleJson 'site.json'      $loc.code
+$catalogue = Read-LocaleJson 'catalogue.json' $loc.code
+$company   = Read-LocaleJson 'company.json'   $loc.code
+
+Add-Member -InputObject $site -NotePropertyName 'urlPrefix' -NotePropertyValue $loc.url  -Force
+Add-Member -InputObject $site -NotePropertyName 'lang'      -NotePropertyValue $loc.lang -Force
+Add-FamilyExtras -Catalogue $catalogue -UrlPrefix $loc.url
+
+$OutPfx = $loc.dir   # output folder prefix
+$UrlPfx = $loc.url   # url prefix
+
+Write-Host ("  [{0}]" -f $(if ($loc.code) { $loc.code } else { 'en' })) -ForegroundColor Cyan
+
+$urls.Add("$UrlPfx/")
+
 # --- Home -------------------------------------------------------------------
 
 # Lead with the flagship BLDC machine: it is the growth story, and it is one of
@@ -264,7 +315,7 @@ if ($shots.Count -lt 2) {
     $shots = @($data.products | Where-Object { $_.hero -and $_.slug -ne $feature.slug } | Select-Object -First 2)
 }
 
-Build-Page -Template 'home.html' -Out 'index.html' -Page @{
+Build-Page -Template 'home.html' -Out ($OutPfx + 'index.html') -Page @{
     title        = $site.tagline
     description  = $site.description
     url          = '/'
@@ -273,64 +324,62 @@ Build-Page -Template 'home.html' -Out 'index.html' -Page @{
     processShots = $shots
 }
 
-$urls = New-Object System.Collections.Generic.List[string]
-$urls.Add('/')
 
 # --- Catalogue index --------------------------------------------------------
-Build-Page -Template 'products.html' -Out 'products\index.html' -Page @{
+Build-Page -Template 'products.html' -Out ($OutPfx + 'products\index.html') -Page @{
     title       = ("All {0} machines for motor production" -f $catalogue.totals.products)
     description = ("The complete Teamwork Automation catalogue: {0} machines across {1} families, covering winding, slot insulation, wedge insertion, fusing, turning, balancing and test." -f $catalogue.totals.products, $catalogue.totals.families)
-    url         = '/products/'
+    url         = "$UrlPfx/products/"
     nav         = 'products'
 }
-$urls.Add('/products/')
+$urls.Add("$UrlPfx/products/")
 
 # --- One page per family ----------------------------------------------------
 foreach ($f in $catalogue.families) {
-    Build-Page -Template 'family.html' -Out ("products\{0}\index.html" -f $f.slug) -Page @{
+    Build-Page -Template 'family.html' -Out ($OutPfx + ("products\{0}\index.html" -f $f.slug)) -Page @{
         title       = $f.name
         description = $f.summary
-        url         = ("/products/{0}/" -f $f.slug)
+        url         = ("{0}/products/{1}/" -f $UrlPfx, $f.slug)
         nav         = 'products'
         family      = $f
     }
-    $urls.Add(("/products/{0}/" -f $f.slug))
+    $urls.Add(("{0}/products/{1}/" -f $UrlPfx, $f.slug))
 }
 
 # --- One page per machine ---------------------------------------------------
-foreach ($p in $data.products) {
+foreach ($prod in $data.products) {
     # Siblings from the same family give the buyer somewhere to go when this
     # machine is close but not right.
     $siblings = @($data.products |
-        Where-Object { $_.family -eq $p.family -and $_.slug -ne $p.slug } |
+        Where-Object { $_.family -eq $prod.family -and $_.slug -ne $prod.slug } |
         Select-Object -First 3)
 
     $stage = 'Motor production'
-    if ($p.familyName) { $stage = $p.familyName }
+    if ($prod.familyName) { $stage = $prod.familyName }
 
     $motorTypes = 'Brushed, brushless and universal motors'
-    if ($p.title -match 'Brushless|BLDC')      { $motorTypes = 'Brushless (BLDC) motors' }
-    elseif ($p.title -match 'Armature|Commutator|Varnish') { $motorTypes = 'Brushed and universal motors' }
-    elseif ($p.title -match 'Semiconductor')   { $motorTypes = 'Semiconductor packaging, not motor production' }
+    if ($prod.title -match 'Brushless|BLDC')      { $motorTypes = 'Brushless (BLDC) motors' }
+    elseif ($prod.title -match 'Armature|Commutator|Varnish') { $motorTypes = 'Brushed and universal motors' }
+    elseif ($prod.title -match 'Semiconductor')   { $motorTypes = 'Semiconductor packaging, not motor production' }
 
-    $summary = ("{0} built by Teamwork Automation in Taichung, Taiwan. Supplied as a standalone machine or integrated into a complete production line." -f $p.title)
-    if ($p.model) {
-        $summary = ("{0} is a {1} built by Teamwork Automation in Taichung, Taiwan. Supplied as a standalone machine or integrated into a complete production line." -f $p.model, $p.title.ToLowerInvariant())
+    $summary = ("{0} built by Teamwork Automation in Taichung, Taiwan. Supplied as a standalone machine or integrated into a complete production line." -f $prod.title)
+    if ($prod.model) {
+        $summary = ("{0} is a {1} built by Teamwork Automation in Taichung, Taiwan. Supplied as a standalone machine or integrated into a complete production line." -f $prod.model, $prod.title.ToLowerInvariant())
     }
 
-    $t = $p.title
-    if ($p.model) { $t = ("{0} {1}" -f $p.model, $p.title) }
+    $t = $prod.title
+    if ($prod.model) { $t = ("{0} {1}" -f $prod.model, $prod.title) }
 
-    Build-Page -Template 'product.html' -Out ("products\{0}\index.html" -f $p.slug) -Page @{
+    Build-Page -Template 'product.html' -Out ($OutPfx + ("products\{0}\index.html" -f $prod.slug)) -Page @{
         title       = $t
         description = $summary
-        url         = ("/products/{0}/" -f $p.slug)
+        url         = ("{0}/products/{1}/" -f $UrlPfx, $prod.slug)
         nav         = 'products'
-        product     = $p
+        product     = $OutPfx
         siblings    = $siblings
         copy        = @{ summary = $summary; stage = $stage; motorTypes = $motorTypes }
     }
-    $urls.Add(("/products/{0}/" -f $p.slug))
+    $urls.Add(("{0}/products/{1}/" -f $UrlPfx, $prod.slug))
 }
 
 # --- Standing pages ---------------------------------------------------------
@@ -371,21 +420,23 @@ $pages = @(
 )
 
 foreach ($pg in $pages) {
-    $p = @{} + $pg
-    $p['url'] = ("/{0}/" -f $pg.out)
-    Build-Page -Template 'page.html' -Out ("{0}\index.html" -f $pg.out) -Page $p
-    $urls.Add(("/{0}/" -f $pg.out))
+    $pgData = @{} + $pg
+    $pgData['url'] = ("{0}/{1}/" -f $UrlPfx, $pg.out)
+    Build-Page -Template 'page.html' -Out ($OutPfx + ("{0}\index.html" -f $pg.out)) -Page $pgData
+    $urls.Add(("{0}/{1}/" -f $UrlPfx, $pg.out))
 }
 
 # --- 404 --------------------------------------------------------------------
-Build-Page -Template 'page.html' -Out '404.html' -Page @{
+Build-Page -Template 'page.html' -Out ($OutPfx + '404.html') -Page @{
     title       = 'Page not found'
     description = 'That page does not exist.'
-    url         = '/404.html'
+    url         = "$UrlPfx/404.html"
     eyebrow     = '404'
     heading     = 'That page is not here.'
     lede        = 'The link may be out of date, or the page may have moved during the site rebuild. The full machine catalogue is the best place to pick the thread back up.'
 }
+
+} # end locale loop
 
 Copy-Assets
 
@@ -393,8 +444,8 @@ Copy-Assets
 $sitemap = New-Object System.Text.StringBuilder
 [void]$sitemap.AppendLine('<?xml version="1.0" encoding="UTF-8"?>')
 [void]$sitemap.AppendLine('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
-foreach ($u in $urls) {
-    [void]$sitemap.AppendLine("  <url><loc>$($site.origin)$u</loc></url>")
+foreach ($UrlPfx in $urls) {
+    [void]$sitemap.AppendLine("  <url><loc>$($site.origin)$UrlPfx</loc></url>")
 }
 [void]$sitemap.AppendLine('</urlset>')
 Write-Page -RelativePath 'sitemap.xml' -Html $sitemap.ToString()

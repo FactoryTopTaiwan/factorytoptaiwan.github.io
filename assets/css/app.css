@@ -870,3 +870,24 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ==========================================================================
+   Japanese
+   The Japanese faces are appended after the Latin stack, not in place of it:
+   Latin glyphs keep the reader's native UI face and only kana and kanji fall
+   through. Hiragino on Apple, Yu Gothic on Windows, Noto on Android and Linux.
+   ========================================================================== */
+:root:lang(ja),
+[lang="ja"] {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", Roboto,
+               "Segoe UI Variable Text", "Segoe UI",
+               "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+               "Yu Gothic UI", "Yu Gothic", Meiryo,
+               "Noto Sans JP", "Noto Sans CJK JP",
+               "Helvetica Neue", Arial, sans-serif;
+}
+/* Japanese sets tighter than Latin at the same optical size, and the display
+   sizes need less negative tracking or the kanji collide. */
+[lang="ja"] h1, [lang="ja"] h2 { letter-spacing: -0.01em; }
+[lang="ja"] .hero__title { letter-spacing: 0; line-height: 1.18; }
+[lang="ja"] .lede { line-height: 1.8; }

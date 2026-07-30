@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{site.lang}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,7 +56,7 @@
 
 <header class="header" id="site-header">
   <div class="shell header__inner">
-    <a class="brand" href="/">
+    <a class="brand" href="{{site.urlPrefix}}/">
       <span class="brand__mark">■</span>
       <span>{{site.name}}</span>
       <span class="brand__sub">{{site.altName}}</span>
@@ -100,7 +100,7 @@
         </svg>
       </button>
 
-      <a class="btn btn--primary header__cta" href="/contact/">Request a quote</a>
+      <a class="btn btn--primary header__cta" href="{{site.urlPrefix}}/contact/">Request a quote</a>
 
       <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
@@ -117,7 +117,7 @@
 </main>
 
 <aside class="banner">
-  <a class="banner__inner shell" href="/contact/">
+  <a class="banner__inner shell" href="{{site.urlPrefix}}/contact/">
     <span class="banner__text">
       <strong>{{site.banner.title}}</strong>
       <span>{{site.banner.body}}</span>
@@ -133,7 +133,7 @@
   <div class="shell">
     <div class="footer__grid">
       <div class="footer__col">
-        <a class="brand" href="/" style="margin-bottom:var(--sp-4)">
+        <a class="brand" href="{{site.urlPrefix}}/" style="margin-bottom:var(--sp-4)">
           <span class="brand__mark">■</span>
           <span>{{site.name}}</span>
         </a>

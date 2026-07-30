@@ -11,11 +11,11 @@
       <p class="lede hero__lede">{{site.hero.lede}}</p>
 
       <div class="hero__actions">
-        <a class="btn btn--primary btn--lg" href="/products/">
+        <a class="btn btn--primary btn--lg" href="{{site.urlPrefix}}/products/">
           Browse {{catalog.totals.products}} machines
           <span class="btn__arrow" aria-hidden="true">→</span>
         </a>
-        <a class="btn btn--ghost btn--lg" href="/turnkey/">See turnkey lines</a>
+        <a class="btn btn--ghost btn--lg" href="{{site.urlPrefix}}/turnkey/">See turnkey lines</a>
       </div>
 
       <p class="hero__meta">
@@ -64,7 +64,7 @@
 
     <div class="cat-grid">
       {{#each catalog.families}}
-      <a class="cat" href="/products/{{slug}}/" data-reveal>
+      <a class="cat" href="{{site.urlPrefix}}/products/{{slug}}/" data-reveal>
         {{#if cover}}
         <span class="cat__media">
           <img src="{{cover.src}}" srcset="{{cover.srcset}}"
@@ -99,7 +99,7 @@
         </ul>
 
         <p style="margin-top:var(--sp-7)">
-          <a class="link-cta" href="/turnkey/">How a line is specified and commissioned</a>
+          <a class="link-cta" href="{{site.urlPrefix}}/turnkey/">How a line is specified and commissioned</a>
         </p>
       </div>
 
@@ -125,11 +125,11 @@
     <p class="lede" style="margin-top:var(--sp-5)">{{site.cta.lede}}</p>
 
     <div class="cta-band__actions">
-      <a class="btn btn--primary btn--lg" href="/contact/">
+      <a class="btn btn--primary btn--lg" href="{{site.urlPrefix}}/contact/">
         Request a quotation
         <span class="btn__arrow" aria-hidden="true">→</span>
       </a>
-      <a class="btn btn--ghost btn--lg" href="/contact/#call">Book a video call</a>
+      <a class="btn btn--ghost btn--lg" href="{{site.urlPrefix}}/contact/#call">Book a video call</a>
     </div>
 
     <p class="cta-band__note">{{site.cta.note}}</p>

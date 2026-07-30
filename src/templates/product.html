@@ -1,8 +1,8 @@
 <nav class="crumbs" aria-label="Breadcrumb">
   <div class="shell">
-    <a href="/">Home</a> <span aria-hidden="true">/</span>
-    <a href="/products/">Products</a> <span aria-hidden="true">/</span>
-    {{#if page.product.family}}<a href="/products/{{page.product.family}}/">{{page.product.familyName}}</a> <span aria-hidden="true">/</span>{{/if}}
+    <a href="{{site.urlPrefix}}/">Home</a> <span aria-hidden="true">/</span>
+    <a href="{{site.urlPrefix}}/products/">Products</a> <span aria-hidden="true">/</span>
+    {{#if page.product.family}}<a href="{{site.urlPrefix}}/products/{{page.product.family}}/">{{page.product.familyName}}</a> <span aria-hidden="true">/</span>{{/if}}
     <span aria-current="page">{{page.product.title}}</span>
   </div>
 </nav>
@@ -41,18 +41,18 @@
 
         <dl class="factlist">
           {{#if page.product.familyName}}
-          <div><dt>Category</dt><dd><a href="/products/{{page.product.family}}/">{{page.product.familyName}}</a></dd></div>
+          <div><dt>Category</dt><dd><a href="{{site.urlPrefix}}/products/{{page.product.family}}/">{{page.product.familyName}}</a></dd></div>
           {{/if}}
           <div><dt>Process stage</dt><dd>{{page.copy.stage}}</dd></div>
           <div><dt>Motor types</dt><dd>{{page.copy.motorTypes}}</dd></div>
         </dl>
 
         <div class="prod__actions">
-          <a class="btn btn--primary btn--lg" href="/contact/?model={{page.product.model}}">
+          <a class="btn btn--primary btn--lg" href="{{site.urlPrefix}}/contact/?model={{page.product.model}}">
             Request a quotation
             <span class="btn__arrow" aria-hidden="true">→</span>
           </a>
-          <a class="btn btn--ghost btn--lg" href="/contact/#call">Book a video call</a>
+          <a class="btn btn--ghost btn--lg" href="{{site.urlPrefix}}/contact/#call">Book a video call</a>
         </div>
       </div>
     </div>
@@ -83,7 +83,7 @@
          Rather than fill the gap with numbers we cannot stand behind, we would
          rather send you the real figures. Tell us the part you need to produce and
          we will return the full specification for this machine.</p>
-      <p><a class="link-cta" href="/contact/?model={{page.product.model}}">Ask for the specification</a></p>
+      <p><a class="link-cta" href="{{site.urlPrefix}}/contact/?model={{page.product.model}}">Ask for the specification</a></p>
     </div>
     {{/if}}
   </div>
@@ -117,7 +117,7 @@
     </div>
     <div class="cat-grid">
       {{#each page.siblings}}
-      <a class="cat" href="/products/{{slug}}/">
+      <a class="cat" href="{{site.urlPrefix}}/products/{{slug}}/">
         {{#if hero}}
         <span class="cat__media">
           <img src="{{hero.src}}" srcset="{{hero.srcset}}"

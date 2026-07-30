@@ -15,7 +15,7 @@
 
     <div class="cat-grid">
       {{#each catalog.families}}
-      <a class="cat" href="/products/{{slug}}/">
+      <a class="cat" href="{{site.urlPrefix}}/products/{{slug}}/">
         {{#if cover}}
         <span class="cat__media">
           <img src="{{cover.src}}" srcset="{{cover.srcset}}"
@@ -50,7 +50,7 @@
           {{#each products}}
           <tr>
             <td class="model">{{#if model}}{{model}}{{else}}—{{/if}}</td>
-            <td><a href="/products/{{slug}}/">{{title}}</a></td>
+            <td><a href="{{site.urlPrefix}}/products/{{slug}}/">{{title}}</a></td>
             <td>{{familyName}}</td>
             <td>{{#if hasSpec}}Published{{else}}On request{{/if}}</td>
           </tr>
