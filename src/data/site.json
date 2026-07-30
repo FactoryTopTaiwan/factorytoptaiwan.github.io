@@ -52,9 +52,10 @@
   },
 
   "_langNote": "Only languages that actually have pages may appear in the switcher. Listing 日本語 before the Japanese pages exist would repeat the 404 problem that shipped on 2026-07-29. Planned order: Japanese first (Nittoku's home market), then German (Elmotec, GROB, Aumann territory), then Spanish (Mexico, and the PLASTIMAGEN customer base). Translation must be done properly — machine translation of slot liner, knurling or fusing will be wrong, and wrong technical vocabulary is worse than no page.",
+  "langLabel": "English",
   "languages": [
     { "code": "en",    "label": "English",  "href": "/",                          "current": true,  "external": false },
-    { "code": "ja",    "label": "日本語",    "href": "/ja/",                       "current": false, "external": true },
+    { "code": "ja",    "label": "日本語",    "href": "/ja/",                       "current": false, "external": false },
     { "code": "zh-TW", "label": "中文",      "href": "https://www.fatop.com.tw/",  "current": false, "external": true }
   ],
   "languagesPlanned": ["de", "es"],

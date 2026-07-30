@@ -69,15 +69,38 @@
     </nav>
 
     <div class="header__actions">
-      <nav class="langs" aria-label="Language">
-        {{#each site.languages}}
-        {{#if external}}
-        <a class="langs__link" href="{{href}}" hreflang="{{code}}" rel="alternate">{{label}}</a>
-        {{else}}
-        <span class="langs__link langs__link--current" aria-current="true">{{label}}</span>
-        {{/if}}
-        {{/each}}
-      </nav>
+      <!-- details/summary, not a JS menu: this opens, closes and takes keyboard
+           focus with no script at all, and it holds any number of languages
+           without the header reflowing. -->
+      <details class="langs" id="lang-menu">
+        <summary aria-label="{{site.ui.language}}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+               stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"/>
+          </svg>
+          <span class="langs__now">{{site.langLabel}}</span>
+          <svg class="langs__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 9.5 12 15l6-5.5"/>
+          </svg>
+        </summary>
+        <ul class="langs__menu">
+          {{#each site.languages}}
+          <li>
+            {{#if current}}
+            <span class="langs__item langs__item--current" aria-current="true">
+              {{label}}<span class="langs__code">{{code}}</span>
+            </span>
+            {{else}}
+            <a class="langs__item" href="{{href}}" hreflang="{{code}}" rel="alternate">
+              {{label}}<span class="langs__code">{{code}}</span>
+            </a>
+            {{/if}}
+          </li>
+          {{/each}}
+        </ul>
+      </details>
 
       <!-- Three states, not two. Auto follows the reader's device, which is what
            switches at sunset; light and dark override it. Without an auto state

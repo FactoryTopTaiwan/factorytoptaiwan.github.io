@@ -45,6 +45,24 @@
     });
   }
 
+  /* ---- Language menu ----------------------------------------------------
+     The menu opens, closes and takes keyboard focus without any of this —
+     details/summary does that natively. All this adds is dismissing on Escape
+     or an outside click, which a native details element does not do. */
+  var langMenu = document.getElementById('lang-menu');
+  if (langMenu) {
+    document.addEventListener('click', function (e) {
+      if (langMenu.open && !langMenu.contains(e.target)) langMenu.open = false;
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && langMenu.open) {
+        langMenu.open = false;
+        var s = langMenu.querySelector('summary');
+        if (s) s.focus();
+      }
+    });
+  }
+
   /* ---- Header hairline on scroll ---------------------------------------- */
   var header = document.getElementById('site-header');
   if (header) {

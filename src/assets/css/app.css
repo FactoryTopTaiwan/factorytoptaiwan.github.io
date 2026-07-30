@@ -296,14 +296,76 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 :root[data-theme="light"] .theme-toggle__sun { display: block; }
 :root[data-theme="dark"]  .theme-toggle__moon { display: block; }
 
-/* Language switcher. Only languages with real pages are listed — see the note
-   in site.json. Chinese points out to the existing Taiwanese site. */
-.langs { display: none; align-items: center; gap: var(--sp-3); padding-inline-end: var(--sp-3);
-         border-inline-end: var(--border) solid var(--line); }
-@media (min-width: 48rem) { .langs { display: flex; } }
-.langs__link { font-size: var(--step--1); color: var(--ink-muted); text-decoration: none; white-space: nowrap; }
-.langs__link:hover { color: var(--ink); text-decoration: underline; }
-.langs__link--current { color: var(--ink); font-weight: 620; }
+/* Language switcher — a dropdown, not a row of links. Listing languages inline
+   stops scaling past two or three, and the roadmap is English, Japanese,
+   German, Spanish and Chinese with more after that. Built on details/summary so
+   it needs no JavaScript to open, close or take keyboard focus. */
+.langs { position: relative; }
+
+.langs > summary {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  height: 2.5rem;
+  padding-inline: var(--sp-3);
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius);
+  font-size: var(--step--1);
+  color: var(--ink-muted);
+  white-space: nowrap;
+  cursor: pointer;
+  list-style: none;
+  transition: color var(--dur-fast), border-color var(--dur-fast);
+}
+.langs > summary::-webkit-details-marker { display: none; }
+.langs > summary:hover { color: var(--ink); border-color: var(--line-strong); }
+.langs > summary svg { width: 1rem; height: 1rem; flex: none; }
+.langs__now { display: none; }
+@media (min-width: 48rem) { .langs__now { display: inline; } }
+.langs__chev { transition: transform var(--dur-fast) var(--ease-out); }
+.langs[open] > summary { color: var(--ink); border-color: var(--line-strong); }
+.langs[open] .langs__chev { transform: rotate(180deg); }
+
+.langs__menu {
+  position: absolute;
+  inset-block-start: calc(100% + var(--sp-2));
+  inset-inline-end: 0;
+  z-index: var(--z-overlay);
+  min-width: 12rem;
+  max-height: 60vh;
+  overflow-y: auto;
+  margin: 0;
+  padding: var(--sp-2);
+  list-style: none;
+  background: var(--surface);
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-2);
+}
+
+.langs__item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-3) var(--sp-3);
+  border-radius: var(--radius);
+  font-size: var(--step--1);
+  color: var(--ink-muted);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.langs__item:hover { background: var(--surface-hover); color: var(--ink); }
+.langs__item--current { color: var(--ink); font-weight: 620; }
+.langs__item--current::after { content: "✓"; color: var(--accent-ink); }
+.langs__code {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.langs__item--current .langs__code { display: none; }
 
 /* Persistent conversion band above the footer, on every page. The one thing a
    buyer should always be one click from is a person. */

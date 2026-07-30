@@ -56,6 +56,7 @@
     "action": "お問い合わせはこちら"
   },
 
+  "langLabel": "日本語",
   "languages": [
     { "code": "en",    "label": "English",  "href": "/",                          "current": false, "external": false },
     { "code": "ja",    "label": "日本語",    "href": "/ja/",                       "current": true,  "external": false },
