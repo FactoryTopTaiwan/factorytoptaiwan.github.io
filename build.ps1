@@ -28,6 +28,8 @@ $OutDir  = $Root
 
 # Everything the generator owns. -Clean removes exactly this and nothing else,
 # so hand-maintained files at the root (CNAME, README) are never touched.
+# CNAME is hand-maintained and absent from this list on purpose: deleting it
+# would drop the custom domain and take fatop-global.com offline.
 # assets\images is deliberately absent: those are expensive derivatives owned by
 # tools\fetch-media.ps1, and -Clean must not throw away a 157-image download.
 $Generated = @('index.html', 'products', 'solutions', 'turnkey', 'about',
