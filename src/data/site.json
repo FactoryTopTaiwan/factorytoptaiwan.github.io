@@ -13,8 +13,8 @@
 
   "heroImage": {
     "_source": "The three-slide banner from the old home page, at 1920x680. Better photography than anything in the 178 product images: whole machines, properly lit. Renamed from banner-1.jpg, which said nothing to a reader or to image search.",
-    "src": "/assets/images/_hero/teamwork-automation-motor-production-machines-1920w.webp",
-    "srcset": "/assets/images/_hero/teamwork-automation-motor-production-machines-800w.webp 800w, /assets/images/_hero/teamwork-automation-motor-production-machines-1400w.webp 1400w, /assets/images/_hero/teamwork-automation-motor-production-machines-1920w.webp 1920w",
+    "src": "/assets/images/hero/teamwork-automation-motor-production-machines-1920w.webp",
+    "srcset": "/assets/images/hero/teamwork-automation-motor-production-machines-800w.webp 800w, /assets/images/hero/teamwork-automation-motor-production-machines-1400w.webp 1400w, /assets/images/hero/teamwork-automation-motor-production-machines-1920w.webp 1920w",
     "width": 1920,
     "height": 680,
     "alt": "Three Teamwork Automation machines for motor production on the factory floor — winding, assembly and testing equipment"
