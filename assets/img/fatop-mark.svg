@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="FaTop Automation">
+  <!--
+    The symbol only. The supplied artwork is a full lockup — symbol above,
+    FaTop / AUTOMATION / company name below — and the wordmark is dropped here
+    because the header already sets the company name in live text. Repeating it
+    inside the logo would say it twice and make it unreadable at 32px.
+
+    The dark plate is kept rather than knocked out: the F and T strokes are
+    titanium silver, so on a light background they would disappear. Keeping the
+    plate is how the mark was drawn, and it survives both themes unchanged.
+
+    Cropped from the original 2000x2000 canvas to the symbol bounds
+    (x 600-1400, y 320-1120).
+  -->
+  <defs>
+    <linearGradient id="fmPlate" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A202C"/>
+      <stop offset="100%" stop-color="#0F141C"/>
+    </linearGradient>
+    <linearGradient id="fmOrange" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8C2B05"/>
+      <stop offset="50%" stop-color="#B8420A"/>
+      <stop offset="100%" stop-color="#FF6A00"/>
+    </linearGradient>
+    <linearGradient id="fmTitanium" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="50%" stop-color="#E2E8F0"/>
+      <stop offset="100%" stop-color="#94A3B8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="800" rx="120" fill="url(#fmPlate)"/>
+
+  <!-- Everything below is the original artwork shifted by (-600, -320). -->
+  <g transform="translate(-600,-320)">
+    <g opacity="0.10" stroke="#FF6A00" stroke-width="2" fill="none">
+      <circle cx="1000" cy="720" r="380"/>
+      <circle cx="1000" cy="720" r="260"/>
+      <line x1="1000" y1="280" x2="1000" y2="1160"/>
+      <line x1="560" y1="720" x2="1440" y2="720"/>
+    </g>
+
+    <!-- Stator slots -->
+    <path d="M 1000,380 A 340,340 0 0,1 1300,520 L 1230,590 A 240,240 0 0,0 1000,480 Z" fill="url(#fmOrange)"/>
+    <path d="M 1340,560 A 340,340 0 0,1 1340,880 L 1240,820 A 240,240 0 0,0 1240,620 Z" fill="url(#fmOrange)"/>
+    <path d="M 1300,920 A 340,340 0 0,1 1000,1060 L 1000,960 A 240,240 0 0,0 1230,850 Z" fill="url(#fmOrange)"/>
+
+    <!-- F stem -->
+    <path d="M 700,420 L 940,420 L 940,500 L 780,500 L 780,660 L 900,660 L 900,740 L 780,740 L 780,1020 L 680,1020 L 680,440 Z" fill="url(#fmTitanium)"/>
+    <!-- T crossbar -->
+    <path d="M 860,420 L 1260,420 L 1320,500 L 1080,500 L 1080,1020 L 980,1020 L 980,500 L 860,500 Z" fill="url(#fmTitanium)"/>
+
+    <!-- Flux arc -->
+    <path d="M 680,880 A 340,340 0 0,1 680,560 L 760,620 A 240,240 0 0,0 760,820 Z" fill="#FF6A00" opacity="0.95"/>
+
+    <!-- Core -->
+    <circle cx="1000" cy="720" r="70" fill="#1A202C" stroke="#FF6A00" stroke-width="12"/>
+    <circle cx="1000" cy="720" r="24" fill="#FF6A00"/>
+  </g>
+</svg>

@@ -1,6 +1,13 @@
-<section class="hero">
+<section class="hero hero--backdrop">
+  <!-- Decorative backdrop: empty alt and aria-hidden, because the headline
+       already says what this is and a screen reader should not read a blurred
+       photograph. img rather than a CSS background so it can carry srcset and
+       be fetched at high priority as the LCP element. -->
+  <img class="hero__bg" src="{{site.heroImage.src}}" srcset="{{site.heroImage.srcset}}"
+       sizes="100vw" width="{{site.heroImage.width}}" height="{{site.heroImage.height}}"
+       alt="" aria-hidden="true" loading="eager" fetchpriority="high" decoding="async">
+  <div class="hero__scrim" aria-hidden="true"></div>
   <div class="hero__grid" aria-hidden="true"></div>
-  <div class="hero__glow" aria-hidden="true"></div>
 
   <div class="shell hero__layout">
     <div class="hero__inner">
@@ -23,15 +30,6 @@
       </p>
     </div>
 
-    <figure class="hero__media">
-      <!-- eager + fetchpriority: this is the LCP element, so it must not wait -->
-      <img src="{{site.heroImage.src}}"
-           srcset="{{site.heroImage.srcset}}"
-           sizes="(min-width: 62rem) 52vw, 100vw"
-           width="{{site.heroImage.width}}" height="{{site.heroImage.height}}"
-           alt="{{site.heroImage.alt}}"
-           loading="eager" fetchpriority="high" decoding="async">
-    </figure>
   </div>
 </section>
 

@@ -13,11 +13,12 @@
   "description": "ブラシ付き・ブラシレス（BLDC）・ユニバーサルモーター向けの巻線、スロット絶縁、ウェッジ挿入、ヒュージング、バランシング、検査設備。単体機械としても、生産ライン一式としても供給いたします。1992年より台湾・台中で製造。",
 
   "heroImage": {
-    "src": "/assets/images/hero/teamwork-automation-motor-production-machines-1920w.webp",
-    "srcset": "/assets/images/hero/teamwork-automation-motor-production-machines-800w.webp 800w, /assets/images/hero/teamwork-automation-motor-production-machines-1400w.webp 1400w, /assets/images/hero/teamwork-automation-motor-production-machines-1920w.webp 1920w",
+    "_source": "The old home page banner at 1920x680, blurred and darkened at build time to serve as a full-bleed backdrop. Baking the blur beats a CSS filter: no repaint on scroll, and the file drops to 16 KB. It also hides the weaknesses in the source photography, which is exactly why this treatment works where a sharp full-bleed image would not.",
+    "src": "/assets/images/hero/teamwork-automation-motor-production-line-backdrop-1920w.webp",
+    "srcset": "/assets/images/hero/teamwork-automation-motor-production-line-backdrop-1200w.webp 1200w, /assets/images/hero/teamwork-automation-motor-production-line-backdrop-1920w.webp 1920w, /assets/images/hero/teamwork-automation-motor-production-line-backdrop-2560w.webp 2560w",
     "width": 1920,
     "height": 680,
-    "alt": "協群自動化のモーター生産設備3台 — 巻線機、組立機、検査装置"
+    "alt": ""
   },
 
   "hero": {

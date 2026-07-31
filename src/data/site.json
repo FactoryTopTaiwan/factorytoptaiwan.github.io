@@ -12,12 +12,12 @@
   "description": "Winding, insulation, insertion, fusing, balancing and testing equipment for brushed, brushless and universal motors — supplied as individual machines or complete turnkey production lines. Built in Taichung, Taiwan since 1992.",
 
   "heroImage": {
-    "_source": "The three-slide banner from the old home page, at 1920x680. Better photography than anything in the 178 product images: whole machines, properly lit. Renamed from banner-1.jpg, which said nothing to a reader or to image search.",
-    "src": "/assets/images/hero/teamwork-automation-motor-production-machines-1920w.webp",
-    "srcset": "/assets/images/hero/teamwork-automation-motor-production-machines-800w.webp 800w, /assets/images/hero/teamwork-automation-motor-production-machines-1400w.webp 1400w, /assets/images/hero/teamwork-automation-motor-production-machines-1920w.webp 1920w",
+    "_source": "The old home page banner at 1920x680, blurred and darkened at build time to serve as a full-bleed backdrop. Baking the blur beats a CSS filter: no repaint on scroll, and the file drops to 16 KB. It also hides the weaknesses in the source photography, which is exactly why this treatment works where a sharp full-bleed image would not.",
+    "src": "/assets/images/hero/teamwork-automation-motor-production-line-backdrop-1920w.webp",
+    "srcset": "/assets/images/hero/teamwork-automation-motor-production-line-backdrop-1200w.webp 1200w, /assets/images/hero/teamwork-automation-motor-production-line-backdrop-1920w.webp 1920w, /assets/images/hero/teamwork-automation-motor-production-line-backdrop-2560w.webp 2560w",
     "width": 1920,
     "height": 680,
-    "alt": "Three Teamwork Automation machines for motor production on the factory floor — winding, assembly and testing equipment"
+    "alt": ""
   },
 
   "hero": {

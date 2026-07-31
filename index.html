@@ -61,7 +61,7 @@
 <header class="header" id="site-header">
   <div class="shell header__inner">
     <a class="brand" href="/">
-      <span class="brand__mark">■</span>
+      <img class="brand__mark" src="/assets/img/fatop-mark.svg" alt="" aria-hidden="true" width="32" height="32">
       <span>Teamwork Automation</span>
       <span class="brand__sub">FaTop Automation</span>
     </a>
@@ -160,9 +160,16 @@
 </header>
 
 <main id="main">
-<section class="hero">
+<section class="hero hero--backdrop">
+  <!-- Decorative backdrop: empty alt and aria-hidden, because the headline
+       already says what this is and a screen reader should not read a blurred
+       photograph. img rather than a CSS background so it can carry srcset and
+       be fetched at high priority as the LCP element. -->
+  <img class="hero__bg" src="/assets/images/hero/teamwork-automation-motor-production-line-backdrop-1920w.webp" srcset="/assets/images/hero/teamwork-automation-motor-production-line-backdrop-1200w.webp 1200w, /assets/images/hero/teamwork-automation-motor-production-line-backdrop-1920w.webp 1920w, /assets/images/hero/teamwork-automation-motor-production-line-backdrop-2560w.webp 2560w"
+       sizes="100vw" width="1920" height="680"
+       alt="" aria-hidden="true" loading="eager" fetchpriority="high" decoding="async">
+  <div class="hero__scrim" aria-hidden="true"></div>
   <div class="hero__grid" aria-hidden="true"></div>
-  <div class="hero__glow" aria-hidden="true"></div>
 
   <div class="shell hero__layout">
     <div class="hero__inner">
@@ -185,15 +192,6 @@
       </p>
     </div>
 
-    <figure class="hero__media">
-      <!-- eager + fetchpriority: this is the LCP element, so it must not wait -->
-      <img src="/assets/images/hero/teamwork-automation-motor-production-machines-1920w.webp"
-           srcset="/assets/images/hero/teamwork-automation-motor-production-machines-800w.webp 800w, /assets/images/hero/teamwork-automation-motor-production-machines-1400w.webp 1400w, /assets/images/hero/teamwork-automation-motor-production-machines-1920w.webp 1920w"
-           sizes="(min-width: 62rem) 52vw, 100vw"
-           width="1920" height="680"
-           alt="Three Teamwork Automation machines for motor production on the factory floor — winding, assembly and testing equipment"
-           loading="eager" fetchpriority="high" decoding="async">
-    </figure>
   </div>
 </section>
 
@@ -461,7 +459,7 @@
     <div class="footer__grid">
       <div class="footer__col">
         <a class="brand" href="/" style="margin-bottom:var(--sp-4)">
-          <span class="brand__mark">■</span>
+          <img class="brand__mark" src="/assets/img/fatop-mark.svg" alt="" aria-hidden="true" width="32" height="32">
           <span>Teamwork Automation</span>
         </a>
         <p style="color:var(--ink-muted);max-width:32ch">

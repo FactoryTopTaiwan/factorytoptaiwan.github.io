@@ -33,7 +33,7 @@ $OutDir  = $Root
 # assets\images is deliberately absent: those are expensive derivatives owned by
 # tools\fetch-media.ps1, and -Clean must not throw away a 157-image download.
 $Generated = @('index.html', 'products', 'solutions', 'turnkey', 'about',
-               'support', 'contact', 'catalog', 'assets\css', 'assets\js',
+               'support', 'contact', 'catalog', 'assets\css', 'assets\js', 'assets\img',
                'sitemap.xml', 'robots.txt', '404.html', 'ja')
 
 # ---------------------------------------------------------------------------
@@ -172,7 +172,7 @@ function Copy-Assets {
     # images/ is NOT: it is written once by tools/fetch-media.ps1 straight into
     # assets/images/, so that the WebP derivatives are not stored twice in git.
     # Wiping assets/ wholesale here would delete them.
-    foreach ($sub in @('css', 'js')) {
+    foreach ($sub in @('css', 'js', 'img')) {
         $from = Join-Path $SrcDir ('assets\' + $sub)
         $to   = Join-Path $OutDir ('assets\' + $sub)
         if (-not (Test-Path $from)) { continue }
