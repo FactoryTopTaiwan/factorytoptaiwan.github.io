@@ -206,8 +206,11 @@ Write-Host ""
 if ($Clean) {
     Write-Host "Cleaning previous output" -ForegroundColor Yellow
     foreach ($g in $Generated) {
-        $OutPfx = Join-Path $OutDir $g
-        if (Test-Path $OutPfx) { Remove-Item $OutPfx -Recurse -Force; Write-Host ("  - {0}" -f $g) -ForegroundColor DarkGray }
+        # Do not name this $OutPfx: that is the locale output prefix further down,
+        # and reusing the name here is how $prod once got overwritten with '' and
+        # blanked the H1 on all 76 product pages.
+        $doomed = Join-Path $OutDir $g
+        if (Test-Path $doomed) { Remove-Item $doomed -Recurse -Force; Write-Host ("  - {0}" -f $g) -ForegroundColor DarkGray }
     }
     Write-Host ""
 }
@@ -407,7 +410,7 @@ foreach ($prod in $data.products) {
         description = $summary
         url         = ("{0}/products/{1}/" -f $UrlPfx, $prod.slug)
         nav         = 'products'
-        product     = $OutPfx
+        product     = $prod
         siblings    = $siblings
         copy        = @{ summary = $summary; stage = $stage; motorTypes = $motorTypes }
     }
@@ -487,8 +490,8 @@ Copy-Assets
 $sitemap = New-Object System.Text.StringBuilder
 [void]$sitemap.AppendLine('<?xml version="1.0" encoding="UTF-8"?>')
 [void]$sitemap.AppendLine('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
-foreach ($UrlPfx in $urls) {
-    [void]$sitemap.AppendLine("  <url><loc>$($site.origin)$UrlPfx</loc></url>")
+foreach ($u in $urls) {
+    [void]$sitemap.AppendLine("  <url><loc>$($site.origin)$u</loc></url>")
 }
 [void]$sitemap.AppendLine('</urlset>')
 Write-Page -RelativePath 'sitemap.xml' -Html $sitemap.ToString()
