@@ -1,4 +1,4 @@
-<#
+﻿<#
   fetch-media.ps1
 
   Downloads the client's own machine photography and technical images from

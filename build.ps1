@@ -21,6 +21,25 @@ $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version 2.0
 
 $Root    = $PSScriptRoot
+
+# --- Every .ps1 here must carry a UTF-8 BOM ---------------------------------
+# The system ANSI codepage on this machine is Big5. Without a BOM, PowerShell
+# 5.1 decodes this file's non-ASCII bytes as double-byte characters that eat
+# the following character -- and some of those bytes are inside the published
+# page copy, so an em dash in a sentence silently became "??" and swallowed the
+# next letter on three live pages. Editors drop BOMs; this notices immediately.
+foreach ($script in (Get-ChildItem $Root -Recurse -Filter '*.ps1' -File)) {
+    $head = [System.IO.File]::ReadAllBytes($script.FullName)
+    if ($head.Length -lt 3 -or $head[0] -ne 0xEF -or $head[1] -ne 0xBB -or $head[2] -ne 0xBF) {
+        Write-Host ""
+        Write-Host ("BUILD REFUSED - no UTF-8 BOM: {0}" -f $script.FullName) -ForegroundColor Red
+        Write-Host "  Re-save it as UTF-8 with BOM before building. Without one the" -ForegroundColor Yellow
+        Write-Host "  Big5 codepage corrupts any non-ASCII text this script writes." -ForegroundColor Yellow
+        Write-Host ""
+        exit 1
+    }
+}
+
 $SrcDir  = Join-Path $Root 'src'
 $DataDir = Join-Path $SrcDir 'data'
 $TplDir  = Join-Path $SrcDir 'templates'
@@ -155,6 +174,58 @@ function Read-Template {
     Get-Content $path -Raw -Encoding UTF8
 }
 
+# ---------------------------------------------------------------------------
+# Output validation
+#
+#   The build once shipped all 76 product pages with an empty <h1>, no machine
+#   photograph and no model number, because the page scope was handed a path
+#   prefix instead of the product object. Nothing caught it. The title and the
+#   meta description are composed separately in this file, so they survived:
+#   the pages looked correct in a search result and were blank on arrival, and
+#   they reached production that way.
+#
+#   These checks turn that class of failure into a build failure. A page whose
+#   heading is missing is a broken page even when every file on disk exists.
+# ---------------------------------------------------------------------------
+
+$script:Problems = New-Object System.Collections.Generic.List[string]
+
+function Add-Problem {
+    param([string]$Where, [string]$What)
+    $script:Problems.Add(("{0} : {1}" -f $Where, $What))
+}
+
+function Test-GeneratedPage {
+    param([string]$RelativePath, [string]$Html)
+
+    # Exactly one non-empty h1. Zero means a template field resolved to nothing;
+    # more than one means the document outline is wrong.
+    $heads = [regex]::Matches($Html, '(?is)<h1[^>]*>(.*?)</h1>')
+    if ($heads.Count -eq 0) {
+        Add-Problem $RelativePath 'no <h1> on the page'
+    } elseif ($heads.Count -gt 1) {
+        Add-Problem $RelativePath ("{0} <h1> elements, expected 1" -f $heads.Count)
+    } else {
+        $bare = [regex]::Replace($heads[0].Groups[1].Value, '<[^>]+>', '').Trim()
+        if (-not $bare) { Add-Problem $RelativePath '<h1> is empty' }
+    }
+
+    # A title that opens with the separator means page.title resolved to nothing.
+    # The separator is an em dash, built with [char] so this file stays ASCII.
+    $sep = [string][char]0x2014
+    if ($Html -match ('(?is)<title>\s*[-' + $sep + ']')) {
+        Add-Problem $RelativePath 'page title is empty'
+    }
+    if ($Html -match '(?is)<meta name="description" content="\s*">') {
+        Add-Problem $RelativePath 'meta description is empty'
+    }
+
+    # A stray {{ means the template engine did not understand something.
+    if ($Html.Contains('{{')) {
+        Add-Problem $RelativePath 'unresolved template tag left in the output'
+    }
+}
+
 function Write-Page {
     param([string]$RelativePath, [string]$Html)
     $full = Join-Path $OutDir $RelativePath
@@ -163,6 +234,7 @@ function Write-Page {
     # UTF8 without BOM — a BOM upsets some static hosts and shows as  in <title>
     $enc = New-Object System.Text.UTF8Encoding($false)
     [System.IO.File]::WriteAllText($full, $Html, $enc)
+    if ($RelativePath.EndsWith('.html')) { Test-GeneratedPage -RelativePath $RelativePath -Html $Html }
     $script:PagesWritten++
     Write-Host ("  + {0}" -f $RelativePath) -ForegroundColor DarkGray
 }
@@ -503,10 +575,69 @@ Allow: /
 Sitemap: $($site.origin)/sitemap.xml
 "@
 
+# --- Check the generated output ---------------------------------------------
+#   A homepage advertising pages that do not exist shipped once. Every internal
+#   link and every asset reference is resolved against the filesystem here, so
+#   that cannot leave this machine again. Local preview is not a substitute:
+#   GitHub Pages has rules the preview server does not, but a link to a file
+#   that was never written is broken in both.
+
+Write-Host "Checking the generated output" -ForegroundColor Cyan
+
+$SkipDirs = @('\src\', '\_media\', '\.git\', '\tools\')
+$Built = @(Get-ChildItem $OutDir -Recurse -Filter '*.html' -File | Where-Object {
+    $keep = $true
+    foreach ($skip in $SkipDirs) { if ($_.FullName -like ('*' + $skip + '*')) { $keep = $false } }
+    $keep
+})
+
+$targets = 0
+$checked = 0
+foreach ($file in $Built) {
+    $rel  = $file.FullName.Substring($OutDir.Length).TrimStart('\')
+    $html = [System.IO.File]::ReadAllText($file.FullName)
+
+    foreach ($ref in [regex]::Matches($html, '(?:src|href)="(/[^"]*)"')) {
+        $targets++
+        # Strip the fragment and the query: neither reaches the filesystem.
+        $path = $ref.Groups[1].Value -replace '[#?].*$', ''
+        if (-not $path) { continue }
+        $checked++
+        $onDisk = Join-Path $OutDir ($path.TrimStart('/').Replace('/', '\'))
+        if (Test-Path $onDisk -PathType Container) { $onDisk = Join-Path $onDisk 'index.html' }
+        if (-not (Test-Path $onDisk)) { Add-Problem $rel ("link goes nowhere: " + $path) }
+    }
+}
+
+# Every page must be in sitemap.xml. The standing rule is that a new page
+# reaches both sitemaps automatically, so a miss here is a generator bug.
+$declared = @{}
+foreach ($u in $urls) { $declared[$u] = $true }
+foreach ($file in $Built) {
+    $rel = $file.FullName.Substring($OutDir.Length).TrimStart('\')
+    if ($rel -eq '404.html' -or $rel.EndsWith('\404.html')) { continue }
+    $asUrl = '/' + $rel.Replace('\', '/')
+    $asUrl = $asUrl -replace 'index\.html$', ''
+    if (-not $declared.ContainsKey($asUrl)) { Add-Problem $rel ("missing from sitemap.xml: " + $asUrl) }
+}
+
+Write-Host ("  {0} pages, {1} internal references resolved" -f $Built.Count, $checked) -ForegroundColor DarkGray
+
+if ($script:Problems.Count -gt 0) {
+    Write-Host ""
+    Write-Host ("BUILD FAILED - {0} problem(s) in the generated output:" -f $script:Problems.Count) -ForegroundColor Red
+    foreach ($problem in $script:Problems) { Write-Host ("  ! " + $problem) -ForegroundColor Red }
+    Write-Host ""
+    Write-Host "  The files were written, so you can inspect them, but this output" -ForegroundColor Yellow
+    Write-Host "  must not be committed or pushed until these are fixed." -ForegroundColor Yellow
+    Write-Host ""
+    exit 1
+}
+
 # --- Done -------------------------------------------------------------------
 $elapsed = [math]::Round(((Get-Date) - $started).TotalMilliseconds)
 Write-Host ""
-Write-Host ("Built {0} files in {1} ms" -f $script:PagesWritten, $elapsed) -ForegroundColor Green
+Write-Host ("Built {0} files in {1} ms, output checked clean" -f $script:PagesWritten, $elapsed) -ForegroundColor Green
 Write-Host ""
 
 if ($Serve) {
