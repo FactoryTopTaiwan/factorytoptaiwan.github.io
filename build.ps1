@@ -385,13 +385,14 @@ foreach ($prod in $data.products) {
         Where-Object { $_.family -eq $prod.family -and $_.slug -ne $prod.slug } |
         Select-Object -First 3)
 
-    $stage = 'Motor production'
-    if ($prod.familyName) { $stage = $prod.familyName }
+    $stage = $site.ui.processStage
+    if ($prod.familyName) { $stage = $prod.familyName
+    foreach ($fam in $catalogue.families) { if ($fam.slug -eq $prod.family) { $stage = $fam.name } } }
 
-    $motorTypes = 'Brushed, brushless and universal motors'
-    if ($prod.title -match 'Brushless|BLDC')      { $motorTypes = 'Brushless (BLDC) motors' }
-    elseif ($prod.title -match 'Armature|Commutator|Varnish') { $motorTypes = 'Brushed and universal motors' }
-    elseif ($prod.title -match 'Semiconductor')   { $motorTypes = 'Semiconductor packaging, not motor production' }
+    $motorTypes = $site.ui.motorsAll
+    if ($prod.title -match 'Brushless|BLDC')      { $motorTypes = $site.ui.motorsBldc }
+    elseif ($prod.title -match 'Armature|Commutator|Varnish') { $motorTypes = $site.ui.motorsBrushed }
+    elseif ($prod.title -match 'Semiconductor')   { $motorTypes = $site.ui.motorsSemi }
 
     $summary = ("{0} built by Teamwork Automation in Taichung, Taiwan. Supplied as a standalone machine or integrated into a complete production line." -f $prod.title)
     if ($prod.model) {
