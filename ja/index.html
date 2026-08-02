@@ -87,6 +87,33 @@
     </nav>
 
     <div class="header__actions">
+      <!-- Search is the one control here that cannot work without script, so it
+           ships hidden and app.js reveals it. An input that silently does
+           nothing is worse than no input at all. data-src carries the locale's
+           index, because the script has no other way to know which one it is. -->
+      <div class="search" data-search data-src="/ja/search.json" hidden>
+        <button class="search__open" type="button" aria-expanded="false"
+                aria-label="検索" title="検索">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="m16.5 16.5 4 4"/>
+          </svg>
+        </button>
+
+        <div class="search__panel" hidden>
+          <label class="visually-hidden" for="site-search">検索</label>
+          <input class="search__input" id="site-search" type="search" autocomplete="off"
+                 spellcheck="false" placeholder="型式・機械名・工程"
+                 role="combobox" aria-expanded="false" aria-controls="search-results"
+                 aria-autocomplete="list">
+          <ul class="search__results" id="search-results" role="listbox"
+              aria-label="検索"></ul>
+          <p class="search__note" data-search-empty hidden>該当するものがありません。型式、または巻線・ヒュージング・バランシングなどの工程名でお試しください。</p>
+          <p class="search__note" data-search-hint>TWM-929 などの型式、またはヒュージングなどの工程名を入力してください。</p>
+        </div>
+      </div>
+
       <!-- details/summary, not a JS menu: this opens, closes and takes keyboard
            focus with no script at all, and it holds any number of languages
            without the header reflowing. -->
@@ -487,6 +514,8 @@
       <span>&copy; 1992–2026 協群自動化機械股份有限公司</span>
       <nav class="footer__legal" aria-label="規約">
         <a href="/ja/sitemap/">サイトマップ</a>
+        <a href="/ja/terms/">ご利用条件</a>
+        <a href="/ja/privacy/">プライバシー</a>
         <a href="/ja/contact/">お問い合わせ</a>
         <a href="https://www.youtube.com/@TeamworkAutomation" rel="noopener">YouTube</a>
       </nav>

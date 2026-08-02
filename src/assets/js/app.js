@@ -99,6 +99,175 @@
     window.addEventListener('scroll', setStuck, { passive: true });
   }
 
+  /* ---- Site search -------------------------------------------------------
+     A static host cannot run a query, so the whole index is one small JSON
+     written at build time and fetched the first time search is opened. It is
+     around sixty entries, so a linear scan is faster than loading a search
+     library would be.
+
+     This block sits ABOVE the reveal-on-scroll code on purpose: that block
+     returns out of this function early under prefers-reduced-motion, so
+     anything placed after it would never run for those readers. */
+  var searchBox = document.querySelector('[data-search]');
+  if (searchBox) {
+    var searchBtn  = searchBox.querySelector('.search__open');
+    var searchPane = searchBox.querySelector('.search__panel');
+    var searchIn   = searchBox.querySelector('.search__input');
+    var searchList = searchBox.querySelector('.search__results');
+    var searchNone = searchBox.querySelector('[data-search-empty]');
+    var searchHint = searchBox.querySelector('[data-search-hint]');
+    var rows = null, fetching = false, active = -1, shown = [];
+
+    /* The control ships hidden so it never sits there looking usable while
+       doing nothing. Script is running, so it can be honest now. */
+    searchBox.hidden = false;
+
+    var bare = function (s) { return (s || '').toLowerCase().replace(/[^a-z0-9]/g, ''); };
+
+    function loadIndex() {
+      if (rows || fetching) return;
+      fetching = true;
+      fetch(searchBox.getAttribute('data-src'))
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (data) {
+          rows = data || [];
+          fetching = false;
+          if (searchIn.value) render();
+        })
+        .catch(function () { rows = []; fetching = false; });
+    }
+
+    /* A buyer arriving with a model number is the case that must never miss,
+       so an exact or leading model match outranks everything. TWM929, twm-929
+       and TWM 929 all have to reach the same machine. */
+    function rank(row, q) {
+      var m = (row.m || '').toLowerCase(), t = (row.t || '').toLowerCase();
+      var qb = bare(q), mb = bare(row.m);
+      if (m && m === q) return 100;
+      if (mb && qb && mb === qb) return 98;
+      if (mb && qb && mb.indexOf(qb) === 0) return 90;
+      if (t.indexOf(q) === 0) return 70;
+      if (t.indexOf(q) > -1) return 55;
+      if ((row.f || '').toLowerCase().indexOf(q) > -1) return 35;
+      return 20;
+    }
+
+    function match(q) {
+      var terms = q.split(/\s+/).filter(Boolean);
+      var out = [];
+      for (var i = 0; i < rows.length; i++) {
+        var row = rows[i];
+        var hay = ((row.t || '') + ' ' + (row.m || '') + ' ' +
+                   (row.f || '') + ' ' + (row.k || '')).toLowerCase();
+        var hayBare = bare(hay);
+        var ok = true;
+        for (var j = 0; j < terms.length; j++) {
+          if (hay.indexOf(terms[j]) === -1 && hayBare.indexOf(bare(terms[j])) === -1) {
+            ok = false; break;
+          }
+        }
+        if (ok) out.push({ row: row, score: rank(row, q) });
+      }
+      out.sort(function (a, b) {
+        if (b.score !== a.score) return b.score - a.score;
+        return (a.row.t || '').length - (b.row.t || '').length;
+      });
+      return out.slice(0, 8).map(function (x) { return x.row; });
+    }
+
+    function setActive(n) {
+      var items = searchList.children;
+      if (!items.length) { active = -1; return; }
+      if (n < 0) n = items.length - 1;
+      if (n >= items.length) n = 0;
+      for (var i = 0; i < items.length; i++) {
+        items[i].firstChild.setAttribute('aria-selected', i === n ? 'true' : 'false');
+      }
+      active = n;
+      items[n].firstChild.scrollIntoView({ block: 'nearest' });
+    }
+
+    function render() {
+      var q = searchIn.value.trim().toLowerCase();
+      searchList.textContent = '';
+      active = -1;
+
+      if (!q) {
+        shown = [];
+        searchNone.hidden = true;
+        searchHint.hidden = false;
+        searchIn.setAttribute('aria-expanded', 'false');
+        return;
+      }
+      searchHint.hidden = true;
+      if (!rows) { return; }
+
+      shown = match(q);
+      searchNone.hidden = shown.length > 0;
+      searchIn.setAttribute('aria-expanded', shown.length ? 'true' : 'false');
+
+      for (var i = 0; i < shown.length; i++) {
+        var row = shown[i];
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = row.u;
+        a.setAttribute('role', 'option');
+        a.setAttribute('aria-selected', 'false');
+        if (row.m) {
+          var model = document.createElement('span');
+          model.className = 'search__model model';
+          model.textContent = row.m;
+          a.appendChild(model);
+        }
+        var title = document.createElement('span');
+        title.className = 'search__title';
+        title.textContent = row.t;
+        a.appendChild(title);
+        if (row.f) {
+          var fam = document.createElement('span');
+          fam.className = 'search__fam';
+          fam.textContent = row.f;
+          a.appendChild(fam);
+        }
+        li.appendChild(a);
+        searchList.appendChild(li);
+      }
+    }
+
+    function openSearch(open) {
+      searchPane.hidden = !open;
+      searchBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      searchBox.classList.toggle('is-open', open);
+      if (open) { loadIndex(); searchIn.focus(); }
+    }
+
+    searchBtn.addEventListener('click', function () {
+      openSearch(searchPane.hidden);
+    });
+
+    searchIn.addEventListener('input', render);
+
+    searchIn.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); setActive(active + 1); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(active - 1); }
+      else if (e.key === 'Enter' && active > -1) {
+        e.preventDefault();
+        searchList.children[active].firstChild.click();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !searchPane.hidden) {
+        openSearch(false);
+        searchBtn.focus();
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!searchPane.hidden && !searchBox.contains(e.target)) openSearch(false);
+    });
+  }
+
   /* ---- Reveal on scroll ------------------------------------------------- */
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var targets = document.querySelectorAll('[data-reveal]');

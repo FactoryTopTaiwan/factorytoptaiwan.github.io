@@ -54,6 +54,8 @@
   <url><loc>https://fatop-global.com/support/</loc></url>
   <url><loc>https://fatop-global.com/contact/</loc></url>
   <url><loc>https://fatop-global.com/catalog/</loc></url>
+  <url><loc>https://fatop-global.com/terms/</loc></url>
+  <url><loc>https://fatop-global.com/privacy/</loc></url>
   <url><loc>https://fatop-global.com/sitemap/</loc></url>
   <url><loc>https://fatop-global.com/ja/</loc></url>
   <url><loc>https://fatop-global.com/ja/products/</loc></url>
@@ -109,5 +111,7 @@
   <url><loc>https://fatop-global.com/ja/support/</loc></url>
   <url><loc>https://fatop-global.com/ja/contact/</loc></url>
   <url><loc>https://fatop-global.com/ja/catalog/</loc></url>
+  <url><loc>https://fatop-global.com/ja/terms/</loc></url>
+  <url><loc>https://fatop-global.com/ja/privacy/</loc></url>
   <url><loc>https://fatop-global.com/ja/sitemap/</loc></url>
 </urlset>

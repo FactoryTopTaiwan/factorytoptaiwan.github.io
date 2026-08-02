@@ -1,0 +1,41 @@
+<section class="section section--tight">
+  <div class="shell">
+    <div class="section__head section__head--split">
+      <div>
+        <p class="eyebrow">{{page.doc.eyebrow}}</p>
+        <h1>{{page.doc.heading}}</h1>
+      </div>
+      <p class="lede">{{page.doc.lede}}</p>
+    </div>
+  </div>
+</section>
+
+{{#if page.translationNotice}}
+<section class="section section--tight">
+  <div class="shell">
+    <div class="specnote specnote--empty">
+      <p>{{page.translationNotice}}</p>
+    </div>
+  </div>
+</section>
+{{/if}}
+
+<section class="section section--tight">
+  <div class="shell">
+    <!-- A legal page is read by someone looking for one clause, so each one gets
+         its own heading and a comfortable measure rather than a wall of text. -->
+    <div class="legal">
+      {{#each page.doc.sections}}
+      <section class="legal__block">
+        <h2>{{heading}}</h2>
+        {{#each paragraphs}}
+        <p>{{.}}</p>
+        {{/each}}
+      </section>
+      {{/each}}
+
+      <p class="legal__updated">{{page.updatedLabel}}
+        <time datetime="{{page.lastUpdatedISO}}">{{page.lastUpdated}}</time></p>
+    </div>
+  </div>
+</section>

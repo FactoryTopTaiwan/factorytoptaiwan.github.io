@@ -52,7 +52,8 @@ $OutDir  = $Root
 # assets\images is deliberately absent: those are expensive derivatives owned by
 # tools\fetch-media.ps1, and -Clean must not throw away a 157-image download.
 $Generated = @('index.html', 'products', 'solutions', 'turnkey', 'about',
-               'support', 'contact', 'catalog', 'assets\css', 'assets\js', 'assets\img',
+               'support', 'contact', 'catalog', 'terms', 'privacy',
+               'assets\css', 'assets\js', 'assets\img',
                'sitemap.xml', 'sitemap', 'robots.txt', '404.html', 'ja')
 
 # ---------------------------------------------------------------------------
@@ -313,9 +314,13 @@ $data    = Read-Json 'products.json'
 $company = Read-Json 'company.json'
 
 # Locale code, output folder, url prefix. Empty code is English at the root.
+# culture and dateFormat are used to render the one ISO date in legal.json for
+# each locale, so a Japanese page cannot end up showing an English date.
 $Locales = @(
-    @{ code = '';   dir = '';     url = '';    lang = 'en' },
-    @{ code = 'ja'; dir = 'ja\';  url = '/ja'; lang = 'ja' }
+    @{ code = '';   dir = '';     url = '';    lang = 'en'
+       culture = 'en-GB'; dateFormat = 'd MMMM yyyy' },
+    @{ code = 'ja'; dir = 'ja\';  url = '/ja'; lang = 'ja'
+       culture = 'ja-JP'; dateFormat = 'yyyy' + [char]0x5E74 + 'M' + [char]0x6708 + 'd' + [char]0x65E5 }
 )
 
 function Add-FamilyExtras {
@@ -532,6 +537,91 @@ foreach ($pg in $pages) {
     Build-Page -Template 'page.html' -Out ($OutPfx + ("{0}\index.html" -f $pg.out)) -Page $pgData
     $urls.Add(("{0}/{1}/" -f $UrlPfx, $pg.out))
 }
+
+# --- Terms of use and privacy policy ----------------------------------------
+# Kept out of $pages because they are neither a marketing page nor a bullet
+# list: each is a set of headed clauses, and a reader arrives looking for one
+# of them rather than reading top to bottom.
+$legal = Read-LocaleJson 'legal.json' $loc.code
+
+$stamp = [datetime]::ParseExact($legal.lastUpdated, 'yyyy-MM-dd', $null)
+$stampText = $stamp.ToString($loc.dateFormat, [Globalization.CultureInfo]::GetCultureInfo($loc.culture))
+
+foreach ($doc in @(
+    @{ out = 'terms';   key = 'terms';   nav = 'terms'   },
+    @{ out = 'privacy'; key = 'privacy'; nav = 'privacy' }
+)) {
+    $body = $legal.PSObject.Properties[$doc.key].Value
+
+    # A locale with no translated legal text falls through to the English, which
+    # is correct but must not be silent: the reader is told which version applies.
+    $notice = ''
+    if ($loc.code -and -not (Test-Path (Join-Path $DataDir ("{0}\legal.json" -f $loc.code)))) {
+        $notice = $site.ui.legalInEnglish
+    }
+
+    Build-Page -Template 'legal.html' -Out ($OutPfx + ("{0}\index.html" -f $doc.out)) -Page @{
+        title             = $body.heading
+        description       = $body.lede
+        url               = ("{0}/{1}/" -f $UrlPfx, $doc.out)
+        nav               = $doc.nav
+        doc               = $body
+        lastUpdated       = $stampText
+        lastUpdatedISO    = $legal.lastUpdated
+        updatedLabel      = $site.ui.lastUpdated
+        translationNotice = $notice
+    }
+    $urls.Add(("{0}/{1}/" -f $UrlPfx, $doc.out))
+}
+
+# --- Search index -----------------------------------------------------------
+# One small JSON per locale, fetched the first time the reader opens search and
+# then cached by the browser. A static host cannot run a query, and a buyer who
+# knows the model number should not have to guess which family it sits in.
+#
+# Fields are one letter because this file is downloaded, not read:
+#   t title   m model   f family   u url   k extra keywords
+$index = New-Object System.Collections.Generic.List[object]
+
+foreach ($fam in $catalogue.families) {
+    $index.Add([pscustomobject]@{
+        t = $fam.name
+        m = ''
+        f = $site.ui.family
+        u = ("{0}/products/{1}/" -f $UrlPfx, $fam.slug)
+        k = $fam.summary
+    })
+}
+
+foreach ($item in $data.products) {
+    $famName = ''
+    if ($item.familyName) { $famName = $item.familyName }
+    $index.Add([pscustomobject]@{
+        t = $item.title
+        m = $(if ($item.model) { $item.model } else { '' })
+        f = $famName
+        u = ("{0}/products/{1}/" -f $UrlPfx, $item.slug)
+        k = ''
+    })
+}
+
+# The standing pages, so search reaches the whole site and not only machines.
+$standing = New-Object System.Collections.Generic.List[object]
+$standing.Add([pscustomobject]@{ t = $site.ui.everyMachine; u = "$UrlPfx/products/" })
+foreach ($pg in $pages) {
+    $standing.Add([pscustomobject]@{ t = $pg.title; u = ("{0}/{1}/" -f $UrlPfx, $pg.out) })
+}
+$standing.Add([pscustomobject]@{ t = $legal.terms.heading;   u = "$UrlPfx/terms/" })
+$standing.Add([pscustomobject]@{ t = $legal.privacy.heading; u = "$UrlPfx/privacy/" })
+$standing.Add([pscustomobject]@{ t = $site.ui.sitemapHeading; u = "$UrlPfx/sitemap/" })
+
+foreach ($pg in $standing) {
+    $index.Add([pscustomobject]@{ t = $pg.t; m = ''; f = $site.ui.company; u = $pg.u; k = '' })
+}
+
+# .ToArray(), never @(): @() throws ArgumentException on a Generic.List[object].
+Write-Page -RelativePath ($OutPfx + 'search.json') `
+           -Html ($index.ToArray() | ConvertTo-Json -Depth 3 -Compress)
 
 # --- Human sitemap ----------------------------------------------------------
 # Distinct from sitemap.xml: that one is for crawlers, this one is for a buyer

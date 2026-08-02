@@ -1081,3 +1081,94 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 .footer__legal { display: flex; flex-wrap: wrap; gap: var(--sp-4); }
 .footer__legal a { color: var(--ink-faint); text-decoration: none; }
 .footer__legal a:hover { color: var(--ink); text-decoration: underline; }
+
+/* ---- Legal pages ---------------------------------------------------------
+   Terms and privacy are read by someone hunting for one clause, not reading
+   from the top. Each clause keeps its own heading, the measure stays inside
+   the comfortable range for continuous prose, and the headings sit close
+   enough together to scan down the left edge. */
+.legal { max-width: 68ch; }
+.legal__block + .legal__block { margin-top: var(--sp-7); }
+.legal__block h2 {
+  font-size: var(--step-1);
+  line-height: 1.25;
+  margin-bottom: var(--sp-4);
+}
+.legal__block p { color: var(--ink-muted); }
+.legal__block p + p { margin-top: var(--sp-4); }
+.legal__updated {
+  margin-top: var(--sp-8);
+  padding-top: var(--sp-4);
+  border-top: var(--border) solid var(--line);
+  color: var(--ink-faint);
+  font-size: var(--step--1);
+}
+
+/* ---- Site search ---------------------------------------------------------
+   An icon that opens a panel, rather than a permanent input: the header
+   already carries navigation, language, appearance and the primary CTA, and a
+   fifth full-width control pushes the nav into the burger on screens that do
+   not need it. */
+.search { position: relative; }
+.search__open {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 2.25rem; height: 2.25rem;
+  border: var(--border) solid transparent; border-radius: var(--radius);
+  background: none; color: var(--ink-muted); cursor: pointer;
+  transition: color var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+}
+.search__open svg { width: 1.1rem; height: 1.1rem; }
+.search__open:hover { color: var(--ink); background: var(--surface-hover); }
+.search.is-open .search__open {
+  color: var(--ink); border-color: var(--line); background: var(--surface-hover);
+}
+
+.search__panel {
+  /* Offset clears the header hairline: at 100% plus a small gap the panel
+     starts a few pixels above the header edge and overlaps it. */
+  position: absolute; inset-inline-end: 0; top: calc(100% + var(--sp-5));
+  z-index: 60; width: min(26rem, calc(100vw - var(--sp-5) * 2));
+  padding: var(--sp-4);
+  background: var(--surface);
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-2);
+}
+.search__input {
+  width: 100%; padding: var(--sp-3) var(--sp-4);
+  font: inherit; color: var(--ink);
+  background: var(--bg);
+  border: var(--border) solid var(--line-strong);
+  border-radius: var(--radius);
+}
+.search__input::placeholder { color: var(--ink-faint); }
+
+.search__results {
+  list-style: none; margin: var(--sp-3) 0 0; padding: 0;
+  max-height: 60vh; overflow-y: auto;
+}
+.search__results:empty { margin: 0; }
+.search__results a {
+  display: grid; gap: 2px;
+  padding: var(--sp-3);
+  border-radius: var(--radius);
+  color: var(--ink); text-decoration: none;
+}
+.search__results a:hover,
+.search__results a[aria-selected="true"] { background: var(--surface-hover); }
+.search__model { font-size: var(--step--1); color: var(--accent-ink); }
+.search__title { line-height: 1.3; }
+.search__fam { font-size: var(--step--1); color: var(--ink-faint); }
+
+.search__note { margin: var(--sp-3) 0 0; font-size: var(--step--1); color: var(--ink-faint); }
+
+/* Below the width where the nav collapses, the panel spans the viewport rather
+   than hanging off the right edge of a narrow header. */
+@media (max-width: 40rem) {
+  .search__panel {
+    position: fixed; inset-inline: var(--sp-4); top: 4.5rem;
+    width: auto;
+  }
+}
