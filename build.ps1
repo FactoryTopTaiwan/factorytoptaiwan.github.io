@@ -34,7 +34,7 @@ $OutDir  = $Root
 # tools\fetch-media.ps1, and -Clean must not throw away a 157-image download.
 $Generated = @('index.html', 'products', 'solutions', 'turnkey', 'about',
                'support', 'contact', 'catalog', 'assets\css', 'assets\js', 'assets\img',
-               'sitemap.xml', 'robots.txt', '404.html', 'ja')
+               'sitemap.xml', 'sitemap', 'robots.txt', '404.html', 'ja')
 
 # ---------------------------------------------------------------------------
 # Template engine
@@ -457,6 +457,17 @@ foreach ($pg in $pages) {
     Build-Page -Template 'page.html' -Out ($OutPfx + ("{0}\index.html" -f $pg.out)) -Page $pgData
     $urls.Add(("{0}/{1}/" -f $UrlPfx, $pg.out))
 }
+
+# --- Human sitemap ----------------------------------------------------------
+# Distinct from sitemap.xml: that one is for crawlers, this one is for a buyer
+# who knows the model number and would rather not go through the filters.
+Build-Page -Template 'sitemap.html' -Out ($OutPfx + "sitemap\index.html") -Page @{
+    title       = $site.ui.sitemapHeading
+    description = $site.ui.sitemapLede
+    url         = "$UrlPfx/sitemap/"
+    nav         = 'sitemap'
+}
+$urls.Add("$UrlPfx/sitemap/")
 
 # --- 404 --------------------------------------------------------------------
 Build-Page -Template 'page.html' -Out ($OutPfx + '404.html') -Page @{

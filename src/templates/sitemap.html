@@ -1,0 +1,52 @@
+<nav class="crumbs" aria-label="{{site.ui.breadcrumb}}">
+  <div class="shell">
+    <a href="{{site.urlPrefix}}/">{{site.ui.home}}</a> <span aria-hidden="true">/</span>
+    <span aria-current="page">{{site.ui.sitemap}}</span>
+  </div>
+</nav>
+
+<section class="section section--tight">
+  <div class="shell">
+    <div class="section__head section__head--split">
+      <div>
+        <p class="eyebrow">{{site.ui.sitemap}}</p>
+        <h1>{{site.ui.sitemapHeading}}</h1>
+      </div>
+      <p class="lede">{{site.ui.sitemapLede}}</p>
+    </div>
+
+    <div class="sitemap">
+      <div class="sitemap__col">
+        <h2>{{site.ui.products}}</h2>
+        <ul class="sitemap__list">
+          <li><a href="{{site.urlPrefix}}/products/">{{site.ui.everyMachine}}</a></li>
+          {{#each catalog.families}}
+          <li><a href="{{site.urlPrefix}}/products/{{slug}}/">{{name}}</a> <span class="sitemap__n">{{count}}</span></li>
+          {{/each}}
+        </ul>
+      </div>
+
+      <div class="sitemap__col">
+        <h2>{{site.ui.company}}</h2>
+        <ul class="sitemap__list">
+          {{#each site.nav}}
+          <li><a href="{{href}}">{{label}}</a></li>
+          {{/each}}
+          <li><a href="{{site.urlPrefix}}/contact/">{{site.ui.contact}}</a></li>
+          <li><a href="{{site.urlPrefix}}/catalog/">{{site.ui.catalogue}}</a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap__col sitemap__col--wide">
+        <h2>{{site.ui.machine}}</h2>
+        <ul class="sitemap__list sitemap__list--dense">
+          {{#each products}}
+          <li>
+            <a href="{{site.urlPrefix}}/products/{{slug}}/">{{#if model}}<span class="model">{{model}}</span> {{/if}}{{title}}</a>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

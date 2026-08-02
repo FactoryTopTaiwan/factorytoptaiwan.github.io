@@ -1049,3 +1049,35 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 .hero--backdrop .hero__meta { color: #B9C1CB; }
 .hero--backdrop .btn--ghost { --btn-ink: #FFFFFF; --btn-line: rgba(255, 255, 255, 0.5); }
 .hero--backdrop .btn--ghost:hover { --btn-bg: rgba(255, 255, 255, 0.10); --btn-line: #FFFFFF; }
+/* ==========================================================================
+   Sitemap page and footer policy bar
+   A human sitemap, separate from sitemap.xml: a buyer who already knows the
+   model number should not have to work the filters to reach the page.
+   ========================================================================== */
+.sitemap { display: grid; gap: var(--sp-7); }
+@media (min-width: 62rem) {
+  .sitemap { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-8); align-items: start; }
+  .sitemap__col--wide { grid-column: span 2; }
+}
+.sitemap__col h2 {
+  font-size: var(--step-0);
+  font-weight: 620;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding-bottom: var(--sp-3);
+  border-bottom: var(--border) solid var(--line);
+  margin-bottom: var(--sp-4);
+}
+.sitemap__list { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--sp-3); }
+.sitemap__list a { color: var(--ink-muted); text-decoration: none; }
+.sitemap__list a:hover { color: var(--ink); text-decoration: underline; }
+.sitemap__list .model { color: var(--accent-ink); font-size: 0.86em; }
+.sitemap__n { color: var(--ink-faint); font-family: var(--font-mono); font-size: var(--step--1); }
+@media (min-width: 48rem) {
+  .sitemap__list--dense { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-3) var(--sp-5); }
+}
+
+.footer__legal { display: flex; flex-wrap: wrap; gap: var(--sp-4); }
+.footer__legal a { color: var(--ink-faint); text-decoration: none; }
+.footer__legal a:hover { color: var(--ink); text-decoration: underline; }
