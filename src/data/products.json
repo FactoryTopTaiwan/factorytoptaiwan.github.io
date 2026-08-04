@@ -1,5 +1,5 @@
 {
-    "generated":  "2026-07-29",
+    "generated":  "2026-08-04",
     "covers":  {
                    "winding-machines":  {
                                             "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-05-1000w.webp",
@@ -11,22 +11,22 @@
                                             "fromSlug":  "out-slot-brushless-motor-stator-automatic-winding-machine"
                                         },
                    "motor-rotor-equipment":  {
-                                                 "src":  "/assets/images/shaft-embossing/gallery-04-1000w.webp",
-                                                 "srcset":  "/assets/images/shaft-embossing/gallery-04-400w.webp 400w, /assets/images/shaft-embossing/gallery-04-800w.webp 800w, /assets/images/shaft-embossing/gallery-04-1000w.webp 1000w",
+                                                 "src":  "/assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-1000w.webp",
+                                                 "srcset":  "/assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-400w.webp 400w, /assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-800w.webp 800w, /assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-1000w.webp 1000w",
                                                  "width":  1000,
-                                                 "height":  750,
-                                                 "alt":  "Rotor \u0026 Armature Equipment - Shaft embossing",
-                                                 "fromModel":  "TWM-910",
-                                                 "fromSlug":  "shaft-embossing"
+                                                 "height":  1615,
+                                                 "alt":  "Rotor \u0026 Armature Equipment - Armature slot wedge inserting machine",
+                                                 "fromModel":  "TWM-IW01",
+                                                 "fromSlug":  "armature-slot-wedge-inserting-machine"
                                              },
                    "brushless-motor-equipment":  {
-                                                     "src":  "/assets/images/stator-fusing/gallery-04-1000w.webp",
-                                                     "srcset":  "/assets/images/stator-fusing/gallery-04-400w.webp 400w, /assets/images/stator-fusing/gallery-04-800w.webp 800w, /assets/images/stator-fusing/gallery-04-1000w.webp 1000w",
+                                                     "src":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/twm-ap01-stator-slot-liner-inserting-machine-01-1000w.webp",
+                                                     "srcset":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/twm-ap01-stator-slot-liner-inserting-machine-01-400w.webp 400w, /assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/twm-ap01-stator-slot-liner-inserting-machine-01-800w.webp 800w, /assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/twm-ap01-stator-slot-liner-inserting-machine-01-1000w.webp 1000w",
                                                      "width":  1000,
-                                                     "height":  562,
-                                                     "alt":  "Brushless Motor Equipment - Stator fusing",
-                                                     "fromModel":  "TWA-RF30S",
-                                                     "fromSlug":  "stator-fusing"
+                                                     "height":  750,
+                                                     "alt":  "Brushless Motor Equipment - Vertical brushless motor slot insulation paper inserting machine",
+                                                     "fromModel":  "TWM-AP01",
+                                                     "fromSlug":  "vertical-brushless-motor-slot-insulation-paper-inserting-machine"
                                                  },
                    "modular-production-lines":  {
                                                     "src":  "/assets/images/automatic-modular-production-line/gallery-06-800w.webp",
@@ -1473,14 +1473,14 @@
                          "family":  "motor-rotor-equipment",
                          "familyName":  "Rotor \u0026 Armature Equipment",
                          "hero":  {
-                                      "src":  "/assets/images/three-in-one-automatic-turning-machine/gallery-02-400w.webp",
-                                      "srcset":  "/assets/images/three-in-one-automatic-turning-machine/gallery-02-400w.webp 400w",
-                                      "width":  400,
-                                      "height":  355,
-                                      "alt":  "TWM-LA01 Three in one automatic turning machine - finished part produced on this machine",
-                                      "shows":  "workpiece"
+                                      "src":  "/assets/images/three-in-one-automatic-turning-machine/twm-la01-three-in-one-turning-machine-01-1000w.webp",
+                                      "srcset":  "/assets/images/three-in-one-automatic-turning-machine/twm-la01-three-in-one-turning-machine-01-400w.webp 400w, /assets/images/three-in-one-automatic-turning-machine/twm-la01-three-in-one-turning-machine-01-800w.webp 800w, /assets/images/three-in-one-automatic-turning-machine/twm-la01-three-in-one-turning-machine-01-1000w.webp 1000w",
+                                      "width":  1000,
+                                      "height":  1584,
+                                      "alt":  "TWM-LA01 three-in-one automatic turning machine, which turns the commutator, the armature outer diameter and the shaft in one setup",
+                                      "shows":  "equipment"
                                   },
-                         "heroShows":  "workpiece",
+                         "heroShows":  "equipment",
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/three-in-one-automatic-turning-machine/gallery-01-400w.webp",
@@ -1497,10 +1497,25 @@
                                              "height":  355,
                                              "alt":  "TWM-LA01 Three in one automatic turning machine - finished part produced on this machine",
                                              "shows":  "workpiece"
+                                         },
+                                         {
+                                             "src":  "/assets/images/three-in-one-automatic-turning-machine/twm-la01-three-in-one-turning-machine-01-1000w.webp",
+                                             "srcset":  "/assets/images/three-in-one-automatic-turning-machine/twm-la01-three-in-one-turning-machine-01-400w.webp 400w, /assets/images/three-in-one-automatic-turning-machine/twm-la01-three-in-one-turning-machine-01-800w.webp 800w, /assets/images/three-in-one-automatic-turning-machine/twm-la01-three-in-one-turning-machine-01-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  1584,
+                                             "alt":  "TWM-LA01 three-in-one automatic turning machine, which turns the commutator, the armature outer diameter and the shaft in one setup",
+                                             "shows":  "equipment"
                                          }
                                      ],
                          "equipment":  [
-
+                                           {
+                                               "src":  "/assets/images/three-in-one-automatic-turning-machine/twm-la01-three-in-one-turning-machine-01-1000w.webp",
+                                               "srcset":  "/assets/images/three-in-one-automatic-turning-machine/twm-la01-three-in-one-turning-machine-01-400w.webp 400w, /assets/images/three-in-one-automatic-turning-machine/twm-la01-three-in-one-turning-machine-01-800w.webp 800w, /assets/images/three-in-one-automatic-turning-machine/twm-la01-three-in-one-turning-machine-01-1000w.webp 1000w",
+                                               "width":  1000,
+                                               "height":  1584,
+                                               "alt":  "TWM-LA01 three-in-one automatic turning machine, which turns the commutator, the armature outer diameter and the shaft in one setup",
+                                               "shows":  "equipment"
+                                           }
                                        ],
                          "workpiece":  [
                                            {
@@ -1524,7 +1539,7 @@
                          "feature":  null,
                          "app":  null,
                          "hasSpec":  false,
-                         "imageCount":  2
+                         "imageCount":  3
                      },
                      {
                          "slug":  "horizontal-brushless-motor-slot-insulation-paper-inserting-machine",
@@ -1683,14 +1698,14 @@
                          "family":  "motor-rotor-equipment",
                          "familyName":  "Rotor \u0026 Armature Equipment",
                          "hero":  {
-                                      "src":  "/assets/images/armature-slot-insulation-paper-inserting-machine/gallery-02-1000w.webp",
-                                      "srcset":  "/assets/images/armature-slot-insulation-paper-inserting-machine/gallery-02-400w.webp 400w, /assets/images/armature-slot-insulation-paper-inserting-machine/gallery-02-800w.webp 800w, /assets/images/armature-slot-insulation-paper-inserting-machine/gallery-02-1000w.webp 1000w",
+                                      "src":  "/assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-liner-inserting-machine-01-1000w.webp",
+                                      "srcset":  "/assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-liner-inserting-machine-01-400w.webp 400w, /assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-liner-inserting-machine-01-800w.webp 800w, /assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-liner-inserting-machine-01-1000w.webp 1000w",
                                       "width":  1000,
-                                      "height":  750,
-                                      "alt":  "TWM-IP01 Armature slot insulation paper inserting machine - finished part produced on this machine",
-                                      "shows":  "workpiece"
+                                      "height":  1691,
+                                      "alt":  "TWM-IP01 armature slot liner inserting machine, a floor-standing unit that feeds insulation paper and inserts it into armature slots",
+                                      "shows":  "equipment"
                                   },
-                         "heroShows":  "workpiece",
+                         "heroShows":  "equipment",
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/armature-slot-insulation-paper-inserting-machine/gallery-01-400w.webp",
@@ -1707,10 +1722,25 @@
                                              "height":  750,
                                              "alt":  "TWM-IP01 Armature slot insulation paper inserting machine - finished part produced on this machine",
                                              "shows":  "workpiece"
+                                         },
+                                         {
+                                             "src":  "/assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-liner-inserting-machine-01-1000w.webp",
+                                             "srcset":  "/assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-liner-inserting-machine-01-400w.webp 400w, /assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-liner-inserting-machine-01-800w.webp 800w, /assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-liner-inserting-machine-01-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  1691,
+                                             "alt":  "TWM-IP01 armature slot liner inserting machine, a floor-standing unit that feeds insulation paper and inserts it into armature slots",
+                                             "shows":  "equipment"
                                          }
                                      ],
                          "equipment":  [
-
+                                           {
+                                               "src":  "/assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-liner-inserting-machine-01-1000w.webp",
+                                               "srcset":  "/assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-liner-inserting-machine-01-400w.webp 400w, /assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-liner-inserting-machine-01-800w.webp 800w, /assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-liner-inserting-machine-01-1000w.webp 1000w",
+                                               "width":  1000,
+                                               "height":  1691,
+                                               "alt":  "TWM-IP01 armature slot liner inserting machine, a floor-standing unit that feeds insulation paper and inserts it into armature slots",
+                                               "shows":  "equipment"
+                                           }
                                        ],
                          "workpiece":  [
                                            {
@@ -1734,7 +1764,7 @@
                          "feature":  null,
                          "app":  null,
                          "hasSpec":  false,
-                         "imageCount":  2
+                         "imageCount":  3
                      },
                      {
                          "slug":  "armature-slot-wedge-inserting-machine",
@@ -1743,14 +1773,14 @@
                          "family":  "motor-rotor-equipment",
                          "familyName":  "Rotor \u0026 Armature Equipment",
                          "hero":  {
-                                      "src":  "/assets/images/armature-slot-wedge-inserting-machine/gallery-02-1000w.webp",
-                                      "srcset":  "/assets/images/armature-slot-wedge-inserting-machine/gallery-02-400w.webp 400w, /assets/images/armature-slot-wedge-inserting-machine/gallery-02-800w.webp 800w, /assets/images/armature-slot-wedge-inserting-machine/gallery-02-1000w.webp 1000w",
+                                      "src":  "/assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-1000w.webp",
+                                      "srcset":  "/assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-400w.webp 400w, /assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-800w.webp 800w, /assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-1000w.webp 1000w",
                                       "width":  1000,
-                                      "height":  750,
-                                      "alt":  "TWM-IW01 Armature slot wedge inserting machine - finished part produced on this machine",
-                                      "shows":  "workpiece"
+                                      "height":  1615,
+                                      "alt":  "TWM-IW01 armature slot wedge inserting machine, which drives closing wedges into armature slots after winding",
+                                      "shows":  "equipment"
                                   },
-                         "heroShows":  "workpiece",
+                         "heroShows":  "equipment",
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/armature-slot-wedge-inserting-machine/gallery-01-400w.webp",
@@ -1767,10 +1797,25 @@
                                              "height":  750,
                                              "alt":  "TWM-IW01 Armature slot wedge inserting machine - finished part produced on this machine",
                                              "shows":  "workpiece"
+                                         },
+                                         {
+                                             "src":  "/assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-1000w.webp",
+                                             "srcset":  "/assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-400w.webp 400w, /assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-800w.webp 800w, /assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  1615,
+                                             "alt":  "TWM-IW01 armature slot wedge inserting machine, which drives closing wedges into armature slots after winding",
+                                             "shows":  "equipment"
                                          }
                                      ],
                          "equipment":  [
-
+                                           {
+                                               "src":  "/assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-1000w.webp",
+                                               "srcset":  "/assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-400w.webp 400w, /assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-800w.webp 800w, /assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-1000w.webp 1000w",
+                                               "width":  1000,
+                                               "height":  1615,
+                                               "alt":  "TWM-IW01 armature slot wedge inserting machine, which drives closing wedges into armature slots after winding",
+                                               "shows":  "equipment"
+                                           }
                                        ],
                          "workpiece":  [
                                            {
@@ -1794,7 +1839,7 @@
                          "feature":  null,
                          "app":  null,
                          "hasSpec":  false,
-                         "imageCount":  2
+                         "imageCount":  3
                      },
                      {
                          "slug":  "vertical-slot-wedge-inserting-machine",
@@ -1997,14 +2042,14 @@
                          "family":  "brushless-motor-equipment",
                          "familyName":  "Brushless Motor Equipment",
                          "hero":  {
-                                      "src":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-1000w.webp",
-                                      "srcset":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-400w.webp 400w, /assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-800w.webp 800w, /assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-1000w.webp 1000w",
+                                      "src":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/twm-ap01-stator-slot-liner-inserting-machine-01-1000w.webp",
+                                      "srcset":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/twm-ap01-stator-slot-liner-inserting-machine-01-400w.webp 400w, /assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/twm-ap01-stator-slot-liner-inserting-machine-01-800w.webp 800w, /assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/twm-ap01-stator-slot-liner-inserting-machine-01-1000w.webp 1000w",
                                       "width":  1000,
                                       "height":  750,
-                                      "alt":  "TWM-AP01 Vertical brushless motor slot insulation paper inserting machine - finished part produced on this machine",
-                                      "shows":  "workpiece"
+                                      "alt":  "TWM-AP01 stator slot liner inserting machine, a bench unit that cuts and forms insulation paper for brushless motor stator slots",
+                                      "shows":  "equipment"
                                   },
-                         "heroShows":  "workpiece",
+                         "heroShows":  "equipment",
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-1000w.webp",
@@ -2021,10 +2066,25 @@
                                              "height":  875,
                                              "alt":  "TWM-AP01 Vertical brushless motor slot insulation paper inserting machine - finished part produced on this machine",
                                              "shows":  "workpiece"
+                                         },
+                                         {
+                                             "src":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/twm-ap01-stator-slot-liner-inserting-machine-01-1000w.webp",
+                                             "srcset":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/twm-ap01-stator-slot-liner-inserting-machine-01-400w.webp 400w, /assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/twm-ap01-stator-slot-liner-inserting-machine-01-800w.webp 800w, /assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/twm-ap01-stator-slot-liner-inserting-machine-01-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  750,
+                                             "alt":  "TWM-AP01 stator slot liner inserting machine, a bench unit that cuts and forms insulation paper for brushless motor stator slots",
+                                             "shows":  "equipment"
                                          }
                                      ],
                          "equipment":  [
-
+                                           {
+                                               "src":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/twm-ap01-stator-slot-liner-inserting-machine-01-1000w.webp",
+                                               "srcset":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/twm-ap01-stator-slot-liner-inserting-machine-01-400w.webp 400w, /assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/twm-ap01-stator-slot-liner-inserting-machine-01-800w.webp 800w, /assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/twm-ap01-stator-slot-liner-inserting-machine-01-1000w.webp 1000w",
+                                               "width":  1000,
+                                               "height":  750,
+                                               "alt":  "TWM-AP01 stator slot liner inserting machine, a bench unit that cuts and forms insulation paper for brushless motor stator slots",
+                                               "shows":  "equipment"
+                                           }
                                        ],
                          "workpiece":  [
                                            {
@@ -2048,7 +2108,7 @@
                          "feature":  null,
                          "app":  null,
                          "hasSpec":  false,
-                         "imageCount":  2
+                         "imageCount":  3
                      },
                      {
                          "slug":  "hook-type-armature-automatic-winding-machine",
@@ -2057,14 +2117,14 @@
                          "family":  "motor-rotor-equipment",
                          "familyName":  "Rotor \u0026 Armature Equipment",
                          "hero":  {
-                                      "src":  "/assets/images/hook-type-armature-automatic-winding-machine/gallery-01-1000w.webp",
-                                      "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine/gallery-01-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine/gallery-01-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine/gallery-01-1000w.webp 1000w",
+                                      "src":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-winding-machine-01-1000w.webp",
+                                      "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-winding-machine-01-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-winding-machine-01-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-winding-machine-01-1000w.webp 1000w",
                                       "width":  1000,
-                                      "height":  906,
-                                      "alt":  "TWM-308A Hook-Type Armature Automatic Winding Machine - finished part produced on this machine",
-                                      "shows":  "workpiece"
+                                      "height":  1153,
+                                      "alt":  "TWM-308A hook-type armature winding machine, a horizontal machine that winds armature coils and hooks them onto the commutator",
+                                      "shows":  "equipment"
                                   },
-                         "heroShows":  "workpiece",
+                         "heroShows":  "equipment",
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/hook-type-armature-automatic-winding-machine/gallery-01-1000w.webp",
@@ -2081,10 +2141,25 @@
                                              "height":  922,
                                              "alt":  "TWM-308A Hook-Type Armature Automatic Winding Machine - finished part produced on this machine",
                                              "shows":  "workpiece"
+                                         },
+                                         {
+                                             "src":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-winding-machine-01-1000w.webp",
+                                             "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-winding-machine-01-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-winding-machine-01-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-winding-machine-01-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  1153,
+                                             "alt":  "TWM-308A hook-type armature winding machine, a horizontal machine that winds armature coils and hooks them onto the commutator",
+                                             "shows":  "equipment"
                                          }
                                      ],
                          "equipment":  [
-
+                                           {
+                                               "src":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-winding-machine-01-1000w.webp",
+                                               "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-winding-machine-01-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-winding-machine-01-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-winding-machine-01-1000w.webp 1000w",
+                                               "width":  1000,
+                                               "height":  1153,
+                                               "alt":  "TWM-308A hook-type armature winding machine, a horizontal machine that winds armature coils and hooks them onto the commutator",
+                                               "shows":  "equipment"
+                                           }
                                        ],
                          "workpiece":  [
                                            {
@@ -2114,7 +2189,7 @@
                          "feature":  null,
                          "app":  null,
                          "hasSpec":  true,
-                         "imageCount":  2
+                         "imageCount":  3
                      },
                      {
                          "slug":  "armature-testing-machine",

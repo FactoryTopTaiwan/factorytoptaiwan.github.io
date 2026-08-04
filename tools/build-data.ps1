@@ -128,6 +128,18 @@ foreach ($p in $raw) {
                     }
                     $gallery.Add($obj)
                 }
+                'machine' {
+                    # Declared equipment, never guessed at. classify.ps1 reads a
+                    # studio cutout on white as a workpiece, which is true of the
+                    # old catalogue galleries and false for the photographs on
+                    # the cate- listing pages: those are whole machines shot on
+                    # white, and the classifier files every one of them wrong.
+                    # Anything taken from that source is declared here instead.
+                    Add-Member -InputObject $obj -NotePropertyName 'shows' -NotePropertyValue 'equipment' -Force
+                    if ($img.PSObject.Properties['alt'] -and $img.alt) { $obj.alt = $img.alt }
+                    $equipment.Add($obj)
+                    $gallery.Add($obj)
+                }
                 'spec'    { if (-not $spec)    { $obj.alt = "$altBase - published specifications"; $spec = $obj } }
                 'feature' { if (-not $feature) { $obj.alt = "$altBase - features"; $feature = $obj } }
                 'app'     { if (-not $app)     { $obj.alt = "$altBase - applications"; $app = $obj } }

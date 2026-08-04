@@ -12,14 +12,7 @@
   "tagline": "電動モーターを生産する機械",
   "description": "ブラシ付き・ブラシレス（BLDC）・ユニバーサルモーター向けの巻線、スロット絶縁、ウェッジ挿入、ヒュージング、バランシング、検査設備。単体機械としても、生産ライン一式としても供給いたします。1992年より台湾・台中で製造。",
 
-  "heroImage": {
-    "_source": "The old home page banner at 1920x680, blurred and darkened at build time to serve as a full-bleed backdrop. Baking the blur beats a CSS filter: no repaint on scroll, and the file drops to 16 KB. It also hides the weaknesses in the source photography, which is exactly why this treatment works where a sharp full-bleed image would not.",
-    "src": "/assets/images/hero/teamwork-automation-motor-production-line-backdrop-1920w.webp",
-    "srcset": "/assets/images/hero/teamwork-automation-motor-production-line-backdrop-1200w.webp 1200w, /assets/images/hero/teamwork-automation-motor-production-line-backdrop-1920w.webp 1920w, /assets/images/hero/teamwork-automation-motor-production-line-backdrop-2560w.webp 2560w",
-    "width": 1920,
-    "height": 680,
-    "alt": ""
-  },
+  "_heroImageNote": "Deliberately absent. The image is identical in every locale, so it is carried once in the English site.json and the overlay falls through to it. Duplicating it here is how the two copies drifted apart the first time.",
 
   "hero": {
     "titleLead": "電動モーターを生産する、",

@@ -12,11 +12,13 @@
   "description": "Winding, insulation, insertion, fusing, balancing and testing equipment for brushed, brushless and universal motors — supplied as individual machines or complete turnkey production lines. Built in Taichung, Taiwan since 1992.",
 
   "heroImage": {
-    "_source": "The old home page banner at 1920x680, blurred and darkened at build time to serve as a full-bleed backdrop. Baking the blur beats a CSS filter: no repaint on scroll, and the file drops to 16 KB. It also hides the weaknesses in the source photography, which is exactly why this treatment works where a sharp full-bleed image would not.",
-    "src": "/assets/images/hero/teamwork-automation-motor-production-line-backdrop-1920w.webp",
-    "srcset": "/assets/images/hero/teamwork-automation-motor-production-line-backdrop-1200w.webp 1200w, /assets/images/hero/teamwork-automation-motor-production-line-backdrop-1920w.webp 1920w, /assets/images/hero/teamwork-automation-motor-production-line-backdrop-2560w.webp 2560w",
+    "_source": "A real Teamwork stator winding line, replacing the old site's banner. Blurred and darkened once at 2560 and then downscaled, so the treatment looks identical at every width and there is no CSS filter repainting on scroll.",
+    "_blurIsDeliberate": "The blur is a client instruction, not a style choice: this is a customer's production line and they will not expose a customer's process. 0x27 at 2560 (about 1% of the width) leaves the impression of a line - copper spools, winding heads, the run of stations - while defeating any reading of the layout, the panel labels or the station count. Do not reduce it for the sake of a sharper picture.",
+    "_exif": "Stripped. The source was an iPhone photograph and carried camera and timestamp metadata.",
+    "src": "/assets/images/hero/teamwork-automation-stator-winding-line-backdrop-1920w.webp",
+    "srcset": "/assets/images/hero/teamwork-automation-stator-winding-line-backdrop-1200w.webp 1200w, /assets/images/hero/teamwork-automation-stator-winding-line-backdrop-1920w.webp 1920w, /assets/images/hero/teamwork-automation-stator-winding-line-backdrop-2560w.webp 2560w",
     "width": 1920,
-    "height": 680,
+    "height": 681,
     "alt": ""
   },
 
