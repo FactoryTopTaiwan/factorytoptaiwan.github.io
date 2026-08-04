@@ -80,6 +80,38 @@
   </div>
 </section>
 
+{{#if site.video}}
+<section class="section" id="video">
+  <div class="shell">
+    <div class="section__head section__head--split">
+      <div>
+        <p class="eyebrow">{{site.video.eyebrow}}</p>
+        <h2>{{site.video.title}}</h2>
+      </div>
+      <p class="lede">{{site.video.lede}}</p>
+    </div>
+
+    <!-- Facade, not an embed. The poster is ours and the iframe does not exist
+         until the button is pressed, so a reader who never watches pays nothing
+         and gets no YouTube cookie. It also keeps the no-autoplay rule: the
+         video plays because a person asked for it. -->
+    <div class="vid" data-video="{{site.video.youtubeId}}" data-video-title="{{site.video.label}}">
+      <button class="vid__play" type="button">
+        <img class="vid__poster" src="{{site.video.poster.src}}" srcset="{{site.video.poster.srcset}}"
+             sizes="(min-width: 62rem) 70vw, 100vw"
+             width="{{site.video.poster.width}}" height="{{site.video.poster.height}}"
+             alt="" loading="lazy" decoding="async">
+        <span class="vid__btn" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+        </span>
+        <span class="visually-hidden">{{site.video.label}}</span>
+      </button>
+    </div>
+    <p class="vid__note">{{site.video.note}}</p>
+  </div>
+</section>
+{{/if}}
+
 <section class="section section--sunken" id="turnkey">
   <div class="shell">
     <div class="split">

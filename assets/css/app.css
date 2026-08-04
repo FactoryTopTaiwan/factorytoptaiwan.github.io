@@ -1172,3 +1172,55 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
     width: auto;
   }
 }
+
+
+/* ---- Video facade --------------------------------------------------------
+   Poster and a button. The iframe is created on click, so the aspect ratio has
+   to be held by the container or the page jumps at the moment of the click -
+   the one moment the reader is looking straight at it. */
+.vid {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+.vid__play {
+  display: block; position: absolute; inset: 0;
+  width: 100%; height: 100%; padding: 0;
+  border: 0; background: none; cursor: pointer;
+}
+.vid__poster {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform var(--dur) var(--ease-out), filter var(--dur) var(--ease-out);
+}
+.vid__play:hover .vid__poster { transform: scale(1.02); filter: brightness(0.92); }
+
+.vid__btn {
+  position: absolute; inset-block-start: 50%; inset-inline-start: 50%;
+  transform: translate(-50%, -50%);
+  display: grid; place-items: center;
+  width: 4.5rem; height: 4.5rem;
+  border-radius: 50%;
+  background: var(--accent-ink); color: var(--accent-on);
+  box-shadow: var(--shadow-2);
+  transition: transform var(--dur) var(--ease-out);
+}
+.vid__btn svg { width: 1.9rem; height: 1.9rem; margin-inline-start: 0.15rem; }
+.vid__play:hover .vid__btn { transform: translate(-50%, -50%) scale(1.06); }
+.vid__play:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+.vid__frame { width: 100%; height: 100%; border: 0; display: block; }
+
+.vid__note {
+  margin-top: var(--sp-3);
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vid__poster, .vid__btn { transition: none; }
+  .vid__play:hover .vid__poster { transform: none; }
+  .vid__play:hover .vid__btn { transform: translate(-50%, -50%); }
+}

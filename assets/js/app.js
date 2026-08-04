@@ -268,6 +268,40 @@
     });
   }
 
+  /* ---- Video facades -----------------------------------------------------
+     The page ships a poster and a button. YouTube is not contacted at all
+     until someone presses play, so a reader who never watches pays no
+     third-party request and collects no cookie.
+
+     autoplay=1 on the inserted iframe is not a violation of the no-autoplay
+     rule - it is what makes the single click the reader already made actually
+     start the video, instead of asking for a second one.
+
+     Placed above the reveal-on-scroll block on purpose: that block returns
+     early under prefers-reduced-motion. */
+  var facades = document.querySelectorAll('[data-video]');
+  for (var v = 0; v < facades.length; v++) {
+    (function (box) {
+      var btn = box.querySelector('.vid__play');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var id = box.getAttribute('data-video');
+        if (!id) return;
+        var frame = document.createElement('iframe');
+        frame.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
+                    '?autoplay=1&rel=0&modestbranding=1';
+        frame.title = box.getAttribute('data-video-title') || 'Video';
+        frame.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture; web-share';
+        frame.referrerPolicy = 'strict-origin-when-cross-origin';
+        frame.setAttribute('allowfullscreen', '');
+        frame.className = 'vid__frame';
+        box.textContent = '';
+        box.appendChild(frame);
+        frame.focus();
+      });
+    })(facades[v]);
+  }
+
   /* ---- Reveal on scroll ------------------------------------------------- */
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var targets = document.querySelectorAll('[data-reveal]');

@@ -46,6 +46,23 @@
     "Turning & embossing", "Balancing", "Varnish & bake", "Testing"
   ],
 
+  "_videoNote": "A click-to-load facade, not an embed. Nothing from YouTube is requested until the reader presses play: the poster is served from this site as WebP, and only then is the iframe created. That keeps the third-party request off the critical path, keeps the page free of YouTube cookies for readers who never watch, and satisfies the no-autoplay rule - the video starts because a person asked it to. Host is youtube-nocookie.com.",
+  "video": {
+    "eyebrow": "See it running",
+    "title": "A machine you can watch before you ask for a quotation.",
+    "lede": "The TWM-929 winding an out-slot brushless stator, filmed on our floor in Taichung. Specification sheets describe a machine; watching one place wire tells you whether it can handle your part.",
+    "youtubeId": "i6IT5S4nSCg",
+    "label": "Play video: TWM-929 out-slot brushless motor stator winding machine running",
+    "note": "Nothing loads from YouTube until you press play.",
+    "poster": {
+      "src": "/assets/images/video/twm-929-bldc-stator-winding-machine-video-poster-1400w.webp",
+      "srcset": "/assets/images/video/twm-929-bldc-stator-winding-machine-video-poster-640w.webp 640w, /assets/images/video/twm-929-bldc-stator-winding-machine-video-poster-1000w.webp 1000w, /assets/images/video/twm-929-bldc-stator-winding-machine-video-poster-1400w.webp 1400w",
+      "width": 1400,
+      "height": 788,
+      "alt": ""
+    }
+  },
+
   "cta": {
     "eyebrow": "Start a conversation",
     "title": "Send us the part. We will tell you the line.",
