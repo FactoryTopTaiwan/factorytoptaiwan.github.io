@@ -46,6 +46,54 @@
     "Turning & embossing", "Balancing", "Varnish & bake", "Testing"
   ],
 
+  "_pagesNote": "Copy for the six standing pages. It used to be written as string literals inside build.ps1, where no locale overlay could reach it - which is why /ja/solutions/, /ja/support/, /ja/contact/ and /ja/catalog/ shipped in English. Anything a reader sees belongs in a data file, never in the generator.",
+  "pages": {
+    "turnkey": {
+      "title": "Turnkey production lines",
+      "description": "Complete motor production lines planned, built and commissioned by one supplier — layout, workstation count, traceability and remote monitoring included.",
+      "scopeEyebrow": "Scope",
+      "scopeTitle": "What is included",
+      "onLineEyebrow": "On the line"
+    },
+    "solutions": {
+      "title": "Industries we build for",
+      "eyebrow": "Solutions",
+      "heading": "The motors our machines are built around",
+      "lede": "Automotive, two-wheel and e-mobility, power tools, drone and micro BLDC, appliance, and semiconductor packaging. The machine is specified against the part, so the industry decides the tooling.",
+      "description": "Motor production equipment for automotive, e-mobility, power tools, drone motors, appliances and semiconductor packaging."
+    },
+    "about": {
+      "title": "About Teamwork Automation",
+      "eyebrow": "About",
+      "description": "Teamwork Automation has built motor production equipment in Taichung, Taiwan since 1992, and has guided more than twenty listed manufacturers through new plant launches.",
+      "howEyebrow": "How we work",
+      "howTitle": "Five ways a project reaches us"
+    },
+    "support": {
+      "title": "Support and service",
+      "eyebrow": "Support",
+      "heading": "Repair without borders.",
+      "lede": "Any machine with a PLC can carry the remote monitoring module. When something stops, an engineer connects over the internet and diagnoses it — a fault eight thousand kilometres away does not have to wait for a flight to be booked.",
+      "description": "Remote diagnostics, installation, operator training and spare parts for Teamwork Automation motor production equipment.",
+      "blockEyebrow": "On the line",
+      "blockTitle": "What the monitoring module gives you"
+    },
+    "contact": {
+      "title": "Contact and quotations",
+      "eyebrow": "Contact",
+      "heading": "Tell us the part. We will tell you the line.",
+      "lede": "Send the stator, armature or rotor you need to produce, along with the output you are planning for. Specifications are never gated and there is no account to create.",
+      "description": "Request a quotation, ask for a specification, or book a video call with the Teamwork Automation engineering team in Taichung, Taiwan."
+    },
+    "catalog": {
+      "title": "Catalogue downloads",
+      "eyebrow": "Catalogue",
+      "heading": "The full catalogue, on request",
+      "lede": "Machine specifications on this site are open — nothing behind a form. The complete printed catalogue is available on request so we know who to follow up with.",
+      "description": "Request the full Teamwork Automation machine catalogue."
+    }
+  },
+
   "_videoNote": "A click-to-load facade, not an embed. Nothing from YouTube is requested until the reader presses play: the poster is served from this site as WebP, and only then is the iframe created. That keeps the third-party request off the critical path, keeps the page free of YouTube cookies for readers who never watch, and satisfies the no-autoplay rule - the video starts because a person asked it to. Host is youtube-nocookie.com.",
   "video": {
     "eyebrow": "See it running",
@@ -128,6 +176,17 @@
     "sameStage": "Same process stage",
     "output": "Output",
     "outputParts": "Parts produced on this machine",
+    "history": "History",
+    "historyHeading": "Thirty-plus years, in the order it happened",
+    "reachUs": "Reach us",
+    "location": "Taichung, Taiwan",
+    "email": "Email",
+    "telephone": "Telephone",
+    "mobile": "Mobile",
+    "address": "Address",
+    "response": "Response",
+    "watchMachine": "Watch this machine run",
+    "watchLede": "Filmed on our floor in Taichung. Nothing loads from YouTube until you press play.",
     "fullIndex": "Full index by model",
     "everyMachine": "Every machine",
     "footerNote": "Building motor production automation since"

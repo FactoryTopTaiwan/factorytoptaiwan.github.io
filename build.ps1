@@ -495,39 +495,46 @@ foreach ($prod in $data.products) {
 }
 
 # --- Standing pages ---------------------------------------------------------
+# Copy comes from $site.pages, never from string literals here. Literals in this
+# file cannot be overlaid by a locale, which is exactly how /ja/solutions/,
+# /ja/support/, /ja/contact/ and /ja/catalog/ shipped in English while the rest
+# of the Japanese site was translated. Headings that already live in a localised
+# data file (turnkey, positioning) keep coming from there.
+$c = $site.pages
+
 $pages = @(
-    @{ out='turnkey';   nav='turnkey';   title='Turnkey production lines';
+    @{ out='turnkey';   nav='turnkey';   title=$c.turnkey.title
        eyebrow=$catalogue.turnkey.eyebrow; heading=$catalogue.turnkey.title; lede=$catalogue.turnkey.lede
-       description='Complete motor production lines planned, built and commissioned by one supplier — layout, workstation count, traceability and remote monitoring included.'
+       description=$c.turnkey.description
        blocks=@(
-         @{ eyebrow='Scope'; title='What is included'; bullets=$catalogue.turnkey.points },
-         @{ eyebrow='On the line'; title=$company.capabilities.title; bullets=$company.capabilities.points }
+         @{ eyebrow=$c.turnkey.scopeEyebrow;  title=$c.turnkey.scopeTitle;        bullets=$catalogue.turnkey.points },
+         @{ eyebrow=$c.turnkey.onLineEyebrow; title=$company.capabilities.title;  bullets=$company.capabilities.points }
        ) },
-    @{ out='solutions'; nav='solutions'; title='Industries we build for';
-       eyebrow='Solutions'; heading='The motors our machines are built around'
-       lede='Automotive, two-wheel and e-mobility, power tools, drone and micro BLDC, appliance, and semiconductor packaging. The machine is specified against the part, so the industry decides the tooling.'
-       description='Motor production equipment for automotive, e-mobility, power tools, drone motors, appliances and semiconductor packaging.'
+    @{ out='solutions'; nav='solutions'; title=$c.solutions.title
+       eyebrow=$c.solutions.eyebrow; heading=$c.solutions.heading
+       lede=$c.solutions.lede
+       description=$c.solutions.description
        industries=$company.industries },
-    @{ out='about';     nav='about';     title='About Teamwork Automation';
-       eyebrow='About'; heading=$company.positioning.line; lede=$company.positioning.summary
-       description='Teamwork Automation has built motor production equipment in Taichung, Taiwan since 1992, and has guided more than twenty listed manufacturers through new plant launches.'
+    @{ out='about';     nav='about';     title=$c.about.title
+       eyebrow=$c.about.eyebrow; heading=$company.positioning.line; lede=$company.positioning.summary
+       description=$c.about.description
        timeline=$company.timeline
-       blocks=@( @{ eyebrow='How we work'; title='Five ways a project reaches us'; items=$company.services } ) },
-    @{ out='support';   nav='support';   title='Support and service';
-       eyebrow='Support'; heading='Repair without borders.'
-       lede='Any machine with a PLC can carry the remote monitoring module. When something stops, an engineer connects over the internet and diagnoses it — a fault eight thousand kilometres away does not have to wait for a flight to be booked.'
-       description='Remote diagnostics, installation, operator training and spare parts for Teamwork Automation motor production equipment.'
-       blocks=@( @{ eyebrow='On the line'; title='What the monitoring module gives you'; bullets=$company.capabilities.points } )
+       blocks=@( @{ eyebrow=$c.about.howEyebrow; title=$c.about.howTitle; items=$company.services } ) },
+    @{ out='support';   nav='support';   title=$c.support.title
+       eyebrow=$c.support.eyebrow; heading=$c.support.heading
+       lede=$c.support.lede
+       description=$c.support.description
+       blocks=@( @{ eyebrow=$c.support.blockEyebrow; title=$c.support.blockTitle; bullets=$company.capabilities.points } )
        showContact=$true },
-    @{ out='contact';   nav='contact';   title='Contact and quotations';
-       eyebrow='Contact'; heading='Tell us the part. We will tell you the line.'
-       lede='Send the stator, armature or rotor you need to produce, along with the output you are planning for. Specifications are never gated and there is no account to create.'
-       description='Request a quotation, ask for a specification, or book a video call with the Teamwork Automation engineering team in Taichung, Taiwan.'
+    @{ out='contact';   nav='contact';   title=$c.contact.title
+       eyebrow=$c.contact.eyebrow; heading=$c.contact.heading
+       lede=$c.contact.lede
+       description=$c.contact.description
        showContact=$true },
-    @{ out='catalog';   nav='catalog';   title='Catalogue downloads';
-       eyebrow='Catalogue'; heading='The full catalogue, on request'
-       lede='Machine specifications on this site are open — nothing behind a form. The complete printed catalogue is available on request so we know who to follow up with.'
-       description='Request the full Teamwork Automation machine catalogue.'
+    @{ out='catalog';   nav='catalog';   title=$c.catalog.title
+       eyebrow=$c.catalog.eyebrow; heading=$c.catalog.heading
+       lede=$c.catalog.lede
+       description=$c.catalog.description
        showContact=$true }
 )
 

@@ -43,8 +43,8 @@
 <section class="section section--sunken">
   <div class="shell">
     <div class="section__head">
-      <p class="eyebrow">History</p>
-      <h2>Thirty-plus years, in the order it happened</h2>
+      <p class="eyebrow">{{site.ui.history}}</p>
+      <h2>{{site.ui.historyHeading}}</h2>
     </div>
     <ol class="timeline">
       {{#each page.timeline}}
@@ -80,15 +80,15 @@
 <section class="section section--sunken">
   <div class="shell">
     <div class="section__head">
-      <p class="eyebrow">Reach us</p>
-      <h2>Taichung, Taiwan</h2>
+      <p class="eyebrow">{{site.ui.reachUs}}</p>
+      <h2>{{site.ui.location}}</h2>
     </div>
     <dl class="factlist factlist--wide">
-      <div><dt>Email</dt><dd><a href="mailto:{{company.contact.email}}">{{company.contact.email}}</a></dd></div>
-      <div><dt>Telephone</dt><dd><a href="tel:{{company.contact.phone}}">{{company.contact.phone}}</a></dd></div>
-      <div><dt>Mobile</dt><dd><a href="tel:{{company.contact.mobile}}">{{company.contact.mobile}}</a></dd></div>
-      <div><dt>Address</dt><dd>{{company.contact.addressEn}}</dd></div>
-      <div><dt>Response</dt><dd>{{company.contact.responseCommitment}}</dd></div>
+      <div><dt>{{site.ui.email}}</dt><dd><a href="mailto:{{company.contact.email}}">{{company.contact.email}}</a></dd></div>
+      <div><dt>{{site.ui.telephone}}</dt><dd><a href="tel:{{company.contact.phone}}">{{company.contact.phone}}</a></dd></div>
+      <div><dt>{{site.ui.mobile}}</dt><dd><a href="tel:{{company.contact.mobile}}">{{company.contact.mobile}}</a></dd></div>
+      <div><dt>{{site.ui.address}}</dt><dd>{{company.contact.addressEn}}</dd></div>
+      <div><dt>{{site.ui.response}}</dt><dd>{{company.contact.responseCommitment}}</dd></div>
     </dl>
   </div>
 </section>
