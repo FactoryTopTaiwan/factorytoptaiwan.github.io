@@ -35,6 +35,19 @@ $slugMap = Resolve-ProductSlugs -Products $raw
 
 $OrigRoot = Join-Path $SiteRoot '_media\original'
 
+# Optional videos.json: one YouTube id + poster per product slug. It carries
+# the assets the product page's video block needs. Absent is fine - the block
+# renders only for products with an entry, so leaving a product out keeps its
+# page as it was.
+$VideosPath = Join-Path $SiteRoot 'src\data\videos.json'
+$videos = @{}
+if (Test-Path $VideosPath) {
+    $vraw = Get-Content $VideosPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    foreach ($prop in $vraw.PSObject.Properties) {
+        if ($prop.Name -notlike '_*') { $videos[$prop.Name] = $prop.Value }
+    }
+}
+
 # sourceName (as it appears in the scraped breadcrumb) -> family slug
 $familyBySource = @{}
 foreach ($f in $catalogue.families) { $familyBySource[$f.sourceName] = $f }
@@ -157,6 +170,9 @@ foreach ($p in $raw) {
         $hero = @($workpiece | Sort-Object { -$_.width })[0]
     }
 
+    $video = $null
+    if ($videos.ContainsKey($slug)) { $video = $videos[$slug] }
+
     $products.Add([pscustomobject]@{
         slug       = $slug
         model      = $p.model
@@ -165,6 +181,7 @@ foreach ($p in $raw) {
         familyName = $famName
         hero       = $hero
         heroShows  = $(if ($equipment.Count -gt 0) { 'equipment' } elseif ($workpiece.Count -gt 0) { 'workpiece' } else { $null })
+        video      = $video
         # .ToArray(), not @($gallery): the array subexpression operator throws
         # "Argument types do not match" on a Generic.List[object] in PS 5.1.
         gallery    = $gallery.ToArray()

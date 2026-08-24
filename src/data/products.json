@@ -1,5 +1,5 @@
 {
-    "generated":  "2026-08-04",
+    "generated":  "2026-08-25",
     "covers":  {
                    "winding-machines":  {
                                             "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-05-1000w.webp",
@@ -90,6 +90,7 @@
                                       "shows":  "workpiece"
                                   },
                          "heroShows":  "workpiece",
+                         "video":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/air-coil-winding-machine/gallery-01-400w.webp",
@@ -204,6 +205,16 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  {
+                                       "youtubeId":  "J_ECDZq8n3c",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/armature-welding-machine/twm-rf30s-video-poster-01-640w.webp 640w, /assets/images/video/armature-welding-machine/twm-rf30s-video-poster-01-1000w.webp 1000w, /assets/images/video/armature-welding-machine/twm-rf30s-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/armature-welding-machine/twm-rf30s-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/armature-welding-machine/gallery-01-800w.webp",
@@ -349,6 +360,7 @@
                                       "shows":  "workpiece"
                                   },
                          "heroShows":  "workpiece",
+                         "video":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-01-1000w.webp",
@@ -543,6 +555,16 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  {
+                                       "youtubeId":  "FozMVvSED9w",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/automatic-stuff-type-armature-winding-machine/twm-702-video-poster-01-640w.webp 640w, /assets/images/video/automatic-stuff-type-armature-winding-machine/twm-702-video-poster-01-1000w.webp 1000w, /assets/images/video/automatic-stuff-type-armature-winding-machine/twm-702-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/automatic-stuff-type-armature-winding-machine/twm-702-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-01-1000w.webp",
@@ -688,6 +710,16 @@
                                       "shows":  "workpiece"
                                   },
                          "heroShows":  "workpiece",
+                         "video":  {
+                                       "youtubeId":  "M9sZ4L62YUw",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/bobbin/twm-video-poster-01-640w.webp 640w, /assets/images/video/bobbin/twm-video-poster-01-1000w.webp 1000w, /assets/images/video/bobbin/twm-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/bobbin/twm-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/bobbin/gallery-01-400w.webp",
@@ -812,6 +844,16 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  {
+                                       "youtubeId":  "FozMVvSED9w",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/commutator-slot-cutting/twm-606-video-poster-01-640w.webp 640w, /assets/images/video/commutator-slot-cutting/twm-606-video-poster-01-1000w.webp 1000w, /assets/images/video/commutator-slot-cutting/twm-606-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/commutator-slot-cutting/twm-606-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/commutator-slot-cutting/gallery-01-1000w.webp",
@@ -909,6 +951,16 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  {
+                                       "youtubeId":  "bBpRweuQ-EQ",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/hook-type-armature-automatic-winding-machine-vertical/twm955-video-poster-01-640w.webp 640w, /assets/images/video/hook-type-armature-automatic-winding-machine-vertical/twm955-video-poster-01-1000w.webp 1000w, /assets/images/video/hook-type-armature-automatic-winding-machine-vertical/twm955-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/hook-type-armature-automatic-winding-machine-vertical/twm955-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-01-1000w.webp",
@@ -1022,6 +1074,16 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  {
+                                       "youtubeId":  "i6IT5S4nSCg",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-video-poster-01-640w.webp 640w, /assets/images/video/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-video-poster-01-1000w.webp 1000w, /assets/images/video/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-01-378w.webp",
@@ -1211,6 +1273,7 @@
                                       "shows":  "workpiece"
                                   },
                          "heroShows":  "workpiece",
+                         "video":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/scara/gallery-01-400w.webp",
@@ -1255,6 +1318,7 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-01-400w.webp",
@@ -1384,6 +1448,7 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/shaft-embossing/gallery-01-400w.webp",
@@ -1481,6 +1546,16 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  {
+                                       "youtubeId":  "OfkCU6SbgTg",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/three-in-one-automatic-turning-machine/twm-la01-video-poster-01-640w.webp 640w, /assets/images/video/three-in-one-automatic-turning-machine/twm-la01-video-poster-01-1000w.webp 1000w, /assets/images/video/three-in-one-automatic-turning-machine/twm-la01-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/three-in-one-automatic-turning-machine/twm-la01-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/three-in-one-automatic-turning-machine/gallery-01-400w.webp",
@@ -1556,6 +1631,16 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  {
+                                       "youtubeId":  "kHGLWEHXezg",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/twm-sp001-video-poster-01-640w.webp 640w, /assets/images/video/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/twm-sp001-video-poster-01-1000w.webp 1000w, /assets/images/video/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/twm-sp001-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/twm-sp001-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-800w.webp",
@@ -1647,6 +1732,16 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  {
+                                       "youtubeId":  "n9c-bLeW3lk",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/motor-stator-slot-insulation-paper-inserting-machine/twm-isp01-video-poster-01-640w.webp 640w, /assets/images/video/motor-stator-slot-insulation-paper-inserting-machine/twm-isp01-video-poster-01-1000w.webp 1000w, /assets/images/video/motor-stator-slot-insulation-paper-inserting-machine/twm-isp01-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/motor-stator-slot-insulation-paper-inserting-machine/twm-isp01-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/motor-stator-slot-insulation-paper-inserting-machine/gallery-01-400w.webp",
@@ -1706,6 +1801,16 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  {
+                                       "youtubeId":  "WoygbVs-Ia4",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/armature-slot-insulation-paper-inserting-machine/twm-ip01-video-poster-01-640w.webp 640w, /assets/images/video/armature-slot-insulation-paper-inserting-machine/twm-ip01-video-poster-01-1000w.webp 1000w, /assets/images/video/armature-slot-insulation-paper-inserting-machine/twm-ip01-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/armature-slot-insulation-paper-inserting-machine/twm-ip01-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/armature-slot-insulation-paper-inserting-machine/gallery-01-400w.webp",
@@ -1781,6 +1886,16 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  {
+                                       "youtubeId":  "Cu6GGoe3VWk",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/armature-slot-wedge-inserting-machine/twm-iw01-video-poster-01-640w.webp 640w, /assets/images/video/armature-slot-wedge-inserting-machine/twm-iw01-video-poster-01-1000w.webp 1000w, /assets/images/video/armature-slot-wedge-inserting-machine/twm-iw01-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/armature-slot-wedge-inserting-machine/twm-iw01-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/armature-slot-wedge-inserting-machine/gallery-01-400w.webp",
@@ -1856,6 +1971,16 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  {
+                                       "youtubeId":  "b4kZbV1j72c",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/vertical-slot-wedge-inserting-machine/twm-isw001-video-poster-01-640w.webp 640w, /assets/images/video/vertical-slot-wedge-inserting-machine/twm-isw001-video-poster-01-1000w.webp 1000w, /assets/images/video/vertical-slot-wedge-inserting-machine/twm-isw001-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/vertical-slot-wedge-inserting-machine/twm-isw001-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-01-378w.webp",
@@ -1931,6 +2056,16 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  {
+                                       "youtubeId":  "kGBS3_6QQHo",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/cooling-fan-motor-automatic-production-line/twm-video-poster-01-640w.webp 640w, /assets/images/video/cooling-fan-motor-automatic-production-line/twm-video-poster-01-1000w.webp 1000w, /assets/images/video/cooling-fan-motor-automatic-production-line/twm-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/cooling-fan-motor-automatic-production-line/twm-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-01-1000w.webp",
@@ -1990,6 +2125,16 @@
                                       "shows":  "workpiece"
                                   },
                          "heroShows":  "workpiece",
+                         "video":  {
+                                       "youtubeId":  "zt4Ede_TTKc",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/application-of-six-axis-robotic-arm/twm-video-poster-01-640w.webp 640w, /assets/images/video/application-of-six-axis-robotic-arm/twm-video-poster-01-1000w.webp 1000w, /assets/images/video/application-of-six-axis-robotic-arm/twm-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/application-of-six-axis-robotic-arm/twm-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/application-of-six-axis-robotic-arm/gallery-01-800w.webp",
@@ -2050,6 +2195,7 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-1000w.webp",
@@ -2125,6 +2271,7 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/hook-type-armature-automatic-winding-machine/gallery-01-1000w.webp",
@@ -2206,6 +2353,7 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/armature-testing-machine/gallery-01-280w.webp",
@@ -2281,6 +2429,16 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  {
+                                       "youtubeId":  "JlIgVmoA2uc",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/varnish-bake/twm-301a-video-poster-01-640w.webp 640w, /assets/images/video/varnish-bake/twm-301a-video-poster-01-1000w.webp 1000w, /assets/images/video/varnish-bake/twm-301a-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/varnish-bake/twm-301a-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/varnish-bake/gallery-01-1000w.webp",
@@ -2420,6 +2578,7 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/gallery-01-400w.webp",
@@ -2511,6 +2670,7 @@
                                       "shows":  "workpiece"
                                   },
                          "heroShows":  "workpiece",
+                         "video":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/balancing/gallery-01-121w.webp",
@@ -2603,6 +2763,16 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  {
+                                       "youtubeId":  "1ij06NcI9-U",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/automatic-modular-production-line/twm-video-poster-01-640w.webp 640w, /assets/images/video/automatic-modular-production-line/twm-video-poster-01-1000w.webp 1000w, /assets/images/video/automatic-modular-production-line/twm-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/automatic-modular-production-line/twm-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/automatic-modular-production-line/gallery-01-800w.webp",
@@ -2742,6 +2912,16 @@
                                       "shows":  "workpiece"
                                   },
                          "heroShows":  "workpiece",
+                         "video":  {
+                                       "youtubeId":  "KYT7ybakPhc",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/automatic-winding-machine-product-series/twm-video-poster-01-640w.webp 640w, /assets/images/video/automatic-winding-machine-product-series/twm-video-poster-01-1000w.webp 1000w, /assets/images/video/automatic-winding-machine-product-series/twm-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/automatic-winding-machine-product-series/twm-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/automatic-winding-machine-product-series/gallery-01-400w.webp",
@@ -2882,6 +3062,7 @@
                                       "shows":  "workpiece"
                                   },
                          "heroShows":  "workpiece",
+                         "video":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/automatic-modular-production-line-2/gallery-01-1000w.webp",
@@ -2958,6 +3139,7 @@
                                       "shows":  "workpiece"
                                   },
                          "heroShows":  "workpiece",
+                         "video":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/semiconductor-sealing-testing-process-equipment/gallery-01-400w.webp",
@@ -3050,6 +3232,7 @@
                                       "shows":  "workpiece"
                                   },
                          "heroShows":  "workpiece",
+                         "video":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/automatic-feeding-system/gallery-01-800w.webp",
@@ -3094,6 +3277,7 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/turntable-automatic-assembling-equipment/gallery-01-1000w.webp",
@@ -3201,6 +3385,7 @@
                                       "shows":  "workpiece"
                                   },
                          "heroShows":  "workpiece",
+                         "video":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/vibration-feeding-assembling-equipment/gallery-01-800w.webp",
@@ -3245,6 +3430,7 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/stator-fusing/gallery-01-1000w.webp",
@@ -3336,6 +3522,16 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  {
+                                       "youtubeId":  "lUBh40IA0rM",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/stator-production-line/twm-902s-video-poster-01-640w.webp 640w, /assets/images/video/stator-production-line/twm-902s-video-poster-01-1000w.webp 1000w, /assets/images/video/stator-production-line/twm-902s-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/stator-production-line/twm-902s-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/stator-production-line/gallery-01-378w.webp",
@@ -3491,6 +3687,16 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  {
+                                       "youtubeId":  "wZNqag_sRQk",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-video-poster-01-640w.webp 640w, /assets/images/video/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-video-poster-01-1000w.webp 1000w, /assets/images/video/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-01-800w.webp",
@@ -3588,6 +3794,7 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/two-poles-type-stator-winding-machine-with-two-axes/gallery-01-400w.webp",
@@ -3685,6 +3892,7 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/varnish-bake-twm-301a/gallery-01-1000w.webp",
@@ -3824,6 +4032,16 @@
                                       "shows":  "equipment"
                                   },
                          "heroShows":  "equipment",
+                         "video":  {
+                                       "youtubeId":  "vaTSsRpi-AI",
+                                       "poster":  {
+                                                      "width":  1400,
+                                                      "alt":  "",
+                                                      "srcset":  "/assets/images/video/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-video-poster-01-640w.webp 640w, /assets/images/video/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-video-poster-01-1000w.webp 1000w, /assets/images/video/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-video-poster-01-1400w.webp 1400w",
+                                                      "height":  788,
+                                                      "src":  "/assets/images/video/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-video-poster-01-1400w.webp"
+                                                  }
+                                   },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-01-1000w.webp",

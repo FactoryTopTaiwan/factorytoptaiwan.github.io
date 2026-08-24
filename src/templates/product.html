@@ -86,6 +86,36 @@
   </div>
 </section>
 
+{{#if page.product.video}}
+<section class="section">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">{{site.ui.watchMachine}}</p>
+      <h2>{{page.product.title}}</h2>
+    </div>
+    <!-- Facade, not an embed. YouTube is not contacted until the reader
+         presses play, so a product page carries no third-party cookie and
+         the iframe never touches the critical path. -->
+    <div class="vid" data-video="{{page.product.video.youtubeId}}"
+         data-video-title="{{page.product.title}}">
+      <button class="vid__play" type="button">
+        <img class="vid__poster" src="{{page.product.video.poster.src}}"
+             srcset="{{page.product.video.poster.srcset}}"
+             sizes="(min-width: 62rem) 70vw, 100vw"
+             width="{{page.product.video.poster.width}}"
+             height="{{page.product.video.poster.height}}"
+             alt="" loading="lazy" decoding="async">
+        <span class="vid__btn" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+        </span>
+        <span class="visually-hidden">{{site.ui.watchMachine}}</span>
+      </button>
+    </div>
+    <p class="vid__note">{{site.ui.watchLede}}</p>
+  </div>
+</section>
+{{/if}}
+
 {{#if page.product.workpiece}}
 <section class="section">
   <div class="shell">
