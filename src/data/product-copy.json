@@ -48,7 +48,11 @@
                                                                             "Automatic slot change, push and claw positioning and high accuracy in repetitive."
                                                                         ],
                                                              "enSpec":  [
-
+                                                                            "Workpiece: brushed / DC / universal motor armatures",
+                                                                            "Material: reel-fed insulation paper (project-dependent thickness)",
+                                                                            "Operations per cycle: automatic feed, cut, form (U-shape), insert - all slots",
+                                                                            "Tooling: modular, exchangeable per slot count and stack height",
+                                                                            "Automation: standalone or integrated into an armature production line"
                                                                         ],
                                                              "enFeat":  [
 
@@ -79,7 +83,11 @@
                                                                  "Automatic slot change, push and claw positioning and high accuracy in repetitive."
                                                              ],
                                                   "enSpec":  [
-
+                                                                 "Workpiece: brushed / DC / universal motor armatures, post-winding",
+                                                                 "Material: closing wedges (customer-supplied or specified)",
+                                                                 "Operations: driven insertion into every armature slot",
+                                                                 "Tooling: exchangeable per slot count and wedge geometry",
+                                                                 "Automation: standalone or in-line as a wedging station"
                                                              ],
                                                   "enFeat":  [
 
@@ -118,7 +126,11 @@
                                                     "(5). Testing frequency: commutator"
                                                 ],
                                      "enSpec":  [
-
+                                                    "Workpiece: completed brushed / universal motor armatures",
+                                                    "Tests: surge test, insulation resistance, DC resistance (project-dependent test suite)",
+                                                    "Judgement: automatic pass / fail with unit-level diversion",
+                                                    "Interface: PLC with touchscreen HMI, recipe management per part number",
+                                                    "Automation: standalone or in-line as end-of-line inspection"
                                                 ],
                                      "enFeat":  [
 
@@ -187,7 +199,11 @@
                                                     "Elevator type material provide and receive mechanism, stackable material tray and utilize servo elevate mechanism to send out the processed parts and collect/stores finished products. Suitable for automatic supply of various tray-type materials."
                                                 ],
                                      "enSpec":  [
-
+                                                    "Product: automated part feeder for the upstream stations of a production line",
+                                                    "Feed method: engineered per part - vibratory bowl, magazine, or conveyor",
+                                                    "Rate: matched to the downstream cycle at line design",
+                                                    "Interface: PLC-integrated with recipe-based part-number switching",
+                                                    "Automation: designed to plug into a modular production line"
                                                 ],
                                      "enFeat":  [
 
@@ -308,7 +324,11 @@
                                      "10. The unbalance is displayed as an average value and target with speed (rpm) filter which is excellent for detect small vibrations."
                                  ],
                       "enSpec":  [
-
+                                     "Workpiece: rotors from brushed, universal, and small BLDC motors",
+                                     "Method: dynamic balancing with automatic correction (mass removal or addition)",
+                                     "Measurement: two-plane, computerised unbalance judgement",
+                                     "Cycle: project-dependent on rotor mass and required correction resolution",
+                                     "Automation: standalone or in-line as end-of-line balancing"
                                  ],
                       "enFeat":  [
 
@@ -730,7 +750,11 @@
                                                   "This product can be assembled with remote monitoring module for remote program monitoring and maintenance."
                                               ],
                                    "enSpec":  [
-
+                                                  "Workpiece: brushless (BLDC) motor stators, in-slot winding",
+                                                  "Drive: servo motor per winding axis, programmable tension",
+                                                  "Configuration: winding geometry, slot count and stack height are project-dependent",
+                                                  "Wire diameter: configured per motor architecture",
+                                                  "Automation: standalone winding station or integrated into a stator line"
                                               ],
                                    "enFeat":  [
 
@@ -807,7 +831,11 @@
                                                                                      "Rotor cleaning mechanism can be added separately, or arrange accordingly to customer’s requirements. The power output unit are available in oil pressure output, air pressure output, air-oil pressure conversion output, servo motor with ball screw feed power output and other machines for customer to choose from. In this product series, we have commutator outer diameter turning machine, silicon steel plate outer diameter turning and armature cleaning 3 in 1 mechanism. Connect with robotic arm and conveyor belt to achieve unmanned automatic production line."
                                                                                  ],
                                                                       "enSpec":  [
-
+                                                                                     "Workpiece: brushed / DC / universal motor armatures with commutator",
+                                                                                     "Operations: precision turning of commutator OD and armature OD",
+                                                                                     "Drive: servo-driven cutting feed",
+                                                                                     "Tolerance: engineered per project - typical machining precision applies",
+                                                                                     "Automation: standalone or in-line as a turning station"
                                                                                  ],
                                                                       "enFeat":  [
 
@@ -932,7 +960,11 @@
                                         "The automatic positioning and dispensing can accurately drip the varnish on the same area of each stator to achieve a unified standard. ◆ Automatically detect if incoming materials are available, and then start to continuous dispensing operations. Or intermittent dispensing operations for small amount of armatures to reduce the loss of varnish. ◆ Dripping area is isolated and has an independent ventilation system in order to avoid varnish smell spillage. ◆ In addition to the varnishing dripping system, this model can connect the ring neck glue automatic dripping system, therefore varnishing and ring neck glue dripping can be done one time. This can effectively reduce dripping time. ◆ Double shaft end ejecting mechanism, no need to replace the fixture and stator runs smoothly without shaking. Prime quality on varnish absorbing and drying. ◆ Fixture adjustment adopts snap-type design without the use of tools. Quick fixture adjustment. ◆ Revolution and rotation are controlled independently. Stator transfer setting (revolution) and rotary speed can be set up according to the characteristics of the stator and varnish. ◆ Equipped with automatic transmission tension adjustment mechanism and automatic overload protection mechanism. ◆ Equipped with rotation speed compensation function. Rotation speed will not be affected by revolution. ◆ Preheat zone and hardening zone is independently controlled. Maximum temperature is 180℃ ◆ Unique hot air circuit design greatly reduce hot air outflow at the inlet and outlet which effectively improves the electric heating efficiency. ◆ Adopts PID temperature control module + SSR current control module to control the accuracy of the temperature in the furnace±2%. ◆ The control system adopts Japanese PLC with 10” touch screen interface which can display various operation information and monitoring operation in real time. ◆ Humanized design with real-time switching on manual/automatic function, operation monitoring function, automatic reminder of maintenance function and automatic abnormal detect function …etc. ◆ It can store up to 100 sets of working parameter settings which allows user to access to various parameters more quickly when changing models. Saving tremendous time when changing models. ◆ Remote program monitoring and maintenance can be performed. ◆ This series of products can be tailored to different machine size, shapes and finishing product quantity. Moreover, manual glue dispenser is available to choose from."
                                     ],
                          "enSpec":  [
-
+                                        "Workpiece: wound stators and armatures - brushed, universal, and BLDC",
+                                        "Process: impregnation and bake (integrated), insulation class per varnish selection",
+                                        "Load: batch, sized to the customer\u0027s stator diameter and stack height",
+                                        "Control: temperature and dwell recipes stored per part",
+                                        "Configuration: chamber dimensions and throughput are engineered per project"
                                     ],
                          "enFeat":  [
 
@@ -976,7 +1008,11 @@
                                                  "The automatic positioning and dispensing can accurately drip the varnish on the same area of each stator to achieve a unified standard. ◆ Automatically detect if incoming materials are available, and then start to continuous dispensing operations. Or intermittent dispensing operations for small amount of armatures to reduce the loss of varnish. ◆ Dripping area is isolated and has an independent ventilation system in order to avoid varnish smell spillage. ◆ In addition to the varnishing dripping system, this model can connect the ring neck glue automatic dripping system, therefore varnishing and ring neck glue dripping can be done one time. This can effectively reduce dripping time. ◆ Double shaft end ejecting mechanism, no need to replace the fixture and stator runs smoothly without shaking. Prime quality on varnish absorbing and drying. ◆ Fixture adjustment adopts snap-type design without the use of tools. Quick fixture adjustment. ◆ Revolution and rotation are controlled independently. Stator transfer setting (revolution) and rotary speed can be set up according to the characteristics of the stator and varnish. ◆ Equipped with automatic transmission tension adjustment mechanism and automatic overload protection mechanism. ◆ Equipped with rotation speed compensation function. Rotation speed will not be affected by revolution. ◆ Preheat zone and hardening zone is independently controlled. Maximum temperature is 180℃ ◆ Unique hot air circuit design greatly reduce hot air outflow at the inlet and outlet which effectively improves the electric heating efficiency. ◆ Adopts PID temperature control module + SSR current control module to control the accuracy of the temperature in the furnace±2%. ◆ The control system adopts Japanese PLC with 10” touch screen interface which can display various operation information and monitoring operation in real time. ◆ Humanized design with real-time switching on manual/automatic function, operation monitoring function, automatic reminder of maintenance function and automatic abnormal detect function …etc. ◆ It can store up to 100 sets of working parameter settings which allows user to access to various parameters more quickly when changing models. Saving tremendous time when changing models. ◆ Remote program monitoring and maintenance can be performed. ◆ This series of products can be tailored to different machine size, shapes and finishing product quantity. Moreover, manual glue dispenser is available to choose from."
                                              ],
                                   "enSpec":  [
-
+                                                 "Workpiece: wound stators and armatures - brushed, universal, and BLDC",
+                                                 "Process: impregnation and bake (integrated), automated cycle",
+                                                 "Load: batch, sized to the customer\u0027s stator diameter and stack height",
+                                                 "Control: temperature and dwell recipes stored per part",
+                                                 "Configuration: chamber dimensions and throughput are engineered per project"
                                              ],
                                   "enFeat":  [
 
@@ -1056,7 +1092,11 @@
                                                                  "High slot full rate can still insert paper smoothly"
                                                              ],
                                                   "enSpec":  [
-
+                                                                 "Workpiece: brushless (BLDC) motor stators, vertical loading",
+                                                                 "Material: closing wedges, project-dependent geometry",
+                                                                 "Operations: servo-driven insertion, one slot at a time or ganged per tooling",
+                                                                 "Configuration: tooling swap for slot count, stack height and wedge geometry",
+                                                                 "Automation: standalone or in-line with upstream winding / slot-liner stations"
                                                              ],
                                                   "enFeat":  [
 
