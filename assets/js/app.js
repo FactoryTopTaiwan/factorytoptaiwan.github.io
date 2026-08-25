@@ -273,9 +273,9 @@
      until someone presses play, so a reader who never watches pays no
      third-party request and collects no cookie.
 
-     autoplay=1 on the inserted iframe is not a violation of the no-autoplay
-     rule - it is what makes the single click the reader already made actually
-     start the video, instead of asking for a second one.
+     No autoplay - client instruction. The reader clicks our facade to load
+     the embed, then clicks YouTube's own play control to start playback. Two
+     clicks, but that is the behaviour the client asked for after review.
 
      Placed above the reveal-on-scroll block on purpose: that block returns
      early under prefers-reduced-motion. */
@@ -288,9 +288,6 @@
         var id = box.getAttribute('data-video');
         if (!id) return;
         var frame = document.createElement('iframe');
-        // No autoplay - client instruction. The reader has to press play in the
-        // YouTube player itself. That is one more click than embed+autoplay,
-        // but it is the behaviour the client asked for after seeing the site.
         frame.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
                     '?rel=0&modestbranding=1';
         frame.title = box.getAttribute('data-video-title') || 'Video';
