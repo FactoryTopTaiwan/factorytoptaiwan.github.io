@@ -300,11 +300,16 @@
     </div>
 
     <aside class="lightbox__side">
-      <div class="lightbox__info">
-        {{#if page.product.model}}<p class="lightbox__model model">{{page.product.model}}</p>{{/if}}
-        <h2 class="lightbox__title">{{page.product.title}}</h2>
-        <p class="lightbox__lede">{{page.copy.summary}}</p>
-      </div>
+      <!-- Amazon strips this panel to title, one style/variant line, then
+           a small-square thumbnail grid. Nothing else - no lede, no CTA.
+           Kept the model number since it is the primary identifier on this
+           site the way "Style:" is on Amazon. -->
+      <h2 class="lightbox__title">{{page.product.title}}</h2>
+      {{#if page.product.model}}<p class="lightbox__style">
+        <span class="lightbox__style-label">{{site.ui.model}}:</span>
+        <span class="model">{{page.product.model}}</span>
+      </p>{{/if}}
+
       <div class="lightbox__thumbs" role="tablist" aria-label="{{site.ui.tabImages}}">
         {{#each page.product.gallery}}
         <button class="lightbox__thumb" type="button" role="tab"
@@ -318,12 +323,6 @@
                width="{{width}}" height="{{height}}" alt="" loading="lazy">
         </button>
         {{/each}}
-      </div>
-      <div class="lightbox__actions">
-        <a class="btn btn--primary" href="{{site.urlPrefix}}/contact/?model={{page.product.model}}">
-          {{site.ui.requestQuote}}
-          <span class="btn__arrow" aria-hidden="true">→</span>
-        </a>
       </div>
     </aside>
   </div>

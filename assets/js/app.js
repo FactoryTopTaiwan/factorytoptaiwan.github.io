@@ -381,6 +381,16 @@
 
     var heroBtn = document.querySelector('[data-prod-zoom]');
     if (heroBtn) heroBtn.addEventListener('click', function () { openLightbox(0); });
+
+    // Second click inside the modal - on the main image - zooms it further.
+    // Amazon pattern: hero opens modal, image inside modal zooms on click.
+    var stage = lightbox.querySelector('.lightbox__stage');
+    if (stage && lbMain) {
+      lbMain.addEventListener('click', function (e) {
+        e.stopPropagation();
+        stage.classList.toggle('is-zoomed');
+      });
+    }
   }
 
   /* ---- Share menu --------------------------------------------------------

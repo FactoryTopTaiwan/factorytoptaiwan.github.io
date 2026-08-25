@@ -484,11 +484,16 @@
     </div>
 
     <aside class="lightbox__side">
-      <div class="lightbox__info">
-        <p class="lightbox__model model">TWM-ISP01</p>
-        <h2 class="lightbox__title">Motor stator slot insulation paper inserting machine</h2>
-        <p class="lightbox__lede">TWM-ISP01 is a motor stator slot insulation paper inserting machine built by Teamwork Automation in Taichung, Taiwan. Supplied as a standalone machine or integrated into a complete production line.</p>
-      </div>
+      <!-- Amazon strips this panel to title, one style/variant line, then
+           a small-square thumbnail grid. Nothing else - no lede, no CTA.
+           Kept the model number since it is the primary identifier on this
+           site the way "Style:" is on Amazon. -->
+      <h2 class="lightbox__title">Motor stator slot insulation paper inserting machine</h2>
+      <p class="lightbox__style">
+        <span class="lightbox__style-label">型式:</span>
+        <span class="model">TWM-ISP01</span>
+      </p>
+
       <div class="lightbox__thumbs" role="tablist" aria-label="画像">
         
         <button class="lightbox__thumb" type="button" role="tab"
@@ -535,12 +540,6 @@
                width="800" height="800" alt="" loading="lazy">
         </button>
         
-      </div>
-      <div class="lightbox__actions">
-        <a class="btn btn--primary" href="/ja/contact/?model=TWM-ISP01">
-          見積もりを依頼
-          <span class="btn__arrow" aria-hidden="true">→</span>
-        </a>
       </div>
     </aside>
   </div>

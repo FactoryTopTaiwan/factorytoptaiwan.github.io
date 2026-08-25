@@ -599,11 +599,16 @@
     </div>
 
     <aside class="lightbox__side">
-      <div class="lightbox__info">
-        <p class="lightbox__model model">TWM-RF30S</p>
-        <h2 class="lightbox__title">Armature Welding Machine</h2>
-        <p class="lightbox__lede">TWM-RF30S is a armature welding machine built by Teamwork Automation in Taichung, Taiwan. Supplied as a standalone machine or integrated into a complete production line.</p>
-      </div>
+      <!-- Amazon strips this panel to title, one style/variant line, then
+           a small-square thumbnail grid. Nothing else - no lede, no CTA.
+           Kept the model number since it is the primary identifier on this
+           site the way "Style:" is on Amazon. -->
+      <h2 class="lightbox__title">Armature Welding Machine</h2>
+      <p class="lightbox__style">
+        <span class="lightbox__style-label">Model:</span>
+        <span class="model">TWM-RF30S</span>
+      </p>
+
       <div class="lightbox__thumbs" role="tablist" aria-label="Images">
         
         <button class="lightbox__thumb" type="button" role="tab"
@@ -705,12 +710,6 @@
                width="400" height="400" alt="" loading="lazy">
         </button>
         
-      </div>
-      <div class="lightbox__actions">
-        <a class="btn btn--primary" href="/contact/?model=TWM-RF30S">
-          Request a quotation
-          <span class="btn__arrow" aria-hidden="true">→</span>
-        </a>
       </div>
     </aside>
   </div>

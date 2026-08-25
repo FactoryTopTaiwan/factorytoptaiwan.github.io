@@ -1580,46 +1580,58 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 }
 .lightbox__video iframe { width: 100%; height: 100%; border: 0; display: block; }
 
+/* Amazon-style right rail: title, one Style/Model line, then a small
+   square thumbnail grid four wide. No lede, no CTA - the Request-a-
+   quotation button already lives on the product page behind the modal,
+   so the modal stays pure product-visual. */
 .lightbox__side {
   padding: var(--sp-5);
   border-inline-start: var(--border) solid var(--line);
   overflow-y: auto;
-  display: grid; gap: var(--sp-5); align-content: start;
+  display: grid; gap: var(--sp-4); align-content: start;
 }
-.lightbox__info { display: grid; gap: var(--sp-3); }
-.lightbox__model { color: var(--accent-ink); font-size: var(--step--1); margin: 0; }
 .lightbox__title {
-  font-size: var(--step-2);
-  line-height: 1.2;
+  font-size: var(--step-1);
+  line-height: 1.25;
   margin: 0;
   text-wrap: balance;
+  font-weight: 620;
 }
-.lightbox__lede { color: var(--ink-muted); font-size: var(--step-0); margin: 0; }
+.lightbox__style {
+  margin: 0;
+  font-size: var(--step--1);
+  color: var(--ink-muted);
+}
+.lightbox__style-label { color: var(--ink-faint); }
+.lightbox__style .model { color: var(--ink); }
 
 .lightbox__thumbs {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--sp-2);
+  margin-top: var(--sp-2);
 }
 .lightbox__thumb {
   aspect-ratio: 1 / 1;
   padding: 0;
   background: var(--surface);
-  border: var(--border) solid var(--line);
-  border-radius: 8px;
+  border: 2px solid var(--line);
+  border-radius: 6px;
   cursor: pointer;
   overflow: hidden;
+  transition: border-color var(--dur-fast) var(--ease-out);
 }
-.lightbox__thumb img { width: 100%; height: 100%; object-fit: cover; }
-.lightbox__thumb[aria-selected="true"] {
-  border-color: var(--accent-ink);
-  outline: 2px solid var(--accent-ink);
-  outline-offset: -2px;
-}
+.lightbox__thumb img { width: 100%; height: 100%; object-fit: contain; }
 .lightbox__thumb:hover { border-color: var(--accent-line); }
+.lightbox__thumb[aria-selected="true"] { border-color: var(--accent-ink); }
 
-.lightbox__actions { display: flex; gap: var(--sp-3); }
-.lightbox__actions .btn { width: 100%; justify-content: center; }
+/* Main image is itself a zoom target - cursor hints at it and clicking
+   toggles a 1.6x scale, per the client's request that clicking the image
+   inside the modal should enlarge further. */
+.lightbox__stage { cursor: zoom-in; }
+.lightbox__stage.is-zoomed { cursor: zoom-out; overflow: auto; }
+.lightbox__img { transition: transform var(--dur) var(--ease-out); transform-origin: center; }
+.lightbox__stage.is-zoomed .lightbox__img { transform: scale(1.6); max-height: none; }
 
 /* Body scroll lock while lightbox open */
 body.lb-open { overflow: hidden; }
