@@ -288,10 +288,13 @@
         var id = box.getAttribute('data-video');
         if (!id) return;
         var frame = document.createElement('iframe');
+        // No autoplay - client instruction. The reader has to press play in the
+        // YouTube player itself. That is one more click than embed+autoplay,
+        // but it is the behaviour the client asked for after seeing the site.
         frame.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
-                    '?autoplay=1&rel=0&modestbranding=1';
+                    '?rel=0&modestbranding=1';
         frame.title = box.getAttribute('data-video-title') || 'Video';
-        frame.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture; web-share';
+        frame.allow = 'accelerometer; encrypted-media; picture-in-picture; web-share';
         frame.referrerPolicy = 'strict-origin-when-cross-origin';
         frame.setAttribute('allowfullscreen', '');
         frame.className = 'vid__frame';

@@ -59,6 +59,20 @@
   </div>
 </article>
 
+{{#if page.product.copy.enDesc}}
+<section class="section">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">{{site.ui.productDescription}}</p>
+      <h2>{{site.ui.whatItDoes}}</h2>
+    </div>
+    <ul class="prod__desc">
+      {{#each page.product.copy.enDesc}}<li>{{.}}</li>{{/each}}
+    </ul>
+  </div>
+</section>
+{{/if}}
+
 <section class="section section--sunken">
   <div class="shell">
     <div class="section__head">
@@ -66,6 +80,22 @@
       <h2>{{site.ui.specHeading}}</h2>
     </div>
 
+    {{#if page.product.copy.enSpec}}
+    <ul class="prod__spec">
+      {{#each page.product.copy.enSpec}}<li>{{.}}</li>{{/each}}
+    </ul>
+    {{#if page.product.spec}}
+    <details class="spec-image">
+      <summary>{{site.ui.specImageToggle}}</summary>
+      <figure class="frame frame--doc">
+        <img src="{{page.product.spec.src}}" width="{{page.product.spec.width}}"
+             height="{{page.product.spec.height}}" alt="{{page.product.spec.alt}}"
+             loading="lazy" decoding="async">
+      </figure>
+    </details>
+    {{/if}}
+    <p class="specnote__foot">{{site.ui.specDisclaimer}}</p>
+    {{else}}
     {{#if page.product.spec}}
     <div class="specnote">
       <p><strong>{{site.ui.specsAsImage}}</strong>
@@ -82,6 +112,7 @@
          {{site.ui.specsNotPublishedBody}}</p>
       <p><a class="link-cta" href="{{site.urlPrefix}}/contact/?model={{page.product.model}}">{{site.ui.askSpec}}</a></p>
     </div>
+    {{/if}}
     {{/if}}
   </div>
 </section>

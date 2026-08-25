@@ -1224,3 +1224,50 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   .vid__play:hover .vid__poster { transform: none; }
   .vid__play:hover .vid__btn { transform: translate(-50%, -50%); }
 }
+
+
+/* ---- Product description / spec bullets ---------------------------------
+   Two structurally similar blocks: what the machine does, and what it is
+   rated for. Both are bulleted lists rather than paragraphs because a buyer
+   scans them for the one line that answers their question. */
+.prod__desc, .prod__spec {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 72ch;
+  display: grid;
+  gap: var(--sp-3);
+}
+.prod__desc > li, .prod__spec > li {
+  position: relative;
+  padding-inline-start: 1.4rem;
+  color: var(--ink);
+  line-height: 1.55;
+}
+.prod__desc > li::before, .prod__spec > li::before {
+  content: "";
+  position: absolute; inset-inline-start: 0; top: 0.55em;
+  width: 0.55rem; height: 0.55rem;
+  background: var(--accent-ink);
+  border-radius: 1px;
+}
+.prod__spec > li { font-variant-numeric: tabular-nums; }
+
+/* The spec sheet image is now secondary - the values above are the primary
+   spec. Show it collapsed so it does not push the following section off. */
+.spec-image { margin-top: var(--sp-6); }
+.spec-image > summary {
+  cursor: pointer;
+  color: var(--ink-muted);
+  font-size: var(--step--1);
+  padding: var(--sp-2) 0;
+  border-bottom: var(--border) solid var(--line);
+}
+.spec-image > summary:hover { color: var(--ink); }
+.spec-image[open] > summary { margin-bottom: var(--sp-4); }
+
+.specnote__foot {
+  margin-top: var(--sp-6);
+  color: var(--ink-faint);
+  font-size: var(--step--1);
+}

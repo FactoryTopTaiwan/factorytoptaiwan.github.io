@@ -186,7 +186,11 @@
     "address": "Address",
     "response": "Response",
     "watchMachine": "Watch this machine run",
-    "watchLede": "Filmed on our floor in Taichung. Nothing loads from YouTube until you press play.",
+    "watchLede": "Filmed on our floor in Taichung. Nothing loads from YouTube until you press play, and the video does not autoplay.",
+    "productDescription": "Product description",
+    "whatItDoes": "What this machine does",
+    "specImageToggle": "View the manufacturer's specification sheet",
+    "specDisclaimer": "Capabilities shown are typical. Values outside this range can be quoted on request.",
     "fullIndex": "Full index by model",
     "everyMachine": "Every machine",
     "footerNote": "Building motor production automation since"

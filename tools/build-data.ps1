@@ -48,6 +48,20 @@ if (Test-Path $VideosPath) {
     }
 }
 
+# Optional product-copy.json: description and specification bullets per slug,
+# extracted from the client's Chinese-site and English-site product pages
+# with terminology.json corrections applied. Absent slugs simply render
+# without the description/spec blocks, so the pipeline is safe if the file
+# is deleted.
+$CopyPath = Join-Path $SiteRoot 'src\data\product-copy.json'
+$prodCopy = @{}
+if (Test-Path $CopyPath) {
+    $craw = Get-Content $CopyPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    foreach ($prop in $craw.PSObject.Properties) {
+        if ($prop.Name -notlike '_*') { $prodCopy[$prop.Name] = $prop.Value }
+    }
+}
+
 # sourceName (as it appears in the scraped breadcrumb) -> family slug
 $familyBySource = @{}
 foreach ($f in $catalogue.families) { $familyBySource[$f.sourceName] = $f }
@@ -173,6 +187,9 @@ foreach ($p in $raw) {
     $video = $null
     if ($videos.ContainsKey($slug)) { $video = $videos[$slug] }
 
+    $copy = $null
+    if ($prodCopy.ContainsKey($slug)) { $copy = $prodCopy[$slug] }
+
     $products.Add([pscustomobject]@{
         slug       = $slug
         model      = $p.model
@@ -182,6 +199,7 @@ foreach ($p in $raw) {
         hero       = $hero
         heroShows  = $(if ($equipment.Count -gt 0) { 'equipment' } elseif ($workpiece.Count -gt 0) { 'workpiece' } else { $null })
         video      = $video
+        copy       = $copy
         # .ToArray(), not @($gallery): the array subexpression operator throws
         # "Argument types do not match" on a Generic.List[object] in PS 5.1.
         gallery    = $gallery.ToArray()

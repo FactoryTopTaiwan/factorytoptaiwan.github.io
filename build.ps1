@@ -482,9 +482,28 @@ foreach ($prod in $data.products) {
     $t = $prod.title
     if ($prod.model) { $t = ("{0} {1}" -f $prod.model, $prod.title) }
 
+    # Regional search-term signal. Meta keywords is a weak Google signal but
+    # still read by Bing, Yandex, and some Asian engines, and it also gives the
+    # writer a place to see the vocabulary a page is targeting. The regions
+    # are the ones the client named: US and Canada first, then SEA, India,
+    # Europe. Terms are the trade terms buyers actually search in each region.
+    $motorTerm = 'motor'
+    if     ($prod.title -match 'Brushless|BLDC') { $motorTerm = 'BLDC motor, brushless motor, hairpin motor' }
+    elseif ($prod.title -match 'Armature|Commutator|Varnish|Fusing') { $motorTerm = 'brushed motor, universal motor, DC motor, armature' }
+    elseif ($prod.title -match 'Semiconductor') { $motorTerm = 'semiconductor packaging' }
+    $kwParts = @()
+    if ($prod.model) { $kwParts += $prod.model }
+    $kwParts += $prod.title.ToLower()
+    $kwParts += $motorTerm
+    $kwParts += 'motor production equipment, motor manufacturing machinery'
+    $kwParts += 'Taiwan manufacturer, OEM equipment supplier'
+    $kwParts += 'USA, Canada, Mexico, Vietnam, India, Thailand, Germany, Italy, Turkey'
+    $keywords = ($kwParts -join ', ')
+
     Build-Page -Template 'product.html' -Out ($OutPfx + ("products\{0}\index.html" -f $prod.slug)) -Page @{
         title       = $t
         description = $summary
+        keywords    = $keywords
         url         = ("{0}/products/{1}/" -f $UrlPfx, $prod.slug)
         nav         = 'products'
         product     = $prod

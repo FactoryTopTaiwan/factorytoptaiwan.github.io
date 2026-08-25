@@ -91,6 +91,37 @@
                                   },
                          "heroShows":  "equipment",
                          "video":  null,
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "Applicable to automatic winding for air coil.",
+                                                     "This model with 2-axes independent AC servo motor applied to drive flyers and wire spreading core for high speed accurate and precise coil winding.",
+                                                     "Modular molds and dies design, it is able to make fast positioning, and with high repetitive precision, to reduce time required for mold die changes tremendously.",
+                                                     "Dies can be shared for this series, reduces the cost of mold development tremendously.",
+                                                     "The analog tension output control system provides tension for different coil winding stages and increases quality level of product.",
+                                                     "Based on Japanese PLC controller with touch panel promptly to display various operation statuses and running monitoring function.",
+                                                     "It is able to equip with remote monitoring module to do remote program monitoring safeguard."
+                                                 ],
+                                      "enSpec":  [
+                                                     "＊ Please contact TeamWork for requirements outside these specifications. We reserve the right of technical modifications without notice."
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "本系列以兩軸獨立 AC 伺服馬達驅動旋翼及排線軸做高速精確之捲線",
+                                                     "模具採模組化設計，可快速定位且重複精確性高，大幅縮減換模時間",
+                                                     "導入模具共用設計，大幅降低模具開發成本",
+                                                     "類比式區段張力輸出控制，可提供繞線時各階段張力，大幅提昇產品良率",
+                                                     "控制系統採用日系 PLC 搭配觸控操作介面，可即時顯示各項操作訊息及運轉監控機能",
+                                                     "可搭配遠端監控模組作遠距程式監控維護"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/air-coil-winding-machine/gallery-01-400w.webp",
@@ -310,6 +341,31 @@
                                                       "src":  "/assets/images/video/armature-welding-machine/twm-rf30s-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "Applicable for automatic commutator slotting for a variety of carbon brush and series motors.",
+                                                     "Stable AC and DC output.",
+                                                     "Equipped with multi-channel constant current and constant voltage controller.",
+                                                     "Easy to operate. Accurate and clear display.",
+                                                     "Free of damage on insulation layer, therefore no deform."
+                                                 ],
+                                      "enSpec":  [
+                                                     "＊ Please contact TeamWork for requirements outside these specifications. We reserve the right of technical modifications without notice."
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "適用於碳刷 / 串激馬達整流子自動焊接作業",
+                                                     "搭配多頻道定電流，定電壓控制器"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/armature-welding-machine/gallery-01-800w.webp",
@@ -488,6 +544,43 @@
                                   },
                          "heroShows":  "equipment",
                          "video":  null,
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "Applicable for all types of rotary coil automatic winding.",
+                                                     "We use multiple AC servo motor to control. Max. 16 axes winding at the same time and capable of auto clamping function.",
+                                                     "According to product demand, this equipment can be connected to the following module:",
+                                                     "1. Auto fine thread twisting module",
+                                                     "2. Auto copper wire coating remove and dust collect module.",
+                                                     "3. Auto labelling on finish product module",
+                                                     "4. Thread head and end auto cutting module",
+                                                     "Modular molding design can be rapidly position and high repetition accuracy and result in reducing tooling changing time tremendously.",
+                                                     "Tension system is adopting high sensitive servo tension controller. It can produce several tension controls when winding which optimize tension adjustment performance in each winding operation stage.",
+                                                     "The control system adopts Japanese PLC with touch screen interface which can display various operation information and monitoring operation in real time.",
+                                                     "TMW-WB001 can be connected with a robotic arm and a conveyor belt to achieve fully automatic production line."
+                                                 ],
+                                      "enSpec":  [
+                                                     "＊ Please contact TeamWork for requirements outside these specifications. We reserve the right of technical modifications without notice."
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "本系列以多軸 AC 伺服馬達控制，最多可結合 16 軸同步繞線，並具有自動夾剪線功能",
+                                                     "依據產品需求，本設備可外加下列功能模組:",
+                                                     "2.銅線表層自動除漆、集塵模組",
+                                                     "模具採模組化設計，可快速定位且重複精確性高，大幅縮減換模時間",
+                                                     "張力系統採用高靈敏度伺服張力控制器，使捲繞作業有最佳之張力調節表現",
+                                                     "控制系統採用日系 PLC 搭配觸控操作介面，可即時顯示各項操作訊息及運轉監控機能",
+                                                     "TWM-WB001 可搭配機械手臂與輸送帶做連結，達到全自動生產功能",
+                                                     "可搭配遠端監控模組作遠距程式監控維護"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-01-1000w.webp",
@@ -787,6 +880,46 @@
                                                       "src":  "/assets/images/video/automatic-stuff-type-armature-winding-machine/twm-702-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "Applicable for all kind of brush motor, DC and series hook type armature automatic winding machine.",
+                                                     "This product can be used for grooved (no hook) type commutator armature. Automatic winding, riveting and trimming can be done in one time. It is widely used in rotors for AC and DC carbon brush motors.",
+                                                     "Assemble with independent AC servo motor on each flyer for high speed and accurate winding.",
+                                                     "Switch angles by AC servo motor controller. Accuracy can reach 0.01 degree.",
+                                                     "Provide a 360-degree wire clamping mechanism motion design and equipped with rotor reversing displacement mechanism so that the tie-line angle can reach at any angle within 360 degree.",
+                                                     "Wire binding adopts continuous riveting type without thread end, which can effectively improve nail wire quality and enameled wire utilization rate.",
+                                                     "Modular molding design can be rapidly position and high repetition accuracy which reduce tooling changing time tremendously.",
+                                                     "Tension system is adopting high sensitive servo tension controller. It can produce several tension controls when winding which optimize tension adjustment performance in each winding operation stage.",
+                                                     "The control system adopts Japanese PLC with 10” touch screen interface which can display various operation information and monitoring operation in real time.",
+                                                     "This product can be connected with a robotic arm and a conveyor belt to achieve fully automatic production line.",
+                                                     "This product can be assembled with remote monitoring module for remote program monitoring and maintenance."
+                                                 ],
+                                      "enSpec":  [
+                                                     "＊ Please contact TeamWork for requirements outside these specifications. We reserve the right of technical modifications without notice."
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "適合各式碳刷、串激類馬達轉子自動捲線",
+                                                     "本機型應用於槽式（無掛鉤）換向器之轉子自動捲線、鉚線、剪線作業一次完成，為廣泛應用於交、直流碳刷馬達轉子之泛用型設備",
+                                                     "本系列以兩軸獨立 AC 伺服馬達驅動旋翼做高速精確之捲線",
+                                                     "角度位置變化採 AC 伺服馬達控制，精度可達 0.01 度",
+                                                     "提供 360 度運動設計之夾線機構搭配轉子換向移位機構，使結線角度可達 360 度任一角度",
+                                                     "結線動作採無線頭連續鉚入式，有效提高釘線品質與漆包線之使用率",
+                                                     "模具採模組化設計，可快速定位且重複精確性高，大幅縮減換模時間",
+                                                     "張力系統採用高靈敏度伺服張力控制器，繞線時可產生多段張力控制，使捲繞作業各階段之張力變化皆有最佳之張力調節表現",
+                                                     "控制系統採用日系 PLC 搭配 10\" 觸控操作介面，可即時顯示各項操作訊息及運轉監控機能",
+                                                     "本機型可安裝機械手臂與輸送帶連結，達到全自動生產功能",
+                                                     "可搭配遠端監控模組作遠距程式監控維護"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-01-1000w.webp",
@@ -1038,6 +1171,7 @@
                                                       "src":  "/assets/images/video/bobbin/twm-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/bobbin/gallery-01-400w.webp",
@@ -1172,6 +1306,40 @@
                                                       "src":  "/assets/images/video/commutator-slot-cutting/twm-606-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "Applicable for automatic commutator slotting for a variety of carbon brush and series motors.",
+                                                     "Preliminary positioning is conducted by mechanical pawl and the servo shifting system extend slotting application.",
+                                                     "The adjustable gear replaces the traditional tooth belt for transmission to reduce errors of cutting precision resulted from flexibility of the belt.",
+                                                     "Synchronous cutting of dual tools enhances cutting efficiency.",
+                                                     "Modular molding design can be rapidly position and high repetition accuracy and result in reducing tooling changing time tremendously.",
+                                                     "Independent servo feed unit can fine adjust cutting depth individually and easy for maintenance.",
+                                                     "Feature of humanized operating interface, easy slot number setup and automatic error detection.",
+                                                     "Optional robotic arm and conveyor belt achieves unmanned and fully automatic production line."
+                                                 ],
+                                      "enSpec":  [
+                                                     "＊Please contact TeamWork for requirements outside these specifications. We reserve the right of technical modifications without notice。"
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "適合各式碳刷、串激類馬達整流子之自動開槽作業",
+                                                     "利用機械推爪方式進行初定位，搭配伺服移位系統大幅提昇切溝應用範圍",
+                                                     "採用調整式齒輪，有效降低因皮帶饒性造成之切削精度誤差",
+                                                     "雙刀軸上下同步切削，切削速率提升一倍",
+                                                     "模具採模組化設計，可快速定位且重複精確性高，大幅縮減換模時間",
+                                                     "伺服獨立進刀單元，可獨立微調切削深度、易於設備維護",
+                                                     "具人性化操作介面、簡易槽數設定、故障自動檢知功能等功能",
+                                                     "可搭配機械手臂與輸送帶做連結，達到全自動生產功能"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/commutator-slot-cutting/gallery-01-1000w.webp",
@@ -1327,6 +1495,39 @@
                                                       "src":  "/assets/images/video/hook-type-armature-automatic-winding-machine-vertical/twm955-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "Applicable for all kind of brush motor, DC and series hook type armature automatic winding machine.",
+                                                     "Using 14 axis independent AC servo motor. Memorize parameters on each mechanism and largely reduce changing time.",
+                                                     "Assemble with independent AC servo motor on each flyer for high speed and accurate winding.",
+                                                     "Switch angles by AC servo motor controller. Accuracy can reach 0.01 degree. Various hooking modes can be set at any angle within 360 degree according to the rotor characteristics.",
+                                                     "X and Z axis on automatic wire cutting system are driven by two independent AC servo motor and equip with patented wireless debris-free cutter for quick cutting and no waste on cooper wire.",
+                                                     "Automatic hook guidance system assemble with two independent AC servo motor can assure satiability while operate under harsh condition and largely reduce equipment action time.",
+                                                     "Winding tooling opening/closing and arranging system driven by two independent AC servo motor. Being able to set winding tooling depth of each slot independently. Largely improve winding type and winding volume ratio and largely reduce equipment operation time.",
+                                                     "The thread end pressing system, driven by AC servo motor. Suppress the copper wire in the first thread hook which can prevent the thread end loosen at high speed rotation and effectively restrain the length of the first thread.",
+                                                     "This product can be equipped with hand-wheel dynamic simulation system. This will largely improve operator’s safety and much more convenience to operating.",
+                                                     "Modular molding design can be positioned promptly and high accuracy in repetition. Greatly reduce mold changing time.",
+                                                     "Tension system is adopting high sensitive servo tension controller. It can produce several tension controls when winding which optimize tension adjustment performance in each winding operation stage.",
+                                                     "The control system adopts Japanese PLC with 10” touch screen interface which can display various operation information and monitoring operation in real time.",
+                                                     "This product can be connected with a robotic arm and a conveyor belt to achieve fully automatic production line.",
+                                                     "This product can be assembled with remote monitoring module for remote program monitoring and maintenance."
+                                                 ],
+                                      "enSpec":  [
+                                                     "＊ Please contact TeamWork for requirements outside these specifications. We reserve the right of technical modifications without notice."
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "適合各式碳刷、DC \u0026 串激類勾式馬達轉子自動捲線 ◾本系列使用14軸獨立AC伺服，各機構位置做參數記憶，大幅縮減機種更換時間 ◾本系列以兩軸獨立AC伺服馬達驅動旋翼做高速精確之捲線 ◾角度位置變化採AC伺服馬達控制，精度可達0.01度，並可依轉子特性作360度任意角度各種 勾線模式設定 ◾自動剪線系統，以兩軸獨立AC伺服馬達驅動X、Z軸，搭配專利無線渣剪刀，可快速達成線頭與線尾夾剪線動作，並達到完全無銅 線浪費的功能。 ◾自動勾線導引系統，以兩軸獨立AC伺服馬達驅動，可確保嚴苛條件時自動勾線穩定性，並大幅減少設備動作時間。 ◾繞線模具開合與排線系統，以兩軸獨立AC伺服馬達驅動，可獨立設定各槽位繞線模具的引入深度，大幅提升繞線線型與繞線容積率， 並大幅減少設備動作時間。 ◾線頭壓制系統，以AC伺服馬達驅動，在第一次勾線時壓制銅線，可防止線頭於設備高速運轉，造成鬆脫之現象，並有效抑制第一 勾線頭長度。 ◾可搭配手搖輪動態模擬系統, 可大幅提升操作試車安全性及人員操控方便性 ◾模具採模組化設計，可快速定位且重複精確性高，大幅縮減換模時間 ◾張力系統採用高靈敏度伺服張力控制器，繞線時可產生張力控制，使捲繞作業各階段之張力變化皆有最佳之張力調節表現 ◾控制系統採用日系PLC搭配10\"觸控操作介面，可即時顯示各項操作訊息及運轉監控機能 ◾可搭配機械手臂與輸送帶做連結，達到全自動生產功能 ◾可搭配遠端監控模組作遠距程式監控維護"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-01-1000w.webp",
@@ -1546,6 +1747,54 @@
                                                       "src":  "/assets/images/video/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "TWM-929: High-Speed BLDC Out-Slot Stator Automatic Winding Machine The TWM-929 is a high-performance automatic winding machine, expertly designed for the specific needs of BLDC (Brushless) out-slot stators . Leveraging Teamwork Automation\u0027s decades of expertise, this machine delivers a powerful combination of speed, precision, and stability for modern motor manufacturing.",
+                                                     "Driven by precision servo motors, the TWM-929 ensures consistent, high-speed winding with exceptional stability, maximizing your production throughput and reducing labor costs. Its advanced control system allows for precise wire arrangement, neat and tight coils, and a high slot-fill rate, which directly enhances the final motor\u0027s efficiency and performance.",
+                                                     "Key Features \u0026 Benefits: High-Speed Production: Precision servo drive system ensures stable, high-speed operation for maximum output.",
+                                                     "Superior Winding Quality: Achieves precise wire placement, uniform tension, and a high fill rate, boosting motor performance.",
+                                                     "User-Friendly \u0026 Flexible: Features an intuitive HMI (Human-Machine Interface) for simple parameter setting and program management. The machine is designed for quick tooling changes, making it highly adaptable for various stator specifications.",
+                                                     "Robust \u0026 Reliable: Built with a solid machine frame and high-quality components, the TWM-929 is engineered for durability and reliable operation in 24/7 production environments.",
+                                                     "Ideal Applications: Drone Motors",
+                                                     "Cooling Fan Motors",
+                                                     "Power Tool Motors",
+                                                     "Medical Device Motors",
+                                                     "Other Micro BLDC Motors",
+                                                     "Your Partner in Automation",
+                                                     "Teamwork Automation (FaTop Automation) provides more than just standard machines. We offer comprehensive, customized solutions, including integration into fully automated turnkey production lines. Contact our engineering team today to discuss your specific requirements and receive a customized technical proposal.",
+                                                     "Applicable for all kind of In-slot brushless motor.",
+                                                     "This series adopts multi-station configuration. Being able to set up the winding parameters and winding simultaneously which improve production efficiency.",
+                                                     "Modular tooling design which allows prompt position and high repeatability. Greatly reduce tooling changing time and improves production efficiency.",
+                                                     "This product can be connected with hand-wheel dynamic simulation system which enhancing the safety while operating and ease to operate.",
+                                                     "Analog section tension output control which provide tension at each stage during stator winding and greatly improve product yield.",
+                                                     "Equipped with automatic wire trimming mechanism. Copper wire will be cut and clamped automatically when winding is finished. This will be easier to take out the finish product.",
+                                                     "The control system adopts Japanese PLC with 10” touch screen interface which can display various operation information and monitoring operation in real time.",
+                                                     "This product can be assembled with remote monitoring module for remote program monitoring and maintenance.",
+                                                     "Other Winding Machines"
+                                                 ],
+                                      "enSpec":  [
+                                                     "＊ Please contact TeamWork for requirements outside these specifications. We reserve the right of technical modifications without notice 。"
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "適合各式外繞式馬達定子自動捲線",
+                                                     "本系列採多工位配置，可設定繞線參數、同時進行相同定子規格之繞線作業，提升生產效率",
+                                                     "模具採模組化設計，可快速定位且重複精確性高，大幅縮減換模時間，提升生產效率",
+                                                     "可搭配手搖輪動態模擬系統 , 可大幅提升操作試車安全性及人員操控方便性",
+                                                     "類比式區段張力輸出控制，可提供定子繞線時各階段張力，大幅提昇產品良率",
+                                                     "搭配自動剪線機構， \u0027 當定子完成繞線時，能將銅線頭自動剪斷並夾持，以方便成品取料",
+                                                     "控制系統採用日系 PLC 搭配 10\" 觸控操作介面，可即時顯示各項操作訊息及運轉監控機能",
+                                                     "可搭配遠端監控模組作遠距程式監控維護"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-01-378w.webp",
@@ -1832,6 +2081,7 @@
                                   },
                          "heroShows":  "workpiece",
                          "video":  null,
+                         "copy":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/scara/gallery-01-400w.webp",
@@ -1877,6 +2127,38 @@
                                   },
                          "heroShows":  "equipment",
                          "video":  null,
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "Applicable for pressing armature shaft, commutator and impeller for carbon brush and series motors.",
+                                                     "Digital pressure detectors are equipped to monitor and control quality effectively and stability which improves the ability to detect defective products in advance.",
+                                                     "Dual start switches equipped with a full enclosed splash guard and automatic safety door or photoelectrical sensor safety switch which effectively improve operation safety.",
+                                                     "The positioning pin press into tooling can prevent silicon steel sheet from twisting while pressing the spindle.",
+                                                     "Tooling for pressing commutator and impeller undergo hardening treatment which improve tooling lifetime.",
+                                                     "There are vertical and horizontal type design available depends on your demands.",
+                                                     "Fully automatic press for commutator is available. Optional conveyor belt for transport achieves unmanned and fully automatic production line"
+                                                 ],
+                                      "enSpec":  [
+                                                     "＊ Please contact TeamWork for requirements outside these specifications. We reserve the right of technical modifications without notice 。"
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "適合各式碳刷、串激類馬達轉子心軸 / 整流子 / 風葉壓入",
+                                                     "全系列搭配數位顯示壓力檢知，可有效控管成品穩定度，大幅提昇不良品先期檢知能力",
+                                                     "雙啟動開關搭配全罩式外罩與自動安全門或光電感應式安全閘，有效提升操作安全",
+                                                     "定位銷式心軸壓入模具，可有效防止心軸壓入過程中，矽鋼片扭曲現象",
+                                                     "整流子 / 風葉壓入模具經硬化處理，有效提高模具使用壽命",
+                                                     "依需求之不同，機台形式有立式、臥式之分",
+                                                     "整流子壓入機另有全自動壓入機型可供選擇，可與輸送帶搭配、達到無人化全自動生產"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-01-400w.webp",
@@ -2087,6 +2369,31 @@
                                   },
                          "heroShows":  "equipment",
                          "video":  null,
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "Applicable for Shaft knurling.",
+                                                     "Modular molding design can be rapidly position and high repetition accuracy and result in reducing tooling changing time tremendously.",
+                                                     "Humanized operating interface, easy setup and automatic error detection.",
+                                                     "Optional for core automatic feeding system and finished product automatic output module"
+                                                 ],
+                                      "enSpec":  [
+                                                     "＊ Please contact TeamWork for requirements outside these specifications. We reserve the right of technical modifications without notice."
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "模具採模組化設計，可快速定位，且重複精確性高，大幅縮減換模時間",
+                                                     "具人性化操作介面、簡易設定、故障檢知等功能",
+                                                     "可選配軸心自動供料系統及成品自動排出模組"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/shaft-embossing/gallery-01-400w.webp",
@@ -2258,6 +2565,26 @@
                                                       "src":  "/assets/images/video/three-in-one-automatic-turning-machine/twm-la01-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  {
+                                      "enDesc":  [
+
+                                                 ],
+                                      "enSpec":  [
+
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/three-in-one-automatic-turning-machine/gallery-01-400w.webp",
@@ -2359,6 +2686,26 @@
                                                       "src":  "/assets/images/video/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/twm-sp001-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  {
+                                      "enDesc":  [
+
+                                                 ],
+                                      "enSpec":  [
+
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-800w.webp",
@@ -2524,6 +2871,26 @@
                                                       "src":  "/assets/images/video/motor-stator-slot-insulation-paper-inserting-machine/twm-isp01-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  {
+                                      "enDesc":  [
+
+                                                 ],
+                                      "enSpec":  [
+
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/motor-stator-slot-insulation-paper-inserting-machine/gallery-01-400w.webp",
@@ -2625,6 +2992,32 @@
                                                       "src":  "/assets/images/video/armature-slot-insulation-paper-inserting-machine/twm-ip01-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "This model can be connected with the robot arm and the conveyor belt to achieve fully automatic production function.",
+                                                     "Equipped with pressure safety device. The machine will stop immediately when copper wire is being over coiled or insertion jam in tooling or silicon steel plate is deformed or insert pressure is bigger than setting pressure. This is not only to protect the product and tooling but also the machine itself.",
+                                                     "High operating stability and efficiency. The fastest insertion speed is 0.3 second per slot. Take 12-slot rotor for example, 6.7 seconds can compete one rotor (the fastest).",
+                                                     "Optional PLC with HMI control which making the operating experience more humanize.",
+                                                     "Suitable for unskewed rotor and skewed rotor.",
+                                                     "CAM driven for slot changing and insertion synchronously, which simplifies the complexity of the mechanism and easy to maintenance.",
+                                                     "Automatic slot change, push and claw positioning and high accuracy in repetitive."
+                                                 ],
+                                      "enSpec":  [
+
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "本機型可搭配機械手臂與輸送帶連結，達成全自動生產功能 ◾有壓力開關安全裝置，銅線過度飽和、模具塞紙、矽鋼片變形、插紙壓力大於設定 壓力。機台自動停止，以保護產品、模具及機台本身之安全。 ◾高效能生產穩定性高，單槽插紙最快0.3秒/槽，12槽轉子為例，每支轉子最快6.7 秒完成作業。 ◾可選用PLC搭配人機介面控制，使操作更人性化。 ◾可用於直槽式、斜槽式馬達轉子。 ◾採凸輪式動力傳動，同步進行換槽與插紙，簡化機構複雜度易於保養維修。 ◾自動換槽推爪定位插紙精度重複性佳。"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/armature-slot-insulation-paper-inserting-machine/gallery-01-400w.webp",
@@ -2726,6 +3119,32 @@
                                                       "src":  "/assets/images/video/armature-slot-wedge-inserting-machine/twm-iw01-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "This model can be connected with the robot arm and the conveyor belt to achieve fully automatic production function.",
+                                                     "Equipped with pressure safety device. The machine will stop immediately when copper wire is being over coiled or insertion jam in tooling or silicon steel plate is deformed or insert pressure is bigger than setting pressure. This is not only to protect the product and tooling but also the machine itself.",
+                                                     "High operating stability and efficiency. The fastest insertion speed is 0.3 second per slot. Take 12-slot rotor for example, 6.7 seconds can compete one rotor (the fastest).",
+                                                     "Optional PLC with HMI control which making the operating experience more humanize.",
+                                                     "Suitable for unskewed rotor and skewed rotor.",
+                                                     "CAM driven for slot changing and insertion synchronously, which simplifies the complexity of the mechanism and easy to maintenance.",
+                                                     "Automatic slot change, push and claw positioning and high accuracy in repetitive."
+                                                 ],
+                                      "enSpec":  [
+
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "本機型可搭配機械手臂與輸送帶連結，達成全自動生產功能 ◾有壓力開關安全裝置，銅線過度飽和、模具塞紙、矽鋼片變形、插紙壓力大於設定 壓力。機台自動停止，以保護產品、模具及機台本身之安全。 ◾高效能生產穩定性高，單槽插紙最快0.3秒/槽，12槽轉子為例，每支轉子最快6.7 秒完成作業。 ◾可選用PLC搭配人機介面控制，使操作更人性化。 ◾可用於直槽式、斜槽式馬達轉子。 ◾採凸輪式動力傳動，同步進行換槽與插紙，簡化機構複雜度易於保養維修。 ◾自動換槽推爪定位插紙精度重複性佳。"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/armature-slot-wedge-inserting-machine/gallery-01-400w.webp",
@@ -2811,6 +3230,29 @@
                                                       "src":  "/assets/images/video/vertical-slot-wedge-inserting-machine/twm-isw001-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "This model can be connected with the robot arm and the conveyor belt to achieve fully automatic production function.",
+                                                     "Full digital servo control",
+                                                     "Adjustable paper feeding length and the number of rotating pole slots",
+                                                     "High slot full rate can still insert paper smoothly"
+                                                 ],
+                                      "enSpec":  [
+
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "本機型可搭配機械手臂，達成全自動生產功能"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-01-378w.webp",
@@ -2928,6 +3370,7 @@
                                                       "src":  "/assets/images/video/cooling-fan-motor-automatic-production-line/twm-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-01-1000w.webp",
@@ -2997,6 +3440,7 @@
                                                       "src":  "/assets/images/video/application-of-six-axis-robotic-arm/twm-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/application-of-six-axis-robotic-arm/gallery-01-800w.webp",
@@ -3058,6 +3502,26 @@
                                   },
                          "heroShows":  "equipment",
                          "video":  null,
+                         "copy":  {
+                                      "enDesc":  [
+
+                                                 ],
+                                      "enSpec":  [
+
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-1000w.webp",
@@ -3166,6 +3630,42 @@
                                   },
                          "heroShows":  "equipment",
                          "video":  null,
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "Applicable for all kind of brush motor, DC and series hook type armature automatic winding machine.",
+                                                     "Assemble with independent AC servo motor on each flyer for high speed and accurate winding.",
+                                                     "Switch angles by AC servo motor controller. Accuracy can reach 0.01 degree. Various hooking modes can be set at any angle within 360 degree according to the rotor characteristics.",
+                                                     "We provide two wire cutting options: pull and cut（TWM308M）and auto cut（TWM308A).",
+                                                     "Modular molding design can be rapidly position and high repetition accuracy and result in reducing tooling changing time tremendously.",
+                                                     "Tension system is adopting high sensitive servo tension controller. It can produce several tension controls when winding which optimize tension adjustment performance in each winding operation stage.",
+                                                     "The control system adopts Japanese PLC with 10” touch screen interface which can display various operation information and monitoring operation in real time.",
+                                                     "TMW308A can be connected with a robotic arm and a conveyor belt to achieve fully automatic production line.",
+                                                     "This product can be assembled with remote monitoring module for remote program monitoring and maintenance."
+                                                 ],
+                                      "enSpec":  [
+                                                     "＊ Please contact TeamWork for requirements outside these specifications. We reserve the right of technical modifications without notice."
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "適合各式碳刷、 DC \u0026 串激類勾式馬達轉子自動捲線",
+                                                     "本系列以兩軸獨立 AC 伺服馬達驅動旋翼做高速精確之捲線",
+                                                     "角度位置變化採 AC 伺服馬達控制，精度可達 0.01 度，並可依轉子特性作 360 度任意角度各種 勾線模式設定",
+                                                     "剪線功能依需求之不同有外拉剪線（ TWM308M ）與自動剪線（ TWM308A ）可供選擇",
+                                                     "模具採模組化設計，可快速定位且重複精確性高，大幅縮減換模時間",
+                                                     "張力系統採用高靈敏度伺服張力控制器，繞線時可產生多段張力控制，使捲繞作業各階段之張力變化皆有最佳之張力調節表現",
+                                                     "控制系統採用日系 PLC 搭配 10\" 觸控操作介面，可即時顯示各項操作訊息及運轉監控機能",
+                                                     "TWM308A 可搭配機械手臂與輸送帶做連結，達到全自動生產功能",
+                                                     "可搭配遠端監控模組作遠距程式監控維護"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/hook-type-armature-automatic-winding-machine/gallery-01-1000w.webp",
@@ -3328,6 +3828,54 @@
                                   },
                          "heroShows":  "equipment",
                          "video":  null,
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "1. Layers short circuit testing composition：",
+                                                     "(1). Testing waveform: 1.2x40Μs",
+                                                     "(2). Testing voltage: 100~1500Vp.p. Operate through manual setup on setup panel. Present in digital form , accuracy: ±5% Of F.S.",
+                                                     "(3).Identify: After reading the inrush current value by PLC, making OK/NG judgment with the benchmark. And record the test value.",
+                                                     "(4).Testing frequency: 4 times on 90 degree; 1 time on 180 degree.",
+                                                     "(1).Testing Method: between commutator and shaft.",
+                                                     "(2). Testing Voltage: AC100~1500V. Adjust voltage manually and analog voltage meter. Accuracy: ±5% Of F.S.",
+                                                     "(3). Leakage current Setting: 0.5/1/2/5/10mA , 5 section setting. Accuracy: ±1% Of F.S.",
+                                                     "(4). Automatic circuit inspection: Operate through manual setup on setup panel. When circuit leakage reaches to max. per setup, alarm automatically. PLC reads signal.",
+                                                     "3. DC Resistance Test：",
+                                                     "(1). Testing Method: DC constant current is applied to the coil under test and adopt the four-terminal method for detection.",
+                                                     "(2). Testing Range: 10~1000.0mΩ, 1~10Ω with 20°C automatic temperature compensation.",
+                                                     "(3). Accuracy: ±0.5% of F.S.",
+                                                     "(4). Result judgment: The test value is read by the PLC and it is automatically compared with upper and lower limit values stored in the internal storage.",
+                                                     "(5). Testing frequency: commutator"
+                                                 ],
+                                      "enSpec":  [
+
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "1. 層間短路測試組成： (1). 測試波形： 1.2x40 Μ s",
+                                                     "(2). 測試電壓： 100~1500Vp.p 由操作面板手動設定，以數位電表顯示，精度：± 5% Of F.S.",
+                                                     "(3). 良否判斷：由 PLC 讀取衝擊電流值後與基準做 OK/NG 判定，並記錄測試值",
+                                                     "(4). 測試次數： 90 °邊 4 次， 180 °邊 1 次",
+                                                     "2. 耐壓測試組成 Puncture Test",
+                                                     "(1). 測試方法：換向片與軸心間",
+                                                     "(2). 測試電壓： AC100~1500V 手動調整電壓，指針式電壓表，精度：± 5% Of F.S.",
+                                                     "(3). 洩漏電流設定： 0.5/1/2/5/10mA 五段設定，精度：± 1% Of F.S.",
+                                                     "(4). 自動檢出回路：由操作面板設定，當洩漏電流高於設定值時，自動送出警報。信號，由 PLC 讀取。",
+                                                     "3. 直流電阻測試組成： DC Resistance Test",
+                                                     "(1). 測試方法：直流定電流加於被測線圈，採用四端子方式檢出。",
+                                                     "(2). 測試範圍： 10~1000.0m Ω、 1~10 Ω附 20 ° C 自動溫度補償。",
+                                                     "(3). 精度：± 0.5% of F.S.",
+                                                     "(4). 良否判斷：由 PLC 讀取測試值，並與內部儲存之上下限值做自動比較判定。",
+                                                     "(5). 測試次數：換向片 ( 鄰邊量測 )"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/armature-testing-machine/gallery-01-280w.webp",
@@ -3461,6 +4009,45 @@
                                                       "src":  "/assets/images/video/varnish-bake/twm-301a-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "The automatic positioning and dispensing can accurately drip the varnish on the same area of each stator to achieve a unified standard. ◆ Automatically detect if incoming materials are available, and then start to continuous dispensing operations. Or intermittent dispensing operations for small amount of armatures to reduce the loss of varnish. ◆ Dripping area is isolated and has an independent ventilation system in order to avoid varnish smell spillage. ◆ In addition to the varnishing dripping system, this model can connect the ring neck glue automatic dripping system, therefore varnishing and ring neck glue dripping can be done one time. This can effectively reduce dripping time. ◆ Double shaft end ejecting mechanism, no need to replace the fixture and stator runs smoothly without shaking. Prime quality on varnish absorbing and drying. ◆ Fixture adjustment adopts snap-type design without the use of tools. Quick fixture adjustment. ◆ Revolution and rotation are controlled independently. Stator transfer setting (revolution) and rotary speed can be set up according to the characteristics of the stator and varnish. ◆ Equipped with automatic transmission tension adjustment mechanism and automatic overload protection mechanism. ◆ Equipped with rotation speed compensation function. Rotation speed will not be affected by revolution. ◆ Preheat zone and hardening zone is independently controlled. Maximum temperature is 180℃ ◆ Unique hot air circuit design greatly reduce hot air outflow at the inlet and outlet which effectively improves the electric heating efficiency. ◆ Adopts PID temperature control module + SSR current control module to control the accuracy of the temperature in the furnace±2%. ◆ The control system adopts Japanese PLC with 10” touch screen interface which can display various operation information and monitoring operation in real time. ◆ Humanized design with real-time switching on manual/automatic function, operation monitoring function, automatic reminder of maintenance function and automatic abnormal detect function …etc. ◆ It can store up to 100 sets of working parameter settings which allows user to access to various parameters more quickly when changing models. Saving tremendous time when changing models. ◆ Remote program monitoring and maintenance can be performed. ◆ This series of products can be tailored to different machine size, shapes and finishing product quantity. Moreover, manual glue dispenser is available to choose from."
+                                                 ],
+                                      "enSpec":  [
+
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "8 管獨立注膠系統，可依轉子條件，分別設定每管滴注量與點膠配置。",
+                                                     "自動定位點膠，可準確的將凡立水滴注於轉子同一位置上，達到統一化的標準。",
+                                                     "自動偵測轉子有無來料，在進行連續點膠作業，或少量機種斷續點膠作業時，降低凡",
+                                                     "滴注區隔離並具有獨立排風系統，避免凡立水散發之味道外溢。",
+                                                     "本系列除了凡立水滴注系統外，更可擴充環頸膠自動滴注系統，使凡立水與環頸膠滴",
+                                                     "注作業一次完成，有效降低滴注之時間成本。",
+                                                     "雙軸端頂料機構，免更換治具且轉子運轉平順不晃動，凡立水吸附烘乾品質佳。",
+                                                     "治具調整採押扣式設計免使用工具，治具調整快速不佔時間。",
+                                                     "公 / 自轉獨立控制，可依轉子與凡立水特性，設定轉子移載設度與自轉轉速。",
+                                                     "附傳動張力自動調節機構，與過載自動跳脫保護機構。",
+                                                     "附自轉速度補償功能，使轉子之自轉速度，不因公轉鏈條動作而產生變化。",
+                                                     "預熱區 / 硬化區溫度獨立控制，最高溫度 180 ℃。",
+                                                     "獨特之熱風迴路設計，大幅降低出入口之熱氣外流有效提升電熱效能。",
+                                                     "採用 PID 溫控模組 +SSR 電流控制模組，爐內溫度精度± 2 ﹪。",
+                                                     "採用日系 PLC+10 ”彩色觸控操作介面，可即時顯示各種操作訊息，讓使用者在操作上",
+                                                     "人性化之設計，具有手動 / 自動即時切換功能，運轉監控功能，機台保養自動提示功",
+                                                     "可儲存工作參數設定達 100 組，讓使用者更換機種時更為快速存取各項參數，大幅降低",
+                                                     "可藉由電信線路作遠距程式監控維護。",
+                                                     "本系列產品可依照客戶需求，量身訂做不同之機台尺寸、外型、以及成品加工數量",
+                                                     "等。 另有手動式點膠機型提供選擇。"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/varnish-bake/gallery-01-1000w.webp",
@@ -3697,6 +4284,50 @@
                                   },
                          "heroShows":  "equipment",
                          "video":  null,
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "1. Operation Ineterface:",
+                                                     "Adopt with digitalize interface design. According to equipped tool holder and function setting, forwarder/reverse turning direction can be selected freely. Vertical and horizontal feed and tool holder function setting which can save up to 100 sets of parameters, allowing user to access various parameters more quickly when changing models which greatly reducing the required time for model replacement.",
+                                                     "2. Cutting Unit:",
+                                                     "The cutting unit adopts servo system and equips with high-rigidity linear slide design to achieve stable cutting. Cutting depth adjustment and other relevant cutting positioning points setup can be quickly completed through digital parameter setting. The unit can be equipped with double-tool turning and commutator rough and fine machining in segment turning operation which greatly improve the turning accuracy and the control of roughness on surface of the finished product.",
+                                                     "3. Rapid fixture changes:",
+                                                     "User can rapidly change fixture and reduce model change time with sophisticated top center and fixture design. Special contact angle can keep in high cutting accuracy when armature rotates in clockwise or anti-clockwise. During cutting, the transmission contact surfaces can spray on oil lubrication can greatly reduce wear out between armature spindle and fixture which protect the armature spindle and prolong fixture’s life cycle.",
+                                                     "4. Horizontal servo press arm transmission system:",
+                                                     "Adopts with horizontal servo motor pulley transmission turning and controlled by digital suppression which provides stable cutting speed and ensure that the armature and fixture are contact closely and then protect armature turning and prolong fixture’s life cycle.",
+                                                     "5. Versatile specification machine:",
+                                                     "Rotor cleaning mechanism can be added separately, or arrange accordingly to customer’s requirements. The power output unit are available in oil pressure output, air pressure output, air-oil pressure conversion output, servo motor with ball screw feed power output and other machines for customer to choose from. In this product series, we have commutator outer diameter turning machine, silicon steel plate outer diameter turning and armature cleaning 3 in 1 mechanism. Connect with robotic arm and conveyor belt to achieve unmanned automatic production line."
+                                                 ],
+                                      "enSpec":  [
+
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "本設備之操作介面，採數位化之設計，根據所搭配之刀座及功能設定，得自由選擇正 / 反",
+                                                     "轉向之車削，配合縱、橫向進刀之實際須求 與搭配之刀座之功能點位設定，可儲存工作參",
+                                                     "數設定達 100 組，讓使用者更換機種時，更為快速存取各項參數，大幅降低機種更換所 須",
+                                                     "切削單元採伺服系統，搭配高剛性線性滑座設計，以達到穩定切削之目的。其切削深度調",
+                                                     "整及相關切削定位點之調整，皆可透過數位 化參數設定而快速完成。本單元可搭配雙刀車",
+                                                     "削，以整流子粗車與精車分段車削模式作業，大幅提昇車削精度與成品表面粗度控制。",
+                                                     "藉由精巧的頂心、治具設計，讓使用者快速更換治具、降低機種更換時間。特殊之接觸",
+                                                     "角度，可使轉子於正 / 反轉皆能維持良好的 切削精度。在切削過程中，傳動接處面可持續",
+                                                     "噴油潤滑，大幅降低轉子心軸與治具之磨耗，以達到保護轉子心軸與延長治具壽命之功",
+                                                     "4. 水平式伺服壓臂傳動系統 :",
+                                                     "採水平式伺服馬達皮帶輪組傳動車削，搭配數位化壓制力量回受控制，提供穩定的切削速",
+                                                     "度，並確保轉子與治具緊密接觸，並保護車 削轉子及延長治具的壽命。",
+                                                     "可單獨追加轉子清刷機構，或依不同客戶需求，動力輸出單元可分為油壓輸出、空壓輸",
+                                                     "出、空油壓轉換輸出、伺服馬達搭配滾珠螺桿 進刀動力輸出等機台形式供客戶選擇，另外",
+                                                     "本系列產品有整流子外徑車削、矽鋼片外徑車削及轉子清刷機構三合一全自動綜合加工機",
+                                                     "型，並以機械手臂與輸送帶連結，達到無人化全自動生產功能。"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/gallery-01-400w.webp",
@@ -3869,6 +4500,44 @@
                                   },
                          "heroShows":  "equipment",
                          "video":  null,
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "1. Adopting double-axis turning reduction design which is convenient to choose the turning position.",
+                                                     "2. The clamping fixture has front-to-back and angular positioning functions for more precise turning.",
+                                                     "3. The single-chip central processing unit microcomputer assists the operator to control machine to achieve accuracy, stability and simplify operation.",
+                                                     "4. Digital meter represent.",
+                                                     "5. Super noise immunity which can resist all noise interference in the factory.",
+                                                     "6. Touch screen for left and right power switch which increase the longevity of the device.",
+                                                     "7. Automatically maintain each specific value after power outage.",
+                                                     "8. Microcomputer automatically temperature compensation and loop alignment.",
+                                                     "9. Adopting flashing which is much easier to identify unDynamic balancing machine angel.",
+                                                     "10. The unbalance is displayed as an average value and target with speed (rpm) filter which is excellent for detect small vibrations."
+                                                 ],
+                                      "enSpec":  [
+
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "1. 採雙刀軸車削減量設計，方便選擇車削位置。",
+                                                     "2. 夾持治具有前後與角度定位功能，使車削更為精準。",
+                                                     "3. 單晶片中央處理器微電腦輔助操作者，操控機器達到精確、穩定、操作簡單的強大功能。",
+                                                     "4. 數位式電表同時指示左右兩面不平衡量及試驗轉速，試驗完畢微電腦自動鎖住所有數值。",
+                                                     "5. 超強雜訊免疫力，可抵抗工廠中一切雜訊干擾。",
+                                                     "6. 左右切換開關採用觸摸式開關，壽命長。",
+                                                     "7. 斷電後自動保持各項特定值。",
+                                                     "8. 微電腦自動溫度補償及回路校正。",
+                                                     "9. 採用閃光燈方式，容易辨認不平衡角度。",
+                                                     "10. 不平衡量以平均值顯示，及轉速濾波器鎖定，對微小振動的檢出有很好的效果。"
+                                                 ],
+                                      "zhSpec":  [
+                                                     "機台功能規格表 TMW-515雙刀軸平衡減量車削機 電力需求 220V(380V)-3Φ-2KW"
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/balancing/gallery-01-121w.webp",
@@ -4002,6 +4671,7 @@
                                                       "src":  "/assets/images/video/automatic-modular-production-line/twm-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/automatic-modular-production-line/gallery-01-800w.webp",
@@ -4151,6 +4821,7 @@
                                                       "src":  "/assets/images/video/automatic-winding-machine-product-series/twm-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/automatic-winding-machine-product-series/gallery-01-400w.webp",
@@ -4292,6 +4963,7 @@
                                   },
                          "heroShows":  "workpiece",
                          "video":  null,
+                         "copy":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/automatic-modular-production-line-2/gallery-01-1000w.webp",
@@ -4369,6 +5041,7 @@
                                   },
                          "heroShows":  "workpiece",
                          "video":  null,
+                         "copy":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/semiconductor-sealing-testing-process-equipment/gallery-01-400w.webp",
@@ -4462,6 +5135,26 @@
                                   },
                          "heroShows":  "equipment",
                          "video":  null,
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "Elevator type material provide and receive mechanism, stackable material tray and utilize servo elevate mechanism to send out the processed parts and collect/stores finished products. Suitable for automatic supply of various tray-type materials."
+                                                 ],
+                                      "enSpec":  [
+
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "升降型料倉供/收機構，可堆疊多層材料托盤，利用伺服升降機構，將加工件送出並將成品回收儲存，適用於各種 托盤式來料之自動化供給。"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/automatic-feeding-system/gallery-01-800w.webp",
@@ -4554,6 +5247,7 @@
                                   },
                          "heroShows":  "equipment",
                          "video":  null,
+                         "copy":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/turntable-automatic-assembling-equipment/gallery-01-1000w.webp",
@@ -4662,6 +5356,7 @@
                                   },
                          "heroShows":  "workpiece",
                          "video":  null,
+                         "copy":  null,
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/vibration-feeding-assembling-equipment/gallery-01-800w.webp",
@@ -4707,6 +5402,26 @@
                                   },
                          "heroShows":  "equipment",
                          "video":  null,
+                         "copy":  {
+                                      "enDesc":  [
+
+                                                 ],
+                                      "enSpec":  [
+
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/stator-fusing/gallery-01-1000w.webp",
@@ -4872,6 +5587,46 @@
                                                       "src":  "/assets/images/video/stator-production-line/twm-902s-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "Applicable for automatic winding of in-slot brushless motors",
+                                                     "This product is adopting dual-axes independent control which is capable to set independent winding parameter, also synchronous to run winding for different specification of stators. This will increases the flexibility of this machine.",
+                                                     "Module molding design, prompt position repetitive is high. This is not only reduce the mold changing time, but also improve productitve.",
+                                                     "This product can be equipped with hand-wheel dynamic simulation system. This will largely improve operator’s safety and much more convenience to operating.",
+                                                     "Patented copper wire nozzle up down automatic wire lacing system which greatly reduces post production time.",
+                                                     "Implement share tooling design. The same set of tooling may be changed for different stacked heights to reduce mold development cost.",
+                                                     "Guided action programming system improves the flexibility of equipment application and greatly increase the production capability.",
+                                                     "The analog tension output control system provides tension for the stator on each coil winding stages and greatly improves the quality. Optional for servo tension output control provides more accurate tension control.",
+                                                     "Equip with automatic wire cutting mechanism. When stator winding has finished, it is capable of cutting copper wire end automatically and clamp. This makes it easier for collecting finished product.",
+                                                     "The control system adopts Japanese PLC with 10” touch screen interface which can display various operations information and monitoring operation in real time.",
+                                                     "This product can be assembled with remote monitoring module for remote program monitoring and maintenance."
+                                                 ],
+                                      "enSpec":  [
+
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "適合各式內繞式馬達定子自動捲線",
+                                                     "本系列採雙工位配置，可設定繞線參數、進行不同定子規格之繞線作業，增加機械應用彈性",
+                                                     "模具採模組化設計，可快速定位且重複精確性高，大幅縮減換模時間，提升生產效率",
+                                                     "可搭配手搖輪動態模擬系統 , 可大幅提升操作試車安全性及人員操控方便性",
+                                                     "專利同線嘴上下自動跨線系統 , 可大幅減少馬達後製程之工時",
+                                                     "導入模具共用設計，大幅降低模具開發成本",
+                                                     "教導式動作編程系統 , 提升設備應用彈性 , 大幅提升設備生產範圍",
+                                                     "類比式區段張力輸出控制，可提供定子繞線時各階段張力，大幅提昇產品良率 ( 亦有伺服張力系統可供選配 )",
+                                                     "搭配自動剪線機構，當定子完成繞線時，能將銅線頭自動剪斷並夾持，以方便成品取料",
+                                                     "控制系統採用日系 PLC 搭配 10\" 觸控操作介面，可即時顯示各項操作訊息及運轉監控機能",
+                                                     "可搭配遠端監控模組作遠距程式監控維護"
+                                                 ],
+                                      "zhSpec":  [
+                                                     "機台功能規格書 MACHINE SPECIAFICATIONS 電 力 需 求 Power supply 220V(380V) 空(油)壓力 Pneumatic (hydraulic) supply 5kg/c㎡ 定 子 外 徑 Stator extenal diameter(max) ψ35mm-110mm 定 子 積 厚 Core thickness 適 用 線 徑 Appliccable wire diameter 0.2mm-1.5mm 繞 線 速 度 Winding speed(max) 450rpm(Depending on winding item) 機 台 淨 重 Machine net weight 500kg 機 台 尺 寸 Machine size 12000(D) 900(W) 1710(H)mm 工 位 數 量 Quantity of Workstation 1~4工位 1~4 Stage 捲 線 機 構 Coil Winding Unit X-Axis Servo motor with ballscrrews Y-Axis Servo motor with ballscrrews Z-Axis Servo motor with ballscrrews 定子角度控制 Stator Angles Control 1組伺服控制 Servo Control X 1 Set 張 力 系 統 Tension Device Type1: 類比式控制Analog Tension Output Control Type2: 2組伺服控制 Servo Control \u0026 D/A X 2 Set 控 制 系 統 Control System 日系安川運動控制模組 Japanese-Yaskawa Motion Control series 工作參數記憶 Parameter Memory 標準配備 Standard moudule 快 速 換 模 Quick Die Change 標準配備 Standard moudule 異常偵測系統 Error Detection \u0026 Display System 標準配備 Standard moudule 主動式保養提示 Service Prompt 標準配備 Standard moudule 機械手臂與輸送帶連結功能 Robot Manipulator \u0026 Conveyor Connection 選擇配備 Optional moudule 遠距程式監控維護 Distant Programming Monitoring System 標準配備 Standard moudule 手輪動態模擬系統 Manual Pulse Generator System 標準配備 Standard moudule 自動夾/剪線機構 Automatic Wire Cutting \u0026 Clamping Unit 標準配備 Standard moudule"
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/stator-production-line/gallery-01-378w.webp",
@@ -5133,6 +5888,43 @@
                                                       "src":  "/assets/images/video/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "Applicable to automatic coil winding for various two poles motors stators.",
+                                                     "This model based on Dual-axes independent control, it is able to set independent winding parameter, also synchronous to run winding for different specification of stators, increases applicable flexibility of machine.",
+                                                     "The design of wire winding mold can be applied automatically and rapidly, to replace manual die change, modular molds and dies design, it is able to make fast positioning, and with high repetitive precision, to reduce time required for mold die changes tremendously, enhances production efficiency.",
+                                                     "When change winding for the same stator coil with or without end insulator, only part of the dies should be replaced.",
+                                                     "Dies can be shared for this series. The same set of dies may be changed for different stacked heights to reduce the cost of mold development tremendously.",
+                                                     "The analog tension output control system provides tension for the stator on each coil winding stages and increases the quality level hugely, it is also optional for servo tension output control, provides more accurate tension control.",
+                                                     "With automatic wire cutting mechanism, when stator winding has finished, capable of cutting copper wire end automatically and clamp it, good for collection of finished product.",
+                                                     "Based on Japanese PLC controller with 10\" touch panel promptly to display various operation statuses and running monitoring function.",
+                                                     "It is able to equip with remote monitoring module to do remote program monitoring safeguard."
+                                                 ],
+                                      "enSpec":  [
+                                                     "＊ Please contact TeamWork for requirements outside these specifications. We reserve the right of technical modifications without notice 。"
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "適合各式兩極式馬達定子自動捲線",
+                                                     "依生產需求可分為選擇單工位與雙工位機種",
+                                                     "雙工位系列採雙軸獨立控制，可獨立設定繞線參數、並同時進行不同定子規格之繞線作業，增加機械應用彈性",
+                                                     "具繞線模自動快速導入設計，取代傳統人工換模時間，模具採模組化設計，可快速定位且重複精確性高，大幅縮減換模時間，提升生產效率",
+                                                     "同一機種僅需做部分模具更換既可達到無 / 有端板之定子繞線變更",
+                                                     "導入模具共用設計，同組模具可做不同積厚更換之特性，大幅降低模具開發成本",
+                                                     "類比式區段張力輸出控制，可提供定子繞線時各階段張力，大幅提昇產品良率 ，亦可選配伺服張力輸出控制，提供更精準之張力控制",
+                                                     "搭配自動剪線機構，當定子完成繞線時，能將銅線頭自動剪斷並夾持，以方便成品取料",
+                                                     "控制系統採用日系 PLC 搭配 10\" 觸控操作介面，可即時顯示各項操作訊息及運轉監控機能",
+                                                     "可搭配遠端監控模組作遠距程式監控維護"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-01-800w.webp",
@@ -5327,6 +6119,44 @@
                                   },
                          "heroShows":  "equipment",
                          "video":  null,
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "Applicable for automatic coil winding for various two poles motors stators.",
+                                                     "According to production demand, there are machine with one axis and machine with two axes.",
+                                                     "This product is adopting dual-axes independent control which is capable to set independent winding parameter, also synchronous to run winding for different specification of stators. This will increases the flexibility of this machine.",
+                                                     "The wire winding mold design can be applied automatically and rapidly, which replace manual tooling change. Modular molds and tooling design is being able to position promptly and high repetition accuracy and result in reducing tooling changing time tremendously and improve production efficiency greatly.",
+                                                     "The same model only needs to do part of the tooling replacement to achieve the change of the stator winding with or without end plate.",
+                                                     "Implement share tooling design. The same set of tooling may be changed for different stacked heights to reduce mold development cost.",
+                                                     "The analog tension output control system provides tension for the stator on each coil winding stages and greatly improves the quality. Optional for servo tension output control provides more accurate tension control.",
+                                                     "Equip with automatic wire cutting mechanism. When stator winding has finished, it is capable of cutting copper wire end automatically and clamp. This makes it easier for collecting finished product.",
+                                                     "The control system adopts Japanese PLC with 10” touch screen interface which can display various operations information and monitoring operation in real time.",
+                                                     "This product can be assembled with remote monitoring module for remote program monitoring and maintenance."
+                                                 ],
+                                      "enSpec":  [
+                                                     "＊ Please contact TeamWork for requirements outside these specifications. We reserve the right of technical modifications without notice 。"
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "適合各式兩極式馬達定子自動捲線",
+                                                     "依生產需求可分為選擇單工位與雙工位機種",
+                                                     "雙工位系列採雙軸獨立控制，可獨立設定繞線參數、並同時進行不同定子規格之繞線作業，增加機械應用彈性",
+                                                     "具繞線模自動快速導入設計，取代傳統人工換模時間，模具採模組化設計，可快速定位且重複精確性高，大幅縮減換模時間，提升生產效率",
+                                                     "同一機種僅需做部分模具更換既可達到無 / 有端板之定子繞線變更",
+                                                     "導入模具共用設計，同組模具可做不同積厚更換之特性，大幅降低模具開發成本",
+                                                     "類比式區段張力輸出控制，可提供定子繞線時各階段張力，大幅提昇產品良率 ，亦可選配伺服張力輸出控制，提供更精準之張力控制",
+                                                     "搭配自動剪線機構，當定子完成繞線時，能將銅線頭自動剪斷並夾持，以方便成品取料",
+                                                     "控制系統採用日系 PLC 搭配 10\" 觸控操作介面，可即時顯示各項操作訊息及運轉監控機能",
+                                                     "可搭配遠端監控模組作遠距程式監控維護"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/two-poles-type-stator-winding-machine-with-two-axes/gallery-01-400w.webp",
@@ -5521,6 +6351,45 @@
                                   },
                          "heroShows":  "equipment",
                          "video":  null,
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "The automatic positioning and dispensing can accurately drip the varnish on the same area of each stator to achieve a unified standard. ◆ Automatically detect if incoming materials are available, and then start to continuous dispensing operations. Or intermittent dispensing operations for small amount of armatures to reduce the loss of varnish. ◆ Dripping area is isolated and has an independent ventilation system in order to avoid varnish smell spillage. ◆ In addition to the varnishing dripping system, this model can connect the ring neck glue automatic dripping system, therefore varnishing and ring neck glue dripping can be done one time. This can effectively reduce dripping time. ◆ Double shaft end ejecting mechanism, no need to replace the fixture and stator runs smoothly without shaking. Prime quality on varnish absorbing and drying. ◆ Fixture adjustment adopts snap-type design without the use of tools. Quick fixture adjustment. ◆ Revolution and rotation are controlled independently. Stator transfer setting (revolution) and rotary speed can be set up according to the characteristics of the stator and varnish. ◆ Equipped with automatic transmission tension adjustment mechanism and automatic overload protection mechanism. ◆ Equipped with rotation speed compensation function. Rotation speed will not be affected by revolution. ◆ Preheat zone and hardening zone is independently controlled. Maximum temperature is 180℃ ◆ Unique hot air circuit design greatly reduce hot air outflow at the inlet and outlet which effectively improves the electric heating efficiency. ◆ Adopts PID temperature control module + SSR current control module to control the accuracy of the temperature in the furnace±2%. ◆ The control system adopts Japanese PLC with 10” touch screen interface which can display various operation information and monitoring operation in real time. ◆ Humanized design with real-time switching on manual/automatic function, operation monitoring function, automatic reminder of maintenance function and automatic abnormal detect function …etc. ◆ It can store up to 100 sets of working parameter settings which allows user to access to various parameters more quickly when changing models. Saving tremendous time when changing models. ◆ Remote program monitoring and maintenance can be performed. ◆ This series of products can be tailored to different machine size, shapes and finishing product quantity. Moreover, manual glue dispenser is available to choose from."
+                                                 ],
+                                      "enSpec":  [
+
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "8 管獨立注膠系統，可依轉子條件，分別設定每管滴注量與點膠配置。",
+                                                     "自動定位點膠，可準確的將凡立水滴注於轉子同一位置上，達到統一化的標準。",
+                                                     "自動偵測轉子有無來料，在進行連續點膠作業，或少量機種斷續點膠作業時，降低凡",
+                                                     "滴注區隔離並具有獨立排風系統，避免凡立水散發之味道外溢。",
+                                                     "本系列除了凡立水滴注系統外，更可擴充環頸膠自動滴注系統，使凡立水與環頸膠滴",
+                                                     "注作業一次完成，有效降低滴注之時間成本。",
+                                                     "雙軸端頂料機構，免更換治具且轉子運轉平順不晃動，凡立水吸附烘乾品質佳。",
+                                                     "治具調整採押扣式設計免使用工具，治具調整快速不佔時間。",
+                                                     "公 / 自轉獨立控制，可依轉子與凡立水特性，設定轉子移載設度與自轉轉速。",
+                                                     "附傳動張力自動調節機構，與過載自動跳脫保護機構。",
+                                                     "附自轉速度補償功能，使轉子之自轉速度，不因公轉鏈條動作而產生變化。",
+                                                     "預熱區 / 硬化區溫度獨立控制，最高溫度 180 ℃。",
+                                                     "獨特之熱風迴路設計，大幅降低出入口之熱氣外流有效提升電熱效能。",
+                                                     "採用 PID 溫控模組 +SSR 電流控制模組，爐內溫度精度± 2 ﹪。",
+                                                     "採用日系 PLC+10 ”彩色觸控操作介面，可即時顯示各種操作訊息，讓使用者在操作上",
+                                                     "人性化之設計，具有手動 / 自動即時切換功能，運轉監控功能，機台保養自動提示功",
+                                                     "可儲存工作參數設定達 100 組，讓使用者更換機種時更為快速存取各項參數，大幅降低",
+                                                     "可藉由電信線路作遠距程式監控維護。",
+                                                     "本系列產品可依照客戶需求，量身訂做不同之機台尺寸、外型、以及成品加工數量",
+                                                     "等。 另有手動式點膠機型提供選擇。"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/varnish-bake-twm-301a/gallery-01-1000w.webp",
@@ -5766,6 +6635,42 @@
                                                       "src":  "/assets/images/video/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-video-poster-01-1400w.webp"
                                                   }
                                    },
+                         "copy":  {
+                                      "enDesc":  [
+                                                     "Applicable for all kind of brush motor, DC and series hook type armature automatic winding machine.",
+                                                     "Assemble with independent AC servo motor on each flyer for high speed and accurate winding.",
+                                                     "Switch angles by AC servo motor controller. Accuracy can reach 0.01 degree. Various hooking modes can be set at any angle within 360 degree according to the rotor characteristics.",
+                                                     "We provide two wire cutting options: pull and cut（TWM308M）and auto cut（TWM308A).",
+                                                     "Modular molding design can be rapidly position and high repetition accuracy and result in reducing tooling changing time tremendously.",
+                                                     "Tension system is adopting high sensitive servo tension controller. It can produce several tension controls when winding which optimize tension adjustment performance in each winding operation stage.",
+                                                     "The control system adopts Japanese PLC with 10” touch screen interface which can display various operation information and monitoring operation in real time.",
+                                                     "TMW308A can be connected with a robotic arm and a conveyor belt to achieve fully automatic production line.",
+                                                     "This product can be assembled with remote monitoring module for remote program monitoring and maintenance."
+                                                 ],
+                                      "enSpec":  [
+                                                     "＊ Please contact TeamWork for requirements outside these specifications. We reserve the right of technical modifications without notice."
+                                                 ],
+                                      "enFeat":  [
+
+                                                 ],
+                                      "enApp":  [
+
+                                                ],
+                                      "zhDesc":  [
+                                                     "適合各式碳刷、 DC \u0026 串激類勾式馬達轉子自動捲線",
+                                                     "本系列以兩軸獨立 AC 伺服馬達驅動旋翼做高速精確之捲線",
+                                                     "角度位置變化採 AC 伺服馬達控制，精度可達 0.01 度，並可依轉子特性作 360 度任意角度各種 勾線模式設定",
+                                                     "剪線功能依需求之不同有外拉剪線（ TWM308M ）與自動剪線（ TWM308A ）可供選擇",
+                                                     "模具採模組化設計，可快速定位且重複精確性高，大幅縮減換模時間",
+                                                     "張力系統採用高靈敏度伺服張力控制器，繞線時可產生多段張力控制，使捲繞作業各階段之張力變化皆有最佳之張力調節表現",
+                                                     "控制系統採用日系 PLC 搭配 10\" 觸控操作介面，可即時顯示各項操作訊息及運轉監控機能",
+                                                     "TWM308A 可搭配機械手臂與輸送帶做連結，達到全自動生產功能",
+                                                     "可搭配遠端監控模組作遠距程式監控維護"
+                                                 ],
+                                      "zhSpec":  [
+
+                                                 ]
+                                  },
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-01-1000w.webp",

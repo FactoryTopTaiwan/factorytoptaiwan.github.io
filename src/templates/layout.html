@@ -6,6 +6,7 @@
 <title>{{page.title}} — {{site.name}}</title>
 <meta name="description" content="{{page.description}}">
 <link rel="canonical" href="{{site.origin}}{{page.url}}">
+{{#if page.keywords}}<meta name="keywords" content="{{page.keywords}}">{{/if}}
 {{#each site.languages}}
 <link rel="alternate" hreflang="{{code}}" href="{{href}}">
 {{/each}}
