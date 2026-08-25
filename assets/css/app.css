@@ -1389,3 +1389,8 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   padding: 0.25rem;
 }
 .footer__follow a:hover { color: var(--accent-ink); }
+
+
+/* When a product has no hero photograph (e.g. brand-safe removal), the head
+   block should span the full width instead of leaving the left column empty. */
+.prod--no-media .prod__head { grid-column: 1 / -1; max-width: 72ch; }

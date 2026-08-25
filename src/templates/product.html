@@ -9,16 +9,15 @@
 
 <article class="section section--tight">
   <div class="shell">
-    <div class="prod">
+    <div class="prod{{#if page.product.hero}}{{else}} prod--no-media{{/if}}">
+      {{#if page.product.hero}}
       <div class="prod__media">
-        {{#if page.product.hero}}
         <figure class="frame">
           <img src="{{page.product.hero.src}}" srcset="{{page.product.hero.srcset}}"
                sizes="(min-width: 62rem) 52vw, 100vw"
                width="{{page.product.hero.width}}" height="{{page.product.hero.height}}"
                alt="{{page.product.hero.alt}}" loading="eager" fetchpriority="high" decoding="async">
         </figure>
-        {{/if}}
 
         {{#if page.product.equipment}}
         <div class="thumbs">
@@ -31,6 +30,7 @@
         </div>
         {{/if}}
       </div>
+      {{/if}}
 
       <div class="prod__head">
         {{#if page.product.model}}
