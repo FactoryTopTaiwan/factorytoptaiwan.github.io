@@ -433,10 +433,18 @@
                                                               },
     "horizontal-brushless-motor-slot-insulation-paper-inserting-machine":  {
                                                                                "enDesc":  [
-
+                                                                                              "Automatically feeds insulation paper from a reel, cuts it to slot length, forms the U-shape, and inserts one liner into every stator slot in a single pass.",
+                                                                                              "Horizontal orientation designed for larger BLDC stator diameters and heavier stacks that are awkward to handle vertically.",
+                                                                                              "Servo-driven forming and insertion head with programmable stroke, engineered to keep the liner square in the slot without folding or tearing.",
+                                                                                              "Configurable for stator OD, stack height, slot count and paper thickness; tooling change is a rapid module swap.",
+                                                                                              "Designed for integration into a BLDC stator production line ahead of the winding station."
                                                                                           ],
                                                                                "enSpec":  [
-
+                                                                                              "Workpiece: brushless (BLDC) motor stators, horizontal loading",
+                                                                                              "Material: pre-cut sheet or reel-fed insulation paper",
+                                                                                              "Operations: feed, cut, form (U-shape), insert",
+                                                                                              "Cycle: one insertion pass covers all slots",
+                                                                                              "Automation: standalone or integrated with upstream/downstream stations"
                                                                                           ],
                                                                                "enFeat":  [
 
@@ -453,10 +461,18 @@
                                                                            },
     "motor-stator-slot-insulation-paper-inserting-machine":  {
                                                                  "enDesc":  [
-
+                                                                                "Slot liner inserting machine for brushed and universal motor stators, covering the smaller diameters typical of appliance and power-tool motors.",
+                                                                                "Automatic paper handling from reel to inserted liner, engineered for consistent seating depth across every slot.",
+                                                                                "Configurable for slot count, stator OD and stack height; tooling change is a rapid module swap.",
+                                                                                "Designed for standalone operation or integration into a stator production line ahead of the winding station.",
+                                                                                "Cycle time is project-dependent on stator geometry and paper thickness."
                                                                             ],
                                                                  "enSpec":  [
-
+                                                                                "Workpiece: brushed / universal motor stators",
+                                                                                "Material: reel-fed insulation paper",
+                                                                                "Operations: feed, cut, form, insert",
+                                                                                "Tooling: modular for slot-count and diameter changes",
+                                                                                "Integration: standalone or in-line"
                                                                             ],
                                                                  "enFeat":  [
 
@@ -578,10 +594,18 @@
                         },
     "stator-fusing":  {
                           "enDesc":  [
-
+                                         "Hot-staking machine that fuses the enamelled winding wire onto the tang of a brushless stator terminal, forming a permanent electrical connection without solder.",
+                                         "Servo-controlled electrode positioning and closed-loop current control, engineered to keep enamel damage confined to the fusing zone.",
+                                         "Capable of supporting single or multi-station cycles depending on stator diameter and slot count.",
+                                         "Suits BLDC out-slot and in-slot stator production, and adapts to hairpin motor tang fusing where project requirements allow.",
+                                         "Cycle time and fusing parameters are configured per motor architecture; validation is done at the sample stage."
                                      ],
                           "enSpec":  [
-
+                                         "Process: resistive hot-staking (fusing) of enamelled copper wire",
+                                         "Control: closed-loop current and force feedback",
+                                         "Positioning: servo-driven electrode carrier",
+                                         "Motor type: brushless (BLDC), in-slot and out-slot stator variants",
+                                         "Integration: standalone or in-line as a station in a stator production line"
                                      ],
                           "enFeat":  [
 
@@ -638,10 +662,18 @@
                                },
     "three-in-one-automatic-turning-machine":  {
                                                    "enDesc":  [
-
+                                                                  "Combines three armature turning operations - commutator OD, armature core OD, and shaft end - in a single fixture on one machine.",
+                                                                  "Servo-driven cutting head with programmable feed rate, engineered for consistent surface finish across all three diameters.",
+                                                                  "Loading, indexing and unloading are automated so an operator can supervise multiple machines; suits medium to high-volume carbon-brush armature production.",
+                                                                  "Cycle time depends on armature geometry and target finish; configurable for project-specific tolerances on request.",
+                                                                  "Designed for integration into a rotor production line or run as a standalone workstation."
                                                               ],
                                                    "enSpec":  [
-
+                                                                  "Workpiece: DC and universal motor armatures with a commutator",
+                                                                  "Operations per cycle: three (commutator OD, armature OD, shaft)",
+                                                                  "Drive: servo motor per axis",
+                                                                  "Automation: automatic feeding, indexing and unloading",
+                                                                  "Control: PLC with touchscreen HMI, project-configurable recipes"
                                                               ],
                                                    "enFeat":  [
 
@@ -855,10 +887,18 @@
                               },
     "vertical-brushless-motor-slot-insulation-paper-inserting-machine":  {
                                                                              "enDesc":  [
-
+                                                                                            "Vertical stator slot liner inserting machine for BLDC stator preparation, engineered for compact footprint at production cells.",
+                                                                                            "Automatic paper feed, in-line cutting, U-forming and slot insertion; single operator can supervise multiple units.",
+                                                                                            "Configurable for slot count, stack height and paper thickness through modular tooling changes.",
+                                                                                            "Suits small to medium BLDC stator diameters where floor space is tight or the machine sits adjacent to a winding station.",
+                                                                                            "Cycle time is project-dependent on slot count and paper thickness."
                                                                                         ],
                                                                              "enSpec":  [
-
+                                                                                            "Workpiece: brushless (BLDC) motor stators, vertical loading",
+                                                                                            "Material: reel-fed insulation paper",
+                                                                                            "Operations: feed, cut, form, insert (all slots per cycle)",
+                                                                                            "Footprint: compact, suits cellular production",
+                                                                                            "Integration: standalone or as part of a stator production line"
                                                                                         ],
                                                                              "enFeat":  [
 
@@ -895,5 +935,285 @@
                                                   "zhSpec":  [
 
                                                              ]
-                                              }
+                                              },
+    "semiconductor-sealing-testing-process-equipment":  {
+                                                            "enDesc":  [
+                                                                           "Sealing and testing process equipment built for semiconductor packaging, applying the same motion, vision and control platform used in motor production automation.",
+                                                                           "Handles small-part transfer, precision positioning, sealing, and end-of-line electrical or optical testing per specification.",
+                                                                           "Configurable for the customer\u0027s package and test protocol; cleanliness class and material handling are engineered at the design stage.",
+                                                                           "Draws on the company\u0027s work in semiconductor packaging automation since 2006.",
+                                                                           "Cycle time and process detail are project-dependent."
+                                                                       ],
+                                                            "enSpec":  [
+                                                                           "Industry: semiconductor packaging",
+                                                                           "Processes: sealing, testing, precision handling",
+                                                                           "Positioning: servo-driven",
+                                                                           "Testing: electrical and optical, per project requirements",
+                                                                           "Delivery: engineered per customer package"
+                                                                       ],
+                                                            "enFeat":  [
+
+                                                                       ],
+                                                            "enApp":  [
+
+                                                                      ],
+                                                            "zhDesc":  [
+
+                                                                       ],
+                                                            "zhSpec":  [
+
+                                                                       ]
+                                                        },
+    "vibration-feeding-assembling-equipment":  {
+                                                   "enDesc":  [
+                                                                  "Vibratory bowl feeding cell combined with pick-and-place and assembly stations for parts that arrive in bulk and need orientation before assembly.",
+                                                                  "Bowl tooling designed per part; feed rate matched to the downstream assembly cycle.",
+                                                                  "Suits small metallic and plastic components in motor and appliance production.",
+                                                                  "Overflow and reject handling engineered at the line design stage.",
+                                                                  "Line layout and cycle time are project-dependent."
+                                                              ],
+                                                   "enSpec":  [
+                                                                  "Feeder type: vibratory bowl (bowl tooling per part)",
+                                                                  "Downstream: pick-and-place, assembly",
+                                                                  "Suited to: small metallic and plastic parts",
+                                                                  "Reject handling: engineered per project",
+                                                                  "Integration: standalone cell or line-integrated"
+                                                              ],
+                                                   "enFeat":  [
+
+                                                              ],
+                                                   "enApp":  [
+
+                                                             ],
+                                                   "zhDesc":  [
+
+                                                              ],
+                                                   "zhSpec":  [
+
+                                                              ]
+                                               },
+    "scara":  {
+                  "enDesc":  [
+                                 "SCARA robotic cell for pick-and-place, part loading and inter-station transfer in motor assembly and winding lines.",
+                                 "Four-axis SCARA reach and repeatability engineered for high-cycle work where a fixed feeder would limit line speed.",
+                                 "Vision-guided pick and placement configurable for the customer\u0027s part; cycle time depends on part geometry and tray layout.",
+                                 "Fits into a modular production line or replaces manual handling at a single station.",
+                                 "Safety guarding, e-stop and light-curtain integration handled at the line design stage."
+                             ],
+                  "enSpec":  [
+                                 "Robot type: SCARA (four-axis)",
+                                 "Applications: part loading, inter-station transfer, pick-and-place",
+                                 "Guidance: vision-guided or fixed teach, project-dependent",
+                                 "Cycle: configured per part geometry and tray layout",
+                                 "Integration: standalone workcell or module in a production line"
+                             ],
+                  "enFeat":  [
+
+                             ],
+                  "enApp":  [
+
+                            ],
+                  "zhDesc":  [
+
+                             ],
+                  "zhSpec":  [
+
+                             ]
+              },
+    "automatic-winding-machine-product-series":  {
+                                                     "enDesc":  [
+                                                                    "Family overview of automatic winding machines covering armature, in-slot and out-slot stator, hook-type armature, needle-winding, and multi-axis coil configurations.",
+                                                                    "Servo-driven wire placement, programmable tension, and 360-degree hooking geometry available across the family.",
+                                                                    "Each machine in the series is configurable for the customer\u0027s motor architecture and wire gauge; see the individual machine pages for detail.",
+                                                                    "Machines are supplied as standalone units or integrated into a modular winding line.",
+                                                                    "Configuration and cycle time are project-dependent."
+                                                                ],
+                                                     "enSpec":  [
+                                                                    "Coverage: armature winding, stator winding (in-slot and out-slot), hook-type, multi-axis coil",
+                                                                    "Drive: servo per axis",
+                                                                    "Tension: programmable, per-stage",
+                                                                    "Hooking: configurable to 0.01 degree where the process supports it",
+                                                                    "Integration: standalone or in-line"
+                                                                ],
+                                                     "enFeat":  [
+
+                                                                ],
+                                                     "enApp":  [
+
+                                                               ],
+                                                     "zhDesc":  [
+
+                                                                ],
+                                                     "zhSpec":  [
+
+                                                                ]
+                                                 },
+    "turntable-automatic-assembling-equipment":  {
+                                                     "enDesc":  [
+                                                                    "Rotary indexing table with integrated assembly stations for high-cycle small-part assembly work.",
+                                                                    "Indexing servo drive with programmable dwell; station count and layout engineered per assembly sequence.",
+                                                                    "Suits motor rotor, bobbin, and small-motor sub-assembly programmes where cycle time is the constraint.",
+                                                                    "End-of-line inspection and part diversion optional per project.",
+                                                                    "Cycle time is project-dependent on the number of stations and the slowest operation in the loop."
+                                                                ],
+                                                     "enSpec":  [
+                                                                    "Platform: servo-driven rotary indexing table",
+                                                                    "Configuration: variable station count",
+                                                                    "Applications: rotor, bobbin, small-motor sub-assembly",
+                                                                    "Inspection: optional inline",
+                                                                    "Cycle: project-dependent"
+                                                                ],
+                                                     "enFeat":  [
+
+                                                                ],
+                                                     "enApp":  [
+
+                                                               ],
+                                                     "zhDesc":  [
+
+                                                                ],
+                                                     "zhSpec":  [
+
+                                                                ]
+                                                 },
+    "automatic-modular-production-line":  {
+                                              "enDesc":  [
+                                                             "Turnkey modular production line built from catalogue and purpose-built stations, engineered around the customer\u0027s motor and target volume.",
+                                                             "Stations link over a servo-driven transfer with barcode or laser-marked traceability at unit level.",
+                                                             "Central data collection feeds a floor display for real-time line state, throughput and station health.",
+                                                             "Layout, station count, cycle time and footprint are engineered at the line design stage.",
+                                                             "Designed for expansion by adding modules rather than replacing the line."
+                                                         ],
+                                              "enSpec":  [
+                                                             "Line type: modular, catalogue plus purpose-built stations",
+                                                             "Transfer: servo-driven",
+                                                             "Traceability: unit-level barcode or laser marking",
+                                                             "Data: central collection with floor display",
+                                                             "Expansion: additive by modules"
+                                                         ],
+                                              "enFeat":  [
+
+                                                         ],
+                                              "enApp":  [
+
+                                                        ],
+                                              "zhDesc":  [
+
+                                                         ],
+                                              "zhSpec":  [
+
+                                                         ]
+                                          },
+    "application-of-six-axis-robotic-arm":  {
+                                                "enDesc":  [
+                                                               "Six-axis robotic integration for complex handling operations - loading, part orientation, dispensing and inter-station transfer - where a SCARA reach envelope is not sufficient.",
+                                                               "Suits larger stator and rotor components, and any part that needs multi-angle presentation to a downstream station.",
+                                                               "End-of-arm tooling is designed per part; reach, payload and cycle time are project-dependent on the robot model selected.",
+                                                               "Vision integration configurable for random-bin picking or fixture-based work.",
+                                                               "Safety cell, fencing and interlocks specified with the line at design stage."
+                                                           ],
+                                                "enSpec":  [
+                                                               "Robot type: six-axis industrial robotic arm",
+                                                               "Applications: complex handling, dispensing, multi-angle presentation",
+                                                               "End-of-arm tooling: designed per part",
+                                                               "Vision: optional, configured per project",
+                                                               "Integration: cell or line-integrated with safety infrastructure"
+                                                           ],
+                                                "enFeat":  [
+
+                                                           ],
+                                                "enApp":  [
+
+                                                          ],
+                                                "zhDesc":  [
+
+                                                           ],
+                                                "zhSpec":  [
+
+                                                           ]
+                                            },
+    "cooling-fan-motor-automatic-production-line":  {
+                                                        "enDesc":  [
+                                                                       "Complete production line dedicated to cooling-fan motor assembly - shaded-pole, permanent-split-capacitor or brushless variants - depending on customer specification.",
+                                                                       "Modular stations: stator preparation, winding, bobbin fitting, assembly, balancing where required, and end-of-line electrical test.",
+                                                                       "Servo-driven transfer, recipe-based changeover between motor variants, and PLC-based traceability across every unit.",
+                                                                       "Line layout, station count and cycle time are engineered per project.",
+                                                                       "Designed for supervised operation with one operator managing multiple stations."
+                                                                   ],
+                                                        "enSpec":  [
+                                                                       "Products: cooling-fan motors, multiple architectures",
+                                                                       "Line type: modular, servo transfer",
+                                                                       "Stations: preparation, winding, assembly, test",
+                                                                       "Control: PLC with recipe management and traceability",
+                                                                       "Configuration: project-dependent on motor architecture and volume"
+                                                                   ],
+                                                        "enFeat":  [
+
+                                                                   ],
+                                                        "enApp":  [
+
+                                                                  ],
+                                                        "zhDesc":  [
+
+                                                                   ],
+                                                        "zhSpec":  [
+
+                                                                   ]
+                                                    },
+    "automatic-modular-production-line-2":  {
+                                                "enDesc":  [
+                                                               "Alternative modular production line configuration, engineered for tighter cycle-time targets and higher station density than the base configuration.",
+                                                               "Uses parallel stations and buffered transfer to smooth throughput across stations with different cycle times.",
+                                                               "Suits higher-volume programmes where the base modular line would become the throughput bottleneck.",
+                                                               "Layout, station count and buffering are engineered per project.",
+                                                               "Same traceability and data collection as the base modular line."
+                                                           ],
+                                                "enSpec":  [
+                                                               "Line type: high-density modular configuration",
+                                                               "Transfer: buffered servo-driven",
+                                                               "Suited to: higher-volume programmes",
+                                                               "Traceability: unit-level",
+                                                               "Configuration: project-dependent"
+                                                           ],
+                                                "enFeat":  [
+
+                                                           ],
+                                                "enApp":  [
+
+                                                          ],
+                                                "zhDesc":  [
+
+                                                           ],
+                                                "zhSpec":  [
+
+                                                           ]
+                                            },
+    "bobbin":  {
+                   "enDesc":  [
+                                  "Modular assembly line dedicated to bobbin winding, terminal soldering and end-of-line testing for coil bobbins used across appliance, industrial and cooling-fan motors.",
+                                  "Stations are linked by a servo-driven transfer system so throughput scales by adding modules rather than replacing the line.",
+                                  "Wire tension, turn count and pin routing are configurable per bobbin design and stored as recipes on the PLC.",
+                                  "Every unit is tested at end of line; failed units are diverted before palletisation.",
+                                  "Cycle time and line layout are engineered per project."
+                              ],
+                   "enSpec":  [
+                                  "Products: coil bobbins across appliance, industrial and cooling-fan motors",
+                                  "Line type: modular, servo-driven transfer",
+                                  "Stations: winding, soldering, test, unloading",
+                                  "Control: PLC with recipe management per bobbin design",
+                                  "Testing: 100% inline electrical test"
+                              ],
+                   "enFeat":  [
+
+                              ],
+                   "enApp":  [
+
+                             ],
+                   "zhDesc":  [
+
+                              ],
+                   "zhSpec":  [
+
+                              ]
+               }
 }
