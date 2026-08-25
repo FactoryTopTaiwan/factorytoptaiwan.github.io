@@ -325,13 +325,23 @@ $Locales = @(
 )
 
 function Add-FamilyExtras {
-    param($Catalogue, [string]$UrlPrefix)
+    param($Catalogue, [string]$UrlPrefix, $Site)
+    # Fallback label for the model slot on cards where the catalogue carries
+    # no model number. Templates can only see the current item inside {{#each}}
+    # loops (the engine does not walk parent scopes), so per-item strings are
+    # baked in here.
+    $byProject = ''
+    if ($Site -and $Site.PSObject.Properties['ui'] -and $Site.ui.PSObject.Properties['byProject']) {
+        $byProject = $Site.ui.byProject
+    }
     foreach ($f in $Catalogue.families) {
         $cover = $null
         if ($data.covers.PSObject.Properties[$f.slug]) { $cover = $data.covers.($f.slug) }
         $members = @($data.products | Where-Object { $_.family -eq $f.slug } | ForEach-Object {
             $c = $_.PSObject.Copy()
             Add-Member -InputObject $c -NotePropertyName 'href' -NotePropertyValue ("{0}/products/{1}/" -f $UrlPrefix, $_.slug) -Force
+            $md = if ($c.model) { $c.model } else { $byProject }
+            Add-Member -InputObject $c -NotePropertyName 'modelDisplay' -NotePropertyValue $md -Force
             $c
         })
         Add-Member -InputObject $f -NotePropertyName 'cover'    -NotePropertyValue $cover   -Force
@@ -400,7 +410,17 @@ $company   = Read-LocaleJson 'company.json'   $loc.code
 
 Add-Member -InputObject $site -NotePropertyName 'urlPrefix' -NotePropertyValue $loc.url  -Force
 Add-Member -InputObject $site -NotePropertyName 'lang'      -NotePropertyValue $loc.lang -Force
-Add-FamilyExtras -Catalogue $catalogue -UrlPrefix $loc.url
+# Decorate every product record with the display fields templates need inside
+# each loops (the engine does not walk parent scope), so tag pages, siblings
+# and family lists all get the same treatment as family products.
+$byProjectLabel = ''
+if ($site.ui.PSObject.Properties['byProject']) { $byProjectLabel = $site.ui.byProject }
+foreach ($p in $data.products) {
+    $md = if ($p.model) { $p.model } else { $byProjectLabel }
+    if ($p.PSObject.Properties['modelDisplay']) { $p.modelDisplay = $md }
+    else { Add-Member -InputObject $p -NotePropertyName 'modelDisplay' -NotePropertyValue $md -Force }
+}
+Add-FamilyExtras -Catalogue $catalogue -UrlPrefix $loc.url -Site $site
 
 $OutPfx = $loc.dir   # output folder prefix
 $UrlPfx = $loc.url   # url prefix
