@@ -47,6 +47,13 @@
           <div><dt>{{site.ui.motorTypes}}</dt><dd>{{page.copy.motorTypes}}</dd></div>
         </dl>
 
+        {{#if page.tagLinks}}
+        <div class="tags">
+          <span class="tags__caption">{{site.ui.tags}}</span>
+          {{#each page.tagLinks}}<a class="tag" href="{{href}}">{{label}}</a>{{/each}}
+        </div>
+        {{/if}}
+
         <div class="prod__actions">
           <a class="btn btn--primary btn--lg" href="{{site.urlPrefix}}/contact/?model={{page.product.model}}">
             {{site.ui.requestQuote}}
@@ -59,7 +66,7 @@
   </div>
 </article>
 
-{{#if page.product.copy.enDesc}}
+{{#if page.desc}}
 <section class="section">
   <div class="shell">
     <div class="section__head">
@@ -67,7 +74,7 @@
       <h2>{{site.ui.whatItDoes}}</h2>
     </div>
     <ul class="prod__desc">
-      {{#each page.product.copy.enDesc}}<li>{{.}}</li>{{/each}}
+      {{#each page.desc}}<li>{{.}}</li>{{/each}}
     </ul>
   </div>
 </section>
@@ -80,9 +87,9 @@
       <h2>{{site.ui.specHeading}}</h2>
     </div>
 
-    {{#if page.product.copy.enSpec}}
+    {{#if page.spec}}
     <ul class="prod__spec">
-      {{#each page.product.copy.enSpec}}<li>{{.}}</li>{{/each}}
+      {{#each page.spec}}<li>{{.}}</li>{{/each}}
     </ul>
     {{#if page.product.spec}}
     <details class="spec-image">

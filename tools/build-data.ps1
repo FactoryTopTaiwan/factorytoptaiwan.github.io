@@ -62,6 +62,23 @@ if (Test-Path $CopyPath) {
     }
 }
 
+# Optional tags.json: process/motor-type/form tags per product slug. Absent
+# is fine - products just carry no tags. Tags let a product appear in every
+# category it belongs to without splitting its URL, which is how the client
+# asked for a machine that serves several use cases to be discoverable.
+$TagsPath = Join-Path $SiteRoot 'src\data\tags.json'
+$productTags = @{}
+$tagCatalogue = @{}
+if (Test-Path $TagsPath) {
+    $traw = Get-Content $TagsPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    foreach ($prop in $traw.tags.PSObject.Properties) {
+        $tagCatalogue[$prop.Name] = $prop.Value
+    }
+    foreach ($prop in $traw.products.PSObject.Properties) {
+        $productTags[$prop.Name] = @($prop.Value)
+    }
+}
+
 # sourceName (as it appears in the scraped breadcrumb) -> family slug
 $familyBySource = @{}
 foreach ($f in $catalogue.families) { $familyBySource[$f.sourceName] = $f }
@@ -187,8 +204,26 @@ foreach ($p in $raw) {
     $video = $null
     if ($videos.ContainsKey($slug)) { $video = $videos[$slug] }
 
+    # Copy is stored with both enDesc and jaDesc; build.ps1 chooses per locale.
+    # products.json carries the full record so nothing has to look up the copy
+    # file again at template render time.
     $copy = $null
     if ($prodCopy.ContainsKey($slug)) { $copy = $prodCopy[$slug] }
+
+    # Expand each raw tag slug into { slug, label, kind } so templates can
+    # render the human label and never have to lift it out of a dictionary.
+    # href is composed in build.ps1 because it depends on the locale prefix.
+    $tags = @()
+    if ($productTags.ContainsKey($slug)) {
+        foreach ($tagSlug in $productTags[$slug]) {
+            $meta = $tagCatalogue[$tagSlug]
+            if ($null -eq $meta) {
+                $tags += [pscustomobject]@{ slug = $tagSlug; label = $tagSlug; kind = 'other' }
+            } else {
+                $tags += [pscustomobject]@{ slug = $tagSlug; label = $meta.label; kind = $meta.kind }
+            }
+        }
+    }
 
     $products.Add([pscustomobject]@{
         slug       = $slug
@@ -200,6 +235,7 @@ foreach ($p in $raw) {
         heroShows  = $(if ($equipment.Count -gt 0) { 'equipment' } elseif ($workpiece.Count -gt 0) { 'workpiece' } else { $null })
         video      = $video
         copy       = $copy
+        tags       = $tags
         # .ToArray(), not @($gallery): the array subexpression operator throws
         # "Argument types do not match" on a Generic.List[object] in PS 5.1.
         gallery    = $gallery.ToArray()

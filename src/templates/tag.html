@@ -1,0 +1,36 @@
+<nav class="crumbs" aria-label="{{site.ui.breadcrumb}}">
+  <div class="shell">
+    <a href="{{site.urlPrefix}}/">{{site.ui.home}}</a> <span aria-hidden="true">/</span>
+    <a href="{{site.urlPrefix}}/products/">{{site.ui.products}}</a> <span aria-hidden="true">/</span>
+    <span aria-current="page">{{page.tag.label}}</span>
+  </div>
+</nav>
+
+<section class="section section--tight">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">{{site.ui.tag}}</p>
+      <h1>{{page.tag.label}}</h1>
+      <p class="lede">{{page.description}}</p>
+    </div>
+
+    <div class="cat-grid">
+      {{#each page.tag.products}}
+      <a class="cat" href="{{href}}">
+        {{#if hero}}
+        <span class="cat__media">
+          <img src="{{hero.src}}" srcset="{{hero.srcset}}"
+               sizes="(min-width: 62rem) 25vw, 50vw"
+               width="{{hero.width}}" height="{{hero.height}}"
+               alt="{{hero.alt}}" loading="lazy" decoding="async">
+        </span>
+        {{/if}}
+        <span class="cat__body">
+          {{#if model}}<span class="cat__count model">{{model}}</span>{{/if}}
+          <span class="cat__name">{{title}}</span>
+        </span>
+      </a>
+      {{/each}}
+    </div>
+  </div>
+</section>

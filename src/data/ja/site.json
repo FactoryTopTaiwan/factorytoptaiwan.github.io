@@ -131,6 +131,8 @@
     "mobile": "携帯",
     "address": "所在地",
     "response": "ご返信",
+    "tag": "タグ",
+    "tags": "タグ",
     "watchMachine": "この機械の稼働動画",
     "watchLede": "台中の自社工場で撮影しています。再生ボタンを押すまでYouTubeからは何も読み込まれず、自動再生も行いません。",
     "productDescription": "製品概要",

@@ -185,6 +185,8 @@
     "mobile": "Mobile",
     "address": "Address",
     "response": "Response",
+    "tag": "Tag",
+    "tags": "Tags",
     "watchMachine": "Watch this machine run",
     "watchLede": "Filmed on our floor in Taichung. Nothing loads from YouTube until you press play, and the video does not autoplay.",
     "productDescription": "Product description",

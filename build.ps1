@@ -53,6 +53,7 @@ $OutDir  = $Root
 # tools\fetch-media.ps1, and -Clean must not throw away a 157-image download.
 $Generated = @('index.html', 'products', 'solutions', 'turnkey', 'about',
                'support', 'contact', 'catalog', 'terms', 'privacy',
+               'products\tag',
                'assets\css', 'assets\js', 'assets\img',
                'sitemap.xml', 'sitemap', 'robots.txt', '404.html', 'ja')
 
@@ -500,6 +501,34 @@ foreach ($prod in $data.products) {
     $kwParts += 'USA, Canada, Mexico, Vietnam, India, Thailand, Germany, Italy, Turkey'
     $keywords = ($kwParts -join ', ')
 
+    # Compose per-locale tag hrefs. The tag catalogue is in $data.products, but
+    # each product carries only slugs + labels; the href needs the locale prefix.
+    $tagLinks = @()
+    if ($prod.tags) {
+        foreach ($tg in $prod.tags) {
+            $tagLinks += [pscustomobject]@{
+                slug  = $tg.slug
+                label = $tg.label
+                kind  = $tg.kind
+                href  = ("{0}/products/tag/{1}/" -f $UrlPfx, $tg.slug)
+            }
+        }
+    }
+
+    # Pick the copy list for this locale, so the template just uses page.desc
+    # and page.spec and doesn't have to know which language it's in.
+    $desc = @()
+    $spec = @()
+    if ($prod.copy) {
+        $descKey = 'enDesc'; $specKey = 'enSpec'
+        if ($loc.code -eq 'ja') {
+            if ($prod.copy.PSObject.Properties['jaDesc'] -and @($prod.copy.jaDesc).Count -gt 0) { $descKey = 'jaDesc' }
+            if ($prod.copy.PSObject.Properties['jaSpec'] -and @($prod.copy.jaSpec).Count -gt 0) { $specKey = 'jaSpec' }
+        }
+        if ($prod.copy.PSObject.Properties[$descKey]) { $desc = @($prod.copy.$descKey) }
+        if ($prod.copy.PSObject.Properties[$specKey]) { $spec = @($prod.copy.$specKey) }
+    }
+
     Build-Page -Template 'product.html' -Out ($OutPfx + ("products\{0}\index.html" -f $prod.slug)) -Page @{
         title       = $t
         description = $summary
@@ -508,6 +537,9 @@ foreach ($prod in $data.products) {
         nav         = 'products'
         product     = $prod
         siblings    = $siblings
+        tagLinks    = $tagLinks
+        desc        = $desc
+        spec        = $spec
         copy        = @{ summary = $summary; stage = $stage; motorTypes = $motorTypes }
     }
     $urls.Add(("{0}/products/{1}/" -f $UrlPfx, $prod.slug))
@@ -562,6 +594,47 @@ foreach ($pg in $pages) {
     $pgData['url'] = ("{0}/{1}/" -f $UrlPfx, $pg.out)
     Build-Page -Template 'page.html' -Out ($OutPfx + ("{0}\index.html" -f $pg.out)) -Page $pgData
     $urls.Add(("{0}/{1}/" -f $UrlPfx, $pg.out))
+}
+
+# --- One page per tag -------------------------------------------------------
+# A tag is a cross-cut through the catalogue. A single machine can appear on
+# several tag pages without splitting its own URL, and adding a tag is a data
+# change with no template edit.
+$tagIndex = @{}
+foreach ($prod in $data.products) {
+    if (-not $prod.tags) { continue }
+    foreach ($tg in $prod.tags) {
+        if (-not $tagIndex.ContainsKey($tg.slug)) {
+            $tagIndex[$tg.slug] = [pscustomobject]@{
+                slug = $tg.slug; label = $tg.label; kind = $tg.kind
+                products = New-Object System.Collections.Generic.List[object]
+            }
+        }
+        $c = $prod.PSObject.Copy()
+        Add-Member -InputObject $c -NotePropertyName 'href' -NotePropertyValue ("{0}/products/{1}/" -f $UrlPfx, $prod.slug) -Force
+        $tagIndex[$tg.slug].products.Add($c)
+    }
+}
+
+foreach ($tagSlug in $tagIndex.Keys) {
+    $t = $tagIndex[$tagSlug]
+    # .ToArray() on a Generic.List[object], never @(): the array subexpression
+    # operator throws "Argument types do not match" on that type in PS 5.1.
+    $prodsArr = $t.products.ToArray()
+    $count = $prodsArr.Count
+    $tagObj = [pscustomobject]@{
+        slug = $t.slug; label = $t.label; kind = $t.kind; products = $prodsArr
+    }
+    $title = ("{0} - {1} {2}" -f $t.label, $count, $site.ui.machines)
+    $desc  = ("{0} equipment from the Teamwork Automation catalogue: {1} {2} tagged {3}." -f $t.label, $count, $site.ui.machines, $t.label)
+    Build-Page -Template 'tag.html' -Out ($OutPfx + ("products\tag\{0}\index.html" -f $tagSlug)) -Page @{
+        title       = $title
+        description = $desc
+        url         = ("{0}/products/tag/{1}/" -f $UrlPfx, $tagSlug)
+        nav         = 'products'
+        tag         = $tagObj
+    }
+    $urls.Add(("{0}/products/tag/{1}/" -f $UrlPfx, $tagSlug))
 }
 
 # --- Terms of use and privacy policy ----------------------------------------
@@ -622,12 +695,25 @@ foreach ($fam in $catalogue.families) {
 foreach ($item in $data.products) {
     $famName = ''
     if ($item.familyName) { $famName = $item.familyName }
+    # Include tag labels as extra keywords so a search for "BLDC" or
+    # "wedge insertion" reaches every machine tagged that way.
+    $keys = @()
+    if ($item.tags) { foreach ($tg in $item.tags) { $keys += $tg.label } }
     $index.Add([pscustomobject]@{
         t = $item.title
         m = $(if ($item.model) { $item.model } else { '' })
         f = $famName
         u = ("{0}/products/{1}/" -f $UrlPfx, $item.slug)
-        k = ''
+        k = ($keys -join ' ')
+    })
+}
+
+# Tag pages are themselves searchable landing pages.
+foreach ($tagSlug in $tagIndex.Keys) {
+    $t = $tagIndex[$tagSlug]
+    $index.Add([pscustomobject]@{
+        t = $t.label; m = ''; f = $site.ui.tag
+        u = ("{0}/products/tag/{1}/" -f $UrlPfx, $tagSlug); k = ''
     })
 }
 

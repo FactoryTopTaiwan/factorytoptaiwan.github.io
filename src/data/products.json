@@ -120,8 +120,30 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "コアを用いない空芯コイルの巻線に対応します。",
+                                                     "サーボモーター駆動により、巻数・張力・整列を精密に制御します。",
+                                                     "単体機として、または生産ラインへの組み込みが可能です。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "coil-winding",
+                                          "label":  "Coil winding",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "winding",
+                                          "label":  "Winding",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/air-coil-winding-machine/gallery-01-400w.webp",
@@ -364,8 +386,35 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "ブラシ付モーターの電機子コイル線を整流子タングへ抵抗溶接する装置です。",
+                                                     "サーボ制御の電極位置決めと、閉ループ電流制御を組み合わせています。",
+                                                     "エナメル層への熱影響を溶接部に限定するよう設計しています。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "fusing",
+                                          "label":  "Fusing / welding",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "armature",
+                                          "label":  "Armature",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/armature-welding-machine/gallery-01-800w.webp",
@@ -579,8 +628,30 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "複数軸で同時にコイルを巻線し、生産性を高める装置です。",
+                                                     "サーボモーターによる張力制御と、レシピベースの品目切替に対応します。",
+                                                     "ボビン巻線、空芯コイル、多極モーターコイルなどに使用できます。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "coil-winding",
+                                          "label":  "Coil winding",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "winding",
+                                          "label":  "Winding",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/automatic-multi-axes-coil-winding-machine/gallery-01-1000w.webp",
@@ -918,8 +989,40 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "整流子に掛け具を持たない、槽式（スタッフィング式）電機子の全自動巻線機です。",
+                                                     "AC サーボモーター駆動により、高速かつ精密な巻線を実現します。",
+                                                     "ブラシ付モーター・シリーズモーターの電機子生産に対応します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "winding",
+                                          "label":  "Winding",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushed-winding",
+                                          "label":  "Brushed / universal winding",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "armature",
+                                          "label":  "Armature",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-01-1000w.webp",
@@ -1197,8 +1300,35 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "コイルボビンの巻線・端子ハンダ付け・検査を統合した自動生産ラインです。",
+                                                     "モジュール構成により、工程を追加してラインを拡張できます。",
+                                                     "家電・産業用モーター・冷却ファンモーターのボビンに対応します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "bobbin",
+                                          "label":  "Bobbin",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "coil-winding",
+                                          "label":  "Coil winding",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "assembly",
+                                          "label":  "Assembly",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "production-line",
+                                          "label":  "Production line",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/bobbin/gallery-01-400w.webp",
@@ -1365,8 +1495,35 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "整流子のスロット（セグメント間）を切削加工する装置です。",
+                                                     "カッター送りをサーボ制御し、均一な切削深さと仕上げ面を実現します。",
+                                                     "電機子生産ラインの整流子加工工程に組み込みます。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "commutator",
+                                          "label":  "Commutator",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "armature",
+                                          "label":  "Armature",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/commutator-slot-cutting/gallery-01-1000w.webp",
@@ -1553,8 +1710,40 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "立型（垂直）配置のフック式電機子全自動巻線機です。",
+                                                     "省スペースが必要な生産セルに適した構成です。",
+                                                     "14 軸独立 AC サーボモーターを備え、段取り替え時間を短縮します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "winding",
+                                          "label":  "Winding",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushed-winding",
+                                          "label":  "Brushed / universal winding",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "armature",
+                                          "label":  "Armature",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/hook-type-armature-automatic-winding-machine-vertical/gallery-01-1000w.webp",
@@ -1820,8 +2009,45 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "アウトスロット型ブラシレスモーター固定子の全自動巻線機です。",
+                                                     "サーボモーター駆動により、高速かつ高い占積率で巻線します。",
+                                                     "ドローン用・小型 BLDC 用の高精度巻線に対応します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "winding",
+                                          "label":  "Winding",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "bldc-winding",
+                                          "label":  "BLDC / brushless winding",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "brushless-motor",
+                                          "label":  "Brushless (BLDC) motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "stator",
+                                          "label":  "Stator",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "drone-motor",
+                                          "label":  "Drone / micro BLDC",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-01-378w.webp",
@@ -2134,8 +2360,30 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "SCARA ロボットを用いた自動化セルです。",
+                                                     "ピックアンドプレース、工程間搬送、部品供給などに使用します。",
+                                                     "モジュール式生産ラインの一部として、または単独セルとして構成します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "robotics",
+                                          "label":  "Robotic integration",
+                                          "kind":  "form"
+                                      },
+                                      {
+                                          "slug":  "assembly",
+                                          "label":  "Assembly",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "custom",
+                                          "label":  "Custom automation",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/scara/gallery-01-400w.webp",
@@ -2211,8 +2459,45 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "軸心、整流子、羽根車などをサーボまたは油圧により圧入する装置です。",
+                                                     "圧入荷重・変位を測定し、規格外品を自動的に振り分けます。",
+                                                     "ブラシ付モーターの回転子組立工程に組み込みます。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "assembly",
+                                          "label":  "Assembly",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "commutator",
+                                          "label":  "Commutator",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "rotor",
+                                          "label":  "Rotor",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "shaft",
+                                          "label":  "Shaft",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly/gallery-01-400w.webp",
@@ -2446,8 +2731,35 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "モーター軸に、電機子コアや整流子を保持するためのローレット加工を行います。",
+                                                     "加工深さと仕上げをサーボ制御し、均一な保持力を実現します。",
+                                                     "電機子生産ラインの前工程として設置します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "shaft",
+                                          "label":  "Shaft",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "armature",
+                                          "label":  "Armature",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/shaft-embossing/gallery-01-400w.webp",
@@ -2645,8 +2957,45 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "整流子外径、電機子外径、軸端の 3 箇所を、1 回のセットで加工する車削装置です。",
+                                                     "サーボ駆動の切削ヘッドにより、均一な仕上げ面を実現します。",
+                                                     "中～大量生産のブラシ付モーター電機子生産に適します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "turning",
+                                          "label":  "Turning",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "commutator",
+                                          "label":  "Commutator",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "shaft",
+                                          "label":  "Shaft",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "armature",
+                                          "label":  "Armature",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/three-in-one-automatic-turning-machine/gallery-01-400w.webp",
@@ -2774,8 +3123,35 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "ブラシレスモーター（BLDC）用の横型スロット絶縁紙挿入機です。",
+                                                     "大径の BLDC 固定子や、床置きラインへの組み込みに適します。",
+                                                     "固定子生産ラインの巻線前工程として設置します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "slot-insulation",
+                                          "label":  "Slot liner insertion",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushless-motor",
+                                          "label":  "Brushless (BLDC) motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "stator",
+                                          "label":  "Stator",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-800w.webp",
@@ -2967,8 +3343,35 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "ブラシ付モーター・ユニバーサルモーターの固定子スロット絶縁紙挿入機です。",
+                                                     "家電・電動工具向けの小径固定子に対応します。",
+                                                     "単体機として、または固定子生産ラインの一工程として設置します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "slot-insulation",
+                                          "label":  "Slot liner insertion",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "stator",
+                                          "label":  "Stator",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/motor-stator-slot-insulation-paper-inserting-machine/gallery-01-400w.webp",
@@ -3094,8 +3497,35 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "電機子スロットに絶縁紙を自動供給・切断・成形・挿入する装置です。",
+                                                     "サーボ制御による挿入で、絶縁紙の折れやずれを抑えます。",
+                                                     "ブラシ付モーター・直流モーターの電機子生産に対応します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "slot-insulation",
+                                          "label":  "Slot liner insertion",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "armature",
+                                          "label":  "Armature",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/armature-slot-insulation-paper-inserting-machine/gallery-01-400w.webp",
@@ -3221,8 +3651,35 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "巻線後の電機子スロットに、閉じ楔（ウェッジ）を挿入する装置です。",
+                                                     "楔の形状・スロット数・積厚に応じて、金型を交換して対応します。",
+                                                     "単体機として、または電機子生産ラインの一工程として設置します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "wedge-insertion",
+                                          "label":  "Slot wedge insertion",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "armature",
+                                          "label":  "Armature",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/armature-slot-wedge-inserting-machine/gallery-01-400w.webp",
@@ -3329,8 +3786,35 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "ブラシレスモーター固定子のスロットに、閉じ楔を立型で挿入する装置です。",
+                                                     "サーボ駆動の挿入ストロークにより、楔の傾きを抑えます。",
+                                                     "固定子生産ラインの巻線後工程として設置します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "wedge-insertion",
+                                          "label":  "Slot wedge insertion",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushless-motor",
+                                          "label":  "Brushless (BLDC) motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "stator",
+                                          "label":  "Stator",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-01-378w.webp",
@@ -3474,8 +3958,35 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "冷却ファンモーターの生産に特化した自動化ラインです。",
+                                                     "シェーデッドポール、PSC、ブラシレスなど、複数の方式に対応可能です。",
+                                                     "巻線・組立・検査を含む一貫工程を、サーボ搬送で結びます。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "cooling-fan-motor",
+                                          "label":  "Cooling-fan motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "production-line",
+                                          "label":  "Production line",
+                                          "kind":  "form"
+                                      },
+                                      {
+                                          "slug":  "assembly",
+                                          "label":  "Assembly",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "winding",
+                                          "label":  "Winding",
+                                          "kind":  "process"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-01-1000w.webp",
@@ -3571,8 +4082,30 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "六軸ロボットアームを用いた複雑な部品ハンドリング用のセルです。",
+                                                     "SCARA では届かない範囲、多方向からの部品供給に対応します。",
+                                                     "大径の固定子や回転子、複雑な組立工程に適します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "robotics",
+                                          "label":  "Robotic integration",
+                                          "kind":  "form"
+                                      },
+                                      {
+                                          "slug":  "assembly",
+                                          "label":  "Assembly",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "custom",
+                                          "label":  "Custom automation",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/application-of-six-axis-robotic-arm/gallery-01-800w.webp",
@@ -3660,8 +4193,35 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "ブラシレスモーター（BLDC）用の立型スロット絶縁紙挿入機です。",
+                                                     "省スペースが必要な生産セル向けにコンパクトに構成しています。",
+                                                     "巻線ステーションと隣接して設置し、生産ラインの一工程を担います。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "slot-insulation",
+                                          "label":  "Slot liner insertion",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushless-motor",
+                                          "label":  "Brushless (BLDC) motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "stator",
+                                          "label":  "Stator",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/vertical-brushless-motor-slot-insulation-paper-inserting-machine/gallery-01-1000w.webp",
@@ -3804,8 +4364,40 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "整流子タングに掛ける、フック式電機子の全自動巻線機です。",
+                                                     "AC サーボモーターによる巻線とタング掛けにより、360 度任意の角度に対応します。",
+                                                     "ブラシ付モーター・直流モーターの電機子生産に幅広く使用されます。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "winding",
+                                          "label":  "Winding",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushed-winding",
+                                          "label":  "Brushed / universal winding",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "armature",
+                                          "label":  "Armature",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/hook-type-armature-automatic-winding-machine/gallery-01-1000w.webp",
@@ -4014,8 +4606,35 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "完成した電機子の電気的・機械的検査を自動化した装置です。",
+                                                     "サージ試験、絶縁抵抗、直流抵抗などのパラメータを測定します。",
+                                                     "判定結果に基づき、不良品を自動的に振り分けます。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "testing",
+                                          "label":  "Testing",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "armature",
+                                          "label":  "Armature",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/armature-testing-machine/gallery-01-280w.webp",
@@ -4186,8 +4805,40 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "巻線済みの固定子・電機子を、ワニス含浸・乾燥（ベーク）する装置です。",
+                                                     "含浸量とベーク温度を管理し、絶縁クラスに応じた仕上がりを実現します。",
+                                                     "含浸工程と乾燥工程を統合した自動処理を提供します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "varnish",
+                                          "label":  "Varnish and bake",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "armature",
+                                          "label":  "Armature",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "stator",
+                                          "label":  "Stator",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/varnish-bake/gallery-01-1000w.webp",
@@ -4466,8 +5117,40 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "整流子および電機子外径の精密車削を行う装置です。",
+                                                     "サーボ送りにより、公差と仕上げ面をプロジェクト仕様に合わせて設定します。",
+                                                     "単体機として、または回転子生産ラインの一工程として設置します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "turning",
+                                          "label":  "Turning",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "commutator",
+                                          "label":  "Commutator",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "armature",
+                                          "label":  "Armature",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/gallery-01-400w.webp",
@@ -4676,8 +5359,35 @@
                                                  ],
                                       "zhSpec":  [
                                                      "機台功能規格表 TMW-515雙刀軸平衡減量車削機 電力需求 220V(380V)-3Φ-2KW"
+                                                 ],
+                                      "jaDesc":  [
+                                                     "回転子の動的バランス測定と、不釣合いの自動補正を行います。",
+                                                     "サーボ制御の切削または追加質量による補正方式に対応します。",
+                                                     "ブラシ付モーター・ブラシレスモーターの回転子生産の最終工程に位置します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "balancing",
+                                          "label":  "Dynamic balancing",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "rotor",
+                                          "label":  "Rotor",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/balancing/gallery-01-121w.webp",
@@ -4837,8 +5547,30 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "カタログ機と専用機を組み合わせた、モジュール構成のターンキー生産ラインです。",
+                                                     "サーボ搬送、バーコードによるトレーサビリティ、集中データ収集を標準装備します。",
+                                                     "モジュールを追加することでライン能力を拡張できます。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "production-line",
+                                          "label":  "Production line",
+                                          "kind":  "form"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "brushless-motor",
+                                          "label":  "Brushless (BLDC) motor",
+                                          "kind":  "motor"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/automatic-modular-production-line/gallery-01-800w.webp",
@@ -5014,8 +5746,25 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "電機子・固定子・空芯コイル・多軸巻線など、各種巻線機を取り揃えたシリーズです。",
+                                                     "モーター方式と巻線方式に応じて、機種を選定します。",
+                                                     "単体機として、またはモジュール式巻線ラインへの組み込みが可能です。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "winding",
+                                          "label":  "Winding",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "production-line",
+                                          "label":  "Production line",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/automatic-winding-machine-product-series/gallery-01-400w.webp",
@@ -5183,8 +5932,30 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "高密度構成のモジュール式生産ラインです。",
+                                                     "並列ステーションとバッファ付き搬送により、処理能力を平準化します。",
+                                                     "量産規模のプログラムに適した構成です。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "production-line",
+                                          "label":  "Production line",
+                                          "kind":  "form"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "brushless-motor",
+                                          "label":  "Brushless (BLDC) motor",
+                                          "kind":  "motor"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/automatic-modular-production-line-2/gallery-01-1000w.webp",
@@ -5288,8 +6059,35 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "半導体パッケージング向けの封止・検査用製造装置です。",
+                                                     "モーター生産で培ったサーボ制御・ビジョン技術を応用しています。",
+                                                     "2006 年より半導体パッケージング分野の自動化に取り組んでいます。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "semiconductor",
+                                          "label":  "Semiconductor",
+                                          "kind":  "industry"
+                                      },
+                                      {
+                                          "slug":  "testing",
+                                          "label":  "Testing",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "assembly",
+                                          "label":  "Assembly",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "custom",
+                                          "label":  "Custom automation",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/semiconductor-sealing-testing-process-equipment/gallery-01-400w.webp",
@@ -5401,8 +6199,25 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "各種部品を自動供給する搬送装置で、生産ラインの前段に配置します。",
+                                                     "対象部品の形状に合わせて治具・搬送方式を設計します。",
+                                                     "モジュール式生産ラインへの組み込みを前提としています。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "feeding",
+                                          "label":  "Automated feeding",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "custom",
+                                          "label":  "Custom automation",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/automatic-feeding-system/gallery-01-800w.webp",
@@ -5521,8 +6336,30 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "ロータリーインデックステーブルに複数の組立ステーションを配置した装置です。",
+                                                     "サーボ駆動のインデックスにより、高いサイクルタイムで小物部品を組み立てます。",
+                                                     "回転子、ボビン、小型モーターの組立工程に適します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "assembly",
+                                          "label":  "Assembly",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "feeding",
+                                          "label":  "Automated feeding",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "custom",
+                                          "label":  "Custom automation",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/turntable-automatic-assembling-equipment/gallery-01-1000w.webp",
@@ -5657,8 +6494,30 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "バラ供給される小型部品を、振動ボウルフィーダーで整列供給し、組み立てるセルです。",
+                                                     "対象部品ごとにボウル治具を設計します。",
+                                                     "モーター・家電生産における小型金属部品・樹脂部品の供給に適します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "assembly",
+                                          "label":  "Assembly",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "feeding",
+                                          "label":  "Automated feeding",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "custom",
+                                          "label":  "Custom automation",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/vibration-feeding-assembling-equipment/gallery-01-800w.webp",
@@ -5730,8 +6589,35 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "ブラシレスモーター固定子の巻線をターミナルに融着（ヒュージング）する装置です。",
+                                                     "ハンダを使わず、抵抗発熱によりエナメル線と端子を直接接続します。",
+                                                     "サーボ制御の電極位置決めと、閉ループ電流・荷重制御を採用しています。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "fusing",
+                                          "label":  "Fusing / welding",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushless-motor",
+                                          "label":  "Brushless (BLDC) motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "stator",
+                                          "label":  "Stator",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/stator-fusing/gallery-01-1000w.webp",
@@ -5935,8 +6821,40 @@
                                                  ],
                                       "zhSpec":  [
                                                      "機台功能規格書 MACHINE SPECIAFICATIONS 電 力 需 求 Power supply 220V(380V) 空(油)壓力 Pneumatic (hydraulic) supply 5kg/c㎡ 定 子 外 徑 Stator extenal diameter(max) ψ35mm-110mm 定 子 積 厚 Core thickness 適 用 線 徑 Appliccable wire diameter 0.2mm-1.5mm 繞 線 速 度 Winding speed(max) 450rpm(Depending on winding item) 機 台 淨 重 Machine net weight 500kg 機 台 尺 寸 Machine size 12000(D) 900(W) 1710(H)mm 工 位 數 量 Quantity of Workstation 1~4工位 1~4 Stage 捲 線 機 構 Coil Winding Unit X-Axis Servo motor with ballscrrews Y-Axis Servo motor with ballscrrews Z-Axis Servo motor with ballscrrews 定子角度控制 Stator Angles Control 1組伺服控制 Servo Control X 1 Set 張 力 系 統 Tension Device Type1: 類比式控制Analog Tension Output Control Type2: 2組伺服控制 Servo Control \u0026 D/A X 2 Set 控 制 系 統 Control System 日系安川運動控制模組 Japanese-Yaskawa Motion Control series 工作參數記憶 Parameter Memory 標準配備 Standard moudule 快 速 換 模 Quick Die Change 標準配備 Standard moudule 異常偵測系統 Error Detection \u0026 Display System 標準配備 Standard moudule 主動式保養提示 Service Prompt 標準配備 Standard moudule 機械手臂與輸送帶連結功能 Robot Manipulator \u0026 Conveyor Connection 選擇配備 Optional moudule 遠距程式監控維護 Distant Programming Monitoring System 標準配備 Standard moudule 手輪動態模擬系統 Manual Pulse Generator System 標準配備 Standard moudule 自動夾/剪線機構 Automatic Wire Cutting \u0026 Clamping Unit 標準配備 Standard moudule"
+                                                 ],
+                                      "jaDesc":  [
+                                                     "インスロット型ブラシレスモーター固定子の全自動巻線機です。",
+                                                     "サーボモーター駆動により、高速かつ精密な巻線を実現します。",
+                                                     "固定子生産ラインへの組み込みが可能です。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "winding",
+                                          "label":  "Winding",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "bldc-winding",
+                                          "label":  "BLDC / brushless winding",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "brushless-motor",
+                                          "label":  "Brushless (BLDC) motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "stator",
+                                          "label":  "Stator",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "production-line",
+                                          "label":  "Production line",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/stator-production-line/gallery-01-378w.webp",
@@ -6233,8 +7151,40 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "ブラシ付・ユニバーサルモーター用の 2 極固定子巻線機、単工位仕様です。",
+                                                     "サーボ制御の張力・巻数管理により、安定した品質を実現します。",
+                                                     "中小径の固定子生産に適します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "winding",
+                                          "label":  "Winding",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushed-winding",
+                                          "label":  "Brushed / universal winding",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "stator",
+                                          "label":  "Stator",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-01-800w.webp",
@@ -6465,8 +7415,40 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "ブラシ付・ユニバーサルモーター用の 2 極固定子巻線機、二軸独立巻線仕様です。",
+                                                     "生産性を高めるため、複数の固定子を同時に巻線できます。",
+                                                     "中量～量産の 2 極固定子生産に適します。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "winding",
+                                          "label":  "Winding",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushed-winding",
+                                          "label":  "Brushed / universal winding",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "stator",
+                                          "label":  "Stator",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/two-poles-type-stator-winding-machine-with-two-axes/gallery-01-400w.webp",
@@ -6698,8 +7680,40 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "巻線済みの固定子・電機子を、ワニス含浸・乾燥する自動処理機です。",
+                                                     "含浸量とベーク温度をレシピ管理し、量産で安定した絶縁品質を実現します。",
+                                                     "ブラシ付モーター、ユニバーサルモーターの生産ラインに組み込みます。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "varnish",
+                                          "label":  "Varnish and bake",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "armature",
+                                          "label":  "Armature",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "stator",
+                                          "label":  "Stator",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/varnish-bake-twm-301a/gallery-01-1000w.webp",
@@ -6979,8 +7993,40 @@
                                                  ],
                                       "zhSpec":  [
 
+                                                 ],
+                                      "jaDesc":  [
+                                                     "横型（水平）配置のフック式電機子全自動巻線機です。",
+                                                     "大径の電機子や、床置きラインへの組み込みに適します。",
+                                                     "ロボットアームやコンベアと連結し、無人化ラインを構成できます。"
                                                  ]
                                   },
+                         "tags":  [
+                                      {
+                                          "slug":  "winding",
+                                          "label":  "Winding",
+                                          "kind":  "process"
+                                      },
+                                      {
+                                          "slug":  "brushed-winding",
+                                          "label":  "Brushed / universal winding",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "brushed-motor",
+                                          "label":  "Brushed motor",
+                                          "kind":  "motor"
+                                      },
+                                      {
+                                          "slug":  "armature",
+                                          "label":  "Armature",
+                                          "kind":  "component"
+                                      },
+                                      {
+                                          "slug":  "standalone",
+                                          "label":  "Standalone machine",
+                                          "kind":  "form"
+                                      }
+                                  ],
                          "gallery":  [
                                          {
                                              "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-01-1000w.webp",
