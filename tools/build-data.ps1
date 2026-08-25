@@ -155,6 +155,42 @@ function New-ImageObject {
 # Products
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------
+# Title Case for product names, Amazon-style. Every word capitalised except a
+# short list of connecting words, which stay lower unless they open the title.
+# Model numbers (TWM-xxx), acronyms (BLDC, SCARA, PLC, AC, DC, OD, HMI) and
+# any all-caps token stay verbatim. Numeric words (3-phase, 3D) also stay.
+# ---------------------------------------------------------------------------
+$script:TitleSkip = @('a','an','and','as','at','but','by','for','from','in','of','on','or','the','to','via','with')
+$script:TitleKeep = @('TWM','TWA','TMW','NB','BLDC','SCARA','PLC','AC','DC','OD','ID','HMI','LED','LCD','CNC','VCR','MELFA','SP001','AP01','IP01','IW01','ISW001','ISP01','LA01','WB001','RF30S','RT533','LS001','RT533-04')
+
+function Convert-TitleCase {
+    param([string]$Text)
+    if (-not $Text) { return $Text }
+    $words = $Text -split '(\s+|[\-\/\\\(\)])'
+    $out = @()
+    $wordIdx = 0
+    for ($i = 0; $i -lt $words.Count; $i++) {
+        $w = $words[$i]
+        if ([string]::IsNullOrEmpty($w)) { continue }
+        if ($w -match '^\s+$' -or $w -match '^[\-\/\\\(\)]$') { $out += $w; continue }
+        # Keep uppercase tokens as-is (model numbers, acronyms)
+        if ($w -cmatch '^[A-Z0-9\-]+$' -and $w.Length -ge 2) { $out += $w; $wordIdx++; continue }
+        # Keep hyphenated model-like tokens
+        $upper = $w.ToUpperInvariant()
+        if ($script:TitleKeep -contains $upper) { $out += $upper; $wordIdx++; continue }
+        # Small connecting words stay lower unless first word
+        $lower = $w.ToLowerInvariant()
+        if ($wordIdx -gt 0 -and $script:TitleSkip -contains $lower) { $out += $lower; $wordIdx++; continue }
+        # Standard title case: capitalise first, lowercase the rest
+        # Preserve any embedded caps that look like part of a compound word.
+        if ($w.Length -eq 1) { $out += $w.ToUpperInvariant() }
+        else { $out += $w.Substring(0,1).ToUpperInvariant() + $w.Substring(1).ToLowerInvariant() }
+        $wordIdx++
+    }
+    return ($out -join '')
+}
+
 $products = New-Object System.Collections.Generic.List[object]
 
 foreach ($p in $raw) {
@@ -321,10 +357,12 @@ foreach ($p in $raw) {
         }
     }
 
+    # Title Case per Amazon convention. Model numbers stay as-is (upper).
+    $titleCased = Convert-TitleCase $p.title
     $products.Add([pscustomobject]@{
         slug       = $slug
         model      = $p.model
-        title      = $p.title
+        title      = $titleCased
         family     = $famSlug
         familyName = $famName
         hero       = $hero

@@ -210,6 +210,97 @@
     <div class="prod">
       
       <div class="prod__media" data-prod-gallery>
+
+        <!-- Mobile-first swipeable carousel. Renders inline on phone/tablet.
+             Progressive enhancement: native scroll-snap works without JS;
+             JS adds pagination dots, snap-index tracking, and opens the
+             immersive viewer on tap. Video (if any) rides as the last slide. -->
+        <div class="pgal" data-pgal>
+          <div class="pgal__track" data-pgal-track>
+            
+            <button class="pgal__slide" type="button"
+                    data-pgal-slide="image"
+                    data-pgal-src="/assets/images/balancing/tmw-515nb-307a-balancing-01-800w.webp"
+                    data-pgal-srcset="/assets/images/balancing/tmw-515nb-307a-balancing-01-400w.webp 400w, /assets/images/balancing/tmw-515nb-307a-balancing-01-800w.webp 800w"
+                    data-pgal-w="800"
+                    data-pgal-h="800"
+                    data-pgal-alt="TMW-515/NB-307A Balancing">
+              <img src="/assets/images/balancing/tmw-515nb-307a-balancing-01-800w.webp" srcset="/assets/images/balancing/tmw-515nb-307a-balancing-01-400w.webp 400w, /assets/images/balancing/tmw-515nb-307a-balancing-01-800w.webp 800w"
+                   sizes="100vw"
+                   width="800" height="800"
+                   alt="TMW-515/NB-307A Balancing" loading="lazy" decoding="async">
+            </button>
+            
+            <button class="pgal__slide" type="button"
+                    data-pgal-slide="image"
+                    data-pgal-src="/assets/images/balancing/tmw-515nb-307a-balancing-02-800w.webp"
+                    data-pgal-srcset="/assets/images/balancing/tmw-515nb-307a-balancing-02-400w.webp 400w, /assets/images/balancing/tmw-515nb-307a-balancing-02-800w.webp 800w"
+                    data-pgal-w="800"
+                    data-pgal-h="800"
+                    data-pgal-alt="TMW-515/NB-307A Balancing">
+              <img src="/assets/images/balancing/tmw-515nb-307a-balancing-02-800w.webp" srcset="/assets/images/balancing/tmw-515nb-307a-balancing-02-400w.webp 400w, /assets/images/balancing/tmw-515nb-307a-balancing-02-800w.webp 800w"
+                   sizes="100vw"
+                   width="800" height="800"
+                   alt="TMW-515/NB-307A Balancing" loading="lazy" decoding="async">
+            </button>
+            
+            <button class="pgal__slide" type="button"
+                    data-pgal-slide="image"
+                    data-pgal-src="/assets/images/balancing/gallery-03-800w.webp"
+                    data-pgal-srcset="/assets/images/balancing/gallery-03-400w.webp 400w, /assets/images/balancing/gallery-03-800w.webp 800w"
+                    data-pgal-w="800"
+                    data-pgal-h="800"
+                    data-pgal-alt="TMW-515/NB-307A Balancing - finished part produced on this machine">
+              <img src="/assets/images/balancing/gallery-03-800w.webp" srcset="/assets/images/balancing/gallery-03-400w.webp 400w, /assets/images/balancing/gallery-03-800w.webp 800w"
+                   sizes="100vw"
+                   width="800" height="800"
+                   alt="TMW-515/NB-307A Balancing - finished part produced on this machine" loading="lazy" decoding="async">
+            </button>
+            
+            <button class="pgal__slide" type="button"
+                    data-pgal-slide="image"
+                    data-pgal-src="/assets/images/balancing/gallery-04-800w.webp"
+                    data-pgal-srcset="/assets/images/balancing/gallery-04-400w.webp 400w, /assets/images/balancing/gallery-04-800w.webp 800w"
+                    data-pgal-w="800"
+                    data-pgal-h="800"
+                    data-pgal-alt="TMW-515/NB-307A Balancing - finished part produced on this machine">
+              <img src="/assets/images/balancing/gallery-04-800w.webp" srcset="/assets/images/balancing/gallery-04-400w.webp 400w, /assets/images/balancing/gallery-04-800w.webp 800w"
+                   sizes="100vw"
+                   width="800" height="800"
+                   alt="TMW-515/NB-307A Balancing - finished part produced on this machine" loading="lazy" decoding="async">
+            </button>
+            
+            <button class="pgal__slide" type="button"
+                    data-pgal-slide="image"
+                    data-pgal-src="/assets/images/balancing/gallery-02-400w.webp"
+                    data-pgal-srcset="/assets/images/balancing/gallery-02-400w.webp 400w"
+                    data-pgal-w="400"
+                    data-pgal-h="400"
+                    data-pgal-alt="TMW-515/NB-307A Balancing - finished part produced on this machine">
+              <img src="/assets/images/balancing/gallery-02-400w.webp" srcset="/assets/images/balancing/gallery-02-400w.webp 400w"
+                   sizes="100vw"
+                   width="400" height="400"
+                   alt="TMW-515/NB-307A Balancing - finished part produced on this machine" loading="lazy" decoding="async">
+            </button>
+            
+            <button class="pgal__slide" type="button"
+                    data-pgal-slide="image"
+                    data-pgal-src="/assets/images/balancing/gallery-01-121w.webp"
+                    data-pgal-srcset="/assets/images/balancing/gallery-01-121w.webp 121w"
+                    data-pgal-w="121"
+                    data-pgal-h="121"
+                    data-pgal-alt="TMW-515/NB-307A Balancing - finished part produced on this machine">
+              <img src="/assets/images/balancing/gallery-01-121w.webp" srcset="/assets/images/balancing/gallery-01-121w.webp 121w"
+                   sizes="100vw"
+                   width="121" height="121"
+                   alt="TMW-515/NB-307A Balancing - finished part produced on this machine" loading="lazy" decoding="async">
+            </button>
+            
+            
+          </div>
+          <div class="pgal__dots" data-pgal-dots aria-label="画像"></div>
+        </div>
+
         <button class="frame frame--hero" type="button" data-prod-zoom
                 aria-label="拡大表示">
           <img class="prod__hero" src="/assets/images/balancing/tmw-515nb-307a-balancing-01-800w.webp" srcset="/assets/images/balancing/tmw-515nb-307a-balancing-01-400w.webp 400w, /assets/images/balancing/tmw-515nb-307a-balancing-01-800w.webp 800w"
@@ -454,41 +545,95 @@
 </section>
 
 
-<!-- Amazon-style zoom lightbox. All gallery images plus the YouTube video
-     (if any) are exposed here as tabs, so a buyer who lands on the hero can
-     click through the whole set including the machine running. Lives inside
-     the product page (not layout) so the markup only ships where it is
-     needed. -->
+<!-- Unified immersive product media viewer. Single horizontally-swipeable
+     track carries every image plus the YouTube video (when present) as
+     equal media items - the way Amazon's mobile product viewer works.
+     Desktop keeps a right-hand thumb grid; mobile gets pagination dots
+     overlaid at the bottom. Native <dialog> gives keyboard focus, Esc,
+     and backdrop for free. -->
 
-<!-- Amazon-style: tabs top-left, close top-right, main image centre-left,
-     title + thumb grid on the right sidebar. Stacks vertically on phones. -->
 <dialog class="lightbox" data-lightbox id="prod-lightbox" aria-label="拡大表示">
   <header class="lightbox__bar">
-    <div class="lightbox__tabs" role="tablist">
-      <button class="lightbox__tab" type="button" role="tab" data-lightbox-tab="images"
-              aria-selected="true">画像</button>
-      
-    </div>
+    <span class="lightbox__count" data-lightbox-count aria-live="polite"></span>
     <button class="lightbox__close" type="button" data-lightbox-close aria-label="閉じる">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
   </header>
 
   <div class="lightbox__body">
-    <div class="lightbox__stage">
-      <div class="lightbox__pane" role="tabpanel" data-lightbox-pane="images">
-        <div class="lightbox__main">
-          <img class="lightbox__img" alt="" data-lightbox-main>
+    <div class="lightbox__stage" data-lightbox-stage>
+      <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev
+              aria-label="閉じる">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next
+              aria-label="閉じる">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+
+      <div class="lightbox__track" data-lightbox-track>
+        
+        <div class="lightbox__slide" data-lightbox-slide="image" data-lightbox-idx="0">
+          <div class="lightbox__zoomer" data-lightbox-zoomer>
+            <img class="lightbox__img" data-lightbox-img
+                 data-src="/assets/images/balancing/tmw-515nb-307a-balancing-01-800w.webp" data-srcset="/assets/images/balancing/tmw-515nb-307a-balancing-01-400w.webp 400w, /assets/images/balancing/tmw-515nb-307a-balancing-01-800w.webp 800w"
+                 width="800" height="800"
+                 alt="TMW-515/NB-307A Balancing" decoding="async" loading="lazy" draggable="false">
+          </div>
         </div>
+        
+        <div class="lightbox__slide" data-lightbox-slide="image" data-lightbox-idx="1">
+          <div class="lightbox__zoomer" data-lightbox-zoomer>
+            <img class="lightbox__img" data-lightbox-img
+                 data-src="/assets/images/balancing/tmw-515nb-307a-balancing-02-800w.webp" data-srcset="/assets/images/balancing/tmw-515nb-307a-balancing-02-400w.webp 400w, /assets/images/balancing/tmw-515nb-307a-balancing-02-800w.webp 800w"
+                 width="800" height="800"
+                 alt="TMW-515/NB-307A Balancing" decoding="async" loading="lazy" draggable="false">
+          </div>
+        </div>
+        
+        <div class="lightbox__slide" data-lightbox-slide="image" data-lightbox-idx="2">
+          <div class="lightbox__zoomer" data-lightbox-zoomer>
+            <img class="lightbox__img" data-lightbox-img
+                 data-src="/assets/images/balancing/gallery-03-800w.webp" data-srcset="/assets/images/balancing/gallery-03-400w.webp 400w, /assets/images/balancing/gallery-03-800w.webp 800w"
+                 width="800" height="800"
+                 alt="TMW-515/NB-307A Balancing - finished part produced on this machine" decoding="async" loading="lazy" draggable="false">
+          </div>
+        </div>
+        
+        <div class="lightbox__slide" data-lightbox-slide="image" data-lightbox-idx="3">
+          <div class="lightbox__zoomer" data-lightbox-zoomer>
+            <img class="lightbox__img" data-lightbox-img
+                 data-src="/assets/images/balancing/gallery-04-800w.webp" data-srcset="/assets/images/balancing/gallery-04-400w.webp 400w, /assets/images/balancing/gallery-04-800w.webp 800w"
+                 width="800" height="800"
+                 alt="TMW-515/NB-307A Balancing - finished part produced on this machine" decoding="async" loading="lazy" draggable="false">
+          </div>
+        </div>
+        
+        <div class="lightbox__slide" data-lightbox-slide="image" data-lightbox-idx="4">
+          <div class="lightbox__zoomer" data-lightbox-zoomer>
+            <img class="lightbox__img" data-lightbox-img
+                 data-src="/assets/images/balancing/gallery-02-400w.webp" data-srcset="/assets/images/balancing/gallery-02-400w.webp 400w"
+                 width="400" height="400"
+                 alt="TMW-515/NB-307A Balancing - finished part produced on this machine" decoding="async" loading="lazy" draggable="false">
+          </div>
+        </div>
+        
+        <div class="lightbox__slide" data-lightbox-slide="image" data-lightbox-idx="5">
+          <div class="lightbox__zoomer" data-lightbox-zoomer>
+            <img class="lightbox__img" data-lightbox-img
+                 data-src="/assets/images/balancing/gallery-01-121w.webp" data-srcset="/assets/images/balancing/gallery-01-121w.webp 121w"
+                 width="121" height="121"
+                 alt="TMW-515/NB-307A Balancing - finished part produced on this machine" decoding="async" loading="lazy" draggable="false">
+          </div>
+        </div>
+        
+        
       </div>
-      
+
+      <div class="lightbox__dots" data-lightbox-dots aria-hidden="true"></div>
     </div>
 
     <aside class="lightbox__side">
-      <!-- Amazon strips this panel to title, one style/variant line, then
-           a small-square thumbnail grid. Nothing else - no lede, no CTA.
-           Kept the model number since it is the primary identifier on this
-           site the way "Style:" is on Amazon. -->
       <h2 class="lightbox__title">Balancing</h2>
       <p class="lightbox__style">
         <span class="lightbox__style-label">型式:</span>
@@ -498,70 +643,47 @@
       <div class="lightbox__thumbs" role="tablist" aria-label="画像">
         
         <button class="lightbox__thumb" type="button" role="tab"
-                data-lightbox-src="/assets/images/balancing/tmw-515nb-307a-balancing-01-800w.webp"
-                data-lightbox-srcset="/assets/images/balancing/tmw-515nb-307a-balancing-01-400w.webp 400w, /assets/images/balancing/tmw-515nb-307a-balancing-01-800w.webp 800w"
-                data-lightbox-w="800"
-                data-lightbox-h="800"
-                data-lightbox-alt="TMW-515/NB-307A Balancing"
+                data-lightbox-thumb="image"
                 aria-label="TMW-515/NB-307A Balancing">
           <img src="/assets/images/balancing/tmw-515nb-307a-balancing-01-800w.webp" srcset="/assets/images/balancing/tmw-515nb-307a-balancing-01-400w.webp 400w, /assets/images/balancing/tmw-515nb-307a-balancing-01-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
         <button class="lightbox__thumb" type="button" role="tab"
-                data-lightbox-src="/assets/images/balancing/tmw-515nb-307a-balancing-02-800w.webp"
-                data-lightbox-srcset="/assets/images/balancing/tmw-515nb-307a-balancing-02-400w.webp 400w, /assets/images/balancing/tmw-515nb-307a-balancing-02-800w.webp 800w"
-                data-lightbox-w="800"
-                data-lightbox-h="800"
-                data-lightbox-alt="TMW-515/NB-307A Balancing"
+                data-lightbox-thumb="image"
                 aria-label="TMW-515/NB-307A Balancing">
           <img src="/assets/images/balancing/tmw-515nb-307a-balancing-02-800w.webp" srcset="/assets/images/balancing/tmw-515nb-307a-balancing-02-400w.webp 400w, /assets/images/balancing/tmw-515nb-307a-balancing-02-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
         <button class="lightbox__thumb" type="button" role="tab"
-                data-lightbox-src="/assets/images/balancing/gallery-03-800w.webp"
-                data-lightbox-srcset="/assets/images/balancing/gallery-03-400w.webp 400w, /assets/images/balancing/gallery-03-800w.webp 800w"
-                data-lightbox-w="800"
-                data-lightbox-h="800"
-                data-lightbox-alt="TMW-515/NB-307A Balancing - finished part produced on this machine"
+                data-lightbox-thumb="image"
                 aria-label="TMW-515/NB-307A Balancing - finished part produced on this machine">
           <img src="/assets/images/balancing/gallery-03-800w.webp" srcset="/assets/images/balancing/gallery-03-400w.webp 400w, /assets/images/balancing/gallery-03-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
         <button class="lightbox__thumb" type="button" role="tab"
-                data-lightbox-src="/assets/images/balancing/gallery-04-800w.webp"
-                data-lightbox-srcset="/assets/images/balancing/gallery-04-400w.webp 400w, /assets/images/balancing/gallery-04-800w.webp 800w"
-                data-lightbox-w="800"
-                data-lightbox-h="800"
-                data-lightbox-alt="TMW-515/NB-307A Balancing - finished part produced on this machine"
+                data-lightbox-thumb="image"
                 aria-label="TMW-515/NB-307A Balancing - finished part produced on this machine">
           <img src="/assets/images/balancing/gallery-04-800w.webp" srcset="/assets/images/balancing/gallery-04-400w.webp 400w, /assets/images/balancing/gallery-04-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
         <button class="lightbox__thumb" type="button" role="tab"
-                data-lightbox-src="/assets/images/balancing/gallery-02-400w.webp"
-                data-lightbox-srcset="/assets/images/balancing/gallery-02-400w.webp 400w"
-                data-lightbox-w="400"
-                data-lightbox-h="400"
-                data-lightbox-alt="TMW-515/NB-307A Balancing - finished part produced on this machine"
+                data-lightbox-thumb="image"
                 aria-label="TMW-515/NB-307A Balancing - finished part produced on this machine">
           <img src="/assets/images/balancing/gallery-02-400w.webp" srcset="/assets/images/balancing/gallery-02-400w.webp 400w" sizes="6rem"
                width="400" height="400" alt="" loading="lazy">
         </button>
         
         <button class="lightbox__thumb" type="button" role="tab"
-                data-lightbox-src="/assets/images/balancing/gallery-01-121w.webp"
-                data-lightbox-srcset="/assets/images/balancing/gallery-01-121w.webp 121w"
-                data-lightbox-w="121"
-                data-lightbox-h="121"
-                data-lightbox-alt="TMW-515/NB-307A Balancing - finished part produced on this machine"
+                data-lightbox-thumb="image"
                 aria-label="TMW-515/NB-307A Balancing - finished part produced on this machine">
           <img src="/assets/images/balancing/gallery-01-121w.webp" srcset="/assets/images/balancing/gallery-01-121w.webp 121w" sizes="6rem"
                width="121" height="121" alt="" loading="lazy">
         </button>
+        
         
       </div>
     </aside>
@@ -604,7 +726,7 @@
         
         <span class="cat__body">
           <span class="cat__count model">TWM-606</span>
-          <span class="cat__name">Commutator slot cutting</span>
+          <span class="cat__name">Commutator Slot Cutting</span>
         </span>
       </a>
       
@@ -619,7 +741,7 @@
         
         <span class="cat__body">
           <span class="cat__count model">TWM-202S</span>
-          <span class="cat__name">Servo motor/Hydraulic Pressure (Rotor\Commutator\impeller assembly)</span>
+          <span class="cat__name">Servo Motor/Hydraulic Pressure (Rotor\Commutator\Impeller Assembly)</span>
         </span>
       </a>
       
@@ -724,6 +846,6 @@
   </div>
 </footer>
 
-<script src="/assets/js/app.js" defer></script>
+<script src="/assets/js/app.js?v=8e228b0a7d" defer></script>
 </body>
 </html>

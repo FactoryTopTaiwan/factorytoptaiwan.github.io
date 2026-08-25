@@ -12,6 +12,46 @@
     <div class="prod{{#if page.product.hero}}{{else}} prod--no-media{{/if}}">
       {{#if page.product.hero}}
       <div class="prod__media" data-prod-gallery>
+
+        <!-- Mobile-first swipeable carousel. Renders inline on phone/tablet.
+             Progressive enhancement: native scroll-snap works without JS;
+             JS adds pagination dots, snap-index tracking, and opens the
+             immersive viewer on tap. Video (if any) rides as the last slide. -->
+        <div class="pgal" data-pgal>
+          <div class="pgal__track" data-pgal-track>
+            {{#each page.product.gallery}}
+            <button class="pgal__slide" type="button"
+                    data-pgal-slide="image"
+                    data-pgal-src="{{src}}"
+                    data-pgal-srcset="{{srcset}}"
+                    data-pgal-w="{{width}}"
+                    data-pgal-h="{{height}}"
+                    data-pgal-alt="{{alt}}">
+              <img src="{{src}}" srcset="{{srcset}}"
+                   sizes="100vw"
+                   width="{{width}}" height="{{height}}"
+                   alt="{{alt}}" loading="lazy" decoding="async">
+            </button>
+            {{/each}}
+            {{#if page.product.video}}
+            <button class="pgal__slide pgal__slide--video" type="button"
+                    data-pgal-slide="video"
+                    aria-label="{{site.ui.watchMachine}}">
+              <img src="{{page.product.video.poster.src}}"
+                   srcset="{{page.product.video.poster.srcset}}"
+                   sizes="100vw"
+                   width="{{page.product.video.poster.width}}"
+                   height="{{page.product.video.poster.height}}"
+                   alt="" loading="lazy" decoding="async">
+              <span class="pgal__play" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+              </span>
+            </button>
+            {{/if}}
+          </div>
+          <div class="pgal__dots" data-pgal-dots aria-label="{{site.ui.tabImages}}"></div>
+        </div>
+
         <button class="frame frame--hero" type="button" data-prod-zoom
                 aria-label="{{site.ui.viewLarger}}">
           <img class="prod__hero" src="{{page.product.hero.src}}" srcset="{{page.product.hero.srcset}}"
@@ -259,51 +299,69 @@
 </section>
 {{/if}}
 
-<!-- Amazon-style zoom lightbox. All gallery images plus the YouTube video
-     (if any) are exposed here as tabs, so a buyer who lands on the hero can
-     click through the whole set including the machine running. Lives inside
-     the product page (not layout) so the markup only ships where it is
-     needed. -->
+<!-- Unified immersive product media viewer. Single horizontally-swipeable
+     track carries every image plus the YouTube video (when present) as
+     equal media items - the way Amazon's mobile product viewer works.
+     Desktop keeps a right-hand thumb grid; mobile gets pagination dots
+     overlaid at the bottom. Native <dialog> gives keyboard focus, Esc,
+     and backdrop for free. -->
 {{#if page.product.hero}}
-<!-- Amazon-style: tabs top-left, close top-right, main image centre-left,
-     title + thumb grid on the right sidebar. Stacks vertically on phones. -->
 <dialog class="lightbox" data-lightbox id="prod-lightbox" aria-label="{{site.ui.viewLarger}}">
   <header class="lightbox__bar">
-    <div class="lightbox__tabs" role="tablist">
-      <button class="lightbox__tab" type="button" role="tab" data-lightbox-tab="images"
-              aria-selected="true">{{site.ui.tabImages}}</button>
-      {{#if page.product.video}}
-      <button class="lightbox__tab" type="button" role="tab" data-lightbox-tab="video"
-              aria-selected="false">{{site.ui.tabVideo}}</button>
-      {{/if}}
-    </div>
+    <span class="lightbox__count" data-lightbox-count aria-live="polite"></span>
     <button class="lightbox__close" type="button" data-lightbox-close aria-label="{{site.ui.close}}">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </button>
   </header>
 
   <div class="lightbox__body">
-    <div class="lightbox__stage">
-      <div class="lightbox__pane" role="tabpanel" data-lightbox-pane="images">
-        <div class="lightbox__main">
-          <img class="lightbox__img" alt="" data-lightbox-main>
+    <div class="lightbox__stage" data-lightbox-stage>
+      <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev
+              aria-label="{{site.ui.close}}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next
+              aria-label="{{site.ui.close}}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+
+      <div class="lightbox__track" data-lightbox-track>
+        {{#each page.product.gallery}}
+        <div class="lightbox__slide" data-lightbox-slide="image" data-lightbox-idx="{{@index}}">
+          <div class="lightbox__zoomer" data-lightbox-zoomer>
+            <img class="lightbox__img" data-lightbox-img
+                 data-src="{{src}}" data-srcset="{{srcset}}"
+                 width="{{width}}" height="{{height}}"
+                 alt="{{alt}}" decoding="async" loading="lazy" draggable="false">
+          </div>
         </div>
-      </div>
-      {{#if page.product.video}}
-      <div class="lightbox__pane" role="tabpanel" data-lightbox-pane="video" hidden>
-        <div class="lightbox__video" data-lightbox-video-id="{{page.product.video.youtubeId}}"
-             data-lightbox-video-title="{{page.product.title}}">
-          <!-- iframe injected on demand -->
+        {{/each}}
+        {{#if page.product.video}}
+        <div class="lightbox__slide lightbox__slide--video" data-lightbox-slide="video">
+          <div class="lightbox__video"
+               data-lightbox-video-id="{{page.product.video.youtubeId}}"
+               data-lightbox-video-title="{{page.product.title}}">
+            <button class="lightbox__vplay" type="button" data-lightbox-vplay
+                    aria-label="{{site.ui.watchMachine}}">
+              <img src="{{page.product.video.poster.src}}"
+                   srcset="{{page.product.video.poster.srcset}}"
+                   sizes="(min-width: 60rem) 70vw, 100vw"
+                   width="{{page.product.video.poster.width}}"
+                   height="{{page.product.video.poster.height}}"
+                   alt="" loading="lazy" decoding="async">
+              <span class="lightbox__vbtn" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+              </span>
+            </button>
+          </div>
         </div>
+        {{/if}}
       </div>
-      {{/if}}
+
+      <div class="lightbox__dots" data-lightbox-dots aria-hidden="true"></div>
     </div>
 
     <aside class="lightbox__side">
-      <!-- Amazon strips this panel to title, one style/variant line, then
-           a small-square thumbnail grid. Nothing else - no lede, no CTA.
-           Kept the model number since it is the primary identifier on this
-           site the way "Style:" is on Amazon. -->
       <h2 class="lightbox__title">{{page.product.title}}</h2>
       {{#if page.product.model}}<p class="lightbox__style">
         <span class="lightbox__style-label">{{site.ui.model}}:</span>
@@ -313,16 +371,25 @@
       <div class="lightbox__thumbs" role="tablist" aria-label="{{site.ui.tabImages}}">
         {{#each page.product.gallery}}
         <button class="lightbox__thumb" type="button" role="tab"
-                data-lightbox-src="{{src}}"
-                data-lightbox-srcset="{{srcset}}"
-                data-lightbox-w="{{width}}"
-                data-lightbox-h="{{height}}"
-                data-lightbox-alt="{{alt}}"
+                data-lightbox-thumb="image"
                 aria-label="{{alt}}">
           <img src="{{src}}" srcset="{{srcset}}" sizes="6rem"
                width="{{width}}" height="{{height}}" alt="" loading="lazy">
         </button>
         {{/each}}
+        {{#if page.product.video}}
+        <button class="lightbox__thumb lightbox__thumb--video" type="button" role="tab"
+                data-lightbox-thumb="video"
+                aria-label="{{site.ui.watchMachine}}">
+          <img src="{{page.product.video.poster.src}}"
+               srcset="{{page.product.video.poster.srcset}}" sizes="6rem"
+               width="{{page.product.video.poster.width}}"
+               height="{{page.product.video.poster.height}}" alt="" loading="lazy">
+          <span class="lightbox__thumb-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </span>
+        </button>
+        {{/if}}
       </div>
     </aside>
   </div>

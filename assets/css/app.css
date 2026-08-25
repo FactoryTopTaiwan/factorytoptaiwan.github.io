@@ -1491,11 +1491,112 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 .frame--hero:focus-visible .frame__zoom { opacity: 1; }
 .frame__zoom svg { width: 1rem; height: 1rem; }
 
-/* ---- Lightbox (Amazon-style) --------------------------------------------
-   Full-viewport dialog. Header carries tabs on the left and close on the
-   right; body is two columns on desktop (image stage left, info + thumb grid
-   right) and stacks on tablet / phone. Native <dialog> so keyboard focus,
-   backdrop and Esc all come free. */
+/* ---- Mobile-first product media carousel --------------------------------
+   Progressive-enhancement gallery that lives inside .prod__media above the
+   existing hero + thumbs. On phone/tablet it is the primary media surface;
+   on desktop (>= 62rem) the classic hero + thumb grid takes over and this
+   collapses to nothing. Uses native scroll-snap so a swipe follows the
+   finger with real momentum without a single line of JavaScript being
+   required for basic navigation. */
+.pgal {
+  position: relative;
+  margin: 0 calc(-1 * var(--sp-5));
+  background: var(--surface-hover);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+@media (min-width: 62rem) { .pgal { display: none; } }
+@media (min-width: 62rem) { .prod__media .frame--hero,
+                            .prod__media .thumbs { display: block; } }
+@media (max-width: 61.99rem) { .prod__media .frame--hero,
+                               .prod__media .thumbs { display: none; } }
+
+.pgal__track {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+.pgal__track::-webkit-scrollbar { display: none; }
+.pgal__slide {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  display: block;
+  width: 100%;
+}
+.pgal__slide img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  display: block;
+  user-select: none; -webkit-user-drag: none;
+  pointer-events: none;
+}
+.pgal__slide--video img { object-fit: cover; filter: brightness(0.85); }
+.pgal__play {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  color: #fff;
+  pointer-events: none;
+}
+.pgal__play::before {
+  content: "";
+  width: 3.5rem; height: 3.5rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  position: absolute;
+}
+.pgal__play svg { width: 1.6rem; height: 1.6rem; position: relative; margin-left: 3px; }
+
+.pgal__dots {
+  position: absolute;
+  left: 0; right: 0; bottom: 0.75rem;
+  display: flex; gap: 0.4rem; justify-content: center;
+  padding: 0;
+  pointer-events: none;
+}
+.pgal__dot {
+  width: 0.4rem; height: 0.4rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  border: 0;
+  padding: 0;
+  transition: width var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+  pointer-events: auto;
+  cursor: pointer;
+}
+.pgal__dot.is-active {
+  width: 1.2rem;
+  background: #ffffff;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pgal__track { scroll-behavior: auto; }
+  .pgal__dot { transition: none; }
+}
+
+/* ---- Immersive product media viewer -------------------------------------
+   Native <dialog>. On desktop it is a windowed lightbox with a right-hand
+   thumb rail (kept, per client feedback that the sidebar layout is right).
+   On mobile it becomes a full-screen immersive viewer with pinch-to-zoom,
+   double-tap zoom, single-finger pan when zoomed, horizontal swipe between
+   media, and pagination dots. Video rides in the same track as an image,
+   the way Amazon's mobile viewer treats a product video.
+
+   The stage uses touch-action: none on mobile so the browser's built-in
+   scroll/zoom does not fight the custom gesture handling. */
 .lightbox {
   padding: 0;
   border: 0;
@@ -1508,9 +1609,24 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.35);
   overflow: hidden;
 }
+@media (max-width: 60rem) {
+  .lightbox {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
+    border-radius: 0;
+    background: #0b0e12;
+    color: #ffffff;
+  }
+}
 .lightbox::backdrop {
   background: rgba(11, 14, 18, 0.78);
   backdrop-filter: blur(6px);
+}
+@media (max-width: 60rem) {
+  .lightbox::backdrop { background: #0b0e12; backdrop-filter: none; }
 }
 
 .lightbox__bar {
@@ -1519,21 +1635,24 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   padding: var(--sp-3) var(--sp-4);
   border-bottom: var(--border) solid var(--line);
 }
-.lightbox__tabs { display: flex; gap: var(--sp-4); }
-.lightbox__tab {
-  background: none; border: 0;
-  padding: var(--sp-2) var(--sp-2);
-  color: var(--ink-muted);
-  font: inherit; font-weight: 620;
-  letter-spacing: 0.06em; text-transform: uppercase;
+@media (max-width: 60rem) {
+  .lightbox__bar {
+    border-bottom: 0;
+    padding: calc(env(safe-area-inset-top) + 0.5rem) 0.75rem 0.5rem;
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 5;
+    background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0));
+  }
+}
+.lightbox__count {
   font-size: var(--step--1);
-  cursor: pointer;
-  position: relative;
+  color: var(--ink-muted);
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
 }
-.lightbox__tab[aria-selected="true"] {
-  color: var(--ink);
-  box-shadow: inset 0 -2px 0 var(--accent-ink);
-}
+@media (min-width: 60rem) { .lightbox__count { visibility: hidden; } }
+@media (max-width: 60rem) { .lightbox__count { color: rgba(255,255,255,0.9); } }
 
 .lightbox__close {
   width: 2.5rem; height: 2.5rem;
@@ -1546,6 +1665,13 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 }
 .lightbox__close:hover { color: var(--ink); background: var(--surface-hover); }
 .lightbox__close svg { width: 1.25rem; height: 1.25rem; }
+@media (max-width: 60rem) {
+  .lightbox__close {
+    color: #fff;
+    background: rgba(0,0,0,0.35);
+  }
+  .lightbox__close:hover { color: #fff; background: rgba(0,0,0,0.55); }
+}
 
 .lightbox__body {
   display: grid;
@@ -1556,40 +1682,162 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 @media (min-width: 60rem) {
   .lightbox__body { grid-template-columns: minmax(0, 1fr) 22rem; }
 }
+@media (max-width: 60rem) {
+  .lightbox__body { height: 100dvh; max-height: 100dvh; }
+}
 
 .lightbox__stage {
+  position: relative;
   background: var(--surface-hover);
-  display: grid; place-items: center;
+  overflow: hidden;
+  min-height: 60vh;
+}
+@media (max-width: 60rem) {
+  .lightbox__stage {
+    background: #0b0e12;
+    min-height: 0;
+    height: 100%;
+  }
+}
+
+.lightbox__track {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  height: 100%;
+  min-height: inherit;
+}
+.lightbox__track::-webkit-scrollbar { display: none; }
+.lightbox__stage.is-zoomed .lightbox__track {
+  overflow: hidden;
+  scroll-snap-type: none;
+}
+.lightbox__slide {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  display: grid;
+  place-items: center;
   padding: var(--sp-4);
   min-height: 60vh;
   overflow: hidden;
+  position: relative;
 }
-@media (max-width: 60rem) { .lightbox__stage { min-height: 50vh; } }
-.lightbox__pane { width: 100%; height: 100%; display: grid; place-items: center; }
-/* Hidden panes stay hidden even though display:grid would otherwise override
-   the browser's default. Fixes the bug where switching to Video left the
-   image showing below, and vice versa. */
-.lightbox__pane[hidden] { display: none !important; }
-.lightbox__main { display: grid; place-items: center; width: 100%; height: 100%; }
-.lightbox__img { max-width: 100%; max-height: 72vh; object-fit: contain; }
-
-.lightbox__video {
-  width: 100%; aspect-ratio: 16 / 9;
-  background: #000; border-radius: 10px;
+@media (max-width: 60rem) {
+  .lightbox__slide {
+    padding: 0;
+    min-height: 100%;
+  }
+}
+.lightbox__zoomer {
+  width: 100%; height: 100%;
+  display: grid; place-items: center;
   overflow: hidden;
+  touch-action: pan-y pinch-zoom;
+  cursor: zoom-in;
+}
+.lightbox__zoomer.is-zoomed { touch-action: none; cursor: grab; }
+.lightbox__img {
+  max-width: 100%; max-height: 72vh;
+  object-fit: contain;
+  transform-origin: 0 0;
+  transition: transform 220ms var(--ease-out);
+  will-change: transform;
+  user-select: none; -webkit-user-drag: none;
+}
+.lightbox__zoomer.is-panning .lightbox__img { transition: none; }
+@media (max-width: 60rem) {
+  .lightbox__img { max-height: 100dvh; }
+}
+
+.lightbox__slide--video { padding: var(--sp-4); }
+@media (max-width: 60rem) { .lightbox__slide--video { padding: 1rem; } }
+.lightbox__video {
+  width: 100%; max-width: min(1000px, 95%);
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
 }
 .lightbox__video iframe { width: 100%; height: 100%; border: 0; display: block; }
+.lightbox__vplay {
+  position: absolute; inset: 0;
+  padding: 0; border: 0; background: #000;
+  display: grid; place-items: center;
+  cursor: pointer;
+}
+.lightbox__vplay img { width: 100%; height: 100%; object-fit: cover; opacity: 0.75; }
+.lightbox__vbtn {
+  position: absolute;
+  width: 4.5rem; height: 4.5rem;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.6);
+  display: grid; place-items: center;
+  color: #fff;
+}
+.lightbox__vbtn svg { width: 2rem; height: 2rem; margin-left: 4px; }
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 2.75rem; height: 2.75rem;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(255,255,255,0.85);
+  color: var(--ink);
+  display: grid; place-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.lightbox__nav:hover { background: #fff; }
+.lightbox__nav svg { width: 1.4rem; height: 1.4rem; }
+.lightbox__nav--prev { left: 0.75rem; }
+.lightbox__nav--next { right: 0.75rem; }
+.lightbox__nav[hidden] { display: none; }
+@media (max-width: 60rem) { .lightbox__nav { display: none; } }
+
+.lightbox__dots {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: calc(env(safe-area-inset-bottom) + 1rem);
+  display: flex; gap: 0.4rem; justify-content: center;
+  padding: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+@media (min-width: 60rem) { .lightbox__dots { display: none; } }
+.lightbox__dot {
+  width: 0.4rem; height: 0.4rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.5);
+  border: 0; padding: 0;
+  transition: width var(--dur-fast) var(--ease-out),
+              background var(--dur-fast) var(--ease-out);
+  pointer-events: auto;
+  cursor: pointer;
+}
+.lightbox__dot.is-active { width: 1.2rem; background: #ffffff; }
 
 /* Amazon-style right rail: title, one Style/Model line, then a small
-   square thumbnail grid four wide. No lede, no CTA - the Request-a-
-   quotation button already lives on the product page behind the modal,
-   so the modal stays pure product-visual. */
+   square thumbnail grid four wide. Kept as-is per client feedback that
+   this is the layout they want. Hidden on mobile - the viewer becomes
+   full-screen immersive and the sidebar collapses to pagination dots. */
 .lightbox__side {
   padding: var(--sp-5);
   border-inline-start: var(--border) solid var(--line);
   overflow-y: auto;
   display: grid; gap: var(--sp-4); align-content: start;
 }
+@media (max-width: 60rem) { .lightbox__side { display: none; } }
 .lightbox__title {
   font-size: var(--step-1);
   line-height: 1.25;
@@ -1620,21 +1868,29 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   cursor: pointer;
   overflow: hidden;
   transition: border-color var(--dur-fast) var(--ease-out);
+  position: relative;
 }
 .lightbox__thumb img { width: 100%; height: 100%; object-fit: contain; }
 .lightbox__thumb:hover { border-color: var(--accent-line); }
 .lightbox__thumb[aria-selected="true"] { border-color: var(--accent-ink); }
-
-/* Main image is itself a zoom target - cursor hints at it and clicking
-   toggles a 1.6x scale, per the client's request that clicking the image
-   inside the modal should enlarge further. */
-.lightbox__stage { cursor: zoom-in; }
-.lightbox__stage.is-zoomed { cursor: zoom-out; overflow: auto; }
-.lightbox__img { transition: transform var(--dur) var(--ease-out); transform-origin: center; }
-.lightbox__stage.is-zoomed .lightbox__img { transform: scale(1.6); max-height: none; }
+.lightbox__thumb--video img { filter: brightness(0.85); }
+.lightbox__thumb-play {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  color: #fff;
+  pointer-events: none;
+}
+.lightbox__thumb-play::before {
+  content: "";
+  width: 1.75rem; height: 1.75rem;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.55);
+  position: absolute;
+}
+.lightbox__thumb-play svg { width: 0.9rem; height: 0.9rem; position: relative; margin-left: 2px; }
 
 /* Body scroll lock while lightbox open */
-body.lb-open { overflow: hidden; }
+body.lb-open { overflow: hidden; touch-action: none; }
 
 /* ---- Share button + menu ------------------------------------------------ */
 .share { position: relative; display: inline-flex; }

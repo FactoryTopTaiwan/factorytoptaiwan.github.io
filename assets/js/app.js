@@ -302,95 +302,469 @@
     })(facades[v]);
   }
 
-  /* ---- Product lightbox --------------------------------------------------
-     Clicking the main hero (or any thumbnail button) opens a native <dialog>
-     with a large view, a thumb strip, and a tab for the machine's YouTube
-     video. YouTube is only contacted when the reader switches to the Video
-     tab, keeping the no-autoplay / no-third-party-until-clicked contract. */
+  /* ---- Mobile product carousel + immersive media viewer -----------------
+     Two connected pieces:
+     1. .pgal is the mobile-only swipe carousel inside .prod__media.
+        Native scroll-snap does the finger-following; we render pagination
+        dots and open the viewer on tap.
+     2. .lightbox is the immersive viewer. Single scroll-snap track holds
+        every image plus the YouTube video as media items. Pinch, double-
+        tap and pan zoom images; when zoomed, horizontal swipe locks so
+        the pan stays on the current image. Desktop keeps the sidebar
+        thumb rail (client's confirmed layout); mobile becomes full-screen
+        with a dark background and pagination dots. */
+
+  // ----- Mobile carousel ---------------------------------------------------
+  var pgals = document.querySelectorAll('[data-pgal]');
+  for (var pg = 0; pg < pgals.length; pg++) {
+    (function (pgal) {
+      var track  = pgal.querySelector('[data-pgal-track]');
+      var slides = pgal.querySelectorAll('[data-pgal-slide]');
+      var dotsEl = pgal.querySelector('[data-pgal-dots]');
+      if (!track || !slides.length || !dotsEl) return;
+
+      // Build dots
+      var dots = [];
+      for (var i = 0; i < slides.length; i++) {
+        (function (i) {
+          var d = document.createElement('button');
+          d.type = 'button';
+          d.className = 'pgal__dot';
+          d.setAttribute('aria-label', 'Go to media ' + (i + 1) + ' of ' + slides.length);
+          d.addEventListener('click', function () {
+            slides[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          });
+          dotsEl.appendChild(d);
+          dots.push(d);
+        })(i);
+      }
+      dots[0].classList.add('is-active');
+
+      // Active index tracking via IntersectionObserver
+      var active = 0;
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting && e.intersectionRatio > 0.6) {
+              var idx = Array.prototype.indexOf.call(slides, e.target);
+              if (idx >= 0 && idx !== active) {
+                dots[active] && dots[active].classList.remove('is-active');
+                dots[idx].classList.add('is-active');
+                active = idx;
+              }
+            }
+          });
+        }, { root: track, threshold: [0.6, 0.9] });
+        for (var s = 0; s < slides.length; s++) io.observe(slides[s]);
+      }
+
+      // Tap-to-open. Use a small drag-threshold so a swipe does not
+      // accidentally open the viewer.
+      var startX = 0, startY = 0, dragged = false;
+      track.addEventListener('pointerdown', function (e) {
+        startX = e.clientX; startY = e.clientY; dragged = false;
+      }, { passive: true });
+      track.addEventListener('pointermove', function (e) {
+        if (Math.abs(e.clientX - startX) > 8 || Math.abs(e.clientY - startY) > 8) {
+          dragged = true;
+        }
+      }, { passive: true });
+
+      for (var t2 = 0; t2 < slides.length; t2++) {
+        (function (t2) {
+          slides[t2].addEventListener('click', function () {
+            if (dragged) return;
+            openViewer(t2);
+          });
+        })(t2);
+      }
+    })(pgals[pg]);
+  }
+
+  // ----- Immersive viewer --------------------------------------------------
   var lightbox = document.querySelector('[data-lightbox]');
+  var slides = [];
+  var mediaIdx = 0;
+  var trackEl = null;
+  var stage = null;
+  var count = null;
+  var dots = [];
+  var openViewer = function () {};
+  var closeViewer = function () {};
+
   if (lightbox && typeof HTMLDialogElement !== 'undefined') {
-    var lbMain   = lightbox.querySelector('[data-lightbox-main]');
-    var lbThumbs = lightbox.querySelectorAll('[data-lightbox-src]');
-    var lbTabs   = lightbox.querySelectorAll('[data-lightbox-tab]');
-    var lbPanes  = lightbox.querySelectorAll('[data-lightbox-pane]');
     var lbClose  = lightbox.querySelector('[data-lightbox-close]');
-    var lbVideo  = lightbox.querySelector('[data-lightbox-video-id]');
+    var lbPrev   = lightbox.querySelector('[data-lightbox-prev]');
+    var lbNext   = lightbox.querySelector('[data-lightbox-next]');
+    trackEl      = lightbox.querySelector('[data-lightbox-track]');
+    stage        = lightbox.querySelector('[data-lightbox-stage]');
+    count        = lightbox.querySelector('[data-lightbox-count]');
+    var dotsEl   = lightbox.querySelector('[data-lightbox-dots]');
+    var thumbs   = lightbox.querySelectorAll('[data-lightbox-thumb]');
+    slides = trackEl ? trackEl.querySelectorAll('[data-lightbox-slide]') : [];
 
-    function lbShow(idx) {
-      if (!lbThumbs.length) return;
-      idx = (idx + lbThumbs.length) % lbThumbs.length;
-      var t = lbThumbs[idx];
-      lbMain.src    = t.getAttribute('data-lightbox-src')    || '';
-      lbMain.srcset = t.getAttribute('data-lightbox-srcset') || '';
-      lbMain.width  = t.getAttribute('data-lightbox-w')      || '';
-      lbMain.height = t.getAttribute('data-lightbox-h')      || '';
-      lbMain.alt    = t.getAttribute('data-lightbox-alt')    || '';
-      for (var i = 0; i < lbThumbs.length; i++) {
-        lbThumbs[i].setAttribute('aria-selected', i === idx ? 'true' : 'false');
-      }
-      lbMain.dataset.idx = idx;
-    }
+    // Declare these upfront so closures below and above can reference them.
+    // Function declarations inside blocks are strictly block-scoped in strict
+    // mode and did not resolve reliably here, so use assigned expressions.
+    var loadImg, preloadAdjacent, renderState, lbGoto, updateActive;
 
-    for (var t = 0; t < lbThumbs.length; t++) {
-      (function (i) { lbThumbs[i].addEventListener('click', function () { lbShow(i); }); })(t);
-    }
-
-    function lbOpenTab(id) {
-      for (var i = 0; i < lbTabs.length; i++) {
-        var sel = lbTabs[i].getAttribute('data-lightbox-tab') === id;
-        lbTabs[i].setAttribute('aria-selected', sel ? 'true' : 'false');
-      }
-      for (var j = 0; j < lbPanes.length; j++) {
-        lbPanes[j].hidden = lbPanes[j].getAttribute('data-lightbox-pane') !== id;
-      }
-      if (id === 'video' && lbVideo && !lbVideo.querySelector('iframe')) {
-        var vid = lbVideo.getAttribute('data-lightbox-video-id');
-        var f = document.createElement('iframe');
-        f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(vid) +
-                '?rel=0&modestbranding=1';
-        f.title = lbVideo.getAttribute('data-lightbox-video-title') || 'Video';
-        f.allow = 'accelerometer; encrypted-media; picture-in-picture; web-share';
-        f.setAttribute('allowfullscreen', '');
-        lbVideo.appendChild(f);
-      }
-    }
-
-    for (var k = 0; k < lbTabs.length; k++) {
-      (function (tab) {
-        tab.addEventListener('click', function () { lbOpenTab(tab.getAttribute('data-lightbox-tab')); });
-      })(lbTabs[k]);
-    }
-
-    function openLightbox(idx) {
-      lbShow(idx || 0);
-      lbOpenTab('images');
+    openViewer = function (idx) {
+      mediaIdx = Math.max(0, Math.min(idx || 0, slides.length - 1));
+      document.body.dataset.lbScroll = String(window.scrollY);
+      document.body.classList.add('lb-open');
       try { lightbox.showModal(); } catch (e) { lightbox.setAttribute('open', ''); }
-    }
-    function closeLightbox() {
+      // Snap and preload synchronously so state is consistent even if the
+      // browser throttles rAF while the dialog is animating in.
+      lbGoto(mediaIdx, false);
+      preloadAdjacent(mediaIdx);
+      // Backup rAF in case layout wasn't ready above.
+      requestAnimationFrame(function () { lbGoto(mediaIdx, false); });
+    };
+    closeViewer = function () {
+      var iframe = lightbox.querySelector('iframe');
+      if (iframe && iframe.parentNode) iframe.parentNode.removeChild(iframe);
+      var vplay = lightbox.querySelector('[data-lightbox-vplay]');
+      if (vplay) vplay.hidden = false;
+      var zs = lightbox.querySelectorAll('[data-lightbox-zoomer]');
+      for (var z = 0; z < zs.length; z++) resetZoom(zs[z]);
       try { lightbox.close(); } catch (e) { lightbox.removeAttribute('open'); }
+      document.body.classList.remove('lb-open');
+      var y = parseInt(document.body.dataset.lbScroll || '0', 10);
+      if (!isNaN(y)) window.scrollTo(0, y);
+    };
+
+    // Build dots
+    if (dotsEl) {
+      for (var d = 0; d < slides.length; d++) {
+        (function (d) {
+          var dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'lightbox__dot';
+          dot.setAttribute('aria-label', 'Show media ' + (d + 1) + ' of ' + slides.length);
+          dot.addEventListener('click', function () { lbGoto(d, true); });
+          dotsEl.appendChild(dot);
+          dots.push(dot);
+        })(d);
+      }
+      if (dots[0]) dots[0].classList.add('is-active');
     }
-    if (lbClose) lbClose.addEventListener('click', closeLightbox);
+
+    // Load full-size images lazily as they scroll into view
+    var imgs = trackEl.querySelectorAll('[data-lightbox-img]');
+    loadImg = function (img) {
+      if (img.dataset.loaded === '1') return;
+      var src = img.getAttribute('data-src');
+      var ss  = img.getAttribute('data-srcset');
+      if (src) img.src = src;
+      if (ss)  img.srcset = ss;
+      img.dataset.loaded = '1';
+    };
+
+    preloadAdjacent = function (i) {
+      var list = [i, i - 1, i + 1];
+      for (var k = 0; k < list.length; k++) {
+        var t = slides[list[k]];
+        if (!t) continue;
+        var im = t.querySelector('[data-lightbox-img]');
+        if (im) loadImg(im);
+      }
+    };
+
+    // Track-scroll → index update
+    var scrollTimer = null;
+    updateActive = function () {
+      if (!trackEl || !slides.length) return;
+      var w = trackEl.clientWidth || 1;
+      var idx = Math.round(trackEl.scrollLeft / w);
+      idx = Math.max(0, Math.min(idx, slides.length - 1));
+      if (idx !== mediaIdx) {
+        // leaving previous slide - reset its zoom, and stop video if it was the video slide
+        var prev = slides[mediaIdx];
+        if (prev) {
+          var pz = prev.querySelector('[data-lightbox-zoomer]');
+          if (pz) resetZoom(pz);
+          if (prev.getAttribute('data-lightbox-slide') === 'video') {
+            var iframe = prev.querySelector('iframe');
+            if (iframe && iframe.parentNode) iframe.parentNode.removeChild(iframe);
+            var vplay = prev.querySelector('[data-lightbox-vplay]');
+            if (vplay) vplay.hidden = false;
+          }
+        }
+      }
+      mediaIdx = idx;
+      renderState();
+      preloadAdjacent(idx);
+    };
+    if (trackEl) {
+      trackEl.addEventListener('scroll', function () {
+        if (scrollTimer) clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(updateActive, 60);
+      }, { passive: true });
+    }
+
+    renderState = function () {
+      if (count) count.textContent = (mediaIdx + 1) + ' / ' + slides.length;
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.toggle('is-active', i === mediaIdx);
+      }
+      for (var j = 0; j < thumbs.length; j++) {
+        thumbs[j].setAttribute('aria-selected', j === mediaIdx ? 'true' : 'false');
+      }
+      if (lbPrev) lbPrev.hidden = mediaIdx <= 0;
+      if (lbNext) lbNext.hidden = mediaIdx >= slides.length - 1;
+    };
+
+    lbGoto = function (i, smooth) {
+      if (!trackEl || !slides.length) return;
+      i = Math.max(0, Math.min(i, slides.length - 1));
+      mediaIdx = i;
+      var w = trackEl.clientWidth;
+      var behavior = smooth ? 'smooth' : 'auto';
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) behavior = 'auto';
+      trackEl.scrollTo({ left: i * w, top: 0, behavior: behavior });
+      renderState();
+      preloadAdjacent(i);
+    };
+
+    // Thumb clicks (desktop rail)
+    for (var th = 0; th < thumbs.length; th++) {
+      (function (th) {
+        thumbs[th].addEventListener('click', function () { lbGoto(th, true); });
+      })(th);
+    }
+
+    // Nav buttons (desktop)
+    if (lbPrev) lbPrev.addEventListener('click', function () { lbGoto(mediaIdx - 1, true); });
+    if (lbNext) lbNext.addEventListener('click', function () { lbGoto(mediaIdx + 1, true); });
+
+    // Close controls
+    if (lbClose) lbClose.addEventListener('click', closeViewer);
     lightbox.addEventListener('click', function (e) {
-      if (e.target === lightbox) closeLightbox();
+      if (e.target === lightbox) closeViewer();
     });
+    lightbox.addEventListener('cancel', function (e) {
+      // Esc key - let it close naturally via dialog behavior, but we
+      // still need to run our teardown.
+      e.preventDefault();
+      closeViewer();
+    });
+
+    // Keyboard nav (desktop)
     document.addEventListener('keydown', function (e) {
       if (!lightbox.open) return;
-      if (e.key === 'ArrowRight') lbShow((parseInt(lbMain.dataset.idx || '0', 10) + 1));
-      else if (e.key === 'ArrowLeft') lbShow((parseInt(lbMain.dataset.idx || '0', 10) - 1));
+      if (e.key === 'ArrowRight') lbGoto(mediaIdx + 1, true);
+      else if (e.key === 'ArrowLeft') lbGoto(mediaIdx - 1, true);
+      else if (e.key === 'Escape') closeViewer();
     });
 
+    // Wire the hero + thumbs on the product page
     var heroBtn = document.querySelector('[data-prod-zoom]');
-    if (heroBtn) heroBtn.addEventListener('click', function () { openLightbox(0); });
+    if (heroBtn) heroBtn.addEventListener('click', function () { openViewer(0); });
+    var prodThumbs = document.querySelectorAll('[data-prod-thumb]');
+    for (var pt = 0; pt < prodThumbs.length; pt++) {
+      (function (pt) {
+        prodThumbs[pt].addEventListener('click', function () { openViewer(pt); });
+      })(pt);
+    }
 
-    // Second click inside the modal - on the main image - zooms it further.
-    // Amazon pattern: hero opens modal, image inside modal zooms on click.
-    var stage = lightbox.querySelector('.lightbox__stage');
-    if (stage && lbMain) {
-      lbMain.addEventListener('click', function (e) {
+    // Video slide: start the facade on click
+    var vplayBtns = lightbox.querySelectorAll('[data-lightbox-vplay]');
+    for (var vp = 0; vp < vplayBtns.length; vp++) {
+      vplayBtns[vp].addEventListener('click', function (e) {
         e.stopPropagation();
-        stage.classList.toggle('is-zoomed');
+        var wrap = this.parentNode;
+        if (wrap.querySelector('iframe')) return;
+        var vid = wrap.getAttribute('data-lightbox-video-id');
+        if (!vid) return;
+        var f = document.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(vid) +
+                '?autoplay=1&rel=0&modestbranding=1';
+        f.title = wrap.getAttribute('data-lightbox-video-title') || 'Video';
+        f.allow = 'autoplay; accelerometer; encrypted-media; picture-in-picture; web-share';
+        f.setAttribute('allowfullscreen', '');
+        wrap.appendChild(f);
+        this.hidden = true;
       });
     }
+
+    // Recompute snap position on viewport resize
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      if (!lightbox.open) return;
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () { lbGoto(mediaIdx, false); }, 100);
+    });
+
+    // ----- Zoom + pan on image slides -------------------------------------
+    var zoomers = lightbox.querySelectorAll('[data-lightbox-zoomer]');
+    for (var zi = 0; zi < zoomers.length; zi++) attachZoom(zoomers[zi]);
+  }
+
+  function resetZoom(z) {
+    z.classList.remove('is-zoomed');
+    z.classList.remove('is-panning');
+    var img = z.querySelector('.lightbox__img');
+    if (img) {
+      img.style.transform = '';
+      img.dataset.scale = '1';
+      img.dataset.tx = '0';
+      img.dataset.ty = '0';
+    }
+    if (stage) stage.classList.remove('is-zoomed');
+  }
+
+  function attachZoom(z) {
+    var img = z.querySelector('.lightbox__img');
+    if (!img) return;
+
+    var state = {
+      scale: 1, tx: 0, ty: 0,
+      startDist: 0, startScale: 1,
+      panStartX: 0, panStartY: 0, panning: false,
+      pointers: {},
+      pointerCount: 0,
+      lastTap: 0
+    };
+
+    function apply() {
+      img.style.transform = 'translate(' + state.tx + 'px,' + state.ty + 'px) scale(' + state.scale + ')';
+      img.dataset.scale = String(state.scale);
+      img.dataset.tx = String(state.tx);
+      img.dataset.ty = String(state.ty);
+      var isZoomed = state.scale > 1.02;
+      z.classList.toggle('is-zoomed', isZoomed);
+      if (stage) stage.classList.toggle('is-zoomed', isZoomed);
+    }
+
+    function clampPan() {
+      // Keep image edges from drifting fully off-screen when panning.
+      var rect = z.getBoundingClientRect();
+      var iw = img.naturalWidth || img.clientWidth;
+      var ih = img.naturalHeight || img.clientHeight;
+      // Scaled image size in CSS pixels
+      var displayScale = Math.min(rect.width / iw, rect.height / ih) || 1;
+      var sw = iw * displayScale * state.scale;
+      var sh = ih * displayScale * state.scale;
+      var maxX = Math.max(0, (sw - rect.width) / 2);
+      var maxY = Math.max(0, (sh - rect.height) / 2);
+      state.tx = Math.min(maxX, Math.max(-maxX, state.tx));
+      state.ty = Math.min(maxY, Math.max(-maxY, state.ty));
+    }
+
+    function distance(p1, p2) {
+      var dx = p1.x - p2.x, dy = p1.y - p2.y;
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+    function midpoint(p1, p2) { return { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 }; }
+    function pointerList() {
+      var list = [];
+      for (var k in state.pointers) if (state.pointers.hasOwnProperty(k)) list.push(state.pointers[k]);
+      return list;
+    }
+
+    z.addEventListener('pointerdown', function (e) {
+      state.pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
+      state.pointerCount = pointerList().length;
+      try { z.setPointerCapture(e.pointerId); } catch (err) {}
+
+      if (state.pointerCount === 2) {
+        // Pinch start
+        var pts = pointerList();
+        state.startDist = distance(pts[0], pts[1]);
+        state.startScale = state.scale;
+        z.classList.add('is-panning');
+      } else if (state.pointerCount === 1) {
+        // Possible pan (only if zoomed) or a tap
+        state.panStartX = e.clientX;
+        state.panStartY = e.clientY;
+        state.panning = state.scale > 1.02;
+        if (state.panning) z.classList.add('is-panning');
+      }
+    });
+
+    z.addEventListener('pointermove', function (e) {
+      if (!state.pointers[e.pointerId]) return;
+      state.pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
+
+      if (state.pointerCount === 2) {
+        var pts = pointerList();
+        var d = distance(pts[0], pts[1]);
+        if (state.startDist > 0) {
+          var ratio = d / state.startDist;
+          state.scale = Math.min(4, Math.max(1, state.startScale * ratio));
+          clampPan();
+          apply();
+        }
+        e.preventDefault();
+      } else if (state.pointerCount === 1 && state.panning) {
+        var only = pointerList()[0];
+        state.tx += (only.x - state.panStartX);
+        state.ty += (only.y - state.panStartY);
+        state.panStartX = only.x;
+        state.panStartY = only.y;
+        clampPan();
+        apply();
+        e.preventDefault();
+      }
+    });
+
+    function endPointer(e) {
+      if (state.pointers[e.pointerId]) delete state.pointers[e.pointerId];
+      state.pointerCount = pointerList().length;
+      if (state.pointerCount < 2) state.startDist = 0;
+      if (state.pointerCount === 0) {
+        z.classList.remove('is-panning');
+        // If zoom dropped to ~1, fully reset transforms
+        if (state.scale <= 1.02) {
+          state.scale = 1; state.tx = 0; state.ty = 0; apply();
+        }
+      }
+      try { z.releasePointerCapture(e.pointerId); } catch (err) {}
+    }
+    z.addEventListener('pointerup', endPointer);
+    z.addEventListener('pointercancel', endPointer);
+
+    // Double-tap zoom (mobile) / double-click (desktop)
+    z.addEventListener('click', function (e) {
+      // Ignore if this was a drag
+      var moved = Math.abs(e.clientX - state.panStartX) > 8 ||
+                  Math.abs(e.clientY - state.panStartY) > 8;
+      if (moved) return;
+      var now = Date.now();
+      if (now - state.lastTap < 350) {
+        // Double-tap
+        e.preventDefault();
+        e.stopPropagation();
+        if (state.scale > 1.02) {
+          state.scale = 1; state.tx = 0; state.ty = 0;
+        } else {
+          state.scale = 2.2;
+          // Focus zoom around tap point relative to image center
+          var rect = z.getBoundingClientRect();
+          var cx = e.clientX - rect.left - rect.width / 2;
+          var cy = e.clientY - rect.top - rect.height / 2;
+          state.tx = -cx * (state.scale - 1);
+          state.ty = -cy * (state.scale - 1);
+          clampPan();
+        }
+        apply();
+        state.lastTap = 0;
+      } else {
+        state.lastTap = now;
+      }
+    });
+
+    // Wheel zoom (desktop)
+    z.addEventListener('wheel', function (e) {
+      if (!e.ctrlKey && Math.abs(e.deltaY) < 4) return;
+      e.preventDefault();
+      var next = state.scale + (e.deltaY < 0 ? 0.2 : -0.2);
+      state.scale = Math.min(4, Math.max(1, next));
+      if (state.scale === 1) { state.tx = 0; state.ty = 0; }
+      clampPan();
+      apply();
+    }, { passive: false });
   }
 
   /* ---- Share menu --------------------------------------------------------

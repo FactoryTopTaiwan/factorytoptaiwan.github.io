@@ -326,11 +326,12 @@
 
 
 
-<!-- Amazon-style zoom lightbox. All gallery images plus the YouTube video
-     (if any) are exposed here as tabs, so a buyer who lands on the hero can
-     click through the whole set including the machine running. Lives inside
-     the product page (not layout) so the markup only ships where it is
-     needed. -->
+<!-- Unified immersive product media viewer. Single horizontally-swipeable
+     track carries every image plus the YouTube video (when present) as
+     equal media items - the way Amazon's mobile product viewer works.
+     Desktop keeps a right-hand thumb grid; mobile gets pagination dots
+     overlaid at the bottom. Native <dialog> gives keyboard focus, Esc,
+     and backdrop for free. -->
 
 
 
@@ -346,7 +347,7 @@
         
         <span class="cat__body">
           <span class="cat__count model">案件別に対応</span>
-          <span class="cat__name">Application of six-axis robotic arm</span>
+          <span class="cat__name">Application of Six-Axis Robotic Arm</span>
         </span>
       </a>
       
@@ -451,6 +452,6 @@
   </div>
 </footer>
 
-<script src="/assets/js/app.js" defer></script>
+<script src="/assets/js/app.js?v=8e228b0a7d" defer></script>
 </body>
 </html>

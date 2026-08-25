@@ -1,12 +1,12 @@
 {
-    "generated":  "2026-08-25",
+    "generated":  "2026-08-26",
     "covers":  {
                    "winding-machines":  {
                                             "src":  "/assets/images/automatic-multi-axes-coil-winding-machine/twm-wb001-automatic-multi-axes-coil-winding-machine-01-2000w.webp",
                                             "srcset":  "/assets/images/automatic-multi-axes-coil-winding-machine/twm-wb001-automatic-multi-axes-coil-winding-machine-01-400w.webp 400w, /assets/images/automatic-multi-axes-coil-winding-machine/twm-wb001-automatic-multi-axes-coil-winding-machine-01-800w.webp 800w, /assets/images/automatic-multi-axes-coil-winding-machine/twm-wb001-automatic-multi-axes-coil-winding-machine-01-1200w.webp 1200w, /assets/images/automatic-multi-axes-coil-winding-machine/twm-wb001-automatic-multi-axes-coil-winding-machine-01-1600w.webp 1600w, /assets/images/automatic-multi-axes-coil-winding-machine/twm-wb001-automatic-multi-axes-coil-winding-machine-01-2000w.webp 2000w",
                                             "width":  2000,
                                             "height":  2000,
-                                            "alt":  "Winding Machines - Automatic Multi-axes Coil Winding Machine",
+                                            "alt":  "Winding Machines - Automatic Multi-Axes Coil Winding Machine",
                                             "fromModel":  "TWM-WB001",
                                             "fromSlug":  "automatic-multi-axes-coil-winding-machine"
                                         },
@@ -15,7 +15,7 @@
                                                  "srcset":  "/assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-insulation-paper-inserting-machine-01-400w.webp 400w, /assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-insulation-paper-inserting-machine-01-800w.webp 800w, /assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-insulation-paper-inserting-machine-01-1200w.webp 1200w, /assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-insulation-paper-inserting-machine-01-1600w.webp 1600w, /assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-insulation-paper-inserting-machine-01-2000w.webp 2000w",
                                                  "width":  2000,
                                                  "height":  2000,
-                                                 "alt":  "Rotor \u0026 Armature Equipment - Armature slot insulation paper inserting machine",
+                                                 "alt":  "Rotor \u0026 Armature Equipment - Armature Slot Insulation Paper Inserting Machine",
                                                  "fromModel":  "TWM-IP01",
                                                  "fromSlug":  "armature-slot-insulation-paper-inserting-machine"
                                              },
@@ -24,7 +24,7 @@
                                                      "srcset":  "/assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/twm-sp001-horizontal-brushless-motor-slot-insulation-paper-01-400w.webp 400w, /assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/twm-sp001-horizontal-brushless-motor-slot-insulation-paper-01-800w.webp 800w, /assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/twm-sp001-horizontal-brushless-motor-slot-insulation-paper-01-1200w.webp 1200w, /assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/twm-sp001-horizontal-brushless-motor-slot-insulation-paper-01-1600w.webp 1600w, /assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/twm-sp001-horizontal-brushless-motor-slot-insulation-paper-01-2000w.webp 2000w",
                                                      "width":  2000,
                                                      "height":  2000,
-                                                     "alt":  "Brushless Motor Equipment - Horizontal brushless motor slot insulation paper inserting machine",
+                                                     "alt":  "Brushless Motor Equipment - Horizontal Brushless Motor Slot Insulation Paper Inserting Machine",
                                                      "fromModel":  "TWM-SP001",
                                                      "fromSlug":  "horizontal-brushless-motor-slot-insulation-paper-inserting-machine"
                                                  },
@@ -51,7 +51,7 @@
                                                   "srcset":  "/assets/images/motor-stator-slot-insulation-paper-inserting-machine/twm-isp01-motor-stator-slot-insulation-paper-inserting-01-400w.webp 400w, /assets/images/motor-stator-slot-insulation-paper-inserting-machine/twm-isp01-motor-stator-slot-insulation-paper-inserting-01-800w.webp 800w, /assets/images/motor-stator-slot-insulation-paper-inserting-machine/twm-isp01-motor-stator-slot-insulation-paper-inserting-01-1200w.webp 1200w, /assets/images/motor-stator-slot-insulation-paper-inserting-machine/twm-isp01-motor-stator-slot-insulation-paper-inserting-01-1600w.webp 1600w, /assets/images/motor-stator-slot-insulation-paper-inserting-machine/twm-isp01-motor-stator-slot-insulation-paper-inserting-01-2000w.webp 2000w",
                                                   "width":  2000,
                                                   "height":  2000,
-                                                  "alt":  "Stator Equipment - Motor stator slot insulation paper inserting machine",
+                                                  "alt":  "Stator Equipment - Motor Stator Slot Insulation Paper Inserting Machine",
                                                   "fromModel":  "TWM-ISP01",
                                                   "fromSlug":  "motor-stator-slot-insulation-paper-inserting-machine"
                                               },
@@ -87,10 +87,10 @@
                                       "enDesc":  [
                                                      "Applicable to automatic winding for air coil.",
                                                      "This model with 2-axes independent AC servo motor applied to drive flyers and wire spreading core for high speed accurate and precise coil winding.",
-                                                     "Modular molds and dies design, it is able to make fast positioning, and with high repetitive precision, to reduce time required for mold die changes tremendously.",
-                                                     "Dies can be shared for this series, reduces the cost of mold development tremendously.",
+                                                     "Modular molds and dies design, it is able to deliver rapid positioning with high repeatability, cutting the time required for die changeovers.",
+                                                     "Dies are shared across the series, keeping tooling development costs low.",
                                                      "The analog tension output control system provides tension for different coil winding stages and increases quality level of product.",
-                                                     "Based on Japanese PLC controller with touch panel promptly to display various operation statuses and running monitoring function.",
+                                                     "Industrial PLC with an HMI touch panel shows operation status and running-monitor data in real time.",
                                                      "It is able to equip with remote monitoring module to do remote program monitoring safeguard."
                                                  ],
                                       "enSpec":  [
@@ -641,7 +641,7 @@
                      {
                          "slug":  "automatic-multi-axes-coil-winding-machine",
                          "model":  "TWM-WB001",
-                         "title":  "Automatic Multi-axes Coil Winding Machine",
+                         "title":  "Automatic Multi-Axes Coil Winding Machine",
                          "family":  "winding-machines",
                          "familyName":  "Winding Machines",
                          "hero":  {
@@ -664,9 +664,9 @@
                                                      "2. Auto copper wire coating remove and dust collect module.",
                                                      "3. Auto labelling on finish product module",
                                                      "4. Thread head and end auto cutting module",
-                                                     "Modular molding design can be rapidly position and high repetition accuracy and result in reducing tooling changing time tremendously.",
+                                                     "Modular tooling positions rapidly with high repeatability, cutting changeover time on model changes.",
                                                      "Tension system is adopting high sensitive servo tension controller. It can produce several tension controls when winding which optimize tension adjustment performance in each winding operation stage.",
-                                                     "The control system adopts Japanese PLC with touch screen interface which can display various operation information and monitoring operation in real time.",
+                                                     "The control system adopts Industrial PLC with an HMI touch panel; operation status and running-monitor data are displayed in real time.",
                                                      "TMW-WB001 can be connected with a robotic arm and a conveyor belt to achieve fully automatic production line."
                                                  ],
                                       "enSpec":  [
@@ -1058,9 +1058,9 @@
                                                      "Switch angles by AC servo motor controller. Accuracy can reach 0.01 degree.",
                                                      "Provide a 360-degree wire clamping mechanism motion design and equipped with rotor reversing displacement mechanism so that the tie-line angle can reach at any angle within 360 degree.",
                                                      "Wire binding adopts continuous riveting type without thread end, which can effectively improve nail wire quality and enameled wire utilization rate.",
-                                                     "Modular molding design can be rapidly position and high repetition accuracy which reduce tooling changing time tremendously.",
+                                                     "Modular tooling positions rapidly with high repeatability, cutting changeover time on model changes.",
                                                      "Tension system is adopting high sensitive servo tension controller. It can produce several tension controls when winding which optimize tension adjustment performance in each winding operation stage.",
-                                                     "The control system adopts Japanese PLC with 10” touch screen interface which can display various operation information and monitoring operation in real time.",
+                                                     "The control system adopts Industrial PLC with a 10\" HMI touch panel; operation status and running-monitor data are displayed in real time.",
                                                      "This product can be connected with a robotic arm and a conveyor belt to achieve fully automatic production line.",
                                                      "This product can be assembled with remote monitoring module for remote program monitoring and maintenance."
                                                  ],
@@ -1595,7 +1595,7 @@
                      {
                          "slug":  "commutator-slot-cutting",
                          "model":  "TWM-606",
-                         "title":  "Commutator slot cutting",
+                         "title":  "Commutator Slot Cutting",
                          "family":  "motor-rotor-equipment",
                          "familyName":  "Rotor \u0026 Armature Equipment",
                          "hero":  {
@@ -1624,9 +1624,9 @@
                                                      "Preliminary positioning is conducted by mechanical pawl and the servo shifting system extend slotting application.",
                                                      "The adjustable gear replaces the traditional tooth belt for transmission to reduce errors of cutting precision resulted from flexibility of the belt.",
                                                      "Synchronous cutting of dual tools enhances cutting efficiency.",
-                                                     "Modular molding design can be rapidly position and high repetition accuracy and result in reducing tooling changing time tremendously.",
+                                                     "Modular tooling positions rapidly with high repeatability, cutting changeover time on model changes.",
                                                      "Independent servo feed unit can fine adjust cutting depth individually and easy for maintenance.",
-                                                     "Feature of humanized operating interface, easy slot number setup and automatic error detection.",
+                                                     "Feature of ergonomic operator interface, quick slot-count setup and automatic error detection.",
                                                      "Optional robotic arm and conveyor belt achieves unmanned and fully automatic production line."
                                                  ],
                                       "enSpec":  [
@@ -1890,7 +1890,7 @@
                                                      "This product can be equipped with hand-wheel dynamic simulation system. This will largely improve operator’s safety and much more convenience to operating.",
                                                      "Modular molding design can be positioned promptly and high accuracy in repetition. Greatly reduce mold changing time.",
                                                      "Tension system is adopting high sensitive servo tension controller. It can produce several tension controls when winding which optimize tension adjustment performance in each winding operation stage.",
-                                                     "The control system adopts Japanese PLC with 10” touch screen interface which can display various operation information and monitoring operation in real time.",
+                                                     "The control system adopts Industrial PLC with a 10\" HMI touch panel; operation status and running-monitor data are displayed in real time.",
                                                      "This product can be connected with a robotic arm and a conveyor belt to achieve fully automatic production line.",
                                                      "This product can be assembled with remote monitoring module for remote program monitoring and maintenance."
                                                  ],
@@ -2235,7 +2235,7 @@
                                                      "This product can be connected with hand-wheel dynamic simulation system which enhancing the safety while operating and ease to operate.",
                                                      "Analog section tension output control which provide tension at each stage during stator winding and greatly improve product yield.",
                                                      "Equipped with automatic wire trimming mechanism. Copper wire will be cut and clamped automatically when winding is finished. This will be easier to take out the finish product.",
-                                                     "The control system adopts Japanese PLC with 10” touch screen interface which can display various operation information and monitoring operation in real time.",
+                                                     "The control system adopts Industrial PLC with a 10\" HMI touch panel; operation status and running-monitor data are displayed in real time.",
                                                      "This product can be assembled with remote monitoring module for remote program monitoring and maintenance.",
                                                      "Other Winding Machines"
                                                  ],
@@ -2695,7 +2695,7 @@
                      {
                          "slug":  "servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly",
                          "model":  "TWM-202S",
-                         "title":  "Servo motor/Hydraulic Pressure (Rotor\\Commutator\\impeller assembly)",
+                         "title":  "Servo Motor/Hydraulic Pressure (Rotor\\Commutator\\Impeller Assembly)",
                          "family":  "motor-rotor-equipment",
                          "familyName":  "Rotor \u0026 Armature Equipment",
                          "hero":  {
@@ -3013,7 +3013,7 @@
                      {
                          "slug":  "shaft-embossing",
                          "model":  "TWM-910",
-                         "title":  "Shaft embossing",
+                         "title":  "Shaft Embossing",
                          "family":  "motor-rotor-equipment",
                          "familyName":  "Rotor \u0026 Armature Equipment",
                          "hero":  {
@@ -3030,8 +3030,8 @@
                          "copy":  {
                                       "enDesc":  [
                                                      "Applicable for Shaft knurling.",
-                                                     "Modular molding design can be rapidly position and high repetition accuracy and result in reducing tooling changing time tremendously.",
-                                                     "Humanized operating interface, easy setup and automatic error detection.",
+                                                     "Modular tooling positions rapidly with high repeatability, cutting changeover time on model changes.",
+                                                     "Ergonomic operator interface, quick setup and automatic error detection.",
                                                      "Optional for core automatic feeding system and finished product automatic output module"
                                                  ],
                                       "enSpec":  [
@@ -3252,7 +3252,7 @@
                      {
                          "slug":  "three-in-one-automatic-turning-machine",
                          "model":  "TWM-LA01",
-                         "title":  "Three in one automatic turning machine",
+                         "title":  "Three in One Automatic Turning Machine",
                          "family":  "motor-rotor-equipment",
                          "familyName":  "Rotor \u0026 Armature Equipment",
                          "hero":  {
@@ -3424,7 +3424,7 @@
                      {
                          "slug":  "horizontal-brushless-motor-slot-insulation-paper-inserting-machine",
                          "model":  "TWM-SP001",
-                         "title":  "Horizontal brushless motor slot insulation paper inserting machine",
+                         "title":  "Horizontal Brushless Motor Slot Insulation Paper Inserting Machine",
                          "family":  "brushless-motor-equipment",
                          "familyName":  "Brushless Motor Equipment",
                          "hero":  {
@@ -3654,7 +3654,7 @@
                      {
                          "slug":  "motor-stator-slot-insulation-paper-inserting-machine",
                          "model":  "TWM-ISP01",
-                         "title":  "Motor stator slot insulation paper inserting machine",
+                         "title":  "Motor Stator Slot Insulation Paper Inserting Machine",
                          "family":  "motor-stator-equipment",
                          "familyName":  "Stator Equipment",
                          "hero":  {
@@ -3816,7 +3816,7 @@
                      {
                          "slug":  "armature-slot-insulation-paper-inserting-machine",
                          "model":  "TWM-IP01",
-                         "title":  "Armature slot insulation paper inserting machine",
+                         "title":  "Armature Slot Insulation Paper Inserting Machine",
                          "family":  "motor-rotor-equipment",
                          "familyName":  "Rotor \u0026 Armature Equipment",
                          "hero":  {
@@ -3843,8 +3843,8 @@
                                       "enDesc":  [
                                                      "This model can be connected with the robot arm and the conveyor belt to achieve fully automatic production function.",
                                                      "Equipped with pressure safety device. The machine will stop immediately when copper wire is being over coiled or insertion jam in tooling or silicon steel plate is deformed or insert pressure is bigger than setting pressure. This is not only to protect the product and tooling but also the machine itself.",
-                                                     "High operating stability and efficiency. The fastest insertion speed is 0.3 second per slot. Take 12-slot rotor for example, 6.7 seconds can compete one rotor (the fastest).",
-                                                     "Optional PLC with HMI control which making the operating experience more humanize.",
+                                                     "High operating stability and efficiency. The fastest insertion speed is 0.3 second per slot. Take 12-slot rotor for example, 6.7 seconds can complete one rotor (the fastest).",
+                                                     "Optional PLC with HMI control gives operators a more ergonomic interface.",
                                                      "Suitable for unskewed rotor and skewed rotor.",
                                                      "CAM driven for slot changing and insertion synchronously, which simplifies the complexity of the mechanism and easy to maintenance.",
                                                      "Automatic slot change, push and claw positioning and high accuracy in repetitive."
@@ -3980,7 +3980,7 @@
                      {
                          "slug":  "armature-slot-wedge-inserting-machine",
                          "model":  "TWM-IW01",
-                         "title":  "Armature slot wedge inserting machine",
+                         "title":  "Armature Slot Wedge Inserting Machine",
                          "family":  "motor-rotor-equipment",
                          "familyName":  "Rotor \u0026 Armature Equipment",
                          "hero":  {
@@ -4007,8 +4007,8 @@
                                       "enDesc":  [
                                                      "This model can be connected with the robot arm and the conveyor belt to achieve fully automatic production function.",
                                                      "Equipped with pressure safety device. The machine will stop immediately when copper wire is being over coiled or insertion jam in tooling or silicon steel plate is deformed or insert pressure is bigger than setting pressure. This is not only to protect the product and tooling but also the machine itself.",
-                                                     "High operating stability and efficiency. The fastest insertion speed is 0.3 second per slot. Take 12-slot rotor for example, 6.7 seconds can compete one rotor (the fastest).",
-                                                     "Optional PLC with HMI control which making the operating experience more humanize.",
+                                                     "High operating stability and efficiency. The fastest insertion speed is 0.3 second per slot. Take 12-slot rotor for example, 6.7 seconds can complete one rotor (the fastest).",
+                                                     "Optional PLC with HMI control gives operators a more ergonomic interface.",
                                                      "Suitable for unskewed rotor and skewed rotor.",
                                                      "CAM driven for slot changing and insertion synchronously, which simplifies the complexity of the mechanism and easy to maintenance.",
                                                      "Automatic slot change, push and claw positioning and high accuracy in repetitive."
@@ -4126,7 +4126,7 @@
                      {
                          "slug":  "vertical-slot-wedge-inserting-machine",
                          "model":  "TWM-ISW001",
-                         "title":  "Vertical slot wedge inserting machine",
+                         "title":  "Vertical Slot Wedge Inserting Machine",
                          "family":  "brushless-motor-equipment",
                          "familyName":  "Brushless Motor Equipment",
                          "hero":  {
@@ -4303,7 +4303,7 @@
                      {
                          "slug":  "cooling-fan-motor-automatic-production-line",
                          "model":  "",
-                         "title":  "Cooling fan motor automatic production line",
+                         "title":  "Cooling Fan Motor Automatic Production Line",
                          "family":  "modular-production-lines",
                          "familyName":  "Modular Production Lines",
                          "hero":  {
@@ -4431,7 +4431,7 @@
                      {
                          "slug":  "application-of-six-axis-robotic-arm",
                          "model":  "",
-                         "title":  "Application of six-axis robotic arm",
+                         "title":  "Application of Six-Axis Robotic Arm",
                          "family":  "robotic-production-lines",
                          "familyName":  "Robotic Production Lines",
                          "hero":  null,
@@ -4515,7 +4515,7 @@
                      {
                          "slug":  "vertical-brushless-motor-slot-insulation-paper-inserting-machine",
                          "model":  "TWM-AP01",
-                         "title":  "Vertical brushless motor slot insulation paper inserting machine",
+                         "title":  "Vertical Brushless Motor Slot Insulation Paper Inserting Machine",
                          "family":  "brushless-motor-equipment",
                          "familyName":  "Brushless Motor Equipment",
                          "hero":  {
@@ -4706,9 +4706,9 @@
                                                      "Assemble with independent AC servo motor on each flyer for high speed and accurate winding.",
                                                      "Switch angles by AC servo motor controller. Accuracy can reach 0.01 degree. Various hooking modes can be set at any angle within 360 degree according to the rotor characteristics.",
                                                      "We provide two wire cutting options: pull and cut（TWM308M）and auto cut（TWM308A).",
-                                                     "Modular molding design can be rapidly position and high repetition accuracy and result in reducing tooling changing time tremendously.",
+                                                     "Modular tooling positions rapidly with high repeatability, cutting changeover time on model changes.",
                                                      "Tension system is adopting high sensitive servo tension controller. It can produce several tension controls when winding which optimize tension adjustment performance in each winding operation stage.",
-                                                     "The control system adopts Japanese PLC with 10” touch screen interface which can display various operation information and monitoring operation in real time.",
+                                                     "The control system adopts Industrial PLC with a 10\" HMI touch panel; operation status and running-monitor data are displayed in real time.",
                                                      "TMW308A can be connected with a robotic arm and a conveyor belt to achieve fully automatic production line.",
                                                      "This product can be assembled with remote monitoring module for remote program monitoring and maintenance."
                                                  ],
@@ -5180,7 +5180,7 @@
                      {
                          "slug":  "varnish-bake",
                          "model":  "TWM-301A",
-                         "title":  "Varnish bake",
+                         "title":  "Varnish Bake",
                          "family":  "motor-rotor-equipment",
                          "familyName":  "Rotor \u0026 Armature Equipment",
                          "hero":  {
@@ -5205,7 +5205,7 @@
                                    },
                          "copy":  {
                                       "enDesc":  [
-                                                     "The automatic positioning and dispensing can accurately drip the varnish on the same area of each stator to achieve a unified standard. ◆ Automatically detect if incoming materials are available, and then start to continuous dispensing operations. Or intermittent dispensing operations for small amount of armatures to reduce the loss of varnish. ◆ Dripping area is isolated and has an independent ventilation system in order to avoid varnish smell spillage. ◆ In addition to the varnishing dripping system, this model can connect the ring neck glue automatic dripping system, therefore varnishing and ring neck glue dripping can be done one time. This can effectively reduce dripping time. ◆ Double shaft end ejecting mechanism, no need to replace the fixture and stator runs smoothly without shaking. Prime quality on varnish absorbing and drying. ◆ Fixture adjustment adopts snap-type design without the use of tools. Quick fixture adjustment. ◆ Revolution and rotation are controlled independently. Stator transfer setting (revolution) and rotary speed can be set up according to the characteristics of the stator and varnish. ◆ Equipped with automatic transmission tension adjustment mechanism and automatic overload protection mechanism. ◆ Equipped with rotation speed compensation function. Rotation speed will not be affected by revolution. ◆ Preheat zone and hardening zone is independently controlled. Maximum temperature is 180℃ ◆ Unique hot air circuit design greatly reduce hot air outflow at the inlet and outlet which effectively improves the electric heating efficiency. ◆ Adopts PID temperature control module + SSR current control module to control the accuracy of the temperature in the furnace±2%. ◆ The control system adopts Japanese PLC with 10” touch screen interface which can display various operation information and monitoring operation in real time. ◆ Humanized design with real-time switching on manual/automatic function, operation monitoring function, automatic reminder of maintenance function and automatic abnormal detect function …etc. ◆ It can store up to 100 sets of working parameter settings which allows user to access to various parameters more quickly when changing models. Saving tremendous time when changing models. ◆ Remote program monitoring and maintenance can be performed. ◆ This series of products can be tailored to different machine size, shapes and finishing product quantity. Moreover, manual glue dispenser is available to choose from."
+                                                     "The automatic positioning and dispensing can accurately drip the varnish on the same area of each stator to achieve a unified standard. ◆ Automatically detect if incoming materials are available, and then start to continuous dispensing operations. Or intermittent dispensing operations for small amount of armatures to reduce the loss of varnish. ◆ Dripping area is isolated and has an independent ventilation system in order to avoid varnish smell spillage. ◆ In addition to the varnishing dripping system, this model can connect the ring neck glue automatic dripping system, therefore varnishing and ring neck glue dripping can be done one time. This can effectively reduce dripping time. ◆ Double shaft end ejecting mechanism, no need to replace the fixture and stator runs smoothly without shaking. Prime quality on varnish absorbing and drying. ◆ Fixture adjustment adopts snap-type design without the use of tools. Quick fixture adjustment. ◆ Revolution and rotation are controlled independently. Stator transfer setting (revolution) and rotary speed can be set up according to the characteristics of the stator and varnish. ◆ Equipped with automatic transmission tension adjustment mechanism and automatic overload protection mechanism. ◆ Equipped with rotation speed compensation function. Rotation speed will not be affected by revolution. ◆ Preheat zone and hardening zone is independently controlled. Maximum temperature is 180℃ ◆ Unique hot air circuit design greatly reduce hot air outflow at the inlet and outlet which effectively improves the electric heating efficiency. ◆ Adopts PID temperature control module + SSR current control module to control the accuracy of the temperature in the furnace±2%. ◆ The control system adopts Industrial PLC with a 10\" HMI touch panel; operation status and running-monitor data are displayed in real time. ◆ Ergonomic operator interface with real-time manual/automatic switching, operation monitoring, automatic maintenance prompts and automatic fault detection. Stores up to 100 sets of working parameters for rapid model changeovers. Supports remote programme monitoring and maintenance. Machine size, layout and output rate can be tailored to the application; a manual glue dispenser is available as an option."
                                                  ],
                                       "enSpec":  [
                                                      "Workpiece: wound stators and armatures - brushed, universal, and BLDC",
@@ -5514,7 +5514,7 @@
                      {
                          "slug":  "turning-machine-for-armature-outer-diameter-of-commutator",
                          "model":  "TWM-319A",
-                         "title":  "Turning Machine for armature outer diameter of commutator",
+                         "title":  "Turning Machine for Armature Outer Diameter of Commutator",
                          "family":  "motor-rotor-equipment",
                          "familyName":  "Rotor \u0026 Armature Equipment",
                          "hero":  {
@@ -7101,7 +7101,7 @@
                      {
                          "slug":  "stator-fusing",
                          "model":  "TWA-RF30S",
-                         "title":  "Stator fusing",
+                         "title":  "Stator Fusing",
                          "family":  "brushless-motor-equipment",
                          "familyName":  "Brushless Motor Equipment",
                          "hero":  {
@@ -7356,7 +7356,7 @@
                                                      "Guided action programming system improves the flexibility of equipment application and greatly increase the production capability.",
                                                      "The analog tension output control system provides tension for the stator on each coil winding stages and greatly improves the quality. Optional for servo tension output control provides more accurate tension control.",
                                                      "Equip with automatic wire cutting mechanism. When stator winding has finished, it is capable of cutting copper wire end automatically and clamp. This makes it easier for collecting finished product.",
-                                                     "The control system adopts Japanese PLC with 10” touch screen interface which can display various operations information and monitoring operation in real time.",
+                                                     "The control system adopts Industrial PLC with a 10\" HMI touch panel; operation status and running-monitor data are displayed in real time.",
                                                      "This product can be assembled with remote monitoring module for remote program monitoring and maintenance."
                                                  ],
                                       "enSpec":  [
@@ -7386,7 +7386,7 @@
                                                      "可搭配遠端監控模組作遠距程式監控維護"
                                                  ],
                                       "zhSpec":  [
-                                                     "機台功能規格書 MACHINE SPECIAFICATIONS 電 力 需 求 Power supply 220V(380V) 空(油)壓力 Pneumatic (hydraulic) supply 5kg/c㎡ 定 子 外 徑 Stator extenal diameter(max) ψ35mm-110mm 定 子 積 厚 Core thickness 適 用 線 徑 Appliccable wire diameter 0.2mm-1.5mm 繞 線 速 度 Winding speed(max) 450rpm(Depending on winding item) 機 台 淨 重 Machine net weight 500kg 機 台 尺 寸 Machine size 12000(D) 900(W) 1710(H)mm 工 位 數 量 Quantity of Workstation 1~4工位 1~4 Stage 捲 線 機 構 Coil Winding Unit X-Axis Servo motor with ballscrrews Y-Axis Servo motor with ballscrrews Z-Axis Servo motor with ballscrrews 定子角度控制 Stator Angles Control 1組伺服控制 Servo Control X 1 Set 張 力 系 統 Tension Device Type1: 類比式控制Analog Tension Output Control Type2: 2組伺服控制 Servo Control \u0026 D/A X 2 Set 控 制 系 統 Control System 日系安川運動控制模組 Japanese-Yaskawa Motion Control series 工作參數記憶 Parameter Memory 標準配備 Standard moudule 快 速 換 模 Quick Die Change 標準配備 Standard moudule 異常偵測系統 Error Detection \u0026 Display System 標準配備 Standard moudule 主動式保養提示 Service Prompt 標準配備 Standard moudule 機械手臂與輸送帶連結功能 Robot Manipulator \u0026 Conveyor Connection 選擇配備 Optional moudule 遠距程式監控維護 Distant Programming Monitoring System 標準配備 Standard moudule 手輪動態模擬系統 Manual Pulse Generator System 標準配備 Standard moudule 自動夾/剪線機構 Automatic Wire Cutting \u0026 Clamping Unit 標準配備 Standard moudule"
+                                                     "機台功能規格書 MACHINE SPECIAFICATIONS 電 力 需 求 Power supply 220V(380V) 空(油)壓力 Pneumatic (hydraulic) supply 5kg/c㎡ 定 子 外 徑 Stator extenal diameter(max) ψ35mm-110mm 定 子 積 厚 Core thickness 適 用 線 徑 Appliccable wire diameter 0.2mm-1.5mm 繞 線 速 度 Winding speed(max) 450rpm(Depending on winding item) 機 台 淨 重 Machine net weight 500kg 機 台 尺 寸 Machine size 12000(D) 900(W) 1710(H)mm 工 位 數 量 Quantity of Workstation 1~4工位 1~4 Stage 捲 線 機 構 Coil Winding Unit X-Axis Servo motor with ballscrrews Y-Axis Servo motor with ballscrrews Z-Axis Servo motor with ballscrrews 定子角度控制 Stator Angles Control 1組伺服控制 Servo Control X 1 Set 張 力 系 統 Tension Device Type1: 類比式控制Analog Tension Output Control Type2: 2組伺服控制 Servo Control \u0026 D/A X 2 Set 控 制 系 統 Control System 日系運動控制模組 Japanese motion-control platform 工作參數記憶 Parameter Memory 標準配備 Standard moudule 快 速 換 模 Quick Die Change 標準配備 Standard moudule 異常偵測系統 Error Detection \u0026 Display System 標準配備 Standard moudule 主動式保養提示 Service Prompt 標準配備 Standard moudule 機械手臂與輸送帶連結功能 Robot Manipulator \u0026 Conveyor Connection 選擇配備 Optional moudule 遠距程式監控維護 Distant Programming Monitoring System 標準配備 Standard moudule 手輪動態模擬系統 Manual Pulse Generator System 標準配備 Standard moudule 自動夾/剪線機構 Automatic Wire Cutting \u0026 Clamping Unit 標準配備 Standard moudule"
                                                  ],
                                       "jaDesc":  [
                                                      "インスロット型ブラシレスモーター固定子の全自動巻線機です。",
@@ -7673,7 +7673,7 @@
                      {
                          "slug":  "two-poles-type-stator-winding-machine-with-one-axle",
                          "model":  "TWM-901S",
-                         "title":  "Two Poles Type Stator Winding Machine (with one axle)",
+                         "title":  "Two Poles Type Stator Winding Machine (with One Axle)",
                          "family":  "winding-machines",
                          "familyName":  "Winding Machines",
                          "hero":  {
@@ -7700,12 +7700,12 @@
                                       "enDesc":  [
                                                      "Applicable to automatic coil winding for various two poles motors stators.",
                                                      "This model based on Dual-axes independent control, it is able to set independent winding parameter, also synchronous to run winding for different specification of stators, increases applicable flexibility of machine.",
-                                                     "The design of wire winding mold can be applied automatically and rapidly, to replace manual die change, modular molds and dies design, it is able to make fast positioning, and with high repetitive precision, to reduce time required for mold die changes tremendously, enhances production efficiency.",
+                                                     "The design of wire winding mold can be applied automatically and rapidly, to replace manual die change, modular molds and dies design, it is able to deliver rapid positioning with high repeatability, cutting the time required for die changeovers, enhances production efficiency.",
                                                      "When change winding for the same stator coil with or without end insulator, only part of the dies should be replaced.",
-                                                     "Dies can be shared for this series. The same set of dies may be changed for different stacked heights to reduce the cost of mold development tremendously.",
+                                                     "Dies can be shared for this series. The same die set can be swapped for different stack heights, keeping tooling development costs low.",
                                                      "The analog tension output control system provides tension for the stator on each coil winding stages and increases the quality level hugely, it is also optional for servo tension output control, provides more accurate tension control.",
                                                      "With automatic wire cutting mechanism, when stator winding has finished, capable of cutting copper wire end automatically and clamp it, good for collection of finished product.",
-                                                     "Based on Japanese PLC controller with 10\" touch panel promptly to display various operation statuses and running monitoring function.",
+                                                     "Industrial PLC with a 10\" HMI touch panel; operation status and running-monitor data are displayed in real time.",
                                                      "It is able to equip with remote monitoring module to do remote program monitoring safeguard."
                                                  ],
                                       "enSpec":  [
@@ -7998,7 +7998,7 @@
                      {
                          "slug":  "two-poles-type-stator-winding-machine-with-two-axes",
                          "model":  "TWM-901",
-                         "title":  "Two Poles Type Stator Winding Machine with one Axis",
+                         "title":  "Two Poles Type Stator Winding Machine with One Axis",
                          "family":  "winding-machines",
                          "familyName":  "Winding Machines",
                          "hero":  {
@@ -8022,7 +8022,7 @@
                                                      "Implement share tooling design. The same set of tooling may be changed for different stacked heights to reduce mold development cost.",
                                                      "The analog tension output control system provides tension for the stator on each coil winding stages and greatly improves the quality. Optional for servo tension output control provides more accurate tension control.",
                                                      "Equip with automatic wire cutting mechanism. When stator winding has finished, it is capable of cutting copper wire end automatically and clamp. This makes it easier for collecting finished product.",
-                                                     "The control system adopts Japanese PLC with 10” touch screen interface which can display various operations information and monitoring operation in real time.",
+                                                     "The control system adopts Industrial PLC with a 10\" HMI touch panel; operation status and running-monitor data are displayed in real time.",
                                                      "This product can be assembled with remote monitoring module for remote program monitoring and maintenance."
                                                  ],
                                       "enSpec":  [
@@ -8315,7 +8315,7 @@
                      {
                          "slug":  "varnish-bake-twm-301a",
                          "model":  "TWM-301A",
-                         "title":  "Varnish bake",
+                         "title":  "Varnish Bake",
                          "family":  "motor-stator-equipment",
                          "familyName":  "Stator Equipment",
                          "hero":  {
@@ -8340,7 +8340,7 @@
                                    },
                          "copy":  {
                                       "enDesc":  [
-                                                     "The automatic positioning and dispensing can accurately drip the varnish on the same area of each stator to achieve a unified standard. ◆ Automatically detect if incoming materials are available, and then start to continuous dispensing operations. Or intermittent dispensing operations for small amount of armatures to reduce the loss of varnish. ◆ Dripping area is isolated and has an independent ventilation system in order to avoid varnish smell spillage. ◆ In addition to the varnishing dripping system, this model can connect the ring neck glue automatic dripping system, therefore varnishing and ring neck glue dripping can be done one time. This can effectively reduce dripping time. ◆ Double shaft end ejecting mechanism, no need to replace the fixture and stator runs smoothly without shaking. Prime quality on varnish absorbing and drying. ◆ Fixture adjustment adopts snap-type design without the use of tools. Quick fixture adjustment. ◆ Revolution and rotation are controlled independently. Stator transfer setting (revolution) and rotary speed can be set up according to the characteristics of the stator and varnish. ◆ Equipped with automatic transmission tension adjustment mechanism and automatic overload protection mechanism. ◆ Equipped with rotation speed compensation function. Rotation speed will not be affected by revolution. ◆ Preheat zone and hardening zone is independently controlled. Maximum temperature is 180℃ ◆ Unique hot air circuit design greatly reduce hot air outflow at the inlet and outlet which effectively improves the electric heating efficiency. ◆ Adopts PID temperature control module + SSR current control module to control the accuracy of the temperature in the furnace±2%. ◆ The control system adopts Japanese PLC with 10” touch screen interface which can display various operation information and monitoring operation in real time. ◆ Humanized design with real-time switching on manual/automatic function, operation monitoring function, automatic reminder of maintenance function and automatic abnormal detect function …etc. ◆ It can store up to 100 sets of working parameter settings which allows user to access to various parameters more quickly when changing models. Saving tremendous time when changing models. ◆ Remote program monitoring and maintenance can be performed. ◆ This series of products can be tailored to different machine size, shapes and finishing product quantity. Moreover, manual glue dispenser is available to choose from."
+                                                     "The automatic positioning and dispensing can accurately drip the varnish on the same area of each stator to achieve a unified standard. ◆ Automatically detect if incoming materials are available, and then start to continuous dispensing operations. Or intermittent dispensing operations for small amount of armatures to reduce the loss of varnish. ◆ Dripping area is isolated and has an independent ventilation system in order to avoid varnish smell spillage. ◆ In addition to the varnishing dripping system, this model can connect the ring neck glue automatic dripping system, therefore varnishing and ring neck glue dripping can be done one time. This can effectively reduce dripping time. ◆ Double shaft end ejecting mechanism, no need to replace the fixture and stator runs smoothly without shaking. Prime quality on varnish absorbing and drying. ◆ Fixture adjustment adopts snap-type design without the use of tools. Quick fixture adjustment. ◆ Revolution and rotation are controlled independently. Stator transfer setting (revolution) and rotary speed can be set up according to the characteristics of the stator and varnish. ◆ Equipped with automatic transmission tension adjustment mechanism and automatic overload protection mechanism. ◆ Equipped with rotation speed compensation function. Rotation speed will not be affected by revolution. ◆ Preheat zone and hardening zone is independently controlled. Maximum temperature is 180℃ ◆ Unique hot air circuit design greatly reduce hot air outflow at the inlet and outlet which effectively improves the electric heating efficiency. ◆ Adopts PID temperature control module + SSR current control module to control the accuracy of the temperature in the furnace±2%. ◆ The control system adopts Industrial PLC with a 10\" HMI touch panel; operation status and running-monitor data are displayed in real time. ◆ Ergonomic operator interface with real-time manual/automatic switching, operation monitoring, automatic maintenance prompts and automatic fault detection. Stores up to 100 sets of working parameters for rapid model changeovers. Supports remote programme monitoring and maintenance. Machine size, layout and output rate can be tailored to the application; a manual glue dispenser is available as an option."
                                                  ],
                                       "enSpec":  [
                                                      "Workpiece: wound stators and armatures - brushed, universal, and BLDC",
@@ -8678,9 +8678,9 @@
                                                      "Assemble with independent AC servo motor on each flyer for high speed and accurate winding.",
                                                      "Switch angles by AC servo motor controller. Accuracy can reach 0.01 degree. Various hooking modes can be set at any angle within 360 degree according to the rotor characteristics.",
                                                      "We provide two wire cutting options: pull and cut（TWM308M）and auto cut（TWM308A).",
-                                                     "Modular molding design can be rapidly position and high repetition accuracy and result in reducing tooling changing time tremendously.",
+                                                     "Modular tooling positions rapidly with high repeatability, cutting changeover time on model changes.",
                                                      "Tension system is adopting high sensitive servo tension controller. It can produce several tension controls when winding which optimize tension adjustment performance in each winding operation stage.",
-                                                     "The control system adopts Japanese PLC with 10” touch screen interface which can display various operation information and monitoring operation in real time.",
+                                                     "The control system adopts Industrial PLC with a 10\" HMI touch panel; operation status and running-monitor data are displayed in real time.",
                                                      "TMW308A can be connected with a robotic arm and a conveyor belt to achieve fully automatic production line.",
                                                      "This product can be assembled with remote monitoring module for remote program monitoring and maintenance."
                                                  ],

@@ -408,8 +408,19 @@ $site      = Read-LocaleJson 'site.json'      $loc.code
 $catalogue = Read-LocaleJson 'catalogue.json' $loc.code
 $company   = Read-LocaleJson 'company.json'   $loc.code
 
-Add-Member -InputObject $site -NotePropertyName 'urlPrefix' -NotePropertyValue $loc.url  -Force
-Add-Member -InputObject $site -NotePropertyName 'lang'      -NotePropertyValue $loc.lang -Force
+Add-Member -InputObject $site -NotePropertyName 'urlPrefix'  -NotePropertyValue $loc.url  -Force
+Add-Member -InputObject $site -NotePropertyName 'lang'       -NotePropertyValue $loc.lang -Force
+# Stamp is derived from the app.js content hash so identical builds produce
+# identical HTML, keeping the git diff clean; the stamp only changes when
+# app.js does. Falls back to build-time if the file is missing.
+$appJsPath = Join-Path $SrcDir 'assets/js/app.js'
+$appJsStamp = if (Test-Path $appJsPath) {
+    $hash = Get-FileHash -Path $appJsPath -Algorithm SHA256
+    $hash.Hash.Substring(0, 10).ToLower()
+} else {
+    [DateTime]::UtcNow.ToString('yyyyMMddHHmmss')
+}
+Add-Member -InputObject $site -NotePropertyName 'buildStamp' -NotePropertyValue $appJsStamp -Force
 # Decorate every product record with the display fields templates need inside
 # each loops (the engine does not walk parent scope), so tag pages, siblings
 # and family lists all get the same treatment as family products.
@@ -944,6 +955,7 @@ if ($Serve) {
             $bytes = [System.IO.File]::ReadAllBytes($file)
             $ext = [System.IO.Path]::GetExtension($file).ToLower()
             $ctx.Response.ContentType = if ($types.ContainsKey($ext)) { $types[$ext] } else { 'application/octet-stream' }
+            $ctx.Response.Headers.Add('Cache-Control', 'no-store, must-revalidate')
             $ctx.Response.OutputStream.Write($bytes, 0, $bytes.Length)
         } else {
             $ctx.Response.StatusCode = 404
