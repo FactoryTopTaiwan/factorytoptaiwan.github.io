@@ -265,11 +265,10 @@
      the product page (not layout) so the markup only ships where it is
      needed. -->
 {{#if page.product.hero}}
+<!-- Amazon-style: tabs top-left, close top-right, main image centre-left,
+     title + thumb grid on the right sidebar. Stacks vertically on phones. -->
 <dialog class="lightbox" data-lightbox id="prod-lightbox" aria-label="{{site.ui.viewLarger}}">
-  <button class="lightbox__close" type="button" data-lightbox-close aria-label="{{site.ui.close}}">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
-  </button>
-  <div class="lightbox__frame">
+  <header class="lightbox__bar">
     <div class="lightbox__tabs" role="tablist">
       <button class="lightbox__tab" type="button" role="tab" data-lightbox-tab="images"
               aria-selected="true">{{site.ui.tabImages}}</button>
@@ -278,12 +277,35 @@
               aria-selected="false">{{site.ui.tabVideo}}</button>
       {{/if}}
     </div>
+    <button class="lightbox__close" type="button" data-lightbox-close aria-label="{{site.ui.close}}">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </header>
 
-    <div class="lightbox__pane" role="tabpanel" data-lightbox-pane="images">
-      <div class="lightbox__main">
-        <img class="lightbox__img" alt="" data-lightbox-main>
+  <div class="lightbox__body">
+    <div class="lightbox__stage">
+      <div class="lightbox__pane" role="tabpanel" data-lightbox-pane="images">
+        <div class="lightbox__main">
+          <img class="lightbox__img" alt="" data-lightbox-main>
+        </div>
       </div>
-      <div class="lightbox__thumbs">
+      {{#if page.product.video}}
+      <div class="lightbox__pane" role="tabpanel" data-lightbox-pane="video" hidden>
+        <div class="lightbox__video" data-lightbox-video-id="{{page.product.video.youtubeId}}"
+             data-lightbox-video-title="{{page.product.title}}">
+          <!-- iframe injected on demand -->
+        </div>
+      </div>
+      {{/if}}
+    </div>
+
+    <aside class="lightbox__side">
+      <div class="lightbox__info">
+        {{#if page.product.model}}<p class="lightbox__model model">{{page.product.model}}</p>{{/if}}
+        <h2 class="lightbox__title">{{page.product.title}}</h2>
+        <p class="lightbox__lede">{{page.copy.summary}}</p>
+      </div>
+      <div class="lightbox__thumbs" role="tablist" aria-label="{{site.ui.tabImages}}">
         {{#each page.product.gallery}}
         <button class="lightbox__thumb" type="button" role="tab"
                 data-lightbox-src="{{src}}"
@@ -292,21 +314,18 @@
                 data-lightbox-h="{{height}}"
                 data-lightbox-alt="{{alt}}"
                 aria-label="{{alt}}">
-          <img src="{{src}}" srcset="{{srcset}}" sizes="10rem"
+          <img src="{{src}}" srcset="{{srcset}}" sizes="6rem"
                width="{{width}}" height="{{height}}" alt="" loading="lazy">
         </button>
         {{/each}}
       </div>
-    </div>
-
-    {{#if page.product.video}}
-    <div class="lightbox__pane" role="tabpanel" data-lightbox-pane="video" hidden>
-      <div class="lightbox__video" data-lightbox-video-id="{{page.product.video.youtubeId}}"
-           data-lightbox-video-title="{{page.product.title}}">
-        <!-- iframe injected on demand -->
+      <div class="lightbox__actions">
+        <a class="btn btn--primary" href="{{site.urlPrefix}}/contact/?model={{page.product.model}}">
+          {{site.ui.requestQuote}}
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
       </div>
-    </div>
-    {{/if}}
+    </aside>
   </div>
 </dialog>
 {{/if}}

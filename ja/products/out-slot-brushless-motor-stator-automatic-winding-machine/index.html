@@ -666,11 +666,10 @@
      the product page (not layout) so the markup only ships where it is
      needed. -->
 
+<!-- Amazon-style: tabs top-left, close top-right, main image centre-left,
+     title + thumb grid on the right sidebar. Stacks vertically on phones. -->
 <dialog class="lightbox" data-lightbox id="prod-lightbox" aria-label="拡大表示">
-  <button class="lightbox__close" type="button" data-lightbox-close aria-label="閉じる">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
-  </button>
-  <div class="lightbox__frame">
+  <header class="lightbox__bar">
     <div class="lightbox__tabs" role="tablist">
       <button class="lightbox__tab" type="button" role="tab" data-lightbox-tab="images"
               aria-selected="true">画像</button>
@@ -679,12 +678,35 @@
               aria-selected="false">動画</button>
       
     </div>
+    <button class="lightbox__close" type="button" data-lightbox-close aria-label="閉じる">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </header>
 
-    <div class="lightbox__pane" role="tabpanel" data-lightbox-pane="images">
-      <div class="lightbox__main">
-        <img class="lightbox__img" alt="" data-lightbox-main>
+  <div class="lightbox__body">
+    <div class="lightbox__stage">
+      <div class="lightbox__pane" role="tabpanel" data-lightbox-pane="images">
+        <div class="lightbox__main">
+          <img class="lightbox__img" alt="" data-lightbox-main>
+        </div>
       </div>
-      <div class="lightbox__thumbs">
+      
+      <div class="lightbox__pane" role="tabpanel" data-lightbox-pane="video" hidden>
+        <div class="lightbox__video" data-lightbox-video-id="i6IT5S4nSCg"
+             data-lightbox-video-title="Out-Slot Brushless Motor Stator Automatic Winding Machine">
+          <!-- iframe injected on demand -->
+        </div>
+      </div>
+      
+    </div>
+
+    <aside class="lightbox__side">
+      <div class="lightbox__info">
+        <p class="lightbox__model model">TWM-929</p>
+        <h2 class="lightbox__title">Out-Slot Brushless Motor Stator Automatic Winding Machine</h2>
+        <p class="lightbox__lede">TWM-929 is a out-slot brushless motor stator automatic winding machine built by Teamwork Automation in Taichung, Taiwan. Supplied as a standalone machine or integrated into a complete production line.</p>
+      </div>
+      <div class="lightbox__thumbs" role="tablist" aria-label="画像">
         
         <button class="lightbox__thumb" type="button" role="tab"
                 data-lightbox-src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-2000w.webp"
@@ -693,7 +715,7 @@
                 data-lightbox-h="2000"
                 data-lightbox-alt="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine"
                 aria-label="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine">
-          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-2000w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-800w.webp 800w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-1200w.webp 1200w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-1600w.webp 1600w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-2000w.webp 2000w" sizes="10rem"
+          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-2000w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-800w.webp 800w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-1200w.webp 1200w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-1600w.webp 1600w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-2000w.webp 2000w" sizes="6rem"
                width="2000" height="2000" alt="" loading="lazy">
         </button>
         
@@ -704,7 +726,7 @@
                 data-lightbox-h="1200"
                 data-lightbox-alt="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine"
                 aria-label="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine">
-          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-04-1200w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-04-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-04-800w.webp 800w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-04-1200w.webp 1200w" sizes="10rem"
+          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-04-1200w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-04-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-04-800w.webp 800w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-04-1200w.webp 1200w" sizes="6rem"
                width="1200" height="1200" alt="" loading="lazy">
         </button>
         
@@ -715,7 +737,7 @@
                 data-lightbox-h="2000"
                 data-lightbox-alt="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine"
                 aria-label="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine">
-          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-07-2000w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-07-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-07-800w.webp 800w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-07-1200w.webp 1200w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-07-1600w.webp 1600w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-07-2000w.webp 2000w" sizes="10rem"
+          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-07-2000w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-07-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-07-800w.webp 800w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-07-1200w.webp 1200w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-07-1600w.webp 1600w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-07-2000w.webp 2000w" sizes="6rem"
                width="2000" height="2000" alt="" loading="lazy">
         </button>
         
@@ -726,7 +748,7 @@
                 data-lightbox-h="2000"
                 data-lightbox-alt="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine"
                 aria-label="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine">
-          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-11-2000w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-11-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-11-800w.webp 800w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-11-1200w.webp 1200w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-11-1600w.webp 1600w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-11-2000w.webp 2000w" sizes="10rem"
+          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-11-2000w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-11-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-11-800w.webp 800w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-11-1200w.webp 1200w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-11-1600w.webp 1600w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-11-2000w.webp 2000w" sizes="6rem"
                width="2000" height="2000" alt="" loading="lazy">
         </button>
         
@@ -737,7 +759,7 @@
                 data-lightbox-h="2000"
                 data-lightbox-alt="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine"
                 aria-label="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine">
-          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-12-2000w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-12-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-12-800w.webp 800w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-12-1200w.webp 1200w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-12-1600w.webp 1600w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-12-2000w.webp 2000w" sizes="10rem"
+          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-12-2000w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-12-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-12-800w.webp 800w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-12-1200w.webp 1200w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-12-1600w.webp 1600w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-12-2000w.webp 2000w" sizes="6rem"
                width="2000" height="2000" alt="" loading="lazy">
         </button>
         
@@ -748,7 +770,7 @@
                 data-lightbox-h="2000"
                 data-lightbox-alt="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine"
                 aria-label="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine">
-          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-14-2000w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-14-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-14-800w.webp 800w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-14-1200w.webp 1200w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-14-1600w.webp 1600w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-14-2000w.webp 2000w" sizes="10rem"
+          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-14-2000w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-14-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-14-800w.webp 800w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-14-1200w.webp 1200w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-14-1600w.webp 1600w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-14-2000w.webp 2000w" sizes="6rem"
                width="2000" height="2000" alt="" loading="lazy">
         </button>
         
@@ -759,7 +781,7 @@
                 data-lightbox-h="800"
                 data-lightbox-alt="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine in operation"
                 aria-label="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine in operation">
-          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-05-800w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-05-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-05-800w.webp 800w" sizes="10rem"
+          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-05-800w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-05-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-05-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
@@ -770,7 +792,7 @@
                 data-lightbox-h="800"
                 data-lightbox-alt="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine - finished part produced on this machine"
                 aria-label="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine - finished part produced on this machine">
-          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-06-800w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-06-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-06-800w.webp 800w" sizes="10rem"
+          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-06-800w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-06-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-06-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
@@ -781,7 +803,7 @@
                 data-lightbox-h="800"
                 data-lightbox-alt="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine - finished part produced on this machine"
                 aria-label="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine - finished part produced on this machine">
-          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-07-800w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-07-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-07-800w.webp 800w" sizes="10rem"
+          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-07-800w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-07-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-07-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
@@ -792,7 +814,7 @@
                 data-lightbox-h="800"
                 data-lightbox-alt="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine - finished part produced on this machine"
                 aria-label="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine - finished part produced on this machine">
-          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-08-800w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-08-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-08-800w.webp 800w" sizes="10rem"
+          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-08-800w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-08-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-08-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
@@ -803,7 +825,7 @@
                 data-lightbox-h="800"
                 data-lightbox-alt="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine - finished part produced on this machine"
                 aria-label="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine - finished part produced on this machine">
-          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-09-800w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-09-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-09-800w.webp 800w" sizes="10rem"
+          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-09-800w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-09-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-09-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
@@ -814,7 +836,7 @@
                 data-lightbox-h="800"
                 data-lightbox-alt="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine - finished part produced on this machine"
                 aria-label="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine - finished part produced on this machine">
-          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-04-800w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-04-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-04-800w.webp 800w" sizes="10rem"
+          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-04-800w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-04-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-04-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
@@ -825,7 +847,7 @@
                 data-lightbox-h="800"
                 data-lightbox-alt="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine - finished part produced on this machine"
                 aria-label="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine - finished part produced on this machine">
-          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-02-800w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-02-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-02-800w.webp 800w" sizes="10rem"
+          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-02-800w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-02-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-02-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
@@ -836,7 +858,7 @@
                 data-lightbox-h="800"
                 data-lightbox-alt="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine - finished part produced on this machine"
                 aria-label="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine - finished part produced on this machine">
-          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-03-800w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-03-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-03-800w.webp 800w" sizes="10rem"
+          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-03-800w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-03-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-03-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
@@ -847,21 +869,18 @@
                 data-lightbox-h="400"
                 data-lightbox-alt="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine - finished part produced on this machine"
                 aria-label="TWM-929 Out-Slot Brushless Motor Stator Automatic Winding Machine - finished part produced on this machine">
-          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-01-400w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-01-400w.webp 400w" sizes="10rem"
+          <img src="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-01-400w.webp" srcset="/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/gallery-01-400w.webp 400w" sizes="6rem"
                width="400" height="400" alt="" loading="lazy">
         </button>
         
       </div>
-    </div>
-
-    
-    <div class="lightbox__pane" role="tabpanel" data-lightbox-pane="video" hidden>
-      <div class="lightbox__video" data-lightbox-video-id="i6IT5S4nSCg"
-           data-lightbox-video-title="Out-Slot Brushless Motor Stator Automatic Winding Machine">
-        <!-- iframe injected on demand -->
+      <div class="lightbox__actions">
+        <a class="btn btn--primary" href="/ja/contact/?model=TWM-929">
+          見積もりを依頼
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
       </div>
-    </div>
-    
+    </aside>
   </div>
 </dialog>
 

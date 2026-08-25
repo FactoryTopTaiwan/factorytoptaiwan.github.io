@@ -545,11 +545,10 @@
      the product page (not layout) so the markup only ships where it is
      needed. -->
 
+<!-- Amazon-style: tabs top-left, close top-right, main image centre-left,
+     title + thumb grid on the right sidebar. Stacks vertically on phones. -->
 <dialog class="lightbox" data-lightbox id="prod-lightbox" aria-label="View larger">
-  <button class="lightbox__close" type="button" data-lightbox-close aria-label="Close">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
-  </button>
-  <div class="lightbox__frame">
+  <header class="lightbox__bar">
     <div class="lightbox__tabs" role="tablist">
       <button class="lightbox__tab" type="button" role="tab" data-lightbox-tab="images"
               aria-selected="true">Images</button>
@@ -558,12 +557,35 @@
               aria-selected="false">Video</button>
       
     </div>
+    <button class="lightbox__close" type="button" data-lightbox-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </header>
 
-    <div class="lightbox__pane" role="tabpanel" data-lightbox-pane="images">
-      <div class="lightbox__main">
-        <img class="lightbox__img" alt="" data-lightbox-main>
+  <div class="lightbox__body">
+    <div class="lightbox__stage">
+      <div class="lightbox__pane" role="tabpanel" data-lightbox-pane="images">
+        <div class="lightbox__main">
+          <img class="lightbox__img" alt="" data-lightbox-main>
+        </div>
       </div>
-      <div class="lightbox__thumbs">
+      
+      <div class="lightbox__pane" role="tabpanel" data-lightbox-pane="video" hidden>
+        <div class="lightbox__video" data-lightbox-video-id="FozMVvSED9w"
+             data-lightbox-video-title="Commutator slot cutting">
+          <!-- iframe injected on demand -->
+        </div>
+      </div>
+      
+    </div>
+
+    <aside class="lightbox__side">
+      <div class="lightbox__info">
+        <p class="lightbox__model model">TWM-606</p>
+        <h2 class="lightbox__title">Commutator slot cutting</h2>
+        <p class="lightbox__lede">TWM-606 is a commutator slot cutting built by Teamwork Automation in Taichung, Taiwan. Supplied as a standalone machine or integrated into a complete production line.</p>
+      </div>
+      <div class="lightbox__thumbs" role="tablist" aria-label="Images">
         
         <button class="lightbox__thumb" type="button" role="tab"
                 data-lightbox-src="/assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-01-1600w.webp"
@@ -572,7 +594,7 @@
                 data-lightbox-h="1600"
                 data-lightbox-alt="TWM-606 Commutator slot cutting"
                 aria-label="TWM-606 Commutator slot cutting">
-          <img src="/assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-01-1600w.webp" srcset="/assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-01-400w.webp 400w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-01-800w.webp 800w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-01-1200w.webp 1200w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-01-1600w.webp 1600w" sizes="10rem"
+          <img src="/assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-01-1600w.webp" srcset="/assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-01-400w.webp 400w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-01-800w.webp 800w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-01-1200w.webp 1200w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-01-1600w.webp 1600w" sizes="6rem"
                width="1600" height="1600" alt="" loading="lazy">
         </button>
         
@@ -583,7 +605,7 @@
                 data-lightbox-h="2000"
                 data-lightbox-alt="TWM-606 Commutator slot cutting"
                 aria-label="TWM-606 Commutator slot cutting">
-          <img src="/assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-02-2000w.webp" srcset="/assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-02-400w.webp 400w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-02-800w.webp 800w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-02-1200w.webp 1200w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-02-1600w.webp 1600w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-02-2000w.webp 2000w" sizes="10rem"
+          <img src="/assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-02-2000w.webp" srcset="/assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-02-400w.webp 400w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-02-800w.webp 800w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-02-1200w.webp 1200w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-02-1600w.webp 1600w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-02-2000w.webp 2000w" sizes="6rem"
                width="2000" height="2000" alt="" loading="lazy">
         </button>
         
@@ -594,7 +616,7 @@
                 data-lightbox-h="2000"
                 data-lightbox-alt="TWM-606 Commutator slot cutting"
                 aria-label="TWM-606 Commutator slot cutting">
-          <img src="/assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-03-2000w.webp" srcset="/assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-03-400w.webp 400w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-03-800w.webp 800w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-03-1200w.webp 1200w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-03-1600w.webp 1600w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-03-2000w.webp 2000w" sizes="10rem"
+          <img src="/assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-03-2000w.webp" srcset="/assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-03-400w.webp 400w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-03-800w.webp 800w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-03-1200w.webp 1200w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-03-1600w.webp 1600w, /assets/images/commutator-slot-cutting/twm-606-commutator-slot-cutting-03-2000w.webp 2000w" sizes="6rem"
                width="2000" height="2000" alt="" loading="lazy">
         </button>
         
@@ -605,7 +627,7 @@
                 data-lightbox-h="400"
                 data-lightbox-alt="TWM-606 Commutator slot cutting in operation"
                 aria-label="TWM-606 Commutator slot cutting in operation">
-          <img src="/assets/images/commutator-slot-cutting/gallery-02-400w.webp" srcset="/assets/images/commutator-slot-cutting/gallery-02-400w.webp 400w" sizes="10rem"
+          <img src="/assets/images/commutator-slot-cutting/gallery-02-400w.webp" srcset="/assets/images/commutator-slot-cutting/gallery-02-400w.webp 400w" sizes="6rem"
                width="400" height="400" alt="" loading="lazy">
         </button>
         
@@ -616,7 +638,7 @@
                 data-lightbox-h="800"
                 data-lightbox-alt="TWM-606 Commutator slot cutting - finished part produced on this machine"
                 aria-label="TWM-606 Commutator slot cutting - finished part produced on this machine">
-          <img src="/assets/images/commutator-slot-cutting/gallery-04-800w.webp" srcset="/assets/images/commutator-slot-cutting/gallery-04-400w.webp 400w, /assets/images/commutator-slot-cutting/gallery-04-800w.webp 800w" sizes="10rem"
+          <img src="/assets/images/commutator-slot-cutting/gallery-04-800w.webp" srcset="/assets/images/commutator-slot-cutting/gallery-04-400w.webp 400w, /assets/images/commutator-slot-cutting/gallery-04-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
@@ -627,7 +649,7 @@
                 data-lightbox-h="800"
                 data-lightbox-alt="TWM-606 Commutator slot cutting - finished part produced on this machine"
                 aria-label="TWM-606 Commutator slot cutting - finished part produced on this machine">
-          <img src="/assets/images/commutator-slot-cutting/gallery-03-800w.webp" srcset="/assets/images/commutator-slot-cutting/gallery-03-400w.webp 400w, /assets/images/commutator-slot-cutting/gallery-03-800w.webp 800w" sizes="10rem"
+          <img src="/assets/images/commutator-slot-cutting/gallery-03-800w.webp" srcset="/assets/images/commutator-slot-cutting/gallery-03-400w.webp 400w, /assets/images/commutator-slot-cutting/gallery-03-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
@@ -638,21 +660,18 @@
                 data-lightbox-h="800"
                 data-lightbox-alt="TWM-606 Commutator slot cutting - finished part produced on this machine"
                 aria-label="TWM-606 Commutator slot cutting - finished part produced on this machine">
-          <img src="/assets/images/commutator-slot-cutting/gallery-01-800w.webp" srcset="/assets/images/commutator-slot-cutting/gallery-01-400w.webp 400w, /assets/images/commutator-slot-cutting/gallery-01-800w.webp 800w" sizes="10rem"
+          <img src="/assets/images/commutator-slot-cutting/gallery-01-800w.webp" srcset="/assets/images/commutator-slot-cutting/gallery-01-400w.webp 400w, /assets/images/commutator-slot-cutting/gallery-01-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
       </div>
-    </div>
-
-    
-    <div class="lightbox__pane" role="tabpanel" data-lightbox-pane="video" hidden>
-      <div class="lightbox__video" data-lightbox-video-id="FozMVvSED9w"
-           data-lightbox-video-title="Commutator slot cutting">
-        <!-- iframe injected on demand -->
+      <div class="lightbox__actions">
+        <a class="btn btn--primary" href="/contact/?model=TWM-606">
+          Request a quotation
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
       </div>
-    </div>
-    
+    </aside>
   </div>
 </dialog>
 

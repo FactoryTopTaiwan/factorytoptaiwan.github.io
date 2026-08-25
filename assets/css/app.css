@@ -861,9 +861,18 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   .prod { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: var(--sp-8); align-items: start; }
 }
 .prod__model { margin: 0 0 var(--sp-3); }
-.prod__model .model { font-size: var(--step-1); color: var(--accent-ink); font-weight: 620; }
-.prod__head h1 { margin-bottom: var(--sp-5); }
-.prod__head .lede { margin-bottom: var(--sp-6); }
+.prod__model .model { font-size: var(--step-0); color: var(--accent-ink); font-weight: 620; letter-spacing: 0.02em; }
+/* Product H1 is smaller than a hero title - Amazon lands around 28-32px on
+   a product page, and the client called the previous size unbalanced. */
+.prod__head h1 {
+  font-size: var(--step-2);
+  line-height: 1.2;
+  letter-spacing: -0.022em;
+  margin-bottom: var(--sp-5);
+  text-wrap: balance;
+}
+@media (min-width: 60rem) { .prod__head h1 { font-size: var(--step-3); } }
+.prod__head .lede { margin-bottom: var(--sp-6); font-size: var(--step-0); }
 .prod__actions { display: flex; flex-wrap: wrap; gap: var(--sp-4); margin-top: var(--sp-6); }
 
 .factlist { margin: 0; display: grid; gap: 0; border-top: var(--border) solid var(--line); }
@@ -1482,52 +1491,42 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 .frame--hero:focus-visible .frame__zoom { opacity: 1; }
 .frame__zoom svg { width: 1rem; height: 1rem; }
 
-/* ---- Lightbox ------------------------------------------------------------
-   Native <dialog> so keyboard focus, backdrop and Esc are handled by the
-   browser. Two panes: Images (thumbnail strip + big image) and Video (the
-   YouTube facade injected on demand). */
+/* ---- Lightbox (Amazon-style) --------------------------------------------
+   Full-viewport dialog. Header carries tabs on the left and close on the
+   right; body is two columns on desktop (image stage left, info + thumb grid
+   right) and stacks on tablet / phone. Native <dialog> so keyboard focus,
+   backdrop and Esc all come free. */
 .lightbox {
   padding: 0;
   border: 0;
-  border-radius: var(--radius);
+  border-radius: 14px;
   background: var(--surface);
   color: var(--ink);
-  max-width: min(96vw, 1400px);
-  width: 100%;
+  width: min(96vw, 1400px);
+  max-width: 96vw;
   max-height: 92vh;
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
 }
 .lightbox::backdrop {
-  background: rgba(11, 14, 18, 0.75);
-  backdrop-filter: blur(4px);
+  background: rgba(11, 14, 18, 0.78);
+  backdrop-filter: blur(6px);
 }
-.lightbox__close {
-  position: absolute;
-  top: var(--sp-3); right: var(--sp-3);
-  z-index: 10;
-  width: 2.5rem; height: 2.5rem;
-  background: var(--surface);
-  border: var(--border) solid var(--line);
-  border-radius: 50%;
-  display: grid; place-items: center;
-  cursor: pointer;
-  color: var(--ink-muted);
-}
-.lightbox__close:hover { color: var(--ink); }
-.lightbox__close svg { width: 1.25rem; height: 1.25rem; }
 
-.lightbox__frame { display: grid; gap: var(--sp-4); padding: var(--sp-5); }
-.lightbox__tabs {
-  display: flex; gap: var(--sp-5);
+.lightbox__bar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--sp-4);
+  padding: var(--sp-3) var(--sp-4);
   border-bottom: var(--border) solid var(--line);
-  padding-inline: var(--sp-3);
 }
+.lightbox__tabs { display: flex; gap: var(--sp-4); }
 .lightbox__tab {
   background: none; border: 0;
-  padding: var(--sp-3) 0;
+  padding: var(--sp-2) var(--sp-2);
   color: var(--ink-muted);
   font: inherit; font-weight: 620;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  font-size: var(--step--1);
   cursor: pointer;
   position: relative;
 }
@@ -1536,38 +1535,78 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   box-shadow: inset 0 -2px 0 var(--accent-ink);
 }
 
-.lightbox__pane { display: grid; gap: var(--sp-4); align-items: start; }
-@media (min-width: 60rem) {
-  .lightbox__pane { grid-template-columns: minmax(0, 1fr) 8rem; direction: rtl; }
-  .lightbox__pane > * { direction: ltr; }
-}
-.lightbox__main {
+.lightbox__close {
+  width: 2.5rem; height: 2.5rem;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
   display: grid; place-items: center;
+  cursor: pointer;
+  color: var(--ink-muted);
+}
+.lightbox__close:hover { color: var(--ink); background: var(--surface-hover); }
+.lightbox__close svg { width: 1.25rem; height: 1.25rem; }
+
+.lightbox__body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  max-height: calc(92vh - 4rem);
+}
+@media (min-width: 60rem) {
+  .lightbox__body { grid-template-columns: minmax(0, 1fr) 22rem; }
+}
+
+.lightbox__stage {
   background: var(--surface-hover);
-  border-radius: var(--radius);
-  max-height: 74vh;
+  display: grid; place-items: center;
+  padding: var(--sp-4);
+  min-height: 60vh;
   overflow: hidden;
 }
-.lightbox__img { max-width: 100%; max-height: 74vh; object-fit: contain; }
+@media (max-width: 60rem) { .lightbox__stage { min-height: 50vh; } }
+.lightbox__pane { width: 100%; height: 100%; display: grid; place-items: center; }
+/* Hidden panes stay hidden even though display:grid would otherwise override
+   the browser's default. Fixes the bug where switching to Video left the
+   image showing below, and vice versa. */
+.lightbox__pane[hidden] { display: none !important; }
+.lightbox__main { display: grid; place-items: center; width: 100%; height: 100%; }
+.lightbox__img { max-width: 100%; max-height: 72vh; object-fit: contain; }
+
+.lightbox__video {
+  width: 100%; aspect-ratio: 16 / 9;
+  background: #000; border-radius: 10px;
+  overflow: hidden;
+}
+.lightbox__video iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+.lightbox__side {
+  padding: var(--sp-5);
+  border-inline-start: var(--border) solid var(--line);
+  overflow-y: auto;
+  display: grid; gap: var(--sp-5); align-content: start;
+}
+.lightbox__info { display: grid; gap: var(--sp-3); }
+.lightbox__model { color: var(--accent-ink); font-size: var(--step--1); margin: 0; }
+.lightbox__title {
+  font-size: var(--step-2);
+  line-height: 1.2;
+  margin: 0;
+  text-wrap: balance;
+}
+.lightbox__lede { color: var(--ink-muted); font-size: var(--step-0); margin: 0; }
 
 .lightbox__thumbs {
-  display: flex; flex-direction: row; gap: var(--sp-2);
-  overflow-x: auto;
-}
-@media (min-width: 60rem) {
-  .lightbox__thumbs {
-    flex-direction: column;
-    max-height: 74vh; overflow-y: auto;
-    padding-inline-end: var(--sp-2);
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr));
+  gap: var(--sp-2);
 }
 .lightbox__thumb {
-  flex: none;
-  width: 5rem; height: 5rem;
+  aspect-ratio: 1 / 1;
   padding: 0;
   background: var(--surface);
   border: var(--border) solid var(--line);
-  border-radius: var(--radius);
+  border-radius: 8px;
   cursor: pointer;
   overflow: hidden;
 }
@@ -1577,14 +1616,13 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   outline: 2px solid var(--accent-ink);
   outline-offset: -2px;
 }
+.lightbox__thumb:hover { border-color: var(--accent-line); }
 
-.lightbox__video {
-  aspect-ratio: 16 / 9;
-  background: #000;
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-.lightbox__video iframe { width: 100%; height: 100%; border: 0; display: block; }
+.lightbox__actions { display: flex; gap: var(--sp-3); }
+.lightbox__actions .btn { width: 100%; justify-content: center; }
+
+/* Body scroll lock while lightbox open */
+body.lb-open { overflow: hidden; }
 
 /* ---- Share button + menu ------------------------------------------------ */
 .share { position: relative; display: inline-flex; }

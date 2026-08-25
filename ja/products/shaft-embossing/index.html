@@ -499,22 +499,37 @@
      the product page (not layout) so the markup only ships where it is
      needed. -->
 
+<!-- Amazon-style: tabs top-left, close top-right, main image centre-left,
+     title + thumb grid on the right sidebar. Stacks vertically on phones. -->
 <dialog class="lightbox" data-lightbox id="prod-lightbox" aria-label="拡大表示">
-  <button class="lightbox__close" type="button" data-lightbox-close aria-label="閉じる">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
-  </button>
-  <div class="lightbox__frame">
+  <header class="lightbox__bar">
     <div class="lightbox__tabs" role="tablist">
       <button class="lightbox__tab" type="button" role="tab" data-lightbox-tab="images"
               aria-selected="true">画像</button>
       
     </div>
+    <button class="lightbox__close" type="button" data-lightbox-close aria-label="閉じる">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </header>
 
-    <div class="lightbox__pane" role="tabpanel" data-lightbox-pane="images">
-      <div class="lightbox__main">
-        <img class="lightbox__img" alt="" data-lightbox-main>
+  <div class="lightbox__body">
+    <div class="lightbox__stage">
+      <div class="lightbox__pane" role="tabpanel" data-lightbox-pane="images">
+        <div class="lightbox__main">
+          <img class="lightbox__img" alt="" data-lightbox-main>
+        </div>
       </div>
-      <div class="lightbox__thumbs">
+      
+    </div>
+
+    <aside class="lightbox__side">
+      <div class="lightbox__info">
+        <p class="lightbox__model model">TWM-910</p>
+        <h2 class="lightbox__title">Shaft embossing</h2>
+        <p class="lightbox__lede">TWM-910 is a shaft embossing built by Teamwork Automation in Taichung, Taiwan. Supplied as a standalone machine or integrated into a complete production line.</p>
+      </div>
+      <div class="lightbox__thumbs" role="tablist" aria-label="画像">
         
         <button class="lightbox__thumb" type="button" role="tab"
                 data-lightbox-src="/assets/images/shaft-embossing/twm-910-shaft-embossing-01-2000w.webp"
@@ -523,7 +538,7 @@
                 data-lightbox-h="2000"
                 data-lightbox-alt="TWM-910 Shaft embossing"
                 aria-label="TWM-910 Shaft embossing">
-          <img src="/assets/images/shaft-embossing/twm-910-shaft-embossing-01-2000w.webp" srcset="/assets/images/shaft-embossing/twm-910-shaft-embossing-01-400w.webp 400w, /assets/images/shaft-embossing/twm-910-shaft-embossing-01-800w.webp 800w, /assets/images/shaft-embossing/twm-910-shaft-embossing-01-1200w.webp 1200w, /assets/images/shaft-embossing/twm-910-shaft-embossing-01-1600w.webp 1600w, /assets/images/shaft-embossing/twm-910-shaft-embossing-01-2000w.webp 2000w" sizes="10rem"
+          <img src="/assets/images/shaft-embossing/twm-910-shaft-embossing-01-2000w.webp" srcset="/assets/images/shaft-embossing/twm-910-shaft-embossing-01-400w.webp 400w, /assets/images/shaft-embossing/twm-910-shaft-embossing-01-800w.webp 800w, /assets/images/shaft-embossing/twm-910-shaft-embossing-01-1200w.webp 1200w, /assets/images/shaft-embossing/twm-910-shaft-embossing-01-1600w.webp 1600w, /assets/images/shaft-embossing/twm-910-shaft-embossing-01-2000w.webp 2000w" sizes="6rem"
                width="2000" height="2000" alt="" loading="lazy">
         </button>
         
@@ -534,7 +549,7 @@
                 data-lightbox-h="1600"
                 data-lightbox-alt="TWM-910 Shaft embossing"
                 aria-label="TWM-910 Shaft embossing">
-          <img src="/assets/images/shaft-embossing/twm-910-shaft-embossing-02-1600w.webp" srcset="/assets/images/shaft-embossing/twm-910-shaft-embossing-02-400w.webp 400w, /assets/images/shaft-embossing/twm-910-shaft-embossing-02-800w.webp 800w, /assets/images/shaft-embossing/twm-910-shaft-embossing-02-1200w.webp 1200w, /assets/images/shaft-embossing/twm-910-shaft-embossing-02-1600w.webp 1600w" sizes="10rem"
+          <img src="/assets/images/shaft-embossing/twm-910-shaft-embossing-02-1600w.webp" srcset="/assets/images/shaft-embossing/twm-910-shaft-embossing-02-400w.webp 400w, /assets/images/shaft-embossing/twm-910-shaft-embossing-02-800w.webp 800w, /assets/images/shaft-embossing/twm-910-shaft-embossing-02-1200w.webp 1200w, /assets/images/shaft-embossing/twm-910-shaft-embossing-02-1600w.webp 1600w" sizes="6rem"
                width="1600" height="1600" alt="" loading="lazy">
         </button>
         
@@ -545,7 +560,7 @@
                 data-lightbox-h="800"
                 data-lightbox-alt="TWM-910 Shaft embossing"
                 aria-label="TWM-910 Shaft embossing">
-          <img src="/assets/images/shaft-embossing/twm-910-shaft-embossing-03-800w.webp" srcset="/assets/images/shaft-embossing/twm-910-shaft-embossing-03-400w.webp 400w, /assets/images/shaft-embossing/twm-910-shaft-embossing-03-800w.webp 800w" sizes="10rem"
+          <img src="/assets/images/shaft-embossing/twm-910-shaft-embossing-03-800w.webp" srcset="/assets/images/shaft-embossing/twm-910-shaft-embossing-03-400w.webp 400w, /assets/images/shaft-embossing/twm-910-shaft-embossing-03-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
@@ -556,7 +571,7 @@
                 data-lightbox-h="1600"
                 data-lightbox-alt="TWM-910 Shaft embossing"
                 aria-label="TWM-910 Shaft embossing">
-          <img src="/assets/images/shaft-embossing/twm-910-shaft-embossing-04-1600w.webp" srcset="/assets/images/shaft-embossing/twm-910-shaft-embossing-04-400w.webp 400w, /assets/images/shaft-embossing/twm-910-shaft-embossing-04-800w.webp 800w, /assets/images/shaft-embossing/twm-910-shaft-embossing-04-1200w.webp 1200w, /assets/images/shaft-embossing/twm-910-shaft-embossing-04-1600w.webp 1600w" sizes="10rem"
+          <img src="/assets/images/shaft-embossing/twm-910-shaft-embossing-04-1600w.webp" srcset="/assets/images/shaft-embossing/twm-910-shaft-embossing-04-400w.webp 400w, /assets/images/shaft-embossing/twm-910-shaft-embossing-04-800w.webp 800w, /assets/images/shaft-embossing/twm-910-shaft-embossing-04-1200w.webp 1200w, /assets/images/shaft-embossing/twm-910-shaft-embossing-04-1600w.webp 1600w" sizes="6rem"
                width="1600" height="1600" alt="" loading="lazy">
         </button>
         
@@ -567,7 +582,7 @@
                 data-lightbox-h="800"
                 data-lightbox-alt="TWM-910 Shaft embossing in operation"
                 aria-label="TWM-910 Shaft embossing in operation">
-          <img src="/assets/images/shaft-embossing/gallery-03-800w.webp" srcset="/assets/images/shaft-embossing/gallery-03-400w.webp 400w, /assets/images/shaft-embossing/gallery-03-800w.webp 800w" sizes="10rem"
+          <img src="/assets/images/shaft-embossing/gallery-03-800w.webp" srcset="/assets/images/shaft-embossing/gallery-03-400w.webp 400w, /assets/images/shaft-embossing/gallery-03-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
@@ -578,7 +593,7 @@
                 data-lightbox-h="800"
                 data-lightbox-alt="TWM-910 Shaft embossing in operation"
                 aria-label="TWM-910 Shaft embossing in operation">
-          <img src="/assets/images/shaft-embossing/gallery-04-800w.webp" srcset="/assets/images/shaft-embossing/gallery-04-400w.webp 400w, /assets/images/shaft-embossing/gallery-04-800w.webp 800w" sizes="10rem"
+          <img src="/assets/images/shaft-embossing/gallery-04-800w.webp" srcset="/assets/images/shaft-embossing/gallery-04-400w.webp 400w, /assets/images/shaft-embossing/gallery-04-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
@@ -589,7 +604,7 @@
                 data-lightbox-h="800"
                 data-lightbox-alt="TWM-910 Shaft embossing - finished part produced on this machine"
                 aria-label="TWM-910 Shaft embossing - finished part produced on this machine">
-          <img src="/assets/images/shaft-embossing/gallery-02-800w.webp" srcset="/assets/images/shaft-embossing/gallery-02-400w.webp 400w, /assets/images/shaft-embossing/gallery-02-800w.webp 800w" sizes="10rem"
+          <img src="/assets/images/shaft-embossing/gallery-02-800w.webp" srcset="/assets/images/shaft-embossing/gallery-02-400w.webp 400w, /assets/images/shaft-embossing/gallery-02-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
@@ -600,14 +615,18 @@
                 data-lightbox-h="800"
                 data-lightbox-alt="TWM-910 Shaft embossing - finished part produced on this machine"
                 aria-label="TWM-910 Shaft embossing - finished part produced on this machine">
-          <img src="/assets/images/shaft-embossing/gallery-01-800w.webp" srcset="/assets/images/shaft-embossing/gallery-01-400w.webp 400w, /assets/images/shaft-embossing/gallery-01-800w.webp 800w" sizes="10rem"
+          <img src="/assets/images/shaft-embossing/gallery-01-800w.webp" srcset="/assets/images/shaft-embossing/gallery-01-400w.webp 400w, /assets/images/shaft-embossing/gallery-01-800w.webp 800w" sizes="6rem"
                width="800" height="800" alt="" loading="lazy">
         </button>
         
       </div>
-    </div>
-
-    
+      <div class="lightbox__actions">
+        <a class="btn btn--primary" href="/ja/contact/?model=TWM-910">
+          見積もりを依頼
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </aside>
   </div>
 </dialog>
 
