@@ -1,0 +1,165 @@
+{
+  "_source": "Machine specifications transcribed from the manufacturer's spec-sheet images (site\\_media\\original\\{slug}\\spec-01.png). Values are the manufacturer's, unchanged; labels are the manufacturer's with two disambiguating fixes: 'Cylider Str.' -> 'Cylinder Stroke', 'Total Rotor length' -> 'Total Rotor Length'.",
+  "_units": "Original units are preserved: Ø for diameter, mm, kg, kg/cm2 for pneumatic supply, rpm for speed, kW for power. The spec sheet writes kg/cm2 as kg/cm2 - HTML sup handled at render time.",
+  "_disclaimer": "The client's disclaimer 'if your requirement is outside these values, please contact us; we reserve the right to change technical specifications without notice' is rendered as page copy below each table (site.ui.specDisclaimer), not repeated per product.",
+
+  "air-coil-winding-machine": {
+    "rows": [
+      { "label": "Power supply",         "value": "220V (380V), 3Ø" },
+      { "label": "Pneumatic supply",     "value": "5 kg/cm²" },
+      { "label": "Winding speed",        "value": "2000 rpm (depending on winding item)" },
+      { "label": "Machine size (D x W x H)", "value": "880 x 650 x 1660 mm" },
+      { "label": "Machine net weight",   "value": "200 kg" }
+    ]
+  },
+
+  "armature-welding-machine": {
+    "rows": [
+      { "label": "Power supply",         "value": "220V (380V), 3Ø" },
+      { "label": "Pneumatic supply",     "value": "2–8 kg/cm²" },
+      { "label": "Rotor OD",             "value": "Ø10 mm – Ø120 mm" },
+      { "label": "Commutator OD",        "value": "Ø5 mm – Ø80 mm" },
+      { "label": "Machine size (D x W x H)", "value": "720 x 630 x 1500 mm" },
+      { "label": "Machine net weight",   "value": "300 kg" }
+    ]
+  },
+
+  "automatic-multi-axes-coil-winding-machine": {
+    "rows": [
+      { "label": "Power supply",         "value": "220V / 380V, 3Ø" },
+      { "label": "Pneumatic supply",     "value": "5 kg/cm²" },
+      { "label": "Winding speed",        "value": "2000 rpm (depending on winding item)" },
+      { "label": "Machine size (D x W x H)", "value": "880 x 650 x 1660 mm" },
+      { "label": "Machine net weight",   "value": "200 kg" }
+    ]
+  },
+
+  "automatic-stuff-type-armature-winding-machine": {
+    "rows": [
+      { "label": "Power supply",         "value": "220V, 3Ø, 3 kW" },
+      { "label": "Pneumatic / hydraulic supply", "value": "5 kg/cm²" },
+      { "label": "Rotor OD",             "value": "Ø25 mm – Ø55 mm" },
+      { "label": "Commutator OD",        "value": "Ø25 mm – Ø40 mm" },
+      { "label": "Core thickness",       "value": "25 mm – 70 mm" },
+      { "label": "Applicable wire diameter", "value": "0.4 mm – 1.0 mm" },
+      { "label": "Winding speed (max)",  "value": "2000 rpm (depending on winding item)" },
+      { "label": "Machine size (D x W x H)", "value": "2210 x 2000 x 1970 mm" },
+      { "label": "Machine net weight",   "value": "800 kg" }
+    ]
+  },
+
+  "commutator-slot-cutting": {
+    "rows": [
+      { "label": "Power requirement",    "value": "220V, 3Ø, 1 kW" },
+      { "label": "Pneumatic pressure",   "value": "5 kg/cm²" },
+      { "label": "Rotor OD",             "value": "Ø55 mm / Ø85 mm" },
+      { "label": "Commutator OD",        "value": "Ø20 mm – Ø45 mm" },
+      { "label": "Total rotor length",   "value": "< 250 mm" },
+      { "label": "Working precision",    "value": "±0.02°" },
+      { "label": "Machine size (D x W x H)", "value": "1000 x 700 x 1600 mm" },
+      { "label": "Machine net weight",   "value": "300 kg" }
+    ]
+  },
+
+  "hook-type-armature-automatic-winding-machine": {
+    "rows": [
+      { "label": "Power supply",         "value": "220V, 3Ø" },
+      { "label": "Pneumatic supply",     "value": "5 kg/cm²" },
+      { "label": "Rotor OD",             "value": "Ø24 mm – Ø55 mm  /  Ø55 mm – Ø85 mm" },
+      { "label": "Commutator OD",        "value": "Ø15 mm – Ø55 mm" },
+      { "label": "Core thickness",       "value": "< 120 mm" },
+      { "label": "Applicable wire diameter", "value": "0.2 mm – 1.2 mm" },
+      { "label": "Winding speed (max)",  "value": "3000 rpm (depending on winding item)" },
+      { "label": "Machine size (D x W x H)", "value": "1335 x 1200 x 1630 mm" },
+      { "label": "Machine net weight",   "value": "750 kg" }
+    ]
+  },
+
+  "hook-type-armature-automatic-winding-machine-horizontal": {
+    "rows": [
+      { "label": "Power supply",         "value": "220V, 3Ø" },
+      { "label": "Pneumatic supply",     "value": "5 kg/cm²" },
+      { "label": "Rotor OD",             "value": "Ø24 mm – Ø55 mm  /  Ø55 mm – Ø85 mm" },
+      { "label": "Commutator OD",        "value": "Ø15 mm – Ø55 mm" },
+      { "label": "Core thickness",       "value": "< 120 mm" },
+      { "label": "Applicable wire diameter", "value": "0.2 mm – 1.2 mm" },
+      { "label": "Winding speed (max)",  "value": "3000 rpm (depending on winding item)" },
+      { "label": "Machine size (D x W x H)", "value": "1335 x 1200 x 1630 mm" },
+      { "label": "Machine net weight",   "value": "750 kg" }
+    ]
+  },
+
+  "hook-type-armature-automatic-winding-machine-vertical": {
+    "rows": [
+      { "label": "Power supply",         "value": "220V, 3Ø" },
+      { "label": "Pneumatic supply",     "value": "5 kg/cm²" },
+      { "label": "Rotor OD",             "value": "Ø65 mm – Ø95 mm" },
+      { "label": "Commutator OD",        "value": "Ø20 mm – Ø50 mm" },
+      { "label": "Core thickness",       "value": "< 50 mm" },
+      { "label": "Applicable wire diameter", "value": "0.3 mm – 1.0 mm" },
+      { "label": "Winding speed (max)",  "value": "3000 rpm (depending on winding item)" },
+      { "label": "Machine size (D x W x H)", "value": "910 x 1230 x 1715 mm" },
+      { "label": "Machine net weight",   "value": "1000 kg" }
+    ]
+  },
+
+  "out-slot-brushless-motor-stator-automatic-winding-machine": {
+    "rows": [
+      { "label": "Power supply",         "value": "220V (380V), 3Ø, 5 kW" },
+      { "label": "Pneumatic supply",     "value": "5 kg/cm²" },
+      { "label": "Stator external diameter", "value": "max Ø180 mm" },
+      { "label": "Stator thickness",     "value": "max 60 mm" },
+      { "label": "Applicable wire diameter", "value": "Ø0.2 mm – Ø1.5 mm" },
+      { "label": "Winding speed (max)",  "value": "2000 rpm (depending on winding item)" },
+      { "label": "Machine size (D x W x H)", "value": "1460 x 1000 x 1660 mm" },
+      { "label": "Machine net weight",   "value": "650 kg" }
+    ]
+  },
+
+  "servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly": {
+    "rows": [
+      { "label": "Power supply",         "value": "220V (380V), 3Ø" },
+      { "label": "Output",               "value": "max 2000 / 5000 kgf (servo / hydraulic pressure)" },
+      { "label": "Total armature length","value": "< 400 mm" },
+      { "label": "Cylinder stroke",      "value": "< 150 mm" },
+      { "label": "Machine size (D x W x H)", "value": "600 x 500 x 2300 mm" },
+      { "label": "Machine net weight",   "value": "250 kg" }
+    ]
+  },
+
+  "shaft-embossing": {
+    "rows": [
+      { "label": "Power supply",         "value": "220V / 380V, 3Ø" },
+      { "label": "Pneumatic supply",     "value": "5 kg/cm²" },
+      { "label": "Machine size (D x W x H)", "value": "530 x 850 x 1730 mm" }
+    ]
+  },
+
+  "two-poles-type-stator-winding-machine-with-one-axle": {
+    "rows": [
+      { "label": "Power supply",         "value": "220V (380V), 3Ø, 5 kW" },
+      { "label": "Pneumatic supply",     "value": "5 kg/cm²" },
+      { "label": "Stator external diameter", "value": "Ø56 mm – Ø110 mm" },
+      { "label": "Stator thickness",     "value": "max 125 mm" },
+      { "label": "Stator inside diameter","value": "Ø32 mm – Ø75 mm" },
+      { "label": "Applicable wire diameter", "value": "Ø0.3 mm – Ø1.2 mm" },
+      { "label": "Winding speed (max)",  "value": "180 rpm (depending on winding item)" },
+      { "label": "Machine size (D x W x H)", "value": "2150 x 1300 x 1750 mm" },
+      { "label": "Machine net weight",   "value": "1300 kg" }
+    ]
+  },
+
+  "two-poles-type-stator-winding-machine-with-two-axes": {
+    "rows": [
+      { "label": "Power supply",         "value": "220V (380V), 3Ø, 5 kW" },
+      { "label": "Pneumatic supply",     "value": "5 kg/cm²" },
+      { "label": "Stator external diameter", "value": "Ø56 mm – Ø110 mm" },
+      { "label": "Stator thickness",     "value": "max 125 mm" },
+      { "label": "Stator inside diameter","value": "Ø32 mm – Ø75 mm" },
+      { "label": "Applicable wire diameter", "value": "Ø0.3 mm – Ø1.2 mm" },
+      { "label": "Winding speed (max)",  "value": "180 rpm (depending on winding item)" },
+      { "label": "Machine size (D x W x H)", "value": "2150 x 1300 x 1750 mm" },
+      { "label": "Machine net weight",   "value": "1300 kg" }
+    ]
+  }
+}

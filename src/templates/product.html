@@ -80,13 +80,50 @@
 </section>
 {{/if}}
 
-<section class="section section--sunken">
+<section class="section section--sunken" id="specifications">
   <div class="shell">
     <div class="section__head">
       <p class="eyebrow">{{site.ui.specifications}}</p>
       <h2>{{site.ui.specHeading}}</h2>
     </div>
 
+    {{#if page.product.specTable}}
+    <!-- Transcribed spec table. Real <table>, semantic <th scope>, so a screen
+         reader reads "power supply, 220V, 3-phase" rather than "row 1, cell 1,
+         cell 2". Tabular figures via CSS keep the columns aligned. -->
+    <div class="spectable-wrap">
+      <table class="spectable">
+        <caption class="visually-hidden">{{page.product.title}} — {{site.ui.specifications}}</caption>
+        <tbody>
+          {{#each page.product.specTable.rows}}
+          <tr>
+            <th scope="row">{{label}}</th>
+            <td>{{value}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{#if page.product.spec}}
+    <details class="spec-image">
+      <summary>{{site.ui.specImageToggle}}</summary>
+      <figure class="frame frame--doc">
+        <img src="{{page.product.spec.src}}" width="{{page.product.spec.width}}"
+             height="{{page.product.spec.height}}" alt="{{page.product.spec.alt}}"
+             loading="lazy" decoding="async">
+      </figure>
+    </details>
+    {{/if}}
+    {{#if page.spec}}
+    <details class="spec-image">
+      <summary>{{site.ui.specBulletsToggle}}</summary>
+      <ul class="prod__spec">
+        {{#each page.spec}}<li>{{.}}</li>{{/each}}
+      </ul>
+    </details>
+    {{/if}}
+    <p class="specnote__foot">{{site.ui.specDisclaimer}}</p>
+    {{else}}
     {{#if page.spec}}
     <ul class="prod__spec">
       {{#each page.spec}}<li>{{.}}</li>{{/each}}
@@ -119,6 +156,7 @@
          {{site.ui.specsNotPublishedBody}}</p>
       <p><a class="link-cta" href="{{site.urlPrefix}}/contact/?model={{page.product.model}}">{{site.ui.askSpec}}</a></p>
     </div>
+    {{/if}}
     {{/if}}
     {{/if}}
   </div>

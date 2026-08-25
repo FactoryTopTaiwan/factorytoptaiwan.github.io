@@ -192,6 +192,7 @@
     "productDescription": "Product description",
     "whatItDoes": "What this machine does",
     "specImageToggle": "View the manufacturer's specification sheet",
+    "specBulletsToggle": "View expanded specification notes",
     "specDisclaimer": "Capabilities shown are typical. Values outside this range can be quoted on request.",
     "fullIndex": "Full index by model",
     "everyMachine": "Every machine",
@@ -219,34 +220,59 @@
     { "label": "About",     "href": "/about/",     "key": "about" }
   ],
 
+  "_footerNote": "Five columns modelled on the Japanese equipment-builder pattern the client sent as reference. The banner strip above the footer (site.banner) already carries the 'Contact us here' call to action, so the footer itself is pure navigation. 'Follow us on YouTube' sits in its own row below the column grid.",
   "footer": {
     "columns": [
       {
+        "heading": "Technology & Examples",
+        "links": [
+          { "label": "Turnkey production lines",   "href": "/turnkey/" },
+          { "label": "Industries we build for",    "href": "/solutions/" },
+          { "label": "Watch machines running",     "href": "https://www.youtube.com/@TeamworkAutomation", "external": true }
+        ]
+      },
+      {
         "heading": "Products",
         "links": [
-          { "label": "All machines", "href": "/products/" },
-          { "label": "Winding machines", "href": "/products/winding-machines/" },
-          { "label": "Rotor equipment", "href": "/products/motor-rotor-equipment/" },
-          { "label": "Brushless motor equipment", "href": "/products/brushless-motor-equipment/" },
-          { "label": "Turnkey lines", "href": "/turnkey/" }
+          { "label": "All machines",               "href": "/products/" },
+          { "label": "Winding machines",           "href": "/products/tag/winding/" },
+          { "label": "BLDC / brushless winding",   "href": "/products/tag/bldc-winding/" },
+          { "label": "Brushed / universal winding","href": "/products/tag/brushed-winding/" },
+          { "label": "Rotor & armature equipment", "href": "/products/motor-rotor-equipment/" },
+          { "label": "Stator equipment",           "href": "/products/motor-stator-equipment/" },
+          { "label": "Production lines",           "href": "/products/tag/production-line/" },
+          { "label": "Semiconductor equipment",    "href": "/products/semiconductor-equipment/" },
+          { "label": "Full catalogue (PDF)",       "href": "/catalog/" }
         ]
       },
       {
-        "heading": "Company",
+        "heading": "About us",
         "links": [
-          { "label": "About", "href": "/about/" },
-          { "label": "Support", "href": "/support/" },
-          { "label": "Catalogue", "href": "/catalog/" },
-          { "label": "Contact", "href": "/contact/" }
+          { "label": "About Teamwork Automation", "href": "/about/" },
+          { "label": "Since 1992, Taichung, Taiwan", "href": "/about/" }
         ]
       },
       {
-        "heading": "Contact",
+        "heading": "Customer service",
         "links": [
-          { "label": "Request a quotation", "href": "/contact/" },
-          { "label": "Book a video call", "href": "/contact/#call" }
+          { "label": "Support & remote diagnostics", "href": "/support/" },
+          { "label": "Request a quotation",          "href": "/contact/" },
+          { "label": "Book a video call",            "href": "/contact/#call" },
+          { "label": "Every page on this site",      "href": "/sitemap/" }
+        ]
+      },
+      {
+        "heading": "Recruit",
+        "links": [
+          { "label": "Engineering roles (via email)", "href": "/contact/" }
         ]
       }
-    ]
+    ],
+    "followUs": {
+      "heading": "Follow us on",
+      "links": [
+        { "label": "YouTube — Teamwork Automation", "href": "https://www.youtube.com/@TeamworkAutomation", "kind": "youtube" }
+      ]
+    }
   }
 }

@@ -211,6 +211,23 @@
       {{/each}}
     </div>
 
+    {{#if site.footer.followUs}}
+    <div class="footer__follow">
+      <h3>{{site.footer.followUs.heading}}</h3>
+      <ul>
+        {{#each site.footer.followUs.links}}
+        <li>
+          <a href="{{href}}" rel="noopener" aria-label="{{label}}">
+            <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" fill="currentColor">
+              <path d="M23 12s0-3.6-.46-5.32a2.78 2.78 0 0 0-1.96-1.96C18.87 4.25 12 4.25 12 4.25s-6.87 0-8.58.47A2.78 2.78 0 0 0 1.46 6.68C1 8.4 1 12 1 12s0 3.6.46 5.32a2.78 2.78 0 0 0 1.96 1.96c1.71.47 8.58.47 8.58.47s6.87 0 8.58-.47a2.78 2.78 0 0 0 1.96-1.96C23 15.6 23 12 23 12zM9.75 15.28V8.72L15.5 12l-5.75 3.28z"/>
+            </svg>
+          </a>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+    {{/if}}
+
     <div class="footer__bottom">
       <span>&copy; {{site.founded}}–2026 {{site.legalName}}</span>
       <nav class="footer__legal" aria-label="{{site.ui.legal}}">
@@ -218,7 +235,6 @@
         <a href="{{site.urlPrefix}}/terms/">{{site.ui.terms}}</a>
         <a href="{{site.urlPrefix}}/privacy/">{{site.ui.privacy}}</a>
         <a href="{{site.urlPrefix}}/contact/">{{site.ui.contact}}</a>
-        <a href="https://www.youtube.com/@TeamworkAutomation" rel="noopener">YouTube</a>
       </nav>
       <span>{{site.city}}, {{site.country}}</span>
     </div>

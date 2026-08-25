@@ -138,6 +138,7 @@
     "productDescription": "製品概要",
     "whatItDoes": "この機械の機能",
     "specImageToggle": "メーカー公開の仕様書を表示",
+    "specBulletsToggle": "詳細な仕様メモを表示",
     "specDisclaimer": "掲載の仕様は一般的な範囲です。範囲外のご要望はお問い合わせください。",
     "lastUpdated": "最終更新",
     "search": "検索",
@@ -198,31 +199,55 @@
   "footer": {
     "columns": [
       {
+        "heading": "技術と導入事例",
+        "links": [
+          { "label": "ターンキー生産ライン",  "href": "/ja/turnkey/" },
+          { "label": "対応産業",              "href": "/ja/solutions/" },
+          { "label": "稼働動画（YouTube）",   "href": "https://www.youtube.com/@TeamworkAutomation", "external": true }
+        ]
+      },
+      {
         "heading": "製品",
         "links": [
-          { "label": "全機種", "href": "/ja/products/" },
-          { "label": "巻線機", "href": "/ja/products/winding-machines/" },
-          { "label": "回転子・電機子設備", "href": "/ja/products/motor-rotor-equipment/" },
-          { "label": "ブラシレスモーター設備", "href": "/ja/products/brushless-motor-equipment/" },
-          { "label": "ターンキーライン", "href": "/ja/turnkey/" }
+          { "label": "全機種",                        "href": "/ja/products/" },
+          { "label": "巻線機",                        "href": "/ja/products/tag/winding/" },
+          { "label": "BLDC・ブラシレス巻線",           "href": "/ja/products/tag/bldc-winding/" },
+          { "label": "ブラシ付・ユニバーサル巻線",      "href": "/ja/products/tag/brushed-winding/" },
+          { "label": "回転子・電機子設備",             "href": "/ja/products/motor-rotor-equipment/" },
+          { "label": "固定子設備",                    "href": "/ja/products/motor-stator-equipment/" },
+          { "label": "自動化生産ライン",               "href": "/ja/products/tag/production-line/" },
+          { "label": "半導体設備",                    "href": "/ja/products/semiconductor-equipment/" },
+          { "label": "総合カタログ",                  "href": "/ja/catalog/" }
         ]
       },
       {
-        "heading": "会社",
+        "heading": "会社情報",
         "links": [
-          { "label": "会社概要", "href": "/ja/about/" },
-          { "label": "サポート", "href": "/ja/support/" },
-          { "label": "カタログ", "href": "/ja/catalog/" },
-          { "label": "お問い合わせ", "href": "/ja/contact/" }
+          { "label": "協群自動化について",     "href": "/ja/about/" },
+          { "label": "1992年より台湾・台中",   "href": "/ja/about/" }
         ]
       },
       {
-        "heading": "お問い合わせ",
+        "heading": "カスタマーサービス",
         "links": [
-          { "label": "見積もりを依頼", "href": "/ja/contact/" },
-          { "label": "オンライン打ち合わせを予約", "href": "/ja/contact/#call" }
+          { "label": "サポート・遠隔診断",       "href": "/ja/support/" },
+          { "label": "お見積り依頼",             "href": "/ja/contact/" },
+          { "label": "オンライン打ち合わせ予約", "href": "/ja/contact/#call" },
+          { "label": "サイトの全ページ",         "href": "/ja/sitemap/" }
+        ]
+      },
+      {
+        "heading": "採用情報",
+        "links": [
+          { "label": "エンジニア募集（メールにて）", "href": "/ja/contact/" }
         ]
       }
-    ]
+    ],
+    "followUs": {
+      "heading": "フォローする",
+      "links": [
+        { "label": "YouTube — Teamwork Automation", "href": "https://www.youtube.com/@TeamworkAutomation", "kind": "youtube" }
+      ]
+    }
   }
 }

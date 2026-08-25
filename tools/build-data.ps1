@@ -62,6 +62,43 @@ if (Test-Path $CopyPath) {
     }
 }
 
+# Optional image-overrides.json: promote specific gallery images from
+# 'workpiece' to 'machine' where the classifier misfires, and remove images
+# that must not appear on the public site (third-party branded photographs).
+$OverridesPath = Join-Path $SiteRoot 'src\data\image-overrides.json'
+$machineOverrides = @{}
+$removeOverrides = @{}
+if (Test-Path $OverridesPath) {
+    $oraw = Get-Content $OverridesPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    if ($oraw.PSObject.Properties['machine']) {
+        foreach ($prop in $oraw.machine.PSObject.Properties) {
+            if ($prop.Name -notlike '_*') {
+                # Keep the array in its source order so IndexOf gives a rank
+                # that matches the client's preference (first-listed wins).
+                $machineOverrides[$prop.Name] = @($prop.Value)
+            }
+        }
+    }
+    if ($oraw.PSObject.Properties['remove']) {
+        foreach ($prop in $oraw.remove.PSObject.Properties) {
+            if ($prop.Name -notlike '_*') {
+                $removeOverrides[$prop.Name] = @($prop.Value)
+            }
+        }
+    }
+}
+
+# Optional specs.json: transcribed spec-sheet values as a { label, value }
+# table per product. Absent slugs render as before (spec image + on-request).
+$SpecsPath = Join-Path $SiteRoot 'src\data\specs.json'
+$specTables = @{}
+if (Test-Path $SpecsPath) {
+    $sraw = Get-Content $SpecsPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    foreach ($prop in $sraw.PSObject.Properties) {
+        if ($prop.Name -notlike '_*') { $specTables[$prop.Name] = $prop.Value }
+    }
+}
+
 # Optional tags.json: process/motor-type/form tags per product slug. Absent
 # is fine - products just carry no tags. Tags let a product appear in every
 # category it belongs to without splitting its URL, which is how the client
@@ -150,9 +187,26 @@ foreach ($p in $raw) {
     $app       = $null
 
     if ($entry) {
+        # Overrides for this slug (may be empty). Order preserved from JSON so
+        # the first basename listed wins hero selection.
+        $slugMachineList = @()
+        $slugRemoveList  = @()
+        if ($machineOverrides.ContainsKey($slug)) { $slugMachineList = $machineOverrides[$slug] }
+        if ($removeOverrides.ContainsKey($slug)) { $slugRemoveList = $removeOverrides[$slug] }
+
         foreach ($img in @($entry.images)) {
             $obj = New-ImageObject -Entry $img -Alt $altBase
             if (-not $obj) { continue }
+            # basename to match against overrides (gallery-01, spec-01, etc.)
+            $imgBase = ''
+            if ($img.PSObject.Properties['basename'] -and $img.basename) {
+                $imgBase = $img.basename
+            } elseif ($img.kind -eq 'gallery') {
+                $imgBase = ("gallery-{0:d2}" -f $img.index)
+            }
+            # Filter: image is on the public removal list
+            if ($imgBase -and ($slugRemoveList -contains $imgBase)) { continue }
+
             switch ($img.kind) {
                 'gallery' {
                     # Separate the machine from the part it makes. This company
@@ -162,9 +216,18 @@ foreach ($p in $raw) {
                     $orig = Join-Path $OrigRoot ("{0}\gallery-{1:d2}.jpg" -f $slug, $img.index)
                     $kind = 'workpiece'
                     if (Test-Path $orig) { $kind = Get-PhotoKind -Path $orig }
+                    # image-overrides.json can override the classifier
+                    if ($imgBase -and ($slugMachineList -contains $imgBase)) { $kind = 'equipment' }
                     Add-Member -InputObject $obj -NotePropertyName 'shows' -NotePropertyValue $kind -Force
                     if ($kind -eq 'equipment') {
                         $obj.alt = "$altBase in operation"
+                        # Give overridden gallery images a primary rank based on
+                        # the order they appear in the override list, so hero
+                        # picking still respects the client's preferred first shot.
+                        if (($slugMachineList -contains $imgBase)) {
+                            $rank = [array]::IndexOf($slugMachineList, $imgBase) + 1
+                            Add-Member -InputObject $obj -NotePropertyName 'primary' -NotePropertyValue $rank -Force
+                        }
                         $equipment.Add($obj)
                     } else {
                         $obj.alt = "$altBase - finished part produced on this machine"
@@ -173,14 +236,23 @@ foreach ($p in $raw) {
                     $gallery.Add($obj)
                 }
                 'machine' {
-                    # Declared equipment, never guessed at. classify.ps1 reads a
-                    # studio cutout on white as a workpiece, which is true of the
-                    # old catalogue galleries and false for the photographs on
-                    # the cate- listing pages: those are whole machines shot on
-                    # white, and the classifier files every one of them wrong.
-                    # Anything taken from that source is declared here instead.
+                    # Declared equipment. classify.ps1 misfires on machines shot
+                    # on a white studio background, which is how the cate- pages
+                    # publish everything, so anything scraped from that source
+                    # comes with kind='machine' set explicitly.
                     Add-Member -InputObject $obj -NotePropertyName 'shows' -NotePropertyValue 'equipment' -Force
                     if ($img.PSObject.Properties['alt'] -and $img.alt) { $obj.alt = $img.alt }
+                    # Extract the primary index from the basename (twm-929-...-01-1600w
+                    # -> 01, ...-02-1600w -> 02) so the hero picker can prefer the
+                    # first shot from the source page, which is the machine, over
+                    # any later frame that happens to be pixel-larger but shows a
+                    # workpiece or a detail. Falls to 99 for anything unparseable
+                    # so it never leapfrogs a real primary.
+                    $primary = 99
+                    if ($img.PSObject.Properties['basename'] -and $img.basename -match '-(\d+)$') {
+                        $primary = [int]$Matches[1]
+                    }
+                    Add-Member -InputObject $obj -NotePropertyName 'primary' -NotePropertyValue $primary -Force
                     $equipment.Add($obj)
                     $gallery.Add($obj)
                 }
@@ -191,14 +263,33 @@ foreach ($p in $raw) {
         }
     }
 
-    # Lead with the machine, always. Only fall back to a workpiece photo when
-    # the catalogue has no equipment shot at all -- 15 products are in that
-    # position and need photography from the client.
+    # Lead with the machine, always. The picker prefers the primary shot from
+    # the source page (basename ends in -01 -> primary=1) so a machine photo
+    # cannot lose to a workpiece detail that happens to be larger. Ties on
+    # primary go to the widest derivative.
     $hero = $null
     if ($equipment.Count -gt 0) {
-        $hero = @($equipment | Sort-Object { -$_.width })[0]
+        $hero = @($equipment | Sort-Object @{Expression={ if ($_.PSObject.Properties['primary']) { $_.primary } else { 50 } }}, @{Expression={ -$_.width }})[0]
     } elseif ($workpiece.Count -gt 0) {
         $hero = @($workpiece | Sort-Object { -$_.width })[0]
+    }
+
+    # Reorder the gallery so the hero comes first, then any other declared
+    # machine shots by primary index, then equipment gallery shots, then
+    # workpiece shots at the very end. The client's instruction: "all the
+    # products generated (motor itself) should be at the very end, not the
+    # main image".
+    if ($equipment.Count -gt 0 -or $workpiece.Count -gt 0) {
+        $ordered = New-Object System.Collections.Generic.List[object]
+        # Machine-kind first, sorted by primary index
+        foreach ($e in @($equipment | Sort-Object @{Expression={ if ($_.PSObject.Properties['primary']) { $_.primary } else { 50 } }}, @{Expression={ -$_.width }})) {
+            $ordered.Add($e)
+        }
+        # Workpiece shots pushed to the back
+        foreach ($w in @($workpiece | Sort-Object { -$_.width })) {
+            $ordered.Add($w)
+        }
+        $gallery = $ordered
     }
 
     $video = $null
@@ -209,6 +300,11 @@ foreach ($p in $raw) {
     # file again at template render time.
     $copy = $null
     if ($prodCopy.ContainsKey($slug)) { $copy = $prodCopy[$slug] }
+
+    # Transcribed spec table takes precedence over the spec image where both
+    # exist. The image stays available in the disclosure below the table.
+    $specTable = $null
+    if ($specTables.ContainsKey($slug)) { $specTable = $specTables[$slug] }
 
     # Expand each raw tag slug into { slug, label, kind } so templates can
     # render the human label and never have to lift it out of a dictionary.
@@ -236,6 +332,7 @@ foreach ($p in $raw) {
         video      = $video
         copy       = $copy
         tags       = $tags
+        specTable  = $specTable
         # .ToArray(), not @($gallery): the array subexpression operator throws
         # "Argument types do not match" on a Generic.List[object] in PS 5.1.
         gallery    = $gallery.ToArray()
@@ -256,23 +353,49 @@ foreach ($p in $raw) {
 
 $covers = [ordered]@{}
 foreach ($f in $catalogue.families) {
-    # A category card must show equipment. Prefer a product in this family that
-    # actually has a machine photograph, before falling back on width.
-    $withEquip = @($products | Where-Object { $_.family -eq $f.slug -and $_.heroShows -eq 'equipment' })
-    $inFamily  = $withEquip
-    if ($inFamily.Count -eq 0) {
-        $inFamily = @($products | Where-Object { $_.family -eq $f.slug -and $_.hero })
-    }
+    # A category card must show a machine, never a workpiece. Look across every
+    # product in the family and pick the best primary machine shot -- the
+    # image whose basename ends in -01 wins over a larger later frame that
+    # might show a component. Only if no product in the family has a machine
+    # shot at all do we fall back on the widest hero.
+    $inFamily = @($products | Where-Object { $_.family -eq $f.slug })
     if ($inFamily.Count -eq 0) { continue }
-    $best = @($inFamily | Sort-Object { -$_.hero.width })[0]
+
+    # Gather every equipment image from every product in this family and
+    # score them by (primary index ascending, width descending).
+    $candidates = New-Object System.Collections.Generic.List[object]
+    foreach ($p in $inFamily) {
+        if (-not $p.equipment) { continue }
+        foreach ($img in @($p.equipment)) {
+            $prim = 50
+            if ($img.PSObject.Properties['primary']) { $prim = $img.primary }
+            $candidates.Add([pscustomobject]@{
+                img = $img; primary = $prim; product = $p
+            })
+        }
+    }
+
+    $chosen = $null
+    if ($candidates.Count -gt 0) {
+        $best = @($candidates | Sort-Object primary, @{Expression={ -$_.img.width }})[0]
+        $chosen = $best
+    } else {
+        # No machine shot exists in this family at all. Fall back on the hero
+        # of the largest product so the card is not blank.
+        $withHero = @($inFamily | Where-Object { $_.hero })
+        if ($withHero.Count -eq 0) { continue }
+        $bestP = @($withHero | Sort-Object { -$_.hero.width })[0]
+        $chosen = [pscustomobject]@{ img = $bestP.hero; product = $bestP }
+    }
+
     $covers[$f.slug] = [pscustomobject]@{
-        src       = $best.hero.src
-        srcset    = $best.hero.srcset
-        width     = $best.hero.width
-        height    = $best.hero.height
-        alt       = ("{0} - {1}" -f $f.name, $best.title)
-        fromModel = $best.model
-        fromSlug  = $best.slug
+        src       = $chosen.img.src
+        srcset    = $chosen.img.srcset
+        width     = $chosen.img.width
+        height    = $chosen.img.height
+        alt       = ("{0} - {1}" -f $f.name, $chosen.product.title)
+        fromModel = $chosen.product.model
+        fromSlug  = $chosen.product.slug
     }
 }
 
