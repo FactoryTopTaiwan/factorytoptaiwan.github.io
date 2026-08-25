@@ -48,8 +48,13 @@
   --max-page: 1560px;
   --max-prose: 72ch;
   --gutter: clamp(1.25rem, 0.5rem + 3vw, 4rem);
-  --radius: 2px;      /* engineered, not friendly */
-  --radius-lg: 3px;
+  /* Softened from the original 2/3 px on the client's instruction: "business
+     should be rounded, not sharp". Buttons and small controls get 6px,
+     containers get 10px, and the largest cards override to 12-14px inline.
+     Still short of a friendly-app aesthetic - this is a Bang & Olufsen radius,
+     not an app-store one. */
+  --radius: 6px;
+  --radius-lg: 10px;
   --border: 1px;
 
   /* ---- Motion ---------------------------------------------------------- */

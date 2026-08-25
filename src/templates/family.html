@@ -28,7 +28,10 @@
         </span>
         {{/if}}
         <span class="cat__body">
-          {{#if model}}<span class="cat__count model">{{model}}</span>{{/if}}
+          <!-- Model slot always present so cards in a grid line up. Products
+               without a catalogue model show a neutral label instead of
+               leaving the row empty. -->
+          <span class="cat__count model">{{#if model}}{{model}}{{else}}{{site.ui.byProject}}{{/if}}</span>
           <span class="cat__name">{{title}}</span>
           {{#if hasSpec}}<span class="cat__models">{{site.ui.specsPublished}}</span>{{/if}}
         </span>

@@ -302,6 +302,145 @@
     })(facades[v]);
   }
 
+  /* ---- Product lightbox --------------------------------------------------
+     Clicking the main hero (or any thumbnail button) opens a native <dialog>
+     with a large view, a thumb strip, and a tab for the machine's YouTube
+     video. YouTube is only contacted when the reader switches to the Video
+     tab, keeping the no-autoplay / no-third-party-until-clicked contract. */
+  var lightbox = document.querySelector('[data-lightbox]');
+  if (lightbox && typeof HTMLDialogElement !== 'undefined') {
+    var lbMain   = lightbox.querySelector('[data-lightbox-main]');
+    var lbThumbs = lightbox.querySelectorAll('[data-lightbox-src]');
+    var lbTabs   = lightbox.querySelectorAll('[data-lightbox-tab]');
+    var lbPanes  = lightbox.querySelectorAll('[data-lightbox-pane]');
+    var lbClose  = lightbox.querySelector('[data-lightbox-close]');
+    var lbVideo  = lightbox.querySelector('[data-lightbox-video-id]');
+
+    function lbShow(idx) {
+      if (!lbThumbs.length) return;
+      idx = (idx + lbThumbs.length) % lbThumbs.length;
+      var t = lbThumbs[idx];
+      lbMain.src    = t.getAttribute('data-lightbox-src')    || '';
+      lbMain.srcset = t.getAttribute('data-lightbox-srcset') || '';
+      lbMain.width  = t.getAttribute('data-lightbox-w')      || '';
+      lbMain.height = t.getAttribute('data-lightbox-h')      || '';
+      lbMain.alt    = t.getAttribute('data-lightbox-alt')    || '';
+      for (var i = 0; i < lbThumbs.length; i++) {
+        lbThumbs[i].setAttribute('aria-selected', i === idx ? 'true' : 'false');
+      }
+      lbMain.dataset.idx = idx;
+    }
+
+    for (var t = 0; t < lbThumbs.length; t++) {
+      (function (i) { lbThumbs[i].addEventListener('click', function () { lbShow(i); }); })(t);
+    }
+
+    function lbOpenTab(id) {
+      for (var i = 0; i < lbTabs.length; i++) {
+        var sel = lbTabs[i].getAttribute('data-lightbox-tab') === id;
+        lbTabs[i].setAttribute('aria-selected', sel ? 'true' : 'false');
+      }
+      for (var j = 0; j < lbPanes.length; j++) {
+        lbPanes[j].hidden = lbPanes[j].getAttribute('data-lightbox-pane') !== id;
+      }
+      if (id === 'video' && lbVideo && !lbVideo.querySelector('iframe')) {
+        var vid = lbVideo.getAttribute('data-lightbox-video-id');
+        var f = document.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(vid) +
+                '?rel=0&modestbranding=1';
+        f.title = lbVideo.getAttribute('data-lightbox-video-title') || 'Video';
+        f.allow = 'accelerometer; encrypted-media; picture-in-picture; web-share';
+        f.setAttribute('allowfullscreen', '');
+        lbVideo.appendChild(f);
+      }
+    }
+
+    for (var k = 0; k < lbTabs.length; k++) {
+      (function (tab) {
+        tab.addEventListener('click', function () { lbOpenTab(tab.getAttribute('data-lightbox-tab')); });
+      })(lbTabs[k]);
+    }
+
+    function openLightbox(idx) {
+      lbShow(idx || 0);
+      lbOpenTab('images');
+      try { lightbox.showModal(); } catch (e) { lightbox.setAttribute('open', ''); }
+    }
+    function closeLightbox() {
+      try { lightbox.close(); } catch (e) { lightbox.removeAttribute('open'); }
+    }
+    if (lbClose) lbClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (!lightbox.open) return;
+      if (e.key === 'ArrowRight') lbShow((parseInt(lbMain.dataset.idx || '0', 10) + 1));
+      else if (e.key === 'ArrowLeft') lbShow((parseInt(lbMain.dataset.idx || '0', 10) - 1));
+    });
+
+    var heroBtn = document.querySelector('[data-prod-zoom]');
+    if (heroBtn) heroBtn.addEventListener('click', function () { openLightbox(0); });
+  }
+
+  /* ---- Share menu --------------------------------------------------------
+     A small share popover on every product page. Opens with the platforms
+     that a corporate buyer actually uses to escalate a page: email, LinkedIn,
+     X, WhatsApp, plus copy-to-clipboard. Uses the Web Share API on mobile
+     where present, so the native sheet appears instead of the popover. */
+  var shareEls = document.querySelectorAll('[data-share]');
+  for (var s = 0; s < shareEls.length; s++) {
+    (function (box) {
+      var toggle = box.querySelector('[data-share-toggle]');
+      var menu   = box.querySelector('.share__menu');
+      var title  = box.getAttribute('data-share-title') || document.title;
+      var url    = box.getAttribute('data-share-url') || location.href;
+      var enc    = encodeURIComponent;
+
+      // Fill dynamic hrefs (need real url encoding, not template escape)
+      var eL = box.querySelector('[data-share-email]');
+      if (eL) eL.href = 'mailto:?subject=' + enc(title) + '&body=' + enc(url);
+      var iL = box.querySelector('[data-share-linkedin]');
+      if (iL) iL.href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + enc(url);
+      var xL = box.querySelector('[data-share-x]');
+      if (xL) xL.href = 'https://twitter.com/intent/tweet?url=' + enc(url) + '&text=' + enc(title);
+      var wL = box.querySelector('[data-share-whatsapp]');
+      if (wL) wL.href = 'https://api.whatsapp.com/send?text=' + enc(title + ' ' + url);
+
+      toggle.addEventListener('click', function () {
+        // Native share sheet where available (mobile) - preferred UX
+        if (navigator.share) {
+          navigator.share({ title: title, url: url }).catch(function(){});
+          return;
+        }
+        var open = menu.hidden;
+        menu.hidden = !open;
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
+      var copyBtn = box.querySelector('[data-share-copy]');
+      var copyLbl = box.querySelector('[data-share-copy-label]');
+      if (copyBtn && copyLbl) {
+        var origLabel = copyLbl.textContent;
+        copyBtn.addEventListener('click', function () {
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(url).then(function () {
+              copyLbl.textContent = box.getAttribute('data-share-copied-label') || 'Link copied';
+              setTimeout(function () { copyLbl.textContent = origLabel; }, 2000);
+            });
+          }
+        });
+      }
+
+      document.addEventListener('click', function (e) {
+        if (!box.contains(e.target)) {
+          menu.hidden = true;
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })(shareEls[s]);
+  }
+
   /* ---- Product gallery thumbnails ---------------------------------------
      Click a thumbnail, swap the hero image. The template renders each thumb
      as a <button> with data-src / data-srcset / data-w / data-h / data-alt,

@@ -26,7 +26,7 @@
         </span>
         {{/if}}
         <span class="cat__body">
-          {{#if model}}<span class="cat__count model">{{model}}</span>{{/if}}
+          <span class="cat__count model">{{#if model}}{{model}}{{else}}{{site.ui.byProject}}{{/if}}</span>
           <span class="cat__name">{{title}}</span>
         </span>
       </a>

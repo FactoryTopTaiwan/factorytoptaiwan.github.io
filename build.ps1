@@ -529,6 +529,64 @@ foreach ($prod in $data.products) {
         if ($prod.copy.PSObject.Properties[$specKey]) { $spec = @($prod.copy.$specKey) }
     }
 
+    # Schema.org Product + BreadcrumbList. Puts the machine into Google's
+    # product graph, so a Google search for the model number surfaces the
+    # product knowledge panel, and lists the page in the site's breadcrumb
+    # trail for rich-result sitelinks. Composed as a single JSON-LD block
+    # per page - two @graph nodes rather than two script tags.
+    $absUrl = ($site.origin + $UrlPfx + '/products/' + $prod.slug + '/')
+    $imageAbs = if ($prod.hero) { $site.origin + $prod.hero.src } else { '' }
+    $schema = [ordered]@{
+        '@context' = 'https://schema.org'
+        '@graph'   = @()
+    }
+    $product = [ordered]@{
+        '@type'       = 'Product'
+        '@id'         = $absUrl + '#product'
+        'name'        = $t
+        'description' = $summary
+        'url'         = $absUrl
+        'brand'       = [ordered]@{ '@type' = 'Brand'; 'name' = $site.name }
+        'manufacturer' = [ordered]@{
+            '@type' = 'Organization'; 'name' = $site.legalName; 'url' = $site.origin
+        }
+        'category'    = $(if ($prod.familyName) { $prod.familyName } else { 'Motor production equipment' })
+    }
+    if ($prod.model)  { $product['mpn']         = $prod.model; $product['sku'] = $prod.model }
+    if ($imageAbs)    { $product['image']       = $imageAbs }
+    if ($prod.video)  {
+        $product['video'] = [ordered]@{
+            '@type'       = 'VideoObject'
+            'name'        = ($t + ' running')
+            'description' = ('The ' + $t + ' filmed on the factory floor.')
+            'thumbnailUrl' = $site.origin + $prod.video.poster.src
+            'contentUrl'   = 'https://www.youtube.com/watch?v=' + $prod.video.youtubeId
+            'embedUrl'     = 'https://www.youtube-nocookie.com/embed/' + $prod.video.youtubeId
+            'uploadDate'   = '2024-01-01'
+        }
+    }
+    $schema['@graph'] += $product
+
+    # BreadcrumbList
+    $crumbs = @(
+        [ordered]@{ '@type' = 'ListItem'; 'position' = 1; 'name' = $site.ui.home;     'item' = ($site.origin + $UrlPfx + '/') },
+        [ordered]@{ '@type' = 'ListItem'; 'position' = 2; 'name' = $site.ui.products; 'item' = ($site.origin + $UrlPfx + '/products/') }
+    )
+    if ($prod.familyName -and $prod.family) {
+        $crumbs += [ordered]@{
+            '@type' = 'ListItem'; 'position' = 3; 'name' = $prod.familyName
+            'item' = ($site.origin + $UrlPfx + '/products/' + $prod.family + '/')
+        }
+        $crumbs += [ordered]@{ '@type' = 'ListItem'; 'position' = 4; 'name' = $prod.title; 'item' = $absUrl }
+    } else {
+        $crumbs += [ordered]@{ '@type' = 'ListItem'; 'position' = 3; 'name' = $prod.title; 'item' = $absUrl }
+    }
+    $schema['@graph'] += [ordered]@{
+        '@type'          = 'BreadcrumbList'
+        'itemListElement' = $crumbs
+    }
+    $schemaJson = $schema | ConvertTo-Json -Depth 10 -Compress
+
     Build-Page -Template 'product.html' -Out ($OutPfx + ("products\{0}\index.html" -f $prod.slug)) -Page @{
         title       = $t
         description = $summary
@@ -540,6 +598,7 @@ foreach ($prod in $data.products) {
         tagLinks    = $tagLinks
         desc        = $desc
         spec        = $spec
+        schema      = $schemaJson
         copy        = @{ summary = $summary; stage = $stage; motorTypes = $motorTypes }
     }
     $urls.Add(("{0}/products/{1}/" -f $UrlPfx, $prod.slug))
