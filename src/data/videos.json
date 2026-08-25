@@ -199,5 +199,15 @@
                                                                             "height":  788,
                                                                             "src":  "/assets/images/video/armature-slot-insulation-paper-inserting-machine/twm-ip01-video-poster-01-1400w.webp"
                                                                         }
-                                                         }
+                                                         },
+    "varnish-bake-twm-301a":  {
+                                  "youtubeId":  "ttaGE41sX-U",
+                                  "poster":  {
+                                                 "src":  "/assets/images/video/varnish-bake-twm-301a/twm-301a-video-poster-01-1400w.webp",
+                                                 "srcset":  "/assets/images/video/varnish-bake-twm-301a/twm-301a-video-poster-01-640w.webp 640w, /assets/images/video/varnish-bake-twm-301a/twm-301a-video-poster-01-1000w.webp 1000w, /assets/images/video/varnish-bake-twm-301a/twm-301a-video-poster-01-1400w.webp 1400w",
+                                                 "width":  1400,
+                                                 "height":  788,
+                                                 "alt":  ""
+                                             }
+                              }
 }
