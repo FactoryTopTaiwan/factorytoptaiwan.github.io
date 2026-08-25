@@ -11,21 +11,29 @@
   <div class="shell">
     <div class="prod{{#if page.product.hero}}{{else}} prod--no-media{{/if}}">
       {{#if page.product.hero}}
-      <div class="prod__media">
+      <div class="prod__media" data-prod-gallery>
         <figure class="frame">
-          <img src="{{page.product.hero.src}}" srcset="{{page.product.hero.srcset}}"
+          <img class="prod__hero" src="{{page.product.hero.src}}" srcset="{{page.product.hero.srcset}}"
                sizes="(min-width: 62rem) 52vw, 100vw"
                width="{{page.product.hero.width}}" height="{{page.product.hero.height}}"
-               alt="{{page.product.hero.alt}}" loading="eager" fetchpriority="high" decoding="async">
+               alt="{{page.product.hero.alt}}" loading="eager" fetchpriority="high" decoding="async"
+               data-prod-hero>
         </figure>
 
-        {{#if page.product.equipment}}
+        {{#if page.product.gallery}}
         <div class="thumbs">
-          {{#each page.product.equipment}}
-          <figure class="frame frame--sm">
+          {{#each page.product.gallery}}
+          <button class="frame frame--sm thumb" type="button"
+                  data-prod-thumb
+                  data-src="{{src}}"
+                  data-srcset="{{srcset}}"
+                  data-w="{{width}}"
+                  data-h="{{height}}"
+                  data-alt="{{alt}}"
+                  aria-label="Show {{alt}}">
             <img src="{{src}}" srcset="{{srcset}}" sizes="(min-width: 62rem) 17vw, 33vw"
                  width="{{width}}" height="{{height}}" alt="{{alt}}" loading="lazy" decoding="async">
-          </figure>
+          </button>
           {{/each}}
         </div>
         {{/if}}

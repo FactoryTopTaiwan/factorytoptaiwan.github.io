@@ -302,6 +302,37 @@
     })(facades[v]);
   }
 
+  /* ---- Product gallery thumbnails ---------------------------------------
+     Click a thumbnail, swap the hero image. The template renders each thumb
+     as a <button> with data-src / data-srcset / data-w / data-h / data-alt,
+     so the swap is straight attribute copies and no data has to be fetched.
+     No visible active state on the thumbs deliberately: the hero above them
+     already shows which one is current.
+
+     Above the reveal-on-scroll block on purpose, since that block returns
+     early under prefers-reduced-motion. */
+  var galleries = document.querySelectorAll('[data-prod-gallery]');
+  for (var g = 0; g < galleries.length; g++) {
+    (function (root) {
+      var hero = root.querySelector('[data-prod-hero]');
+      if (!hero) return;
+      var thumbs = root.querySelectorAll('[data-prod-thumb]');
+      for (var t = 0; t < thumbs.length; t++) {
+        thumbs[t].addEventListener('click', function () {
+          hero.src    = this.getAttribute('data-src')    || hero.src;
+          hero.srcset = this.getAttribute('data-srcset') || hero.srcset;
+          hero.width  = this.getAttribute('data-w')      || hero.width;
+          hero.height = this.getAttribute('data-h')      || hero.height;
+          hero.alt    = this.getAttribute('data-alt')    || hero.alt;
+          // Mark the pressed thumb so it can be styled if the visual system
+          // ever calls for one; harmless if the CSS never uses it.
+          for (var j = 0; j < thumbs.length; j++) thumbs[j].removeAttribute('data-current');
+          this.setAttribute('data-current', 'true');
+        });
+      }
+    })(galleries[g]);
+  }
+
   /* ---- Reveal on scroll ------------------------------------------------- */
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var targets = document.querySelectorAll('[data-reveal]');

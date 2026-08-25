@@ -4318,10 +4318,10 @@
                          "family":  "modular-production-lines",
                          "familyName":  "Modular Production Lines",
                          "hero":  {
-                                      "src":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-01-1000w.webp",
-                                      "srcset":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-01-400w.webp 400w, /assets/images/cooling-fan-motor-automatic-production-line/gallery-01-800w.webp 800w, /assets/images/cooling-fan-motor-automatic-production-line/gallery-01-1000w.webp 1000w",
-                                      "width":  1000,
-                                      "height":  990,
+                                      "src":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-02-800w.webp",
+                                      "srcset":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-02-400w.webp 400w, /assets/images/cooling-fan-motor-automatic-production-line/gallery-02-800w.webp 800w",
+                                      "width":  800,
+                                      "height":  609,
                                       "alt":  "Cooling fan motor automatic production line in operation",
                                       "shows":  "equipment",
                                       "primary":  1
@@ -4395,34 +4395,24 @@
                          "specTable":  null,
                          "gallery":  [
                                          {
-                                             "src":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-01-1000w.webp",
-                                             "srcset":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-01-400w.webp 400w, /assets/images/cooling-fan-motor-automatic-production-line/gallery-01-800w.webp 800w, /assets/images/cooling-fan-motor-automatic-production-line/gallery-01-1000w.webp 1000w",
-                                             "width":  1000,
-                                             "height":  990,
-                                             "alt":  "Cooling fan motor automatic production line in operation",
-                                             "shows":  "equipment",
-                                             "primary":  1
-                                         },
-                                         {
                                              "src":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-02-800w.webp",
                                              "srcset":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-02-400w.webp 400w, /assets/images/cooling-fan-motor-automatic-production-line/gallery-02-800w.webp 800w",
                                              "width":  800,
                                              "height":  609,
                                              "alt":  "Cooling fan motor automatic production line in operation",
                                              "shows":  "equipment",
-                                             "primary":  2
+                                             "primary":  1
+                                         },
+                                         {
+                                             "src":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-01-1000w.webp",
+                                             "srcset":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-01-400w.webp 400w, /assets/images/cooling-fan-motor-automatic-production-line/gallery-01-800w.webp 800w, /assets/images/cooling-fan-motor-automatic-production-line/gallery-01-1000w.webp 1000w",
+                                             "width":  1000,
+                                             "height":  990,
+                                             "alt":  "Cooling fan motor automatic production line - finished part produced on this machine",
+                                             "shows":  "workpiece"
                                          }
                                      ],
                          "equipment":  [
-                                           {
-                                               "src":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-01-1000w.webp",
-                                               "srcset":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-01-400w.webp 400w, /assets/images/cooling-fan-motor-automatic-production-line/gallery-01-800w.webp 800w, /assets/images/cooling-fan-motor-automatic-production-line/gallery-01-1000w.webp 1000w",
-                                               "width":  1000,
-                                               "height":  990,
-                                               "alt":  "Cooling fan motor automatic production line in operation",
-                                               "shows":  "equipment",
-                                               "primary":  1
-                                           },
                                            {
                                                "src":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-02-800w.webp",
                                                "srcset":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-02-400w.webp 400w, /assets/images/cooling-fan-motor-automatic-production-line/gallery-02-800w.webp 800w",
@@ -4430,11 +4420,18 @@
                                                "height":  609,
                                                "alt":  "Cooling fan motor automatic production line in operation",
                                                "shows":  "equipment",
-                                               "primary":  2
+                                               "primary":  1
                                            }
                                        ],
                          "workpiece":  [
-
+                                           {
+                                               "src":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-01-1000w.webp",
+                                               "srcset":  "/assets/images/cooling-fan-motor-automatic-production-line/gallery-01-400w.webp 400w, /assets/images/cooling-fan-motor-automatic-production-line/gallery-01-800w.webp 800w, /assets/images/cooling-fan-motor-automatic-production-line/gallery-01-1000w.webp 1000w",
+                                               "width":  1000,
+                                               "height":  990,
+                                               "alt":  "Cooling fan motor automatic production line - finished part produced on this machine",
+                                               "shows":  "workpiece"
+                                           }
                                        ],
                          "spec":  null,
                          "feature":  null,
