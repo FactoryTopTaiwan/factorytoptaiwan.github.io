@@ -605,7 +605,7 @@
     }
     var heroBtn = document.querySelector('[data-prod-zoom]');
     if (heroBtn) heroBtn.addEventListener('click', function () {
-      openViewer(videoSlideIdx >= 0 ? videoSlideIdx : 0);
+      openViewer(firstImageSlide);
     });
     var prodThumbs = document.querySelectorAll('[data-prod-thumb]');
     for (var pt = 0; pt < prodThumbs.length; pt++) {
