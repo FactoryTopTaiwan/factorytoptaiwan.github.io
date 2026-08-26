@@ -530,9 +530,28 @@
       if (lbNext) lbNext.hidden = mediaIdx >= slides.length - 1;
     };
 
+    // Tear down any playing YouTube iframe immediately. Called whenever the
+    // active slide is about to change or the modal is about to close so
+    // audio never keeps playing in the background.
+    function stopVideoIframes() {
+      var frames = lightbox.querySelectorAll('.lightbox__video iframe');
+      for (var f = 0; f < frames.length; f++) {
+        if (frames[f].parentNode) frames[f].parentNode.removeChild(frames[f]);
+      }
+      var plays = lightbox.querySelectorAll('[data-lightbox-vplay]');
+      for (var p = 0; p < plays.length; p++) plays[p].hidden = false;
+    }
+
     lbGoto = function (i, smooth) {
       if (!trackEl || !slides.length) return;
       i = Math.max(0, Math.min(i, slides.length - 1));
+      // If we're leaving the video slide, stop the video before the scroll
+      // animation begins so the audio cuts immediately, not after the
+      // 300ms smooth-scroll settles into updateActive.
+      var leavingVideo = slides[mediaIdx] &&
+        slides[mediaIdx].getAttribute('data-lightbox-slide') === 'video' &&
+        i !== mediaIdx;
+      if (leavingVideo) stopVideoIframes();
       mediaIdx = i;
       var w = trackEl.clientWidth;
       var behavior = smooth ? 'smooth' : 'auto';
@@ -613,7 +632,11 @@
       openViewer(firstImageSlide);
     });
 
-    // Video slide: start the facade on click
+    // Video slide: build the YouTube facade on click. autoplay=0 so
+    // playback only starts when the reader explicitly presses the play
+    // button inside the YouTube player itself. Iframe is torn down (not
+    // just paused) whenever the modal closes or the reader switches
+    // away from the VIDEO slide, so audio can never keep playing.
     var vplayBtns = lightbox.querySelectorAll('[data-lightbox-vplay]');
     for (var vp = 0; vp < vplayBtns.length; vp++) {
       vplayBtns[vp].addEventListener('click', function (e) {
@@ -624,9 +647,9 @@
         if (!vid) return;
         var f = document.createElement('iframe');
         f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(vid) +
-                '?autoplay=1&rel=0&modestbranding=1';
+                '?autoplay=0&rel=0&modestbranding=1';
         f.title = wrap.getAttribute('data-lightbox-video-title') || 'Video';
-        f.allow = 'autoplay; accelerometer; encrypted-media; picture-in-picture; web-share';
+        f.allow = 'accelerometer; encrypted-media; picture-in-picture; web-share';
         f.setAttribute('allowfullscreen', '');
         wrap.appendChild(f);
         this.hidden = true;
