@@ -603,18 +603,15 @@
     for (var qq = 0; qq < slides.length; qq++) {
       if (slides[qq].getAttribute('data-lightbox-slide') === 'image') { firstImageSlide = qq; break; }
     }
+    // Level 1 (main product page) rules:
+    //  * Clicking the LARGE main image opens the Level 2 modal.
+    //  * Clicking a thumbnail only swaps the main image src (handled in
+    //    the "Product gallery thumbnails" block further down). Do not
+    //    wire a modal opener onto [data-prod-thumb] here.
     var heroBtn = document.querySelector('[data-prod-zoom]');
     if (heroBtn) heroBtn.addEventListener('click', function () {
       openViewer(firstImageSlide);
     });
-    var prodThumbs = document.querySelectorAll('[data-prod-thumb]');
-    for (var pt = 0; pt < prodThumbs.length; pt++) {
-      (function (pt) {
-        prodThumbs[pt].addEventListener('click', function () {
-          openViewer(firstImageSlide + pt);
-        });
-      })(pt);
-    }
 
     // Video slide: start the facade on click
     var vplayBtns = lightbox.querySelectorAll('[data-lightbox-vplay]');
