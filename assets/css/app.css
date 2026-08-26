@@ -878,7 +878,7 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 
 .prod { display: grid; gap: var(--sp-7); }
 @media (min-width: 64rem) {
-  .prod { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: var(--sp-8); align-items: start; }
+  .prod { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: var(--sp-8); align-items: start; }
 }
 .prod__model { margin: 0 0 var(--sp-3); }
 .prod__model .model { font-size: var(--step-0); color: var(--accent-ink); font-weight: 620; letter-spacing: 0.02em; }
@@ -1525,31 +1525,32 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
-/* Amazon-style desktop: vertical thumb rail on the LEFT of the hero.
-   Mobile keeps the finger-first swipe carousel with pagination dots and
-   hides both the desktop hero and its thumb rail. Two distinct layouts,
-   not one forced onto both. */
+/* Product page: two distinct layouts.
+   Desktop: big hero on top, horizontal thumb row of 4rem tiles below
+   (RESPAWN-style). Mobile: swipe carousel with pagination dots, hero
+   and desktop thumbs both hidden.  */
 @media (min-width: 64rem) {
   .pgal { display: none; }
   .prod__media {
-    display: grid;
-    grid-template-columns: 4.5rem minmax(0, 1fr);
-    gap: var(--sp-4);
-    align-items: start;
-  }
-  .prod__media .thumbs {
-    order: -1;
+    display: flex;
     flex-direction: column;
-    max-height: 32rem;
-    overflow-y: auto;
-    padding-right: 2px;
+    align-items: stretch;
+    gap: var(--sp-3);
+  }
+  .prod__media .frame--hero { display: block; }
+  .prod__media .thumbs {
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+    overflow-x: auto;
+    padding-block: 2px;
   }
   .prod__media .thumbs .thumb,
   .prod__media .thumbs .frame--sm {
     width: 4rem;
     height: 4rem;
   }
-  .prod__media .frame--hero { display: block; }
 }
 @media (max-width: 63.99rem) {
   .prod__media .frame--hero,
@@ -1741,10 +1742,10 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   .lightbox__close:hover { color: #fff; background: rgba(0,0,0,0.55); }
 }
 
-/* Amazon-style modal: vertical thumb rail on the LEFT of the stage on
-   desktop; on mobile the stage is full-width and pagination dots take
-   over from the thumb rail. The dialog cap (92vh) sets the outer
-   height so the stage never grows when a taller image loads. */
+/* Amazon-style modal (glasses reference): big main image on the left,
+   right sidebar with title + 4-column thumb grid on the right. Mobile
+   is single column, full-screen, no sidebar - pagination dots at the
+   bottom take over. */
 .lightbox__body {
   display: grid;
   gap: 0;
@@ -1754,7 +1755,7 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 }
 @media (min-width: 64rem) {
   .lightbox__body {
-    grid-template-columns: 6rem minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) 22rem;
     grid-template-rows: 1fr;
   }
 }
@@ -1818,8 +1819,8 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 }
 .lightbox__zoomer.is-zoomed { touch-action: none; cursor: grab; }
 @media (hover: hover) and (pointer: fine) {
-  .lightbox__zoomer:not(.is-pinch) { cursor: zoom-in; }
-  .lightbox__zoomer.is-hover-zoom { cursor: crosshair; }
+  .lightbox__zoomer { cursor: zoom-in; }
+  .lightbox__zoomer.is-hover-zoom { cursor: zoom-out; }
 }
 .lightbox__img {
   max-width: 100%;
@@ -1936,54 +1937,45 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
    square thumbnail grid four wide. Kept as-is per client feedback that
    this is the layout they want. Hidden on mobile - the viewer becomes
    full-screen immersive and the sidebar collapses to pagination dots. */
-/* Desktop: vertical thumb rail on the LEFT of the stage (Amazon
-   product-modal layout). Mobile: rail is hidden - the thumb navigation
-   is replaced by the horizontal swipe + pagination dots at the bottom. */
+/* Right-hand sidebar for the Amazon-glasses modal: title + Model line
+   at the top, 4-across thumb grid below. Hidden on mobile (swipe +
+   dots do the navigation instead). */
 .lightbox__side {
-  padding: var(--sp-3) var(--sp-2);
+  padding: var(--sp-5);
   overflow-y: auto;
   overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  border-right: var(--border) solid var(--line);
+  display: grid;
+  gap: var(--sp-3);
+  align-content: start;
+  border-inline-start: var(--border) solid var(--line);
   background: var(--surface);
-  grid-column: 1;
-  grid-row: 1;
 }
-.lightbox__stage {
-  grid-column: 1;
-  grid-row: 1;
+@media (max-width: 63.99rem) { .lightbox__side { display: none; } }
+
+.lightbox__title {
+  font-size: var(--step-1);
+  line-height: 1.25;
+  margin: 0;
+  font-weight: 620;
+  text-wrap: balance;
 }
-@media (min-width: 64rem) {
-  .lightbox__stage {
-    grid-column: 2;
-    grid-row: 1;
-  }
+.lightbox__style {
+  margin: 0;
+  font-size: var(--step--1);
+  color: var(--ink-muted);
 }
-@media (max-width: 63.99rem) {
-  /* Rail hidden on phones - the swipe + dots do the navigation. */
-  .lightbox__side { display: none; }
-}
-/* Title / model kept as no-op selectors - the product page carries both
-   above the fold. */
-.lightbox__title,
-.lightbox__style { display: none; }
+.lightbox__style-label { color: var(--ink-faint); }
+.lightbox__style .model { color: var(--ink); }
 
 .lightbox__thumbs {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--sp-2);
-  margin: 0;
+  margin: var(--sp-2) 0 0;
   padding: 0;
-  scrollbar-width: thin;
 }
-.lightbox__thumbs::-webkit-scrollbar { width: 6px; }
-.lightbox__thumbs::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
 .lightbox__thumb {
-  flex: 0 0 auto;
-  width: 4rem;
-  height: 4rem;
+  aspect-ratio: 1 / 1;
   padding: 0;
   background: var(--surface);
   border: 2px solid var(--line);

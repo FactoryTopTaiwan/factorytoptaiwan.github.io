@@ -731,23 +731,22 @@
       return list;
     }
 
-    // ---- Mouse hover-follow zoom (Amazon-style) --------------------------
-    // Only apply for real mouse pointers on hover-capable devices, so we
-    // never race the touch pipeline.
+    // ---- Mouse click-to-zoom, then pan-follow (Amazon-style) --------------
+    // Hover shows a zoom-in cursor as an indication (CSS handles the cursor).
+    // Click activates zoom at the click point; while zoomed, mousemove pans
+    // the image (transform-origin follows the cursor). Click again exits.
+    // The container is overflow:hidden so nothing ever bleeds outside the
+    // rigid frame regardless of scale.
     var hoverCapable = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-    z.addEventListener('mouseenter', function (e) {
-      if (!hoverCapable) return;
-      state.isHoverMode = true;
-      z.classList.add('is-hover-zoom');
-      if (stage) stage.classList.add('is-zoomed');
-      applyHover(e.clientX, e.clientY);
-    });
     z.addEventListener('mousemove', function (e) {
       if (!hoverCapable || !state.isHoverMode) return;
       applyHover(e.clientX, e.clientY);
     });
     z.addEventListener('mouseleave', function () {
+      // Keep the zoom-in cursor state when the mouse briefly leaves the
+      // image but stays inside the modal - only reset when it actually
+      // leaves the zoomer. resetHover pulls the transform.
       if (!state.isHoverMode) return;
       resetHover();
     });
@@ -815,10 +814,25 @@
     z.addEventListener('pointerup', endPointer);
     z.addEventListener('pointercancel', endPointer);
 
-    // Double-tap zoom (touch only)
+    // Click behaviour: on mouse pointers this is the primary zoom trigger
+    // (click to enter zoom-follow mode, click again to exit). On touch it
+    // becomes the double-tap toggle.
     z.addEventListener('click', function (e) {
-      // Skip if this was a hover-zoom mouse click; those don't need toggling
-      if (state.isHoverMode) return;
+      var isMouse = hoverCapable;
+      if (isMouse) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (state.isHoverMode) {
+          resetHover();
+        } else {
+          state.isHoverMode = true;
+          z.classList.add('is-hover-zoom');
+          if (stage) stage.classList.add('is-zoomed');
+          applyHover(e.clientX, e.clientY);
+        }
+        return;
+      }
+      // Touch: double-tap toggles a scale-2.2 zoom around the tap point.
       var moved = Math.abs(e.clientX - state.panStartX) > 8 ||
                   Math.abs(e.clientY - state.panStartY) > 8;
       if (moved) return;
