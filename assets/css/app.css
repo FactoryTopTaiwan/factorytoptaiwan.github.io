@@ -1873,7 +1873,13 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   padding: 0; border: 0; background: #000;
   display: grid; place-items: center;
   cursor: pointer;
+  z-index: 2;
 }
+/* [hidden] attribute must actually hide the poster button when the
+   iframe takes over - display:grid above would otherwise override the
+   browser's default [hidden] { display:none } and leave the poster
+   covering the video (symptom: "only audio, no video"). */
+.lightbox__vplay[hidden] { display: none !important; }
 .lightbox__vplay img { width: 100%; height: 100%; object-fit: cover; opacity: 0.75; }
 .lightbox__vbtn {
   position: absolute;
