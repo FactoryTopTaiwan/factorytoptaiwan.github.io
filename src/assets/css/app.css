@@ -1574,6 +1574,11 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
   scrollbar-width: none;
+  /* Hint to the browser: this element handles horizontal panning; the
+     vertical page-scroll should hand off cleanly. Cuts the input delay
+     mobile Chrome adds when it has to decide who owns the gesture. */
+  touch-action: pan-x pinch-zoom;
+  content-visibility: auto;
 }
 .pgal__track::-webkit-scrollbar { display: none; }
 .pgal__slide {
@@ -1639,6 +1644,37 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 @media (prefers-reduced-motion: reduce) {
   .pgal__track { scroll-behavior: auto; }
   .pgal__dot { transition: none; }
+}
+
+/* Category tabs (SOLUTION / FINISHED PRODUCTS) below the mobile carousel.
+   Click-to-scroll to the first slide of that category; the active state
+   is driven by which category the currently visible slide belongs to. */
+.pgal__cats {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-4);
+  padding: var(--sp-3) var(--sp-4);
+  margin: 0;
+  border-block-start: var(--border) solid var(--line);
+  background: var(--surface);
+}
+.pgal__cat {
+  background: none;
+  border: 0;
+  padding: 0.35rem 0;
+  color: var(--ink-muted);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 620;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.pgal__cat.is-active {
+  color: var(--ink);
+  box-shadow: inset 0 -2px 0 var(--accent-ink);
 }
 
 /* ---- Immersive product media viewer -------------------------------------
@@ -1795,6 +1831,9 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   overscroll-behavior: contain;
   scrollbar-width: none;
   height: 100%;
+  /* Same touch-action hint as .pgal__track: horizontal swipe belongs
+     to us, vertical hand-off to browser. Reduces mobile input lag. */
+  touch-action: pan-x pinch-zoom;
 }
 .lightbox__track::-webkit-scrollbar { display: none; }
 .lightbox__stage.is-zoomed .lightbox__track {
@@ -2028,6 +2067,10 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 .lightbox__thumb-play svg { width: 0.9rem; height: 0.9rem; position: relative; margin-left: 2px; }
 
 /* Body scroll lock while lightbox open */
+/* Body scroll lock while lightbox open. scrollbar-gutter keeps a
+   stable place for the page scrollbar so opening the modal does not
+   shift the underlying layout when the scrollbar disappears. */
+html { scrollbar-gutter: stable; }
 body.lb-open { overflow: hidden; touch-action: none; }
 
 /* ---- Share button + menu ------------------------------------------------ */

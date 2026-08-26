@@ -42,7 +42,7 @@
   --sp-9: 6rem;     --sp-10: 8rem;    --sp-11: 12rem;
 
   /* Section rhythm shrinks on small screens */
-  --section-y: clamp(3.5rem, 2rem + 7vw, 8rem);
+  --section-y: clamp(2.25rem, 1.25rem + 4.6vw, 5.25rem);
 
   /* ---- Layout ---------------------------------------------------------- */
   --max-page: 1560px;

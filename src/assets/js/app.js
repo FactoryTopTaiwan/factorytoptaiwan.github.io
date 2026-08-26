@@ -321,6 +321,7 @@
       var track  = pgal.querySelector('[data-pgal-track]');
       var slides = pgal.querySelectorAll('[data-pgal-slide]');
       var dotsEl = pgal.querySelector('[data-pgal-dots]');
+      var catsEl = pgal.querySelector('[data-pgal-cats]');
       if (!track || !slides.length || !dotsEl) return;
 
       // Build dots
@@ -340,7 +341,33 @@
       }
       dots[0].classList.add('is-active');
 
-      // Active index tracking via IntersectionObserver
+      // Category tab wiring: tab click scrolls to the first slide of that
+      // category; swipe/scroll updates which tab is active.
+      var catTabs = catsEl ? catsEl.querySelectorAll('[data-pgal-cat-tab]') : [];
+      function firstSlideOfCat(cat) {
+        for (var k = 0; k < slides.length; k++) {
+          if (slides[k].getAttribute('data-pgal-cat') === cat) return k;
+        }
+        return -1;
+      }
+      function setActiveCat(cat) {
+        for (var t = 0; t < catTabs.length; t++) {
+          var tk = catTabs[t].getAttribute('data-pgal-cat-tab');
+          catTabs[t].classList.toggle('is-active', tk === cat);
+        }
+      }
+      for (var ct = 0; ct < catTabs.length; ct++) {
+        (function (tab) {
+          var cat = tab.getAttribute('data-pgal-cat-tab');
+          tab.addEventListener('click', function () {
+            var idx = firstSlideOfCat(cat);
+            if (idx >= 0) slides[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          });
+        })(catTabs[ct]);
+      }
+
+      // Active index tracking via IntersectionObserver drives both the
+      // dots AND the category tab highlight.
       var active = 0;
       if ('IntersectionObserver' in window) {
         var io = new IntersectionObserver(function (entries) {
@@ -351,6 +378,8 @@
                 dots[active] && dots[active].classList.remove('is-active');
                 dots[idx].classList.add('is-active');
                 active = idx;
+                var cat = slides[idx].getAttribute('data-pgal-cat');
+                if (cat) setActiveCat(cat);
               }
             }
           });
