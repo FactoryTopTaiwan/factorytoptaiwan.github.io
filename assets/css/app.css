@@ -128,7 +128,7 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   gap: var(--sp-5);
   margin-bottom: var(--sp-8);
 }
-@media (min-width: 60rem) {
+@media (min-width: 64rem) {
   .section__head--split {
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
     align-items: end;
@@ -857,7 +857,7 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 .thumbs--wide { grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr)); }
 
 .prod { display: grid; gap: var(--sp-7); }
-@media (min-width: 62rem) {
+@media (min-width: 64rem) {
   .prod { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: var(--sp-8); align-items: start; }
 }
 .prod__model { margin: 0 0 var(--sp-3); }
@@ -871,7 +871,7 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   margin-bottom: var(--sp-5);
   text-wrap: balance;
 }
-@media (min-width: 60rem) { .prod__head h1 { font-size: var(--step-3); } }
+@media (min-width: 64rem) { .prod__head h1 { font-size: var(--step-3); } }
 .prod__head .lede { margin-bottom: var(--sp-6); font-size: var(--step-0); }
 .prod__actions { display: flex; flex-wrap: wrap; gap: var(--sp-4); margin-top: var(--sp-6); }
 
@@ -1494,7 +1494,7 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 /* ---- Mobile-first product media carousel --------------------------------
    Progressive-enhancement gallery that lives inside .prod__media above the
    existing hero + thumbs. On phone/tablet it is the primary media surface;
-   on desktop (>= 62rem) the classic hero + thumb grid takes over and this
+   on desktop (>= 64rem) the classic hero + thumb grid takes over and this
    collapses to nothing. Uses native scroll-snap so a swipe follows the
    finger with real momentum without a single line of JavaScript being
    required for basic navigation. */
@@ -1505,10 +1505,10 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
-@media (min-width: 62rem) { .pgal { display: none; } }
-@media (min-width: 62rem) { .prod__media .frame--hero,
+@media (min-width: 64rem) { .pgal { display: none; } }
+@media (min-width: 64rem) { .prod__media .frame--hero,
                             .prod__media .thumbs { display: block; } }
-@media (max-width: 61.99rem) { .prod__media .frame--hero,
+@media (max-width: 63.99rem) { .prod__media .frame--hero,
                                .prod__media .thumbs { display: none; } }
 
 .pgal__track {
@@ -1609,7 +1609,7 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.35);
   overflow: hidden;
 }
-@media (max-width: 60rem) {
+@media (max-width: 63.99rem) {
   .lightbox {
     width: 100vw;
     max-width: 100vw;
@@ -1625,7 +1625,7 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   background: rgba(11, 14, 18, 0.78);
   backdrop-filter: blur(6px);
 }
-@media (max-width: 60rem) {
+@media (max-width: 63.99rem) {
   .lightbox::backdrop { background: #0b0e12; backdrop-filter: none; }
 }
 
@@ -1635,7 +1635,30 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   padding: var(--sp-3) var(--sp-4);
   border-bottom: var(--border) solid var(--line);
 }
-@media (max-width: 60rem) {
+.lightbox__tabs {
+  display: flex;
+  gap: var(--sp-4);
+  margin-right: auto;
+}
+.lightbox__tab {
+  background: none; border: 0;
+  padding: var(--sp-2) 2px;
+  color: var(--ink-muted);
+  font: inherit; font-weight: 620;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  font-size: var(--step--1);
+  cursor: pointer;
+  position: relative;
+}
+.lightbox__tab[aria-selected="true"] {
+  color: var(--ink);
+  box-shadow: inset 0 -2px 0 var(--accent-ink);
+}
+@media (max-width: 63.99rem) {
+  .lightbox__tab { color: rgba(255,255,255,0.7); }
+  .lightbox__tab[aria-selected="true"] { color: #fff; box-shadow: inset 0 -2px 0 #fff; }
+}
+@media (max-width: 63.99rem) {
   .lightbox__bar {
     border-bottom: 0;
     padding: calc(env(safe-area-inset-top) + 0.5rem) 0.75rem 0.5rem;
@@ -1651,8 +1674,8 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   letter-spacing: 0.04em;
   font-variant-numeric: tabular-nums;
 }
-@media (min-width: 60rem) { .lightbox__count { visibility: hidden; } }
-@media (max-width: 60rem) { .lightbox__count { color: rgba(255,255,255,0.9); } }
+@media (min-width: 64rem) { .lightbox__count { visibility: hidden; } }
+@media (max-width: 63.99rem) { .lightbox__count { color: rgba(255,255,255,0.9); } }
 
 .lightbox__close {
   width: 2.5rem; height: 2.5rem;
@@ -1665,7 +1688,7 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 }
 .lightbox__close:hover { color: var(--ink); background: var(--surface-hover); }
 .lightbox__close svg { width: 1.25rem; height: 1.25rem; }
-@media (max-width: 60rem) {
+@media (max-width: 63.99rem) {
   .lightbox__close {
     color: #fff;
     background: rgba(0,0,0,0.35);
@@ -1673,31 +1696,34 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   .lightbox__close:hover { color: #fff; background: rgba(0,0,0,0.55); }
 }
 
+/* Body has a fixed height so the stage below never grows past its parent.
+   The dialog itself caps at 92vh (max), so the body is what's left after
+   the header bar. */
 .lightbox__body {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0;
-  max-height: calc(92vh - 4rem);
+  height: calc(92vh - 3.75rem);
 }
-@media (min-width: 60rem) {
+@media (min-width: 64rem) {
   .lightbox__body { grid-template-columns: minmax(0, 1fr) 22rem; }
 }
-@media (max-width: 60rem) {
-  .lightbox__body { height: 100dvh; max-height: 100dvh; }
+@media (max-width: 63.99rem) {
+  .lightbox__body { height: 100dvh; }
 }
 
+/* Stage is a rigid box. Slides fill it. Media (image / video) is clipped
+   to the stage even at full zoom, so nothing bleeds outside the frame. */
 .lightbox__stage {
   position: relative;
   background: var(--surface-hover);
   overflow: hidden;
-  min-height: 60vh;
+  height: 100%;
+  min-height: 0;
+  contain: layout paint;
 }
-@media (max-width: 60rem) {
-  .lightbox__stage {
-    background: #0b0e12;
-    min-height: 0;
-    height: 100%;
-  }
+@media (max-width: 63.99rem) {
+  .lightbox__stage { background: #0b0e12; }
 }
 
 .lightbox__track {
@@ -1710,7 +1736,6 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   overscroll-behavior: contain;
   scrollbar-width: none;
   height: 100%;
-  min-height: inherit;
 }
 .lightbox__track::-webkit-scrollbar { display: none; }
 .lightbox__stage.is-zoomed .lightbox__track {
@@ -1724,46 +1749,64 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   display: grid;
   place-items: center;
   padding: var(--sp-4);
-  min-height: 60vh;
+  height: 100%;
   overflow: hidden;
   position: relative;
 }
-@media (max-width: 60rem) {
-  .lightbox__slide {
-    padding: 0;
-    min-height: 100%;
-  }
-}
+@media (max-width: 63.99rem) { .lightbox__slide { padding: 0; } }
+
+/* Amazon-style zoom container. The image fills the zoomer, and the
+   zoomer stays rigid at its parent size; hovering only changes the
+   image transform, not the container. */
 .lightbox__zoomer {
   width: 100%; height: 100%;
   display: grid; place-items: center;
   overflow: hidden;
   touch-action: pan-y pinch-zoom;
   cursor: zoom-in;
+  position: relative;
 }
 .lightbox__zoomer.is-zoomed { touch-action: none; cursor: grab; }
+@media (hover: hover) and (pointer: fine) {
+  .lightbox__zoomer:not(.is-pinch) { cursor: zoom-in; }
+  .lightbox__zoomer.is-hover-zoom { cursor: crosshair; }
+}
 .lightbox__img {
-  max-width: 100%; max-height: 72vh;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
-  transform-origin: 0 0;
+  transform-origin: 50% 50%;
   transition: transform 220ms var(--ease-out);
   will-change: transform;
   user-select: none; -webkit-user-drag: none;
+  display: block;
 }
-.lightbox__zoomer.is-panning .lightbox__img { transition: none; }
-@media (max-width: 60rem) {
-  .lightbox__img { max-height: 100dvh; }
-}
+.lightbox__zoomer.is-panning .lightbox__img,
+.lightbox__zoomer.is-hover-zoom .lightbox__img { transition: none; }
 
-.lightbox__slide--video { padding: var(--sp-4); }
-@media (max-width: 60rem) { .lightbox__slide--video { padding: 1rem; } }
+/* Video slide: 16:9 player sized to fit the stage, with the product
+   title directly beneath (Amazon-style). Fixed layout so switching
+   between a portrait image and the 16:9 video does not resize the
+   surrounding frame. */
+.lightbox__vwrap {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: var(--sp-3);
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding-block: var(--sp-2);
+}
 .lightbox__video {
-  width: 100%; max-width: min(1000px, 95%);
+  width: 100%;
+  max-width: min(1000px, 100%);
   aspect-ratio: 16 / 9;
+  max-height: 100%;
   background: #000;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
+  align-self: center;
 }
 .lightbox__video iframe { width: 100%; height: 100%; border: 0; display: block; }
 .lightbox__vplay {
@@ -1782,6 +1825,17 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   color: #fff;
 }
 .lightbox__vbtn svg { width: 2rem; height: 2rem; margin-left: 4px; }
+.lightbox__vtitle {
+  margin: 0;
+  font-size: var(--step--1);
+  color: var(--ink-muted);
+  text-align: center;
+  padding-inline: var(--sp-4);
+  max-width: min(1000px, 100%);
+}
+@media (max-width: 63.99rem) {
+  .lightbox__vtitle { color: rgba(255,255,255,0.75); }
+}
 
 .lightbox__nav {
   position: absolute;
@@ -1803,7 +1857,7 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 .lightbox__nav--prev { left: 0.75rem; }
 .lightbox__nav--next { right: 0.75rem; }
 .lightbox__nav[hidden] { display: none; }
-@media (max-width: 60rem) { .lightbox__nav { display: none; } }
+@media (max-width: 63.99rem) { .lightbox__nav { display: none; } }
 
 .lightbox__dots {
   position: absolute;
@@ -1814,7 +1868,7 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   z-index: 4;
   pointer-events: none;
 }
-@media (min-width: 60rem) { .lightbox__dots { display: none; } }
+@media (min-width: 64rem) { .lightbox__dots { display: none; } }
 .lightbox__dot {
   width: 0.4rem; height: 0.4rem;
   border-radius: 999px;
@@ -1837,7 +1891,7 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   overflow-y: auto;
   display: grid; gap: var(--sp-4); align-content: start;
 }
-@media (max-width: 60rem) { .lightbox__side { display: none; } }
+@media (max-width: 63.99rem) { .lightbox__side { display: none; } }
 .lightbox__title {
   font-size: var(--step-1);
   line-height: 1.25;
@@ -1896,6 +1950,7 @@ body.lb-open { overflow: hidden; touch-action: none; }
 .share { position: relative; display: inline-flex; }
 .btn--icon { padding: 0.7rem 1rem; }
 .btn--icon svg { width: 1.1rem; height: 1.1rem; }
+.share__menu[hidden] { display: none !important; }
 .share__menu {
   position: absolute;
   top: calc(100% + var(--sp-2));
@@ -1909,6 +1964,52 @@ body.lb-open { overflow: hidden; touch-action: none; }
   box-shadow: var(--shadow-2);
   display: grid; gap: 2px;
 }
+/* Mobile bottom sheet: on phones the popover slides up from the bottom
+   of the viewport, spans the full width with a rounded top, and darkens
+   the background so it reads as a sheet, not a stray floating menu. */
+@media (max-width: 63.99rem) {
+  .share__menu {
+    position: fixed;
+    inset: auto 0 0 0;
+    top: auto;
+    z-index: 60;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    border-radius: 16px 16px 0 0;
+    border-inline: 0;
+    border-bottom: 0;
+    padding: var(--sp-4) var(--sp-4) calc(env(safe-area-inset-bottom) + var(--sp-4));
+    gap: var(--sp-1);
+    box-shadow: 0 -12px 32px rgba(0,0,0,0.2);
+    animation: share-sheet-up 220ms var(--ease-out);
+  }
+  .share__menu::before {
+    content: "";
+    display: block;
+    width: 2.5rem; height: 0.25rem;
+    border-radius: 999px;
+    background: var(--line);
+    margin: 0 auto var(--sp-3);
+  }
+  .share__item { padding: 0.9rem 0.6rem; font-size: var(--step-0); }
+  .share__item svg { width: 1.25rem; height: 1.25rem; }
+  /* Backdrop is a fixed layer we add via JS - see .share-scrim */
+}
+@keyframes share-sheet-up {
+  from { transform: translateY(100%); opacity: 0.6; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.share-scrim {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 55;
+  opacity: 0;
+  transition: opacity 180ms var(--ease-out);
+  pointer-events: none;
+}
+.share-scrim.is-open { opacity: 1; pointer-events: auto; }
+@media (min-width: 64rem) { .share-scrim { display: none; } }
 .share__item {
   display: flex; align-items: center; gap: var(--sp-3);
   padding: 0.55rem 0.8rem;

@@ -19,20 +19,6 @@
              immersive viewer on tap. Video (if any) rides as the last slide. -->
         <div class="pgal" data-pgal>
           <div class="pgal__track" data-pgal-track>
-            {{#each page.product.gallery}}
-            <button class="pgal__slide" type="button"
-                    data-pgal-slide="image"
-                    data-pgal-src="{{src}}"
-                    data-pgal-srcset="{{srcset}}"
-                    data-pgal-w="{{width}}"
-                    data-pgal-h="{{height}}"
-                    data-pgal-alt="{{alt}}">
-              <img src="{{src}}" srcset="{{srcset}}"
-                   sizes="100vw"
-                   width="{{width}}" height="{{height}}"
-                   alt="{{alt}}" loading="lazy" decoding="async">
-            </button>
-            {{/each}}
             {{#if page.product.video}}
             <button class="pgal__slide pgal__slide--video" type="button"
                     data-pgal-slide="video"
@@ -48,6 +34,20 @@
               </span>
             </button>
             {{/if}}
+            {{#each page.product.gallery}}
+            <button class="pgal__slide" type="button"
+                    data-pgal-slide="image"
+                    data-pgal-src="{{src}}"
+                    data-pgal-srcset="{{srcset}}"
+                    data-pgal-w="{{width}}"
+                    data-pgal-h="{{height}}"
+                    data-pgal-alt="{{alt}}">
+              <img src="{{src}}" srcset="{{srcset}}"
+                   sizes="100vw"
+                   width="{{width}}" height="{{height}}"
+                   alt="{{alt}}" loading="lazy" decoding="async">
+            </button>
+            {{/each}}
           </div>
           <div class="pgal__dots" data-pgal-dots aria-label="{{site.ui.tabImages}}"></div>
         </div>
@@ -308,6 +308,14 @@
 {{#if page.product.hero}}
 <dialog class="lightbox" data-lightbox id="prod-lightbox" aria-label="{{site.ui.viewLarger}}">
   <header class="lightbox__bar">
+    {{#if page.product.video}}
+    <div class="lightbox__tabs" role="tablist" aria-label="{{site.ui.tabImages}}">
+      <button class="lightbox__tab" type="button" role="tab"
+              data-lightbox-tab="video" aria-selected="true">{{site.ui.tabVideo}}</button>
+      <button class="lightbox__tab" type="button" role="tab"
+              data-lightbox-tab="images" aria-selected="false">{{site.ui.tabImages}}</button>
+    </div>
+    {{/if}}
     <span class="lightbox__count" data-lightbox-count aria-live="polite"></span>
     <button class="lightbox__close" type="button" data-lightbox-close aria-label="{{site.ui.close}}">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
@@ -326,6 +334,29 @@
       </button>
 
       <div class="lightbox__track" data-lightbox-track>
+        {{#if page.product.video}}
+        <div class="lightbox__slide lightbox__slide--video" data-lightbox-slide="video">
+          <div class="lightbox__vwrap">
+            <div class="lightbox__video"
+                 data-lightbox-video-id="{{page.product.video.youtubeId}}"
+                 data-lightbox-video-title="{{page.product.title}}">
+              <button class="lightbox__vplay" type="button" data-lightbox-vplay
+                      aria-label="{{site.ui.watchMachine}}">
+                <img src="{{page.product.video.poster.src}}"
+                     srcset="{{page.product.video.poster.srcset}}"
+                     sizes="(min-width: 60rem) 70vw, 100vw"
+                     width="{{page.product.video.poster.width}}"
+                     height="{{page.product.video.poster.height}}"
+                     alt="" loading="lazy" decoding="async">
+                <span class="lightbox__vbtn" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+                </span>
+              </button>
+            </div>
+            <p class="lightbox__vtitle">{{page.product.title}}</p>
+          </div>
+        </div>
+        {{/if}}
         {{#each page.product.gallery}}
         <div class="lightbox__slide" data-lightbox-slide="image" data-lightbox-idx="{{@index}}">
           <div class="lightbox__zoomer" data-lightbox-zoomer>
@@ -336,26 +367,6 @@
           </div>
         </div>
         {{/each}}
-        {{#if page.product.video}}
-        <div class="lightbox__slide lightbox__slide--video" data-lightbox-slide="video">
-          <div class="lightbox__video"
-               data-lightbox-video-id="{{page.product.video.youtubeId}}"
-               data-lightbox-video-title="{{page.product.title}}">
-            <button class="lightbox__vplay" type="button" data-lightbox-vplay
-                    aria-label="{{site.ui.watchMachine}}">
-              <img src="{{page.product.video.poster.src}}"
-                   srcset="{{page.product.video.poster.srcset}}"
-                   sizes="(min-width: 60rem) 70vw, 100vw"
-                   width="{{page.product.video.poster.width}}"
-                   height="{{page.product.video.poster.height}}"
-                   alt="" loading="lazy" decoding="async">
-              <span class="lightbox__vbtn" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
-              </span>
-            </button>
-          </div>
-        </div>
-        {{/if}}
       </div>
 
       <div class="lightbox__dots" data-lightbox-dots aria-hidden="true"></div>
@@ -369,14 +380,6 @@
       </p>{{/if}}
 
       <div class="lightbox__thumbs" role="tablist" aria-label="{{site.ui.tabImages}}">
-        {{#each page.product.gallery}}
-        <button class="lightbox__thumb" type="button" role="tab"
-                data-lightbox-thumb="image"
-                aria-label="{{alt}}">
-          <img src="{{src}}" srcset="{{srcset}}" sizes="6rem"
-               width="{{width}}" height="{{height}}" alt="" loading="lazy">
-        </button>
-        {{/each}}
         {{#if page.product.video}}
         <button class="lightbox__thumb lightbox__thumb--video" type="button" role="tab"
                 data-lightbox-thumb="video"
@@ -390,6 +393,14 @@
           </span>
         </button>
         {{/if}}
+        {{#each page.product.gallery}}
+        <button class="lightbox__thumb" type="button" role="tab"
+                data-lightbox-thumb="image"
+                aria-label="{{alt}}">
+          <img src="{{src}}" srcset="{{srcset}}" sizes="6rem"
+               width="{{width}}" height="{{height}}" alt="" loading="lazy">
+        </button>
+        {{/each}}
       </div>
     </aside>
   </div>

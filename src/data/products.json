@@ -2,22 +2,22 @@
     "generated":  "2026-08-26",
     "covers":  {
                    "winding-machines":  {
-                                            "src":  "/assets/images/automatic-multi-axes-coil-winding-machine/twm-wb001-automatic-multi-axes-coil-winding-machine-01-2000w.webp",
-                                            "srcset":  "/assets/images/automatic-multi-axes-coil-winding-machine/twm-wb001-automatic-multi-axes-coil-winding-machine-01-400w.webp 400w, /assets/images/automatic-multi-axes-coil-winding-machine/twm-wb001-automatic-multi-axes-coil-winding-machine-01-800w.webp 800w, /assets/images/automatic-multi-axes-coil-winding-machine/twm-wb001-automatic-multi-axes-coil-winding-machine-01-1200w.webp 1200w, /assets/images/automatic-multi-axes-coil-winding-machine/twm-wb001-automatic-multi-axes-coil-winding-machine-01-1600w.webp 1600w, /assets/images/automatic-multi-axes-coil-winding-machine/twm-wb001-automatic-multi-axes-coil-winding-machine-01-2000w.webp 2000w",
+                                            "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-01-2000w.webp",
+                                            "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-01-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-01-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-01-1200w.webp 1200w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-01-1600w.webp 1600w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-01-2000w.webp 2000w",
                                             "width":  2000,
                                             "height":  2000,
-                                            "alt":  "Winding Machines - Automatic Multi-Axes Coil Winding Machine",
-                                            "fromModel":  "TWM-WB001",
-                                            "fromSlug":  "automatic-multi-axes-coil-winding-machine"
+                                            "alt":  "Winding Machines - Hook Type Armature Automatic Winding Machine (Horizontal)",
+                                            "fromModel":  "TWM-308A",
+                                            "fromSlug":  "hook-type-armature-automatic-winding-machine-horizontal"
                                         },
                    "motor-rotor-equipment":  {
-                                                 "src":  "/assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-insulation-paper-inserting-machine-01-2000w.webp",
-                                                 "srcset":  "/assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-insulation-paper-inserting-machine-01-400w.webp 400w, /assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-insulation-paper-inserting-machine-01-800w.webp 800w, /assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-insulation-paper-inserting-machine-01-1200w.webp 1200w, /assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-insulation-paper-inserting-machine-01-1600w.webp 1600w, /assets/images/armature-slot-insulation-paper-inserting-machine/twm-ip01-armature-slot-insulation-paper-inserting-machine-01-2000w.webp 2000w",
+                                                 "src":  "/assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-2000w.webp",
+                                                 "srcset":  "/assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-400w.webp 400w, /assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-800w.webp 800w, /assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-1200w.webp 1200w, /assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-1600w.webp 1600w, /assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-2000w.webp 2000w",
                                                  "width":  2000,
                                                  "height":  2000,
-                                                 "alt":  "Rotor \u0026 Armature Equipment - Armature Slot Insulation Paper Inserting Machine",
-                                                 "fromModel":  "TWM-IP01",
-                                                 "fromSlug":  "armature-slot-insulation-paper-inserting-machine"
+                                                 "alt":  "Rotor \u0026 Armature Equipment - Armature Slot Wedge Inserting Machine",
+                                                 "fromModel":  "TWM-IW01",
+                                                 "fromSlug":  "armature-slot-wedge-inserting-machine"
                                              },
                    "brushless-motor-equipment":  {
                                                      "src":  "/assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/twm-sp001-horizontal-brushless-motor-slot-insulation-paper-01-2000w.webp",
@@ -5083,15 +5083,6 @@
                                              "primary":  2
                                          },
                                          {
-                                             "src":  "/assets/images/armature-testing-machine/tmw-rt533-armature-testing-machine-03-800w.webp",
-                                             "srcset":  "/assets/images/armature-testing-machine/tmw-rt533-armature-testing-machine-03-400w.webp 400w, /assets/images/armature-testing-machine/tmw-rt533-armature-testing-machine-03-800w.webp 800w",
-                                             "width":  800,
-                                             "height":  800,
-                                             "alt":  "TMW-RT533 Armature Testing Machine",
-                                             "shows":  "equipment",
-                                             "primary":  3
-                                         },
-                                         {
                                              "src":  "/assets/images/armature-testing-machine/gallery-01-800w.webp",
                                              "srcset":  "/assets/images/armature-testing-machine/gallery-01-400w.webp 400w, /assets/images/armature-testing-machine/gallery-01-800w.webp 800w",
                                              "width":  800,
@@ -5142,15 +5133,6 @@
                                                "alt":  "TMW-RT533 Armature Testing Machine",
                                                "shows":  "equipment",
                                                "primary":  1
-                                           },
-                                           {
-                                               "src":  "/assets/images/armature-testing-machine/tmw-rt533-armature-testing-machine-03-800w.webp",
-                                               "srcset":  "/assets/images/armature-testing-machine/tmw-rt533-armature-testing-machine-03-400w.webp 400w, /assets/images/armature-testing-machine/tmw-rt533-armature-testing-machine-03-800w.webp 800w",
-                                               "width":  800,
-                                               "height":  800,
-                                               "alt":  "TMW-RT533 Armature Testing Machine",
-                                               "shows":  "equipment",
-                                               "primary":  3
                                            }
                                        ],
                          "workpiece":  [
@@ -5175,7 +5157,7 @@
                          "feature":  null,
                          "app":  null,
                          "hasSpec":  false,
-                         "imageCount":  6
+                         "imageCount":  5
                      },
                      {
                          "slug":  "varnish-bake",
@@ -5629,15 +5611,6 @@
                                              "primary":  2
                                          },
                                          {
-                                             "src":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/twm-319a-turning-machine-for-armature-outer-diameter-03-800w.webp",
-                                             "srcset":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/twm-319a-turning-machine-for-armature-outer-diameter-03-400w.webp 400w, /assets/images/turning-machine-for-armature-outer-diameter-of-commutator/twm-319a-turning-machine-for-armature-outer-diameter-03-800w.webp 800w",
-                                             "width":  800,
-                                             "height":  800,
-                                             "alt":  "TWM-319A Turning Machine for armature outer diameter of commutator",
-                                             "shows":  "equipment",
-                                             "primary":  3
-                                         },
-                                         {
                                              "src":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/twm-319a-turning-machine-for-armature-outer-diameter-04-800w.webp",
                                              "srcset":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/twm-319a-turning-machine-for-armature-outer-diameter-04-400w.webp 400w, /assets/images/turning-machine-for-armature-outer-diameter-of-commutator/twm-319a-turning-machine-for-armature-outer-diameter-04-800w.webp 800w",
                                              "width":  800,
@@ -5733,15 +5706,6 @@
                                                "primary":  4
                                            },
                                            {
-                                               "src":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/twm-319a-turning-machine-for-armature-outer-diameter-03-800w.webp",
-                                               "srcset":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/twm-319a-turning-machine-for-armature-outer-diameter-03-400w.webp 400w, /assets/images/turning-machine-for-armature-outer-diameter-of-commutator/twm-319a-turning-machine-for-armature-outer-diameter-03-800w.webp 800w",
-                                               "width":  800,
-                                               "height":  800,
-                                               "alt":  "TWM-319A Turning Machine for armature outer diameter of commutator",
-                                               "shows":  "equipment",
-                                               "primary":  3
-                                           },
-                                           {
                                                "src":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/twm-319a-turning-machine-for-armature-outer-diameter-02-800w.webp",
                                                "srcset":  "/assets/images/turning-machine-for-armature-outer-diameter-of-commutator/twm-319a-turning-machine-for-armature-outer-diameter-02-400w.webp 400w, /assets/images/turning-machine-for-armature-outer-diameter-of-commutator/twm-319a-turning-machine-for-armature-outer-diameter-02-800w.webp 800w",
                                                "width":  800,
@@ -5773,7 +5737,7 @@
                          "feature":  null,
                          "app":  null,
                          "hasSpec":  false,
-                         "imageCount":  9
+                         "imageCount":  8
                      },
                      {
                          "slug":  "balancing",
@@ -7191,24 +7155,6 @@
                                              "primary":  2
                                          },
                                          {
-                                             "src":  "/assets/images/stator-fusing/twa-rf30s-stator-fusing-03-800w.webp",
-                                             "srcset":  "/assets/images/stator-fusing/twa-rf30s-stator-fusing-03-400w.webp 400w, /assets/images/stator-fusing/twa-rf30s-stator-fusing-03-800w.webp 800w",
-                                             "width":  800,
-                                             "height":  800,
-                                             "alt":  "TWA-RF30S Stator fusing",
-                                             "shows":  "equipment",
-                                             "primary":  3
-                                         },
-                                         {
-                                             "src":  "/assets/images/stator-fusing/twa-rf30s-stator-fusing-04-800w.webp",
-                                             "srcset":  "/assets/images/stator-fusing/twa-rf30s-stator-fusing-04-400w.webp 400w, /assets/images/stator-fusing/twa-rf30s-stator-fusing-04-800w.webp 800w",
-                                             "width":  800,
-                                             "height":  800,
-                                             "alt":  "TWA-RF30S Stator fusing",
-                                             "shows":  "equipment",
-                                             "primary":  4
-                                         },
-                                         {
                                              "src":  "/assets/images/stator-fusing/gallery-03-800w.webp",
                                              "srcset":  "/assets/images/stator-fusing/gallery-03-400w.webp 400w, /assets/images/stator-fusing/gallery-03-800w.webp 800w",
                                              "width":  800,
@@ -7275,24 +7221,6 @@
                                                "alt":  "TWA-RF30S Stator fusing",
                                                "shows":  "equipment",
                                                "primary":  2
-                                           },
-                                           {
-                                               "src":  "/assets/images/stator-fusing/twa-rf30s-stator-fusing-04-800w.webp",
-                                               "srcset":  "/assets/images/stator-fusing/twa-rf30s-stator-fusing-04-400w.webp 400w, /assets/images/stator-fusing/twa-rf30s-stator-fusing-04-800w.webp 800w",
-                                               "width":  800,
-                                               "height":  800,
-                                               "alt":  "TWA-RF30S Stator fusing",
-                                               "shows":  "equipment",
-                                               "primary":  4
-                                           },
-                                           {
-                                               "src":  "/assets/images/stator-fusing/twa-rf30s-stator-fusing-03-800w.webp",
-                                               "srcset":  "/assets/images/stator-fusing/twa-rf30s-stator-fusing-03-400w.webp 400w, /assets/images/stator-fusing/twa-rf30s-stator-fusing-03-800w.webp 800w",
-                                               "width":  800,
-                                               "height":  800,
-                                               "alt":  "TWA-RF30S Stator fusing",
-                                               "shows":  "equipment",
-                                               "primary":  3
                                            }
                                        ],
                          "workpiece":  [
@@ -7317,7 +7245,7 @@
                          "feature":  null,
                          "app":  null,
                          "hasSpec":  false,
-                         "imageCount":  8
+                         "imageCount":  6
                      },
                      {
                          "slug":  "stator-production-line",
@@ -7423,15 +7351,6 @@
                                   ],
                          "specTable":  null,
                          "gallery":  [
-                                         {
-                                             "src":  "/assets/images/stator-production-line/twm-902s-in-slot-brushless-motor-stator-automatic-03-800w.webp",
-                                             "srcset":  "/assets/images/stator-production-line/twm-902s-in-slot-brushless-motor-stator-automatic-03-400w.webp 400w, /assets/images/stator-production-line/twm-902s-in-slot-brushless-motor-stator-automatic-03-800w.webp 800w",
-                                             "width":  800,
-                                             "height":  800,
-                                             "alt":  "TWM-902S In-Slot Brushless Motor Stator Automatic Winding Machine",
-                                             "shows":  "equipment",
-                                             "primary":  3
-                                         },
                                          {
                                              "src":  "/assets/images/stator-production-line/twm-902s-in-slot-brushless-motor-stator-automatic-05-800w.webp",
                                              "srcset":  "/assets/images/stator-production-line/twm-902s-in-slot-brushless-motor-stator-automatic-05-400w.webp 400w, /assets/images/stator-production-line/twm-902s-in-slot-brushless-motor-stator-automatic-05-800w.webp 800w",
@@ -7603,15 +7522,6 @@
                                                "alt":  "TWM-902S In-Slot Brushless Motor Stator Automatic Winding Machine",
                                                "shows":  "equipment",
                                                "primary":  8
-                                           },
-                                           {
-                                               "src":  "/assets/images/stator-production-line/twm-902s-in-slot-brushless-motor-stator-automatic-03-800w.webp",
-                                               "srcset":  "/assets/images/stator-production-line/twm-902s-in-slot-brushless-motor-stator-automatic-03-400w.webp 400w, /assets/images/stator-production-line/twm-902s-in-slot-brushless-motor-stator-automatic-03-800w.webp 800w",
-                                               "width":  800,
-                                               "height":  800,
-                                               "alt":  "TWM-902S In-Slot Brushless Motor Stator Automatic Winding Machine",
-                                               "shows":  "equipment",
-                                               "primary":  3
                                            }
                                        ],
                          "workpiece":  [
@@ -7668,7 +7578,7 @@
                          "feature":  null,
                          "app":  null,
                          "hasSpec":  false,
-                         "imageCount":  14
+                         "imageCount":  13
                      },
                      {
                          "slug":  "two-poles-type-stator-winding-machine-with-one-axle",
@@ -8809,15 +8719,6 @@
                                              "primary":  3
                                          },
                                          {
-                                             "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-04-800w.webp",
-                                             "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-04-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-04-800w.webp 800w",
-                                             "width":  800,
-                                             "height":  800,
-                                             "alt":  "TWM-308A Hook Type Armature Automatic Winding Machine (Horizontal)",
-                                             "shows":  "equipment",
-                                             "primary":  4
-                                         },
-                                         {
                                              "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-07-800w.webp",
                                              "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-07-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-07-800w.webp 800w",
                                              "width":  800,
@@ -8922,15 +8823,6 @@
                                                "primary":  10
                                            },
                                            {
-                                               "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-04-800w.webp",
-                                               "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-04-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-04-800w.webp 800w",
-                                               "width":  800,
-                                               "height":  800,
-                                               "alt":  "TWM-308A Hook Type Armature Automatic Winding Machine (Horizontal)",
-                                               "shows":  "equipment",
-                                               "primary":  4
-                                           },
-                                           {
                                                "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-07-800w.webp",
                                                "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-07-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-07-800w.webp 800w",
                                                "width":  800,
@@ -8962,7 +8854,7 @@
                          "feature":  null,
                          "app":  null,
                          "hasSpec":  false,
-                         "imageCount":  10
+                         "imageCount":  9
                      }
                  ]
 }

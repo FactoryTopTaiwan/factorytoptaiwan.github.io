@@ -502,6 +502,14 @@
       }, { passive: true });
     }
 
+    // Locate the video slide once so we can flip the VIDEO / IMAGES tabs
+    // based on which media the reader is looking at.
+    var lbTabs   = lightbox.querySelectorAll('[data-lightbox-tab]');
+    var videoSlideIdx = -1;
+    for (var s = 0; s < slides.length; s++) {
+      if (slides[s].getAttribute('data-lightbox-slide') === 'video') { videoSlideIdx = s; break; }
+    }
+
     renderState = function () {
       if (count) count.textContent = (mediaIdx + 1) + ' / ' + slides.length;
       for (var i = 0; i < dots.length; i++) {
@@ -509,6 +517,14 @@
       }
       for (var j = 0; j < thumbs.length; j++) {
         thumbs[j].setAttribute('aria-selected', j === mediaIdx ? 'true' : 'false');
+      }
+      // Tab active state: current slide is the video slide -> VIDEO tab,
+      // otherwise IMAGES tab.
+      var currentKind = slides[mediaIdx] &&
+        slides[mediaIdx].getAttribute('data-lightbox-slide') === 'video' ? 'video' : 'images';
+      for (var t = 0; t < lbTabs.length; t++) {
+        var k = lbTabs[t].getAttribute('data-lightbox-tab');
+        lbTabs[t].setAttribute('aria-selected', k === currentKind ? 'true' : 'false');
       }
       if (lbPrev) lbPrev.hidden = mediaIdx <= 0;
       if (lbNext) lbNext.hidden = mediaIdx >= slides.length - 1;
@@ -527,11 +543,32 @@
       preloadAdjacent(i);
     };
 
-    // Thumb clicks (desktop rail)
+    // Thumb clicks (desktop rail). Thumbs are in track order, so their
+    // index maps 1:1 to slide index.
     for (var th = 0; th < thumbs.length; th++) {
       (function (th) {
         thumbs[th].addEventListener('click', function () { lbGoto(th, true); });
       })(th);
+    }
+
+    // Tab clicks: VIDEO -> jump to the video slide; IMAGES -> jump to
+    // the first image slide.
+    for (var tt = 0; tt < lbTabs.length; tt++) {
+      (function (tab) {
+        tab.addEventListener('click', function () {
+          var kind = tab.getAttribute('data-lightbox-tab');
+          if (kind === 'video' && videoSlideIdx >= 0) {
+            lbGoto(videoSlideIdx, true);
+          } else if (kind === 'images') {
+            // First slide whose kind is image
+            for (var q = 0; q < slides.length; q++) {
+              if (slides[q].getAttribute('data-lightbox-slide') === 'image') {
+                lbGoto(q, true); break;
+              }
+            }
+          }
+        });
+      })(lbTabs[tt]);
     }
 
     // Nav buttons (desktop)
@@ -558,13 +595,24 @@
       else if (e.key === 'Escape') closeViewer();
     });
 
-    // Wire the hero + thumbs on the product page
+    // Wire the hero + thumbs on the product page. Clicking the hero opens
+    // on the video (if the product has one) so the buyer sees the machine
+    // running first, matching Amazon's default VIDEO tab; clicking a
+    // specific image thumb opens on that image.
+    var firstImageSlide = 0;
+    for (var qq = 0; qq < slides.length; qq++) {
+      if (slides[qq].getAttribute('data-lightbox-slide') === 'image') { firstImageSlide = qq; break; }
+    }
     var heroBtn = document.querySelector('[data-prod-zoom]');
-    if (heroBtn) heroBtn.addEventListener('click', function () { openViewer(0); });
+    if (heroBtn) heroBtn.addEventListener('click', function () {
+      openViewer(videoSlideIdx >= 0 ? videoSlideIdx : 0);
+    });
     var prodThumbs = document.querySelectorAll('[data-prod-thumb]');
     for (var pt = 0; pt < prodThumbs.length; pt++) {
       (function (pt) {
-        prodThumbs[pt].addEventListener('click', function () { openViewer(pt); });
+        prodThumbs[pt].addEventListener('click', function () {
+          openViewer(firstImageSlide + pt);
+        });
       })(pt);
     }
 
@@ -618,31 +666,52 @@
     var img = z.querySelector('.lightbox__img');
     if (!img) return;
 
+    // Two zoom modes coexist on the same image element:
+    //  * Touch (pinch / double-tap / pan) uses translate + scale.
+    //  * Mouse (hover-follow, Amazon-style) uses transform-origin +
+    //    scale — cheaper and always stays inside the rigid frame.
+    // The image is transformed inside the .lightbox__zoomer, which is
+    // overflow:hidden, so nothing bleeds beyond the stage bounds.
     var state = {
       scale: 1, tx: 0, ty: 0,
       startDist: 0, startScale: 1,
       panStartX: 0, panStartY: 0, panning: false,
       pointers: {},
       pointerCount: 0,
-      lastTap: 0
+      lastTap: 0,
+      isHoverMode: false
     };
 
-    function apply() {
+    var HOVER_SCALE = 2.4;
+
+    function applyTouch() {
+      img.style.transformOrigin = '50% 50%';
       img.style.transform = 'translate(' + state.tx + 'px,' + state.ty + 'px) scale(' + state.scale + ')';
-      img.dataset.scale = String(state.scale);
-      img.dataset.tx = String(state.tx);
-      img.dataset.ty = String(state.ty);
       var isZoomed = state.scale > 1.02;
       z.classList.toggle('is-zoomed', isZoomed);
       if (stage) stage.classList.toggle('is-zoomed', isZoomed);
     }
 
+    function applyHover(clientX, clientY) {
+      var rect = img.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) return;
+      var px = Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1) * 100;
+      var py = Math.min(Math.max((clientY - rect.top) / rect.height, 0), 1) * 100;
+      img.style.transformOrigin = px + '% ' + py + '%';
+      img.style.transform = 'scale(' + HOVER_SCALE + ')';
+    }
+    function resetHover() {
+      state.isHoverMode = false;
+      z.classList.remove('is-hover-zoom');
+      img.style.transform = '';
+      img.style.transformOrigin = '50% 50%';
+      if (stage) stage.classList.remove('is-zoomed');
+    }
+
     function clampPan() {
-      // Keep image edges from drifting fully off-screen when panning.
       var rect = z.getBoundingClientRect();
       var iw = img.naturalWidth || img.clientWidth;
       var ih = img.naturalHeight || img.clientHeight;
-      // Scaled image size in CSS pixels
       var displayScale = Math.min(rect.width / iw, rect.height / ih) || 1;
       var sw = iw * displayScale * state.scale;
       var sh = ih * displayScale * state.scale;
@@ -656,26 +725,46 @@
       var dx = p1.x - p2.x, dy = p1.y - p2.y;
       return Math.sqrt(dx * dx + dy * dy);
     }
-    function midpoint(p1, p2) { return { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 }; }
     function pointerList() {
       var list = [];
       for (var k in state.pointers) if (state.pointers.hasOwnProperty(k)) list.push(state.pointers[k]);
       return list;
     }
 
+    // ---- Mouse hover-follow zoom (Amazon-style) --------------------------
+    // Only apply for real mouse pointers on hover-capable devices, so we
+    // never race the touch pipeline.
+    var hoverCapable = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    z.addEventListener('mouseenter', function (e) {
+      if (!hoverCapable) return;
+      state.isHoverMode = true;
+      z.classList.add('is-hover-zoom');
+      if (stage) stage.classList.add('is-zoomed');
+      applyHover(e.clientX, e.clientY);
+    });
+    z.addEventListener('mousemove', function (e) {
+      if (!hoverCapable || !state.isHoverMode) return;
+      applyHover(e.clientX, e.clientY);
+    });
+    z.addEventListener('mouseleave', function () {
+      if (!state.isHoverMode) return;
+      resetHover();
+    });
+
+    // ---- Touch: pinch + pan + double-tap zoom ----------------------------
     z.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'touch') return;
       state.pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
       state.pointerCount = pointerList().length;
       try { z.setPointerCapture(e.pointerId); } catch (err) {}
 
       if (state.pointerCount === 2) {
-        // Pinch start
         var pts = pointerList();
         state.startDist = distance(pts[0], pts[1]);
         state.startScale = state.scale;
         z.classList.add('is-panning');
       } else if (state.pointerCount === 1) {
-        // Possible pan (only if zoomed) or a tap
         state.panStartX = e.clientX;
         state.panStartY = e.clientY;
         state.panning = state.scale > 1.02;
@@ -684,6 +773,7 @@
     });
 
     z.addEventListener('pointermove', function (e) {
+      if (e.pointerType !== 'touch') return;
       if (!state.pointers[e.pointerId]) return;
       state.pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
 
@@ -694,7 +784,7 @@
           var ratio = d / state.startDist;
           state.scale = Math.min(4, Math.max(1, state.startScale * ratio));
           clampPan();
-          apply();
+          applyTouch();
         }
         e.preventDefault();
       } else if (state.pointerCount === 1 && state.panning) {
@@ -704,20 +794,20 @@
         state.panStartX = only.x;
         state.panStartY = only.y;
         clampPan();
-        apply();
+        applyTouch();
         e.preventDefault();
       }
     });
 
     function endPointer(e) {
+      if (e.pointerType !== 'touch') return;
       if (state.pointers[e.pointerId]) delete state.pointers[e.pointerId];
       state.pointerCount = pointerList().length;
       if (state.pointerCount < 2) state.startDist = 0;
       if (state.pointerCount === 0) {
         z.classList.remove('is-panning');
-        // If zoom dropped to ~1, fully reset transforms
         if (state.scale <= 1.02) {
-          state.scale = 1; state.tx = 0; state.ty = 0; apply();
+          state.scale = 1; state.tx = 0; state.ty = 0; applyTouch();
         }
       }
       try { z.releasePointerCapture(e.pointerId); } catch (err) {}
@@ -725,22 +815,21 @@
     z.addEventListener('pointerup', endPointer);
     z.addEventListener('pointercancel', endPointer);
 
-    // Double-tap zoom (mobile) / double-click (desktop)
+    // Double-tap zoom (touch only)
     z.addEventListener('click', function (e) {
-      // Ignore if this was a drag
+      // Skip if this was a hover-zoom mouse click; those don't need toggling
+      if (state.isHoverMode) return;
       var moved = Math.abs(e.clientX - state.panStartX) > 8 ||
                   Math.abs(e.clientY - state.panStartY) > 8;
       if (moved) return;
       var now = Date.now();
       if (now - state.lastTap < 350) {
-        // Double-tap
         e.preventDefault();
         e.stopPropagation();
         if (state.scale > 1.02) {
           state.scale = 1; state.tx = 0; state.ty = 0;
         } else {
           state.scale = 2.2;
-          // Focus zoom around tap point relative to image center
           var rect = z.getBoundingClientRect();
           var cx = e.clientX - rect.left - rect.width / 2;
           var cy = e.clientY - rect.top - rect.height / 2;
@@ -748,23 +837,18 @@
           state.ty = -cy * (state.scale - 1);
           clampPan();
         }
-        apply();
+        applyTouch();
         state.lastTap = 0;
       } else {
         state.lastTap = now;
       }
     });
 
-    // Wheel zoom (desktop)
-    z.addEventListener('wheel', function (e) {
-      if (!e.ctrlKey && Math.abs(e.deltaY) < 4) return;
-      e.preventDefault();
-      var next = state.scale + (e.deltaY < 0 ? 0.2 : -0.2);
-      state.scale = Math.min(4, Math.max(1, next));
-      if (state.scale === 1) { state.tx = 0; state.ty = 0; }
-      clampPan();
-      apply();
-    }, { passive: false });
+    // Track slide changes so any lingering hover-zoom on a non-active
+    // slide is reset (transform stays cheap in the compositor otherwise).
+    z.addEventListener('lightbox:leave', function () {
+      if (state.isHoverMode) resetHover();
+    });
   }
 
   /* ---- Share menu --------------------------------------------------------
@@ -791,15 +875,35 @@
       var wL = box.querySelector('[data-share-whatsapp]');
       if (wL) wL.href = 'https://api.whatsapp.com/send?text=' + enc(title + ' ' + url);
 
+      // Scrim for the mobile bottom-sheet variant.
+      var scrim = null;
+      function ensureScrim() {
+        if (scrim) return scrim;
+        scrim = document.createElement('div');
+        scrim.className = 'share-scrim';
+        document.body.appendChild(scrim);
+        scrim.addEventListener('click', closeMenu);
+        return scrim;
+      }
+      function closeMenu() {
+        menu.hidden = true;
+        toggle.setAttribute('aria-expanded', 'false');
+        if (scrim) scrim.classList.remove('is-open');
+      }
+      function openMenu() {
+        menu.hidden = false;
+        toggle.setAttribute('aria-expanded', 'true');
+        if (window.matchMedia('(max-width: 63.99rem)').matches) {
+          ensureScrim().classList.add('is-open');
+        }
+      }
       toggle.addEventListener('click', function () {
         // Native share sheet where available (mobile) - preferred UX
         if (navigator.share) {
           navigator.share({ title: title, url: url }).catch(function(){});
           return;
         }
-        var open = menu.hidden;
-        menu.hidden = !open;
-        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (menu.hidden) openMenu(); else closeMenu();
       });
 
       var copyBtn = box.querySelector('[data-share-copy]');
@@ -817,10 +921,9 @@
       }
 
       document.addEventListener('click', function (e) {
-        if (!box.contains(e.target)) {
-          menu.hidden = true;
-          toggle.setAttribute('aria-expanded', 'false');
-        }
+        if (menu.hidden) return;
+        if (scrim && scrim.contains(e.target)) return;
+        if (!box.contains(e.target)) closeMenu();
       });
     })(shareEls[s]);
   }

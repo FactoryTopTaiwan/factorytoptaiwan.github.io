@@ -142,13 +142,49 @@ function New-ImageObject {
     # pscustomobject, not [ordered]@{}: these objects get sorted, copied and
     # re-serialised, and OrderedDictionary's int/object indexer overloads make
     # that fragile. This also matches what ConvertFrom-Json hands back.
+    $bytes = 0
+    if ($largest.PSObject.Properties['bytes']) { $bytes = [int]$largest.bytes }
+
     return [pscustomobject]@{
         src    = $largest.src
         srcset = ($parts -join ', ')
         width  = $largest.width
         height = [int][math]::Round($largest.width * $ratio)
         alt    = $Alt
+        _bytes = $bytes
     }
+}
+
+# Drop near-identical thumbnails from a list. Two images are treated as the
+# same when their widest-source byte count is identical - which for our
+# WebP pipeline means the same picture at the same resolution.
+function Remove-DuplicateImages {
+    param([System.Collections.Generic.List[object]]$List)
+    $out = New-Object System.Collections.Generic.List[object]
+    if ($null -eq $List -or $List.Count -eq 0) { return ,$out }
+    $seen = @{}
+    foreach ($it in $List) {
+        $key = ''
+        if ($it.PSObject.Properties['_bytes'] -and $it._bytes -gt 0) {
+            $key = "{0}x{1}b" -f $it.width, $it._bytes
+        } else {
+            $key = "{0}|{1}" -f $it.width, $it.src
+        }
+        if ($seen.ContainsKey($key)) { continue }
+        $seen[$key] = $true
+        $out.Add($it)
+    }
+    return ,$out
+}
+
+# Strip transient helper props before serialisation.
+function Remove-InternalProps {
+    param([object]$Obj)
+    if ($null -eq $Obj) { return $null }
+    if ($Obj.PSObject.Properties['_bytes']) {
+        $Obj.PSObject.Properties.Remove('_bytes')
+    }
+    return $Obj
 }
 
 # ---------------------------------------------------------------------------
@@ -316,8 +352,15 @@ foreach ($p in $raw) {
     # products generated (motor itself) should be at the very end, not the
     # main image".
     if ($equipment.Count -gt 0 -or $workpiece.Count -gt 0) {
+        # Drop near-identical thumbs within each group before sorting so
+        # dedup does not have to fight cross-group ordering.
+        $equipment = Remove-DuplicateImages $equipment
+        $workpiece = Remove-DuplicateImages $workpiece
+
         $ordered = New-Object System.Collections.Generic.List[object]
-        # Machine-kind first, sorted by primary index
+        # Machine-kind first, sorted by primary index (declared machine
+        # frames, basename ending -01 -> primary=1, beat any equipment
+        # gallery detail shot). Ties break on the widest derivative.
         foreach ($e in @($equipment | Sort-Object @{Expression={ if ($_.PSObject.Properties['primary']) { $_.primary } else { 50 } }}, @{Expression={ -$_.width }})) {
             $ordered.Add($e)
         }
@@ -327,6 +370,15 @@ foreach ($p in $raw) {
         }
         $gallery = $ordered
     }
+
+    # Strip internal-only props from every image object before serialising.
+    foreach ($it in $gallery)   { Remove-InternalProps $it | Out-Null }
+    foreach ($it in $equipment) { Remove-InternalProps $it | Out-Null }
+    foreach ($it in $workpiece) { Remove-InternalProps $it | Out-Null }
+    Remove-InternalProps $hero | Out-Null
+    Remove-InternalProps $spec | Out-Null
+    Remove-InternalProps $feature | Out-Null
+    Remove-InternalProps $app | Out-Null
 
     $video = $null
     if ($videos.ContainsKey($slug)) { $video = $videos[$slug] }
