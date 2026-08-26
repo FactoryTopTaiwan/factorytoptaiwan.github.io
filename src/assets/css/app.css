@@ -848,11 +848,19 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 .frame--doc { background: #FFFFFF; }
 .frame--doc img { aspect-ratio: auto; object-fit: contain; filter: none; }
 
-/* The .thumbs strip inside .prod__media is the Amazon-style vertical
-   rail on desktop (a column of small squares to the left of the hero)
-   and the horizontal scroll used elsewhere (workpiece grid, etc.) via
-   the --wide modifier. Mobile hides it in favour of the swipe carousel
-   with pagination dots, so the whole media area stays finger-first.  */
+/* Two-tier thumb group: a small muted label above each row (Solution /
+   Finished Products). Kept subtle so the images are still the focus. */
+.thumb-group { margin-top: var(--sp-3); }
+.thumb-group + .thumb-group { margin-top: 12px; }
+.thumb-group__label {
+  margin: 0 0 6px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint, #888);
+  font-weight: 620;
+}
+
 .thumbs {
   display: flex;
   gap: var(--sp-2);
@@ -1967,11 +1975,20 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 .lightbox__style-label { color: var(--ink-faint); }
 .lightbox__style .model { color: var(--ink); }
 
+.lightbox__thumbs-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: var(--sp-2);
+}
+.lightbox__thumbs-wrap .thumb-group__label {
+  margin: 0;
+}
 .lightbox__thumbs {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--sp-2);
-  margin: var(--sp-2) 0 0;
+  margin: 0;
   padding: 0;
 }
 .lightbox__thumb {

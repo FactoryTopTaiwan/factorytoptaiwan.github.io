@@ -66,21 +66,45 @@
           </span>
         </button>
 
-        {{#if page.product.gallery}}
-        <div class="thumbs">
-          {{#each page.product.gallery}}
-          <button class="frame frame--sm thumb" type="button"
-                  data-prod-thumb
-                  data-src="{{src}}"
-                  data-srcset="{{srcset}}"
-                  data-w="{{width}}"
-                  data-h="{{height}}"
-                  data-alt="{{alt}}"
-                  aria-label="Show {{alt}}">
-            <img src="{{src}}" srcset="{{srcset}}" sizes="(min-width: 62rem) 17vw, 33vw"
-                 width="{{width}}" height="{{height}}" alt="{{alt}}" loading="lazy" decoding="async">
-          </button>
-          {{/each}}
+        {{#if page.product.equipment}}
+        <div class="thumb-group">
+          <p class="thumb-group__label">{{site.ui.thumbGroupSolution}}</p>
+          <div class="thumbs thumbs--eq">
+            {{#each page.product.equipment}}
+            <button class="frame frame--sm thumb" type="button"
+                    data-prod-thumb
+                    data-src="{{src}}"
+                    data-srcset="{{srcset}}"
+                    data-w="{{width}}"
+                    data-h="{{height}}"
+                    data-alt="{{alt}}"
+                    aria-label="Show {{alt}}">
+              <img src="{{src}}" srcset="{{srcset}}" sizes="(min-width: 62rem) 17vw, 33vw"
+                   width="{{width}}" height="{{height}}" alt="{{alt}}" loading="lazy" decoding="async">
+            </button>
+            {{/each}}
+          </div>
+        </div>
+        {{/if}}
+
+        {{#if page.product.workpiece}}
+        <div class="thumb-group">
+          <p class="thumb-group__label">{{site.ui.thumbGroupFinished}}</p>
+          <div class="thumbs thumbs--wp">
+            {{#each page.product.workpiece}}
+            <button class="frame frame--sm thumb" type="button"
+                    data-prod-thumb
+                    data-src="{{src}}"
+                    data-srcset="{{srcset}}"
+                    data-w="{{width}}"
+                    data-h="{{height}}"
+                    data-alt="{{alt}}"
+                    aria-label="Show {{alt}}">
+              <img src="{{src}}" srcset="{{srcset}}" sizes="(min-width: 62rem) 17vw, 33vw"
+                   width="{{width}}" height="{{height}}" alt="{{alt}}" loading="lazy" decoding="async">
+            </button>
+            {{/each}}
+          </div>
         </div>
         {{/if}}
       </div>
@@ -379,28 +403,48 @@
         <span class="model">{{page.product.model}}</span>
       </p>{{/if}}
 
-      <div class="lightbox__thumbs" role="tablist" aria-label="{{site.ui.tabImages}}">
+      <div class="lightbox__thumbs-wrap" role="tablist" aria-label="{{site.ui.tabImages}}">
         {{#if page.product.video}}
-        <button class="lightbox__thumb lightbox__thumb--video" type="button" role="tab"
-                data-lightbox-thumb="video"
-                aria-label="{{site.ui.watchMachine}}">
-          <img src="{{page.product.video.poster.src}}"
-               srcset="{{page.product.video.poster.srcset}}" sizes="6rem"
-               width="{{page.product.video.poster.width}}"
-               height="{{page.product.video.poster.height}}" alt="" loading="lazy">
-          <span class="lightbox__thumb-play" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
-          </span>
-        </button>
+        <div class="lightbox__thumbs">
+          <button class="lightbox__thumb lightbox__thumb--video" type="button" role="tab"
+                  data-lightbox-thumb="video"
+                  aria-label="{{site.ui.watchMachine}}">
+            <img src="{{page.product.video.poster.src}}"
+                 srcset="{{page.product.video.poster.srcset}}" sizes="6rem"
+                 width="{{page.product.video.poster.width}}"
+                 height="{{page.product.video.poster.height}}" alt="" loading="lazy">
+            <span class="lightbox__thumb-play" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+            </span>
+          </button>
+        </div>
         {{/if}}
-        {{#each page.product.gallery}}
-        <button class="lightbox__thumb" type="button" role="tab"
-                data-lightbox-thumb="image"
-                aria-label="{{alt}}">
-          <img src="{{src}}" srcset="{{srcset}}" sizes="6rem"
-               width="{{width}}" height="{{height}}" alt="" loading="lazy">
-        </button>
-        {{/each}}
+        {{#if page.product.equipment}}
+        <p class="thumb-group__label">{{site.ui.thumbGroupSolution}}</p>
+        <div class="lightbox__thumbs">
+          {{#each page.product.equipment}}
+          <button class="lightbox__thumb" type="button" role="tab"
+                  data-lightbox-thumb="image"
+                  aria-label="{{alt}}">
+            <img src="{{src}}" srcset="{{srcset}}" sizes="6rem"
+                 width="{{width}}" height="{{height}}" alt="" loading="lazy">
+          </button>
+          {{/each}}
+        </div>
+        {{/if}}
+        {{#if page.product.workpiece}}
+        <p class="thumb-group__label">{{site.ui.thumbGroupFinished}}</p>
+        <div class="lightbox__thumbs">
+          {{#each page.product.workpiece}}
+          <button class="lightbox__thumb" type="button" role="tab"
+                  data-lightbox-thumb="image"
+                  aria-label="{{alt}}">
+            <img src="{{src}}" srcset="{{srcset}}" sizes="6rem"
+                 width="{{width}}" height="{{height}}" alt="" loading="lazy">
+          </button>
+          {{/each}}
+        </div>
+        {{/if}}
       </div>
     </aside>
   </div>
