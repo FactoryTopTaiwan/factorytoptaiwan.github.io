@@ -1,6 +1,8 @@
 {
   "_note": "Per-slug overrides for the gallery classifier. The classifier trips on machines shot on a light or white studio background - a real problem for the modular line, semiconductor and cooling-fan pages, where every source image is a photograph of a whole machine but gets filed as 'workpiece' because there is a lot of white in the frame. Listing an image basename here forces its kind to 'machine' and gives it a primary rank so it can win hero selection.",
 
+  "_workpieceNote": "The 'workpiece' key does the opposite: it demotes an image the scraper declared as kind='machine' back to workpiece. Scraped cate-page shots come tagged as machine even when the frame is actually a finished armature/rotor/stator on white, and those belong at the end of the gallery, not next to a real equipment photo.",
+
   "_removals": "Images listed under 'remove' are filtered out of images.json at build time. Use for images that show third-party branding, that we do not have the rights to display, or that we have decided are unfit for public use. Sources stay in _media so the decision is reversible.",
 
   "machine": {
@@ -12,7 +14,19 @@
     "turntable-automatic-assembling-equipment": ["gallery-01", "gallery-02", "gallery-03", "gallery-04", "gallery-05"],
     "vibration-feeding-assembling-equipment": ["gallery-01"],
     "automatic-feeding-system": ["gallery-01"],
-    "semiconductor-sealing-testing-process-equipment": ["gallery-02", "gallery-04", "gallery-03", "gallery-01"]
+    "semiconductor-sealing-testing-process-equipment": ["gallery-02", "gallery-04", "gallery-03", "gallery-01"],
+
+    "_twm702Note": "TWM-702 Automatic Stuff Type Armature Winding Machine. Hero = scraped twm-702-...-01-2000w (deep-green enclosure), which wins naturally via basename primary=1. gallery-07 is the white-enclosure variant, kept as a second machine shot. gallery-02 + gallery-04 are workstation close-ups. Scraped -05, -06, -07 are demoted to workpiece via the workpiece key so they land at the end. Lower-res gallery-03/05/06 are dropped as duplicates of the scraped 2000w originals.",
+    "automatic-stuff-type-armature-winding-machine": ["gallery-07", "gallery-02", "gallery-04"]
+  },
+
+  "workpiece": {
+    "_twm702Note": "Scraped shots 05, 06, 07 are copper-wound armatures on white, not equipment. Demote so they land in the workpiece group at the end.",
+    "automatic-stuff-type-armature-winding-machine": [
+      "twm-702-automatic-stuff-type-armature-winding-machine-05",
+      "twm-702-automatic-stuff-type-armature-winding-machine-06",
+      "twm-702-automatic-stuff-type-armature-winding-machine-07"
+    ]
   },
 
   "remove": {
@@ -20,6 +34,9 @@
     "scara": ["gallery-01"],
 
     "_sixAxisNote": "Both source images are third-party branded robot arms - Mitsubishi Electric (gallery-02) and Fanuc (gallery-01). Removed for the same reason.",
-    "application-of-six-axis-robotic-arm": ["gallery-01", "gallery-02"]
+    "application-of-six-axis-robotic-arm": ["gallery-01", "gallery-02"],
+
+    "_twm702DupNote": "gallery-01 is a lower-quality duplicate of gallery-05 (same armature specimen, softer focus). gallery-03/05/06 are 800w duplicates of the scraped 2000w shots (green machine, and two armature specimens). Kept in _media so the decision is reversible.",
+    "automatic-stuff-type-armature-winding-machine": ["gallery-01", "gallery-03", "gallery-05", "gallery-06"]
   }
 }

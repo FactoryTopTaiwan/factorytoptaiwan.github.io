@@ -63,10 +63,12 @@ if (Test-Path $CopyPath) {
 }
 
 # Optional image-overrides.json: promote specific gallery images from
-# 'workpiece' to 'machine' where the classifier misfires, and remove images
-# that must not appear on the public site (third-party branded photographs).
+# 'workpiece' to 'machine' where the classifier misfires, demote scraped
+# 'machine' shots that are actually finished parts, and remove images that
+# must not appear on the public site (third-party branded photographs).
 $OverridesPath = Join-Path $SiteRoot 'src\data\image-overrides.json'
 $machineOverrides = @{}
+$workpieceOverrides = @{}
 $removeOverrides = @{}
 if (Test-Path $OverridesPath) {
     $oraw = Get-Content $OverridesPath -Raw -Encoding UTF8 | ConvertFrom-Json
@@ -76,6 +78,13 @@ if (Test-Path $OverridesPath) {
                 # Keep the array in its source order so IndexOf gives a rank
                 # that matches the client's preference (first-listed wins).
                 $machineOverrides[$prop.Name] = @($prop.Value)
+            }
+        }
+    }
+    if ($oraw.PSObject.Properties['workpiece']) {
+        foreach ($prop in $oraw.workpiece.PSObject.Properties) {
+            if ($prop.Name -notlike '_*') {
+                $workpieceOverrides[$prop.Name] = @($prop.Value)
             }
         }
     }
@@ -261,10 +270,12 @@ foreach ($p in $raw) {
     if ($entry) {
         # Overrides for this slug (may be empty). Order preserved from JSON so
         # the first basename listed wins hero selection.
-        $slugMachineList = @()
-        $slugRemoveList  = @()
-        if ($machineOverrides.ContainsKey($slug)) { $slugMachineList = $machineOverrides[$slug] }
-        if ($removeOverrides.ContainsKey($slug)) { $slugRemoveList = $removeOverrides[$slug] }
+        $slugMachineList   = @()
+        $slugWorkpieceList = @()
+        $slugRemoveList    = @()
+        if ($machineOverrides.ContainsKey($slug))   { $slugMachineList   = $machineOverrides[$slug] }
+        if ($workpieceOverrides.ContainsKey($slug)) { $slugWorkpieceList = $workpieceOverrides[$slug] }
+        if ($removeOverrides.ContainsKey($slug))    { $slugRemoveList    = $removeOverrides[$slug] }
 
         foreach ($img in @($entry.images)) {
             $obj = New-ImageObject -Entry $img -Alt $altBase
@@ -312,6 +323,17 @@ foreach ($p in $raw) {
                     # on a white studio background, which is how the cate- pages
                     # publish everything, so anything scraped from that source
                     # comes with kind='machine' set explicitly.
+                    # Some scraped shots are actually finished parts on white
+                    # (armatures, rotors, stators). image-overrides.json's
+                    # workpiece list downgrades those to workpiece so they land
+                    # at the end of the gallery, not beside real equipment.
+                    if ($imgBase -and ($slugWorkpieceList -contains $imgBase)) {
+                        Add-Member -InputObject $obj -NotePropertyName 'shows' -NotePropertyValue 'workpiece' -Force
+                        $obj.alt = "$altBase - finished part produced on this machine"
+                        $workpiece.Add($obj)
+                        $gallery.Add($obj)
+                        continue
+                    }
                     Add-Member -InputObject $obj -NotePropertyName 'shows' -NotePropertyValue 'equipment' -Force
                     if ($img.PSObject.Properties['alt'] -and $img.alt) { $obj.alt = $img.alt }
                     # Extract the primary index from the basename (twm-929-...-01-1600w
@@ -357,17 +379,29 @@ foreach ($p in $raw) {
         $equipment = Remove-DuplicateImages $equipment
         $workpiece = Remove-DuplicateImages $workpiece
 
+        # Sort each group in place, so the standalone equipment/workpiece
+        # arrays serialized into products.json (consumed by the lightbox
+        # SOLUTION / FINISHED_PRODUCTS tabs) share the same order as the
+        # merged gallery.
+        $equipmentSorted = New-Object System.Collections.Generic.List[object]
+        foreach ($e in @($equipment | Sort-Object @{Expression={ if ($_.PSObject.Properties['primary']) { $_.primary } else { 50 } }}, @{Expression={ -$_.width }})) {
+            $equipmentSorted.Add($e)
+        }
+        $equipment = $equipmentSorted
+
+        $workpieceSorted = New-Object System.Collections.Generic.List[object]
+        foreach ($w in @($workpiece | Sort-Object { -$_.width })) {
+            $workpieceSorted.Add($w)
+        }
+        $workpiece = $workpieceSorted
+
         $ordered = New-Object System.Collections.Generic.List[object]
         # Machine-kind first, sorted by primary index (declared machine
         # frames, basename ending -01 -> primary=1, beat any equipment
         # gallery detail shot). Ties break on the widest derivative.
-        foreach ($e in @($equipment | Sort-Object @{Expression={ if ($_.PSObject.Properties['primary']) { $_.primary } else { 50 } }}, @{Expression={ -$_.width }})) {
-            $ordered.Add($e)
-        }
+        foreach ($e in $equipment) { $ordered.Add($e) }
         # Workpiece shots pushed to the back
-        foreach ($w in @($workpiece | Sort-Object { -$_.width })) {
-            $ordered.Add($w)
-        }
+        foreach ($w in $workpiece) { $ordered.Add($w) }
         $gallery = $ordered
     }
 
