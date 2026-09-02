@@ -69,6 +69,7 @@ if (Test-Path $CopyPath) {
 $OverridesPath = Join-Path $SiteRoot 'src\data\image-overrides.json'
 $machineOverrides = @{}
 $workpieceOverrides = @{}
+$detailOverrides = @{}
 $removeOverrides = @{}
 if (Test-Path $OverridesPath) {
     $oraw = Get-Content $OverridesPath -Raw -Encoding UTF8 | ConvertFrom-Json
@@ -85,6 +86,13 @@ if (Test-Path $OverridesPath) {
         foreach ($prop in $oraw.workpiece.PSObject.Properties) {
             if ($prop.Name -notlike '_*') {
                 $workpieceOverrides[$prop.Name] = @($prop.Value)
+            }
+        }
+    }
+    if ($oraw.PSObject.Properties['detail']) {
+        foreach ($prop in $oraw.detail.PSObject.Properties) {
+            if ($prop.Name -notlike '_*') {
+                $detailOverrides[$prop.Name] = @($prop.Value)
             }
         }
     }
@@ -193,6 +201,9 @@ function Remove-InternalProps {
     if ($Obj.PSObject.Properties['_bytes']) {
         $Obj.PSObject.Properties.Remove('_bytes')
     }
+    if ($Obj.PSObject.Properties['_detail']) {
+        $Obj.PSObject.Properties.Remove('_detail')
+    }
     return $Obj
 }
 
@@ -272,9 +283,11 @@ foreach ($p in $raw) {
         # the first basename listed wins hero selection.
         $slugMachineList   = @()
         $slugWorkpieceList = @()
+        $slugDetailList    = @()
         $slugRemoveList    = @()
         if ($machineOverrides.ContainsKey($slug))   { $slugMachineList   = $machineOverrides[$slug] }
         if ($workpieceOverrides.ContainsKey($slug)) { $slugWorkpieceList = $workpieceOverrides[$slug] }
+        if ($detailOverrides.ContainsKey($slug))    { $slugDetailList    = $detailOverrides[$slug] }
         if ($removeOverrides.ContainsKey($slug))    { $slugRemoveList    = $removeOverrides[$slug] }
 
         foreach ($img in @($entry.images)) {
@@ -299,8 +312,11 @@ foreach ($p in $raw) {
                     $orig = Join-Path $OrigRoot ("{0}\gallery-{1:d2}.jpg" -f $slug, $img.index)
                     $kind = 'workpiece'
                     if (Test-Path $orig) { $kind = Get-PhotoKind -Path $orig }
-                    # image-overrides.json can override the classifier
-                    if ($imgBase -and ($slugMachineList -contains $imgBase)) { $kind = 'equipment' }
+                    # image-overrides.json can override the classifier either way:
+                    # machine list forces equipment, workpiece list forces
+                    # workpiece (for a part the classifier misreads as a machine).
+                    if ($imgBase -and ($slugMachineList -contains $imgBase))   { $kind = 'equipment' }
+                    if ($imgBase -and ($slugWorkpieceList -contains $imgBase)) { $kind = 'workpiece' }
                     Add-Member -InputObject $obj -NotePropertyName 'shows' -NotePropertyValue $kind -Force
                     if ($kind -eq 'equipment') {
                         $obj.alt = "$altBase in operation"
@@ -311,6 +327,10 @@ foreach ($p in $raw) {
                             $rank = [array]::IndexOf($slugMachineList, $imgBase) + 1
                             Add-Member -InputObject $obj -NotePropertyName 'primary' -NotePropertyValue $rank -Force
                         }
+                        # A close-up / process shot listed in the detail override
+                        # sorts after every full-machine overview within Solutions.
+                        $isDetail = ($imgBase -and ($slugDetailList -contains $imgBase))
+                        Add-Member -InputObject $obj -NotePropertyName '_detail' -NotePropertyValue $isDetail -Force
                         $equipment.Add($obj)
                     } else {
                         $obj.alt = "$altBase - finished part produced on this machine"
@@ -347,6 +367,10 @@ foreach ($p in $raw) {
                         $primary = [int]$Matches[1]
                     }
                     Add-Member -InputObject $obj -NotePropertyName 'primary' -NotePropertyValue $primary -Force
+                    # A close-up / process shot listed in the detail override
+                    # sorts after every full-machine overview within Solutions.
+                    $isDetail = ($imgBase -and ($slugDetailList -contains $imgBase))
+                    Add-Member -InputObject $obj -NotePropertyName '_detail' -NotePropertyValue $isDetail -Force
                     $equipment.Add($obj)
                     $gallery.Add($obj)
                 }
@@ -383,8 +407,14 @@ foreach ($p in $raw) {
         # arrays serialized into products.json (consumed by the lightbox
         # SOLUTION / FINISHED_PRODUCTS tabs) share the same order as the
         # merged gallery.
+        # Within Solutions: full-machine overviews first, close-up / process
+        # detail shots after (the _detail flag, false sorts before true), then
+        # by the client's primary rank, then widest derivative.
         $equipmentSorted = New-Object System.Collections.Generic.List[object]
-        foreach ($e in @($equipment | Sort-Object @{Expression={ if ($_.PSObject.Properties['primary']) { $_.primary } else { 50 } }}, @{Expression={ -$_.width }})) {
+        foreach ($e in @($equipment | Sort-Object `
+                @{Expression={ if ($_.PSObject.Properties['_detail'] -and $_._detail) { 1 } else { 0 } }}, `
+                @{Expression={ if ($_.PSObject.Properties['primary']) { $_.primary } else { 50 } }}, `
+                @{Expression={ -$_.width }})) {
             $equipmentSorted.Add($e)
         }
         $equipment = $equipmentSorted

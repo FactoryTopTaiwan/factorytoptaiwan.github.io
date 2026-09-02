@@ -29,6 +29,11 @@
     ]
   },
 
+  "_detailNote": "Basenames listed under 'detail' are equipment shots that are close-ups / process / workstation details rather than a full-machine overview. Within the Solutions tab they sort after every full-machine overview, so a buyer always sees the whole machine first.",
+  "detail": {
+    "automatic-stuff-type-armature-winding-machine": ["gallery-02", "gallery-04"]
+  },
+
   "remove": {
     "_scaraNote": "The single SCARA image in the source is a Mitsubishi Electric branded robot arm - a supplier's product photograph. Removed from the public site per the brand-mention rule; the page carries only text until we have a photograph of our own robotic cell.",
     "scara": ["gallery-01"],

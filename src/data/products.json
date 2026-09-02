@@ -1,5 +1,5 @@
 {
-    "generated":  "2026-09-02",
+    "generated":  "2026-09-03",
     "covers":  {
                    "winding-machines":  {
                                             "src":  "/assets/images/automatic-multi-axes-coil-winding-machine/twm-wb001-automatic-multi-axes-coil-winding-machine-01-2000w.webp",
@@ -1182,24 +1182,6 @@
                                              "primary":  1
                                          },
                                          {
-                                             "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-02-800w.webp",
-                                             "srcset":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-02-400w.webp 400w, /assets/images/automatic-stuff-type-armature-winding-machine/gallery-02-800w.webp 800w",
-                                             "width":  800,
-                                             "height":  800,
-                                             "alt":  "TWM-702 Automatic Stuff Type Armature Winding Machine in operation",
-                                             "shows":  "equipment",
-                                             "primary":  2
-                                         },
-                                         {
-                                             "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-04-800w.webp",
-                                             "srcset":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-04-400w.webp 400w, /assets/images/automatic-stuff-type-armature-winding-machine/gallery-04-800w.webp 800w",
-                                             "width":  800,
-                                             "height":  800,
-                                             "alt":  "TWM-702 Automatic Stuff Type Armature Winding Machine in operation",
-                                             "shows":  "equipment",
-                                             "primary":  3
-                                         },
-                                         {
                                              "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/twm-702-automatic-stuff-type-armature-winding-machine-10-2000w.webp",
                                              "srcset":  "/assets/images/automatic-stuff-type-armature-winding-machine/twm-702-automatic-stuff-type-armature-winding-machine-10-400w.webp 400w, /assets/images/automatic-stuff-type-armature-winding-machine/twm-702-automatic-stuff-type-armature-winding-machine-10-800w.webp 800w, /assets/images/automatic-stuff-type-armature-winding-machine/twm-702-automatic-stuff-type-armature-winding-machine-10-1200w.webp 1200w, /assets/images/automatic-stuff-type-armature-winding-machine/twm-702-automatic-stuff-type-armature-winding-machine-10-1600w.webp 1600w, /assets/images/automatic-stuff-type-armature-winding-machine/twm-702-automatic-stuff-type-armature-winding-machine-10-2000w.webp 2000w",
                                              "width":  2000,
@@ -1216,6 +1198,24 @@
                                              "alt":  "TWM-702 Automatic Stuff Type Armature Winding Machine",
                                              "shows":  "equipment",
                                              "primary":  11
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-02-800w.webp",
+                                             "srcset":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-02-400w.webp 400w, /assets/images/automatic-stuff-type-armature-winding-machine/gallery-02-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  800,
+                                             "alt":  "TWM-702 Automatic Stuff Type Armature Winding Machine in operation",
+                                             "shows":  "equipment",
+                                             "primary":  2
+                                         },
+                                         {
+                                             "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-04-800w.webp",
+                                             "srcset":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-04-400w.webp 400w, /assets/images/automatic-stuff-type-armature-winding-machine/gallery-04-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  800,
+                                             "alt":  "TWM-702 Automatic Stuff Type Armature Winding Machine in operation",
+                                             "shows":  "equipment",
+                                             "primary":  3
                                          },
                                          {
                                              "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/twm-702-automatic-stuff-type-armature-winding-machine-07-2000w.webp",
@@ -1262,24 +1262,6 @@
                                                "primary":  1
                                            },
                                            {
-                                               "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-02-800w.webp",
-                                               "srcset":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-02-400w.webp 400w, /assets/images/automatic-stuff-type-armature-winding-machine/gallery-02-800w.webp 800w",
-                                               "width":  800,
-                                               "height":  800,
-                                               "alt":  "TWM-702 Automatic Stuff Type Armature Winding Machine in operation",
-                                               "shows":  "equipment",
-                                               "primary":  2
-                                           },
-                                           {
-                                               "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-04-800w.webp",
-                                               "srcset":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-04-400w.webp 400w, /assets/images/automatic-stuff-type-armature-winding-machine/gallery-04-800w.webp 800w",
-                                               "width":  800,
-                                               "height":  800,
-                                               "alt":  "TWM-702 Automatic Stuff Type Armature Winding Machine in operation",
-                                               "shows":  "equipment",
-                                               "primary":  3
-                                           },
-                                           {
                                                "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/twm-702-automatic-stuff-type-armature-winding-machine-10-2000w.webp",
                                                "srcset":  "/assets/images/automatic-stuff-type-armature-winding-machine/twm-702-automatic-stuff-type-armature-winding-machine-10-400w.webp 400w, /assets/images/automatic-stuff-type-armature-winding-machine/twm-702-automatic-stuff-type-armature-winding-machine-10-800w.webp 800w, /assets/images/automatic-stuff-type-armature-winding-machine/twm-702-automatic-stuff-type-armature-winding-machine-10-1200w.webp 1200w, /assets/images/automatic-stuff-type-armature-winding-machine/twm-702-automatic-stuff-type-armature-winding-machine-10-1600w.webp 1600w, /assets/images/automatic-stuff-type-armature-winding-machine/twm-702-automatic-stuff-type-armature-winding-machine-10-2000w.webp 2000w",
                                                "width":  2000,
@@ -1296,6 +1278,24 @@
                                                "alt":  "TWM-702 Automatic Stuff Type Armature Winding Machine",
                                                "shows":  "equipment",
                                                "primary":  11
+                                           },
+                                           {
+                                               "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-02-800w.webp",
+                                               "srcset":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-02-400w.webp 400w, /assets/images/automatic-stuff-type-armature-winding-machine/gallery-02-800w.webp 800w",
+                                               "width":  800,
+                                               "height":  800,
+                                               "alt":  "TWM-702 Automatic Stuff Type Armature Winding Machine in operation",
+                                               "shows":  "equipment",
+                                               "primary":  2
+                                           },
+                                           {
+                                               "src":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-04-800w.webp",
+                                               "srcset":  "/assets/images/automatic-stuff-type-armature-winding-machine/gallery-04-400w.webp 400w, /assets/images/automatic-stuff-type-armature-winding-machine/gallery-04-800w.webp 800w",
+                                               "width":  800,
+                                               "height":  800,
+                                               "alt":  "TWM-702 Automatic Stuff Type Armature Winding Machine in operation",
+                                               "shows":  "equipment",
+                                               "primary":  3
                                            }
                                        ],
                          "workpiece":  [

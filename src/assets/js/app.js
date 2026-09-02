@@ -592,10 +592,12 @@
     };
 
     // Thumb clicks (desktop rail). Thumbs are in track order, so their
-    // index maps 1:1 to slide index.
+    // index maps 1:1 to slide index. Switch is instant (no smooth scroll):
+    // clicking a sidebar thumbnail should swap the main preview immediately,
+    // with no carousel slide-through, for a snappier feel and less work.
     for (var th = 0; th < thumbs.length; th++) {
       (function (th) {
-        thumbs[th].addEventListener('click', function () { lbGoto(th, true); });
+        thumbs[th].addEventListener('click', function () { lbGoto(th, false); });
       })(th);
     }
 

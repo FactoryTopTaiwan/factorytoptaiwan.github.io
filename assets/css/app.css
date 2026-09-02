@@ -1826,7 +1826,12 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
+  /* auto, not smooth: thumbnail clicks must switch the main preview
+     instantly (no carousel slide-through). The JS still opts into a
+     smooth scroll for the prev/next arrows and arrow keys by passing
+     behavior:'smooth' to scrollTo, which overrides this per call. Native
+     touch swipe keeps its momentum + scroll-snap regardless. */
+  scroll-behavior: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
   scrollbar-width: none;
