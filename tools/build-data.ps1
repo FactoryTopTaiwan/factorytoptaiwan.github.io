@@ -381,13 +381,18 @@ foreach ($p in $raw) {
         }
     }
 
-    # Lead with the machine, always. The picker prefers the primary shot from
-    # the source page (basename ends in -01 -> primary=1) so a machine photo
-    # cannot lose to a workpiece detail that happens to be larger. Ties on
-    # primary go to the widest derivative.
+    # Lead with the machine, always. A full-machine overview outranks any
+    # close-up, banner or suspected cross-product shot (the _detail flag, false
+    # before true), then the primary shot from the source page (basename ending
+    # -01 -> primary=1), then the widest derivative. This keeps a detail frame
+    # or a stray wrong-product machine out of the hero slot whenever a real
+    # full-machine photo exists.
     $hero = $null
     if ($equipment.Count -gt 0) {
-        $hero = @($equipment | Sort-Object @{Expression={ if ($_.PSObject.Properties['primary']) { $_.primary } else { 50 } }}, @{Expression={ -$_.width }})[0]
+        $hero = @($equipment | Sort-Object `
+            @{Expression={ if ($_.PSObject.Properties['_detail'] -and $_._detail) { 1 } else { 0 } }}, `
+            @{Expression={ if ($_.PSObject.Properties['primary']) { $_.primary } else { 50 } }}, `
+            @{Expression={ -$_.width }})[0]
     } elseif ($workpiece.Count -gt 0) {
         $hero = @($workpiece | Sort-Object { -$_.width })[0]
     }

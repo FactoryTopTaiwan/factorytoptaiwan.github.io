@@ -1,47 +1,460 @@
-{
-  "_note": "Per-slug overrides for the gallery classifier. The classifier trips on machines shot on a light or white studio background - a real problem for the modular line, semiconductor and cooling-fan pages, where every source image is a photograph of a whole machine but gets filed as 'workpiece' because there is a lot of white in the frame. Listing an image basename here forces its kind to 'machine' and gives it a primary rank so it can win hero selection.",
-
-  "_workpieceNote": "The 'workpiece' key does the opposite: it demotes an image the scraper declared as kind='machine' back to workpiece. Scraped cate-page shots come tagged as machine even when the frame is actually a finished armature/rotor/stator on white, and those belong at the end of the gallery, not next to a real equipment photo.",
-
-  "_removals": "Images listed under 'remove' are filtered out of images.json at build time. Use for images that show third-party branding, that we do not have the rights to display, or that we have decided are unfit for public use. Sources stay in _media so the decision is reversible.",
-
-  "machine": {
-    "automatic-modular-production-line": ["gallery-06", "gallery-05", "gallery-04", "gallery-03", "gallery-02", "gallery-01"],
-    "automatic-modular-production-line-2": ["gallery-01", "gallery-02", "gallery-03"],
-    "cooling-fan-motor-automatic-production-line": ["gallery-02"],
-    "automatic-winding-machine-product-series": ["gallery-05", "gallery-02", "gallery-03", "gallery-04"],
-    "bobbin": ["gallery-04"],
-    "turntable-automatic-assembling-equipment": ["gallery-01", "gallery-02", "gallery-03", "gallery-04", "gallery-05"],
-    "vibration-feeding-assembling-equipment": ["gallery-01"],
-    "automatic-feeding-system": ["gallery-01"],
-    "semiconductor-sealing-testing-process-equipment": ["gallery-02", "gallery-04", "gallery-03", "gallery-01"],
-
-    "_twm702Note": "TWM-702 Automatic Stuff Type Armature Winding Machine. Hero = scraped twm-702-...-01-2000w (deep-green enclosure), which wins naturally via basename primary=1. gallery-07 is the white-enclosure variant, kept as a second machine shot. gallery-02 + gallery-04 are workstation close-ups. Scraped -05, -06, -07 are demoted to workpiece via the workpiece key so they land at the end. Lower-res gallery-03/05/06 are dropped as duplicates of the scraped 2000w originals.",
-    "automatic-stuff-type-armature-winding-machine": ["gallery-07", "gallery-02", "gallery-04"]
-  },
-
-  "workpiece": {
-    "_twm702Note": "Scraped shots 05, 06, 07 are copper-wound armatures on white, not equipment. Demote so they land in the workpiece group at the end.",
-    "automatic-stuff-type-armature-winding-machine": [
-      "twm-702-automatic-stuff-type-armature-winding-machine-05",
-      "twm-702-automatic-stuff-type-armature-winding-machine-06",
-      "twm-702-automatic-stuff-type-armature-winding-machine-07"
-    ]
-  },
-
-  "_detailNote": "Basenames listed under 'detail' are equipment shots that are close-ups / process / workstation details rather than a full-machine overview. Within the Solutions tab they sort after every full-machine overview, so a buyer always sees the whole machine first.",
-  "detail": {
-    "automatic-stuff-type-armature-winding-machine": ["gallery-02", "gallery-04"]
-  },
-
-  "remove": {
-    "_scaraNote": "The single SCARA image in the source is a Mitsubishi Electric branded robot arm - a supplier's product photograph. Removed from the public site per the brand-mention rule; the page carries only text until we have a photograph of our own robotic cell.",
-    "scara": ["gallery-01"],
-
-    "_sixAxisNote": "Both source images are third-party branded robot arms - Mitsubishi Electric (gallery-02) and Fanuc (gallery-01). Removed for the same reason.",
-    "application-of-six-axis-robotic-arm": ["gallery-01", "gallery-02"],
-
-    "_twm702DupNote": "gallery-01 is a lower-quality duplicate of gallery-05 (same armature specimen, softer focus). gallery-03/05/06 are 800w duplicates of the scraped 2000w shots (green machine, and two armature specimens). Kept in _media so the decision is reversible.",
-    "automatic-stuff-type-armature-winding-machine": ["gallery-01", "gallery-03", "gallery-05", "gallery-06"]
-  }
+﻿{
+    "_note":  "Per-slug gallery-classifier overrides. Regenerated from _image-review/classification.tsv by tools-local/apply-classification.ps1. machine=force gallery image to equipment (ordered, full-machine first); workpiece=force to Finished Products; detail=sort close-ups/banners/suspects after full machines and keep them out of the hero; remove=filtered out at build.",
+    "machine":  {
+                    "automatic-stuff-type-armature-winding-machine":  [
+                                                                          "gallery-03",
+                                                                          "gallery-07",
+                                                                          "gallery-02",
+                                                                          "gallery-04"
+                                                                      ],
+                    "air-coil-winding-machine":  [
+                                                     "gallery-01",
+                                                     "gallery-02"
+                                                 ],
+                    "hook-type-armature-automatic-winding-machine-horizontal":  [
+                                                                                    "gallery-04",
+                                                                                    "gallery-02",
+                                                                                    "gallery-03"
+                                                                                ],
+                    "hook-type-armature-automatic-winding-machine-vertical":  [
+                                                                                  "gallery-02",
+                                                                                  "gallery-03",
+                                                                                  "gallery-04",
+                                                                                  "gallery-05"
+                                                                              ],
+                    "hook-type-armature-automatic-winding-machine":  [
+                                                                         "gallery-02"
+                                                                     ],
+                    "out-slot-brushless-motor-stator-automatic-winding-machine":  [
+                                                                                      "gallery-04",
+                                                                                      "gallery-05",
+                                                                                      "gallery-09",
+                                                                                      "gallery-01"
+                                                                                  ],
+                    "automatic-multi-axes-coil-winding-machine":  [
+                                                                      "gallery-04",
+                                                                      "gallery-08",
+                                                                      "gallery-03",
+                                                                      "gallery-01",
+                                                                      "gallery-02"
+                                                                  ],
+                    "armature-slot-wedge-inserting-machine":  [
+                                                                  "gallery-01"
+                                                              ],
+                    "armature-slot-insulation-paper-inserting-machine":  [
+                                                                             "gallery-01"
+                                                                         ],
+                    "motor-stator-slot-insulation-paper-inserting-machine":  [
+                                                                                 "gallery-01"
+                                                                             ],
+                    "horizontal-brushless-motor-slot-insulation-paper-inserting-machine":  [
+                                                                                               "gallery-02",
+                                                                                               "gallery-04"
+                                                                                           ],
+                    "vertical-brushless-motor-slot-insulation-paper-inserting-machine":  [
+                                                                                             "gallery-01"
+                                                                                         ],
+                    "vertical-slot-wedge-inserting-machine":  [
+                                                                  "gallery-02",
+                                                                  "gallery-01"
+                                                              ],
+                    "two-poles-type-stator-winding-machine-with-one-axle":  [
+                                                                                "gallery-03",
+                                                                                "gallery-04"
+                                                                            ],
+                    "two-poles-type-stator-winding-machine-with-two-axes":  [
+                                                                                "gallery-01",
+                                                                                "gallery-02"
+                                                                            ],
+                    "stator-production-line":  [
+                                                   "gallery-04",
+                                                   "gallery-05",
+                                                   "gallery-07",
+                                                   "gallery-01"
+                                               ],
+                    "armature-welding-machine":  [
+                                                     "gallery-01",
+                                                     "gallery-02",
+                                                     "gallery-04",
+                                                     "gallery-05",
+                                                     "gallery-03",
+                                                     "gallery-07"
+                                                 ],
+                    "stator-fusing":  [
+                                          "gallery-03",
+                                          "gallery-01",
+                                          "gallery-02",
+                                          "gallery-04"
+                                      ],
+                    "varnish-bake":  [
+                                         "gallery-01",
+                                         "gallery-02",
+                                         "gallery-03",
+                                         "gallery-04",
+                                         "gallery-05",
+                                         "gallery-06",
+                                         "gallery-07"
+                                     ],
+                    "varnish-bake-twm-301a":  [
+                                                  "gallery-01",
+                                                  "gallery-02",
+                                                  "gallery-03",
+                                                  "gallery-04",
+                                                  "gallery-05",
+                                                  "gallery-06",
+                                                  "gallery-07"
+                                              ],
+                    "commutator-slot-cutting":  [
+                                                    "gallery-01",
+                                                    "gallery-03",
+                                                    "gallery-02",
+                                                    "gallery-04"
+                                                ],
+                    "turning-machine-for-armature-outer-diameter-of-commutator":  [
+                                                                                      "gallery-01",
+                                                                                      "gallery-04",
+                                                                                      "gallery-02"
+                                                                                  ],
+                    "three-in-one-automatic-turning-machine":  [
+                                                                   "gallery-01"
+                                                               ],
+                    "shaft-embossing":  [
+                                            "gallery-01",
+                                            "gallery-02",
+                                            "gallery-03",
+                                            "gallery-04"
+                                        ],
+                    "balancing":  [
+                                      "gallery-02",
+                                      "gallery-03",
+                                      "gallery-04",
+                                      "gallery-01"
+                                  ],
+                    "armature-testing-machine":  [
+                                                     "gallery-01",
+                                                     "gallery-02",
+                                                     "gallery-03"
+                                                 ],
+                    "automatic-feeding-system":  [
+                                                     "gallery-01"
+                                                 ],
+                    "semiconductor-sealing-testing-process-equipment":  [
+                                                                            "gallery-01",
+                                                                            "gallery-02",
+                                                                            "gallery-03",
+                                                                            "gallery-04"
+                                                                        ],
+                    "cooling-fan-motor-automatic-production-line":  [
+                                                                        "gallery-02"
+                                                                    ],
+                    "vibration-feeding-assembling-equipment":  [
+                                                                   "gallery-01"
+                                                               ],
+                    "bobbin":  [
+                                   "gallery-04"
+                               ],
+                    "automatic-modular-production-line-2":  [
+                                                                "gallery-01",
+                                                                "gallery-02",
+                                                                "gallery-03"
+                                                            ],
+                    "automatic-winding-machine-product-series":  [
+                                                                     "gallery-05",
+                                                                     "gallery-02",
+                                                                     "gallery-03",
+                                                                     "gallery-04"
+                                                                 ],
+                    "turntable-automatic-assembling-equipment":  [
+                                                                     "gallery-03",
+                                                                     "gallery-05",
+                                                                     "gallery-01",
+                                                                     "gallery-02",
+                                                                     "gallery-04"
+                                                                 ],
+                    "automatic-modular-production-line":  [
+                                                              "gallery-01",
+                                                              "gallery-02",
+                                                              "gallery-04",
+                                                              "gallery-05",
+                                                              "gallery-03"
+                                                          ]
+                },
+    "_workpieceNote":  "Finished parts (armatures, stators, coils) shown in the Finished Products tab, never beside real equipment.",
+    "workpiece":  {
+                      "automatic-stuff-type-armature-winding-machine":  [
+                                                                            "twm-702-automatic-stuff-type-armature-winding-machine-05",
+                                                                            "twm-702-automatic-stuff-type-armature-winding-machine-06",
+                                                                            "twm-702-automatic-stuff-type-armature-winding-machine-07",
+                                                                            "gallery-01",
+                                                                            "gallery-05",
+                                                                            "gallery-06"
+                                                                        ],
+                      "air-coil-winding-machine":  [
+                                                       "gallery-03",
+                                                       "gallery-04",
+                                                       "gallery-05"
+                                                   ],
+                      "hook-type-armature-automatic-winding-machine-horizontal":  [
+                                                                                      "twm-308a-hook-type-armature-automatic-winding-machine-03",
+                                                                                      "gallery-01"
+                                                                                  ],
+                      "hook-type-armature-automatic-winding-machine-vertical":  [
+                                                                                    "twm955-hook-type-armature-automatic-winding-machine-03",
+                                                                                    "gallery-01"
+                                                                                ],
+                      "hook-type-armature-automatic-winding-machine":  [
+                                                                           "twm-308a-hook-type-armature-automatic-winding-machine-03",
+                                                                           "gallery-01"
+                                                                       ],
+                      "out-slot-brushless-motor-stator-automatic-winding-machine":  [
+                                                                                        "twm-929-out-slot-brushless-motor-stator-automatic-04",
+                                                                                        "twm-929-out-slot-brushless-motor-stator-automatic-07",
+                                                                                        "gallery-02",
+                                                                                        "gallery-03",
+                                                                                        "gallery-06",
+                                                                                        "gallery-07",
+                                                                                        "gallery-08"
+                                                                                    ],
+                      "automatic-multi-axes-coil-winding-machine":  [
+                                                                        "twm-wb001-automatic-multi-axes-coil-winding-machine-05",
+                                                                        "twm-wb001-automatic-multi-axes-coil-winding-machine-06",
+                                                                        "twm-wb001-automatic-multi-axes-coil-winding-machine-07",
+                                                                        "gallery-05",
+                                                                        "gallery-06",
+                                                                        "gallery-07",
+                                                                        "gallery-09",
+                                                                        "gallery-10"
+                                                                    ],
+                      "armature-slot-wedge-inserting-machine":  [
+                                                                    "gallery-02"
+                                                                ],
+                      "armature-slot-insulation-paper-inserting-machine":  [
+                                                                               "twm-ip01-armature-slot-insulation-paper-inserting-machine-02",
+                                                                               "gallery-02"
+                                                                           ],
+                      "motor-stator-slot-insulation-paper-inserting-machine":  [
+                                                                                   "twm-isp01-motor-stator-slot-insulation-paper-inserting-02",
+                                                                                   "gallery-02"
+                                                                               ],
+                      "horizontal-brushless-motor-slot-insulation-paper-inserting-machine":  [
+                                                                                                 "twm-sp001-horizontal-brushless-motor-slot-insulation-paper-04",
+                                                                                                 "gallery-01",
+                                                                                                 "gallery-03"
+                                                                                             ],
+                      "vertical-brushless-motor-slot-insulation-paper-inserting-machine":  [
+                                                                                               "twm-ap01-vertical-brushless-motor-slot-insulation-paper-02",
+                                                                                               "gallery-02"
+                                                                                           ],
+                      "vertical-slot-wedge-inserting-machine":  [
+                                                                    "gallery-03"
+                                                                ],
+                      "two-poles-type-stator-winding-machine-with-one-axle":  [
+                                                                                  "twm-901s-two-poles-type-stator-winding-machine-02",
+                                                                                  "twm-901s-two-poles-type-stator-winding-machine-03",
+                                                                                  "gallery-01",
+                                                                                  "gallery-02"
+                                                                              ],
+                      "two-poles-type-stator-winding-machine-with-two-axes":  [
+                                                                                  "twm-901-two-poles-type-stator-winding-machine-02",
+                                                                                  "twm-901-two-poles-type-stator-winding-machine-03",
+                                                                                  "gallery-03",
+                                                                                  "gallery-04"
+                                                                              ],
+                      "stator-production-line":  [
+                                                     "twm-902s-in-slot-brushless-motor-stator-automatic-05",
+                                                     "twm-902s-in-slot-brushless-motor-stator-automatic-06",
+                                                     "gallery-02",
+                                                     "gallery-03",
+                                                     "gallery-06",
+                                                     "gallery-08"
+                                                 ],
+                      "armature-welding-machine":  [
+                                                       "twm-rf30s-armature-welding-machine-05",
+                                                       "gallery-06"
+                                                   ],
+                      "turning-machine-for-armature-outer-diameter-of-commutator":  [
+                                                                                        "gallery-03"
+                                                                                    ],
+                      "three-in-one-automatic-turning-machine":  [
+                                                                     "gallery-02"
+                                                                 ],
+                      "cooling-fan-motor-automatic-production-line":  [
+                                                                          "gallery-01"
+                                                                      ],
+                      "bobbin":  [
+                                     "gallery-01",
+                                     "gallery-02",
+                                     "gallery-03",
+                                     "gallery-05",
+                                     "gallery-06"
+                                 ],
+                      "automatic-winding-machine-product-series":  [
+                                                                       "gallery-01",
+                                                                       "gallery-06",
+                                                                       "gallery-07"
+                                                                   ],
+                      "automatic-modular-production-line":  [
+                                                                "gallery-06",
+                                                                "gallery-07"
+                                                            ]
+                  },
+    "_detailNote":  "Close-ups, process shots, text banners, and suspected cross-product images. Kept, but sorted after full-machine overviews.",
+    "detail":  {
+                   "automatic-stuff-type-armature-winding-machine":  [
+                                                                         "twm-702-automatic-stuff-type-armature-winding-machine-11",
+                                                                         "gallery-02",
+                                                                         "gallery-04"
+                                                                     ],
+                   "air-coil-winding-machine":  [
+                                                    "twm-917-air-coil-winding-machine-06",
+                                                    "twm-917-air-coil-winding-machine-07",
+                                                    "twm-917-air-coil-winding-machine-10"
+                                                ],
+                   "hook-type-armature-automatic-winding-machine-horizontal":  [
+                                                                                   "twm-308a-hook-type-armature-automatic-winding-machine-04",
+                                                                                   "twm-308a-hook-type-armature-automatic-winding-machine-07",
+                                                                                   "twm-308a-hook-type-armature-automatic-winding-machine-10",
+                                                                                   "gallery-02",
+                                                                                   "gallery-03"
+                                                                               ],
+                   "hook-type-armature-automatic-winding-machine-vertical":  [
+                                                                                 "twm955-hook-type-armature-automatic-winding-machine-06",
+                                                                                 "twm955-hook-type-armature-automatic-winding-machine-08",
+                                                                                 "twm955-hook-type-armature-automatic-winding-machine-11",
+                                                                                 "gallery-04",
+                                                                                 "gallery-05"
+                                                                             ],
+                   "hook-type-armature-automatic-winding-machine":  [
+                                                                        "twm-308a-hook-type-armature-automatic-winding-machine-04",
+                                                                        "twm-308a-hook-type-armature-automatic-winding-machine-07",
+                                                                        "twm-308a-hook-type-armature-automatic-winding-machine-08",
+                                                                        "twm-308a-hook-type-armature-automatic-winding-machine-10"
+                                                                    ],
+                   "out-slot-brushless-motor-stator-automatic-winding-machine":  [
+                                                                                     "twm-929-out-slot-brushless-motor-stator-automatic-11",
+                                                                                     "twm-929-out-slot-brushless-motor-stator-automatic-12",
+                                                                                     "twm-929-out-slot-brushless-motor-stator-automatic-14",
+                                                                                     "gallery-01",
+                                                                                     "gallery-05",
+                                                                                     "gallery-09"
+                                                                                 ],
+                   "automatic-multi-axes-coil-winding-machine":  [
+                                                                     "twm-wb001-automatic-multi-axes-coil-winding-machine-01",
+                                                                     "twm-wb001-automatic-multi-axes-coil-winding-machine-08",
+                                                                     "twm-wb001-automatic-multi-axes-coil-winding-machine-15",
+                                                                     "gallery-01",
+                                                                     "gallery-02"
+                                                                 ],
+                   "horizontal-brushless-motor-slot-insulation-paper-inserting-machine":  [
+                                                                                              "twm-sp001-horizontal-brushless-motor-slot-insulation-paper-02",
+                                                                                              "gallery-04"
+                                                                                          ],
+                   "vertical-brushless-motor-slot-insulation-paper-inserting-machine":  [
+                                                                                            "twm-ap01-vertical-brushless-motor-slot-insulation-paper-03"
+                                                                                        ],
+                   "vertical-slot-wedge-inserting-machine":  [
+                                                                 "gallery-01"
+                                                             ],
+                   "two-poles-type-stator-winding-machine-with-one-axle":  [
+                                                                               "twm-901s-two-poles-type-stator-winding-machine-07",
+                                                                               "twm-901s-two-poles-type-stator-winding-machine-09",
+                                                                               "twm-901s-two-poles-type-stator-winding-machine-10",
+                                                                               "gallery-04"
+                                                                           ],
+                   "two-poles-type-stator-winding-machine-with-two-axes":  [
+                                                                               "twm-901-two-poles-type-stator-winding-machine-07",
+                                                                               "twm-901-two-poles-type-stator-winding-machine-09",
+                                                                               "twm-901-two-poles-type-stator-winding-machine-10",
+                                                                               "gallery-02"
+                                                                           ],
+                   "stator-production-line":  [
+                                                  "twm-902s-in-slot-brushless-motor-stator-automatic-03",
+                                                  "twm-902s-in-slot-brushless-motor-stator-automatic-08",
+                                                  "twm-902s-in-slot-brushless-motor-stator-automatic-09",
+                                                  "twm-902s-in-slot-brushless-motor-stator-automatic-13",
+                                                  "gallery-01",
+                                                  "gallery-05",
+                                                  "gallery-07"
+                                              ],
+                   "armature-welding-machine":  [
+                                                    "gallery-03",
+                                                    "gallery-07"
+                                                ],
+                   "stator-fusing":  [
+                                         "twa-rf30s-stator-fusing-02",
+                                         "twa-rf30s-stator-fusing-03",
+                                         "twa-rf30s-stator-fusing-04",
+                                         "gallery-01",
+                                         "gallery-02",
+                                         "gallery-04"
+                                     ],
+                   "varnish-bake":  [
+                                        "twm-301a-varnish-bake-07",
+                                        "gallery-07"
+                                    ],
+                   "varnish-bake-twm-301a":  [
+                                                 "twm-301a-varnish-bake-07",
+                                                 "gallery-07"
+                                             ],
+                   "commutator-slot-cutting":  [
+                                                   "twm-606-commutator-slot-cutting-02",
+                                                   "gallery-02",
+                                                   "gallery-04"
+                                               ],
+                   "turning-machine-for-armature-outer-diameter-of-commutator":  [
+                                                                                     "twm-319a-turning-machine-for-armature-outer-diameter-02",
+                                                                                     "twm-319a-turning-machine-for-armature-outer-diameter-04",
+                                                                                     "twm-319a-turning-machine-for-armature-outer-diameter-05",
+                                                                                     "gallery-02"
+                                                                                 ],
+                   "three-in-one-automatic-turning-machine":  [
+                                                                  "twm-la01-three-in-one-automatic-turning-machine-03"
+                                                              ],
+                   "shaft-embossing":  [
+                                           "twm-910-shaft-embossing-03",
+                                           "twm-910-shaft-embossing-04",
+                                           "gallery-03",
+                                           "gallery-04"
+                                       ],
+                   "balancing":  [
+                                     "gallery-01"
+                                 ],
+                   "automatic-modular-production-line-2":  [
+                                                               "gallery-01",
+                                                               "gallery-02",
+                                                               "gallery-03"
+                                                           ],
+                   "automatic-winding-machine-product-series":  [
+                                                                    "gallery-02",
+                                                                    "gallery-03",
+                                                                    "gallery-04"
+                                                                ],
+                   "turntable-automatic-assembling-equipment":  [
+                                                                    "gallery-01",
+                                                                    "gallery-02",
+                                                                    "gallery-04"
+                                                                ],
+                   "automatic-modular-production-line":  [
+                                                             "gallery-03"
+                                                         ]
+               },
+    "_removals":  "PRESERVED from prior file. New deletions are the client\u0027s call, made by curating _image-review/ then re-running the generator.",
+    "remove":  {
+                   "_scaraNote":  "The single SCARA image in the source is a Mitsubishi Electric branded robot arm - a supplier\u0027s product photograph. Removed from the public site per the brand-mention rule; the page carries only text until we have a photograph of our own robotic cell.",
+                   "scara":  [
+                                 "gallery-01"
+                             ],
+                   "_sixAxisNote":  "Both source images are third-party branded robot arms - Mitsubishi Electric (gallery-02) and Fanuc (gallery-01). Removed for the same reason.",
+                   "application-of-six-axis-robotic-arm":  [
+                                                               "gallery-01",
+                                                               "gallery-02"
+                                                           ],
+                   "_twm702DupNote":  "gallery-01 is a lower-quality duplicate of gallery-05 (same armature specimen, softer focus). gallery-03/05/06 are 800w duplicates of the scraped 2000w shots (green machine, and two armature specimens). Kept in _media so the decision is reversible.",
+                   "automatic-stuff-type-armature-winding-machine":  [
+                                                                         "gallery-01",
+                                                                         "gallery-03",
+                                                                         "gallery-05",
+                                                                         "gallery-06"
+                                                                     ]
+               }
 }
