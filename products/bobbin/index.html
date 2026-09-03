@@ -711,30 +711,35 @@
           </div>
         </div>
         
-        
-        <div class="lightbox__slide lightbox__slide--video" data-lightbox-slide="video" data-lightbox-cat="video">
-          <div class="lightbox__vwrap">
-            <div class="lightbox__video"
-                 data-lightbox-video-id="M9sZ4L62YUw"
-                 data-lightbox-video-title="Automatic Bobbin Production Line">
-              <button class="lightbox__vplay" type="button" data-lightbox-vplay
-                      aria-label="Watch this machine run">
-                <img src="/assets/images/video/bobbin/twm-video-poster-01-1400w.webp"
-                     srcset="/assets/images/video/bobbin/twm-video-poster-01-640w.webp 640w, /assets/images/video/bobbin/twm-video-poster-01-1000w.webp 1000w, /assets/images/video/bobbin/twm-video-poster-01-1400w.webp 1400w"
-                     sizes="(min-width: 60rem) 70vw, 100vw"
-                     width="1400"
-                     height="788"
-                     alt="" loading="lazy" decoding="async">
-                <span class="lightbox__vbtn" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
-                </span>
-              </button>
-            </div>
-            <p class="lightbox__vtitle">Automatic Bobbin Production Line</p>
-          </div>
-        </div>
-        
       </div>
+
+      
+      <!-- VIDEO is a separate panel, NOT a slide in the image track, so
+           switching IMAGES <-> VIDEO is an instant tab toggle with no
+           horizontal carousel animation. Hidden until the VIDEO tab or the
+           video thumbnail is selected; JS stops playback on switch back. -->
+      <div class="lightbox__videopanel" data-lightbox-videopanel hidden>
+        <div class="lightbox__vwrap">
+          <div class="lightbox__video"
+               data-lightbox-video-id="M9sZ4L62YUw"
+               data-lightbox-video-title="Automatic Bobbin Production Line">
+            <button class="lightbox__vplay" type="button" data-lightbox-vplay
+                    aria-label="Watch this machine run">
+              <img src="/assets/images/video/bobbin/twm-video-poster-01-1400w.webp"
+                   srcset="/assets/images/video/bobbin/twm-video-poster-01-640w.webp 640w, /assets/images/video/bobbin/twm-video-poster-01-1000w.webp 1000w, /assets/images/video/bobbin/twm-video-poster-01-1400w.webp 1400w"
+                   sizes="(min-width: 60rem) 70vw, 100vw"
+                   width="1400"
+                   height="788"
+                   alt="" loading="lazy" decoding="async">
+              <span class="lightbox__vbtn" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+              </span>
+            </button>
+          </div>
+          <p class="lightbox__vtitle">Automatic Bobbin Production Line</p>
+        </div>
+      </div>
+      
 
       <div class="lightbox__dots" data-lightbox-dots aria-hidden="true"></div>
     </div>
@@ -918,6 +923,6 @@
   </div>
 </footer>
 
-<script src="/assets/js/app.js?v=4703122cc8" defer></script>
+<script src="/assets/js/app.js?v=a753675cc4" defer></script>
 </body>
 </html>

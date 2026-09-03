@@ -341,6 +341,16 @@
       }
       dots[0].classList.add('is-active');
 
+      // Always initialize the mobile carousel to image index 0 (the same primary
+      // image Desktop uses). Guard against browser scroll-restoration or async
+      // layout leaving the track mid-scroll on load; stop once the user swipes.
+      var pgalUserMoved = false;
+      track.addEventListener('pointerdown', function () { pgalUserMoved = true; }, { passive: true });
+      var pgalResetFirst = function () { if (pgalUserMoved) return; try { track.scrollLeft = 0; } catch (e) {} };
+      pgalResetFirst();
+      requestAnimationFrame(pgalResetFirst);
+      window.addEventListener('load', pgalResetFirst);
+
       // Category tab wiring: tab click scrolls to the first slide of that
       // category; swipe/scroll updates which tab is active.
       var catTabs = catsEl ? catsEl.querySelectorAll('[data-pgal-cat-tab]') : [];
@@ -403,7 +413,16 @@
         (function (t2) {
           slides[t2].addEventListener('click', function () {
             if (dragged) return;
-            openViewer(t2);
+            // The video slide opens the lightbox on its VIDEO panel; image
+            // slides open the lightbox at the matching image index (image
+            // slides precede the video slide, so t2 maps 1:1 for images).
+            if (this.getAttribute('data-pgal-slide') === 'video') {
+              openViewer(0);
+              var vtab = document.querySelector('[data-lightbox-tab="video"]');
+              if (vtab) vtab.click();
+            } else {
+              openViewer(t2);
+            }
           });
         })(t2);
       }
@@ -442,6 +461,10 @@
       document.body.dataset.lbScroll = String(window.scrollY);
       document.body.classList.add('lb-open');
       try { lightbox.showModal(); } catch (e) { lightbox.setAttribute('open', ''); }
+      // Always open on the IMAGES view (video is a separate panel).
+      if (videoPanel) videoPanel.hidden = true;
+      if (stage) stage.classList.remove('is-video');
+      setTabsSelected('images');
       // Snap and preload synchronously so state is consistent even if the
       // browser throttles rAF while the dialog is animating in.
       lbGoto(mediaIdx, false);
@@ -456,6 +479,10 @@
       if (vplay) vplay.hidden = false;
       var zs = lightbox.querySelectorAll('[data-lightbox-zoomer]');
       for (var z = 0; z < zs.length; z++) resetZoom(zs[z]);
+      // Reset the VIDEO panel so the next open starts on IMAGES.
+      var vp = lightbox.querySelector('[data-lightbox-videopanel]');
+      if (vp) vp.hidden = true;
+      if (stage) stage.classList.remove('is-video');
       try { lightbox.close(); } catch (e) { lightbox.removeAttribute('open'); }
       document.body.classList.remove('lb-open');
       var y = parseInt(document.body.dataset.lbScroll || '0', 10);
@@ -531,56 +558,70 @@
       }, { passive: true });
     }
 
-    // Locate the video slide once so we can flip the VIDEO / IMAGES tabs
-    // based on which media the reader is looking at.
-    var lbTabs   = lightbox.querySelectorAll('[data-lightbox-tab]');
-    var videoSlideIdx = -1;
-    for (var s = 0; s < slides.length; s++) {
-      if (slides[s].getAttribute('data-lightbox-slide') === 'video') { videoSlideIdx = s; break; }
-    }
+    // IMAGES and VIDEO are separate tab views. VIDEO is its own panel layered
+    // over the image stage (not a slide in the track), so switching is instant
+    // with no horizontal carousel animation.
+    var lbTabs     = lightbox.querySelectorAll('[data-lightbox-tab]');
+    var videoPanel = lightbox.querySelector('[data-lightbox-videopanel]');
 
-    renderState = function () {
-      if (count) count.textContent = (mediaIdx + 1) + ' / ' + slides.length;
-      for (var i = 0; i < dots.length; i++) {
-        dots[i].classList.toggle('is-active', i === mediaIdx);
-      }
-      for (var j = 0; j < thumbs.length; j++) {
-        thumbs[j].setAttribute('aria-selected', j === mediaIdx ? 'true' : 'false');
-      }
-      // Tab active state: current slide is the video slide -> VIDEO tab,
-      // otherwise IMAGES tab.
-      var currentKind = slides[mediaIdx] &&
-        slides[mediaIdx].getAttribute('data-lightbox-slide') === 'video' ? 'video' : 'images';
-      for (var t = 0; t < lbTabs.length; t++) {
-        var k = lbTabs[t].getAttribute('data-lightbox-tab');
-        lbTabs[t].setAttribute('aria-selected', k === currentKind ? 'true' : 'false');
-      }
-      if (lbPrev) lbPrev.hidden = mediaIdx <= 0;
-      if (lbNext) lbNext.hidden = mediaIdx >= slides.length - 1;
-    };
-
-    // Tear down any playing YouTube iframe immediately. Called whenever the
-    // active slide is about to change or the modal is about to close so
-    // audio never keeps playing in the background.
-    function stopVideoIframes() {
+    // Tear down any playing YouTube iframe immediately, so audio never keeps
+    // playing after leaving the VIDEO view or closing the modal.
+    var stopVideoIframes = function () {
       var frames = lightbox.querySelectorAll('.lightbox__video iframe');
       for (var f = 0; f < frames.length; f++) {
         if (frames[f].parentNode) frames[f].parentNode.removeChild(frames[f]);
       }
       var plays = lightbox.querySelectorAll('[data-lightbox-vplay]');
       for (var p = 0; p < plays.length; p++) plays[p].hidden = false;
-    }
+    };
+
+    var setTabsSelected = function (kind) {
+      for (var t = 0; t < lbTabs.length; t++) {
+        lbTabs[t].setAttribute('aria-selected',
+          lbTabs[t].getAttribute('data-lightbox-tab') === kind ? 'true' : 'false');
+      }
+    };
+    // which = 'video', or an image index (0-based among image thumbs).
+    var setThumbsSelected = function (which) {
+      var imgIdx = -1;
+      for (var j = 0; j < thumbs.length; j++) {
+        var kind = thumbs[j].getAttribute('data-lightbox-thumb');
+        var sel = false;
+        if (which === 'video') { sel = (kind === 'video'); }
+        else if (kind === 'image') { imgIdx++; sel = (imgIdx === which); }
+        thumbs[j].setAttribute('aria-selected', sel ? 'true' : 'false');
+      }
+    };
+    var isVideoOpen = function () { return !!(stage && stage.classList.contains('is-video')); };
+
+    var showVideo = function () {
+      if (!videoPanel) return;
+      videoPanel.hidden = false;
+      if (stage) stage.classList.add('is-video');
+      setTabsSelected('video');
+      setThumbsSelected('video');
+    };
+    var showImages = function () {
+      if (videoPanel) videoPanel.hidden = true;
+      if (stage) stage.classList.remove('is-video');
+      stopVideoIframes();
+      setTabsSelected('images');
+      setThumbsSelected(mediaIdx);
+    };
+
+    renderState = function () {
+      if (count) count.textContent = (mediaIdx + 1) + ' / ' + slides.length;
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.toggle('is-active', i === mediaIdx);
+      }
+      if (!isVideoOpen()) setThumbsSelected(mediaIdx);
+      if (lbPrev) lbPrev.hidden = mediaIdx <= 0;
+      if (lbNext) lbNext.hidden = mediaIdx >= slides.length - 1;
+    };
 
     lbGoto = function (i, smooth) {
       if (!trackEl || !slides.length) return;
       i = Math.max(0, Math.min(i, slides.length - 1));
-      // If we're leaving the video slide, stop the video before the scroll
-      // animation begins so the audio cuts immediately, not after the
-      // 300ms smooth-scroll settles into updateActive.
-      var leavingVideo = slides[mediaIdx] &&
-        slides[mediaIdx].getAttribute('data-lightbox-slide') === 'video' &&
-        i !== mediaIdx;
-      if (leavingVideo) stopVideoIframes();
       mediaIdx = i;
       var w = trackEl.clientWidth;
       var behavior = smooth ? 'smooth' : 'auto';
@@ -591,32 +632,29 @@
       preloadAdjacent(i);
     };
 
-    // Thumb clicks (desktop rail). Thumbs are in track order, so their
-    // index maps 1:1 to slide index. Switch is instant (no smooth scroll):
-    // clicking a sidebar thumbnail should swap the main preview immediately,
-    // with no carousel slide-through, for a snappier feel and less work.
+    // Thumb clicks. Image thumbs switch to IMAGES view (if needed) and swap the
+    // main preview instantly (no slide-through); the video thumb opens the VIDEO
+    // panel instantly. Image thumbs come first in the DOM, so an image thumb's
+    // running index maps 1:1 to its image-slide index.
+    var imgThumbIdx = -1;
     for (var th = 0; th < thumbs.length; th++) {
-      (function (th) {
-        thumbs[th].addEventListener('click', function () { lbGoto(th, false); });
-      })(th);
+      (function (thumbEl) {
+        if (thumbEl.getAttribute('data-lightbox-thumb') === 'video') {
+          thumbEl.addEventListener('click', function () { showVideo(); });
+        } else {
+          imgThumbIdx++;
+          var idx = imgThumbIdx;
+          thumbEl.addEventListener('click', function () { showImages(); lbGoto(idx, false); });
+        }
+      })(thumbs[th]);
     }
 
-    // Tab clicks: VIDEO -> jump to the video slide; IMAGES -> jump to
-    // the first image slide.
+    // Tab clicks: instant view switch, no track animation.
     for (var tt = 0; tt < lbTabs.length; tt++) {
       (function (tab) {
         tab.addEventListener('click', function () {
-          var kind = tab.getAttribute('data-lightbox-tab');
-          if (kind === 'video' && videoSlideIdx >= 0) {
-            lbGoto(videoSlideIdx, true);
-          } else if (kind === 'images') {
-            // First slide whose kind is image
-            for (var q = 0; q < slides.length; q++) {
-              if (slides[q].getAttribute('data-lightbox-slide') === 'image') {
-                lbGoto(q, true); break;
-              }
-            }
-          }
+          if (tab.getAttribute('data-lightbox-tab') === 'video') showVideo();
+          else showImages();
         });
       })(lbTabs[tt]);
     }

@@ -18,7 +18,7 @@
 
     <div class="cat-grid">
       {{#each page.family.products}}
-      <a class="cat" href="{{site.urlPrefix}}/products/{{slug}}/">
+      <a class="cat cat--product" href="{{site.urlPrefix}}/products/{{slug}}/">
         {{#if hero}}
         <span class="cat__media">
           <img src="{{hero.src}}" srcset="{{hero.srcset}}"

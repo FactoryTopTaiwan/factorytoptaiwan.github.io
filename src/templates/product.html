@@ -405,30 +405,35 @@
           </div>
         </div>
         {{/each}}
-        {{#if page.product.video}}
-        <div class="lightbox__slide lightbox__slide--video" data-lightbox-slide="video" data-lightbox-cat="video">
-          <div class="lightbox__vwrap">
-            <div class="lightbox__video"
-                 data-lightbox-video-id="{{page.product.video.youtubeId}}"
-                 data-lightbox-video-title="{{page.product.title}}">
-              <button class="lightbox__vplay" type="button" data-lightbox-vplay
-                      aria-label="{{site.ui.watchMachine}}">
-                <img src="{{page.product.video.poster.src}}"
-                     srcset="{{page.product.video.poster.srcset}}"
-                     sizes="(min-width: 60rem) 70vw, 100vw"
-                     width="{{page.product.video.poster.width}}"
-                     height="{{page.product.video.poster.height}}"
-                     alt="" loading="lazy" decoding="async">
-                <span class="lightbox__vbtn" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
-                </span>
-              </button>
-            </div>
-            <p class="lightbox__vtitle">{{page.product.title}}</p>
-          </div>
-        </div>
-        {{/if}}
       </div>
+
+      {{#if page.product.video}}
+      <!-- VIDEO is a separate panel, NOT a slide in the image track, so
+           switching IMAGES <-> VIDEO is an instant tab toggle with no
+           horizontal carousel animation. Hidden until the VIDEO tab or the
+           video thumbnail is selected; JS stops playback on switch back. -->
+      <div class="lightbox__videopanel" data-lightbox-videopanel hidden>
+        <div class="lightbox__vwrap">
+          <div class="lightbox__video"
+               data-lightbox-video-id="{{page.product.video.youtubeId}}"
+               data-lightbox-video-title="{{page.product.title}}">
+            <button class="lightbox__vplay" type="button" data-lightbox-vplay
+                    aria-label="{{site.ui.watchMachine}}">
+              <img src="{{page.product.video.poster.src}}"
+                   srcset="{{page.product.video.poster.srcset}}"
+                   sizes="(min-width: 60rem) 70vw, 100vw"
+                   width="{{page.product.video.poster.width}}"
+                   height="{{page.product.video.poster.height}}"
+                   alt="" loading="lazy" decoding="async">
+              <span class="lightbox__vbtn" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+              </span>
+            </button>
+          </div>
+          <p class="lightbox__vtitle">{{page.product.title}}</p>
+        </div>
+      </div>
+      {{/if}}
 
       <div class="lightbox__dots" data-lightbox-dots aria-hidden="true"></div>
     </div>
