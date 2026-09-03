@@ -50,7 +50,15 @@
       {{#each page.timeline}}
       <li>
         <span class="timeline__year model">{{year}}</span>
-        <span class="timeline__event">{{event}}</span>
+        <div class="timeline__content">
+          {{#if image}}
+          <span class="timeline__media">
+            <img src="{{image.src}}" srcset="{{image.srcset}}" sizes="13rem"
+                 width="800" height="600" alt="{{image.alt}}" loading="lazy" decoding="async">
+          </span>
+          {{/if}}
+          <span class="timeline__event">{{event}}</span>
+        </div>
       </li>
       {{/each}}
     </ol>

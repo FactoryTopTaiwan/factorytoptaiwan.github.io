@@ -27,12 +27,18 @@
   ],
 
   "timeline": [
-    { "year": "1992–1993", "event": "台中で創業。目的はひとつ、モーター組立から手作業を取り除くこと。最初につくったのが巻線機でした。" },
-    { "year": "2001",      "event": "単体機械から連結ラインへ。上場メーカーが後に工場計画を任せることになる、その最初の案件です。" },
-    { "year": "2005–2006", "event": "TWM-702 電機子巻線機が、この機種クラスの台湾製モーター工場でもっとも多く稼働する機械になりました。" },
-    { "year": "2006",      "event": "半導体顧客へ封止・検査設備を納入。モーターより厳しい公差が求められる、二つ目の産業への参入です。" },
-    { "year": "2023–2024", "event": "ドローンモーター専用の生産ラインを構築。二本目は米国の顧客へ納入しました。" },
-    { "year": "2023–2024", "event": "ヘアピン固定子の開発を開始し、顧客との試作へ。EV駆動モーターはヘアピンで巻かれるため、次の十年はここにあります。" },
+    { "year": "1992–1993", "event": "台中で創業。目的はひとつ、モーター組立から手作業を取り除くこと。最初につくったのが巻線機でした。",
+      "image": { "src": "/assets/images/air-coil-winding-machine/twm-917-air-coil-winding-machine-02-800w.webp", "srcset": "/assets/images/air-coil-winding-machine/twm-917-air-coil-winding-machine-02-400w.webp 400w, /assets/images/air-coil-winding-machine/twm-917-air-coil-winding-machine-02-800w.webp 800w", "alt": "初期の巻線機" } },
+    { "year": "2001",      "event": "単体機械から連結ラインへ。上場メーカーが後に工場計画を任せることになる、その最初の案件です。",
+      "image": { "src": "/assets/images/automatic-modular-production-line/gallery-01-800w.webp", "srcset": "/assets/images/automatic-modular-production-line/gallery-01-400w.webp 400w, /assets/images/automatic-modular-production-line/gallery-01-800w.webp 800w", "alt": "連結式自動生産ライン" } },
+    { "year": "2005–2006", "event": "TWM-702 電機子巻線機が、この機種クラスの台湾製モーター工場でもっとも多く稼働する機械になりました。",
+      "image": { "src": "/assets/images/automatic-stuff-type-armature-winding-machine/twm-702-automatic-stuff-type-armature-winding-machine-01-800w.webp", "srcset": "/assets/images/automatic-stuff-type-armature-winding-machine/twm-702-automatic-stuff-type-armature-winding-machine-01-400w.webp 400w, /assets/images/automatic-stuff-type-armature-winding-machine/twm-702-automatic-stuff-type-armature-winding-machine-01-800w.webp 800w", "alt": "TWM-702 崁入式電機子巻線機" } },
+    { "year": "2006",      "event": "半導体顧客へ封止・検査設備を納入。モーターより厳しい公差が求められる、二つ目の産業への参入です。",
+      "image": { "src": "/assets/images/semiconductor-sealing-testing-process-equipment/gallery-01-800w.webp", "srcset": "/assets/images/semiconductor-sealing-testing-process-equipment/gallery-01-400w.webp 400w, /assets/images/semiconductor-sealing-testing-process-equipment/gallery-01-800w.webp 800w", "alt": "半導体封止・検査プロセス設備" } },
+    { "year": "2023–2024", "event": "ドローンモーター専用の生産ラインを構築。二本目は米国の顧客へ納入しました。",
+      "image": { "src": "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-800w.webp", "srcset": "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-800w.webp 800w", "alt": "外繞式無刷モーター固定子巻線機" } },
+    { "year": "2023–2024", "event": "ヘアピン固定子の開発を開始し、顧客との試作へ。EV駆動モーターはヘアピンで巻かれるため、次の十年はここにあります。",
+      "image": { "src": "/assets/images/stator-production-line/gallery-04-800w.webp", "srcset": "/assets/images/stator-production-line/gallery-04-400w.webp 400w, /assets/images/stator-production-line/gallery-04-800w.webp 800w", "alt": "内繞式無刷モーター固定子巻線ライン" } },
     { "year": "2025–2026", "event": "台湾国外の買い手が直接当社へ到達できる窓口として、FaTop Automation を開設。" }
   ],
 

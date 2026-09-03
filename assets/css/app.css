@@ -967,6 +967,19 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 @media (min-width: 48rem) { .timeline li { grid-template-columns: 10rem 1fr; } }
 .timeline__year { color: var(--accent-ink); font-weight: 620; }
 .timeline__event { color: var(--ink-muted); max-width: var(--max-prose); }
+/* Optional illustrative photo beside a milestone. Milestones without a photo
+   keep the event text full-width (flex just lays out a single child). */
+.timeline__content { display: flex; flex-wrap: wrap; align-items: flex-start; gap: var(--sp-3) var(--sp-5); }
+.timeline__media {
+  flex: 0 0 13rem;
+  max-width: 13rem;
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--media-bg);
+}
+.timeline__media img { width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: contain; display: block; }
+.timeline__content .timeline__event { flex: 1 1 16rem; }
 
 /* Wide content must scroll inside its own box, never the page. */
 .tablewrap { overflow-x: auto; border: var(--border) solid var(--line); border-radius: var(--radius); }
