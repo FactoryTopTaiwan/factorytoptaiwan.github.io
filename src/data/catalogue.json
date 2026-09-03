@@ -1,5 +1,5 @@
 {
-  "totals": { "products": 38, "models": 28, "families": 8, "withSpecs": 12 },
+  "totals": { "products": 38, "models": 28, "families": 9, "withSpecs": 12 },
 
   "families": [
     {
@@ -30,8 +30,16 @@
       "slug": "modular-production-lines",
       "name": "Modular Production Lines",
       "sourceName": "Automatic Modular Production Line",
-      "count": 5,
-      "summary": "Standard machine modules linked into a running line — bobbin production, cooling-fan motor assembly, and configurable winding cells. Capacity is added by adding modules, not by replacing the line.",
+      "count": 4,
+      "summary": "Standard machine modules linked into a running line — cooling-fan motor assembly and configurable winding cells. Capacity is added by adding modules, not by replacing the line.",
+      "models": []
+    },
+    {
+      "slug": "bobbin-equipment",
+      "name": "Bobbin Equipment",
+      "sourceName": "Bobbin Production Related Equipment",
+      "count": 1,
+      "summary": "Automatic bobbin winding for ignition coils and wound bobbins — multi-section winding, terminal handling and continuous production, standalone or linked into a bobbin line.",
       "models": []
     },
     {

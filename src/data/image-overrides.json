@@ -172,11 +172,11 @@
                                                                      "gallery-04"
                                                                  ],
                     "automatic-modular-production-line":  [
+                                                              "gallery-03",
                                                               "gallery-01",
                                                               "gallery-02",
                                                               "gallery-04",
-                                                              "gallery-05",
-                                                              "gallery-03"
+                                                              "gallery-05"
                                                           ]
                 },
     "_workpieceNote":  "Finished parts (armatures, stators, coils) shown in the Finished Products tab, never beside real equipment.",

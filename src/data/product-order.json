@@ -1,0 +1,69 @@
+{
+  "_note": "Single source of truth for display order (by slug + family). build-data.ps1 sorts products by 'order'; build.ps1 sorts categories by 'families'. Modular: to place a new machine, add its slug to 'order'; a slug not listed falls to the end in source order.",
+  "_status": {
+    "confirmed": "Flagship override: TWM-702, TWM-929, TWM-902S first. Winding block follows en.fatop.com.tw/winding-machine.htm. Category order and per-category sequence follow fatop.com.tw nav (fetched 2026-09-03). Bobbin promoted to its own category.",
+    "verify_live": "Per-category internal order for rotor/brushless/stator is mapped from the Chinese site's sub-category sequence (process flow); confirm on the live site and tell me any swaps."
+  },
+  "familyOverride": {
+    "bobbin": "bobbin-equipment"
+  },
+  "families": [
+    "winding-machines",
+    "brushless-motor-equipment",
+    "motor-rotor-equipment",
+    "motor-stator-equipment",
+    "modular-production-lines",
+    "bobbin-equipment",
+    "robotic-production-lines",
+    "custom-production-equipment",
+    "semiconductor-equipment"
+  ],
+  "order": [
+    "automatic-stuff-type-armature-winding-machine",
+    "out-slot-brushless-motor-stator-automatic-winding-machine",
+    "stator-production-line",
+    "hook-type-armature-automatic-winding-machine-horizontal",
+    "automatic-multi-axes-coil-winding-machine",
+    "two-poles-type-stator-winding-machine-with-two-axes",
+    "air-coil-winding-machine",
+    "two-poles-type-stator-winding-machine-with-one-axle",
+    "hook-type-armature-automatic-winding-machine-vertical",
+
+    "horizontal-brushless-motor-slot-insulation-paper-inserting-machine",
+    "vertical-brushless-motor-slot-insulation-paper-inserting-machine",
+    "vertical-slot-wedge-inserting-machine",
+    "stator-fusing",
+
+    "hook-type-armature-automatic-winding-machine",
+    "shaft-embossing",
+    "servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly",
+    "armature-slot-insulation-paper-inserting-machine",
+    "commutator-slot-cutting",
+    "armature-slot-wedge-inserting-machine",
+    "armature-welding-machine",
+    "armature-testing-machine",
+    "varnish-bake",
+    "turning-machine-for-armature-outer-diameter-of-commutator",
+    "three-in-one-automatic-turning-machine",
+    "balancing",
+
+    "motor-stator-slot-insulation-paper-inserting-machine",
+    "varnish-bake-twm-301a",
+
+    "cooling-fan-motor-automatic-production-line",
+    "automatic-modular-production-line",
+    "automatic-winding-machine-product-series",
+    "automatic-modular-production-line-2",
+
+    "bobbin",
+
+    "scara",
+    "application-of-six-axis-robotic-arm",
+
+    "automatic-feeding-system",
+    "turntable-automatic-assembling-equipment",
+    "vibration-feeding-assembling-equipment",
+
+    "semiconductor-sealing-testing-process-equipment"
+  ]
+}

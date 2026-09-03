@@ -1,7 +1,7 @@
 {
   "_note": "Japanese family names and summaries. Model numbers and product titles are identifiers and stay in their published form; only the surrounding prose is translated. 巻線機 / 電機子 / 整流子 / スロット絶縁紙 / ヒュージング / ワニス含浸 are the terms the Japanese motor-equipment trade uses.",
 
-  "totals": { "products": 38, "models": 28, "families": 8, "withSpecs": 12 },
+  "totals": { "products": 38, "models": 28, "families": 9, "withSpecs": 12 },
 
   "families": [
     {
@@ -25,8 +25,14 @@
     {
       "slug": "modular-production-lines",
       "name": "モジュラー生産ライン",
-      "count": 5,
-      "summary": "標準機をモジュールとして連結し、一本のラインに仕立てます。ボビン生産、冷却ファンモーターの組立、構成変更が可能な巻線セル。増産はライン入れ替えではなくモジュール追加で対応します。"
+      "count": 4,
+      "summary": "標準機をモジュールとして連結し、一本のラインに仕立てます。冷却ファンモーターの組立、構成変更が可能な巻線セル。増産はライン入れ替えではなくモジュール追加で対応します。"
+    },
+    {
+      "slug": "bobbin-equipment",
+      "name": "ボビン設備",
+      "count": 1,
+      "summary": "点火コイル・巻線ボビンの全自動巻線。多段巻線、端子処理、連続生産に対応し、単体でもボビンラインへの組込みでも運用できます。"
     },
     {
       "slug": "custom-production-equipment",

@@ -408,6 +408,25 @@ $site      = Read-LocaleJson 'site.json'      $loc.code
 $catalogue = Read-LocaleJson 'catalogue.json' $loc.code
 $company   = Read-LocaleJson 'company.json'   $loc.code
 
+# Family (category) display order comes from product-order.json -- the single
+# ordering source shared with build-data.ps1. Reorder catalogue families to
+# match; a family not listed keeps its original position at the end.
+$orderPath = Join-Path $SrcDir 'data/product-order.json'
+if (Test-Path $orderPath) {
+    $po = Get-Content $orderPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    if ($po.PSObject.Properties['families'] -and $po.families) {
+        $famRank = @{}; $fr = 0
+        foreach ($fs in $po.families) { if ($fs -and -not $famRank.ContainsKey($fs)) { $famRank[$fs] = $fr; $fr++ } }
+        $bigF = 10000; $fseq = 0
+        $famDec = New-Object System.Collections.Generic.List[object]
+        foreach ($fam in $catalogue.families) {
+            $fk = if ($famRank.ContainsKey($fam.slug)) { $famRank[$fam.slug] } else { $bigF + $fseq }
+            $famDec.Add([pscustomobject]@{ k = $fk; s = $fseq; fam = $fam }); $fseq++
+        }
+        $catalogue.families = @($famDec | Sort-Object k, s | ForEach-Object { $_.fam })
+    }
+}
+
 Add-Member -InputObject $site -NotePropertyName 'urlPrefix'  -NotePropertyValue $loc.url  -Force
 Add-Member -InputObject $site -NotePropertyName 'lang'       -NotePropertyValue $loc.lang -Force
 # Stamp is derived from the app.js content hash so identical builds produce

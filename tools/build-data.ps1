@@ -137,6 +137,17 @@ if (Test-Path $TagsPath) {
 $familyBySource = @{}
 foreach ($f in $catalogue.families) { $familyBySource[$f.sourceName] = $f }
 
+# Per-slug family overrides from product-order.json (breadcrumb predates a
+# category split). Loaded here so family assignment in the product loop can use it.
+$familyOverride = @{}
+$OrderPathEarly = Join-Path $SiteRoot 'src\data\product-order.json'
+if (Test-Path $OrderPathEarly) {
+    $ordEarly = Get-Content $OrderPathEarly -Raw -Encoding UTF8 | ConvertFrom-Json
+    if ($ordEarly.PSObject.Properties['familyOverride']) {
+        foreach ($pr in $ordEarly.familyOverride.PSObject.Properties) { $familyOverride[$pr.Name] = [string]$pr.Value }
+    }
+}
+
 # ---------------------------------------------------------------------------
 # Build a ready-to-use responsive image object from a manifest entry
 #   Templates should never have to assemble a srcset by hand.
@@ -262,6 +273,13 @@ foreach ($p in $raw) {
     if ($family) {
         $famSlug = [string]$family.slug
         $famName = [string]$family.name
+    }
+    # Per-slug family override (product-order.json familyOverride). Used where the
+    # scraped breadcrumb predates a category split -- e.g. bobbin was filed under
+    # Modular Lines but is now its own Bobbin category.
+    if ($familyOverride.ContainsKey($slug)) {
+        $famSlug = $familyOverride[$slug]
+        foreach ($cf in $catalogue.families) { if ($cf.slug -eq $famSlug) { $famName = [string]$cf.name; break } }
     }
 
     # Alt text describes what the machine is, not "image of a machine".
@@ -556,6 +574,29 @@ foreach ($f in $catalogue.families) {
         fromModel = $chosen.product.model
         fromSlug  = $chosen.product.slug
     }
+}
+
+# Explicit display order (src\data\product-order.json). Sorting the product list
+# here flows through to the flat catalogue table AND every family's product list
+# (build.ps1 derives both from this order): flagship models first, then the
+# official-site sequence. A slug not listed keeps source order at the very end.
+$OrderPath = Join-Path $SiteRoot 'src\data\product-order.json'
+if (Test-Path $OrderPath) {
+    $ord = Get-Content $OrderPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    $rank = @{}
+    $r = 0
+    foreach ($s in $ord.order) { if ($s -and -not $rank.ContainsKey($s)) { $rank[$s] = $r; $r++ } }
+    $big = 100000
+    $seq = 0
+    $decorated = New-Object System.Collections.Generic.List[object]
+    foreach ($p in $products) {
+        $k = if ($rank.ContainsKey($p.slug)) { $rank[$p.slug] } else { $big + $seq }
+        $decorated.Add([pscustomobject]@{ key = $k; seq = $seq; prod = $p })
+        $seq++
+    }
+    $sorted = New-Object System.Collections.Generic.List[object]
+    foreach ($d in @($decorated | Sort-Object key, seq)) { $sorted.Add($d.prod) }
+    $products = $sorted
 }
 
 $out = [pscustomobject]@{
