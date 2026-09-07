@@ -1,14 +1,14 @@
 {
-    "generated":  "2026-09-07",
+    "generated":  "2026-09-08",
     "covers":  {
                    "winding-machines":  {
-                                            "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-06-2000w.webp",
-                                            "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-06-400w.webp 400w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-06-800w.webp 800w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-06-1200w.webp 1200w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-06-1600w.webp 1600w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-06-2000w.webp 2000w",
+                                            "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-2000w.webp",
+                                            "srcset":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-800w.webp 800w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-1200w.webp 1200w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-1600w.webp 1600w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-2000w.webp 2000w",
                                             "width":  2000,
                                             "height":  2000,
-                                            "alt":  "Winding Machines - Two Poles Type Stator Winding Machine (with One Axle)",
-                                            "fromModel":  "TWM-901S",
-                                            "fromSlug":  "two-poles-type-stator-winding-machine-with-one-axle"
+                                            "alt":  "Winding Machines - Out-Slot Brushless Motor Stator Automatic Winding Machine",
+                                            "fromModel":  "TWM-929",
+                                            "fromSlug":  "out-slot-brushless-motor-stator-automatic-winding-machine"
                                         },
                    "motor-rotor-equipment":  {
                                                  "src":  "/assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-2000w.webp",
@@ -2586,22 +2586,13 @@
                                              "primary":  1
                                          },
                                          {
-                                             "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-03-400w.webp",
-                                             "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-03-400w.webp 400w",
-                                             "width":  400,
-                                             "height":  400,
-                                             "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle) in operation",
-                                             "shows":  "equipment",
-                                             "primary":  2
-                                         },
-                                         {
                                              "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-07-2000w.webp",
                                              "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-07-400w.webp 400w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-07-800w.webp 800w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-07-1200w.webp 1200w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-07-1600w.webp 1600w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-07-2000w.webp 2000w",
                                              "width":  2000,
                                              "height":  2000,
                                              "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle)",
                                              "shows":  "equipment",
-                                             "primary":  3
+                                             "primary":  2
                                          },
                                          {
                                              "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-09-2000w.webp",
@@ -2610,7 +2601,7 @@
                                              "height":  2000,
                                              "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle)",
                                              "shows":  "equipment",
-                                             "primary":  4
+                                             "primary":  3
                                          },
                                          {
                                              "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-10-2000w.webp",
@@ -2619,7 +2610,7 @@
                                              "height":  2000,
                                              "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle)",
                                              "shows":  "equipment",
-                                             "primary":  5
+                                             "primary":  4
                                          },
                                          {
                                              "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-04-307w.webp",
@@ -2628,7 +2619,7 @@
                                              "height":  307,
                                              "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle) in operation",
                                              "shows":  "equipment",
-                                             "primary":  6
+                                             "primary":  5
                                          },
                                          {
                                              "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-02-1600w.webp",
@@ -2661,6 +2652,14 @@
                                              "height":  800,
                                              "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle) - finished part produced on this machine",
                                              "shows":  "workpiece"
+                                         },
+                                         {
+                                             "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-03-400w.webp",
+                                             "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-03-400w.webp 400w",
+                                             "width":  400,
+                                             "height":  400,
+                                             "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle) - finished part produced on this machine",
+                                             "shows":  "workpiece"
                                          }
                                      ],
                          "equipment":  [
@@ -2674,22 +2673,13 @@
                                                "primary":  1
                                            },
                                            {
-                                               "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-03-400w.webp",
-                                               "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-03-400w.webp 400w",
-                                               "width":  400,
-                                               "height":  400,
-                                               "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle) in operation",
-                                               "shows":  "equipment",
-                                               "primary":  2
-                                           },
-                                           {
                                                "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-07-2000w.webp",
                                                "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-07-400w.webp 400w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-07-800w.webp 800w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-07-1200w.webp 1200w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-07-1600w.webp 1600w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-07-2000w.webp 2000w",
                                                "width":  2000,
                                                "height":  2000,
                                                "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle)",
                                                "shows":  "equipment",
-                                               "primary":  3
+                                               "primary":  2
                                            },
                                            {
                                                "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-09-2000w.webp",
@@ -2698,7 +2688,7 @@
                                                "height":  2000,
                                                "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle)",
                                                "shows":  "equipment",
-                                               "primary":  4
+                                               "primary":  3
                                            },
                                            {
                                                "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-10-2000w.webp",
@@ -2707,7 +2697,7 @@
                                                "height":  2000,
                                                "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle)",
                                                "shows":  "equipment",
-                                               "primary":  5
+                                               "primary":  4
                                            },
                                            {
                                                "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-04-307w.webp",
@@ -2716,7 +2706,7 @@
                                                "height":  307,
                                                "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle) in operation",
                                                "shows":  "equipment",
-                                               "primary":  6
+                                               "primary":  5
                                            }
                                        ],
                          "workpiece":  [
@@ -2749,6 +2739,14 @@
                                                "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-02-400w.webp 400w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-02-800w.webp 800w",
                                                "width":  800,
                                                "height":  800,
+                                               "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle) - finished part produced on this machine",
+                                               "shows":  "workpiece"
+                                           },
+                                           {
+                                               "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-03-400w.webp",
+                                               "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/gallery-03-400w.webp 400w",
+                                               "width":  400,
+                                               "height":  400,
                                                "alt":  "TWM-901S Two Poles Type Stator Winding Machine (with one axle) - finished part produced on this machine",
                                                "shows":  "workpiece"
                                            }
