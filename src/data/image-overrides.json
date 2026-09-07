@@ -25,6 +25,7 @@
                                                                                     "twm-308a-hook-type-armature-automatic-winding-machine-02",
                                                                                     "gallery-04",
                                                                                     "twm-308a-hook-type-armature-automatic-winding-machine-07",
+                                                                                    "twm-308a-hook-type-armature-automatic-winding-machine-03",
                                                                                     "twm-308a-hook-type-armature-automatic-winding-machine-04",
                                                                                     "twm-308a-hook-type-armature-automatic-winding-machine-10",
                                                                                     "gallery-02",
@@ -46,6 +47,7 @@
                                                                          "gallery-02",
                                                                          "twm-308a-hook-type-armature-automatic-winding-machine-07",
                                                                          "twm-308a-hook-type-armature-automatic-winding-machine-08",
+                                                                         "twm-308a-hook-type-armature-automatic-winding-machine-03",
                                                                          "twm-308a-hook-type-armature-automatic-winding-machine-04",
                                                                          "twm-308a-hook-type-armature-automatic-winding-machine-10"
                                                                      ],
@@ -98,6 +100,7 @@
                                                                   "twm-isw001-vertical-slot-wedge-inserting-machine-02",
                                                                   "twm-isw001-vertical-slot-wedge-inserting-machine-03",
                                                                   "gallery-02",
+                                                                  "gallery-03",
                                                                   "gallery-01"
                                                               ],
                     "two-poles-type-stator-winding-machine-with-one-axle":  [
@@ -269,6 +272,7 @@
                                                               "gallery-02",
                                                               "gallery-04",
                                                               "gallery-05",
+                                                              "gallery-06",
                                                               "gallery-03"
                                                           ],
                     "servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly":  [
@@ -297,7 +301,6 @@
                                                        "gallery-05"
                                                    ],
                       "hook-type-armature-automatic-winding-machine-horizontal":  [
-                                                                                      "twm-308a-hook-type-armature-automatic-winding-machine-03",
                                                                                       "gallery-01"
                                                                                   ],
                       "hook-type-armature-automatic-winding-machine-vertical":  [
@@ -305,7 +308,6 @@
                                                                                     "gallery-01"
                                                                                 ],
                       "hook-type-armature-automatic-winding-machine":  [
-                                                                           "twm-308a-hook-type-armature-automatic-winding-machine-03",
                                                                            "gallery-01"
                                                                        ],
                       "out-slot-brushless-motor-stator-automatic-winding-machine":  [
@@ -347,9 +349,6 @@
                                                                                                "twm-ap01-vertical-brushless-motor-slot-insulation-paper-02",
                                                                                                "gallery-02"
                                                                                            ],
-                      "vertical-slot-wedge-inserting-machine":  [
-                                                                    "gallery-03"
-                                                                ],
                       "two-poles-type-stator-winding-machine-with-one-axle":  [
                                                                                   "twm-901s-two-poles-type-stator-winding-machine-02",
                                                                                   "twm-901s-two-poles-type-stator-winding-machine-03",
@@ -396,7 +395,6 @@
                                                                        "gallery-07"
                                                                    ],
                       "automatic-modular-production-line":  [
-                                                                "gallery-06",
                                                                 "gallery-07"
                                                             ],
                       "servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly":  [
@@ -413,6 +411,7 @@
                                                                          "gallery-04"
                                                                      ],
                    "hook-type-armature-automatic-winding-machine-horizontal":  [
+                                                                                   "twm-308a-hook-type-armature-automatic-winding-machine-03",
                                                                                    "twm-308a-hook-type-armature-automatic-winding-machine-04",
                                                                                    "twm-308a-hook-type-armature-automatic-winding-machine-10",
                                                                                    "gallery-02",
@@ -423,6 +422,7 @@
                                                                                  "gallery-05"
                                                                              ],
                    "hook-type-armature-automatic-winding-machine":  [
+                                                                        "twm-308a-hook-type-armature-automatic-winding-machine-03",
                                                                         "twm-308a-hook-type-armature-automatic-winding-machine-04",
                                                                         "twm-308a-hook-type-armature-automatic-winding-machine-10"
                                                                     ],

@@ -2,22 +2,22 @@
     "generated":  "2026-09-07",
     "covers":  {
                    "winding-machines":  {
-                                            "src":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-2000w.webp",
-                                            "srcset":  "/assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-400w.webp 400w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-800w.webp 800w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-1200w.webp 1200w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-1600w.webp 1600w, /assets/images/out-slot-brushless-motor-stator-automatic-winding-machine/twm-929-out-slot-brushless-motor-stator-automatic-02-2000w.webp 2000w",
+                                            "src":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-06-2000w.webp",
+                                            "srcset":  "/assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-06-400w.webp 400w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-06-800w.webp 800w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-06-1200w.webp 1200w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-06-1600w.webp 1600w, /assets/images/two-poles-type-stator-winding-machine-with-one-axle/twm-901s-two-poles-type-stator-winding-machine-06-2000w.webp 2000w",
                                             "width":  2000,
                                             "height":  2000,
-                                            "alt":  "Winding Machines - Out-Slot Brushless Motor Stator Automatic Winding Machine",
-                                            "fromModel":  "TWM-929",
-                                            "fromSlug":  "out-slot-brushless-motor-stator-automatic-winding-machine"
+                                            "alt":  "Winding Machines - Two Poles Type Stator Winding Machine (with One Axle)",
+                                            "fromModel":  "TWM-901S",
+                                            "fromSlug":  "two-poles-type-stator-winding-machine-with-one-axle"
                                         },
                    "motor-rotor-equipment":  {
-                                                 "src":  "/assets/images/three-in-one-automatic-turning-machine/twm-la01-three-in-one-automatic-turning-machine-01-2000w.webp",
-                                                 "srcset":  "/assets/images/three-in-one-automatic-turning-machine/twm-la01-three-in-one-automatic-turning-machine-01-400w.webp 400w, /assets/images/three-in-one-automatic-turning-machine/twm-la01-three-in-one-automatic-turning-machine-01-800w.webp 800w, /assets/images/three-in-one-automatic-turning-machine/twm-la01-three-in-one-automatic-turning-machine-01-1200w.webp 1200w, /assets/images/three-in-one-automatic-turning-machine/twm-la01-three-in-one-automatic-turning-machine-01-1600w.webp 1600w, /assets/images/three-in-one-automatic-turning-machine/twm-la01-three-in-one-automatic-turning-machine-01-2000w.webp 2000w",
+                                                 "src":  "/assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-2000w.webp",
+                                                 "srcset":  "/assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-400w.webp 400w, /assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-800w.webp 800w, /assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-1200w.webp 1200w, /assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-1600w.webp 1600w, /assets/images/armature-slot-wedge-inserting-machine/twm-iw01-armature-slot-wedge-inserting-machine-01-2000w.webp 2000w",
                                                  "width":  2000,
                                                  "height":  2000,
-                                                 "alt":  "Rotor \u0026 Armature Equipment - Three in One Automatic Turning Machine",
-                                                 "fromModel":  "TWM-LA01",
-                                                 "fromSlug":  "three-in-one-automatic-turning-machine"
+                                                 "alt":  "Rotor \u0026 Armature Equipment - Armature Slot Wedge Inserting Machine",
+                                                 "fromModel":  "TWM-IW01",
+                                                 "fromSlug":  "armature-slot-wedge-inserting-machine"
                                              },
                    "brushless-motor-equipment":  {
                                                      "src":  "/assets/images/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/twm-sp001-horizontal-brushless-motor-slot-insulation-paper-01-2000w.webp",
@@ -1313,13 +1313,22 @@
                                              "primary":  4
                                          },
                                          {
+                                             "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-2000w.webp",
+                                             "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-1200w.webp 1200w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-1600w.webp 1600w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-2000w.webp 2000w",
+                                             "width":  2000,
+                                             "height":  2000,
+                                             "alt":  "TWM-308A Hook Type Armature Automatic Winding Machine (Horizontal)",
+                                             "shows":  "equipment",
+                                             "primary":  5
+                                         },
+                                         {
                                              "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-10-2000w.webp",
                                              "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-10-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-10-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-10-1200w.webp 1200w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-10-1600w.webp 1600w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-10-2000w.webp 2000w",
                                              "width":  2000,
                                              "height":  2000,
                                              "alt":  "TWM-308A Hook Type Armature Automatic Winding Machine (Horizontal)",
                                              "shows":  "equipment",
-                                             "primary":  6
+                                             "primary":  7
                                          },
                                          {
                                              "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-02-800w.webp",
@@ -1328,7 +1337,7 @@
                                              "height":  800,
                                              "alt":  "TWM-308A Hook Type Armature Automatic Winding Machine (Horizontal) in operation",
                                              "shows":  "equipment",
-                                             "primary":  7
+                                             "primary":  8
                                          },
                                          {
                                              "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-03-800w.webp",
@@ -1337,15 +1346,7 @@
                                              "height":  800,
                                              "alt":  "TWM-308A Hook Type Armature Automatic Winding Machine (Horizontal) in operation",
                                              "shows":  "equipment",
-                                             "primary":  8
-                                         },
-                                         {
-                                             "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-2000w.webp",
-                                             "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-1200w.webp 1200w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-1600w.webp 1600w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-2000w.webp 2000w",
-                                             "width":  2000,
-                                             "height":  2000,
-                                             "alt":  "TWM-308A Hook Type Armature Automatic Winding Machine (Horizontal) - finished part produced on this machine",
-                                             "shows":  "workpiece"
+                                             "primary":  9
                                          },
                                          {
                                              "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-01-800w.webp",
@@ -1394,13 +1395,22 @@
                                                "primary":  4
                                            },
                                            {
+                                               "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-2000w.webp",
+                                               "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-1200w.webp 1200w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-1600w.webp 1600w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-2000w.webp 2000w",
+                                               "width":  2000,
+                                               "height":  2000,
+                                               "alt":  "TWM-308A Hook Type Armature Automatic Winding Machine (Horizontal)",
+                                               "shows":  "equipment",
+                                               "primary":  5
+                                           },
+                                           {
                                                "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-10-2000w.webp",
                                                "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-10-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-10-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-10-1200w.webp 1200w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-10-1600w.webp 1600w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-10-2000w.webp 2000w",
                                                "width":  2000,
                                                "height":  2000,
                                                "alt":  "TWM-308A Hook Type Armature Automatic Winding Machine (Horizontal)",
                                                "shows":  "equipment",
-                                               "primary":  6
+                                               "primary":  7
                                            },
                                            {
                                                "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-02-800w.webp",
@@ -1409,7 +1419,7 @@
                                                "height":  800,
                                                "alt":  "TWM-308A Hook Type Armature Automatic Winding Machine (Horizontal) in operation",
                                                "shows":  "equipment",
-                                               "primary":  7
+                                               "primary":  8
                                            },
                                            {
                                                "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-03-800w.webp",
@@ -1418,18 +1428,10 @@
                                                "height":  800,
                                                "alt":  "TWM-308A Hook Type Armature Automatic Winding Machine (Horizontal) in operation",
                                                "shows":  "equipment",
-                                               "primary":  8
+                                               "primary":  9
                                            }
                                        ],
                          "workpiece":  [
-                                           {
-                                               "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-2000w.webp",
-                                               "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-1200w.webp 1200w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-1600w.webp 1600w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/twm-308a-hook-type-armature-automatic-winding-machine-03-2000w.webp 2000w",
-                                               "width":  2000,
-                                               "height":  2000,
-                                               "alt":  "TWM-308A Hook Type Armature Automatic Winding Machine (Horizontal) - finished part produced on this machine",
-                                               "shows":  "workpiece"
-                                           },
                                            {
                                                "src":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-01-800w.webp",
                                                "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-01-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine-horizontal/gallery-01-800w.webp 800w",
@@ -3592,15 +3594,6 @@
                          "specTable":  null,
                          "gallery":  [
                                          {
-                                             "src":  "/assets/images/vertical-slot-wedge-inserting-machine/twm-isw001-vertical-slot-wedge-inserting-machine-02-800w.webp",
-                                             "srcset":  "/assets/images/vertical-slot-wedge-inserting-machine/twm-isw001-vertical-slot-wedge-inserting-machine-02-400w.webp 400w, /assets/images/vertical-slot-wedge-inserting-machine/twm-isw001-vertical-slot-wedge-inserting-machine-02-800w.webp 800w",
-                                             "width":  800,
-                                             "height":  800,
-                                             "alt":  "TWM-ISW001 Vertical slot wedge inserting machine",
-                                             "shows":  "equipment",
-                                             "primary":  1
-                                         },
-                                         {
                                              "src":  "/assets/images/vertical-slot-wedge-inserting-machine/twm-isw001-vertical-slot-wedge-inserting-machine-03-1600w.webp",
                                              "srcset":  "/assets/images/vertical-slot-wedge-inserting-machine/twm-isw001-vertical-slot-wedge-inserting-machine-03-400w.webp 400w, /assets/images/vertical-slot-wedge-inserting-machine/twm-isw001-vertical-slot-wedge-inserting-machine-03-800w.webp 800w, /assets/images/vertical-slot-wedge-inserting-machine/twm-isw001-vertical-slot-wedge-inserting-machine-03-1200w.webp 1200w, /assets/images/vertical-slot-wedge-inserting-machine/twm-isw001-vertical-slot-wedge-inserting-machine-03-1600w.webp 1600w",
                                              "width":  1600,
@@ -3619,33 +3612,25 @@
                                              "primary":  3
                                          },
                                          {
+                                             "src":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-03-800w.webp",
+                                             "srcset":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-03-400w.webp 400w, /assets/images/vertical-slot-wedge-inserting-machine/gallery-03-800w.webp 800w",
+                                             "width":  800,
+                                             "height":  800,
+                                             "alt":  "TWM-ISW001 Vertical slot wedge inserting machine in operation",
+                                             "shows":  "equipment",
+                                             "primary":  4
+                                         },
+                                         {
                                              "src":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-01-400w.webp",
                                              "srcset":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-01-400w.webp 400w",
                                              "width":  400,
                                              "height":  400,
                                              "alt":  "TWM-ISW001 Vertical slot wedge inserting machine in operation",
                                              "shows":  "equipment",
-                                             "primary":  4
-                                         },
-                                         {
-                                             "src":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-03-800w.webp",
-                                             "srcset":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-03-400w.webp 400w, /assets/images/vertical-slot-wedge-inserting-machine/gallery-03-800w.webp 800w",
-                                             "width":  800,
-                                             "height":  800,
-                                             "alt":  "TWM-ISW001 Vertical slot wedge inserting machine - finished part produced on this machine",
-                                             "shows":  "workpiece"
+                                             "primary":  5
                                          }
                                      ],
                          "equipment":  [
-                                           {
-                                               "src":  "/assets/images/vertical-slot-wedge-inserting-machine/twm-isw001-vertical-slot-wedge-inserting-machine-02-800w.webp",
-                                               "srcset":  "/assets/images/vertical-slot-wedge-inserting-machine/twm-isw001-vertical-slot-wedge-inserting-machine-02-400w.webp 400w, /assets/images/vertical-slot-wedge-inserting-machine/twm-isw001-vertical-slot-wedge-inserting-machine-02-800w.webp 800w",
-                                               "width":  800,
-                                               "height":  800,
-                                               "alt":  "TWM-ISW001 Vertical slot wedge inserting machine",
-                                               "shows":  "equipment",
-                                               "primary":  1
-                                           },
                                            {
                                                "src":  "/assets/images/vertical-slot-wedge-inserting-machine/twm-isw001-vertical-slot-wedge-inserting-machine-03-1600w.webp",
                                                "srcset":  "/assets/images/vertical-slot-wedge-inserting-machine/twm-isw001-vertical-slot-wedge-inserting-machine-03-400w.webp 400w, /assets/images/vertical-slot-wedge-inserting-machine/twm-isw001-vertical-slot-wedge-inserting-machine-03-800w.webp 800w, /assets/images/vertical-slot-wedge-inserting-machine/twm-isw001-vertical-slot-wedge-inserting-machine-03-1200w.webp 1200w, /assets/images/vertical-slot-wedge-inserting-machine/twm-isw001-vertical-slot-wedge-inserting-machine-03-1600w.webp 1600w",
@@ -3665,30 +3650,32 @@
                                                "primary":  3
                                            },
                                            {
+                                               "src":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-03-800w.webp",
+                                               "srcset":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-03-400w.webp 400w, /assets/images/vertical-slot-wedge-inserting-machine/gallery-03-800w.webp 800w",
+                                               "width":  800,
+                                               "height":  800,
+                                               "alt":  "TWM-ISW001 Vertical slot wedge inserting machine in operation",
+                                               "shows":  "equipment",
+                                               "primary":  4
+                                           },
+                                           {
                                                "src":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-01-400w.webp",
                                                "srcset":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-01-400w.webp 400w",
                                                "width":  400,
                                                "height":  400,
                                                "alt":  "TWM-ISW001 Vertical slot wedge inserting machine in operation",
                                                "shows":  "equipment",
-                                               "primary":  4
+                                               "primary":  5
                                            }
                                        ],
                          "workpiece":  [
-                                           {
-                                               "src":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-03-800w.webp",
-                                               "srcset":  "/assets/images/vertical-slot-wedge-inserting-machine/gallery-03-400w.webp 400w, /assets/images/vertical-slot-wedge-inserting-machine/gallery-03-800w.webp 800w",
-                                               "width":  800,
-                                               "height":  800,
-                                               "alt":  "TWM-ISW001 Vertical slot wedge inserting machine - finished part produced on this machine",
-                                               "shows":  "workpiece"
-                                           }
+
                                        ],
                          "spec":  null,
                          "feature":  null,
                          "app":  null,
                          "hasSpec":  false,
-                         "imageCount":  5
+                         "imageCount":  4
                      },
                      {
                          "slug":  "stator-fusing",
@@ -4029,13 +4016,22 @@
                                              "primary":  4
                                          },
                                          {
+                                             "src":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-2000w.webp",
+                                             "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-1200w.webp 1200w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-1600w.webp 1600w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-2000w.webp 2000w",
+                                             "width":  2000,
+                                             "height":  2000,
+                                             "alt":  "TWM-308A Hook-Type Armature Automatic Winding Machine",
+                                             "shows":  "equipment",
+                                             "primary":  5
+                                         },
+                                         {
                                              "src":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-04-800w.webp",
                                              "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-04-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-04-800w.webp 800w",
                                              "width":  800,
                                              "height":  800,
                                              "alt":  "TWM-308A Hook-Type Armature Automatic Winding Machine",
                                              "shows":  "equipment",
-                                             "primary":  5
+                                             "primary":  6
                                          },
                                          {
                                              "src":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-10-2000w.webp",
@@ -4044,15 +4040,7 @@
                                              "height":  2000,
                                              "alt":  "TWM-308A Hook-Type Armature Automatic Winding Machine",
                                              "shows":  "equipment",
-                                             "primary":  6
-                                         },
-                                         {
-                                             "src":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-2000w.webp",
-                                             "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-1200w.webp 1200w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-1600w.webp 1600w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-2000w.webp 2000w",
-                                             "width":  2000,
-                                             "height":  2000,
-                                             "alt":  "TWM-308A Hook-Type Armature Automatic Winding Machine - finished part produced on this machine",
-                                             "shows":  "workpiece"
+                                             "primary":  7
                                          },
                                          {
                                              "src":  "/assets/images/hook-type-armature-automatic-winding-machine/gallery-01-800w.webp",
@@ -4101,13 +4089,22 @@
                                                "primary":  4
                                            },
                                            {
+                                               "src":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-2000w.webp",
+                                               "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-1200w.webp 1200w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-1600w.webp 1600w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-2000w.webp 2000w",
+                                               "width":  2000,
+                                               "height":  2000,
+                                               "alt":  "TWM-308A Hook-Type Armature Automatic Winding Machine",
+                                               "shows":  "equipment",
+                                               "primary":  5
+                                           },
+                                           {
                                                "src":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-04-800w.webp",
                                                "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-04-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-04-800w.webp 800w",
                                                "width":  800,
                                                "height":  800,
                                                "alt":  "TWM-308A Hook-Type Armature Automatic Winding Machine",
                                                "shows":  "equipment",
-                                               "primary":  5
+                                               "primary":  6
                                            },
                                            {
                                                "src":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-10-2000w.webp",
@@ -4116,18 +4113,10 @@
                                                "height":  2000,
                                                "alt":  "TWM-308A Hook-Type Armature Automatic Winding Machine",
                                                "shows":  "equipment",
-                                               "primary":  6
+                                               "primary":  7
                                            }
                                        ],
                          "workpiece":  [
-                                           {
-                                               "src":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-2000w.webp",
-                                               "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-800w.webp 800w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-1200w.webp 1200w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-1600w.webp 1600w, /assets/images/hook-type-armature-automatic-winding-machine/twm-308a-hook-type-armature-automatic-winding-machine-03-2000w.webp 2000w",
-                                               "width":  2000,
-                                               "height":  2000,
-                                               "alt":  "TWM-308A Hook-Type Armature Automatic Winding Machine - finished part produced on this machine",
-                                               "shows":  "workpiece"
-                                           },
                                            {
                                                "src":  "/assets/images/hook-type-armature-automatic-winding-machine/gallery-01-800w.webp",
                                                "srcset":  "/assets/images/hook-type-armature-automatic-winding-machine/gallery-01-400w.webp 400w, /assets/images/hook-type-armature-automatic-winding-machine/gallery-01-800w.webp 800w",
@@ -7302,8 +7291,8 @@
                                              "primary":  4
                                          },
                                          {
-                                             "src":  "/assets/images/automatic-modular-production-line/gallery-03-800w.webp",
-                                             "srcset":  "/assets/images/automatic-modular-production-line/gallery-03-400w.webp 400w, /assets/images/automatic-modular-production-line/gallery-03-800w.webp 800w",
+                                             "src":  "/assets/images/automatic-modular-production-line/gallery-06-800w.webp",
+                                             "srcset":  "/assets/images/automatic-modular-production-line/gallery-06-400w.webp 400w, /assets/images/automatic-modular-production-line/gallery-06-800w.webp 800w",
                                              "width":  800,
                                              "height":  800,
                                              "alt":  "Automatic Modular Production Line in operation",
@@ -7311,12 +7300,13 @@
                                              "primary":  5
                                          },
                                          {
-                                             "src":  "/assets/images/automatic-modular-production-line/gallery-06-800w.webp",
-                                             "srcset":  "/assets/images/automatic-modular-production-line/gallery-06-400w.webp 400w, /assets/images/automatic-modular-production-line/gallery-06-800w.webp 800w",
+                                             "src":  "/assets/images/automatic-modular-production-line/gallery-03-800w.webp",
+                                             "srcset":  "/assets/images/automatic-modular-production-line/gallery-03-400w.webp 400w, /assets/images/automatic-modular-production-line/gallery-03-800w.webp 800w",
                                              "width":  800,
                                              "height":  800,
-                                             "alt":  "Automatic Modular Production Line - finished part produced on this machine",
-                                             "shows":  "workpiece"
+                                             "alt":  "Automatic Modular Production Line in operation",
+                                             "shows":  "equipment",
+                                             "primary":  6
                                          },
                                          {
                                              "src":  "/assets/images/automatic-modular-production-line/gallery-07-324w.webp",
@@ -7365,24 +7355,25 @@
                                                "primary":  4
                                            },
                                            {
+                                               "src":  "/assets/images/automatic-modular-production-line/gallery-06-800w.webp",
+                                               "srcset":  "/assets/images/automatic-modular-production-line/gallery-06-400w.webp 400w, /assets/images/automatic-modular-production-line/gallery-06-800w.webp 800w",
+                                               "width":  800,
+                                               "height":  800,
+                                               "alt":  "Automatic Modular Production Line in operation",
+                                               "shows":  "equipment",
+                                               "primary":  5
+                                           },
+                                           {
                                                "src":  "/assets/images/automatic-modular-production-line/gallery-03-800w.webp",
                                                "srcset":  "/assets/images/automatic-modular-production-line/gallery-03-400w.webp 400w, /assets/images/automatic-modular-production-line/gallery-03-800w.webp 800w",
                                                "width":  800,
                                                "height":  800,
                                                "alt":  "Automatic Modular Production Line in operation",
                                                "shows":  "equipment",
-                                               "primary":  5
+                                               "primary":  6
                                            }
                                        ],
                          "workpiece":  [
-                                           {
-                                               "src":  "/assets/images/automatic-modular-production-line/gallery-06-800w.webp",
-                                               "srcset":  "/assets/images/automatic-modular-production-line/gallery-06-400w.webp 400w, /assets/images/automatic-modular-production-line/gallery-06-800w.webp 800w",
-                                               "width":  800,
-                                               "height":  800,
-                                               "alt":  "Automatic Modular Production Line - finished part produced on this machine",
-                                               "shows":  "workpiece"
-                                           },
                                            {
                                                "src":  "/assets/images/automatic-modular-production-line/gallery-07-324w.webp",
                                                "srcset":  "/assets/images/automatic-modular-production-line/gallery-07-324w.webp 324w",
