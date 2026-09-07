@@ -374,15 +374,19 @@ foreach ($p in $raw) {
                     }
                     Add-Member -InputObject $obj -NotePropertyName 'shows' -NotePropertyValue 'equipment' -Force
                     if ($img.PSObject.Properties['alt'] -and $img.alt) { $obj.alt = $img.alt }
-                    # Extract the primary index from the basename (twm-929-...-01-1600w
-                    # -> 01, ...-02-1600w -> 02) so the hero picker can prefer the
-                    # first shot from the source page, which is the machine, over
-                    # any later frame that happens to be pixel-larger but shows a
-                    # workpiece or a detail. Falls to 99 for anything unparseable
-                    # so it never leapfrogs a real primary.
+                    # Primary rank = position in the ordered machine override list
+                    # (image-overrides.json machine[slug]), which lists ALL
+                    # equipment for the product -- gallery AND scraped -- already
+                    # ordered full-machine -> close-up -> banner. This is the single
+                    # source of SOLUTION order, so gallery and scraped share one
+                    # scale (no more gallery details leapfrogging scraped machines).
+                    # Falls back to the basename index only if the image is not
+                    # listed, so it never leapfrogs a listed primary.
                     $primary = 99
-                    if ($img.PSObject.Properties['basename'] -and $img.basename -match '-(\d+)$') {
-                        $primary = [int]$Matches[1]
+                    if ($imgBase -and ($slugMachineList -contains $imgBase)) {
+                        $primary = [array]::IndexOf($slugMachineList, $imgBase) + 1
+                    } elseif ($img.PSObject.Properties['basename'] -and $img.basename -match '-(\d+)$') {
+                        $primary = 50 + [int]$Matches[1]
                     }
                     Add-Member -InputObject $obj -NotePropertyName 'primary' -NotePropertyValue $primary -Force
                     # A close-up / process shot listed in the detail override
@@ -430,13 +434,13 @@ foreach ($p in $raw) {
         # arrays serialized into products.json (consumed by the lightbox
         # SOLUTION / FINISHED_PRODUCTS tabs) share the same order as the
         # merged gallery.
-        # Within Solutions: full-machine overviews first, close-up / process
-        # detail shots after (the _detail flag, false sorts before true), then
-        # by the client's primary rank, then widest derivative.
+        # Within Solutions: order strictly by primary rank, which is the position
+        # in the ordered machine override list (full-machine -> close-up ->
+        # banner, suspects last within their tier). One scale for gallery and
+        # scraped, so nothing leapfrogs. Ties break on the widest derivative.
         $equipmentSorted = New-Object System.Collections.Generic.List[object]
         foreach ($e in @($equipment | Sort-Object `
-                @{Expression={ if ($_.PSObject.Properties['_detail'] -and $_._detail) { 1 } else { 0 } }}, `
-                @{Expression={ if ($_.PSObject.Properties['primary']) { $_.primary } else { 50 } }}, `
+                @{Expression={ if ($_.PSObject.Properties['primary']) { $_.primary } else { 500 } }}, `
                 @{Expression={ -$_.width }})) {
             $equipmentSorted.Add($e)
         }
