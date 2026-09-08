@@ -9,7 +9,7 @@
   "country": "Taiwan",
 
   "_inquiryEndpointNote": "Google Apps Script Web App /exec URL for the Add-to-Quote inquiry form. Empty string = the form falls back to a prefilled mailto to the sales inbox. Paste the deployed URL here, then rebuild.",
-  "inquiryEndpoint": "",
+  "inquiryEndpoint": "https://script.google.com/macros/s/AKfycbwBjFnkctEYa1bvyj0Vhi08xY79aFks8Km7GLE44Uy9dkA341xGbU3pPyUua6PbdUU/exec",
   "inquiryEmail": "iverson.hsu@fatop-global.com",
 
   "tagline": "Machines that build electric motors",

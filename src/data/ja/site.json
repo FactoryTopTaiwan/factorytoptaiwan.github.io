@@ -9,7 +9,7 @@
   "city": "台中",
   "country": "台湾",
 
-  "inquiryEndpoint": "",
+  "inquiryEndpoint": "https://script.google.com/macros/s/AKfycbwBjFnkctEYa1bvyj0Vhi08xY79aFks8Km7GLE44Uy9dkA341xGbU3pPyUua6PbdUU/exec",
   "inquiryEmail": "iverson.hsu@fatop-global.com",
 
   "tagline": "電動モーターを生産する機械",
