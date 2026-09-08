@@ -1273,10 +1273,19 @@
       body: JSON.stringify(payload),
       redirect: 'follow',
       signal: ctrl ? ctrl.signal : undefined
-    }).then(function (r) { return r.json().catch(function () { return { ok: r.ok }; }); })
-      .then(function (d) {
+    }).then(function (r) {
+        var httpOk = r.ok;
+        return r.text().then(function (t) {
+          var d = {}; try { d = JSON.parse(t); } catch (e) {}
+          return { httpOk: httpOk, d: d };
+        });
+      })
+      .then(function (res) {
         done = true; clearTimeout(timer);
-        if (d && d.ok) { succeed(); }
+        var d = res.d || {};
+        // Success = HTTP 200 with no explicit failure flag. Tolerates the
+        // endpoint answering {ok:true}, {result:"success"}, or a bare 200.
+        if (res.httpOk && d.ok !== false && !d.error) { succeed(); }
         else { fail(); }
       })
       .catch(function () { if (!done) { clearTimeout(timer); fail(); } });
