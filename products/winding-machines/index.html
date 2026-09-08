@@ -183,6 +183,18 @@
         </svg>
       </button>
 
+      <!-- Inquiry-list trigger. Ships hidden; app.js reveals it once the list
+           has at least one machine, and keeps the count in sync. -->
+      <button class="inq-trigger" type="button" data-inq-open
+              aria-label="Open your inquiry list" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h10"/>
+        </svg>
+        <span class="inq-trigger__label">Inquiry</span>
+        <span class="inq-trigger__count" data-inq-count>0</span>
+      </button>
+
       <a class="btn btn--primary header__cta" href="/contact/">Request a quotation</a>
 
       <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
@@ -501,6 +513,96 @@
   </div>
 </footer>
 
-<script src="/assets/js/app.js?v=a753675cc4" defer></script>
+<!-- ==========================================================================
+     Add-to-Quote / Inquiry list. One panel: a right-hand drawer on desktop,
+     a bottom sheet on phones/tablets. All state is held in the browser
+     (localStorage); on submit it posts pure text to site.inquiryEndpoint, and
+     falls back to a prefilled mailto when that URL is not yet configured.
+     ========================================================================== -->
+<div class="inq" data-inq-root
+     data-inq-endpoint=""
+     data-inq-mailto="iverson.hsu@fatop-global.com"
+     data-t-added="Added to inquiry"
+     data-t-add="Add to inquiry"
+     data-t-remove="Remove"
+     data-t-one="machine"
+     data-t-many="machines"
+     data-t-reqname="Please enter your name."
+     data-t-reqemail="Please enter your email."
+     data-t-bademail="Please enter a valid email address."
+     data-t-reqitems="Add at least one machine before sending."
+     data-t-sending="Sending…"
+     data-t-send="Send inquiry"
+     data-t-error="Sorry, the inquiry could not be sent. Please try again, or email us directly.">
+  <div class="inq__backdrop" data-inq-close></div>
+  <aside class="inq__panel" role="dialog" aria-modal="true" aria-labelledby="inq-title" tabindex="-1">
+    <header class="inq__head">
+      <h2 class="inq__title" id="inq-title">Your inquiry list</h2>
+      <button class="inq__x" type="button" data-inq-close aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </header>
+
+    <div class="inq__scroll">
+      <p class="inq__empty" data-inq-empty>No machines added yet. Browse the catalogue and add the machines you would like a quotation for — then send them all in one request.</p>
+
+      <div class="inq__selected" data-inq-selected hidden>
+        <p class="inq__label">Selected machinery</p>
+        <ul class="inq__list" data-inq-list></ul>
+        <button class="inq__clear" type="button" data-inq-clear>Clear list</button>
+      </div>
+
+      <form class="inq__form" data-inq-form novalidate>
+        <div class="inq__field">
+          <label for="inq-name">Name</label>
+          <input id="inq-name" name="name" type="text" autocomplete="name" required maxlength="120">
+        </div>
+        <div class="inq__field">
+          <label for="inq-email">Email</label>
+          <input id="inq-email" name="email" type="email" autocomplete="email" required maxlength="160">
+        </div>
+        <div class="inq__field">
+          <label for="inq-company">Company <span class="inq__opt">optional</span></label>
+          <input id="inq-company" name="company" type="text" autocomplete="organization" maxlength="160">
+        </div>
+        <div class="inq__field">
+          <label for="inq-notes">Notes <span class="inq__opt">optional</span></label>
+          <textarea id="inq-notes" name="notes" rows="3" maxlength="1500"
+                    placeholder="Quantities, target output, timeline, or the part you need to produce."></textarea>
+        </div>
+        <!-- Honeypot: off-screen, not announced. A bot fills it; a human never sees it. -->
+        <div class="inq__hp" aria-hidden="true">
+          <label>Leave this field empty
+            <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <p class="inq__err" data-inq-error role="alert" hidden></p>
+        <button class="btn btn--primary btn--lg inq__submit" type="submit" data-inq-submit>
+          Send inquiry
+        </button>
+      </form>
+
+      <div class="inq__done" data-inq-done hidden>
+        <div class="inq__done-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+               stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <p class="inq__done-msg">Thank you. Your inquiry has been sent — our engineering team will reply by email shortly.</p>
+        <button class="btn btn--ghost" type="button" data-inq-close>Continue browsing</button>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- Mobile / tablet sticky action bar. Hidden until the list has an item. -->
+<div class="inq-bar" data-inq-bar hidden>
+  <button class="inq-bar__btn" type="button" data-inq-open>
+    <span class="inq-bar__count" data-inq-count>0</span>
+    <span class="inq-bar__text">Review inquiry</span>
+    <span class="btn__arrow" aria-hidden="true">→</span>
+  </button>
+</div>
+
+<script src="/assets/js/app.js?v=71eefc1cd0" defer></script>
 </body>
 </html>

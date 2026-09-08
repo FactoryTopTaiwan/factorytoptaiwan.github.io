@@ -183,6 +183,18 @@
         </svg>
       </button>
 
+      <!-- Inquiry-list trigger. Ships hidden; app.js reveals it once the list
+           has at least one machine, and keeps the count in sync. -->
+      <button class="inq-trigger" type="button" data-inq-open
+              aria-label="見積リストを開く" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h10"/>
+        </svg>
+        <span class="inq-trigger__label">見積リスト</span>
+        <span class="inq-trigger__count" data-inq-count>0</span>
+      </button>
+
       <a class="btn btn--primary header__cta" href="/ja/contact/">見積もりを依頼</a>
 
       <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false">
@@ -329,6 +341,96 @@
   </div>
 </footer>
 
-<script src="/assets/js/app.js?v=a753675cc4" defer></script>
+<!-- ==========================================================================
+     Add-to-Quote / Inquiry list. One panel: a right-hand drawer on desktop,
+     a bottom sheet on phones/tablets. All state is held in the browser
+     (localStorage); on submit it posts pure text to site.inquiryEndpoint, and
+     falls back to a prefilled mailto when that URL is not yet configured.
+     ========================================================================== -->
+<div class="inq" data-inq-root
+     data-inq-endpoint=""
+     data-inq-mailto="iverson.hsu@fatop-global.com"
+     data-t-added="追加済み"
+     data-t-add="見積リストに追加"
+     data-t-remove="削除"
+     data-t-one="台"
+     data-t-many="台"
+     data-t-reqname="お名前をご入力ください。"
+     data-t-reqemail="メールアドレスをご入力ください。"
+     data-t-bademail="有効なメールアドレスをご入力ください。"
+     data-t-reqitems="送信する前に機械を1台以上追加してください。"
+     data-t-sending="送信中…"
+     data-t-send="見積を送信"
+     data-t-error="申し訳ございません。送信できませんでした。もう一度お試しいただくか、直接メールでご連絡ください。">
+  <div class="inq__backdrop" data-inq-close></div>
+  <aside class="inq__panel" role="dialog" aria-modal="true" aria-labelledby="inq-title" tabindex="-1">
+    <header class="inq__head">
+      <h2 class="inq__title" id="inq-title">見積リスト</h2>
+      <button class="inq__x" type="button" data-inq-close aria-label="閉じる">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </header>
+
+    <div class="inq__scroll">
+      <p class="inq__empty" data-inq-empty>まだ機械が追加されていません。カタログから見積をご希望の機械を追加し、まとめて一度にお送りいただけます。</p>
+
+      <div class="inq__selected" data-inq-selected hidden>
+        <p class="inq__label">選択した機械</p>
+        <ul class="inq__list" data-inq-list></ul>
+        <button class="inq__clear" type="button" data-inq-clear>リストを消去</button>
+      </div>
+
+      <form class="inq__form" data-inq-form novalidate>
+        <div class="inq__field">
+          <label for="inq-name">お名前</label>
+          <input id="inq-name" name="name" type="text" autocomplete="name" required maxlength="120">
+        </div>
+        <div class="inq__field">
+          <label for="inq-email">メールアドレス</label>
+          <input id="inq-email" name="email" type="email" autocomplete="email" required maxlength="160">
+        </div>
+        <div class="inq__field">
+          <label for="inq-company">会社名 <span class="inq__opt">任意</span></label>
+          <input id="inq-company" name="company" type="text" autocomplete="organization" maxlength="160">
+        </div>
+        <div class="inq__field">
+          <label for="inq-notes">備考 <span class="inq__opt">任意</span></label>
+          <textarea id="inq-notes" name="notes" rows="3" maxlength="1500"
+                    placeholder="数量、目標生産量、納期、または生産したい部品など。"></textarea>
+        </div>
+        <!-- Honeypot: off-screen, not announced. A bot fills it; a human never sees it. -->
+        <div class="inq__hp" aria-hidden="true">
+          <label>Leave this field empty
+            <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <p class="inq__err" data-inq-error role="alert" hidden></p>
+        <button class="btn btn--primary btn--lg inq__submit" type="submit" data-inq-submit>
+          見積を送信
+        </button>
+      </form>
+
+      <div class="inq__done" data-inq-done hidden>
+        <div class="inq__done-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+               stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <p class="inq__done-msg">ありがとうございます。お問い合わせを送信しました。担当エンジニアより追ってメールでご連絡いたします。</p>
+        <button class="btn btn--ghost" type="button" data-inq-close>閲覧を続ける</button>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- Mobile / tablet sticky action bar. Hidden until the list has an item. -->
+<div class="inq-bar" data-inq-bar hidden>
+  <button class="inq-bar__btn" type="button" data-inq-open>
+    <span class="inq-bar__count" data-inq-count>0</span>
+    <span class="inq-bar__text">見積リストを確認</span>
+    <span class="btn__arrow" aria-hidden="true">→</span>
+  </button>
+</div>
+
+<script src="/assets/js/app.js?v=71eefc1cd0" defer></script>
 </body>
 </html>

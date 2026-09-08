@@ -2204,3 +2204,196 @@ body.lb-open { overflow: hidden; touch-action: none; }
 }
 .share__item:hover { background: var(--surface-hover); }
 .share__item svg { width: 1.05rem; height: 1.05rem; flex: none; color: var(--ink-muted); }
+
+/* ==========================================================================
+   Add-to-Quote / Inquiry list
+   Header trigger + a panel that is a right-hand drawer on desktop and a
+   bottom sheet on phones/tablets, plus a mobile sticky action bar. Uses the
+   existing tokens throughout so it reads as part of the same system.
+   ========================================================================== */
+
+/* ---- Product "Add to inquiry" button ---------------------------------- */
+.inq-add__ico { font-size: 1.05em; line-height: 1; }
+.inq-add__ico--check { display: none; }
+.inq-add.is-added { --btn-bg: var(--accent-weak); --btn-line: var(--accent-line); --btn-ink: var(--accent-ink); }
+.inq-add.is-added .inq-add__ico--plus { display: none; }
+.inq-add.is-added .inq-add__ico--check { display: inline; }
+/* Brief pulse when a machine is added */
+.inq-add.is-justAdded { animation: inq-pop var(--dur) var(--ease-out); }
+@keyframes inq-pop { 0% { transform: scale(1); } 40% { transform: scale(1.04); } 100% { transform: scale(1); } }
+
+/* ---- Header trigger ---------------------------------------------------- */
+.inq-trigger {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  padding: 0.55rem 0.85rem;
+  background: transparent; color: var(--ink);
+  border: var(--border) solid var(--line-strong);
+  border-radius: var(--radius);
+  font: inherit; font-size: var(--step--1); font-weight: 620;
+  cursor: pointer; white-space: nowrap;
+  transition: background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+.inq-trigger:hover { background: var(--surface-hover); border-color: var(--ink-faint); }
+.inq-trigger svg { width: 1.1rem; height: 1.1rem; }
+.inq-trigger__label { display: none; }
+@media (min-width: 48rem) { .inq-trigger__label { display: inline; } }
+.inq-trigger__count {
+  display: inline-grid; place-items: center;
+  min-width: 1.35rem; height: 1.35rem; padding: 0 0.35rem;
+  background: var(--accent-ink); color: var(--accent-on);
+  border-radius: 999px; font-size: 0.78rem; font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Overlay + panel --------------------------------------------------- */
+.inq {
+  position: fixed; inset: 0; z-index: var(--z-overlay);
+  visibility: hidden;
+}
+.inq.is-open { visibility: visible; }
+.inq__backdrop {
+  position: absolute; inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0; transition: opacity var(--dur) var(--ease-out);
+}
+.inq.is-open .inq__backdrop { opacity: 1; }
+
+.inq__panel {
+  position: absolute; inset-block: 0; inset-inline-end: 0;
+  width: min(30rem, 100%);
+  display: flex; flex-direction: column;
+  background: var(--bg-raised);
+  border-inline-start: var(--border) solid var(--line);
+  box-shadow: var(--shadow-2);
+  transform: translateX(100%);
+  transition: transform var(--dur) var(--ease-out);
+  will-change: transform;
+}
+.inq.is-open .inq__panel { transform: translateX(0); }
+
+.inq__head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--sp-4); padding: var(--sp-5) var(--sp-5) var(--sp-4);
+  border-bottom: var(--border) solid var(--line);
+}
+.inq__title { font-size: var(--step-1); font-weight: 680; margin: 0; }
+.inq__x {
+  display: grid; place-items: center; flex: none;
+  width: 2.25rem; height: 2.25rem;
+  background: transparent; color: var(--ink-muted);
+  border: var(--border) solid var(--line); border-radius: var(--radius);
+  cursor: pointer;
+}
+.inq__x:hover { background: var(--surface-hover); color: var(--ink); }
+.inq__x svg { width: 1.1rem; height: 1.1rem; }
+
+.inq__scroll { overflow-y: auto; padding: var(--sp-5); display: grid; gap: var(--sp-5); }
+
+.inq__empty { color: var(--ink-muted); line-height: var(--leading-body); margin: 0; }
+
+.inq__label {
+  font-size: var(--step--1); font-weight: 620; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--ink-faint); margin: 0 0 var(--sp-3);
+}
+.inq__list { list-style: none; margin: 0 0 var(--sp-3); padding: 0; display: grid; gap: var(--sp-2); }
+.inq__item {
+  display: flex; align-items: center; gap: var(--sp-3);
+  padding: var(--sp-3); background: var(--surface);
+  border: var(--border) solid var(--line); border-radius: var(--radius);
+}
+.inq__item-txt { min-width: 0; flex: 1 1 auto; }
+.inq__item-model { font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-ink); }
+.inq__item-title {
+  display: block; font-size: var(--step--1); color: var(--ink);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.inq__item-x {
+  flex: none; display: grid; place-items: center;
+  width: 1.9rem; height: 1.9rem;
+  background: transparent; color: var(--ink-faint);
+  border: var(--border) solid var(--line); border-radius: var(--radius);
+  cursor: pointer; font-size: 1rem; line-height: 1;
+}
+.inq__item-x:hover { color: var(--accent-ink); border-color: var(--accent-line); background: var(--accent-weak); }
+.inq__clear {
+  background: none; border: none; padding: 0; cursor: pointer;
+  color: var(--ink-faint); font: inherit; font-size: var(--step--1);
+  text-decoration: underline; text-underline-offset: 3px;
+}
+.inq__clear:hover { color: var(--ink); }
+
+.inq__form { display: grid; gap: var(--sp-4); }
+.inq__field { display: grid; gap: var(--sp-2); }
+.inq__field label { font-size: var(--step--1); font-weight: 620; color: var(--ink); }
+.inq__opt { color: var(--ink-faint); font-weight: 400; }
+.inq__field input,
+.inq__field textarea {
+  font: inherit; font-size: var(--step-0);
+  padding: 0.7rem 0.85rem;
+  background: var(--surface); color: var(--ink);
+  border: var(--border) solid var(--line-strong); border-radius: var(--radius);
+  width: 100%;
+}
+.inq__field input:focus-visible,
+.inq__field textarea:focus-visible {
+  outline: 2px solid var(--focus); outline-offset: 1px; border-color: var(--focus);
+}
+.inq__field textarea { resize: vertical; min-height: 4.5rem; }
+/* Honeypot — visually gone, still in the DOM for bots */
+.inq__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.inq__err {
+  margin: 0; color: var(--accent-ink); font-size: var(--step--1); font-weight: 620;
+}
+.inq__submit { width: 100%; justify-content: center; }
+.inq__submit[disabled] { opacity: 0.55; cursor: not-allowed; }
+
+.inq__done { display: grid; justify-items: center; gap: var(--sp-4); text-align: center; padding: var(--sp-6) var(--sp-3); }
+.inq__done-mark {
+  display: grid; place-items: center; width: 3.25rem; height: 3.25rem;
+  color: var(--accent-on); background: var(--accent-ink); border-radius: 999px;
+}
+.inq__done-mark svg { width: 1.6rem; height: 1.6rem; }
+.inq__done-msg { margin: 0; color: var(--ink); line-height: var(--leading-body); max-width: 34ch; }
+
+/* ---- Mobile sticky action bar ----------------------------------------- */
+.inq-bar {
+  position: fixed; inset-inline: 0; bottom: 0; z-index: var(--z-header);
+  padding: var(--sp-3) var(--gutter);
+  padding-bottom: calc(var(--sp-3) + env(safe-area-inset-bottom, 0px));
+  background: var(--bg-raised);
+  border-top: var(--border) solid var(--line);
+  box-shadow: 0 -8px 24px -16px rgba(0,0,0,0.6);
+}
+.inq-bar__btn {
+  display: flex; align-items: center; gap: var(--sp-3); width: 100%;
+  padding: 0.9rem 1.25rem;
+  background: var(--accent-ink); color: var(--accent-on);
+  border: none; border-radius: var(--radius);
+  font: inherit; font-size: var(--step-0); font-weight: 620; cursor: pointer;
+}
+.inq-bar__text { flex: 1 1 auto; text-align: start; }
+.inq-bar__count {
+  display: inline-grid; place-items: center;
+  min-width: 1.5rem; height: 1.5rem; padding: 0 0.4rem;
+  background: rgba(255,255,255,0.22); color: var(--accent-on);
+  border-radius: 999px; font-size: 0.85rem; font-weight: 700; font-variant-numeric: tabular-nums;
+}
+/* Desktop uses the header trigger + drawer; hide the bar there. */
+@media (min-width: 62rem) { .inq-bar { display: none; } }
+/* On phones/tablets the panel becomes a bottom sheet. */
+@media (max-width: 61.99rem) {
+  .inq__panel {
+    inset: auto 0 0 0; width: 100%;
+    max-height: 92dvh;
+    border-inline-start: none;
+    border-top: var(--border) solid var(--line);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    transform: translateY(100%);
+  }
+  .inq.is-open .inq__panel { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inq__backdrop, .inq__panel { transition: none; }
+  .inq-add.is-justAdded { animation: none; }
+}

@@ -164,6 +164,17 @@
             {{site.ui.requestQuote}}
             <span class="btn__arrow" aria-hidden="true">→</span>
           </a>
+          <button class="btn btn--ghost btn--lg inq-add" type="button"
+                  data-inq-add
+                  data-inq-id="{{page.url}}"
+                  data-inq-model="{{page.product.model}}"
+                  data-inq-title="{{page.product.title}}"
+                  data-inq-url="{{page.url}}"
+                  aria-label="{{site.ui.inquiryAddAria}}">
+            <span class="inq-add__ico inq-add__ico--plus" aria-hidden="true">＋</span>
+            <span class="inq-add__ico inq-add__ico--check" aria-hidden="true">✓</span>
+            <span class="inq-add__label">{{site.ui.inquiryAdd}}</span>
+          </button>
           <a class="btn btn--ghost btn--lg" href="{{site.urlPrefix}}/contact/#call">{{site.ui.bookCall}}</a>
 
           <!-- Share menu. Amazon-style small icon with a popover of send options

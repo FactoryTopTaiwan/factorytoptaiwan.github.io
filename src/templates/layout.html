@@ -159,6 +159,18 @@
         </svg>
       </button>
 
+      <!-- Inquiry-list trigger. Ships hidden; app.js reveals it once the list
+           has at least one machine, and keeps the count in sync. -->
+      <button class="inq-trigger" type="button" data-inq-open
+              aria-label="{{site.ui.inquiryOpenAria}}" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h10"/>
+        </svg>
+        <span class="inq-trigger__label">{{site.ui.inquiryOpen}}</span>
+        <span class="inq-trigger__count" data-inq-count>0</span>
+      </button>
+
       <a class="btn btn--primary header__cta" href="{{site.urlPrefix}}/contact/">{{site.ui.requestQuote}}</a>
 
       <button class="nav-toggle" type="button" aria-label="{{site.ui.openMenu}}" aria-expanded="false">
@@ -242,6 +254,96 @@
     </div>
   </div>
 </footer>
+
+<!-- ==========================================================================
+     Add-to-Quote / Inquiry list. One panel: a right-hand drawer on desktop,
+     a bottom sheet on phones/tablets. All state is held in the browser
+     (localStorage); on submit it posts pure text to site.inquiryEndpoint, and
+     falls back to a prefilled mailto when that URL is not yet configured.
+     ========================================================================== -->
+<div class="inq" data-inq-root
+     data-inq-endpoint="{{site.inquiryEndpoint}}"
+     data-inq-mailto="{{site.inquiryEmail}}"
+     data-t-added="{{site.ui.inquiryAdded}}"
+     data-t-add="{{site.ui.inquiryAdd}}"
+     data-t-remove="{{site.ui.inquiryRemove}}"
+     data-t-one="{{site.ui.inquiryMachineWord}}"
+     data-t-many="{{site.ui.inquiryMachinesWord}}"
+     data-t-reqname="{{site.ui.inquiryReqName}}"
+     data-t-reqemail="{{site.ui.inquiryReqEmail}}"
+     data-t-bademail="{{site.ui.inquiryBadEmail}}"
+     data-t-reqitems="{{site.ui.inquiryReqItems}}"
+     data-t-sending="{{site.ui.inquirySending}}"
+     data-t-send="{{site.ui.inquirySend}}"
+     data-t-error="{{site.ui.inquiryError}}">
+  <div class="inq__backdrop" data-inq-close></div>
+  <aside class="inq__panel" role="dialog" aria-modal="true" aria-labelledby="inq-title" tabindex="-1">
+    <header class="inq__head">
+      <h2 class="inq__title" id="inq-title">{{site.ui.inquiryTitle}}</h2>
+      <button class="inq__x" type="button" data-inq-close aria-label="{{site.ui.inquiryClose}}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+             stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </header>
+
+    <div class="inq__scroll">
+      <p class="inq__empty" data-inq-empty>{{site.ui.inquiryEmpty}}</p>
+
+      <div class="inq__selected" data-inq-selected hidden>
+        <p class="inq__label">{{site.ui.inquirySelected}}</p>
+        <ul class="inq__list" data-inq-list></ul>
+        <button class="inq__clear" type="button" data-inq-clear>{{site.ui.inquiryClear}}</button>
+      </div>
+
+      <form class="inq__form" data-inq-form novalidate>
+        <div class="inq__field">
+          <label for="inq-name">{{site.ui.inquiryName}}</label>
+          <input id="inq-name" name="name" type="text" autocomplete="name" required maxlength="120">
+        </div>
+        <div class="inq__field">
+          <label for="inq-email">{{site.ui.inquiryEmailLabel}}</label>
+          <input id="inq-email" name="email" type="email" autocomplete="email" required maxlength="160">
+        </div>
+        <div class="inq__field">
+          <label for="inq-company">{{site.ui.inquiryCompany}} <span class="inq__opt">{{site.ui.inquiryOptional}}</span></label>
+          <input id="inq-company" name="company" type="text" autocomplete="organization" maxlength="160">
+        </div>
+        <div class="inq__field">
+          <label for="inq-notes">{{site.ui.inquiryNotes}} <span class="inq__opt">{{site.ui.inquiryOptional}}</span></label>
+          <textarea id="inq-notes" name="notes" rows="3" maxlength="1500"
+                    placeholder="{{site.ui.inquiryNotesPlaceholder}}"></textarea>
+        </div>
+        <!-- Honeypot: off-screen, not announced. A bot fills it; a human never sees it. -->
+        <div class="inq__hp" aria-hidden="true">
+          <label>Leave this field empty
+            <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <p class="inq__err" data-inq-error role="alert" hidden></p>
+        <button class="btn btn--primary btn--lg inq__submit" type="submit" data-inq-submit>
+          {{site.ui.inquirySend}}
+        </button>
+      </form>
+
+      <div class="inq__done" data-inq-done hidden>
+        <div class="inq__done-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+               stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <p class="inq__done-msg">{{site.ui.inquirySuccess}}</p>
+        <button class="btn btn--ghost" type="button" data-inq-close>{{site.ui.inquiryContinue}}</button>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- Mobile / tablet sticky action bar. Hidden until the list has an item. -->
+<div class="inq-bar" data-inq-bar hidden>
+  <button class="inq-bar__btn" type="button" data-inq-open>
+    <span class="inq-bar__count" data-inq-count>0</span>
+    <span class="inq-bar__text">{{site.ui.inquiryReview}}</span>
+    <span class="btn__arrow" aria-hidden="true">→</span>
+  </button>
+</div>
 
 <script src="/assets/js/app.js?v={{site.buildStamp}}" defer></script>
 </body>

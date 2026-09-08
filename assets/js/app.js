@@ -1086,3 +1086,251 @@
 
   for (var j = 0; j < targets.length; j++) io.observe(targets[j]);
 })();
+
+/* ==========================================================================
+   Add-to-Quote / Inquiry list
+   A B2B "collect several machines, send one request" flow. State lives in
+   localStorage; submission posts pure text (name, email, company, machines,
+   notes) to the Google Apps Script endpoint in site.inquiryEndpoint. When that
+   URL is not configured it falls back to a prefilled mailto so the button is
+   never dead. No prices, no account, no file upload.
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  var root = document.querySelector('[data-inq-root]');
+  if (!root) return;
+
+  var KEY = 'fatop.inquiry.v1';
+  var endpoint = (root.getAttribute('data-inq-endpoint') || '').trim();
+  var mailto = (root.getAttribute('data-inq-mailto') || '').trim();
+  var T = function (k) { return root.getAttribute('data-t-' + k) || ''; };
+
+  var panel   = root.querySelector('.inq__panel');
+  var listEl  = root.querySelector('[data-inq-list]');
+  var selWrap = root.querySelector('[data-inq-selected]');
+  var emptyEl = root.querySelector('[data-inq-empty]');
+  var form    = root.querySelector('[data-inq-form]');
+  var errEl   = root.querySelector('[data-inq-error]');
+  var doneEl  = root.querySelector('[data-inq-done]');
+  var submit  = root.querySelector('[data-inq-submit]');
+  var bar     = document.querySelector('[data-inq-bar]');
+  var trigger = document.querySelector('.inq-trigger');
+  var counts  = document.querySelectorAll('[data-inq-count]');
+  var lastFocus = null;
+
+  /* ---- storage --------------------------------------------------------- */
+  function load() {
+    try { var v = JSON.parse(localStorage.getItem(KEY)); return Array.isArray(v) ? v : []; }
+    catch (e) { return []; }
+  }
+  function save(items) {
+    try { localStorage.setItem(KEY, JSON.stringify(items)); } catch (e) {}
+  }
+  var items = load();
+
+  function has(id) { for (var i = 0; i < items.length; i++) if (items[i].id === id) return true; return false; }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  /* ---- render ---------------------------------------------------------- */
+  function syncAddButtons() {
+    var btns = document.querySelectorAll('[data-inq-add]');
+    for (var i = 0; i < btns.length; i++) {
+      var b = btns[i];
+      var on = has(b.getAttribute('data-inq-id'));
+      b.classList.toggle('is-added', on);
+      var lbl = b.querySelector('.inq-add__label');
+      if (lbl) lbl.textContent = on ? T('added') : T('add');
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+  }
+
+  function render() {
+    var n = items.length;
+    for (var i = 0; i < counts.length; i++) counts[i].textContent = n;
+
+    if (trigger) trigger.hidden = n === 0;
+    if (bar) bar.hidden = n === 0;
+
+    if (emptyEl) emptyEl.hidden = n > 0;
+    if (selWrap) selWrap.hidden = n === 0;
+    if (submit) submit.disabled = n === 0;
+
+    if (listEl) {
+      var html = '';
+      for (var k = 0; k < items.length; k++) {
+        var it = items[k];
+        html += '<li class="inq__item">' +
+          '<span class="inq__item-txt">' +
+            (it.model ? '<span class="inq__item-model">' + esc(it.model) + '</span> ' : '') +
+            '<span class="inq__item-title">' + esc(it.title) + '</span>' +
+          '</span>' +
+          '<button class="inq__item-x" type="button" data-inq-del="' + esc(it.id) + '" ' +
+                  'aria-label="' + esc(T('remove') + ': ' + it.title) + '">×</button>' +
+        '</li>';
+      }
+      listEl.innerHTML = html;
+    }
+    syncAddButtons();
+  }
+
+  /* ---- add / remove ---------------------------------------------------- */
+  function add(item) {
+    if (!item.id || has(item.id)) return;
+    items.push(item); save(items); render();
+  }
+  function remove(id) {
+    items = items.filter(function (x) { return x.id !== id; });
+    save(items); render();
+  }
+  function clearAll() { items = []; save(items); render(); }
+
+  /* ---- open / close ---------------------------------------------------- */
+  function open() {
+    lastFocus = document.activeElement;
+    root.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    if (panel) panel.focus();
+    document.addEventListener('keydown', onKey);
+  }
+  function close() {
+    root.classList.remove('is-open');
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onKey);
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  function onKey(e) { if (e.key === 'Escape') close(); }
+
+  /* ---- submit ---------------------------------------------------------- */
+  function machinesText() {
+    return items.map(function (it) {
+      var url = it.url ? (location.origin + it.url) : '';
+      return (it.model ? it.model + ' — ' : '') + it.title + (url ? ' (' + url + ')' : '');
+    }).join('\n');
+  }
+  function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+  function showError(msg) {
+    if (!errEl) return;
+    errEl.textContent = msg; errEl.hidden = false;
+  }
+
+  function onSubmit(e) {
+    e.preventDefault();
+    if (!items.length) { showError(T('reqitems')); return; }
+    // Look fields up explicitly: form.name would return the form's own `name`
+    // property, not the <input name="name">.
+    var fName = form.querySelector('#inq-name');
+    var fEmail = form.querySelector('#inq-email');
+    var fCompany = form.querySelector('#inq-company');
+    var fNotes = form.querySelector('#inq-notes');
+    var fHp = form.querySelector('[name="website"]');
+    var name = fName.value.trim();
+    var email = fEmail.value.trim();
+    var company = fCompany.value.trim();
+    var notes = fNotes.value.trim();
+    var hp = fHp ? fHp.value : '';
+
+    if (hp) { render(); return; }                 // bot: silently drop
+    if (!name) { showError(T('reqname')); fName.focus(); return; }
+    if (!email) { showError(T('reqemail')); fEmail.focus(); return; }
+    if (!validEmail(email)) { showError(T('bademail')); fEmail.focus(); return; }
+    errEl.hidden = true;
+
+    var payload = {
+      name: name, email: email, company: company,
+      machines: machinesText(), notes: notes,
+      page: location.href, ts: new Date().toISOString()
+    };
+
+    /* No endpoint configured yet -> prefilled mailto, then treat as done. */
+    if (!endpoint) {
+      var subject = 'Machinery inquiry (' + items.length + ') — ' + (company || name);
+      var body = 'Name: ' + name + '\nEmail: ' + email + '\nCompany: ' + company +
+                 '\n\nMachines:\n' + machinesText() + '\n\nNotes:\n' + notes + '\n';
+      window.location.href = 'mailto:' + mailto +
+        '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      succeed();
+      return;
+    }
+
+    submit.disabled = true;
+    submit.textContent = T('sending');
+
+    var done = false;
+    var ctrl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 12000);
+
+    /* text/plain keeps this a "simple" request, so the browser sends no CORS
+       preflight — the pattern Apps Script Web Apps support. */
+    fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+      redirect: 'follow',
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function (r) { return r.json().catch(function () { return { ok: r.ok }; }); })
+      .then(function (d) {
+        done = true; clearTimeout(timer);
+        if (d && d.ok) { succeed(); }
+        else { fail(); }
+      })
+      .catch(function () { if (!done) { clearTimeout(timer); fail(); } });
+  }
+
+  function succeed() {
+    clearAll();
+    if (form) { form.reset(); form.hidden = true; }
+    if (selWrap) selWrap.hidden = true;
+    if (emptyEl) emptyEl.hidden = true;
+    if (doneEl) doneEl.hidden = false;
+    if (!root.classList.contains('is-open')) open();
+  }
+  function fail() {
+    submit.disabled = false;
+    submit.textContent = T('send');
+    showError(T('error') + ' ' + mailto);
+  }
+
+  /* ---- wire up --------------------------------------------------------- */
+  document.addEventListener('click', function (e) {
+    var addBtn = e.target.closest('[data-inq-add]');
+    if (addBtn) {
+      var id = addBtn.getAttribute('data-inq-id');
+      if (has(id)) { remove(id); }
+      else {
+        add({
+          id: id,
+          model: addBtn.getAttribute('data-inq-model') || '',
+          title: addBtn.getAttribute('data-inq-title') || '',
+          url: addBtn.getAttribute('data-inq-url') || ''
+        });
+        addBtn.classList.remove('is-justAdded');
+        void addBtn.offsetWidth;
+        addBtn.classList.add('is-justAdded');
+      }
+      return;
+    }
+    if (e.target.closest('[data-inq-open]')) { resetPanel(); open(); return; }
+    if (e.target.closest('[data-inq-close]')) { close(); return; }
+    if (e.target.closest('[data-inq-clear]')) { clearAll(); return; }
+    var del = e.target.closest('[data-inq-del]');
+    if (del) { remove(del.getAttribute('data-inq-del')); return; }
+  });
+
+  /* When reopening after a successful send, restore the form view. */
+  function resetPanel() {
+    if (doneEl) doneEl.hidden = true;
+    if (form) form.hidden = false;
+    if (errEl) errEl.hidden = true;
+    render();
+  }
+
+  if (form) form.addEventListener('submit', onSubmit);
+
+  render();
+})();
