@@ -61,7 +61,7 @@
 }
 </script>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Product","@id":"https://fatop-global.com/products/scara/#product","name":"Application of SCARA","description":"Application of SCARA built by Teamwork Automation in Taichung, Taiwan. Supplied as a standalone machine or integrated into a complete production line.","url":"https://fatop-global.com/products/scara/","brand":{"@type":"Brand","name":"Teamwork Automation"},"manufacturer":{"@type":"Organization","name":"Teamwork Automation Machinery Co., Ltd.","url":"https://fatop-global.com"},"category":"Robotic Production Lines"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://fatop-global.com/"},{"@type":"ListItem","position":2,"name":"Products","item":"https://fatop-global.com/products/"},{"@type":"ListItem","position":3,"name":"Robotic Production Lines","item":"https://fatop-global.com/products/robotic-production-lines/"},{"@type":"ListItem","position":4,"name":"Application of SCARA","item":"https://fatop-global.com/products/scara/"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Product","@id":"https://fatop-global.com/products/scara/#product","name":"Application of SCARA","description":"Application of SCARA built by Teamwork Automation in Taichung, Taiwan. Supplied as a standalone machine or integrated into a complete production line.","url":"https://fatop-global.com/products/scara/","brand":{"@type":"Brand","name":"Teamwork Automation"},"manufacturer":{"@type":"Organization","name":"Teamwork Automation Machinery Co., Ltd.","url":"https://fatop-global.com"},"category":"Robotic Production Lines","image":"https://fatop-global.com/assets/images/scara/gallery-01-400w.webp"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://fatop-global.com/"},{"@type":"ListItem","position":2,"name":"Products","item":"https://fatop-global.com/products/"},{"@type":"ListItem","position":3,"name":"Robotic Production Lines","item":"https://fatop-global.com/products/robotic-production-lines/"},{"@type":"ListItem","position":4,"name":"Application of SCARA","item":"https://fatop-global.com/products/scara/"}]}]}</script>
 </head>
 <body>
 
@@ -207,7 +207,81 @@
 
 <article class="section section--tight">
   <div class="shell">
-    <div class="prod prod--no-media">
+    <div class="prod">
+      
+      <div class="prod__media" data-prod-gallery>
+
+        <!-- Mobile-first swipeable carousel. Renders inline on phone/tablet.
+             Progressive enhancement: native scroll-snap works without JS;
+             JS adds pagination dots, snap-index tracking, and opens the
+             immersive viewer on tap. Video (if any) rides as the last slide. -->
+        <div class="pgal" data-pgal>
+          <div class="pgal__track" data-pgal-track>
+            
+            <button class="pgal__slide" type="button"
+                    data-pgal-slide="image"
+                    data-pgal-cat="solution"
+                    data-pgal-src="/assets/images/scara/gallery-01-400w.webp"
+                    data-pgal-srcset="/assets/images/scara/gallery-01-400w.webp 400w"
+                    data-pgal-w="400"
+                    data-pgal-h="400"
+                    data-pgal-alt="Application of SCARA in operation">
+              <img src="/assets/images/scara/gallery-01-400w.webp" srcset="/assets/images/scara/gallery-01-400w.webp 400w"
+                   sizes="100vw"
+                   width="400" height="400"
+                   alt="Application of SCARA in operation" loading="lazy" decoding="async">
+            </button>
+            
+            
+            
+          </div>
+          <div class="pgal__dots" data-pgal-dots aria-label="Images"></div>
+          <div class="pgal__cats" data-pgal-cats role="tablist">
+            
+            <button type="button" role="tab" class="pgal__cat is-active"
+                    data-pgal-cat-tab="solution">Solutions</button>
+            
+            
+          </div>
+        </div>
+
+        <button class="frame frame--hero" type="button" data-prod-zoom
+                aria-label="View larger">
+          <img class="prod__hero" src="/assets/images/scara/gallery-01-400w.webp" srcset="/assets/images/scara/gallery-01-400w.webp 400w"
+               sizes="(min-width: 62rem) 52vw, 100vw"
+               width="400" height="400"
+               alt="Application of SCARA in operation" loading="eager" fetchpriority="high" decoding="async"
+               data-prod-hero>
+          <span class="frame__zoom" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4M11 8v6M8 11h6"/>
+            </svg>
+          </span>
+        </button>
+
+        
+        <div class="thumb-group">
+          <p class="thumb-group__label">Solutions</p>
+          <div class="thumbs thumbs--eq">
+            
+            <button class="frame frame--sm thumb" type="button"
+                    data-prod-thumb
+                    data-src="/assets/images/scara/gallery-01-400w.webp"
+                    data-srcset="/assets/images/scara/gallery-01-400w.webp 400w"
+                    data-w="400"
+                    data-h="400"
+                    data-alt="Application of SCARA in operation"
+                    aria-label="Show Application of SCARA in operation">
+              <img src="/assets/images/scara/gallery-01-400w.webp" srcset="/assets/images/scara/gallery-01-400w.webp 400w" sizes="(min-width: 62rem) 17vw, 33vw"
+                   width="400" height="400" alt="Application of SCARA in operation" loading="lazy" decoding="async">
+            </button>
+            
+          </div>
+        </div>
+        
+
+        
+      </div>
       
 
       <div class="prod__head">
@@ -333,6 +407,70 @@
      overlaid at the bottom. Native <dialog> gives keyboard focus, Esc,
      and backdrop for free. -->
 
+<dialog class="lightbox" data-lightbox id="prod-lightbox" aria-label="View larger">
+  <header class="lightbox__bar">
+    
+    <span class="lightbox__count" data-lightbox-count aria-live="polite"></span>
+    <button class="lightbox__close" type="button" data-lightbox-close aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </header>
+
+  <div class="lightbox__body">
+    <div class="lightbox__stage" data-lightbox-stage>
+      <button class="lightbox__nav lightbox__nav--prev" type="button" data-lightbox-prev
+              aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button class="lightbox__nav lightbox__nav--next" type="button" data-lightbox-next
+              aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+
+      <div class="lightbox__track" data-lightbox-track>
+        
+        <div class="lightbox__slide" data-lightbox-slide="image" data-lightbox-cat="solution" data-lightbox-idx="0">
+          <div class="lightbox__zoomer" data-lightbox-zoomer>
+            <img class="lightbox__img" data-lightbox-img
+                 data-src="/assets/images/scara/gallery-01-400w.webp" data-srcset="/assets/images/scara/gallery-01-400w.webp 400w"
+                 width="400" height="400"
+                 alt="Application of SCARA in operation" decoding="async" loading="lazy" draggable="false">
+          </div>
+        </div>
+        
+        
+      </div>
+
+      
+
+      <div class="lightbox__dots" data-lightbox-dots aria-hidden="true"></div>
+    </div>
+
+    <aside class="lightbox__side">
+      <h2 class="lightbox__title">Application of SCARA</h2>
+      
+
+      <div class="lightbox__thumbs-wrap" role="tablist" aria-label="Images">
+        
+        <p class="thumb-group__label">Solutions</p>
+        <div class="lightbox__thumbs">
+          
+          <button class="lightbox__thumb" type="button" role="tab"
+                  data-lightbox-thumb="image"
+                  aria-label="Application of SCARA in operation">
+            <img src="/assets/images/scara/gallery-01-400w.webp" srcset="/assets/images/scara/gallery-01-400w.webp 400w" sizes="6rem"
+                 width="400" height="400" alt="" loading="lazy">
+          </button>
+          
+        </div>
+        
+        
+        
+      </div>
+    </aside>
+  </div>
+</dialog>
+
 
 
 <section class="section section--sunken">
@@ -344,6 +482,13 @@
     <div class="cat-grid">
       
       <a class="cat" href="/products/application-of-six-axis-robotic-arm/">
+        
+        <span class="cat__media">
+          <img src="/assets/images/application-of-six-axis-robotic-arm/gallery-01-800w.webp" srcset="/assets/images/application-of-six-axis-robotic-arm/gallery-01-400w.webp 400w, /assets/images/application-of-six-axis-robotic-arm/gallery-01-800w.webp 800w"
+               sizes="(min-width: 62rem) 25vw, 50vw"
+               width="800" height="800"
+               alt="Application of six-axis robotic arm in operation" loading="lazy" decoding="async">
+        </span>
         
         <span class="cat__body">
           <span class="cat__count model">By project</span>
