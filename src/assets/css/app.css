@@ -262,10 +262,20 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   letter-spacing: 0.02em;
   color: var(--ink-faint);
 }
-@media (min-width: 62rem) { .brand__sub { display: inline; } }
+/* The "FaTop Automation" sub-label costs ~140px; hold it back until there is
+   comfortably room for it alongside the full nav, so it never forces the brand
+   name to truncate on small desktops. */
+@media (min-width: 75rem) { .brand__sub { display: inline; } }
 
 .nav { display: none; margin-inline-start: auto; }
-@media (min-width: 64rem) { .nav { display: flex; align-items: center; gap: var(--sp-5); } }
+/* Once the nav appears, the brand name is shown in full (no ellipsis) and the
+   nav takes the slack; the gap opens up again on wider screens. */
+@media (min-width: 64rem) {
+  .nav { display: flex; align-items: center; gap: var(--sp-4); }
+  .brand { flex: none; }
+  .brand > span:not(.brand__mark) { overflow: visible; text-overflow: clip; }
+}
+@media (min-width: 82rem) { .nav { gap: var(--sp-5); } }
 
 .nav__link {
   padding: var(--sp-2) 0;
@@ -273,6 +283,9 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
   font-weight: 520;
   color: var(--ink-muted);
   text-decoration: none;
+  /* Never let a two-word item ("Turnkey lines") break onto a second line and
+     knock the row out of vertical centre. */
+  white-space: nowrap;
   transition: color var(--dur-fast) var(--ease-out);
 }
 .nav__link:hover, .nav__link[aria-current="page"] { color: var(--ink); }
@@ -2221,6 +2234,35 @@ body.lb-open { overflow: hidden; touch-action: none; }
 /* Brief pulse when a machine is added */
 .inq-add.is-justAdded { animation: inq-pop var(--dur) var(--ease-out); }
 @keyframes inq-pop { 0% { transform: scale(1); } 40% { transform: scale(1.04); } 100% { transform: scale(1); } }
+
+/* ---- Quick-add button on catalogue grid cards ------------------------- */
+/* The card stays a full-card link; the add button is a sibling overlaid on
+   the corner (never nested in the anchor), inside a positioned cell so the
+   grid layout and equal-height rows are preserved. */
+.cat-cell { position: relative; display: flex; }
+.cat-cell > .cat { flex: 1 1 auto; min-width: 0; }
+.cat-add {
+  position: absolute; z-index: 3;
+  inset-block-start: var(--sp-3); inset-inline-end: var(--sp-3);
+  width: 2.25rem; height: 2.25rem;
+  display: grid; place-items: center;
+  background: var(--surface); color: var(--ink);
+  border: var(--border) solid var(--line-strong); border-radius: 999px;
+  box-shadow: var(--shadow-1);
+  cursor: pointer; font-size: 1.15rem; line-height: 1;
+  transition: background var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-out);
+}
+.cat-add:hover { background: var(--surface-hover); border-color: var(--accent-line); color: var(--accent-ink); transform: scale(1.06); }
+.cat-add:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.cat-add__check { display: none; }
+.cat-add.is-added { background: var(--accent-ink); color: var(--accent-on); border-color: var(--accent-ink); }
+.cat-add.is-added .cat-add__plus { display: none; }
+.cat-add.is-added .cat-add__check { display: inline; }
+.cat-add.is-justAdded { animation: inq-pop var(--dur) var(--ease-out); }
+@media (prefers-reduced-motion: reduce) { .cat-add.is-justAdded { animation: none; } }
 
 /* ---- Header trigger ---------------------------------------------------- */
 .inq-trigger {

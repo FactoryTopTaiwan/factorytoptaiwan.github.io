@@ -514,6 +514,7 @@
     </div>
     <div class="cat-grid">
       {{#each page.siblings}}
+      <div class="cat-cell">
       <a class="cat" href="{{site.urlPrefix}}/products/{{slug}}/">
         {{#if hero}}
         <span class="cat__media">
@@ -528,6 +529,16 @@
           <span class="cat__name">{{title}}</span>
         </span>
       </a>
+      <button class="cat-add" type="button" data-inq-add
+              data-inq-id="{{url}}"
+              data-inq-model="{{model}}"
+              data-inq-title="{{title}}"
+              data-inq-url="{{url}}"
+              aria-label="{{inqAddAria}}">
+        <span class="cat-add__plus" aria-hidden="true">＋</span>
+        <span class="cat-add__check" aria-hidden="true">✓</span>
+      </button>
+      </div>
       {{/each}}
     </div>
   </div>

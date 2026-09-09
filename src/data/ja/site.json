@@ -62,7 +62,7 @@
 
   "nav": [
     { "label": "製品",         "href": "/ja/products/",  "key": "products" },
-    { "label": "ターンキーライン", "href": "/ja/turnkey/",   "key": "turnkey" },
+    { "label": "ターンキー", "href": "/ja/turnkey/",   "key": "turnkey" },
     { "label": "対応産業",      "href": "/ja/solutions/", "key": "solutions" },
     { "label": "サポート",      "href": "/ja/support/",   "key": "support" },
     { "label": "会社概要",      "href": "/ja/about/",     "key": "about" }

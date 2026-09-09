@@ -445,10 +445,20 @@ Add-Member -InputObject $site -NotePropertyName 'buildStamp' -NotePropertyValue 
 # and family lists all get the same treatment as family products.
 $byProjectLabel = ''
 if ($site.ui.PSObject.Properties['byProject']) { $byProjectLabel = $site.ui.byProject }
+$inqAddAria = ''
+if ($site.ui.PSObject.Properties['inquiryAddAria']) { $inqAddAria = $site.ui.inquiryAddAria }
 foreach ($p in $data.products) {
     $md = if ($p.model) { $p.model } else { $byProjectLabel }
     if ($p.PSObject.Properties['modelDisplay']) { $p.modelDisplay = $md }
     else { Add-Member -InputObject $p -NotePropertyName 'modelDisplay' -NotePropertyValue $md -Force }
+    # Locale-resolved product URL and the localized inquiry aria label, so the
+    # quick-add buttons in grid #each loops (which see only the item scope) get
+    # the correct /ja prefix and a real accessible name.
+    $purl = "{0}/products/{1}/" -f $loc.url, $p.slug
+    if ($p.PSObject.Properties['url']) { $p.url = $purl }
+    else { Add-Member -InputObject $p -NotePropertyName 'url' -NotePropertyValue $purl -Force }
+    if ($p.PSObject.Properties['inqAddAria']) { $p.inqAddAria = $inqAddAria }
+    else { Add-Member -InputObject $p -NotePropertyName 'inqAddAria' -NotePropertyValue $inqAddAria -Force }
 }
 Add-FamilyExtras -Catalogue $catalogue -UrlPrefix $loc.url -Site $site
 

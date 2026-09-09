@@ -259,7 +259,7 @@
 
   "nav": [
     { "label": "Products",  "href": "/products/",  "key": "products" },
-    { "label": "Turnkey lines", "href": "/turnkey/", "key": "turnkey" },
+    { "label": "Turnkey", "href": "/turnkey/", "key": "turnkey" },
     { "label": "Solutions", "href": "/solutions/", "key": "solutions" },
     { "label": "Support",   "href": "/support/",   "key": "support" },
     { "label": "About",     "href": "/about/",     "key": "about" }
