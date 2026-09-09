@@ -1,0 +1,135 @@
+{
+  "_note": "About-page copy and module data. English is the source; a src/data/ja/about.json can overlay any top-level key later (shallow merge, English falls through). Bracketed [ ... ] strings are placeholders for pending assets or facts the client must confirm before this goes to a buyer audience.",
+
+  "hero": {
+    "eyebrow": "About Teamwork Automation / FaTop",
+    "title": "The people who build the line behind your motor",
+    "summary": "Since 1992, Teamwork Automation has designed and built the winding, insulation, insertion, fusing, balancing and testing equipment that turns copper and steel into finished motors. We supply single machines and complete turnkey lines to manufacturers who cannot afford a line that only works in the brochure.",
+    "stats": [
+      { "value": "1992", "label": "Founded in Taichung, Taiwan" },
+      { "value": "30+", "label": "Years building motor-production equipment" },
+      { "value": "38", "label": "Standard machines across 9 process families" },
+      { "value": "[N]", "label": "Countries where our lines run today" }
+    ]
+  },
+
+  "trust": {
+    "eyebrow": "Social proof & trust",
+    "title": "Relied on by motor manufacturers in demanding industries",
+    "note": "Many of our projects are under NDA, so specific customer names and line photographs cannot be shown publicly. The marks below represent the industries and standards we build for; we can share relevant, permission-cleared references privately during technical evaluation.",
+    "logosLabel": "Selected industries served (customer names withheld under NDA)",
+    "logos": [
+      "[Logo / anonymized industry tag 1 — e.g. Automotive Tier-1]",
+      "[Logo / tag 2 — e.g. EV drivetrain]",
+      "[Logo / tag 3 — e.g. Power tools]",
+      "[Logo / tag 4 — e.g. Home appliance]",
+      "[Logo / tag 5 — e.g. Drone / UAV motors]",
+      "[Logo / tag 6 — e.g. HVAC & fan motors]",
+      "[Logo / tag 7 — e.g. Industrial pumps]",
+      "[Logo / tag 8 — e.g. E-mobility]"
+    ],
+    "badgesLabel": "Standards & compliance",
+    "badges": [
+      { "name": "[ISO 9001]", "note": "[Insert certificate number + issuing body, or mark 'in progress']" },
+      { "name": "[CE marking]", "note": "[Insert which machine families are CE-declared and the applicable directives]" },
+      { "name": "[CB / UL / other]", "note": "[List any additional electrical or safety conformities offered on request]" }
+    ],
+    "mapLabel": "Export footprint",
+    "mapCaption": "[Insert export map image or highlight list — regions/countries where lines are installed and serviced. Keep it directional, not a customer directory.]",
+    "regions": [
+      "[Region 1 — e.g. Southeast Asia]",
+      "[Region 2 — e.g. South Asia]",
+      "[Region 3 — e.g. Europe]",
+      "[Region 4 — e.g. North America]",
+      "[Region 5 — e.g. Latin America]"
+    ]
+  },
+
+  "demos": {
+    "eyebrow": "See the machines run",
+    "title": "Automation, at line speed",
+    "lede": "Short, high-speed clips of real processes — the fastest way for an engineer to judge whether our approach fits their part. Each demo pairs a 5–8 second loop with the numbers that matter.",
+    "items": [
+      {
+        "title": "EV hairpin stator forming & insertion",
+        "video": "[Insert 5–8s MP4/WebM loop, 1080×1080, muted, no audio track needed]",
+        "specs": [ "Process: [hairpin form → insert → twist]", "Cycle: [insert s/pc]", "Part range: [OD / slot count]" ]
+      },
+      {
+        "title": "Drone / BLDC out-slot winding",
+        "video": "[Insert 5–8s loop of TWM-929-class winding]",
+        "specs": [ "Process: needle / flyer winding", "Cycle: [s/pc]", "Wire: [dia range]" ]
+      },
+      {
+        "title": "Armature stuff-type winding",
+        "video": "[Insert 5–8s loop of TWM-702-class winding]",
+        "specs": [ "Process: automatic stuffing", "Cycle: [s/pc]", "Commutator: [type]" ]
+      },
+      {
+        "title": "Fusing / hot-staking",
+        "video": "[Insert 5–8s loop of RF30S-class fusing]",
+        "specs": [ "Process: resistance fusing", "Control: [current / time]", "Traceability: [yes/no]" ]
+      },
+      {
+        "title": "Balancing & final test",
+        "video": "[Insert 5–8s loop of balancing / testing cell]",
+        "specs": [ "Correction: [type]", "Test: surge / hi-pot / [others]", "Data: [logged / MES]" ]
+      },
+      {
+        "title": "Full modular line handover",
+        "video": "[Insert 5–8s pan of a running turnkey line]",
+        "specs": [ "Stations: [count]", "Throughput: [pcs/hr]", "Conveyance: [type]" ]
+      }
+    ]
+  },
+
+  "facility": {
+    "eyebrow": "Facility & engineering reality",
+    "title": "Built and proven in Taichung before it ships",
+    "lede": "Every line is assembled and run on our own floor first. What you see at the factory acceptance test is the machine you receive — not a render.",
+    "items": [
+      { "title": "Taichung assembly floor", "media": "[Insert wide photo of the assembly bay with machines in build]", "body": "Machines are fully built, wired and dry-run in-house so integration problems surface here, not on your floor." },
+      { "title": "R&D and controls lab", "media": "[Insert photo of R&D / PLC & HMI bench]", "body": "Mechanical design, PLC/HMI programming and process development under one roof, so tooling and control are tuned to your part." },
+      { "title": "Engineering & commissioning team", "media": "[Insert team photo — engineers at work, faces OK per release]", "body": "The engineers who design the line are the ones who commission it and train your operators." }
+    ]
+  },
+
+  "derisk": {
+    "eyebrow": "How we de-risk a high-ticket line",
+    "title": "What a global buyer actually needs to trust a supplier",
+    "items": [
+      { "title": "FAT before it leaves", "body": "A documented Factory Acceptance Test on your parts, witnessed on-site or by video, against agreed cycle time and yield criteria before shipment." },
+      { "title": "SAT after it lands", "body": "Site Acceptance Test and commissioning at your plant, with sign-off on the same criteria under your power, air and material." },
+      { "title": "Overseas engineer dispatch", "body": "[Insert typical dispatch lead time and coverage — e.g. engineers available for installation and training within X weeks, visa/logistics handled]." },
+      { "title": "Remote diagnostics", "body": "[Insert 2–3 sentences detailing the remote-support setup: secure VPN/HMI remote access, response window, and what can be resolved without a site visit]." },
+      { "title": "Spare parts & lead time", "body": "[Insert spare-parts policy: recommended spares kit, typical replacement lead time, and stock held for wear items]." },
+      { "title": "Warranty & documentation", "body": "One-year warranty from acceptance, full manuals, electrical drawings and a packing standard suited to sea freight. [Confirm exact warranty wording per contract.]" }
+    ]
+  },
+
+  "faq": {
+    "eyebrow": "International buyer FAQ",
+    "title": "The questions purchasing and engineering ask us first",
+    "lede": "Straight answers for buyers evaluating a turnkey partner from overseas. Where a number depends on the project, we say so rather than quote a figure we cannot stand behind.",
+    "items": [
+      { "q": "Do you run a Factory Acceptance Test (FAT) before shipment?", "a": "Yes. We agree measurable criteria — cycle time, first-pass yield, defect handling — and demonstrate them on your parts on our floor. You can attend in person or witness by live video, and we provide the FAT report." },
+      { "q": "What about Site Acceptance Test (SAT) and installation?", "a": "We commission the line at your plant and re-run the acceptance criteria under your utilities and materials. [Insert who arranges rigging/utilities and typical on-site duration.]" },
+      { "q": "Can you send engineers overseas for installation and training?", "a": "[Insert dispatch policy: regions covered, typical lead time to mobilize, duration on site, and how travel/visa logistics are handled.]" },
+      { "q": "What are typical lead times?", "a": "[Insert lead-time ranges by scope — single machine vs. modular line — and note that they depend on specification and current backlog.]" },
+      { "q": "How is after-sales support handled across time zones?", "a": "[Insert support hours, contact channels, remote-access response window, and escalation path.]" },
+      { "q": "What is the warranty?", "a": "One year from acceptance, covering defects in material and workmanship under normal use. Wear parts and consumables are excluded. [Confirm exact terms per contract.]" },
+      { "q": "What payment terms and currency do you work in?", "a": "[Insert accepted terms — e.g. T/T with staged milestones, L/C — and currency. Do not publish figures you are not ready to commit to.]" },
+      { "q": "Can the line integrate with our MES / data systems?", "a": "[Insert data/traceability capability: what is logged, export formats, and MES/OPC-UA options.]" },
+      { "q": "Do you protect our process and IP?", "a": "Yes. We work under NDA and do not disclose customer processes, part geometries or line photographs. That is also why our public references are anonymized." }
+    ]
+  },
+
+  "factsheet": {
+    "eyebrow": "Company profile",
+    "title": "Take the two-page fact sheet to your team",
+    "body": "A concise, ungated PDF: who we are, the process families we cover, standards, and how a turnkey engagement runs — everything a colleague needs to shortlist us. No form, no email wall.",
+    "buttonLabel": "Download the company fact sheet (PDF)",
+    "fileHref": "[Insert /assets/docs/fatop-company-fact-sheet.pdf once the 2-page PDF is ready]",
+    "note": "[If the PDF is not ready, this button can link to the Contact page or be hidden until the asset exists.]"
+  }
+}

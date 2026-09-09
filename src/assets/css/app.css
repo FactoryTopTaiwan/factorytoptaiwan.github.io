@@ -2439,3 +2439,146 @@ body.lb-open { overflow: hidden; touch-action: none; }
   .inq__backdrop, .inq__panel { transition: none; }
   .inq-add.is-justAdded { animation: none; }
 }
+
+/* ==========================================================================
+   About page — trust wall, demos, facility, de-risk grid, FAQ, fact sheet
+   Built from the same tokens as the rest of the site, so it inherits light/dark.
+   ========================================================================== */
+
+/* Shared placeholder box for pending assets (logos, video, photos, map). */
+.ph {
+  display: grid; place-items: center; gap: var(--sp-2);
+  padding: var(--sp-4); text-align: center;
+  color: var(--ink-faint); font-size: var(--step--1); line-height: var(--leading-snug);
+  background:
+    repeating-linear-gradient(45deg, var(--surface) 0 10px, var(--bg-raised) 10px 20px);
+  border: 1px dashed var(--line-strong); border-radius: var(--radius-lg);
+}
+.ph__txt { max-width: 34ch; }
+.ph__play {
+  display: grid; place-items: center; width: 3rem; height: 3rem;
+  color: var(--accent-on); background: var(--accent-ink); border-radius: 999px;
+}
+.ph__play svg { width: 1.3rem; height: 1.3rem; }
+.ph--logo { aspect-ratio: 3 / 2; font-family: var(--font-mono); }
+.ph--video { aspect-ratio: 1 / 1; }
+.ph--photo { aspect-ratio: 4 / 3; }
+.ph--map { aspect-ratio: 16 / 9; margin-bottom: var(--sp-3); }
+
+/* Hero stat row */
+.statrow {
+  margin: var(--sp-7) 0 0; padding: 0;
+  display: grid; gap: var(--sp-4);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (min-width: 48rem) { .statrow { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.statrow__item {
+  padding: var(--sp-5); background: var(--surface);
+  border: var(--border) solid var(--line); border-radius: var(--radius-lg);
+}
+.statrow__value { font-size: var(--step-3); font-weight: 680; letter-spacing: -0.02em; color: var(--ink); }
+.statrow__label { margin: var(--sp-2) 0 0; color: var(--ink-muted); font-size: var(--step--1); line-height: var(--leading-snug); }
+
+/* Small uppercase label above a sub-block */
+.minilabel {
+  margin: var(--sp-6) 0 var(--sp-3);
+  font-size: var(--step--1); font-weight: 620; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+
+/* Logo / industry wall */
+.logowall {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: var(--sp-3);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (min-width: 40rem) { .logowall { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.logowall__cell { margin: 0; }
+
+/* Badges + export map, side by side on desktop */
+.trust-split { display: grid; gap: var(--sp-6); }
+@media (min-width: 62rem) { .trust-split { grid-template-columns: 1fr 1fr; gap: var(--sp-8); } }
+.badgerow { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-3); }
+.badge {
+  display: flex; flex-direction: column; gap: 2px;
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--surface); border: var(--border) solid var(--line); border-radius: var(--radius);
+}
+.badge__name { font-weight: 640; color: var(--ink); }
+.badge__note { font-size: var(--step--1); color: var(--ink-muted); }
+.chiprow { list-style: none; margin: var(--sp-3) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.chip {
+  padding: 0.3rem 0.7rem; font-size: var(--step--1); color: var(--ink-muted);
+  background: var(--accent-weak); border: var(--border) solid var(--accent-line); border-radius: 999px;
+}
+
+/* Equipment demo grid */
+.demo-grid {
+  display: grid; gap: var(--sp-5);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+}
+.demo { margin: 0; }
+.demo .ph--video { position: relative; }
+.demo .ph--video .ph__txt { font-size: 0.72rem; }
+.demo__cap { padding: var(--sp-3) var(--sp-1) 0; }
+.demo__title { font-size: var(--step-0); font-weight: 640; }
+.callouts { list-style: none; margin: var(--sp-2) 0 0; padding: 0; display: grid; gap: 2px; }
+.callouts li {
+  font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-muted);
+  padding-inline-start: var(--sp-3); position: relative;
+}
+.callouts li::before { content: ""; position: absolute; inset-inline-start: 0; top: 0.55em; width: 4px; height: 4px; border-radius: 999px; background: var(--accent); }
+
+/* Facility grid */
+.facility-grid {
+  display: grid; gap: var(--sp-5);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+}
+.facility { margin: 0; }
+.facility figcaption { padding: var(--sp-3) var(--sp-1) 0; }
+.facility__title { font-size: var(--step-0); font-weight: 640; margin-bottom: var(--sp-2); }
+.facility figcaption p { color: var(--ink-muted); }
+
+/* De-risk capability grid */
+.capgrid {
+  display: grid; gap: var(--sp-4);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+}
+.cap {
+  padding: var(--sp-5); background: var(--surface);
+  border: var(--border) solid var(--line); border-radius: var(--radius-lg);
+  border-inline-start: 3px solid var(--accent);
+}
+.cap__title { font-size: var(--step-0); font-weight: 640; margin-bottom: var(--sp-2); }
+.cap p { color: var(--ink-muted); }
+
+/* FAQ accordion (native details/summary, no JS) */
+.faq { display: grid; gap: var(--sp-3); max-width: var(--max-prose); }
+.faq__item {
+  background: var(--surface); border: var(--border) solid var(--line);
+  border-radius: var(--radius); overflow: hidden;
+}
+.faq__q {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4);
+  padding: var(--sp-4) var(--sp-5); cursor: pointer;
+  font-weight: 620; color: var(--ink); list-style: none;
+}
+.faq__q::-webkit-details-marker { display: none; }
+.faq__q:hover { background: var(--surface-hover); }
+.faq__item[open] .faq__q { border-bottom: var(--border) solid var(--line); }
+.faq__chev { flex: none; color: var(--ink-faint); transition: transform var(--dur) var(--ease-out); }
+.faq__chev svg { width: 1.15rem; height: 1.15rem; display: block; }
+.faq__item[open] .faq__chev { transform: rotate(180deg); }
+.faq__a { padding: var(--sp-4) var(--sp-5); }
+.faq__a p { color: var(--ink-muted); line-height: var(--leading-body); margin: 0; max-width: var(--measure); }
+@media (prefers-reduced-motion: reduce) { .faq__chev { transition: none; } }
+
+/* Company fact-sheet block */
+.factsheet {
+  display: grid; gap: var(--sp-5); align-items: center;
+  padding: var(--sp-6); background: var(--surface);
+  border: var(--border) solid var(--line); border-radius: var(--radius-xl);
+}
+@media (min-width: 52rem) { .factsheet { grid-template-columns: 1fr auto; gap: var(--sp-8); } }
+.factsheet__note { margin-top: var(--sp-3); font-size: var(--step--1); color: var(--ink-faint); }
+.factsheet__action { justify-self: start; }

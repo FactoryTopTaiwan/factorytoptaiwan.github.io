@@ -407,6 +407,7 @@ foreach ($loc in $Locales) {
 $site      = Read-LocaleJson 'site.json'      $loc.code
 $catalogue = Read-LocaleJson 'catalogue.json' $loc.code
 $company   = Read-LocaleJson 'company.json'   $loc.code
+$about     = Read-LocaleJson 'about.json'     $loc.code
 
 # Family (category) display order comes from product-order.json -- the single
 # ordering source shared with build-data.ps1. Reorder catalogue families to
@@ -686,9 +687,11 @@ $pages = @(
        description=$c.solutions.description
        industries=$company.industries },
     @{ out='about';     nav='about';     title=$c.about.title
+       template='about.html'
        eyebrow=$c.about.eyebrow; heading=$company.positioning.line; lede=$company.positioning.summary
        description=$c.about.description
        timeline=$company.timeline
+       about=$about
        blocks=@( @{ eyebrow=$c.about.howEyebrow; title=$c.about.howTitle; items=$company.services } ) },
     @{ out='support';   nav='support';   title=$c.support.title
        eyebrow=$c.support.eyebrow; heading=$c.support.heading
@@ -711,7 +714,8 @@ $pages = @(
 foreach ($pg in $pages) {
     $pgData = @{} + $pg
     $pgData['url'] = ("{0}/{1}/" -f $UrlPfx, $pg.out)
-    Build-Page -Template 'page.html' -Out ($OutPfx + ("{0}\index.html" -f $pg.out)) -Page $pgData
+    $tpl = if ($pg.ContainsKey('template')) { $pg.template } else { 'page.html' }
+    Build-Page -Template $tpl -Out ($OutPfx + ("{0}\index.html" -f $pg.out)) -Page $pgData
     $urls.Add(("{0}/{1}/" -f $UrlPfx, $pg.out))
 }
 

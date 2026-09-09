@@ -1,0 +1,225 @@
+<!-- About page. Bespoke template (routed from build.ps1). Copy comes from
+     about.json (page.about.*); existing globals (company, site, catalog) and the
+     shared timeline (page.timeline) are reused. Bracketed [ ... ] strings are
+     placeholders for pending assets/facts. -->
+
+<section class="section section--tight">
+  <div class="shell">
+    <div class="section__head section__head--split">
+      <div>
+        <p class="eyebrow">{{page.about.hero.eyebrow}}</p>
+        <h1>{{page.about.hero.title}}</h1>
+      </div>
+      <p class="lede">{{page.about.hero.summary}}</p>
+    </div>
+
+    {{#if page.about.hero.stats}}
+    <dl class="statrow">
+      {{#each page.about.hero.stats}}
+      <div class="statrow__item">
+        <dt class="statrow__value model">{{value}}</dt>
+        <dd class="statrow__label">{{label}}</dd>
+      </div>
+      {{/each}}
+    </dl>
+    {{/if}}
+  </div>
+</section>
+
+<!-- Social proof & trust ------------------------------------------------- -->
+<section class="section section--tight section--sunken">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">{{page.about.trust.eyebrow}}</p>
+      <h2>{{page.about.trust.title}}</h2>
+    </div>
+    <p class="lede">{{page.about.trust.note}}</p>
+
+    <p class="minilabel">{{page.about.trust.logosLabel}}</p>
+    <ul class="logowall">
+      {{#each page.about.trust.logos}}
+      <li class="logowall__cell ph ph--logo">{{.}}</li>
+      {{/each}}
+    </ul>
+
+    <div class="trust-split">
+      <div>
+        <p class="minilabel">{{page.about.trust.badgesLabel}}</p>
+        <ul class="badgerow">
+          {{#each page.about.trust.badges}}
+          <li class="badge">
+            <span class="badge__name">{{name}}</span>
+            <span class="badge__note">{{note}}</span>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+      <div>
+        <p class="minilabel">{{page.about.trust.mapLabel}}</p>
+        <div class="ph ph--map">{{page.about.trust.mapCaption}}</div>
+        <ul class="chiprow">
+          {{#each page.about.trust.regions}}<li class="chip">{{.}}</li>{{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Equipment demos ------------------------------------------------------ -->
+<section class="section section--tight">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">{{page.about.demos.eyebrow}}</p>
+      <h2>{{page.about.demos.title}}</h2>
+    </div>
+    <p class="lede">{{page.about.demos.lede}}</p>
+    <div class="demo-grid">
+      {{#each page.about.demos.items}}
+      <figure class="demo">
+        <div class="ph ph--video" role="img" aria-label="{{title}} demo video placeholder">
+          <span class="ph__play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </span>
+          <span class="ph__txt">{{video}}</span>
+        </div>
+        <figcaption class="demo__cap">
+          <h3 class="demo__title">{{title}}</h3>
+          <ul class="callouts">
+            {{#each specs}}<li>{{.}}</li>{{/each}}
+          </ul>
+        </figcaption>
+      </figure>
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+<!-- Facility & engineering reality -------------------------------------- -->
+<section class="section section--tight section--sunken">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">{{page.about.facility.eyebrow}}</p>
+      <h2>{{page.about.facility.title}}</h2>
+    </div>
+    <p class="lede">{{page.about.facility.lede}}</p>
+    <div class="facility-grid">
+      {{#each page.about.facility.items}}
+      <figure class="facility">
+        <div class="ph ph--photo" role="img" aria-label="{{title}} photo placeholder">
+          <span class="ph__txt">{{media}}</span>
+        </div>
+        <figcaption>
+          <h3 class="facility__title">{{title}}</h3>
+          <p>{{body}}</p>
+        </figcaption>
+      </figure>
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+<!-- How we de-risk a line ----------------------------------------------- -->
+<section class="section section--tight">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">{{page.about.derisk.eyebrow}}</p>
+      <h2>{{page.about.derisk.title}}</h2>
+    </div>
+    <div class="capgrid">
+      {{#each page.about.derisk.items}}
+      <div class="cap">
+        <h3 class="cap__title">{{title}}</h3>
+        <p>{{body}}</p>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+<!-- Company timeline (shared data) -------------------------------------- -->
+{{#if page.timeline}}
+<section class="section section--tight section--sunken">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">{{site.ui.history}}</p>
+      <h2>{{site.ui.historyHeading}}</h2>
+    </div>
+    <ol class="timeline">
+      {{#each page.timeline}}
+      <li>
+        <span class="timeline__year model">{{year}}</span>
+        <div class="timeline__content">
+          {{#if image}}
+          <span class="timeline__media">
+            <img src="{{image.src}}" srcset="{{image.srcset}}" sizes="13rem"
+                 width="800" height="600" alt="{{image.alt}}" loading="lazy" decoding="async">
+          </span>
+          {{/if}}
+          <span class="timeline__event">{{event}}</span>
+        </div>
+      </li>
+      {{/each}}
+    </ol>
+  </div>
+</section>
+{{/if}}
+
+<!-- International buyer FAQ ---------------------------------------------- -->
+<section class="section section--tight">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">{{page.about.faq.eyebrow}}</p>
+      <h2>{{page.about.faq.title}}</h2>
+    </div>
+    <p class="lede">{{page.about.faq.lede}}</p>
+    <div class="faq">
+      {{#each page.about.faq.items}}
+      <details class="faq__item">
+        <summary class="faq__q">
+          <span>{{q}}</span>
+          <span class="faq__chev" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15l6-5.5"/></svg>
+          </span>
+        </summary>
+        <div class="faq__a"><p>{{a}}</p></div>
+      </details>
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+<!-- Company fact-sheet download ----------------------------------------- -->
+<section class="section section--tight">
+  <div class="shell">
+    <div class="factsheet">
+      <div class="factsheet__body">
+        <p class="eyebrow">{{page.about.factsheet.eyebrow}}</p>
+        <h2>{{page.about.factsheet.title}}</h2>
+        <p class="lede">{{page.about.factsheet.body}}</p>
+        <p class="factsheet__note">{{page.about.factsheet.note}}</p>
+      </div>
+      <div class="factsheet__action">
+        <a class="btn btn--primary btn--lg" href="{{page.about.factsheet.fileHref}}">
+          {{page.about.factsheet.buttonLabel}}
+          <span class="btn__arrow" aria-hidden="true">↓</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="shell cta-band__inner">
+    <p class="eyebrow">{{site.cta.eyebrow}}</p>
+    <h2>{{site.cta.title}}</h2>
+    <p class="lede" style="margin-top:var(--sp-5)">{{site.cta.lede}}</p>
+    <div class="cta-band__actions">
+      <a class="btn btn--primary btn--lg" href="mailto:{{company.contact.email}}">
+        {{site.ui.emailTeam}}
+        <span class="btn__arrow" aria-hidden="true">→</span></a>
+      <a class="btn btn--ghost btn--lg" href="{{site.urlPrefix}}/products/">{{site.ui.browseN}}{{catalog.totals.products}}{{site.ui.browseNSuffix}}</a>
+    </div>
+    <p class="cta-band__note">{{site.cta.note}}</p>
+  </div>
+</section>

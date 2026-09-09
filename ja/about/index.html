@@ -208,40 +208,306 @@
 </header>
 
 <main id="main">
+<!-- About page. Bespoke template (routed from build.ps1). Copy comes from
+     about.json (page.about.*); existing globals (company, site, catalog) and the
+     shared timeline (page.timeline) are reused. Bracketed [ ... ] strings are
+     placeholders for pending assets/facts. -->
+
 <section class="section section--tight">
   <div class="shell">
     <div class="section__head section__head--split">
       <div>
-        <p class="eyebrow">会社情報</p>
-        <h1>モーターを生産するための設備。モーターそのものではありません。</h1>
+        <p class="eyebrow">About Teamwork Automation / FaTop</p>
+        <h1>The people who build the line behind your motor</h1>
       </div>
-      <p class="lede">協群自動化は、電動モーターを製造する機械を設計・製造しています。巻線、絶縁、挿入、ヒュージング、旋削、バランシング、ワニス含浸、検査。1992年、モーター組立の手作業を機械に置き換えるために台中で創業し、単体設備ではなく生産ライン一式として供給しています。</p>
+      <p class="lede">Since 1992, Teamwork Automation has designed and built the winding, insulation, insertion, fusing, balancing and testing equipment that turns copper and steel into finished motors. We supply single machines and complete turnkey lines to manufacturers who cannot afford a line that only works in the brochure.</p>
+    </div>
+
+    
+    <dl class="statrow">
+      
+      <div class="statrow__item">
+        <dt class="statrow__value model">1992</dt>
+        <dd class="statrow__label">Founded in Taichung, Taiwan</dd>
+      </div>
+      
+      <div class="statrow__item">
+        <dt class="statrow__value model">30+</dt>
+        <dd class="statrow__label">Years building motor-production equipment</dd>
+      </div>
+      
+      <div class="statrow__item">
+        <dt class="statrow__value model">38</dt>
+        <dd class="statrow__label">Standard machines across 9 process families</dd>
+      </div>
+      
+      <div class="statrow__item">
+        <dt class="statrow__value model">[N]</dt>
+        <dd class="statrow__label">Countries where our lines run today</dd>
+      </div>
+      
+    </dl>
+    
+  </div>
+</section>
+
+<!-- Social proof & trust ------------------------------------------------- -->
+<section class="section section--tight section--sunken">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">Social proof &amp; trust</p>
+      <h2>Relied on by motor manufacturers in demanding industries</h2>
+    </div>
+    <p class="lede">Many of our projects are under NDA, so specific customer names and line photographs cannot be shown publicly. The marks below represent the industries and standards we build for; we can share relevant, permission-cleared references privately during technical evaluation.</p>
+
+    <p class="minilabel">Selected industries served (customer names withheld under NDA)</p>
+    <ul class="logowall">
+      
+      <li class="logowall__cell ph ph--logo">[Logo / anonymized industry tag 1 — e.g. Automotive Tier-1]</li>
+      
+      <li class="logowall__cell ph ph--logo">[Logo / tag 2 — e.g. EV drivetrain]</li>
+      
+      <li class="logowall__cell ph ph--logo">[Logo / tag 3 — e.g. Power tools]</li>
+      
+      <li class="logowall__cell ph ph--logo">[Logo / tag 4 — e.g. Home appliance]</li>
+      
+      <li class="logowall__cell ph ph--logo">[Logo / tag 5 — e.g. Drone / UAV motors]</li>
+      
+      <li class="logowall__cell ph ph--logo">[Logo / tag 6 — e.g. HVAC &amp; fan motors]</li>
+      
+      <li class="logowall__cell ph ph--logo">[Logo / tag 7 — e.g. Industrial pumps]</li>
+      
+      <li class="logowall__cell ph ph--logo">[Logo / tag 8 — e.g. E-mobility]</li>
+      
+    </ul>
+
+    <div class="trust-split">
+      <div>
+        <p class="minilabel">Standards &amp; compliance</p>
+        <ul class="badgerow">
+          
+          <li class="badge">
+            <span class="badge__name">[ISO 9001]</span>
+            <span class="badge__note">[Insert certificate number + issuing body, or mark &#39;in progress&#39;]</span>
+          </li>
+          
+          <li class="badge">
+            <span class="badge__name">[CE marking]</span>
+            <span class="badge__note">[Insert which machine families are CE-declared and the applicable directives]</span>
+          </li>
+          
+          <li class="badge">
+            <span class="badge__name">[CB / UL / other]</span>
+            <span class="badge__note">[List any additional electrical or safety conformities offered on request]</span>
+          </li>
+          
+        </ul>
+      </div>
+      <div>
+        <p class="minilabel">Export footprint</p>
+        <div class="ph ph--map">[Insert export map image or highlight list — regions/countries where lines are installed and serviced. Keep it directional, not a customer directory.]</div>
+        <ul class="chiprow">
+          <li class="chip">[Region 1 — e.g. Southeast Asia]</li><li class="chip">[Region 2 — e.g. South Asia]</li><li class="chip">[Region 3 — e.g. Europe]</li><li class="chip">[Region 4 — e.g. North America]</li><li class="chip">[Region 5 — e.g. Latin America]</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
-
-
+<!-- Equipment demos ------------------------------------------------------ -->
 <section class="section section--tight">
   <div class="shell">
     <div class="section__head">
-      <p class="eyebrow">進め方</p>
-      <h2>プロジェクトが始まる5つの形</h2>
+      <p class="eyebrow">See the machines run</p>
+      <h2>Automation, at line speed</h2>
     </div>
-    
-    
-    <div class="panels">
+    <p class="lede">Short, high-speed clips of real processes — the fastest way for an engineer to judge whether our approach fits their part. Each demo pairs a 5–8 second loop with the numbers that matter.</p>
+    <div class="demo-grid">
+      
+      <figure class="demo">
+        <div class="ph ph--video" role="img" aria-label="EV hairpin stator forming &amp; insertion demo video placeholder">
+          <span class="ph__play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </span>
+          <span class="ph__txt">[Insert 5–8s MP4/WebM loop, 1080×1080, muted, no audio track needed]</span>
+        </div>
+        <figcaption class="demo__cap">
+          <h3 class="demo__title">EV hairpin stator forming &amp; insertion</h3>
+          <ul class="callouts">
+            
+          </ul>
+        </figcaption>
+      </figure>
+      
+      <figure class="demo">
+        <div class="ph ph--video" role="img" aria-label="Drone / BLDC out-slot winding demo video placeholder">
+          <span class="ph__play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </span>
+          <span class="ph__txt">[Insert 5–8s loop of TWM-929-class winding]</span>
+        </div>
+        <figcaption class="demo__cap">
+          <h3 class="demo__title">Drone / BLDC out-slot winding</h3>
+          <ul class="callouts">
+            
+          </ul>
+        </figcaption>
+      </figure>
+      
+      <figure class="demo">
+        <div class="ph ph--video" role="img" aria-label="Armature stuff-type winding demo video placeholder">
+          <span class="ph__play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </span>
+          <span class="ph__txt">[Insert 5–8s loop of TWM-702-class winding]</span>
+        </div>
+        <figcaption class="demo__cap">
+          <h3 class="demo__title">Armature stuff-type winding</h3>
+          <ul class="callouts">
+            
+          </ul>
+        </figcaption>
+      </figure>
+      
+      <figure class="demo">
+        <div class="ph ph--video" role="img" aria-label="Fusing / hot-staking demo video placeholder">
+          <span class="ph__play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </span>
+          <span class="ph__txt">[Insert 5–8s loop of RF30S-class fusing]</span>
+        </div>
+        <figcaption class="demo__cap">
+          <h3 class="demo__title">Fusing / hot-staking</h3>
+          <ul class="callouts">
+            
+          </ul>
+        </figcaption>
+      </figure>
+      
+      <figure class="demo">
+        <div class="ph ph--video" role="img" aria-label="Balancing &amp; final test demo video placeholder">
+          <span class="ph__play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </span>
+          <span class="ph__txt">[Insert 5–8s loop of balancing / testing cell]</span>
+        </div>
+        <figcaption class="demo__cap">
+          <h3 class="demo__title">Balancing &amp; final test</h3>
+          <ul class="callouts">
+            
+          </ul>
+        </figcaption>
+      </figure>
+      
+      <figure class="demo">
+        <div class="ph ph--video" role="img" aria-label="Full modular line handover demo video placeholder">
+          <span class="ph__play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </span>
+          <span class="ph__txt">[Insert 5–8s pan of a running turnkey line]</span>
+        </div>
+        <figcaption class="demo__cap">
+          <h3 class="demo__title">Full modular line handover</h3>
+          <ul class="callouts">
+            
+          </ul>
+        </figcaption>
+      </figure>
       
     </div>
-    
-    
   </div>
 </section>
 
+<!-- Facility & engineering reality -------------------------------------- -->
+<section class="section section--tight section--sunken">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">Facility &amp; engineering reality</p>
+      <h2>Built and proven in Taichung before it ships</h2>
+    </div>
+    <p class="lede">Every line is assembled and run on our own floor first. What you see at the factory acceptance test is the machine you receive — not a render.</p>
+    <div class="facility-grid">
+      
+      <figure class="facility">
+        <div class="ph ph--photo" role="img" aria-label="Taichung assembly floor photo placeholder">
+          <span class="ph__txt">[Insert wide photo of the assembly bay with machines in build]</span>
+        </div>
+        <figcaption>
+          <h3 class="facility__title">Taichung assembly floor</h3>
+          <p>Machines are fully built, wired and dry-run in-house so integration problems surface here, not on your floor.</p>
+        </figcaption>
+      </figure>
+      
+      <figure class="facility">
+        <div class="ph ph--photo" role="img" aria-label="R&amp;D and controls lab photo placeholder">
+          <span class="ph__txt">[Insert photo of R&amp;D / PLC &amp; HMI bench]</span>
+        </div>
+        <figcaption>
+          <h3 class="facility__title">R&amp;D and controls lab</h3>
+          <p>Mechanical design, PLC/HMI programming and process development under one roof, so tooling and control are tuned to your part.</p>
+        </figcaption>
+      </figure>
+      
+      <figure class="facility">
+        <div class="ph ph--photo" role="img" aria-label="Engineering &amp; commissioning team photo placeholder">
+          <span class="ph__txt">[Insert team photo — engineers at work, faces OK per release]</span>
+        </div>
+        <figcaption>
+          <h3 class="facility__title">Engineering &amp; commissioning team</h3>
+          <p>The engineers who design the line are the ones who commission it and train your operators.</p>
+        </figcaption>
+      </figure>
+      
+    </div>
+  </div>
+</section>
 
+<!-- How we de-risk a line ----------------------------------------------- -->
+<section class="section section--tight">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">How we de-risk a high-ticket line</p>
+      <h2>What a global buyer actually needs to trust a supplier</h2>
+    </div>
+    <div class="capgrid">
+      
+      <div class="cap">
+        <h3 class="cap__title">FAT before it leaves</h3>
+        <p>A documented Factory Acceptance Test on your parts, witnessed on-site or by video, against agreed cycle time and yield criteria before shipment.</p>
+      </div>
+      
+      <div class="cap">
+        <h3 class="cap__title">SAT after it lands</h3>
+        <p>Site Acceptance Test and commissioning at your plant, with sign-off on the same criteria under your power, air and material.</p>
+      </div>
+      
+      <div class="cap">
+        <h3 class="cap__title">Overseas engineer dispatch</h3>
+        <p>[Insert typical dispatch lead time and coverage — e.g. engineers available for installation and training within X weeks, visa/logistics handled].</p>
+      </div>
+      
+      <div class="cap">
+        <h3 class="cap__title">Remote diagnostics</h3>
+        <p>[Insert 2–3 sentences detailing the remote-support setup: secure VPN/HMI remote access, response window, and what can be resolved without a site visit].</p>
+      </div>
+      
+      <div class="cap">
+        <h3 class="cap__title">Spare parts &amp; lead time</h3>
+        <p>[Insert spare-parts policy: recommended spares kit, typical replacement lead time, and stock held for wear items].</p>
+      </div>
+      
+      <div class="cap">
+        <h3 class="cap__title">Warranty &amp; documentation</h3>
+        <p>One-year warranty from acceptance, full manuals, electrical drawings and a packing standard suited to sea freight. [Confirm exact warranty wording per contract.]</p>
+      </div>
+      
+    </div>
+  </div>
+</section>
 
+<!-- Company timeline (shared data) -------------------------------------- -->
 
-<section class="section section--sunken">
+<section class="section section--tight section--sunken">
   <div class="shell">
     <div class="section__head">
       <p class="eyebrow">沿革</p>
@@ -340,9 +606,138 @@
 </section>
 
 
+<!-- International buyer FAQ ---------------------------------------------- -->
+<section class="section section--tight">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">International buyer FAQ</p>
+      <h2>The questions purchasing and engineering ask us first</h2>
+    </div>
+    <p class="lede">Straight answers for buyers evaluating a turnkey partner from overseas. Where a number depends on the project, we say so rather than quote a figure we cannot stand behind.</p>
+    <div class="faq">
+      
+      <details class="faq__item">
+        <summary class="faq__q">
+          <span>Do you run a Factory Acceptance Test (FAT) before shipment?</span>
+          <span class="faq__chev" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15l6-5.5"/></svg>
+          </span>
+        </summary>
+        <div class="faq__a"><p>Yes. We agree measurable criteria — cycle time, first-pass yield, defect handling — and demonstrate them on your parts on our floor. You can attend in person or witness by live video, and we provide the FAT report.</p></div>
+      </details>
+      
+      <details class="faq__item">
+        <summary class="faq__q">
+          <span>What about Site Acceptance Test (SAT) and installation?</span>
+          <span class="faq__chev" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15l6-5.5"/></svg>
+          </span>
+        </summary>
+        <div class="faq__a"><p>We commission the line at your plant and re-run the acceptance criteria under your utilities and materials. [Insert who arranges rigging/utilities and typical on-site duration.]</p></div>
+      </details>
+      
+      <details class="faq__item">
+        <summary class="faq__q">
+          <span>Can you send engineers overseas for installation and training?</span>
+          <span class="faq__chev" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15l6-5.5"/></svg>
+          </span>
+        </summary>
+        <div class="faq__a"><p>[Insert dispatch policy: regions covered, typical lead time to mobilize, duration on site, and how travel/visa logistics are handled.]</p></div>
+      </details>
+      
+      <details class="faq__item">
+        <summary class="faq__q">
+          <span>What are typical lead times?</span>
+          <span class="faq__chev" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15l6-5.5"/></svg>
+          </span>
+        </summary>
+        <div class="faq__a"><p>[Insert lead-time ranges by scope — single machine vs. modular line — and note that they depend on specification and current backlog.]</p></div>
+      </details>
+      
+      <details class="faq__item">
+        <summary class="faq__q">
+          <span>How is after-sales support handled across time zones?</span>
+          <span class="faq__chev" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15l6-5.5"/></svg>
+          </span>
+        </summary>
+        <div class="faq__a"><p>[Insert support hours, contact channels, remote-access response window, and escalation path.]</p></div>
+      </details>
+      
+      <details class="faq__item">
+        <summary class="faq__q">
+          <span>What is the warranty?</span>
+          <span class="faq__chev" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15l6-5.5"/></svg>
+          </span>
+        </summary>
+        <div class="faq__a"><p>One year from acceptance, covering defects in material and workmanship under normal use. Wear parts and consumables are excluded. [Confirm exact terms per contract.]</p></div>
+      </details>
+      
+      <details class="faq__item">
+        <summary class="faq__q">
+          <span>What payment terms and currency do you work in?</span>
+          <span class="faq__chev" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15l6-5.5"/></svg>
+          </span>
+        </summary>
+        <div class="faq__a"><p>[Insert accepted terms — e.g. T/T with staged milestones, L/C — and currency. Do not publish figures you are not ready to commit to.]</p></div>
+      </details>
+      
+      <details class="faq__item">
+        <summary class="faq__q">
+          <span>Can the line integrate with our MES / data systems?</span>
+          <span class="faq__chev" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15l6-5.5"/></svg>
+          </span>
+        </summary>
+        <div class="faq__a"><p>[Insert data/traceability capability: what is logged, export formats, and MES/OPC-UA options.]</p></div>
+      </details>
+      
+      <details class="faq__item">
+        <summary class="faq__q">
+          <span>Do you protect our process and IP?</span>
+          <span class="faq__chev" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                 stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5 12 15l6-5.5"/></svg>
+          </span>
+        </summary>
+        <div class="faq__a"><p>Yes. We work under NDA and do not disclose customer processes, part geometries or line photographs. That is also why our public references are anonymized.</p></div>
+      </details>
+      
+    </div>
+  </div>
+</section>
 
-
-
+<!-- Company fact-sheet download ----------------------------------------- -->
+<section class="section section--tight">
+  <div class="shell">
+    <div class="factsheet">
+      <div class="factsheet__body">
+        <p class="eyebrow">Company profile</p>
+        <h2>Take the two-page fact sheet to your team</h2>
+        <p class="lede">A concise, ungated PDF: who we are, the process families we cover, standards, and how a turnkey engagement runs — everything a colleague needs to shortlist us. No form, no email wall.</p>
+        <p class="factsheet__note">[If the PDF is not ready, this button can link to the Contact page or be hidden until the asset exists.]</p>
+      </div>
+      <div class="factsheet__action">
+        <a class="btn btn--primary btn--lg" href="[Insert /assets/docs/fatop-company-fact-sheet.pdf once the 2-page PDF is ready]">
+          Download the company fact sheet (PDF)
+          <span class="btn__arrow" aria-hidden="true">↓</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="cta-band">
   <div class="shell cta-band__inner">
