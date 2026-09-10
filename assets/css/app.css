@@ -830,6 +830,34 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 .footer__list a { color: var(--ink-muted); text-decoration: none; }
 .footer__list a:hover { color: var(--ink); text-decoration: underline; }
 
+/* Brand column: positioning line + a real contact block, so the footer carries
+   an address, phone and email the way a B2B buyer expects to find them. */
+.footer__col--brand { max-width: 34ch; }
+.footer__blurb { color: var(--ink-muted); margin: 0 0 var(--sp-5); }
+.footer__contact {
+  font-style: normal;
+  display: grid;
+  gap: var(--sp-3);
+}
+.footer__contact-row {
+  display: grid;
+  grid-template-columns: 1rem 1fr;
+  gap: var(--sp-3);
+  align-items: start;
+  color: var(--ink-muted);
+  text-decoration: none;
+  line-height: 1.45;
+}
+a.footer__contact-row:hover { color: var(--ink); }
+a.footer__contact-row:hover span { text-decoration: underline; }
+.footer__ico { margin-top: 0.15em; color: var(--ink-faint); flex: none; }
+a.footer__contact-row:hover .footer__ico { color: var(--accent-ink); }
+.footer__reply {
+  color: var(--ink-faint);
+  font-size: var(--step--1);
+  padding-left: calc(1rem + var(--sp-3));
+}
+
 .footer__bottom {
   display: flex; flex-wrap: wrap; gap: var(--sp-4);
   justify-content: space-between;

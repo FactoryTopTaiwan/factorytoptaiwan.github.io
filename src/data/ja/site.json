@@ -243,14 +243,6 @@
   "footer": {
     "columns": [
       {
-        "heading": "技術と導入事例",
-        "links": [
-          { "label": "ターンキー生産ライン",  "href": "/ja/turnkey/" },
-          { "label": "対応産業",              "href": "/ja/solutions/" },
-          { "label": "稼働動画（YouTube）",   "href": "https://www.youtube.com/@TeamworkAutomation", "external": true }
-        ]
-      },
-      {
         "heading": "製品",
         "links": [
           { "label": "全機種",                        "href": "/ja/products/" },
@@ -265,25 +257,28 @@
         ]
       },
       {
-        "heading": "会社情報",
+        "heading": "ソリューション・技術",
         "links": [
-          { "label": "協群自動化について",     "href": "/ja/about/" },
-          { "label": "1992年より台湾・台中",   "href": "/ja/about/" }
+          { "label": "ターンキー生産ライン",  "href": "/ja/turnkey/" },
+          { "label": "対応産業",              "href": "/ja/solutions/" },
+          { "label": "稼働動画（YouTube）",   "href": "https://www.youtube.com/@TeamworkAutomation", "external": true }
         ]
       },
       {
-        "heading": "カスタマーサービス",
+        "heading": "会社情報",
+        "links": [
+          { "label": "協群自動化について",     "href": "/ja/about/" },
+          { "label": "1992年からの歩み",       "href": "/ja/about/#history" },
+          { "label": "エンジニア採用",         "href": "/ja/contact/" }
+        ]
+      },
+      {
+        "heading": "サポート・お問い合わせ",
         "links": [
           { "label": "サポート・遠隔診断",       "href": "/ja/support/" },
           { "label": "お見積り依頼",             "href": "/ja/contact/" },
           { "label": "オンライン打ち合わせ予約", "href": "/ja/contact/#call" },
-          { "label": "サイトの全ページ",         "href": "/ja/sitemap/" }
-        ]
-      },
-      {
-        "heading": "採用情報",
-        "links": [
-          { "label": "エンジニア募集（メールにて）", "href": "/ja/contact/" }
+          { "label": "サイトマップ",             "href": "/ja/sitemap/" }
         ]
       }
     ],
