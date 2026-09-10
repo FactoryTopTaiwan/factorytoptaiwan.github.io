@@ -108,24 +108,37 @@ function Expand-Template {
 
     $text = $Template
 
-    # --- {{#each}} — innermost first, so nesting resolves bottom-up ----------
-    $eachRx = '\{\{#each\s+([\w.]+)\}\}((?:(?!\{\{#each\s)[\s\S])*?)\{\{/each\}\}'
-    while ($text -match $eachRx) {
-        $text = [regex]::Replace($text, $eachRx, {
-            param($m)
-            $list = Resolve-Path-Value $Scope $m.Groups[1].Value
-            $body = $m.Groups[2].Value
-            if ($null -eq $list) { return '' }
+    # --- {{#each}} -- outermost first, then recurse into each item -----------
+    # Find the first {{#each}}, match its {{/each}} by tracking nesting depth,
+    # then expand each item by recursively rendering the body with the item as
+    # scope. Recursion is what makes a nested {{#each}} over a per-item field
+    # (links, paragraphs) resolve: it runs against the item, not the outer scope.
+    # (The previous innermost-first pass emptied nested loops, because it resolved
+    # the inner list name against the outer/page scope where it does not exist.)
+    $eachOpenRx  = [regex]'\{\{#each\s+([\w.]+)\}\}'
+    $eachTokenRx = [regex]'\{\{#each\s+[\w.]+\}\}|\{\{/each\}\}'
+    while ($true) {
+        $open = $eachOpenRx.Match($text)
+        if (-not $open.Success) { break }
+        $depth = 0; $closeIdx = -1
+        foreach ($tok in $eachTokenRx.Matches($text, $open.Index)) {
+            if ($tok.Value.StartsWith('{{#each')) { $depth++ }
+            else { $depth--; if ($depth -eq 0) { $closeIdx = $tok.Index; break } }
+        }
+        if ($closeIdx -lt 0) { break }   # unbalanced {{/each}} -- leave as-is
+        $bodyStart = $open.Index + $open.Length
+        $body = $text.Substring($bodyStart, $closeIdx - $bodyStart)
+        $list = Resolve-Path-Value $Scope $open.Groups[1].Value
+        $sb = New-Object System.Text.StringBuilder
+        if ($null -ne $list) {
             if ($list -isnot [array]) { $list = @($list) }
-            $sb = New-Object System.Text.StringBuilder
             for ($i = 0; $i -lt $list.Count; $i++) {
-                $item = $list[$i]
-                # Give each item access to its position without mutating source data
+                # Give each item its position without mutating the source data
                 $frag = $body.Replace('{{@index}}', "$i").Replace('{{@number}}', "$($i + 1)")
-                [void]$sb.Append((Expand-Template -Template $frag -Scope $item))
+                [void]$sb.Append((Expand-Template -Template $frag -Scope $list[$i]))
             }
-            $sb.ToString()
-        }, 1)
+        }
+        $text = $text.Substring(0, $open.Index) + $sb.ToString() + $text.Substring($closeIdx + 9)
     }
 
     # --- {{#if}} / {{else}} — innermost first -------------------------------
@@ -975,20 +988,31 @@ if ($Serve) {
     }
     while ($listener.IsListening) {
         $ctx = $listener.GetContext()
-        $rel = [Uri]::UnescapeDataString($ctx.Request.Url.AbsolutePath.TrimStart('/'))
-        if ($rel -eq '') { $rel = 'index.html' }
-        $file = Join-Path $OutDir $rel
-        if (Test-Path $file -PathType Container) { $file = Join-Path $file 'index.html' }
-        if (-not (Test-Path $file)) { $file = Join-Path $OutDir '404.html' }
-        if (Test-Path $file) {
-            $bytes = [System.IO.File]::ReadAllBytes($file)
-            $ext = [System.IO.Path]::GetExtension($file).ToLower()
-            $ctx.Response.ContentType = if ($types.ContainsKey($ext)) { $types[$ext] } else { 'application/octet-stream' }
-            $ctx.Response.Headers.Add('Cache-Control', 'no-store, must-revalidate')
-            $ctx.Response.OutputStream.Write($bytes, 0, $bytes.Length)
-        } else {
-            $ctx.Response.StatusCode = 404
+        try {
+            $rel = [Uri]::UnescapeDataString($ctx.Request.Url.AbsolutePath.TrimStart('/'))
+            if ($rel -eq '') { $rel = 'index.html' }
+            $file = Join-Path $OutDir $rel
+            if (Test-Path $file -PathType Container) { $file = Join-Path $file 'index.html' }
+            $found = Test-Path $file -PathType Leaf
+            if (-not $found) { $file = Join-Path $OutDir '404.html' }
+            if (Test-Path $file -PathType Leaf) {
+                $bytes = [System.IO.File]::ReadAllBytes($file)
+                $ext = [System.IO.Path]::GetExtension($file).ToLower()
+                $ctx.Response.ContentType = if ($types.ContainsKey($ext)) { $types[$ext] } else { 'application/octet-stream' }
+                $ctx.Response.Headers.Add('Cache-Control', 'no-store, must-revalidate')
+                if (-not $found) { $ctx.Response.StatusCode = 404 }
+                $ctx.Response.ContentLength64 = $bytes.Length
+                if ($ctx.Request.HttpMethod -ne 'HEAD') {
+                    $ctx.Response.OutputStream.Write($bytes, 0, $bytes.Length)
+                }
+            } else {
+                $ctx.Response.StatusCode = 404
+                $ctx.Response.ContentLength64 = 0
+            }
+        } catch {
+            Write-Host ("  serve error: {0}" -f $_.Exception.Message) -ForegroundColor DarkYellow
+        } finally {
+            try { $ctx.Response.Close() } catch { }
         }
-        $ctx.Response.Close()
     }
 }
