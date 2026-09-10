@@ -979,20 +979,31 @@ if ($Serve) {
     }
     while ($listener.IsListening) {
         $ctx = $listener.GetContext()
-        $rel = [Uri]::UnescapeDataString($ctx.Request.Url.AbsolutePath.TrimStart('/'))
-        if ($rel -eq '') { $rel = 'index.html' }
-        $file = Join-Path $OutDir $rel
-        if (Test-Path $file -PathType Container) { $file = Join-Path $file 'index.html' }
-        if (-not (Test-Path $file)) { $file = Join-Path $OutDir '404.html' }
-        if (Test-Path $file) {
-            $bytes = [System.IO.File]::ReadAllBytes($file)
-            $ext = [System.IO.Path]::GetExtension($file).ToLower()
-            $ctx.Response.ContentType = if ($types.ContainsKey($ext)) { $types[$ext] } else { 'application/octet-stream' }
-            $ctx.Response.Headers.Add('Cache-Control', 'no-store, must-revalidate')
-            $ctx.Response.OutputStream.Write($bytes, 0, $bytes.Length)
-        } else {
-            $ctx.Response.StatusCode = 404
+        try {
+            $rel = [Uri]::UnescapeDataString($ctx.Request.Url.AbsolutePath.TrimStart('/'))
+            if ($rel -eq '') { $rel = 'index.html' }
+            $file = Join-Path $OutDir $rel
+            if (Test-Path $file -PathType Container) { $file = Join-Path $file 'index.html' }
+            $found = Test-Path $file -PathType Leaf
+            if (-not $found) { $file = Join-Path $OutDir '404.html' }
+            if (Test-Path $file -PathType Leaf) {
+                $bytes = [System.IO.File]::ReadAllBytes($file)
+                $ext = [System.IO.Path]::GetExtension($file).ToLower()
+                $ctx.Response.ContentType = if ($types.ContainsKey($ext)) { $types[$ext] } else { 'application/octet-stream' }
+                $ctx.Response.Headers.Add('Cache-Control', 'no-store, must-revalidate')
+                if (-not $found) { $ctx.Response.StatusCode = 404 }
+                $ctx.Response.ContentLength64 = $bytes.Length
+                if ($ctx.Request.HttpMethod -ne 'HEAD') {
+                    $ctx.Response.OutputStream.Write($bytes, 0, $bytes.Length)
+                }
+            } else {
+                $ctx.Response.StatusCode = 404
+                $ctx.Response.ContentLength64 = 0
+            }
+        } catch {
+            Write-Host ("  serve error: {0}" -f $_.Exception.Message) -ForegroundColor DarkYellow
+        } finally {
+            try { $ctx.Response.Close() } catch { }
         }
-        $ctx.Response.Close()
     }
 }

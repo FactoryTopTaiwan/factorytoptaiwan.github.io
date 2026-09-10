@@ -19,29 +19,29 @@
     "note": "Many of our projects are under NDA, so specific customer names and line photographs cannot be shown publicly. The marks below represent the industries and standards we build for; we can share relevant, permission-cleared references privately during technical evaluation.",
     "logosLabel": "Selected industries served (customer names withheld under NDA)",
     "logos": [
-      "[Logo / anonymized industry tag 1 — e.g. Automotive Tier-1]",
-      "[Logo / tag 2 — e.g. EV drivetrain]",
-      "[Logo / tag 3 — e.g. Power tools]",
-      "[Logo / tag 4 — e.g. Home appliance]",
-      "[Logo / tag 5 — e.g. Drone / UAV motors]",
-      "[Logo / tag 6 — e.g. HVAC & fan motors]",
-      "[Logo / tag 7 — e.g. Industrial pumps]",
-      "[Logo / tag 8 — e.g. E-mobility]"
+      "EV drivetrain & e-mobility",
+      "Drone / UAV motors",
+      "Cooling-fan & HVAC motors",
+      "Power tools & universal motors",
+      "Automotive Tier-1",
+      "Home appliance motors",
+      "Ignition coils & wound bobbins",
+      "Semiconductor packaging"
     ],
     "badgesLabel": "Standards & compliance",
     "badges": [
-      { "name": "[ISO 9001]", "note": "[Insert certificate number + issuing body, or mark 'in progress']" },
-      { "name": "[CE marking]", "note": "[Insert which machine families are CE-declared and the applicable directives]" },
-      { "name": "[CB / UL / other]", "note": "[List any additional electrical or safety conformities offered on request]" }
+      { "name": "ISO 9001", "note": "[CONFIRM: certificate number + issuing body, or mark 'in progress' — do not publish a number until verified]" },
+      { "name": "CE marking", "note": "[CONFIRM which machine families you CE-declare. Typical applicable directives for this equipment class: Machinery 2006/42/EC, Low Voltage 2014/35/EU, EMC 2014/30/EU — verify before publishing.]" },
+      { "name": "CB / UL / other", "note": "[CONFIRM: any additional electrical/safety conformities offered on request, or remove this badge]" }
     ],
     "mapLabel": "Export footprint",
-    "mapCaption": "[Insert export map image or highlight list — regions/countries where lines are installed and serviced. Keep it directional, not a customer directory.]",
+    "mapCaption": "Our winding, insertion, fusing and test lines run on motor-production floors across Asia, Europe and the Americas. Regions are directional; specific installations are covered by NDA.",
     "regions": [
-      "[Region 1 — e.g. Southeast Asia]",
-      "[Region 2 — e.g. South Asia]",
-      "[Region 3 — e.g. Europe]",
-      "[Region 4 — e.g. North America]",
-      "[Region 5 — e.g. Latin America]"
+      "Southeast Asia",
+      "South Asia",
+      "East Asia",
+      "Europe",
+      "North America"
     ]
   },
 
@@ -52,33 +52,33 @@
     "items": [
       {
         "title": "EV hairpin stator forming & insertion",
-        "video": "[Insert 5–8s MP4/WebM loop, 1080×1080, muted, no audio track needed]",
-        "specs": [ "Process: [hairpin form → insert → twist]", "Cycle: [insert s/pc]", "Part range: [OD / slot count]" ]
+        "video": "[5-8s clip pending]",
+        "specs": [ "Process: hairpin form, insert and twist", "Cycle: [s/pc]", "Part range: [OD / slot count]" ]
       },
       {
         "title": "Drone / BLDC out-slot winding",
-        "video": "[Insert 5–8s loop of TWM-929-class winding]",
-        "specs": [ "Process: needle / flyer winding", "Cycle: [s/pc]", "Wire: [dia range]" ]
+        "video": "[5-8s clip pending — footage exists for the out-slot BLDC stator winder]",
+        "specs": [ "Process: needle / flyer winding", "Wire: Ø0.2-1.5 mm", "Winding speed: up to 2000 rpm", "Stator OD: up to Ø180 mm", "Cycle: [s/pc]" ]
       },
       {
         "title": "Armature stuff-type winding",
-        "video": "[Insert 5–8s loop of TWM-702-class winding]",
-        "specs": [ "Process: automatic stuffing", "Cycle: [s/pc]", "Commutator: [type]" ]
+        "video": "[5-8s clip pending — footage exists for the stuff-type armature winder]",
+        "specs": [ "Process: automatic stuffing", "Wire: 0.4-1.0 mm", "Winding speed: up to 2000 rpm", "Rotor OD: Ø25-55 mm", "Cycle: [s/pc]" ]
       },
       {
         "title": "Fusing / hot-staking",
-        "video": "[Insert 5–8s loop of RF30S-class fusing]",
-        "specs": [ "Process: resistance fusing", "Control: [current / time]", "Traceability: [yes/no]" ]
+        "video": "[5-8s clip pending — RF30S-class fusing]",
+        "specs": [ "Process: resistance fusing", "Control: closed-loop current and time", "Traceability: per-unit logging available", "Cycle: [s/pc]" ]
       },
       {
         "title": "Balancing & final test",
-        "video": "[Insert 5–8s loop of balancing / testing cell]",
-        "specs": [ "Correction: [type]", "Test: surge / hi-pot / [others]", "Data: [logged / MES]" ]
+        "video": "[5-8s clip pending — balancing / test cell]",
+        "specs": [ "Correction: dynamic balancing", "Test: surge and hi-pot", "Data: logged, MES-ready", "Cycle: [s/pc]" ]
       },
       {
         "title": "Full modular line handover",
-        "video": "[Insert 5–8s pan of a running turnkey line]",
-        "specs": [ "Stations: [count]", "Throughput: [pcs/hr]", "Conveyance: [type]" ]
+        "video": "[5-8s clip pending — footage exists for the cooling-fan motor / modular line]",
+        "specs": [ "Conveyance: modular, station-linked", "Stations: [count]", "Throughput: [pcs/hr]" ]
       }
     ]
   },
@@ -100,10 +100,10 @@
     "items": [
       { "title": "FAT before it leaves", "body": "A documented Factory Acceptance Test on your parts, witnessed on-site or by video, against agreed cycle time and yield criteria before shipment." },
       { "title": "SAT after it lands", "body": "Site Acceptance Test and commissioning at your plant, with sign-off on the same criteria under your power, air and material." },
-      { "title": "Overseas engineer dispatch", "body": "[Insert typical dispatch lead time and coverage — e.g. engineers available for installation and training within X weeks, visa/logistics handled]." },
-      { "title": "Remote diagnostics", "body": "[Insert 2–3 sentences detailing the remote-support setup: secure VPN/HMI remote access, response window, and what can be resolved without a site visit]." },
-      { "title": "Spare parts & lead time", "body": "[Insert spare-parts policy: recommended spares kit, typical replacement lead time, and stock held for wear items]." },
-      { "title": "Warranty & documentation", "body": "One-year warranty from acceptance, full manuals, electrical drawings and a packing standard suited to sea freight. [Confirm exact warranty wording per contract.]" }
+      { "title": "Overseas engineer dispatch", "body": "We send our own commissioning engineers worldwide for installation, run-off and operator training, and we handle their visa and travel logistics. Typical mobilisation is two to four weeks from site readiness." },
+      { "title": "Remote diagnostics", "body": "Every PLC-equipped machine supports secure remote access, so most software and parameter faults are diagnosed over the internet — often resolved without waiting for a site visit." },
+      { "title": "Spare parts & lead time", "body": "We supply a recommended spare-parts kit sized to your line and hold common wear items in stock, so routine replacements ship quickly rather than being built to order." },
+      { "title": "Warranty & documentation", "body": "One-year warranty from formal acceptance, subject to the final contract. It covers material and workmanship under normal use; consumables, unauthorised modification or parameter changes and missed scheduled maintenance are excluded, and any replacement parts fitted afterward carry their own one-year warranty. Delivery includes full operation manuals with I/O lists and electrical and pneumatic schematics, plus seaworthy export packing on wooden crates with vacuum wrapping." }
     ]
   },
 
@@ -113,13 +113,13 @@
     "lede": "Straight answers for buyers evaluating a turnkey partner from overseas. Where a number depends on the project, we say so rather than quote a figure we cannot stand behind.",
     "items": [
       { "q": "Do you run a Factory Acceptance Test (FAT) before shipment?", "a": "Yes. We agree measurable criteria — cycle time, first-pass yield, defect handling — and demonstrate them on your parts on our floor. You can attend in person or witness by live video, and we provide the FAT report." },
-      { "q": "What about Site Acceptance Test (SAT) and installation?", "a": "We commission the line at your plant and re-run the acceptance criteria under your utilities and materials. [Insert who arranges rigging/utilities and typical on-site duration.]" },
-      { "q": "Can you send engineers overseas for installation and training?", "a": "[Insert dispatch policy: regions covered, typical lead time to mobilize, duration on site, and how travel/visa logistics are handled.]" },
-      { "q": "What are typical lead times?", "a": "[Insert lead-time ranges by scope — single machine vs. modular line — and note that they depend on specification and current backlog.]" },
-      { "q": "How is after-sales support handled across time zones?", "a": "[Insert support hours, contact channels, remote-access response window, and escalation path.]" },
-      { "q": "What is the warranty?", "a": "One year from acceptance, covering defects in material and workmanship under normal use. Wear parts and consumables are excluded. [Confirm exact terms per contract.]" },
-      { "q": "What payment terms and currency do you work in?", "a": "[Insert accepted terms — e.g. T/T with staged milestones, L/C — and currency. Do not publish figures you are not ready to commit to.]" },
-      { "q": "Can the line integrate with our MES / data systems?", "a": "[Insert data/traceability capability: what is logged, export formats, and MES/OPC-UA options.]" },
+      { "q": "What about Site Acceptance Test (SAT) and installation?", "a": "We commission the line at your plant and re-run the acceptance criteria under your utilities and materials. You provide rigging, utilities and consumables; on-site commissioning typically runs one to two weeks depending on line scope." },
+      { "q": "Can you send engineers overseas for installation and training?", "a": "Yes. We dispatch our own engineers worldwide for installation, run-off and operator training, and we handle visa and travel logistics. Typical mobilisation is two to four weeks from site readiness." },
+      { "q": "What are typical lead times?", "a": "Lead time depends on specification and current backlog: roughly eight to sixteen weeks for a single standard machine, and four to eight months for a modular or turnkey line." },
+      { "q": "How is after-sales support handled across time zones?", "a": "Support is by email and phone during Taiwan business hours (GMT+8), with secure remote access to PLC-equipped machines for fast diagnosis between visits." },
+      { "q": "What is the warranty?", "a": "One year from formal acceptance, covering defects in material and workmanship under normal use. Consumables and wear parts, unauthorised modification or parameter changes, and missed scheduled maintenance are excluded. Replacement parts fitted after the warranty carry their own one-year warranty. Exact terms follow the final order contract." },
+      { "q": "What payment terms and currency do you work in?", "a": "We typically work in USD, on T/T with staged milestones tied to order, shipment and acceptance; letters of credit can be arranged for larger orders. Final terms are set in the order contract." },
+      { "q": "Can the line integrate with our MES / data systems?", "a": "Our lines carry barcode and laser marking for unit-level traceability, and production data is collected centrally with a live floor board showing line state. Data export and MES / OPC-UA integration are configured to your plant's systems." },
       { "q": "Do you protect our process and IP?", "a": "Yes. We work under NDA and do not disclose customer processes, part geometries or line photographs. That is also why our public references are anonymized." }
     ]
   },
@@ -129,7 +129,7 @@
     "title": "Take the two-page fact sheet to your team",
     "body": "A concise, ungated PDF: who we are, the process families we cover, standards, and how a turnkey engagement runs — everything a colleague needs to shortlist us. No form, no email wall.",
     "buttonLabel": "Download the company fact sheet (PDF)",
-    "fileHref": "[Insert /assets/docs/fatop-company-fact-sheet.pdf once the 2-page PDF is ready]",
-    "note": "[If the PDF is not ready, this button can link to the Contact page or be hidden until the asset exists.]"
+    "fileHref": "/contact/",
+    "note": "INTERIM — button links to Contact until the 2-page PDF exists; then set fileHref to /assets/docs/fatop-company-fact-sheet.pdf. [CONFIRM]"
   }
 }
