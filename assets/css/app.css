@@ -967,6 +967,29 @@ a.footer__contact-row:hover .footer__ico { color: var(--accent-ink); }
 .factlist dd { margin: 0; }
 .factlist--wide > div { grid-template-columns: minmax(8rem, 14rem) 1fr; }
 
+/* Reach us: contact details beside an interactive Google map. Two columns on
+   desktop; the map stacks under the details below 48rem. */
+.reachus {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-6);
+  align-items: start;
+}
+.reachus__details { margin: 0; }
+.reachus__map { display: grid; gap: var(--sp-4); }
+.reachus__frame {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius-lg);
+  display: block;
+  background: var(--surface-hover);
+}
+.reachus__maplink { justify-self: start; }
+@media (max-width: 47.99rem) {
+  .reachus { grid-template-columns: 1fr; }
+}
+
 .specnote { max-width: var(--max-prose); }
 .specnote p { margin-bottom: var(--sp-5); color: var(--ink-muted); }
 .specnote strong { color: var(--ink); }
