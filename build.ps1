@@ -420,6 +420,7 @@ foreach ($loc in $Locales) {
 $site      = Read-LocaleJson 'site.json'      $loc.code
 $catalogue = Read-LocaleJson 'catalogue.json' $loc.code
 $company   = Read-LocaleJson 'company.json'   $loc.code
+$worldmap  = Read-Json 'worldmap.json'   # dotted world map points; locale-independent
 
 # Family (category) display order comes from product-order.json -- the single
 # ordering source shared with build-data.ps1. Reorder catalogue families to
@@ -703,6 +704,7 @@ $pages = @(
        description=$c.about.description
        timeline=$company.timeline
        globalPresence=$company.globalPresence
+       worldMapDots=$worldmap.dots
        blocks=@( @{ eyebrow=$c.about.howEyebrow; title=$c.about.howTitle; items=$company.services } ) },
     @{ out='support';   nav='support';   title=$c.support.title
        eyebrow=$c.support.eyebrow; heading=$c.support.heading
