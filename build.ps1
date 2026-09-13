@@ -702,6 +702,7 @@ $pages = @(
        eyebrow=$c.about.eyebrow; heading=$company.positioning.line; lede=$company.positioning.summary
        description=$c.about.description
        timeline=$company.timeline
+       globalPresence=$company.globalPresence
        blocks=@( @{ eyebrow=$c.about.howEyebrow; title=$c.about.howTitle; items=$company.services } ) },
     @{ out='support';   nav='support';   title=$c.support.title
        eyebrow=$c.support.eyebrow; heading=$c.support.heading

@@ -117,6 +117,29 @@
     ]
   },
 
+  "globalPresence": {
+    "eyebrow": "Global footprint",
+    "title": "Global Presence & Proven Track Record",
+    "subhead": "Delivering high-precision automation equipment to manufacturers worldwide with long-term reliability.",
+    "regions": [
+      "Taiwan", "China", "Japan", "Vietnam", "India", "United States", "Europe"
+    ],
+    "cards": [
+      {
+        "heading": "20–30+ Years Machine Longevity",
+        "body": "We provide continuous maintenance, upgrades, and spare parts support for machines built 20 to 30 years ago. Built to last."
+      },
+      {
+        "heading": "Real-Time Remote Diagnostics",
+        "body": "Advanced remote equipment monitoring and diagnostics allow our engineering team to troubleshoot and support production lines worldwide."
+      },
+      {
+        "heading": "Worldwide Turnkey Solutions",
+        "body": "Trusted by top-tier manufacturers globally for full production line setup and custom automation."
+      }
+    ]
+  },
+
   "contact": {
     "phone": "+886-4-2533-8618",
     "mobile": "+886-985-213-506",
