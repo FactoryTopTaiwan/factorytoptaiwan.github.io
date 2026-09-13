@@ -270,6 +270,7 @@
     "columns": [
       {
         "heading": "Products",
+        "wide": true,
         "links": [
           { "label": "All machines",               "href": "/products/" },
           { "label": "Winding machines",           "href": "/products/tag/winding/" },

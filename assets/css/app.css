@@ -858,6 +858,71 @@ a.footer__contact-row:hover .footer__ico { color: var(--accent-ink); }
   padding-left: calc(1rem + var(--sp-3));
 }
 
+/* Heading doubles as the mobile accordion toggle; on desktop it is a plain
+   column heading (the .footer__col h3 rule above still styles it). */
+.footer__heading { margin-bottom: var(--sp-4); }
+
+/* --- Desktop: balanced single-row layout ---------------------------------
+   auto-fit wrapped the five columns to four and stretched row-1 columns to the
+   tallest (Products), leaving Solutions/Company with empty gaps. Pin an explicit
+   five-track grid (brand, Products, Solutions, Company, Support) that never
+   wraps, top-align every column so short ones don't stretch, and render the long
+   Products list in two sub-columns so its height matches the rest. */
+@media (min-width: 64rem) {
+  .footer__grid {
+    grid-template-columns: 1.5fr 1.9fr 1fr 1fr 1.1fr;
+    align-items: start;
+    gap: var(--sp-6);
+  }
+  .footer__list--split {
+    grid-auto-flow: column;
+    grid-template-rows: repeat(5, auto);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--sp-5);
+  }
+}
+
+/* --- Mobile: accordion ----------------------------------------------------
+   Below 64rem the four link columns become collapsible rows (collapsed by
+   default) so the footer stays short instead of stacking every list. The brand
+   column (contact block) has no toggle and stays open. */
+@media (max-width: 63.99rem) {
+  /* the two-column Products split is a desktop device only */
+  .footer__list--split { grid-template-columns: none; grid-auto-flow: row; }
+
+  /* Accordion only once JS has enhanced the headings (.footer--accordion),
+     so a no-JS phone still sees every list, just stacked. */
+  .footer--accordion .footer__grid { gap: 0; }
+  .footer--accordion .footer__col--brand { margin-bottom: var(--sp-5); }
+  .footer--accordion .footer__col[data-footer-col] {
+    border-top: var(--border) solid var(--line);
+  }
+  .footer--accordion .footer__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    margin: 0;
+    padding: var(--sp-4) 0;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .footer--accordion .footer__heading::after {
+    content: "+";
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1;
+    color: var(--ink-faint);
+  }
+  .footer--accordion .footer__col.is-open .footer__heading::after { content: "\2212"; }
+  .footer--accordion .footer__col[data-footer-col] .footer__list {
+    display: none;
+    padding-bottom: var(--sp-4);
+  }
+  .footer--accordion .footer__col.is-open .footer__list { display: grid; }
+}
+
 .footer__bottom {
   display: flex; flex-wrap: wrap; gap: var(--sp-4);
   justify-content: space-between;

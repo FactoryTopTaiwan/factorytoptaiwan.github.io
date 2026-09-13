@@ -99,6 +99,50 @@
     window.addEventListener('scroll', setStuck, { passive: true });
   }
 
+  /* ---- Footer accordion (mobile) ----------------------------------------
+     Below 64rem the four footer link columns collapse under their headings so
+     the footer stays short instead of stacking every list into a long scroll.
+     Progressive enhancement: the collapse CSS is gated on .footer--accordion,
+     added here, so a no-JS phone still shows every list. Desktop keeps all
+     lists open (the toggle is a no-op above 64rem). */
+  var footerToggles = document.querySelectorAll('[data-footer-toggle]');
+  if (footerToggles.length) {
+    var footerEl = document.querySelector('.footer');
+    if (footerEl) footerEl.classList.add('footer--accordion');
+    var footerMq = window.matchMedia('(max-width: 63.99rem)');
+    for (var fi = 0; fi < footerToggles.length; fi++) {
+      (function (h) {
+        var col = h.closest('[data-footer-col]');
+        if (!col) return;
+        h.setAttribute('role', 'button');
+        h.setAttribute('tabindex', '0');
+        h.setAttribute('aria-expanded', 'false');
+        var toggleCol = function () {
+          if (!footerMq.matches) return;            // desktop: lists always shown
+          var open = col.classList.toggle('is-open');
+          h.setAttribute('aria-expanded', open ? 'true' : 'false');
+        };
+        h.addEventListener('click', toggleCol);
+        h.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleCol(); }
+        });
+      })(footerToggles[fi]);
+    }
+    // Crossing back to desktop clears any open state so the grid never shows a
+    // stray mix; aria-expanded is reset to match.
+    var footerSync = function () {
+      if (footerMq.matches) return;
+      var opened = document.querySelectorAll('.footer__col.is-open');
+      for (var k = 0; k < opened.length; k++) {
+        opened[k].classList.remove('is-open');
+        var hh = opened[k].querySelector('[data-footer-toggle]');
+        if (hh) hh.setAttribute('aria-expanded', 'false');
+      }
+    };
+    if (footerMq.addEventListener) footerMq.addEventListener('change', footerSync);
+    else if (footerMq.addListener) footerMq.addListener(footerSync);
+  }
+
   /* ---- Site search -------------------------------------------------------
      A static host cannot run a query, so the whole index is one small JSON
      written at build time and fetched the first time search is opened. It is

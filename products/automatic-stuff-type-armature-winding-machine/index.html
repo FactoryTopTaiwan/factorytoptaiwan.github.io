@@ -1160,9 +1160,14 @@
       </div>
 
       
-      <div class="footer__col">
-        <h3>Products</h3>
-        <ul class="footer__list">
+      <!-- Each column is a plain heading + list on desktop; on mobile JS turns
+           the heading into an accordion toggle (see footer accordion in app.js)
+           so the four lists collapse instead of stacking into a long scroll.
+           `wide` columns (Products) render their list in two sub-columns on
+           desktop to keep the footer heights balanced. -->
+      <div class="footer__col footer__col--wide" data-footer-col>
+        <h3 class="footer__heading" data-footer-toggle>Products</h3>
+        <ul class="footer__list footer__list--split">
           
           <li><a href="/products/">All machines</a></li>
           
@@ -1185,8 +1190,13 @@
         </ul>
       </div>
       
-      <div class="footer__col">
-        <h3>Solutions &amp; technology</h3>
+      <!-- Each column is a plain heading + list on desktop; on mobile JS turns
+           the heading into an accordion toggle (see footer accordion in app.js)
+           so the four lists collapse instead of stacking into a long scroll.
+           `wide` columns (Products) render their list in two sub-columns on
+           desktop to keep the footer heights balanced. -->
+      <div class="footer__col" data-footer-col>
+        <h3 class="footer__heading" data-footer-toggle>Solutions &amp; technology</h3>
         <ul class="footer__list">
           
           <li><a href="/turnkey/">Turnkey production lines</a></li>
@@ -1198,8 +1208,13 @@
         </ul>
       </div>
       
-      <div class="footer__col">
-        <h3>Company</h3>
+      <!-- Each column is a plain heading + list on desktop; on mobile JS turns
+           the heading into an accordion toggle (see footer accordion in app.js)
+           so the four lists collapse instead of stacking into a long scroll.
+           `wide` columns (Products) render their list in two sub-columns on
+           desktop to keep the footer heights balanced. -->
+      <div class="footer__col" data-footer-col>
+        <h3 class="footer__heading" data-footer-toggle>Company</h3>
         <ul class="footer__list">
           
           <li><a href="/about/">About Teamwork Automation</a></li>
@@ -1211,8 +1226,13 @@
         </ul>
       </div>
       
-      <div class="footer__col">
-        <h3>Support &amp; contact</h3>
+      <!-- Each column is a plain heading + list on desktop; on mobile JS turns
+           the heading into an accordion toggle (see footer accordion in app.js)
+           so the four lists collapse instead of stacking into a long scroll.
+           `wide` columns (Products) render their list in two sub-columns on
+           desktop to keep the footer heights balanced. -->
+      <div class="footer__col" data-footer-col>
+        <h3 class="footer__heading" data-footer-toggle>Support &amp; contact</h3>
         <ul class="footer__list">
           
           <li><a href="/support/">Support &amp; remote diagnostics</a></li>
@@ -1348,6 +1368,6 @@
   </button>
 </div>
 
-<script src="/assets/js/app.js?v=7dd997f049" defer></script>
+<script src="/assets/js/app.js?v=b3f2231972" defer></script>
 </body>
 </html>

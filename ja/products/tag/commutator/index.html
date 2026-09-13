@@ -378,9 +378,14 @@
       </div>
 
       
-      <div class="footer__col">
-        <h3>製品</h3>
-        <ul class="footer__list">
+      <!-- Each column is a plain heading + list on desktop; on mobile JS turns
+           the heading into an accordion toggle (see footer accordion in app.js)
+           so the four lists collapse instead of stacking into a long scroll.
+           `wide` columns (Products) render their list in two sub-columns on
+           desktop to keep the footer heights balanced. -->
+      <div class="footer__col footer__col--wide" data-footer-col>
+        <h3 class="footer__heading" data-footer-toggle>製品</h3>
+        <ul class="footer__list footer__list--split">
           
           <li><a href="/ja/products/">全機種</a></li>
           
@@ -403,8 +408,13 @@
         </ul>
       </div>
       
-      <div class="footer__col">
-        <h3>ソリューション・技術</h3>
+      <!-- Each column is a plain heading + list on desktop; on mobile JS turns
+           the heading into an accordion toggle (see footer accordion in app.js)
+           so the four lists collapse instead of stacking into a long scroll.
+           `wide` columns (Products) render their list in two sub-columns on
+           desktop to keep the footer heights balanced. -->
+      <div class="footer__col" data-footer-col>
+        <h3 class="footer__heading" data-footer-toggle>ソリューション・技術</h3>
         <ul class="footer__list">
           
           <li><a href="/ja/turnkey/">ターンキー生産ライン</a></li>
@@ -416,8 +426,13 @@
         </ul>
       </div>
       
-      <div class="footer__col">
-        <h3>会社情報</h3>
+      <!-- Each column is a plain heading + list on desktop; on mobile JS turns
+           the heading into an accordion toggle (see footer accordion in app.js)
+           so the four lists collapse instead of stacking into a long scroll.
+           `wide` columns (Products) render their list in two sub-columns on
+           desktop to keep the footer heights balanced. -->
+      <div class="footer__col" data-footer-col>
+        <h3 class="footer__heading" data-footer-toggle>会社情報</h3>
         <ul class="footer__list">
           
           <li><a href="/ja/about/">協群自動化について</a></li>
@@ -429,8 +444,13 @@
         </ul>
       </div>
       
-      <div class="footer__col">
-        <h3>サポート・お問い合わせ</h3>
+      <!-- Each column is a plain heading + list on desktop; on mobile JS turns
+           the heading into an accordion toggle (see footer accordion in app.js)
+           so the four lists collapse instead of stacking into a long scroll.
+           `wide` columns (Products) render their list in two sub-columns on
+           desktop to keep the footer heights balanced. -->
+      <div class="footer__col" data-footer-col>
+        <h3 class="footer__heading" data-footer-toggle>サポート・お問い合わせ</h3>
         <ul class="footer__list">
           
           <li><a href="/ja/support/">サポート・遠隔診断</a></li>
@@ -566,6 +586,6 @@
   </button>
 </div>
 
-<script src="/assets/js/app.js?v=7dd997f049" defer></script>
+<script src="/assets/js/app.js?v=b3f2231972" defer></script>
 </body>
 </html>

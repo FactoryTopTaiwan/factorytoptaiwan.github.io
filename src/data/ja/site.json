@@ -244,6 +244,7 @@
     "columns": [
       {
         "heading": "製品",
+        "wide": true,
         "links": [
           { "label": "全機種",                        "href": "/ja/products/" },
           { "label": "巻線機",                        "href": "/ja/products/tag/winding/" },
