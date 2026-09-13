@@ -233,13 +233,31 @@
       <p class="eyebrow">Reach us</p>
       <h2>Taichung, Taiwan</h2>
     </div>
-    <dl class="factlist factlist--wide">
-      <div><dt>Email</dt><dd><a href="mailto:iverson.hsu@fatop-global.com">iverson.hsu@fatop-global.com</a></dd></div>
-      <div><dt>Telephone</dt><dd><a href="tel:+886-4-2533-8618">+886-4-2533-8618</a></dd></div>
-      <div><dt>Mobile</dt><dd><a href="tel:+886-985-213-506">+886-985-213-506</a></dd></div>
-      <div><dt>Address</dt><dd>No. 46-2, Lane 53, Shengli 8th St, Tanzi District, Taichung, Taiwan</dd></div>
-      <div><dt>Response</dt><dd>We reply within one business day.</dd></div>
-    </dl>
+    <!-- Two columns on desktop: contact details left, interactive map right.
+         Below 48rem the map stacks under the details. -->
+    <div class="reachus">
+      <dl class="factlist factlist--wide reachus__details">
+        <div><dt>Email</dt><dd><a href="mailto:iverson.hsu@fatop-global.com">iverson.hsu@fatop-global.com</a></dd></div>
+        <div><dt>Telephone</dt><dd><a href="tel:+886-4-2533-8618">+886-4-2533-8618</a></dd></div>
+        <div><dt>Mobile</dt><dd><a href="tel:+886-985-213-506">+886-985-213-506</a></dd></div>
+        <div><dt>Address</dt><dd>No. 46-2, Lane 53, Shengli 8th St, Tanzi District, Taichung, Taiwan</dd></div>
+        <div><dt>Response</dt><dd>We reply within one business day.</dd></div>
+      </dl>
+      
+      <div class="reachus__map">
+        <iframe class="reachus__frame"
+                src="https://maps.google.com/maps?q=No.%2046-2%2C%20Lane%2053%2C%20Shengli%208th%20St%2C%20Tanzi%20District%2C%20Taichung%2C%20Taiwan&amp;z=16&amp;hl=en&amp;output=embed"
+                title="Taichung, Taiwan — No. 46-2, Lane 53, Shengli 8th St, Tanzi District, Taichung, Taiwan"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen></iframe>
+        <a class="btn btn--ghost reachus__maplink"
+           href="https://www.google.com/maps/search/?api=1&amp;query=No.%2046-2%2C%20Lane%2053%2C%20Shengli%208th%20St%2C%20Tanzi%20District%2C%20Taichung%2C%20Taiwan" target="_blank" rel="noopener">
+          View on Google Maps
+          <span class="btn__arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+      
+    </div>
   </div>
 </section>
 
