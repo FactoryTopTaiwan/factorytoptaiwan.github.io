@@ -371,7 +371,17 @@
           var cat = tab.getAttribute('data-pgal-cat-tab');
           tab.addEventListener('click', function () {
             var idx = firstSlideOfCat(cat);
-            if (idx >= 0) slides[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            if (idx < 0) return;
+            // Instant jump between categories, not a page-by-page slide-through:
+            // the track's CSS scroll-behavior is smooth for finger momentum, so
+            // override it to 'auto' for this programmatic jump. scrollIntoView is
+            // synchronous under 'auto', so restore immediately after (rAF would
+            // stay unrestored while the tab is backgrounded).
+            var prev = track.style.scrollBehavior;
+            track.style.scrollBehavior = 'auto';
+            slides[idx].scrollIntoView({ inline: 'center', block: 'nearest' });
+            track.style.scrollBehavior = prev;
+            setActiveCat(cat);
           });
         })(catTabs[ct]);
       }
@@ -600,6 +610,8 @@
       if (stage) stage.classList.add('is-video');
       setTabsSelected('video');
       setThumbsSelected('video');
+      // Deselect the mobile category tabs so only VIDEO reads as active.
+      if (typeof setActiveCatTab === 'function') setActiveCatTab(null);
     };
     var showImages = function () {
       if (videoPanel) videoPanel.hidden = true;
@@ -614,7 +626,13 @@
       for (var i = 0; i < dots.length; i++) {
         dots[i].classList.toggle('is-active', i === mediaIdx);
       }
-      if (!isVideoOpen()) setThumbsSelected(mediaIdx);
+      if (!isVideoOpen()) {
+        setThumbsSelected(mediaIdx);
+        // Keep the mobile category tab (SOLUTIONS / FINISHED) in sync as the
+        // user swipes across the group boundary.
+        var curCat = slides[mediaIdx] && slides[mediaIdx].getAttribute('data-lightbox-cat');
+        if (curCat && typeof setActiveCatTab === 'function') setActiveCatTab(curCat);
+      }
       if (lbPrev) lbPrev.hidden = mediaIdx <= 0;
       if (lbNext) lbNext.hidden = mediaIdx >= slides.length - 1;
     };
@@ -657,6 +675,35 @@
           else showImages();
         });
       })(lbTabs[tt]);
+    }
+
+    // Category tabs (mobile): SOLUTIONS / FINISHED. Clicking one jumps instantly
+    // to the first image of that category; swiping across a boundary updates
+    // which tab is highlighted (renderState below). Slides carry
+    // data-lightbox-cat so the boundary is known.
+    var lbCatTabs = lightbox.querySelectorAll('[data-lightbox-cat-tab]');
+    var firstSlideOfCatLb = function (cat) {
+      for (var s = 0; s < slides.length; s++) {
+        if (slides[s].getAttribute('data-lightbox-cat') === cat) return s;
+      }
+      return -1;
+    };
+    var setActiveCatTab = function (cat) {
+      for (var c = 0; c < lbCatTabs.length; c++) {
+        lbCatTabs[c].setAttribute('aria-selected',
+          lbCatTabs[c].getAttribute('data-lightbox-cat-tab') === cat ? 'true' : 'false');
+      }
+    };
+    for (var cti = 0; cti < lbCatTabs.length; cti++) {
+      (function (tab) {
+        tab.addEventListener('click', function () {
+          var cat = tab.getAttribute('data-lightbox-cat-tab');
+          var idx = firstSlideOfCatLb(cat);
+          showImages();
+          if (idx >= 0) lbGoto(idx, false);
+          setActiveCatTab(cat);
+        });
+      })(lbCatTabs[cti]);
     }
 
     // Nav buttons (desktop)
@@ -847,18 +894,26 @@
       if (e.pointerType !== 'touch') return;
       state.pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
       state.pointerCount = pointerList().length;
-      try { z.setPointerCapture(e.pointerId); } catch (err) {}
 
       if (state.pointerCount === 2) {
         var pts = pointerList();
         state.startDist = distance(pts[0], pts[1]);
         state.startScale = state.scale;
         z.classList.add('is-panning');
+        // Capturing keeps both fingers reporting to us through the pinch.
+        try { z.setPointerCapture(e.pointerId); } catch (err) {}
       } else if (state.pointerCount === 1) {
         state.panStartX = e.clientX;
         state.panStartY = e.clientY;
         state.panning = state.scale > 1.02;
-        if (state.panning) z.classList.add('is-panning');
+        if (state.panning) {
+          z.classList.add('is-panning');
+          // Only capture when the image is already zoomed (single-finger pan).
+          // At scale 1 we must NOT capture, or pointer capture steals the
+          // gesture and the native horizontal scroll-snap swipe (which browses
+          // between images) never runs.
+          try { z.setPointerCapture(e.pointerId); } catch (err) {}
+        }
       }
     });
 
