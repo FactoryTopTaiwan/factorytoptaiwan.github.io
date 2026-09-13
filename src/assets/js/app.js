@@ -143,6 +143,91 @@
     else if (footerMq.addListener) footerMq.addListener(footerSync);
   }
 
+  /* ---- Reach-us map (brand-dark, keyless) --------------------------------
+     A dark Leaflet map with CARTO dark tiles and a brand-accent pin, matching
+     the site rather than default Google styling. No API key. Leaflet is loaded
+     from a CDN only on pages that have a [data-map], and only once the map
+     scrolls near the viewport, so other pages stay dependency-free. Without JS
+     (or if the CDN fails) the container keeps a "View on Google Maps" link. */
+  var mapEls = document.querySelectorAll('[data-map]');
+  if (mapEls.length) {
+    var LEAFLET_CSS = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';
+    var LEAFLET_JS  = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
+    var leafletState = 0; // 0 idle, 1 loading, 2 ready
+    var waiters = [];
+    var ensureLeaflet = function (cb) {
+      if (window.L) { cb(); return; }
+      waiters.push(cb);
+      if (leafletState !== 0) return;
+      leafletState = 1;
+      var css = document.createElement('link');
+      css.rel = 'stylesheet'; css.href = LEAFLET_CSS;
+      document.head.appendChild(css);
+      var js = document.createElement('script');
+      js.src = LEAFLET_JS; js.async = true;
+      js.onload = function () { leafletState = 2; waiters.forEach(function (f) { f(); }); waiters = []; };
+      js.onerror = function () { leafletState = 0; }; // leave the fallback link in place
+      document.head.appendChild(js);
+    };
+    var pinSvg =
+      '<svg viewBox="0 0 24 34" width="30" height="42" aria-hidden="true">' +
+      '<path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.9 12 34 12 34s12-13.1 12-22.1C24 5.3 18.6 0 12 0z" fill="currentColor"/>' +
+      '<circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>';
+    var initMap = function (el) {
+      if (el.dataset.mapInit) return;   // guard against IO + fallback double-init
+      el.dataset.mapInit = '1';
+      var lat = parseFloat(el.getAttribute('data-lat'));
+      var lng = parseFloat(el.getAttribute('data-lng'));
+      var zoom = parseInt(el.getAttribute('data-zoom'), 10) || 16;
+      var label = el.getAttribute('data-label') || '';
+      if (isNaN(lat) || isNaN(lng)) return;
+      el.innerHTML = ''; // drop the no-JS fallback link
+      if (zoom > 16) zoom = 16; // Esri dark canvas serves up to z16
+      var map = window.L.map(el, { scrollWheelZoom: false, zoomControl: true });
+      map.setView([lat, lng], zoom);
+      // Esri Dark Gray Canvas: keyless, clean monochrome, matches the site.
+      var esri = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/';
+      var blankTile = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+      window.L.tileLayer(esri + 'World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 16, attribution: 'Tiles &copy; Esri', errorTileUrl: blankTile
+      }).addTo(map);
+      window.L.tileLayer(esri + 'World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 16, errorTileUrl: blankTile
+      }).addTo(map);
+      var icon = window.L.divIcon({
+        className: 'reachus__pin', html: pinSvg,
+        iconSize: [30, 42], iconAnchor: [15, 42], popupAnchor: [0, -38]
+      });
+      window.L.marker([lat, lng], { icon: icon, title: label, keyboard: false })
+        .addTo(map)
+        .bindPopup('<strong>' + label + '</strong>');
+      // Only grab the wheel once the user interacts, so the page still scrolls.
+      map.on('focus', function () { map.scrollWheelZoom.enable(); });
+      map.on('blur', function () { map.scrollWheelZoom.disable(); });
+    };
+    var loadMap = function (el) { ensureLeaflet(function () { initMap(el); }); };
+    if ('IntersectionObserver' in window) {
+      var mapIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          mapIo.unobserve(e.target);
+          loadMap(e.target);
+        });
+      }, { rootMargin: '200px' });
+      for (var mi = 0; mi < mapEls.length; mi++) mapIo.observe(mapEls[mi]);
+    }
+    // Safety net: if the observer never fires (older browsers, or a page that
+    // renders without a visible viewport), still load the map shortly after
+    // load. The initMap guard prevents a double init.
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        for (var k = 0; k < mapEls.length; k++) {
+          if (!mapEls[k].dataset.mapInit) loadMap(mapEls[k]);
+        }
+      }, 1500);
+    });
+  }
+
   /* ---- Site search -------------------------------------------------------
      A static host cannot run a query, so the whole index is one small JSON
      written at build time and fetched the first time search is opened. It is

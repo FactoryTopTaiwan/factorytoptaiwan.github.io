@@ -1042,15 +1042,32 @@ a.footer__contact-row:hover .footer__ico { color: var(--accent-ink); }
 }
 .reachus__details { margin: 0; }
 .reachus__map { display: grid; gap: var(--sp-4); }
-.reachus__frame {
+.reachus__canvas {
   width: 100%;
   aspect-ratio: 4 / 3;
   border: var(--border) solid var(--line);
   border-radius: var(--radius-lg);
-  display: block;
-  background: var(--surface-hover);
+  overflow: hidden;
+  background: #0b0e12;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 0;
 }
+.reachus__mapfallback { color: var(--ink-muted); text-decoration: underline; font-size: var(--step--1); }
 .reachus__maplink { justify-self: start; }
+/* Leaflet dark-theme integration so the map reads as part of the site. */
+.reachus__canvas .leaflet-container { background: #0b0e12; font: inherit; }
+.reachus__canvas .leaflet-control-attribution {
+  background: rgba(11, 14, 18, 0.72); color: var(--ink-faint);
+}
+.reachus__canvas .leaflet-control-attribution a { color: var(--ink-muted); }
+.reachus__canvas .leaflet-bar a {
+  background: var(--surface); color: var(--ink);
+  border-bottom-color: var(--line);
+}
+.reachus__canvas .leaflet-bar a:hover { background: var(--surface-hover); }
+.reachus__canvas .leaflet-popup-content-wrapper,
+.reachus__canvas .leaflet-popup-tip { background: var(--surface); color: var(--ink); }
+.reachus__pin { color: var(--accent-ink); filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5)); }
 @media (max-width: 47.99rem) {
   .reachus { grid-template-columns: 1fr; }
 }

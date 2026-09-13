@@ -145,10 +145,13 @@
     "mobile": "+886-985-213-506",
     "email": "iverson.hsu@fatop-global.com",
     "addressLocal": "台中市潭子區勝利八街53巷46之2號",
-    "addressEn": "No. 46-2, Lane 53, Shengli 8th St, Tanzi District, Taichung, Taiwan",
+    "addressEn": "No. 46-2, Lane 53, Shengli 8th St, Tanzi District, Taichung City, Taiwan 427",
     "responseCommitment": "We reply within one business day.",
-    "_mapNote": "Keyless Google Maps embed (q=address, output=embed) — interactive, no API key. mapLink opens native Google Maps for directions. If the pin lands off, replace the address query with lat,lng.",
-    "mapEmbedSrc": "https://maps.google.com/maps?q=No.%2046-2%2C%20Lane%2053%2C%20Shengli%208th%20St%2C%20Tanzi%20District%2C%20Taichung%2C%20Taiwan&z=16&hl=en&output=embed",
-    "mapLink": "https://www.google.com/maps/search/?api=1&query=No.%2046-2%2C%20Lane%2053%2C%20Shengli%208th%20St%2C%20Tanzi%20District%2C%20Taichung%2C%20Taiwan"
+    "_mapNote": "On-site map is a keyless brand-dark Leaflet map (CARTO dark tiles) with a custom accent pin at mapLat/mapLng (resolved from the official Google listing). mapLink is the official Google Maps listing for native navigation. A true Google-tiles map would need a Maps JavaScript API key.",
+    "mapLat": 24.21243,
+    "mapLng": 120.6981931,
+    "mapZoom": 16,
+    "mapLabel": "Teamwork Automation Machinery Co., Ltd.",
+    "mapLink": "https://maps.app.goo.gl/rgP45FyiN1zWGnuQ6"
   }
 }

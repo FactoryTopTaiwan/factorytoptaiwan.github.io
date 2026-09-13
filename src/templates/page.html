@@ -167,13 +167,20 @@
         <div><dt>{{site.ui.address}}</dt><dd>{{company.contact.addressEn}}</dd></div>
         <div><dt>{{site.ui.response}}</dt><dd>{{company.contact.responseCommitment}}</dd></div>
       </dl>
-      {{#if company.contact.mapEmbedSrc}}
+      {{#if company.contact.mapLat}}
       <div class="reachus__map">
-        <iframe class="reachus__frame"
-                src="{{company.contact.mapEmbedSrc}}"
-                title="{{site.ui.location}} — {{company.contact.addressEn}}"
-                loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                allowfullscreen></iframe>
+        <!-- Brand-dark interactive map (Leaflet + CARTO dark tiles), lazily
+             initialised by app.js when scrolled into view; no API key. Falls
+             back to the "View on Google Maps" link if scripts don't run. -->
+        <div class="reachus__canvas" data-map
+             data-lat="{{company.contact.mapLat}}"
+             data-lng="{{company.contact.mapLng}}"
+             data-zoom="{{company.contact.mapZoom}}"
+             data-label="{{company.contact.mapLabel}}"
+             data-href="{{company.contact.mapLink}}"
+             role="img" aria-label="{{company.contact.mapLabel}} — {{company.contact.addressEn}}">
+          <a class="reachus__mapfallback" href="{{company.contact.mapLink}}" target="_blank" rel="noopener">{{site.ui.viewOnMap}}</a>
+        </div>
         <a class="btn btn--ghost reachus__maplink"
            href="{{company.contact.mapLink}}" target="_blank" rel="noopener">
           {{site.ui.viewOnMap}}
