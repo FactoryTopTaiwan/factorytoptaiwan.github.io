@@ -289,7 +289,7 @@
       {
         "heading": "Solutions & technology",
         "links": [
-          { "label": "EV hairpin winding",         "href": "/solutions/ev-hairpin/" },
+          { "label": "Hairpin prototyping",        "href": "/solutions/ev-hairpin/" },
           { "label": "Drone & BLDC motors",        "href": "/solutions/drone-bldc/" },
           { "label": "Power tools & appliances",   "href": "/solutions/power-tools-appliances/" },
           { "label": "Turnkey production lines",   "href": "/turnkey/" },
