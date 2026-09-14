@@ -190,6 +190,8 @@
     "allMachines": "全{n}機種を見る",
     "seeTurnkey": "ターンキーラインを見る",
     "bookCall": "オンライン打ち合わせを予約",
+    "downloadPdf": "PDF データシートをダウンロード",
+    "pdfGenerating": "PDF を生成中…",
     "inquiryAdd": "見積リストに追加",
     "inquiryAdded": "追加済み",
     "inquiryAddAria": "この機械を見積リストに追加",

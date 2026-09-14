@@ -2665,3 +2665,53 @@ body.lb-open { overflow: hidden; touch-action: none; }
   .inq__backdrop, .inq__panel { transition: none; }
   .inq-add.is-justAdded { animation: none; }
 }
+
+/* ==========================================================================
+   Video modal — centered dark-backdrop dialog for YouTube facades
+   ========================================================================== */
+.vmodal {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  width: min(92vw, 1080px);
+  max-width: 92vw;
+  color: #fff;
+  overflow: visible;
+}
+.vmodal::backdrop { background: rgba(8, 10, 14, 0.86); }
+.vmodal__frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background: #000;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+.vmodal__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.vmodal__close {
+  position: absolute;
+  top: -2.9rem;
+  right: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.vmodal__close:hover { background: rgba(255, 255, 255, 0.14); }
+.vmodal__close svg { width: 1.6rem; height: 1.6rem; }
+body.vmodal-open { overflow: hidden; }
+/* On short/!small screens keep the close reachable inside the top-right. */
+@media (max-width: 34rem), (max-height: 34rem) {
+  .vmodal__close {
+    top: 0.4rem;
+    right: 0.4rem;
+    background: rgba(0, 0, 0, 0.5);
+  }
+}

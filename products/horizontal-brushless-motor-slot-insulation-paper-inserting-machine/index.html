@@ -543,6 +543,21 @@
           </button>
           <a class="btn btn--ghost btn--lg" href="/contact/#call">Book a video call</a>
 
+          <!-- Client-side datasheet: builds a 2-page PDF in the browser from the
+               live page data (no server, always current). ?download=pdf on the
+               URL auto-triggers it (used from the inquiry confirmation email). -->
+          <button class="btn btn--ghost btn--lg" type="button" data-pdf
+                  data-model="TWM-SP001"
+                  data-company="Teamwork Automation Machinery Co., Ltd."
+                  data-web="https://fatop-global.com"
+                  data-addr="No. 46-2, Lane 53, Shengli 8th St, Tanzi District, Taichung City, Taiwan 427"
+                  data-phone="+886-4-2533-8618"
+                  data-email="iverson.hsu@fatop-global.com"
+                  data-generating="Generating PDF…">
+            Download PDF Datasheet
+            <span class="btn__arrow" aria-hidden="true">↓</span>
+          </button>
+
           <!-- Share menu. Amazon-style small icon with a popover of send options
                so a buyer can escalate the page to their manager or a decision-
                maker on their end. Web Share API on mobile falls into the same
@@ -1181,6 +1196,18 @@
   </div>
 </footer>
 
+<!-- Shared video modal. Every video facade ([data-video]) opens the clip here
+     in a centered dark-backdrop dialog rather than redirecting to YouTube. The
+     iframe is built on open (youtube-nocookie, so nothing loads until play) and
+     torn down on close so audio never keeps playing. Native <dialog> gives Esc
+     and focus handling for free. -->
+<dialog class="vmodal" data-vmodal aria-label="Watch this machine run">
+  <button class="vmodal__close" type="button" data-vmodal-close aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  </button>
+  <div class="vmodal__frame" data-vmodal-frame></div>
+</dialog>
+
 <!-- ==========================================================================
      Add-to-Quote / Inquiry list. One panel: a right-hand drawer on desktop,
      a bottom sheet on phones/tablets. All state is held in the browser
@@ -1271,6 +1298,6 @@
   </button>
 </div>
 
-<script src="/assets/js/app.js?v=f30d53901c" defer></script>
+<script src="/assets/js/app.js?v=e94d133e96" defer></script>
 </body>
 </html>

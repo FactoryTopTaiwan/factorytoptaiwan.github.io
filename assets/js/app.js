@@ -408,27 +408,215 @@
 
      Placed above the reveal-on-scroll block on purpose: that block returns
      early under prefers-reduced-motion. */
+  var vmodal = document.querySelector('[data-vmodal]');
+  var vframe = vmodal ? vmodal.querySelector('[data-vmodal-frame]') : null;
+  var openVideo = function (id, title) {
+    if (!vmodal || !vframe || !id) return;
+    var frame = document.createElement('iframe');
+    // The modal open IS the play gesture, so autoplay here (unlike the retired
+    // in-page facade, which the client wanted click-to-play).
+    frame.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
+                '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+    frame.title = title || 'Video';
+    frame.allow = 'autoplay; accelerometer; encrypted-media; picture-in-picture; web-share';
+    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+    frame.setAttribute('allowfullscreen', '');
+    vframe.textContent = '';
+    vframe.appendChild(frame);
+    document.body.classList.add('vmodal-open');
+    try { vmodal.showModal(); } catch (e) { vmodal.setAttribute('open', ''); }
+  };
+  var closeVideo = function () {
+    if (!vmodal) return;
+    if (vframe) vframe.textContent = '';   // tear down the iframe → stop audio
+    document.body.classList.remove('vmodal-open');
+    try { vmodal.close(); } catch (e) { vmodal.removeAttribute('open'); }
+  };
+  if (vmodal) {
+    var vclose = vmodal.querySelector('[data-vmodal-close]');
+    if (vclose) vclose.addEventListener('click', closeVideo);
+    // Click on the backdrop (the dialog element itself, outside the frame).
+    vmodal.addEventListener('click', function (e) { if (e.target === vmodal) closeVideo(); });
+    // Esc: <dialog> fires 'cancel'; run our teardown too.
+    vmodal.addEventListener('cancel', function (e) { e.preventDefault(); closeVideo(); });
+  }
+  // Every video facade opens the shared modal instead of playing in place.
   var facades = document.querySelectorAll('[data-video]');
   for (var v = 0; v < facades.length; v++) {
     (function (box) {
-      var btn = box.querySelector('.vid__play');
-      if (!btn) return;
-      btn.addEventListener('click', function () {
-        var id = box.getAttribute('data-video');
-        if (!id) return;
-        var frame = document.createElement('iframe');
-        frame.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
-                    '?rel=0&modestbranding=1';
-        frame.title = box.getAttribute('data-video-title') || 'Video';
-        frame.allow = 'accelerometer; encrypted-media; picture-in-picture; web-share';
-        frame.referrerPolicy = 'strict-origin-when-cross-origin';
-        frame.setAttribute('allowfullscreen', '');
-        frame.className = 'vid__frame';
-        box.textContent = '';
-        box.appendChild(frame);
-        frame.focus();
+      var trigger = box.querySelector('.vid__play') || box;
+      trigger.addEventListener('click', function () {
+        openVideo(box.getAttribute('data-video'), box.getAttribute('data-video-title'));
       });
     })(facades[v]);
+  }
+
+  /* ---- Product PDF datasheet (client-side) -------------------------------
+     Builds a clean 2-page PDF from the LIVE page data on click, so it always
+     matches the current specs with no rebuild. jsPDF + autotable load from a
+     CDN only when the button is used. ?download=pdf auto-triggers it (used by
+     the inquiry confirmation email's link back to the product page). */
+  var pdfBtn = document.querySelector('[data-pdf]');
+  if (pdfBtn) {
+    var JSPDF_URL = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+    var AUTOTABLE_URL = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js';
+    var pdfState = 0, pdfWaiters = [];
+    var loadScript = function (src, cb) {
+      var s = document.createElement('script');
+      s.src = src; s.onload = function () { cb(); };
+      s.onerror = function () { cb(new Error('load')); };
+      document.head.appendChild(s);
+    };
+    var ensurePdfLibs = function (cb) {
+      if (window.jspdf && window.jspdf.jsPDF) { cb(); return; }
+      pdfWaiters.push(cb);
+      if (pdfState !== 0) return; pdfState = 1;
+      loadScript(JSPDF_URL, function (e1) {
+        if (e1) { pdfState = 0; pdfWaiters = []; return; }
+        loadScript(AUTOTABLE_URL, function () {
+          pdfState = 2; pdfWaiters.forEach(function (f) { f(); }); pdfWaiters = [];
+        });
+      });
+    };
+    var imgToJpeg = function (src, cb) {
+      if (!src) { cb(null); return; }
+      var img = new Image(); img.crossOrigin = 'anonymous';
+      img.onload = function () {
+        try {
+          var cv = document.createElement('canvas');
+          cv.width = img.naturalWidth; cv.height = img.naturalHeight;
+          var ctx = cv.getContext('2d');
+          ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, cv.width, cv.height);
+          ctx.drawImage(img, 0, 0);
+          cb(cv.toDataURL('image/jpeg', 0.92), img.naturalWidth, img.naturalHeight);
+        } catch (e) { cb(null); }
+      };
+      img.onerror = function () { cb(null); };
+      img.src = src;
+    };
+    var txt = function (sel) { var el = document.querySelector(sel); return el ? el.textContent.trim() : ''; };
+    var collectData = function () {
+      var specs = [].map.call(document.querySelectorAll('.spectable tr'), function (tr) {
+        var th = tr.querySelector('th'), td = tr.querySelector('td');
+        return [th ? th.textContent.trim() : '', td ? td.textContent.trim() : ''];
+      });
+      var highlights = [].map.call(document.querySelectorAll('.prod__head .factlist > div'), function (d) {
+        var dt = d.querySelector('dt'), dd = d.querySelector('dd');
+        return [dt ? dt.textContent.trim() : '', dd ? dd.textContent.trim() : ''];
+      });
+      var hero = document.querySelector('.prod__hero');
+      return {
+        model: pdfBtn.getAttribute('data-model') || '',
+        title: txt('.prod__head h1') || document.title,
+        summary: txt('.prod__head .lede'),
+        highlights: highlights,
+        specs: specs,
+        heroSrc: hero ? (hero.currentSrc || hero.src) : null,
+        company: pdfBtn.getAttribute('data-company') || '',
+        web: (pdfBtn.getAttribute('data-web') || '').replace(/^https?:\/\//, ''),
+        addr: pdfBtn.getAttribute('data-addr') || '',
+        phone: pdfBtn.getAttribute('data-phone') || '',
+        email: pdfBtn.getAttribute('data-email') || ''
+      };
+    };
+    var makePdf = function (d, heroJpeg, hw, hh) {
+      var jsPDF = window.jspdf.jsPDF;
+      var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+      var W = doc.internal.pageSize.getWidth();
+      var H = doc.internal.pageSize.getHeight();
+      var M = 16, accent = [222, 82, 18], ink = [28, 32, 38], muted = [120, 128, 138];
+      var header = function () {
+        doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+        doc.setTextColor(muted[0], muted[1], muted[2]);
+        doc.text(d.company || 'Teamwork Automation', M, 12);
+        if (d.web) doc.text(d.web, W - M, 12, { align: 'right' });
+        doc.setDrawColor(accent[0], accent[1], accent[2]); doc.setLineWidth(0.6);
+        doc.line(M, 15, W - M, 15);
+      };
+      var footer = function () {
+        var y = H - 14;
+        doc.setDrawColor(222); doc.setLineWidth(0.2); doc.line(M, y - 4, W - M, y - 4);
+        doc.setFont('helvetica', 'normal'); doc.setFontSize(8);
+        doc.setTextColor(muted[0], muted[1], muted[2]);
+        if (d.addr) doc.text(d.addr, M, y);
+        var line2 = [d.phone, d.email].filter(Boolean).join('   |   ');
+        if (line2) doc.text(line2, M, y + 4);
+        doc.text('Specifications subject to change without notice.', W - M, y + 4, { align: 'right' });
+      };
+      header();
+      var y = 28;
+      if (d.model) {
+        doc.setFont('helvetica', 'bold'); doc.setFontSize(11);
+        doc.setTextColor(accent[0], accent[1], accent[2]);
+        doc.text(d.model, M, y); y += 7;
+      }
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(19);
+      doc.setTextColor(ink[0], ink[1], ink[2]);
+      var titleLines = doc.splitTextToSize(d.title, W - 2 * M);
+      doc.text(titleLines, M, y); y += titleLines.length * 8 + 2;
+      // hero image, contained in a box
+      if (heroJpeg && hw && hh) {
+        var boxW = W - 2 * M, boxH = 72;
+        var scale = Math.min(boxW / hw, boxH / hh);
+        var iw = hw * scale, ih = hh * scale;
+        var ix = M + (boxW - iw) / 2, iy = y;
+        doc.addImage(heroJpeg, 'JPEG', ix, iy, iw, ih);
+        y += boxH + 4;
+      }
+      if (d.summary) {
+        doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5);
+        doc.setTextColor(60, 66, 74);
+        var sLines = doc.splitTextToSize(d.summary, W - 2 * M);
+        doc.text(sLines, M, y); y += sLines.length * 5 + 3;
+      }
+      if (d.highlights.length) {
+        doc.setFontSize(9.5);
+        d.highlights.forEach(function (h) {
+          doc.setTextColor(muted[0], muted[1], muted[2]);
+          doc.setFont('helvetica', 'bold'); doc.text(h[0] + ':', M, y);
+          doc.setFont('helvetica', 'normal'); doc.setTextColor(ink[0], ink[1], ink[2]);
+          doc.text(h[1], M + 34, y); y += 5.5;
+        });
+        y += 2;
+      }
+      var body = d.specs.length ? d.specs : [['Specifications', 'Full specifications available on request — contact us.']];
+      doc.autoTable({
+        startY: y + 2,
+        head: [['Specification', '']],
+        body: body,
+        margin: { top: 20, bottom: 20, left: M, right: M },
+        styles: { font: 'helvetica', fontSize: 9.5, cellPadding: 2, textColor: ink, lineColor: [230, 232, 235], lineWidth: 0.1 },
+        headStyles: { fillColor: accent, textColor: 255, fontStyle: 'bold' },
+        alternateRowStyles: { fillColor: [246, 247, 248] },
+        columnStyles: { 0: { cellWidth: 62, fontStyle: 'bold', textColor: muted }, 1: { cellWidth: 'auto' } },
+        didDrawPage: function () { header(); footer(); }
+      });
+      var name = (d.model || (location.pathname.replace(/\/+$/, '').split('/').pop()) || 'datasheet') + '-datasheet.pdf';
+      doc.save(name);
+    };
+    var busy = false;
+    var generate = function () {
+      if (busy) return; busy = true;
+      var original = pdfBtn.innerHTML;
+      pdfBtn.setAttribute('aria-busy', 'true');
+      pdfBtn.textContent = pdfBtn.getAttribute('data-generating') || 'Generating…';
+      var finish = function () { pdfBtn.innerHTML = original; pdfBtn.removeAttribute('aria-busy'); busy = false; };
+      ensurePdfLibs(function () {
+        if (!(window.jspdf && window.jspdf.jsPDF)) { finish(); return; }
+        var d = collectData();
+        imgToJpeg(d.heroSrc, function (jpeg, hw, hh) {
+          try { makePdf(d, jpeg, hw, hh); } catch (e) { /* swallow */ }
+          finish();
+        });
+      });
+    };
+    pdfBtn.addEventListener('click', generate);
+    // Auto-download when linked from the confirmation email (?download=pdf).
+    try {
+      if (new URLSearchParams(location.search).get('download') === 'pdf') {
+        window.addEventListener('load', function () { setTimeout(generate, 400); });
+      }
+    } catch (e) {}
   }
 
   /* ---- Mobile product carousel + immersive media viewer -----------------

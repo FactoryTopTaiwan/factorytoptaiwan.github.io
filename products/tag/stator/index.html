@@ -678,6 +678,18 @@
   </div>
 </footer>
 
+<!-- Shared video modal. Every video facade ([data-video]) opens the clip here
+     in a centered dark-backdrop dialog rather than redirecting to YouTube. The
+     iframe is built on open (youtube-nocookie, so nothing loads until play) and
+     torn down on close so audio never keeps playing. Native <dialog> gives Esc
+     and focus handling for free. -->
+<dialog class="vmodal" data-vmodal aria-label="Watch this machine run">
+  <button class="vmodal__close" type="button" data-vmodal-close aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  </button>
+  <div class="vmodal__frame" data-vmodal-frame></div>
+</dialog>
+
 <!-- ==========================================================================
      Add-to-Quote / Inquiry list. One panel: a right-hand drawer on desktop,
      a bottom sheet on phones/tablets. All state is held in the browser
@@ -768,6 +780,6 @@
   </button>
 </div>
 
-<script src="/assets/js/app.js?v=f30d53901c" defer></script>
+<script src="/assets/js/app.js?v=e94d133e96" defer></script>
 </body>
 </html>

@@ -166,6 +166,8 @@
     "machines": "machines",
     "seeTurnkey": "See turnkey lines",
     "bookCall": "Book a video call",
+    "downloadPdf": "Download PDF Datasheet",
+    "pdfGenerating": "Generating PDF…",
     "inquiryAdd": "Add to inquiry",
     "inquiryAdded": "Added to inquiry",
     "inquiryAddAria": "Add this machine to your inquiry list",
