@@ -1435,6 +1435,52 @@
     })(galleries[g]);
   }
 
+  /* ---- Count-up stats ----------------------------------------------------
+     When a [data-count] value scrolls into view, count from 0 to the authored
+     number, keeping any prefix/suffix (e.g. "20+", "1992"). Respects
+     prefers-reduced-motion (leaves the final value in place). */
+  var counters = document.querySelectorAll('[data-count]');
+  if (counters.length) {
+    var reducedCount = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var parseCount = function (raw) {
+      var m = String(raw).match(/^(\D*)(\d[\d,]*)(.*)$/);
+      if (!m) return null;
+      var n = parseInt(m[2].replace(/,/g, ''), 10);
+      if (isNaN(n)) return null;
+      // A bare four-digit year (e.g. "1992") is a date, not a metric — don't
+      // animate it, and never comma-format it.
+      var isYear = !m[1] && !m[3] && n >= 1900 && n <= 2099;
+      return { prefix: m[1], target: n, suffix: m[3], skip: isYear };
+    };
+    var runCount = function (el, info) {
+      var dur = 1200, startTs = null;
+      var frame = function (ts) {
+        if (startTs === null) startTs = ts;
+        var p = Math.min((ts - startTs) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);           // easeOutCubic
+        el.textContent = info.prefix + Math.round(eased * info.target).toLocaleString() + info.suffix;
+        if (p < 1) requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    };
+    if (!reducedCount && 'IntersectionObserver' in window) {
+      var cio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          cio.unobserve(e.target);
+          var info = parseCount(e.target.getAttribute('data-count'));
+          if (info && !info.skip) runCount(e.target, info);
+        });
+      }, { threshold: 0.5 });
+      for (var ci = 0; ci < counters.length; ci++) {
+        var info0 = parseCount(counters[ci].getAttribute('data-count'));
+        if (!info0 || info0.skip) continue;          // leave years/non-numeric as authored
+        counters[ci].textContent = info0.prefix + '0' + info0.suffix;  // start at 0
+        cio.observe(counters[ci]);
+      }
+    }
+  }
+
   /* ---- Reveal on scroll ------------------------------------------------- */
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var targets = document.querySelectorAll('[data-reveal]');
@@ -1456,6 +1502,19 @@
   }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
 
   for (var j = 0; j < targets.length; j++) io.observe(targets[j]);
+
+  // Safety net: if the observer never fires at all (a non-visible viewport,
+  // prerender, or some embedded webviews), reveal everything so a reveal-gated
+  // page is never left blank — and finalise any count-up values.
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      if (targets.length && !document.querySelector('[data-reveal].is-revealed')) {
+        for (var k = 0; k < targets.length; k++) targets[k].classList.add('is-revealed');
+        var cs = document.querySelectorAll('[data-count]');
+        for (var q = 0; q < cs.length; q++) cs[q].textContent = cs[q].getAttribute('data-count');
+      }
+    }, 1200);
+  });
 })();
 
 /* ==========================================================================

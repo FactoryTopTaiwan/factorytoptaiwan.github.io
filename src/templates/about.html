@@ -7,17 +7,17 @@
   <div class="shell">
     <div class="section__head section__head--split">
       <div>
-        <p class="eyebrow">{{page.about.hero.eyebrow}}</p>
-        <h1>{{page.about.hero.title}}</h1>
+        <p class="eyebrow" data-reveal>{{page.about.hero.eyebrow}}</p>
+        <h1 data-reveal>{{page.about.hero.title}}</h1>
       </div>
-      <p class="lede">{{page.about.hero.summary}}</p>
+      <p class="lede" data-reveal>{{page.about.hero.summary}}</p>
     </div>
 
     {{#if page.about.hero.stats}}
     <dl class="statrow">
       {{#each page.about.hero.stats}}
-      <div class="statrow__item">
-        <dt class="statrow__value model">{{value}}</dt>
+      <div class="statrow__item" data-reveal>
+        <dt class="statrow__value model" data-count="{{value}}">{{value}}</dt>
         <dd class="statrow__label">{{label}}</dd>
       </div>
       {{/each}}
@@ -29,53 +29,89 @@
 <!-- Social proof & trust ------------------------------------------------- -->
 <section class="section section--tight section--sunken">
   <div class="shell">
-    <div class="section__head">
+    <div class="section__head" data-reveal>
       <p class="eyebrow">{{page.about.trust.eyebrow}}</p>
       <h2>{{page.about.trust.title}}</h2>
     </div>
-    <p class="lede">{{page.about.trust.note}}</p>
+    <p class="lede" data-reveal>{{page.about.trust.note}}</p>
 
-    <p class="minilabel">{{page.about.trust.logosLabel}}</p>
+    <p class="minilabel" data-reveal>{{page.about.trust.logosLabel}}</p>
     <ul class="logowall">
       {{#each page.about.trust.logos}}
-      <li class="logowall__cell ph ph--logo">{{.}}</li>
+      <li class="logowall__cell ph ph--logo" data-reveal>{{.}}</li>
       {{/each}}
     </ul>
 
-    <div class="trust-split">
-      <div>
-        <p class="minilabel">{{page.about.trust.badgesLabel}}</p>
-        <ul class="badgerow">
-          {{#each page.about.trust.badges}}
-          <li class="badge">
-            <span class="badge__name">{{name}}</span>
-            <span class="badge__note">{{note}}</span>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
-      <div>
-        <p class="minilabel">{{page.about.trust.mapLabel}}</p>
-        <div class="ph ph--map">{{page.about.trust.mapCaption}}</div>
-        <ul class="chiprow">
-          {{#each page.about.trust.regions}}<li class="chip">{{.}}</li>{{/each}}
-        </ul>
-      </div>
+    <div data-reveal>
+      <p class="minilabel">{{page.about.trust.badgesLabel}}</p>
+      <ul class="badgerow">
+        {{#each page.about.trust.badges}}
+        <li class="badge">
+          <span class="badge__name">{{name}}</span>
+          <span class="badge__note">{{note}}</span>
+        </li>
+        {{/each}}
+      </ul>
     </div>
+  </div>
+</section>
+
+<!-- Global footprint — immersive full-bleed dot map (833 points from
+     worldmap.json), Taichung HQ pulse + arcs to the served regions. -->
+<section class="section section--tight section--immersive about-map">
+  <div class="shell">
+    <div class="section__head" data-reveal>
+      <p class="eyebrow">{{page.about.trust.mapLabel}}</p>
+      <h2>From Taichung to motor floors worldwide</h2>
+    </div>
+    <p class="lede" data-reveal>{{page.about.trust.mapCaption}}</p>
+    <figure class="gpresence__map about-map__figure" data-reveal>
+      <svg viewBox="0 8 1000 400" class="worldmap" role="img"
+           aria-label="World map of Teamwork Automation's service footprint: Taichung headquarters with machines running across China, Japan, Vietnam, India, the United States and Europe.">
+        <g class="worldmap__dots">
+          {{#each page.worldMapDots}}<circle cx="{{x}}" cy="{{y}}"/>{{/each}}
+        </g>
+        <g class="worldmap__arc">
+          <path d="M836 184 Q532 11 228 142"/>
+          <path d="M836 184 Q682 69 528 111"/>
+          <path d="M836 184 Q778 158 719 189"/>
+          <path d="M836 184 Q821 158 806 153"/>
+          <path d="M836 184 Q860 151 883 147"/>
+          <path d="M836 184 Q815 183 794 206"/>
+        </g>
+        <g class="worldmap__pins">
+          <g class="worldmap__pin"><circle class="worldmap__halo" cx="228" cy="142" r="13"/><circle class="worldmap__pindot" cx="228" cy="142" r="4"/><title>United States</title></g>
+          <g class="worldmap__pin"><circle class="worldmap__halo" cx="528" cy="111" r="13"/><circle class="worldmap__pindot" cx="528" cy="111" r="4"/><title>Europe</title></g>
+          <g class="worldmap__pin"><circle class="worldmap__halo" cx="719" cy="189" r="13"/><circle class="worldmap__pindot" cx="719" cy="189" r="4"/><title>India</title></g>
+          <g class="worldmap__pin"><circle class="worldmap__halo" cx="806" cy="153" r="13"/><circle class="worldmap__pindot" cx="806" cy="153" r="4"/><title>China</title></g>
+          <g class="worldmap__pin"><circle class="worldmap__halo" cx="883" cy="147" r="13"/><circle class="worldmap__pindot" cx="883" cy="147" r="4"/><title>Japan</title></g>
+          <g class="worldmap__pin"><circle class="worldmap__halo" cx="794" cy="206" r="13"/><circle class="worldmap__pindot" cx="794" cy="206" r="4"/><title>Vietnam</title></g>
+          <g class="worldmap__pin worldmap__pin--home">
+            <circle class="worldmap__halo worldmap__halo--home" cx="836" cy="184" r="24"/>
+            <circle class="worldmap__ring" cx="836" cy="184" r="11"/>
+            <circle class="worldmap__home" cx="836" cy="184" r="6"/>
+            <title>Taichung, Taiwan — Headquarters (HQ)</title>
+          </g>
+        </g>
+      </svg>
+      <ul class="gpresence__legend about-map__legend">
+        <li>Taiwan (HQ)</li><li>China</li><li>Japan</li><li>Vietnam</li><li>India</li><li>United States</li><li>Europe</li>
+      </ul>
+    </figure>
   </div>
 </section>
 
 <!-- Equipment demos ------------------------------------------------------ -->
 <section class="section section--tight">
   <div class="shell">
-    <div class="section__head">
+    <div class="section__head" data-reveal>
       <p class="eyebrow">{{page.about.demos.eyebrow}}</p>
       <h2>{{page.about.demos.title}}</h2>
     </div>
-    <p class="lede">{{page.about.demos.lede}}</p>
+    <p class="lede" data-reveal>{{page.about.demos.lede}}</p>
     <div class="demo-grid">
       {{#each page.about.demos.items}}
-      <figure class="demo">
+      <figure class="demo" data-reveal>
         <div class="ph ph--video" role="img" aria-label="{{title}} demo video placeholder">
           <span class="ph__play" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
@@ -97,14 +133,14 @@
 <!-- Facility & engineering reality -------------------------------------- -->
 <section class="section section--tight section--sunken">
   <div class="shell">
-    <div class="section__head">
+    <div class="section__head" data-reveal>
       <p class="eyebrow">{{page.about.facility.eyebrow}}</p>
       <h2>{{page.about.facility.title}}</h2>
     </div>
-    <p class="lede">{{page.about.facility.lede}}</p>
+    <p class="lede" data-reveal>{{page.about.facility.lede}}</p>
     <div class="facility-grid">
       {{#each page.about.facility.items}}
-      <figure class="facility">
+      <figure class="facility" data-reveal>
         <div class="ph ph--photo" role="img" aria-label="{{title}} photo placeholder">
           <span class="ph__txt">{{media}}</span>
         </div>
@@ -121,13 +157,13 @@
 <!-- How we de-risk a line ----------------------------------------------- -->
 <section class="section section--tight">
   <div class="shell">
-    <div class="section__head">
+    <div class="section__head" data-reveal>
       <p class="eyebrow">{{page.about.derisk.eyebrow}}</p>
       <h2>{{page.about.derisk.title}}</h2>
     </div>
     <div class="capgrid">
       {{#each page.about.derisk.items}}
-      <div class="cap">
+      <div class="cap" data-reveal>
         <h3 class="cap__title">{{title}}</h3>
         <p>{{body}}</p>
       </div>
@@ -140,13 +176,13 @@
 {{#if page.timeline}}
 <section class="section section--tight section--sunken">
   <div class="shell">
-    <div class="section__head">
+    <div class="section__head" data-reveal>
       <p class="eyebrow">{{site.ui.history}}</p>
       <h2>{{site.ui.historyHeading}}</h2>
     </div>
     <ol class="timeline">
       {{#each page.timeline}}
-      <li>
+      <li data-reveal>
         <span class="timeline__year model">{{year}}</span>
         <div class="timeline__content">
           {{#if image}}
@@ -167,14 +203,14 @@
 <!-- International buyer FAQ ---------------------------------------------- -->
 <section class="section section--tight">
   <div class="shell">
-    <div class="section__head">
+    <div class="section__head" data-reveal>
       <p class="eyebrow">{{page.about.faq.eyebrow}}</p>
       <h2>{{page.about.faq.title}}</h2>
     </div>
-    <p class="lede">{{page.about.faq.lede}}</p>
+    <p class="lede" data-reveal>{{page.about.faq.lede}}</p>
     <div class="faq">
       {{#each page.about.faq.items}}
-      <details class="faq__item">
+      <details class="faq__item" data-reveal>
         <summary class="faq__q">
           <span>{{q}}</span>
           <span class="faq__chev" aria-hidden="true">
@@ -192,7 +228,7 @@
 <!-- Company fact-sheet download ----------------------------------------- -->
 <section class="section section--tight">
   <div class="shell">
-    <div class="factsheet">
+    <div class="factsheet" data-reveal>
       <div class="factsheet__body">
         <p class="eyebrow">{{page.about.factsheet.eyebrow}}</p>
         <h2>{{page.about.factsheet.title}}</h2>

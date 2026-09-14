@@ -2841,6 +2841,27 @@ body.lb-open { overflow: hidden; touch-action: none; }
 .factsheet__note { margin-top: var(--sp-3); font-size: var(--step--1); color: var(--ink-faint); }
 .factsheet__action { justify-self: start; }
 
+/* --- Immersive full-bleed section (About global-footprint band) -----------
+   A deliberately dark, spacious band regardless of theme, for a high-contrast
+   Apple-style moment. It sets its own light foreground so children read on the
+   dark ground in both light and dark site themes. */
+.section--immersive {
+  background: #0a0d11;
+  color: #fff;
+  padding-block: var(--sp-9, 5rem);
+}
+.section--immersive h2 { color: #fff; }
+.section--immersive .lede { color: rgba(255, 255, 255, 0.74); }
+.section--immersive .eyebrow { color: var(--accent-ink); }
+.about-map__figure {
+  margin-top: var(--sp-6);
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.about-map .worldmap__dots circle { fill: rgba(255, 255, 255, 0.22); }
+.about-map .worldmap__home { stroke: #0a0d11; }
+.about-map__legend { color: rgba(255, 255, 255, 0.72); }
+
 /* ==========================================================================
    Video modal — centered dark-backdrop dialog for YouTube facades
    ========================================================================== */
