@@ -413,10 +413,10 @@
   var openVideo = function (id, title) {
     if (!vmodal || !vframe || !id) return;
     var frame = document.createElement('iframe');
-    // The modal open IS the play gesture, so autoplay here (unlike the retired
-    // in-page facade, which the client wanted click-to-play).
+    // No autoplay (client instruction): the modal loads the player paused with
+    // YouTube's own controls; the buyer presses play.
     frame.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
-                '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+                '?rel=0&modestbranding=1&playsinline=1';
     frame.title = title || 'Video';
     frame.allow = 'autoplay; accelerometer; encrypted-media; picture-in-picture; web-share';
     frame.referrerPolicy = 'strict-origin-when-cross-origin';
@@ -440,14 +440,6 @@
     // Esc: <dialog> fires 'cancel'; run our teardown too.
     vmodal.addEventListener('cancel', function (e) { e.preventDefault(); closeVideo(); });
   }
-  // The product image-gallery uses the SAME modal for its video, so every video
-  // on the site shares one look. Reads the id/title from the lightbox's video
-  // panel data attributes (present on product pages that have a video).
-  var openProductVideo = function () {
-    var el = document.querySelector('[data-lightbox-video-id]');
-    if (!el) return;
-    openVideo(el.getAttribute('data-lightbox-video-id'), el.getAttribute('data-lightbox-video-title'));
-  };
   // Every video facade opens the shared modal instead of playing in place.
   var facades = document.querySelectorAll('[data-video]');
   for (var v = 0; v < facades.length; v++) {
@@ -748,11 +740,14 @@
         (function (t2) {
           slides[t2].addEventListener('click', function () {
             if (dragged) return;
-            // The video slide opens the shared video modal directly; image
-            // slides open the image lightbox at the matching index (image
-            // slides precede the video slide, so t2 maps 1:1 for images).
+            // The video slide opens the image lightbox on its in-place VIDEO
+            // panel (Amazon-style single container — no secondary modal); image
+            // slides open at the matching index (image slides precede the video
+            // slide, so t2 maps 1:1 for images).
             if (this.getAttribute('data-pgal-slide') === 'video') {
-              openProductVideo();
+              openViewer(0);
+              var vtab = document.querySelector('[data-lightbox-tab="video"]');
+              if (vtab) vtab.click();
             } else {
               openViewer(t2);
             }
@@ -981,7 +976,7 @@
     for (var th = 0; th < thumbs.length; th++) {
       (function (thumbEl) {
         if (thumbEl.getAttribute('data-lightbox-thumb') === 'video') {
-          thumbEl.addEventListener('click', function () { openProductVideo(); });
+          thumbEl.addEventListener('click', function () { showVideo(); });
         } else {
           imgThumbIdx++;
           var idx = imgThumbIdx;
@@ -994,7 +989,7 @@
     for (var tt = 0; tt < lbTabs.length; tt++) {
       (function (tab) {
         tab.addEventListener('click', function () {
-          if (tab.getAttribute('data-lightbox-tab') === 'video') openProductVideo();
+          if (tab.getAttribute('data-lightbox-tab') === 'video') showVideo();
           else showImages();
         });
       })(lbTabs[tt]);
@@ -1071,13 +1066,11 @@
       openViewer(firstImageSlide);
     });
 
-    // Video slide: click-to-play YouTube facade.
-    // Contract: the modal never autoplays on open (no iframe exists until
-    // the reader taps the poster). The poster button IS the play control:
-    // one click builds the iframe with autoplay=1 so the video starts
-    // immediately in response to that user gesture. Leaving the slide or
-    // closing the modal tears the iframe down, so audio can never keep
-    // playing in the background.
+    // Video slide: click-to-load YouTube facade, no autoplay (client
+    // instruction). Nothing loads from YouTube until the reader taps the
+    // poster; that tap swaps in the player, which loads PAUSED with YouTube's
+    // own controls — the buyer presses play. Leaving the slide or closing the
+    // modal tears the iframe down, so audio can never keep playing.
     var vplayBtns = lightbox.querySelectorAll('[data-lightbox-vplay]');
     for (var vp = 0; vp < vplayBtns.length; vp++) {
       vplayBtns[vp].addEventListener('click', function (e) {
@@ -1088,7 +1081,7 @@
         if (!vid) return;
         var f = document.createElement('iframe');
         f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(vid) +
-                '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+                '?rel=0&modestbranding=1&playsinline=1';
         f.title = wrap.getAttribute('data-lightbox-video-title') || 'Video';
         f.allow = 'autoplay; accelerometer; encrypted-media; picture-in-picture; web-share';
         f.setAttribute('allowfullscreen', '');

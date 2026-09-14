@@ -421,6 +421,7 @@ $site      = Read-LocaleJson 'site.json'      $loc.code
 $catalogue = Read-LocaleJson 'catalogue.json' $loc.code
 $company   = Read-LocaleJson 'company.json'   $loc.code
 $worldmap  = Read-Json 'worldmap.json'   # dotted world map points; locale-independent
+$landings  = Read-Json 'landings.json'   # capability/industry landing pages
 
 # Family (category) display order comes from product-order.json -- the single
 # ordering source shared with build-data.ps1. Reorder catalogue families to
@@ -478,6 +479,17 @@ Add-FamilyExtras -Catalogue $catalogue -UrlPrefix $loc.url -Site $site
 
 $OutPfx = $loc.dir   # output folder prefix
 $UrlPfx = $loc.url   # url prefix
+
+# Link cards for the Solutions page, pointing to each landing page (needs $UrlPfx).
+$landingCards = @()
+foreach ($ld in $landings.landings) {
+    $landingCards += [pscustomobject]@{
+        eyebrow = $ld.eyebrow
+        title   = $ld.title
+        blurb   = $ld.lede
+        href    = ("{0}/solutions/{1}/" -f $UrlPfx, $ld.slug)
+    }
+}
 
 Write-Host ("  [{0}]" -f $(if ($loc.code) { $loc.code } else { 'en' })) -ForegroundColor Cyan
 
@@ -698,6 +710,7 @@ $pages = @(
        eyebrow=$c.solutions.eyebrow; heading=$c.solutions.heading
        lede=$c.solutions.lede
        description=$c.solutions.description
+       landingCards=$landingCards
        industries=$company.industries },
     @{ out='about';     nav='about';     title=$c.about.title
        eyebrow=$c.about.eyebrow; heading=$company.positioning.line; lede=$company.positioning.summary
@@ -776,7 +789,6 @@ foreach ($tagSlug in $tagIndex.Keys) {
 # Dedicated deep-dive pages (EV hairpin, drone/BLDC, power tools) routed under
 # /solutions/<slug>/. relatedMachines hrefs are prefixed with the locale here
 # because {{site.*}} does not resolve inside a template {{#each}}.
-$landings = Read-Json 'landings.json'
 foreach ($ld in $landings.landings) {
     $rel = @()
     if ($ld.relatedMachines) {

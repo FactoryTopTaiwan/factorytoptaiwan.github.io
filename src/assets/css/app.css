@@ -2773,3 +2773,41 @@ body.vmodal-open { overflow: hidden; }
 }
 .linklist a:hover { border-color: var(--line-strong); }
 .linklist__arrow { color: var(--accent-ink); flex: none; }
+
+/* Solutions page: visual link cards to the landing pages. */
+.landing-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--sp-5);
+}
+.landing-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-6);
+  background: var(--surface);
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius-lg);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.landing-card:hover { border-color: var(--accent-ink); transform: translateY(-2px); }
+.landing-card__eyebrow {
+  margin: 0;
+  font-size: var(--step--1);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+.landing-card__title { margin: 0; font-size: var(--step-1); line-height: 1.25; }
+.landing-card__blurb { margin: 0; color: var(--ink-muted); }
+.landing-card__more {
+  margin-top: auto;
+  align-self: flex-start;
+  color: var(--accent-ink);
+  font-size: var(--step-1);
+  transition: transform 0.15s ease;
+}
+.landing-card:hover .landing-card__more { transform: translateX(3px); }

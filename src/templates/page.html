@@ -10,6 +10,25 @@
   </div>
 </section>
 
+{{#if page.landingCards}}
+<!-- Visual link cards to the capability / industry landing pages. Set only on
+     the Solutions page (page.landingCards in build.ps1). -->
+<section class="section section--tight">
+  <div class="shell">
+    <div class="landing-cards">
+      {{#each page.landingCards}}
+      <a class="landing-card" href="{{href}}">
+        <p class="landing-card__eyebrow">{{eyebrow}}</p>
+        <h3 class="landing-card__title">{{title}}</h3>
+        <p class="landing-card__blurb">{{blurb}}</p>
+        <span class="landing-card__more" aria-hidden="true">→</span>
+      </a>
+      {{/each}}
+    </div>
+  </div>
+</section>
+{{/if}}
+
 {{#if page.blocks}}
 {{#each page.blocks}}
 <section class="section section--tight">
