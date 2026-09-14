@@ -289,6 +289,9 @@
       {
         "heading": "Solutions & technology",
         "links": [
+          { "label": "EV hairpin winding",         "href": "/solutions/ev-hairpin/" },
+          { "label": "Drone & BLDC motors",        "href": "/solutions/drone-bldc/" },
+          { "label": "Power tools & appliances",   "href": "/solutions/power-tools-appliances/" },
           { "label": "Turnkey production lines",   "href": "/turnkey/" },
           { "label": "Industries we build for",    "href": "/solutions/" },
           { "label": "Watch machines running",     "href": "https://www.youtube.com/@TeamworkAutomation", "external": true }

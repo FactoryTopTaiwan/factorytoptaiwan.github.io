@@ -263,6 +263,9 @@
       {
         "heading": "ソリューション・技術",
         "links": [
+          { "label": "EVヘアピン巻線",         "href": "/ja/solutions/ev-hairpin/" },
+          { "label": "ドローン・BLDCモーター", "href": "/ja/solutions/drone-bldc/" },
+          { "label": "電動工具・家電",         "href": "/ja/solutions/power-tools-appliances/" },
           { "label": "ターンキー生産ライン",  "href": "/ja/turnkey/" },
           { "label": "対応産業",              "href": "/ja/solutions/" },
           { "label": "稼働動画（YouTube）",   "href": "https://www.youtube.com/@TeamworkAutomation", "external": true }

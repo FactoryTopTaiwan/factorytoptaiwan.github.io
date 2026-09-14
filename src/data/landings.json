@@ -1,0 +1,93 @@
+{
+  "_note": "Capability / industry landing pages, routed at /solutions/<slug>/ by build.ps1 (template landing.html). English source; JA falls through to English until a ja/landings.json overlays. Copy is grounded in company.json facts and the timeline — hairpin is framed as prototyping/developing, matching where the company actually is. No specs or guarantees are invented.",
+
+  "landings": [
+    {
+      "slug": "ev-hairpin",
+      "nav": "EV Hairpin",
+      "eyebrow": "Capability",
+      "title": "EV Hairpin Stator Winding",
+      "lede": "Hairpin winding is how modern EV traction motors are built — and it is where we are putting the next decade. We are prototyping hairpin stator processes with customers today, on the winding, insertion, fusing and test platform we have refined since 1992.",
+      "metaDescription": "EV hairpin stator winding capability from Teamwork Automation — prototyping formed-conductor stator processes for electric-vehicle traction motors, on a proven winding, insertion, fusing and test platform.",
+      "intro": [
+        "Electric-vehicle traction motors have moved away from round-wire winding toward rectangular hairpin (bar-wound) stators. Formed conductors pack the slot far more tightly, which lifts copper fill, efficiency and thermal performance — exactly what a traction motor is judged on.",
+        "Teamwork Automation has built stator winding, slot insulation, insertion, fusing, balancing and end-of-line test equipment for three decades. That process knowledge is the foundation we are extending into hairpin: we develop formed-conductor stator steps as prototypes with customers, rather than bending a generic machine to the part."
+      ],
+      "highlightsTitle": "Why work with us on hairpin",
+      "highlights": [
+        { "title": "Formed-conductor process", "body": "Forming, insertion and twisting of rectangular hairpin conductors, developed against your slot geometry and conductor cross-section." },
+        { "title": "Built on a proven platform", "body": "Winding, insulation, fusing, balancing and test experience since 1992 — the line around the hairpin step is not a first attempt." },
+        { "title": "Prototype with us", "body": "We develop hairpin stations as prototypes alongside customers, so tooling and control are tuned to the real part before a line is committed." },
+        { "title": "Turnkey capable", "body": "The team that plans and commissions full motor-production lines can scope the stations, transfer and testing around your hairpin process." }
+      ],
+      "processTitle": "The stages of a hairpin stator line",
+      "processNote": "A hairpin stator line typically runs these stages. We scope, prototype and integrate them against your part.",
+      "process": [
+        { "title": "Slot insulation", "body": "Insulation paper inserted into the stator slots." },
+        { "title": "Hairpin forming", "body": "Rectangular conductors formed into hairpin (U) shapes." },
+        { "title": "Insertion", "body": "Formed hairpins inserted into the stator slots." },
+        { "title": "Twisting", "body": "Conductor ends twisted and aligned for connection." },
+        { "title": "Welding / fusing", "body": "Conductor ends joined, with process data logged." },
+        { "title": "Test", "body": "Electrical test and end-of-line quality verification." }
+      ],
+      "relatedTitle": "Related stator equipment we build",
+      "relatedMachines": [
+        { "label": "Out-slot brushless stator winding machine (TWM-929)", "href": "/products/out-slot-brushless-motor-stator-automatic-winding-machine/" },
+        { "label": "Stator production line", "href": "/products/stator-production-line/" },
+        { "label": "Stator fusing", "href": "/products/stator-fusing/" },
+        { "label": "Brushless slot insulation paper inserting machine", "href": "/products/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/" }
+      ]
+    },
+
+    {
+      "slug": "drone-bldc",
+      "nav": "Drone & BLDC",
+      "eyebrow": "Industry",
+      "title": "Drone & BLDC Motor Production",
+      "lede": "Out-slot and in-slot brushless stators at small diameters, where slot fill and repeatability decide flight time. Our first dedicated drone-motor line was delivered in 2023 and exported to the United States.",
+      "metaDescription": "Drone and BLDC motor production equipment from Teamwork Automation — out-slot and in-slot brushless stator winding, insulation, fusing and test, including a dedicated drone-motor line delivered in 2023.",
+      "intro": [
+        "Small brushless motors for drones and micro BLDC applications live or die on slot fill and repeatability — a fraction of a percent of copper fill changes flight time and thermal margin. That is a winding and process problem before it is anything else.",
+        "We build the out-slot and in-slot brushless stator equipment behind these motors, and we have taken it as far as a complete dedicated drone-motor production line — the first delivered in 2023, the second exported to the United States."
+      ],
+      "highlightsTitle": "What we bring",
+      "highlights": [
+        { "title": "Small-diameter brushless winding", "body": "Out-slot and in-slot stator winding tuned to the fine wire and tight slots of drone and micro-BLDC motors." },
+        { "title": "Repeatable slot fill", "body": "Consistent placement is the point — the process is built around holding fill across a shift, not a sample." },
+        { "title": "Full line, not just a machine", "body": "Winding, insulation, fusing, balancing and test linked into one line, with a drone-motor line already delivered and exported." }
+      ],
+      "relatedTitle": "Related equipment we build",
+      "relatedMachines": [
+        { "label": "Out-slot brushless stator winding machine (TWM-929)", "href": "/products/out-slot-brushless-motor-stator-automatic-winding-machine/" },
+        { "label": "Stator fusing", "href": "/products/stator-fusing/" },
+        { "label": "Cooling-fan motor automatic production line", "href": "/products/cooling-fan-motor-automatic-production-line/" }
+      ]
+    },
+
+    {
+      "slug": "power-tools-appliances",
+      "nav": "Power Tools & Appliances",
+      "eyebrow": "Industry",
+      "title": "Power Tool & Appliance Motors",
+      "lede": "High-volume universal, brushed and brushless motors where cycle time decides the margin. The armature and stator route we have built since the 1990s is aimed squarely at production at rate.",
+      "metaDescription": "Power tool and appliance motor production equipment from Teamwork Automation — armature and stator winding, insertion, fusing, turning, balancing and test for high-volume brushed, universal and brushless motors.",
+      "intro": [
+        "Power tools and home appliances are a volume game: the margin is set by cycle time and first-pass yield across millions of near-identical motors. The equipment has to run the rate without an operator standing at it.",
+        "Our armature and stator route — winding, slot insulation and wedge insertion, commutator work, fusing, turning, balancing, varnish and test — was built for exactly this. The TWM-702 armature winder became the machine most Taiwanese motor plants of its class run."
+      ],
+      "highlightsTitle": "What we bring",
+      "highlights": [
+        { "title": "Built for rate", "body": "The armature and stator machines are specified around cycle time and first-pass yield, not a one-off demonstration." },
+        { "title": "The whole route", "body": "Winding through to turning, balancing, varnish and test — linked into a line rather than sourced piece by piece." },
+        { "title": "Proven at scale", "body": "Machines like the TWM-702 armature winder run across a class of motor plants, not a single customer." }
+      ],
+      "relatedTitle": "Related equipment we build",
+      "relatedMachines": [
+        { "label": "Automatic stuff-type armature winding machine (TWM-702)", "href": "/products/automatic-stuff-type-armature-winding-machine/" },
+        { "label": "Armature welding machine", "href": "/products/armature-welding-machine/" },
+        { "label": "Balancing", "href": "/products/balancing/" },
+        { "label": "Rotor & armature equipment", "href": "/products/motor-rotor-equipment/" }
+      ]
+    }
+  ]
+}

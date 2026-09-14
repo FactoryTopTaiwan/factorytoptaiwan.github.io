@@ -2715,3 +2715,29 @@ body.vmodal-open { overflow: hidden; }
     background: rgba(0, 0, 0, 0.5);
   }
 }
+
+/* ==========================================================================
+   Capability / industry landing pages
+   ========================================================================== */
+.prose { max-width: var(--max-prose); }
+.prose p { margin: 0 0 var(--sp-4); color: var(--ink-muted); }
+.prose p:last-child { margin-bottom: 0; }
+
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-5); }
+.step { display: grid; grid-template-columns: 2.4rem 1fr; gap: var(--sp-4); align-items: start; }
+.step__n { font-size: var(--step-1); color: var(--accent-ink); font-weight: 620; line-height: 1.2; }
+.step__body h3 { margin: 0 0 var(--sp-2); }
+.step__body p { margin: 0; color: var(--ink-muted); }
+
+.linklist { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-2); }
+.linklist a {
+  display: flex; justify-content: space-between; align-items: center; gap: var(--sp-4);
+  padding: var(--sp-4) var(--sp-5);
+  background: var(--surface);
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius-lg);
+  color: var(--ink);
+  text-decoration: none;
+}
+.linklist a:hover { border-color: var(--line-strong); }
+.linklist__arrow { color: var(--accent-ink); flex: none; }

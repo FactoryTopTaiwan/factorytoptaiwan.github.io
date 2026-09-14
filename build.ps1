@@ -772,6 +772,30 @@ foreach ($tagSlug in $tagIndex.Keys) {
     $urls.Add(("{0}/products/tag/{1}/" -f $UrlPfx, $tagSlug))
 }
 
+# --- Capability / industry landing pages ------------------------------------
+# Dedicated deep-dive pages (EV hairpin, drone/BLDC, power tools) routed under
+# /solutions/<slug>/. relatedMachines hrefs are prefixed with the locale here
+# because {{site.*}} does not resolve inside a template {{#each}}.
+$landings = Read-Json 'landings.json'
+foreach ($ld in $landings.landings) {
+    $rel = @()
+    if ($ld.relatedMachines) {
+        foreach ($rm in $ld.relatedMachines) {
+            $rel += [pscustomobject]@{ label = $rm.label; href = ($UrlPfx + $rm.href) }
+        }
+    }
+    $ldObj = $ld.PSObject.Copy()
+    Add-Member -InputObject $ldObj -NotePropertyName 'relatedMachines' -NotePropertyValue $rel -Force
+    Build-Page -Template 'landing.html' -Out ($OutPfx + ("solutions\{0}\index.html" -f $ld.slug)) -Page @{
+        title       = $ld.title
+        description = $ld.metaDescription
+        url         = ("{0}/solutions/{1}/" -f $UrlPfx, $ld.slug)
+        nav         = 'solutions'
+        landing     = $ldObj
+    }
+    $urls.Add(("{0}/solutions/{1}/" -f $UrlPfx, $ld.slug))
+}
+
 # --- Terms of use and privacy policy ----------------------------------------
 # Kept out of $pages because they are neither a marketing page nor a bullet
 # list: each is a set of headed clauses, and a reader arrives looking for one

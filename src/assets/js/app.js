@@ -440,6 +440,14 @@
     // Esc: <dialog> fires 'cancel'; run our teardown too.
     vmodal.addEventListener('cancel', function (e) { e.preventDefault(); closeVideo(); });
   }
+  // The product image-gallery uses the SAME modal for its video, so every video
+  // on the site shares one look. Reads the id/title from the lightbox's video
+  // panel data attributes (present on product pages that have a video).
+  var openProductVideo = function () {
+    var el = document.querySelector('[data-lightbox-video-id]');
+    if (!el) return;
+    openVideo(el.getAttribute('data-lightbox-video-id'), el.getAttribute('data-lightbox-video-title'));
+  };
   // Every video facade opens the shared modal instead of playing in place.
   var facades = document.querySelectorAll('[data-video]');
   for (var v = 0; v < facades.length; v++) {
@@ -730,13 +738,11 @@
         (function (t2) {
           slides[t2].addEventListener('click', function () {
             if (dragged) return;
-            // The video slide opens the lightbox on its VIDEO panel; image
-            // slides open the lightbox at the matching image index (image
+            // The video slide opens the shared video modal directly; image
+            // slides open the image lightbox at the matching index (image
             // slides precede the video slide, so t2 maps 1:1 for images).
             if (this.getAttribute('data-pgal-slide') === 'video') {
-              openViewer(0);
-              var vtab = document.querySelector('[data-lightbox-tab="video"]');
-              if (vtab) vtab.click();
+              openProductVideo();
             } else {
               openViewer(t2);
             }
@@ -957,7 +963,7 @@
     for (var th = 0; th < thumbs.length; th++) {
       (function (thumbEl) {
         if (thumbEl.getAttribute('data-lightbox-thumb') === 'video') {
-          thumbEl.addEventListener('click', function () { showVideo(); });
+          thumbEl.addEventListener('click', function () { openProductVideo(); });
         } else {
           imgThumbIdx++;
           var idx = imgThumbIdx;
@@ -970,7 +976,7 @@
     for (var tt = 0; tt < lbTabs.length; tt++) {
       (function (tab) {
         tab.addEventListener('click', function () {
-          if (tab.getAttribute('data-lightbox-tab') === 'video') showVideo();
+          if (tab.getAttribute('data-lightbox-tab') === 'video') openProductVideo();
           else showImages();
         });
       })(lbTabs[tt]);
