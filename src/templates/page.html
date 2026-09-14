@@ -10,6 +10,25 @@
   </div>
 </section>
 
+{{#if page.landingCards}}
+<!-- Visual link cards to the capability / industry landing pages. Set only on
+     the Solutions page (page.landingCards in build.ps1). -->
+<section class="section section--tight">
+  <div class="shell">
+    <div class="landing-cards">
+      {{#each page.landingCards}}
+      <a class="landing-card" href="{{href}}">
+        <p class="landing-card__eyebrow">{{eyebrow}}</p>
+        <h3 class="landing-card__title">{{title}}</h3>
+        <p class="landing-card__blurb">{{blurb}}</p>
+        <span class="landing-card__more" aria-hidden="true">→</span>
+      </a>
+      {{/each}}
+    </div>
+  </div>
+</section>
+{{/if}}
+
 {{#if page.blocks}}
 {{#each page.blocks}}
 <section class="section section--tight">
@@ -66,6 +85,72 @@
 </section>
 {{/if}}
 
+{{#if page.globalPresence}}
+<!-- Global Presence & Proven Track Record. About page only (gated on
+     page.globalPresence). Sits between the History timeline and the CTA. The
+     map is a stylized vector world map: simplified continents, a faint
+     graticule, and accent pins with hover tooltips for the served regions,
+     with arcs drawn from the Taichung HQ. -->
+<section class="section section--sunken gpresence">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">{{page.globalPresence.eyebrow}}</p>
+      <h2>{{page.globalPresence.title}}</h2>
+      <p class="lede">{{page.globalPresence.subhead}}</p>
+    </div>
+
+    <figure class="gpresence__map">
+      <svg viewBox="0 8 1000 400" class="worldmap" role="img"
+           aria-label="World map: Teamwork Automation machine installations and service across Taiwan, China, Japan, Vietnam, India, the United States and Europe.">
+        <!-- Dotted landmass, generated from Natural Earth (public domain) and
+             stored in worldmap.json; see build.ps1. -->
+        <g class="worldmap__dots">
+          {{#each page.worldMapDots}}<circle cx="{{x}}" cy="{{y}}"/>{{/each}}
+        </g>
+
+        <!-- Curved arcs from the Taichung HQ (836,184) to each served region. -->
+        <g class="worldmap__arc">
+          <path d="M836 184 Q532 11 228 142"/>
+          <path d="M836 184 Q682 69 528 111"/>
+          <path d="M836 184 Q778 158 719 189"/>
+          <path d="M836 184 Q821 158 806 153"/>
+          <path d="M836 184 Q860 151 883 147"/>
+          <path d="M836 184 Q815 183 794 206"/>
+        </g>
+
+        <!-- Region pins at true geographic positions. -->
+        <g class="worldmap__pins">
+          <g class="worldmap__pin"><circle class="worldmap__halo" cx="228" cy="142" r="13"/><circle class="worldmap__pindot" cx="228" cy="142" r="4"/><title>United States</title></g>
+          <g class="worldmap__pin"><circle class="worldmap__halo" cx="528" cy="111" r="13"/><circle class="worldmap__pindot" cx="528" cy="111" r="4"/><title>Europe</title></g>
+          <g class="worldmap__pin"><circle class="worldmap__halo" cx="719" cy="189" r="13"/><circle class="worldmap__pindot" cx="719" cy="189" r="4"/><title>India</title></g>
+          <g class="worldmap__pin"><circle class="worldmap__halo" cx="806" cy="153" r="13"/><circle class="worldmap__pindot" cx="806" cy="153" r="4"/><title>China</title></g>
+          <g class="worldmap__pin"><circle class="worldmap__halo" cx="883" cy="147" r="13"/><circle class="worldmap__pindot" cx="883" cy="147" r="4"/><title>Japan</title></g>
+          <g class="worldmap__pin"><circle class="worldmap__halo" cx="794" cy="206" r="13"/><circle class="worldmap__pindot" cx="794" cy="206" r="4"/><title>Vietnam</title></g>
+          <g class="worldmap__pin worldmap__pin--home">
+            <circle class="worldmap__halo worldmap__halo--home" cx="836" cy="184" r="24"/>
+            <circle class="worldmap__ring" cx="836" cy="184" r="11"/>
+            <circle class="worldmap__home" cx="836" cy="184" r="6"/>
+            <title>Taichung, Taiwan — Headquarters (HQ)</title>
+          </g>
+        </g>
+      </svg>
+      <ul class="gpresence__legend">
+        {{#each page.globalPresence.regions}}<li>{{.}}</li>{{/each}}
+      </ul>
+    </figure>
+
+    <div class="gpresence__cards">
+      {{#each page.globalPresence.cards}}
+      <div class="gpresence__card">
+        <h3>{{heading}}</h3>
+        <p>{{body}}</p>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</section>
+{{/if}}
+
 {{#if page.industries}}
 <section class="section">
   <div class="shell">
@@ -91,13 +176,38 @@
       <p class="eyebrow">{{site.ui.reachUs}}</p>
       <h2>{{site.ui.location}}</h2>
     </div>
-    <dl class="factlist factlist--wide">
-      <div><dt>{{site.ui.email}}</dt><dd><a href="mailto:{{company.contact.email}}">{{company.contact.email}}</a></dd></div>
-      <div><dt>{{site.ui.telephone}}</dt><dd><a href="tel:{{company.contact.phone}}">{{company.contact.phone}}</a></dd></div>
-      <div><dt>{{site.ui.mobile}}</dt><dd><a href="tel:{{company.contact.mobile}}">{{company.contact.mobile}}</a></dd></div>
-      <div><dt>{{site.ui.address}}</dt><dd>{{company.contact.addressEn}}</dd></div>
-      <div><dt>{{site.ui.response}}</dt><dd>{{company.contact.responseCommitment}}</dd></div>
-    </dl>
+    <!-- Two columns on desktop: contact details left, interactive map right.
+         Below 48rem the map stacks under the details. -->
+    <div class="reachus">
+      <dl class="factlist factlist--wide reachus__details">
+        <div><dt>{{site.ui.email}}</dt><dd><a href="mailto:{{company.contact.email}}">{{company.contact.email}}</a></dd></div>
+        <div><dt>{{site.ui.telephone}}</dt><dd><a href="tel:{{company.contact.phone}}">{{company.contact.phone}}</a></dd></div>
+        <div><dt>{{site.ui.mobile}}</dt><dd><a href="tel:{{company.contact.mobile}}">{{company.contact.mobile}}</a></dd></div>
+        <div><dt>{{site.ui.address}}</dt><dd>{{company.contact.addressEn}}</dd></div>
+        <div><dt>{{site.ui.response}}</dt><dd>{{company.contact.responseCommitment}}</dd></div>
+      </dl>
+      {{#if company.contact.mapLat}}
+      <div class="reachus__map">
+        <!-- Brand-dark interactive map (Leaflet + CARTO dark tiles), lazily
+             initialised by app.js when scrolled into view; no API key. Falls
+             back to the "View on Google Maps" link if scripts don't run. -->
+        <div class="reachus__canvas" data-map
+             data-lat="{{company.contact.mapLat}}"
+             data-lng="{{company.contact.mapLng}}"
+             data-zoom="{{company.contact.mapZoom}}"
+             data-label="{{company.contact.mapLabel}}"
+             data-href="{{company.contact.mapLink}}"
+             role="img" aria-label="{{company.contact.mapLabel}} — {{company.contact.addressEn}}">
+          <a class="reachus__mapfallback" href="{{company.contact.mapLink}}" target="_blank" rel="noopener">{{site.ui.viewOnMap}}</a>
+        </div>
+        <a class="btn btn--ghost reachus__maplink"
+           href="{{company.contact.mapLink}}" target="_blank" rel="noopener">
+          {{site.ui.viewOnMap}}
+          <span class="btn__arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+      {{/if}}
+    </div>
   </div>
 </section>
 {{/if}}

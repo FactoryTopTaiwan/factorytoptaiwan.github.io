@@ -108,24 +108,37 @@ function Expand-Template {
 
     $text = $Template
 
-    # --- {{#each}} — innermost first, so nesting resolves bottom-up ----------
-    $eachRx = '\{\{#each\s+([\w.]+)\}\}((?:(?!\{\{#each\s)[\s\S])*?)\{\{/each\}\}'
-    while ($text -match $eachRx) {
-        $text = [regex]::Replace($text, $eachRx, {
-            param($m)
-            $list = Resolve-Path-Value $Scope $m.Groups[1].Value
-            $body = $m.Groups[2].Value
-            if ($null -eq $list) { return '' }
+    # --- {{#each}} -- outermost first, then recurse into each item -----------
+    # Find the first {{#each}}, match its {{/each}} by tracking nesting depth,
+    # then expand each item by recursively rendering the body with the item as
+    # scope. Recursion is what makes a nested {{#each}} over a per-item field
+    # (links, paragraphs) resolve: it runs against the item, not the outer scope.
+    # (The previous innermost-first pass emptied nested loops, because it resolved
+    # the inner list name against the outer/page scope where it does not exist.)
+    $eachOpenRx  = [regex]'\{\{#each\s+([\w.]+)\}\}'
+    $eachTokenRx = [regex]'\{\{#each\s+[\w.]+\}\}|\{\{/each\}\}'
+    while ($true) {
+        $open = $eachOpenRx.Match($text)
+        if (-not $open.Success) { break }
+        $depth = 0; $closeIdx = -1
+        foreach ($tok in $eachTokenRx.Matches($text, $open.Index)) {
+            if ($tok.Value.StartsWith('{{#each')) { $depth++ }
+            else { $depth--; if ($depth -eq 0) { $closeIdx = $tok.Index; break } }
+        }
+        if ($closeIdx -lt 0) { break }   # unbalanced {{/each}} -- leave as-is
+        $bodyStart = $open.Index + $open.Length
+        $body = $text.Substring($bodyStart, $closeIdx - $bodyStart)
+        $list = Resolve-Path-Value $Scope $open.Groups[1].Value
+        $sb = New-Object System.Text.StringBuilder
+        if ($null -ne $list) {
             if ($list -isnot [array]) { $list = @($list) }
-            $sb = New-Object System.Text.StringBuilder
             for ($i = 0; $i -lt $list.Count; $i++) {
-                $item = $list[$i]
-                # Give each item access to its position without mutating source data
+                # Give each item its position without mutating the source data
                 $frag = $body.Replace('{{@index}}', "$i").Replace('{{@number}}', "$($i + 1)")
-                [void]$sb.Append((Expand-Template -Template $frag -Scope $item))
+                [void]$sb.Append((Expand-Template -Template $frag -Scope $list[$i]))
             }
-            $sb.ToString()
-        }, 1)
+        }
+        $text = $text.Substring(0, $open.Index) + $sb.ToString() + $text.Substring($closeIdx + 9)
     }
 
     # --- {{#if}} / {{else}} — innermost first -------------------------------
@@ -408,6 +421,8 @@ $site      = Read-LocaleJson 'site.json'      $loc.code
 $catalogue = Read-LocaleJson 'catalogue.json' $loc.code
 $company   = Read-LocaleJson 'company.json'   $loc.code
 $about     = Read-LocaleJson 'about.json'     $loc.code
+$worldmap  = Read-Json 'worldmap.json'   # dotted world map points; locale-independent
+$landings  = Read-Json 'landings.json'   # capability/industry landing pages
 
 # Family (category) display order comes from product-order.json -- the single
 # ordering source shared with build-data.ps1. Reorder catalogue families to
@@ -465,6 +480,17 @@ Add-FamilyExtras -Catalogue $catalogue -UrlPrefix $loc.url -Site $site
 
 $OutPfx = $loc.dir   # output folder prefix
 $UrlPfx = $loc.url   # url prefix
+
+# Link cards for the Solutions page, pointing to each landing page (needs $UrlPfx).
+$landingCards = @()
+foreach ($ld in $landings.landings) {
+    $landingCards += [pscustomobject]@{
+        eyebrow = $ld.eyebrow
+        title   = $ld.title
+        blurb   = $ld.lede
+        href    = ("{0}/solutions/{1}/" -f $UrlPfx, $ld.slug)
+    }
+}
 
 Write-Host ("  [{0}]" -f $(if ($loc.code) { $loc.code } else { 'en' })) -ForegroundColor Cyan
 
@@ -685,6 +711,7 @@ $pages = @(
        eyebrow=$c.solutions.eyebrow; heading=$c.solutions.heading
        lede=$c.solutions.lede
        description=$c.solutions.description
+       landingCards=$landingCards
        industries=$company.industries },
     @{ out='about';     nav='about';     title=$c.about.title
        template='about.html'
@@ -692,6 +719,7 @@ $pages = @(
        description=$c.about.description
        timeline=$company.timeline
        about=$about
+       worldMapDots=$worldmap.dots
        blocks=@( @{ eyebrow=$c.about.howEyebrow; title=$c.about.howTitle; items=$company.services } ) },
     @{ out='support';   nav='support';   title=$c.support.title
        eyebrow=$c.support.eyebrow; heading=$c.support.heading
@@ -758,6 +786,29 @@ foreach ($tagSlug in $tagIndex.Keys) {
         tag         = $tagObj
     }
     $urls.Add(("{0}/products/tag/{1}/" -f $UrlPfx, $tagSlug))
+}
+
+# --- Capability / industry landing pages ------------------------------------
+# Dedicated deep-dive pages (EV hairpin, drone/BLDC, power tools) routed under
+# /solutions/<slug>/. relatedMachines hrefs are prefixed with the locale here
+# because {{site.*}} does not resolve inside a template {{#each}}.
+foreach ($ld in $landings.landings) {
+    $rel = @()
+    if ($ld.relatedMachines) {
+        foreach ($rm in $ld.relatedMachines) {
+            $rel += [pscustomobject]@{ label = $rm.label; href = ($UrlPfx + $rm.href) }
+        }
+    }
+    $ldObj = $ld.PSObject.Copy()
+    Add-Member -InputObject $ldObj -NotePropertyName 'relatedMachines' -NotePropertyValue $rel -Force
+    Build-Page -Template 'landing.html' -Out ($OutPfx + ("solutions\{0}\index.html" -f $ld.slug)) -Page @{
+        title       = $ld.title
+        description = $ld.metaDescription
+        url         = ("{0}/solutions/{1}/" -f $UrlPfx, $ld.slug)
+        nav         = 'solutions'
+        landing     = $ldObj
+    }
+    $urls.Add(("{0}/solutions/{1}/" -f $UrlPfx, $ld.slug))
 }
 
 # --- Terms of use and privacy policy ----------------------------------------

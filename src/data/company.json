@@ -117,12 +117,41 @@
     ]
   },
 
+  "globalPresence": {
+    "eyebrow": "Global footprint",
+    "title": "Global Presence & Proven Track Record",
+    "subhead": "Delivering high-precision automation equipment to manufacturers worldwide with long-term reliability.",
+    "regions": [
+      "Taiwan", "China", "Japan", "Vietnam", "India", "United States", "Europe"
+    ],
+    "cards": [
+      {
+        "heading": "20–30+ Years Machine Longevity",
+        "body": "We provide continuous maintenance, upgrades, and spare parts support for machines built 20 to 30 years ago. Built to last."
+      },
+      {
+        "heading": "Real-Time Remote Diagnostics",
+        "body": "Advanced remote equipment monitoring and diagnostics allow our engineering team to troubleshoot and support production lines worldwide."
+      },
+      {
+        "heading": "Worldwide Turnkey Solutions",
+        "body": "Trusted by top-tier manufacturers globally for full production line setup and custom automation."
+      }
+    ]
+  },
+
   "contact": {
     "phone": "+886-4-2533-8618",
     "mobile": "+886-985-213-506",
     "email": "iverson.hsu@fatop-global.com",
     "addressLocal": "台中市潭子區勝利八街53巷46之2號",
-    "addressEn": "No. 46-2, Lane 53, Shengli 8th St, Tanzi District, Taichung, Taiwan",
-    "responseCommitment": "We reply within one business day."
+    "addressEn": "No. 46-2, Lane 53, Shengli 8th St, Tanzi District, Taichung City, Taiwan 427",
+    "responseCommitment": "We reply within one business day.",
+    "_mapNote": "On-site map is a keyless brand-dark Leaflet map (CARTO dark tiles) with a custom accent pin at mapLat/mapLng (resolved from the official Google listing). mapLink is the official Google Maps listing for native navigation. A true Google-tiles map would need a Maps JavaScript API key.",
+    "mapLat": 24.21243,
+    "mapLng": 120.6981931,
+    "mapZoom": 16,
+    "mapLabel": "Teamwork Automation Machinery Co., Ltd.",
+    "mapLink": "https://maps.app.goo.gl/rgP45FyiN1zWGnuQ6"
   }
 }

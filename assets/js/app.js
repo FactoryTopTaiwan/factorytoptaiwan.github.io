@@ -99,6 +99,135 @@
     window.addEventListener('scroll', setStuck, { passive: true });
   }
 
+  /* ---- Footer accordion (mobile) ----------------------------------------
+     Below 64rem the four footer link columns collapse under their headings so
+     the footer stays short instead of stacking every list into a long scroll.
+     Progressive enhancement: the collapse CSS is gated on .footer--accordion,
+     added here, so a no-JS phone still shows every list. Desktop keeps all
+     lists open (the toggle is a no-op above 64rem). */
+  var footerToggles = document.querySelectorAll('[data-footer-toggle]');
+  if (footerToggles.length) {
+    var footerEl = document.querySelector('.footer');
+    if (footerEl) footerEl.classList.add('footer--accordion');
+    var footerMq = window.matchMedia('(max-width: 63.99rem)');
+    for (var fi = 0; fi < footerToggles.length; fi++) {
+      (function (h) {
+        var col = h.closest('[data-footer-col]');
+        if (!col) return;
+        h.setAttribute('role', 'button');
+        h.setAttribute('tabindex', '0');
+        h.setAttribute('aria-expanded', 'false');
+        var toggleCol = function () {
+          if (!footerMq.matches) return;            // desktop: lists always shown
+          var open = col.classList.toggle('is-open');
+          h.setAttribute('aria-expanded', open ? 'true' : 'false');
+        };
+        h.addEventListener('click', toggleCol);
+        h.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleCol(); }
+        });
+      })(footerToggles[fi]);
+    }
+    // Crossing back to desktop clears any open state so the grid never shows a
+    // stray mix; aria-expanded is reset to match.
+    var footerSync = function () {
+      if (footerMq.matches) return;
+      var opened = document.querySelectorAll('.footer__col.is-open');
+      for (var k = 0; k < opened.length; k++) {
+        opened[k].classList.remove('is-open');
+        var hh = opened[k].querySelector('[data-footer-toggle]');
+        if (hh) hh.setAttribute('aria-expanded', 'false');
+      }
+    };
+    if (footerMq.addEventListener) footerMq.addEventListener('change', footerSync);
+    else if (footerMq.addListener) footerMq.addListener(footerSync);
+  }
+
+  /* ---- Reach-us map (brand-dark, keyless) --------------------------------
+     A dark Leaflet map with CARTO dark tiles and a brand-accent pin, matching
+     the site rather than default Google styling. No API key. Leaflet is loaded
+     from a CDN only on pages that have a [data-map], and only once the map
+     scrolls near the viewport, so other pages stay dependency-free. Without JS
+     (or if the CDN fails) the container keeps a "View on Google Maps" link. */
+  var mapEls = document.querySelectorAll('[data-map]');
+  if (mapEls.length) {
+    var LEAFLET_CSS = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';
+    var LEAFLET_JS  = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
+    var leafletState = 0; // 0 idle, 1 loading, 2 ready
+    var waiters = [];
+    var ensureLeaflet = function (cb) {
+      if (window.L) { cb(); return; }
+      waiters.push(cb);
+      if (leafletState !== 0) return;
+      leafletState = 1;
+      var css = document.createElement('link');
+      css.rel = 'stylesheet'; css.href = LEAFLET_CSS;
+      document.head.appendChild(css);
+      var js = document.createElement('script');
+      js.src = LEAFLET_JS; js.async = true;
+      js.onload = function () { leafletState = 2; waiters.forEach(function (f) { f(); }); waiters = []; };
+      js.onerror = function () { leafletState = 0; }; // leave the fallback link in place
+      document.head.appendChild(js);
+    };
+    var pinSvg =
+      '<svg viewBox="0 0 24 34" width="30" height="42" aria-hidden="true">' +
+      '<path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.9 12 34 12 34s12-13.1 12-22.1C24 5.3 18.6 0 12 0z" fill="currentColor"/>' +
+      '<circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>';
+    var initMap = function (el) {
+      if (el.dataset.mapInit) return;   // guard against IO + fallback double-init
+      el.dataset.mapInit = '1';
+      var lat = parseFloat(el.getAttribute('data-lat'));
+      var lng = parseFloat(el.getAttribute('data-lng'));
+      var zoom = parseInt(el.getAttribute('data-zoom'), 10) || 16;
+      var label = el.getAttribute('data-label') || '';
+      if (isNaN(lat) || isNaN(lng)) return;
+      el.innerHTML = ''; // drop the no-JS fallback link
+      if (zoom > 16) zoom = 16; // Esri dark canvas serves up to z16
+      var map = window.L.map(el, { scrollWheelZoom: false, zoomControl: true });
+      map.setView([lat, lng], zoom);
+      // Esri Dark Gray Canvas: keyless, clean monochrome, matches the site.
+      var esri = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/';
+      var blankTile = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+      window.L.tileLayer(esri + 'World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 16, attribution: 'Tiles &copy; Esri', errorTileUrl: blankTile
+      }).addTo(map);
+      window.L.tileLayer(esri + 'World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 16, errorTileUrl: blankTile
+      }).addTo(map);
+      var icon = window.L.divIcon({
+        className: 'reachus__pin', html: pinSvg,
+        iconSize: [30, 42], iconAnchor: [15, 42], popupAnchor: [0, -38]
+      });
+      window.L.marker([lat, lng], { icon: icon, title: label, keyboard: false })
+        .addTo(map)
+        .bindPopup('<strong>' + label + '</strong>');
+      // Only grab the wheel once the user interacts, so the page still scrolls.
+      map.on('focus', function () { map.scrollWheelZoom.enable(); });
+      map.on('blur', function () { map.scrollWheelZoom.disable(); });
+    };
+    var loadMap = function (el) { ensureLeaflet(function () { initMap(el); }); };
+    if ('IntersectionObserver' in window) {
+      var mapIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          mapIo.unobserve(e.target);
+          loadMap(e.target);
+        });
+      }, { rootMargin: '200px' });
+      for (var mi = 0; mi < mapEls.length; mi++) mapIo.observe(mapEls[mi]);
+    }
+    // Safety net: if the observer never fires (older browsers, or a page that
+    // renders without a visible viewport), still load the map shortly after
+    // load. The initMap guard prevents a double init.
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        for (var k = 0; k < mapEls.length; k++) {
+          if (!mapEls[k].dataset.mapInit) loadMap(mapEls[k]);
+        }
+      }, 1500);
+    });
+  }
+
   /* ---- Site search -------------------------------------------------------
      A static host cannot run a query, so the whole index is one small JSON
      written at build time and fetched the first time search is opened. It is
@@ -279,27 +408,215 @@
 
      Placed above the reveal-on-scroll block on purpose: that block returns
      early under prefers-reduced-motion. */
+  var vmodal = document.querySelector('[data-vmodal]');
+  var vframe = vmodal ? vmodal.querySelector('[data-vmodal-frame]') : null;
+  var openVideo = function (id, title) {
+    if (!vmodal || !vframe || !id) return;
+    var frame = document.createElement('iframe');
+    // No autoplay (client instruction): the modal loads the player paused with
+    // YouTube's own controls; the buyer presses play.
+    frame.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
+                '?rel=0&modestbranding=1&playsinline=1';
+    frame.title = title || 'Video';
+    frame.allow = 'autoplay; accelerometer; encrypted-media; picture-in-picture; web-share';
+    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+    frame.setAttribute('allowfullscreen', '');
+    vframe.textContent = '';
+    vframe.appendChild(frame);
+    document.body.classList.add('vmodal-open');
+    try { vmodal.showModal(); } catch (e) { vmodal.setAttribute('open', ''); }
+  };
+  var closeVideo = function () {
+    if (!vmodal) return;
+    if (vframe) vframe.textContent = '';   // tear down the iframe → stop audio
+    document.body.classList.remove('vmodal-open');
+    try { vmodal.close(); } catch (e) { vmodal.removeAttribute('open'); }
+  };
+  if (vmodal) {
+    var vclose = vmodal.querySelector('[data-vmodal-close]');
+    if (vclose) vclose.addEventListener('click', closeVideo);
+    // Click on the backdrop (the dialog element itself, outside the frame).
+    vmodal.addEventListener('click', function (e) { if (e.target === vmodal) closeVideo(); });
+    // Esc: <dialog> fires 'cancel'; run our teardown too.
+    vmodal.addEventListener('cancel', function (e) { e.preventDefault(); closeVideo(); });
+  }
+  // Every video facade opens the shared modal instead of playing in place.
   var facades = document.querySelectorAll('[data-video]');
   for (var v = 0; v < facades.length; v++) {
     (function (box) {
-      var btn = box.querySelector('.vid__play');
-      if (!btn) return;
-      btn.addEventListener('click', function () {
-        var id = box.getAttribute('data-video');
-        if (!id) return;
-        var frame = document.createElement('iframe');
-        frame.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
-                    '?rel=0&modestbranding=1';
-        frame.title = box.getAttribute('data-video-title') || 'Video';
-        frame.allow = 'accelerometer; encrypted-media; picture-in-picture; web-share';
-        frame.referrerPolicy = 'strict-origin-when-cross-origin';
-        frame.setAttribute('allowfullscreen', '');
-        frame.className = 'vid__frame';
-        box.textContent = '';
-        box.appendChild(frame);
-        frame.focus();
+      var trigger = box.querySelector('.vid__play') || box;
+      trigger.addEventListener('click', function () {
+        openVideo(box.getAttribute('data-video'), box.getAttribute('data-video-title'));
       });
     })(facades[v]);
+  }
+
+  /* ---- Product PDF datasheet (client-side) -------------------------------
+     Builds a clean 2-page PDF from the LIVE page data on click, so it always
+     matches the current specs with no rebuild. jsPDF + autotable load from a
+     CDN only when the button is used. ?download=pdf auto-triggers it (used by
+     the inquiry confirmation email's link back to the product page). */
+  var pdfBtn = document.querySelector('[data-pdf]');
+  if (pdfBtn) {
+    var JSPDF_URL = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+    var AUTOTABLE_URL = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js';
+    var pdfState = 0, pdfWaiters = [];
+    var loadScript = function (src, cb) {
+      var s = document.createElement('script');
+      s.src = src; s.onload = function () { cb(); };
+      s.onerror = function () { cb(new Error('load')); };
+      document.head.appendChild(s);
+    };
+    var ensurePdfLibs = function (cb) {
+      if (window.jspdf && window.jspdf.jsPDF) { cb(); return; }
+      pdfWaiters.push(cb);
+      if (pdfState !== 0) return; pdfState = 1;
+      loadScript(JSPDF_URL, function (e1) {
+        if (e1) { pdfState = 0; pdfWaiters = []; return; }
+        loadScript(AUTOTABLE_URL, function () {
+          pdfState = 2; pdfWaiters.forEach(function (f) { f(); }); pdfWaiters = [];
+        });
+      });
+    };
+    var imgToJpeg = function (src, cb) {
+      if (!src) { cb(null); return; }
+      var img = new Image(); img.crossOrigin = 'anonymous';
+      img.onload = function () {
+        try {
+          var cv = document.createElement('canvas');
+          cv.width = img.naturalWidth; cv.height = img.naturalHeight;
+          var ctx = cv.getContext('2d');
+          ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, cv.width, cv.height);
+          ctx.drawImage(img, 0, 0);
+          cb(cv.toDataURL('image/jpeg', 0.92), img.naturalWidth, img.naturalHeight);
+        } catch (e) { cb(null); }
+      };
+      img.onerror = function () { cb(null); };
+      img.src = src;
+    };
+    var txt = function (sel) { var el = document.querySelector(sel); return el ? el.textContent.trim() : ''; };
+    var collectData = function () {
+      var specs = [].map.call(document.querySelectorAll('.spectable tr'), function (tr) {
+        var th = tr.querySelector('th'), td = tr.querySelector('td');
+        return [th ? th.textContent.trim() : '', td ? td.textContent.trim() : ''];
+      });
+      var highlights = [].map.call(document.querySelectorAll('.prod__head .factlist > div'), function (d) {
+        var dt = d.querySelector('dt'), dd = d.querySelector('dd');
+        return [dt ? dt.textContent.trim() : '', dd ? dd.textContent.trim() : ''];
+      });
+      var hero = document.querySelector('.prod__hero');
+      return {
+        model: pdfBtn.getAttribute('data-model') || '',
+        title: txt('.prod__head h1') || document.title,
+        summary: txt('.prod__head .lede'),
+        highlights: highlights,
+        specs: specs,
+        heroSrc: hero ? (hero.currentSrc || hero.src) : null,
+        company: pdfBtn.getAttribute('data-company') || '',
+        web: (pdfBtn.getAttribute('data-web') || '').replace(/^https?:\/\//, ''),
+        addr: pdfBtn.getAttribute('data-addr') || '',
+        phone: pdfBtn.getAttribute('data-phone') || '',
+        email: pdfBtn.getAttribute('data-email') || ''
+      };
+    };
+    var makePdf = function (d, heroJpeg, hw, hh) {
+      var jsPDF = window.jspdf.jsPDF;
+      var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+      var W = doc.internal.pageSize.getWidth();
+      var H = doc.internal.pageSize.getHeight();
+      var M = 16, accent = [222, 82, 18], ink = [28, 32, 38], muted = [120, 128, 138];
+      var header = function () {
+        doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+        doc.setTextColor(muted[0], muted[1], muted[2]);
+        doc.text(d.company || 'Teamwork Automation', M, 12);
+        if (d.web) doc.text(d.web, W - M, 12, { align: 'right' });
+        doc.setDrawColor(accent[0], accent[1], accent[2]); doc.setLineWidth(0.6);
+        doc.line(M, 15, W - M, 15);
+      };
+      var footer = function () {
+        var y = H - 14;
+        doc.setDrawColor(222); doc.setLineWidth(0.2); doc.line(M, y - 4, W - M, y - 4);
+        doc.setFont('helvetica', 'normal'); doc.setFontSize(8);
+        doc.setTextColor(muted[0], muted[1], muted[2]);
+        if (d.addr) doc.text(d.addr, M, y);
+        var line2 = [d.phone, d.email].filter(Boolean).join('   |   ');
+        if (line2) doc.text(line2, M, y + 4);
+        doc.text('Specifications subject to change without notice.', W - M, y + 4, { align: 'right' });
+      };
+      header();
+      var y = 28;
+      if (d.model) {
+        doc.setFont('helvetica', 'bold'); doc.setFontSize(11);
+        doc.setTextColor(accent[0], accent[1], accent[2]);
+        doc.text(d.model, M, y); y += 7;
+      }
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(19);
+      doc.setTextColor(ink[0], ink[1], ink[2]);
+      var titleLines = doc.splitTextToSize(d.title, W - 2 * M);
+      doc.text(titleLines, M, y); y += titleLines.length * 8 + 2;
+      // hero image, contained in a box
+      if (heroJpeg && hw && hh) {
+        var boxW = W - 2 * M, boxH = 72;
+        var scale = Math.min(boxW / hw, boxH / hh);
+        var iw = hw * scale, ih = hh * scale;
+        var ix = M + (boxW - iw) / 2, iy = y;
+        doc.addImage(heroJpeg, 'JPEG', ix, iy, iw, ih);
+        y += boxH + 4;
+      }
+      if (d.summary) {
+        doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5);
+        doc.setTextColor(60, 66, 74);
+        var sLines = doc.splitTextToSize(d.summary, W - 2 * M);
+        doc.text(sLines, M, y); y += sLines.length * 5 + 3;
+      }
+      if (d.highlights.length) {
+        doc.setFontSize(9.5);
+        d.highlights.forEach(function (h) {
+          doc.setTextColor(muted[0], muted[1], muted[2]);
+          doc.setFont('helvetica', 'bold'); doc.text(h[0] + ':', M, y);
+          doc.setFont('helvetica', 'normal'); doc.setTextColor(ink[0], ink[1], ink[2]);
+          doc.text(h[1], M + 34, y); y += 5.5;
+        });
+        y += 2;
+      }
+      var body = d.specs.length ? d.specs : [['Specifications', 'Full specifications available on request — contact us.']];
+      doc.autoTable({
+        startY: y + 2,
+        head: [['Specification', '']],
+        body: body,
+        margin: { top: 20, bottom: 20, left: M, right: M },
+        styles: { font: 'helvetica', fontSize: 9.5, cellPadding: 2, textColor: ink, lineColor: [230, 232, 235], lineWidth: 0.1 },
+        headStyles: { fillColor: accent, textColor: 255, fontStyle: 'bold' },
+        alternateRowStyles: { fillColor: [246, 247, 248] },
+        columnStyles: { 0: { cellWidth: 62, fontStyle: 'bold', textColor: muted }, 1: { cellWidth: 'auto' } },
+        didDrawPage: function () { header(); footer(); }
+      });
+      var name = (d.model || (location.pathname.replace(/\/+$/, '').split('/').pop()) || 'datasheet') + '-datasheet.pdf';
+      doc.save(name);
+    };
+    var busy = false;
+    var generate = function () {
+      if (busy) return; busy = true;
+      var original = pdfBtn.innerHTML;
+      pdfBtn.setAttribute('aria-busy', 'true');
+      pdfBtn.textContent = pdfBtn.getAttribute('data-generating') || 'Generating…';
+      var finish = function () { pdfBtn.innerHTML = original; pdfBtn.removeAttribute('aria-busy'); busy = false; };
+      ensurePdfLibs(function () {
+        if (!(window.jspdf && window.jspdf.jsPDF)) { finish(); return; }
+        var d = collectData();
+        imgToJpeg(d.heroSrc, function (jpeg, hw, hh) {
+          try { makePdf(d, jpeg, hw, hh); } catch (e) { /* swallow */ }
+          finish();
+        });
+      });
+    };
+    pdfBtn.addEventListener('click', generate);
+    // Auto-download when linked from the confirmation email (?download=pdf).
+    try {
+      if (new URLSearchParams(location.search).get('download') === 'pdf') {
+        window.addEventListener('load', function () { setTimeout(generate, 400); });
+      }
+    } catch (e) {}
   }
 
   /* ---- Mobile product carousel + immersive media viewer -----------------
@@ -371,7 +688,17 @@
           var cat = tab.getAttribute('data-pgal-cat-tab');
           tab.addEventListener('click', function () {
             var idx = firstSlideOfCat(cat);
-            if (idx >= 0) slides[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            if (idx < 0) return;
+            // Instant jump between categories, not a page-by-page slide-through:
+            // the track's CSS scroll-behavior is smooth for finger momentum, so
+            // override it to 'auto' for this programmatic jump. scrollIntoView is
+            // synchronous under 'auto', so restore immediately after (rAF would
+            // stay unrestored while the tab is backgrounded).
+            var prev = track.style.scrollBehavior;
+            track.style.scrollBehavior = 'auto';
+            slides[idx].scrollIntoView({ inline: 'center', block: 'nearest' });
+            track.style.scrollBehavior = prev;
+            setActiveCat(cat);
           });
         })(catTabs[ct]);
       }
@@ -413,9 +740,10 @@
         (function (t2) {
           slides[t2].addEventListener('click', function () {
             if (dragged) return;
-            // The video slide opens the lightbox on its VIDEO panel; image
-            // slides open the lightbox at the matching image index (image
-            // slides precede the video slide, so t2 maps 1:1 for images).
+            // The video slide opens the image lightbox on its in-place VIDEO
+            // panel (Amazon-style single container — no secondary modal); image
+            // slides open at the matching index (image slides precede the video
+            // slide, so t2 maps 1:1 for images).
             if (this.getAttribute('data-pgal-slide') === 'video') {
               openViewer(0);
               var vtab = document.querySelector('[data-lightbox-tab="video"]');
@@ -600,6 +928,8 @@
       if (stage) stage.classList.add('is-video');
       setTabsSelected('video');
       setThumbsSelected('video');
+      // Deselect the mobile category tabs so only VIDEO reads as active.
+      if (typeof setActiveCatTab === 'function') setActiveCatTab(null);
     };
     var showImages = function () {
       if (videoPanel) videoPanel.hidden = true;
@@ -614,7 +944,13 @@
       for (var i = 0; i < dots.length; i++) {
         dots[i].classList.toggle('is-active', i === mediaIdx);
       }
-      if (!isVideoOpen()) setThumbsSelected(mediaIdx);
+      if (!isVideoOpen()) {
+        setThumbsSelected(mediaIdx);
+        // Keep the mobile category tab (SOLUTIONS / FINISHED) in sync as the
+        // user swipes across the group boundary.
+        var curCat = slides[mediaIdx] && slides[mediaIdx].getAttribute('data-lightbox-cat');
+        if (curCat && typeof setActiveCatTab === 'function') setActiveCatTab(curCat);
+      }
       if (lbPrev) lbPrev.hidden = mediaIdx <= 0;
       if (lbNext) lbNext.hidden = mediaIdx >= slides.length - 1;
     };
@@ -659,6 +995,35 @@
       })(lbTabs[tt]);
     }
 
+    // Category tabs (mobile): SOLUTIONS / FINISHED. Clicking one jumps instantly
+    // to the first image of that category; swiping across a boundary updates
+    // which tab is highlighted (renderState below). Slides carry
+    // data-lightbox-cat so the boundary is known.
+    var lbCatTabs = lightbox.querySelectorAll('[data-lightbox-cat-tab]');
+    var firstSlideOfCatLb = function (cat) {
+      for (var s = 0; s < slides.length; s++) {
+        if (slides[s].getAttribute('data-lightbox-cat') === cat) return s;
+      }
+      return -1;
+    };
+    var setActiveCatTab = function (cat) {
+      for (var c = 0; c < lbCatTabs.length; c++) {
+        lbCatTabs[c].setAttribute('aria-selected',
+          lbCatTabs[c].getAttribute('data-lightbox-cat-tab') === cat ? 'true' : 'false');
+      }
+    };
+    for (var cti = 0; cti < lbCatTabs.length; cti++) {
+      (function (tab) {
+        tab.addEventListener('click', function () {
+          var cat = tab.getAttribute('data-lightbox-cat-tab');
+          var idx = firstSlideOfCatLb(cat);
+          showImages();
+          if (idx >= 0) lbGoto(idx, false);
+          setActiveCatTab(cat);
+        });
+      })(lbCatTabs[cti]);
+    }
+
     // Nav buttons (desktop)
     if (lbPrev) lbPrev.addEventListener('click', function () { lbGoto(mediaIdx - 1, true); });
     if (lbNext) lbNext.addEventListener('click', function () { lbGoto(mediaIdx + 1, true); });
@@ -701,13 +1066,11 @@
       openViewer(firstImageSlide);
     });
 
-    // Video slide: click-to-play YouTube facade.
-    // Contract: the modal never autoplays on open (no iframe exists until
-    // the reader taps the poster). The poster button IS the play control:
-    // one click builds the iframe with autoplay=1 so the video starts
-    // immediately in response to that user gesture. Leaving the slide or
-    // closing the modal tears the iframe down, so audio can never keep
-    // playing in the background.
+    // Video slide: click-to-load YouTube facade, no autoplay (client
+    // instruction). Nothing loads from YouTube until the reader taps the
+    // poster; that tap swaps in the player, which loads PAUSED with YouTube's
+    // own controls — the buyer presses play. Leaving the slide or closing the
+    // modal tears the iframe down, so audio can never keep playing.
     var vplayBtns = lightbox.querySelectorAll('[data-lightbox-vplay]');
     for (var vp = 0; vp < vplayBtns.length; vp++) {
       vplayBtns[vp].addEventListener('click', function (e) {
@@ -718,7 +1081,7 @@
         if (!vid) return;
         var f = document.createElement('iframe');
         f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(vid) +
-                '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+                '?rel=0&modestbranding=1&playsinline=1';
         f.title = wrap.getAttribute('data-lightbox-video-title') || 'Video';
         f.allow = 'autoplay; accelerometer; encrypted-media; picture-in-picture; web-share';
         f.setAttribute('allowfullscreen', '');
@@ -847,18 +1210,26 @@
       if (e.pointerType !== 'touch') return;
       state.pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
       state.pointerCount = pointerList().length;
-      try { z.setPointerCapture(e.pointerId); } catch (err) {}
 
       if (state.pointerCount === 2) {
         var pts = pointerList();
         state.startDist = distance(pts[0], pts[1]);
         state.startScale = state.scale;
         z.classList.add('is-panning');
+        // Capturing keeps both fingers reporting to us through the pinch.
+        try { z.setPointerCapture(e.pointerId); } catch (err) {}
       } else if (state.pointerCount === 1) {
         state.panStartX = e.clientX;
         state.panStartY = e.clientY;
         state.panning = state.scale > 1.02;
-        if (state.panning) z.classList.add('is-panning');
+        if (state.panning) {
+          z.classList.add('is-panning');
+          // Only capture when the image is already zoomed (single-finger pan).
+          // At scale 1 we must NOT capture, or pointer capture steals the
+          // gesture and the native horizontal scroll-snap swipe (which browses
+          // between images) never runs.
+          try { z.setPointerCapture(e.pointerId); } catch (err) {}
+        }
       }
     });
 

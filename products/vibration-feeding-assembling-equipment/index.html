@@ -334,6 +334,21 @@
           </button>
           <a class="btn btn--ghost btn--lg" href="/contact/#call">Book a video call</a>
 
+          <!-- Client-side datasheet: builds a 2-page PDF in the browser from the
+               live page data (no server, always current). ?download=pdf on the
+               URL auto-triggers it (used from the inquiry confirmation email). -->
+          <button class="btn btn--ghost btn--lg" type="button" data-pdf
+                  data-model=""
+                  data-company="Teamwork Automation Machinery Co., Ltd."
+                  data-web="https://fatop-global.com"
+                  data-addr="No. 46-2, Lane 53, Shengli 8th St, Tanzi District, Taichung City, Taiwan 427"
+                  data-phone="+886-4-2533-8618"
+                  data-email="iverson.hsu@fatop-global.com"
+                  data-generating="Generating PDF…">
+            Download PDF Datasheet
+            <span class="btn__arrow" aria-hidden="true">↓</span>
+          </button>
+
           <!-- Share menu. Amazon-style small icon with a popover of send options
                so a buyer can escalate the page to their manager or a decision-
                maker on their end. Web Share API on mobile falls into the same
@@ -432,7 +447,20 @@
 
 <dialog class="lightbox" data-lightbox id="prod-lightbox" aria-label="View larger">
   <header class="lightbox__bar">
-    
+    <!-- Tab bar. Desktop keeps the single IMAGES tab (the category split lives
+         in the desktop thumb rail); mobile swaps IMAGES for per-category tabs
+         (SOLUTIONS / FINISHED) so a phone user can jump between groups without a
+         thumb rail. Visibility is handled in CSS (.lightbox__tab--images vs
+         --cat); VIDEO is shared. -->
+    <div class="lightbox__tabs" role="tablist" aria-label="Images">
+      
+      
+      <button class="lightbox__tab lightbox__tab--cat" type="button" role="tab"
+              data-lightbox-cat-tab="solution" aria-selected="true">Solutions</button>
+      
+      
+      
+    </div>
     <span class="lightbox__count" data-lightbox-count aria-live="polite"></span>
     <button class="lightbox__close" type="button" data-lightbox-close aria-label="Close">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
@@ -579,48 +607,120 @@
 <footer class="footer">
   <div class="shell">
     <div class="footer__grid">
-      <div class="footer__col">
+      <div class="footer__col footer__col--brand">
         <a class="brand" href="/" style="margin-bottom:var(--sp-4)">
           <img class="brand__mark" src="/assets/img/fatop-mark.svg" alt="" aria-hidden="true" width="32" height="32">
           <span>Teamwork Automation</span>
         </a>
-        <p style="color:var(--ink-muted);max-width:32ch">
-          Teamwork Automation Machinery Co., Ltd. — Taichung, Taiwan. Building motor production automation since 1992.
+        <p class="footer__blurb">
+          Teamwork Automation Machinery Co., Ltd.. Building motor production automation since 1992.
         </p>
+        <address class="footer__contact">
+          <span class="footer__contact-row">
+            <svg class="footer__ico" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+            <span>No. 46-2, Lane 53, Shengli 8th St, Tanzi District, Taichung City, Taiwan 427</span>
+          </span>
+          <a class="footer__contact-row" href="tel:+886-4-2533-8618">
+            <svg class="footer__ico" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L20 13l1 4v3a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg>
+            <span>+886-4-2533-8618</span>
+          </a>
+          <a class="footer__contact-row" href="mailto:iverson.hsu@fatop-global.com">
+            <svg class="footer__ico" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg>
+            <span>iverson.hsu@fatop-global.com</span>
+          </a>
+          <span class="footer__reply">We reply within one business day.</span>
+        </address>
       </div>
 
       
-      <div class="footer__col">
-        <h3>Technology &amp; Examples</h3>
-        <ul class="footer__list">
+      <!-- Each column is a plain heading + list on desktop; on mobile JS turns
+           the heading into an accordion toggle (see footer accordion in app.js)
+           so the four lists collapse instead of stacking into a long scroll.
+           `wide` columns (Products) render their list in two sub-columns on
+           desktop to keep the footer heights balanced. -->
+      <div class="footer__col footer__col--wide" data-footer-col>
+        <h3 class="footer__heading" data-footer-toggle>Products</h3>
+        <ul class="footer__list footer__list--split">
+          
+          <li><a href="/products/">All machines</a></li>
+          
+          <li><a href="/products/tag/winding/">Winding machines</a></li>
+          
+          <li><a href="/products/tag/bldc-winding/">BLDC / brushless winding</a></li>
+          
+          <li><a href="/products/tag/brushed-winding/">Brushed / universal winding</a></li>
+          
+          <li><a href="/products/motor-rotor-equipment/">Rotor &amp; armature equipment</a></li>
+          
+          <li><a href="/products/motor-stator-equipment/">Stator equipment</a></li>
+          
+          <li><a href="/products/tag/production-line/">Production lines</a></li>
+          
+          <li><a href="/products/semiconductor-equipment/">Semiconductor equipment</a></li>
+          
+          <li><a href="/catalog/">Full catalogue (PDF)</a></li>
           
         </ul>
       </div>
       
-      <div class="footer__col">
-        <h3>Products</h3>
+      <!-- Each column is a plain heading + list on desktop; on mobile JS turns
+           the heading into an accordion toggle (see footer accordion in app.js)
+           so the four lists collapse instead of stacking into a long scroll.
+           `wide` columns (Products) render their list in two sub-columns on
+           desktop to keep the footer heights balanced. -->
+      <div class="footer__col" data-footer-col>
+        <h3 class="footer__heading" data-footer-toggle>Solutions &amp; technology</h3>
         <ul class="footer__list">
+          
+          <li><a href="/solutions/ev-hairpin/">Hairpin prototyping</a></li>
+          
+          <li><a href="/solutions/drone-bldc/">Drone &amp; BLDC motors</a></li>
+          
+          <li><a href="/solutions/power-tools-appliances/">Power tools &amp; appliances</a></li>
+          
+          <li><a href="/turnkey/">Turnkey production lines</a></li>
+          
+          <li><a href="/solutions/">Industries we build for</a></li>
+          
+          <li><a href="https://www.youtube.com/@TeamworkAutomation">Watch machines running</a></li>
           
         </ul>
       </div>
       
-      <div class="footer__col">
-        <h3>About us</h3>
+      <!-- Each column is a plain heading + list on desktop; on mobile JS turns
+           the heading into an accordion toggle (see footer accordion in app.js)
+           so the four lists collapse instead of stacking into a long scroll.
+           `wide` columns (Products) render their list in two sub-columns on
+           desktop to keep the footer heights balanced. -->
+      <div class="footer__col" data-footer-col>
+        <h3 class="footer__heading" data-footer-toggle>Company</h3>
         <ul class="footer__list">
+          
+          <li><a href="/about/">About Teamwork Automation</a></li>
+          
+          <li><a href="/about/#history">Our story since 1992</a></li>
+          
+          <li><a href="/contact/">Engineering careers</a></li>
           
         </ul>
       </div>
       
-      <div class="footer__col">
-        <h3>Customer service</h3>
+      <!-- Each column is a plain heading + list on desktop; on mobile JS turns
+           the heading into an accordion toggle (see footer accordion in app.js)
+           so the four lists collapse instead of stacking into a long scroll.
+           `wide` columns (Products) render their list in two sub-columns on
+           desktop to keep the footer heights balanced. -->
+      <div class="footer__col" data-footer-col>
+        <h3 class="footer__heading" data-footer-toggle>Support &amp; contact</h3>
         <ul class="footer__list">
           
-        </ul>
-      </div>
-      
-      <div class="footer__col">
-        <h3>Recruit</h3>
-        <ul class="footer__list">
+          <li><a href="/support/">Support &amp; remote diagnostics</a></li>
+          
+          <li><a href="/contact/">Request a quotation</a></li>
+          
+          <li><a href="/contact/#call">Book a video call</a></li>
+          
+          <li><a href="/sitemap/">Sitemap</a></li>
           
         </ul>
       </div>
@@ -656,6 +756,18 @@
     </div>
   </div>
 </footer>
+
+<!-- Shared video modal. Every video facade ([data-video]) opens the clip here
+     in a centered dark-backdrop dialog rather than redirecting to YouTube. The
+     iframe is built on open (youtube-nocookie, so nothing loads until play) and
+     torn down on close so audio never keeps playing. Native <dialog> gives Esc
+     and focus handling for free. -->
+<dialog class="vmodal" data-vmodal aria-label="Watch this machine run">
+  <button class="vmodal__close" type="button" data-vmodal-close aria-label="Close">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  </button>
+  <div class="vmodal__frame" data-vmodal-frame></div>
+</dialog>
 
 <!-- ==========================================================================
      Add-to-Quote / Inquiry list. One panel: a right-hand drawer on desktop,
@@ -747,6 +859,6 @@
   </button>
 </div>
 
-<script src="/assets/js/app.js?v=7dd997f049" defer></script>
+<script src="/assets/js/app.js?v=d194dffad9" defer></script>
 </body>
 </html>

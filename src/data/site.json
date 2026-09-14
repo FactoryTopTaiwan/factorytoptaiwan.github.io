@@ -166,6 +166,8 @@
     "machines": "machines",
     "seeTurnkey": "See turnkey lines",
     "bookCall": "Book a video call",
+    "downloadPdf": "Download PDF Datasheet",
+    "pdfGenerating": "Generating PDF…",
     "inquiryAdd": "Add to inquiry",
     "inquiryAdded": "Added to inquiry",
     "inquiryAddAria": "Add this machine to your inquiry list",
@@ -213,6 +215,7 @@
     "historyHeading": "Thirty-plus years, in the order it happened",
     "reachUs": "Reach us",
     "location": "Taichung, Taiwan",
+    "viewOnMap": "View on Google Maps",
     "email": "Email",
     "telephone": "Telephone",
     "mobile": "Mobile",
@@ -269,15 +272,8 @@
   "footer": {
     "columns": [
       {
-        "heading": "Technology & Examples",
-        "links": [
-          { "label": "Turnkey production lines",   "href": "/turnkey/" },
-          { "label": "Industries we build for",    "href": "/solutions/" },
-          { "label": "Watch machines running",     "href": "https://www.youtube.com/@TeamworkAutomation", "external": true }
-        ]
-      },
-      {
         "heading": "Products",
+        "wide": true,
         "links": [
           { "label": "All machines",               "href": "/products/" },
           { "label": "Winding machines",           "href": "/products/tag/winding/" },
@@ -291,25 +287,31 @@
         ]
       },
       {
-        "heading": "About us",
+        "heading": "Solutions & technology",
         "links": [
-          { "label": "About Teamwork Automation", "href": "/about/" },
-          { "label": "Since 1992, Taichung, Taiwan", "href": "/about/" }
+          { "label": "Hairpin prototyping",        "href": "/solutions/ev-hairpin/" },
+          { "label": "Drone & BLDC motors",        "href": "/solutions/drone-bldc/" },
+          { "label": "Power tools & appliances",   "href": "/solutions/power-tools-appliances/" },
+          { "label": "Turnkey production lines",   "href": "/turnkey/" },
+          { "label": "Industries we build for",    "href": "/solutions/" },
+          { "label": "Watch machines running",     "href": "https://www.youtube.com/@TeamworkAutomation", "external": true }
         ]
       },
       {
-        "heading": "Customer service",
+        "heading": "Company",
+        "links": [
+          { "label": "About Teamwork Automation",  "href": "/about/" },
+          { "label": "Our story since 1992",       "href": "/about/#history" },
+          { "label": "Engineering careers",        "href": "/contact/" }
+        ]
+      },
+      {
+        "heading": "Support & contact",
         "links": [
           { "label": "Support & remote diagnostics", "href": "/support/" },
           { "label": "Request a quotation",          "href": "/contact/" },
           { "label": "Book a video call",            "href": "/contact/#call" },
-          { "label": "Every page on this site",      "href": "/sitemap/" }
-        ]
-      },
-      {
-        "heading": "Recruit",
-        "links": [
-          { "label": "Engineering roles (via email)", "href": "/contact/" }
+          { "label": "Sitemap",                      "href": "/sitemap/" }
         ]
       }
     ],

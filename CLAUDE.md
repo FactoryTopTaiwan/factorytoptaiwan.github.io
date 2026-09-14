@@ -41,6 +41,18 @@ powershell -NoProfile -File site/build.ps1 -Serve -Port 8080
 (CNAME, README) survive. Templates use `{{key}}`, `{{{raw}}}`, `{{#each list}}`
 and `{{#if key}}` — the engine is at the top of `build.ps1`.
 
+**Template engine scope rules.** Nested `{{#each}}` **is** supported: a loop
+inside a loop resolves the inner list against the current item (e.g. footer
+`columns` → `links`, legal `sections` → `paragraphs`). It works because the
+engine expands the outermost loop first, then renders each item by recursing
+with that item as scope. The corollary and the one real gotcha: **inside a
+`{{#each}}`, only the item's own fields resolve** — `{{site.*}}` / `{{page.*}}`
+and other globals do **not**, because the scope is just the item. When a loop
+body needs a global value, decorate the items with it in `build.ps1` first.
+(Before 2026-09-10 the engine expanded innermost-first and silently dropped all
+nested loops — if you see empty footer columns or blank legal paragraphs, the
+`{{#each}}` handler has regressed.)
+
 **Generated output is committed.** GitHub Pages serves the repository root, so
 `index.html`, `assets/`, `sitemap.xml` and `robots.txt` must be in git even
 though they are build artefacts.

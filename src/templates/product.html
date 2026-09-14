@@ -177,6 +177,21 @@
           </button>
           <a class="btn btn--ghost btn--lg" href="{{site.urlPrefix}}/contact/#call">{{site.ui.bookCall}}</a>
 
+          <!-- Client-side datasheet: builds a 2-page PDF in the browser from the
+               live page data (no server, always current). ?download=pdf on the
+               URL auto-triggers it (used from the inquiry confirmation email). -->
+          <button class="btn btn--ghost btn--lg" type="button" data-pdf
+                  data-model="{{page.product.model}}"
+                  data-company="{{site.legalName}}"
+                  data-web="{{site.origin}}"
+                  data-addr="{{company.contact.addressEn}}"
+                  data-phone="{{company.contact.phone}}"
+                  data-email="{{company.contact.email}}"
+                  data-generating="{{site.ui.pdfGenerating}}">
+            {{site.ui.downloadPdf}}
+            <span class="btn__arrow" aria-hidden="true">↓</span>
+          </button>
+
           <!-- Share menu. Amazon-style small icon with a popover of send options
                so a buyer can escalate the page to their manager or a decision-
                maker on their end. Web Share API on mobile falls into the same
@@ -370,14 +385,29 @@
 {{#if page.product.hero}}
 <dialog class="lightbox" data-lightbox id="prod-lightbox" aria-label="{{site.ui.viewLarger}}">
   <header class="lightbox__bar">
-    {{#if page.product.video}}
+    <!-- Tab bar. Desktop keeps the single IMAGES tab (the category split lives
+         in the desktop thumb rail); mobile swaps IMAGES for per-category tabs
+         (SOLUTIONS / FINISHED) so a phone user can jump between groups without a
+         thumb rail. Visibility is handled in CSS (.lightbox__tab--images vs
+         --cat); VIDEO is shared. -->
     <div class="lightbox__tabs" role="tablist" aria-label="{{site.ui.tabImages}}">
-      <button class="lightbox__tab" type="button" role="tab"
+      {{#if page.product.video}}
+      <button class="lightbox__tab lightbox__tab--images" type="button" role="tab"
               data-lightbox-tab="images" aria-selected="true">{{site.ui.tabImages}}</button>
+      {{/if}}
+      {{#if page.product.equipment}}
+      <button class="lightbox__tab lightbox__tab--cat" type="button" role="tab"
+              data-lightbox-cat-tab="solution" aria-selected="true">{{site.ui.thumbGroupSolution}}</button>
+      {{/if}}
+      {{#if page.product.workpiece}}
+      <button class="lightbox__tab lightbox__tab--cat" type="button" role="tab"
+              data-lightbox-cat-tab="finished" aria-selected="false">{{site.ui.thumbGroupFinished}}</button>
+      {{/if}}
+      {{#if page.product.video}}
       <button class="lightbox__tab" type="button" role="tab"
               data-lightbox-tab="video" aria-selected="false">{{site.ui.tabVideo}}</button>
+      {{/if}}
     </div>
-    {{/if}}
     <span class="lightbox__count" data-lightbox-count aria-live="polite"></span>
     <button class="lightbox__close" type="button" data-lightbox-close aria-label="{{site.ui.close}}">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>

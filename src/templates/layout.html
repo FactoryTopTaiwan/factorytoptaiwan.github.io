@@ -203,20 +203,40 @@
 <footer class="footer">
   <div class="shell">
     <div class="footer__grid">
-      <div class="footer__col">
+      <div class="footer__col footer__col--brand">
         <a class="brand" href="{{site.urlPrefix}}/" style="margin-bottom:var(--sp-4)">
           <img class="brand__mark" src="/assets/img/fatop-mark.svg" alt="" aria-hidden="true" width="32" height="32">
           <span>{{site.name}}</span>
         </a>
-        <p style="color:var(--ink-muted);max-width:32ch">
-          {{site.legalName}} — {{site.city}}, {{site.country}}. {{site.ui.footerNote}} {{site.founded}}.
+        <p class="footer__blurb">
+          {{site.legalName}}. {{site.ui.footerNote}} {{site.founded}}.
         </p>
+        <address class="footer__contact">
+          <span class="footer__contact-row">
+            <svg class="footer__ico" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+            <span>{{company.contact.addressEn}}</span>
+          </span>
+          <a class="footer__contact-row" href="tel:{{company.contact.phone}}">
+            <svg class="footer__ico" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L20 13l1 4v3a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg>
+            <span>{{company.contact.phone}}</span>
+          </a>
+          <a class="footer__contact-row" href="mailto:{{company.contact.email}}">
+            <svg class="footer__ico" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg>
+            <span>{{company.contact.email}}</span>
+          </a>
+          <span class="footer__reply">{{company.contact.responseCommitment}}</span>
+        </address>
       </div>
 
       {{#each site.footer.columns}}
-      <div class="footer__col">
-        <h3>{{heading}}</h3>
-        <ul class="footer__list">
+      <!-- Each column is a plain heading + list on desktop; on mobile JS turns
+           the heading into an accordion toggle (see footer accordion in app.js)
+           so the four lists collapse instead of stacking into a long scroll.
+           `wide` columns (Products) render their list in two sub-columns on
+           desktop to keep the footer heights balanced. -->
+      <div class="footer__col{{#if wide}} footer__col--wide{{/if}}" data-footer-col>
+        <h3 class="footer__heading" data-footer-toggle>{{heading}}</h3>
+        <ul class="footer__list{{#if wide}} footer__list--split{{/if}}">
           {{#each links}}
           <li><a href="{{href}}">{{label}}</a></li>
           {{/each}}
@@ -254,6 +274,18 @@
     </div>
   </div>
 </footer>
+
+<!-- Shared video modal. Every video facade ([data-video]) opens the clip here
+     in a centered dark-backdrop dialog rather than redirecting to YouTube. The
+     iframe is built on open (youtube-nocookie, so nothing loads until play) and
+     torn down on close so audio never keeps playing. Native <dialog> gives Esc
+     and focus handling for free. -->
+<dialog class="vmodal" data-vmodal aria-label="{{site.ui.watchMachine}}">
+  <button class="vmodal__close" type="button" data-vmodal-close aria-label="{{site.ui.close}}">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  </button>
+  <div class="vmodal__frame" data-vmodal-frame></div>
+</dialog>
 
 <!-- ==========================================================================
      Add-to-Quote / Inquiry list. One panel: a right-hand drawer on desktop,
