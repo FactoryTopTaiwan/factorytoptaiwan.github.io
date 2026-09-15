@@ -259,7 +259,7 @@ function Copy-Assets {
     # images/ is NOT: it is written once by tools/fetch-media.ps1 straight into
     # assets/images/, so that the WebP derivatives are not stored twice in git.
     # Wiping assets/ wholesale here would delete them.
-    foreach ($sub in @('css', 'js', 'img')) {
+    foreach ($sub in @('css', 'js', 'img', 'docs')) {
         $from = Join-Path $SrcDir ('assets\' + $sub)
         $to   = Join-Path $OutDir ('assets\' + $sub)
         if (-not (Test-Path $from)) { continue }
@@ -514,6 +514,13 @@ if ($shots.Count -lt 2) {
     $shots = @($data.products | Where-Object { $_.hero -and $_.slug -ne $feature.slug } | Select-Object -First 2)
 }
 
+# Preload the LCP hero so its fetch starts with the HTML, not after the CSS.
+# Uses the responsive imagesrcset so the browser still picks the right variant.
+$homeHeroPreload = ''
+if ($site.heroImage -and $site.heroImage.src) {
+    $homeHeroPreload = '<link rel="preload" as="image" href="' + $site.heroImage.src +
+        '" imagesrcset="' + $site.heroImage.srcset + '" imagesizes="100vw" fetchpriority="high">'
+}
 Build-Page -Template 'home.html' -Out ($OutPfx + 'index.html') -Page @{
     title        = $site.tagline
     description  = $site.description
@@ -521,6 +528,7 @@ Build-Page -Template 'home.html' -Out ($OutPfx + 'index.html') -Page @{
     nav          = 'home'
     feature      = $feature
     processShots = $shots
+    headExtra    = $homeHeroPreload
 }
 
 
@@ -674,6 +682,13 @@ foreach ($prod in $data.products) {
     }
     $schemaJson = $schema | ConvertTo-Json -Depth 10 -Compress
 
+    # Preload the product hero (the LCP element on a detail page) when present.
+    $prodHeroPreload = ''
+    if ($prod.hero -and $prod.hero.src) {
+        $prodHeroPreload = '<link rel="preload" as="image" href="' + $prod.hero.src +
+            '" imagesrcset="' + $prod.hero.srcset + '" imagesizes="(min-width: 62rem) 52vw, 100vw" fetchpriority="high">'
+    }
+
     Build-Page -Template 'product.html' -Out ($OutPfx + ("products\{0}\index.html" -f $prod.slug)) -Page @{
         title       = $t
         description = $summary
@@ -681,6 +696,7 @@ foreach ($prod in $data.products) {
         url         = ("{0}/products/{1}/" -f $UrlPfx, $prod.slug)
         nav         = 'products'
         product     = $prod
+        headExtra   = $prodHeroPreload
         siblings    = $siblings
         tagLinks    = $tagLinks
         desc        = $desc
