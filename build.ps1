@@ -752,6 +752,8 @@ $pages = @(
        eyebrow=$c.catalog.eyebrow; heading=$c.catalog.heading
        lede=$c.catalog.lede
        description=$c.catalog.description
+       catalogDownload=@{ href='/assets/docs/fatop-automation-catalogue.pdf'
+                          label=$site.ui.catDownload; note=$site.ui.catDownloadNote }
        showContact=$true }
 )
 

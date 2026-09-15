@@ -197,6 +197,8 @@
     "inquiryReqItems": "Add at least one machine before sending.",
     "inquiryOptional": "optional",
     "inquiryContinue": "Continue browsing",
+    "catDownload": "Download the catalogue (PDF)",
+    "catDownloadNote": "The complete Teamwork Automation machine catalogue — winding, insulation, insertion, fusing, turning, balancing and test. Downloads straight to your device.",
     "catReqTitle": "Get the full catalogue (PDF)",
     "catReqIntro": "Enter your work email and we'll send the complete Teamwork Automation machine catalogue straight to your inbox. Specifications on this site stay open — only the full PDF asks for an email.",
     "catReqEmail": "Work email",

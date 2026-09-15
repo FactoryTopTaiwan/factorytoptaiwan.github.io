@@ -7,6 +7,19 @@
       </div>
       <p class="lede">{{page.lede}}</p>
     </div>
+
+    {{#if page.catalogDownload}}
+    <!-- Native in-page catalogue download. Same-origin PDF served from
+         /assets/docs/, so `download` saves it directly. This page is also the
+         no-JS fallback for the footer "Full catalogue (PDF)" link. -->
+    <div class="catdl">
+      <a class="btn btn--primary btn--lg catdl__btn" href="{{page.catalogDownload.href}}" download>
+        {{page.catalogDownload.label}}
+        <span class="btn__arrow" aria-hidden="true">↓</span>
+      </a>
+      <p class="catdl__note">{{page.catalogDownload.note}}</p>
+    </div>
+    {{/if}}
   </div>
 </section>
 

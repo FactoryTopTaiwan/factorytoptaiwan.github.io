@@ -2839,6 +2839,17 @@ body.lb-open { overflow: hidden; touch-action: none; }
 .factsheet__note { margin-top: var(--sp-3); font-size: var(--step--1); color: var(--ink-faint); }
 .factsheet__action { justify-self: start; }
 
+/* Catalogue direct-download CTA (/catalog/ page). */
+.catdl {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-4) var(--sp-5);
+  margin-top: var(--sp-6);
+}
+.catdl__btn { flex: none; }
+.catdl__note { margin: 0; max-width: 46ch; color: var(--ink-muted); font-size: var(--step--1); }
+
 /* --- Immersive full-bleed section (About global-footprint band) -----------
    A deliberately dark, spacious band regardless of theme, for a high-contrast
    Apple-style moment. It sets its own light foreground so children read on the

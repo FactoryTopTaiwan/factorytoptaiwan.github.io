@@ -218,6 +218,19 @@
       </div>
       <p class="lede">本サイトの機械仕様は公開しており、フォームの内側に置いてはいません。印刷版の総合カタログは、ご連絡先を把握するためご請求制としています。</p>
     </div>
+
+    
+    <!-- Native in-page catalogue download. Same-origin PDF served from
+         /assets/docs/, so `download` saves it directly. This page is also the
+         no-JS fallback for the footer "Full catalogue (PDF)" link. -->
+    <div class="catdl">
+      <a class="btn btn--primary btn--lg catdl__btn" href="/assets/docs/fatop-automation-catalogue.pdf" download>
+        カタログをダウンロード（PDF）
+        <span class="btn__arrow" aria-hidden="true">↓</span>
+      </a>
+      <p class="catdl__note">協群自動化の総合機械カタログ — 巻線、スロット絶縁、挿入、ヒュージング、旋削、バランシング、検査まで。お使いの端末に直接ダウンロードされます。</p>
+    </div>
+    
   </div>
 </section>
 

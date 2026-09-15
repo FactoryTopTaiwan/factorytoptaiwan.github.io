@@ -236,7 +236,7 @@
         <p class="factsheet__note">{{page.about.factsheet.note}}</p>
       </div>
       <div class="factsheet__action">
-        <a class="btn btn--primary btn--lg" href="{{page.about.factsheet.fileHref}}">
+        <a class="btn btn--primary btn--lg" href="{{page.about.factsheet.fileHref}}"{{#if page.about.factsheet.download}} download{{/if}}>
           {{page.about.factsheet.buttonLabel}}
           <span class="btn__arrow" aria-hidden="true">↓</span>
         </a>

@@ -128,8 +128,9 @@
     "eyebrow": "Company profile",
     "title": "Take the two-page fact sheet to your team",
     "body": "A concise, ungated PDF: who we are, the process families we cover, standards, and how a turnkey engagement runs — everything a colleague needs to shortlist us. No form, no email wall.",
-    "buttonLabel": "Request the company profile",
-    "fileHref": "/contact/",
-    "note": "Tell us your project and we'll send the profile and capability details matched to your line."
+    "buttonLabel": "Download the company introduction (PDF)",
+    "fileHref": "/assets/docs/fatop-automation-catalogue.pdf",
+    "download": true,
+    "note": "An ungated PDF — no form, no email wall. Downloads straight to your device."
   }
 }

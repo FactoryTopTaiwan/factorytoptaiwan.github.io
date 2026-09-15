@@ -218,6 +218,19 @@
       </div>
       <p class="lede">Machine specifications on this site are open — nothing behind a form. The complete printed catalogue is available on request so we know who to follow up with.</p>
     </div>
+
+    
+    <!-- Native in-page catalogue download. Same-origin PDF served from
+         /assets/docs/, so `download` saves it directly. This page is also the
+         no-JS fallback for the footer "Full catalogue (PDF)" link. -->
+    <div class="catdl">
+      <a class="btn btn--primary btn--lg catdl__btn" href="/assets/docs/fatop-automation-catalogue.pdf" download>
+        Download the catalogue (PDF)
+        <span class="btn__arrow" aria-hidden="true">↓</span>
+      </a>
+      <p class="catdl__note">The complete Teamwork Automation machine catalogue — winding, insulation, insertion, fusing, turning, balancing and test. Downloads straight to your device.</p>
+    </div>
+    
   </div>
 </section>
 
