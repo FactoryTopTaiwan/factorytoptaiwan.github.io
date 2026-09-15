@@ -28,11 +28,11 @@
       "Ignition coils & wound bobbins",
       "Semiconductor packaging"
     ],
-    "badgesLabel": "Standards & compliance",
+    "badgesLabel": "Engineering standards",
     "badges": [
-      { "name": "ISO 9001", "note": "Quality-management practices aligned to ISO 9001; documentation available on request during technical evaluation." },
-      { "name": "CE marking", "note": "Machines built to the EU directives applicable to this equipment class — Machinery 2006/42/EC, Low Voltage 2014/35/EU and EMC 2014/30/EU; declarations of conformity provided per project." },
-      { "name": "Electrical & safety conformity", "note": "Further electrical and safety conformities available on request to match your market's requirements." }
+      { "name": "Built to international safety & precision standards", "note": "Machines are engineered to internationally recognised machine-safety, electrical and precision-build practices for motor-production equipment." },
+      { "name": "Structured quality process", "note": "Design reviews, in-house build and wiring checks, and a documented factory acceptance test on your parts before anything ships." },
+      { "name": "Per-market conformity on request", "note": "Electrical and safety conformity documentation prepared per project to match your destination market's requirements." }
     ],
     "mapLabel": "Export footprint",
     "mapCaption": "Our winding, insertion, fusing and test lines run on motor-production floors across Asia, Europe and the Americas. Regions are directional; specific installations are covered by NDA.",
