@@ -19,12 +19,12 @@
     "note": "Many of our projects are under NDA, so specific customer names and line photographs cannot be shown publicly. The marks below represent the industries and standards we build for; we can share relevant, permission-cleared references privately during technical evaluation.",
     "logosLabel": "Selected industries served (customer names withheld under NDA)",
     "logos": [
-      "EV drivetrain & e-mobility",
       "Drone / UAV motors",
-      "Cooling-fan & HVAC motors",
       "Power tools & universal motors",
-      "Automotive Tier-1",
+      "Cooling-fan & HVAC motors",
       "Home appliance motors",
+      "EV drivetrain & e-mobility",
+      "Automotive Tier-1",
       "Ignition coils & wound bobbins",
       "Semiconductor packaging"
     ],

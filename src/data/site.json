@@ -63,8 +63,8 @@
       "title": "Industries we build for",
       "eyebrow": "Solutions",
       "heading": "The motors our machines are built around",
-      "lede": "Automotive, two-wheel and e-mobility, power tools, drone and micro BLDC, appliance, and semiconductor packaging. The machine is specified against the part, so the industry decides the tooling.",
-      "description": "Motor production equipment for automotive, e-mobility, power tools, drone motors, appliances and semiconductor packaging."
+      "lede": "Drone and micro-BLDC motors, power tools and appliances, two-wheel and e-mobility, cooling-fan, and semiconductor packaging — with mid-to-small hairpin stators in prototyping. The machine is specified against the part, so the industry decides the tooling.",
+      "description": "Motor production equipment for drone and BLDC motors, power tools and appliances, e-mobility, and semiconductor packaging."
     },
     "about": {
       "title": "About Teamwork Automation",
@@ -285,9 +285,9 @@
       {
         "heading": "Solutions",
         "links": [
-          { "label": "Hairpin prototyping",         "href": "/solutions/ev-hairpin/" },
           { "label": "Drone & BLDC motors",         "href": "/solutions/drone-bldc/" },
           { "label": "Power tools & appliances",    "href": "/solutions/power-tools-appliances/" },
+          { "label": "Hairpin prototyping (R&D)",   "href": "/solutions/ev-hairpin/" },
           { "label": "Turnkey production lines",    "href": "/turnkey/" },
           { "label": "Industries we build for",     "href": "/solutions/" }
         ]

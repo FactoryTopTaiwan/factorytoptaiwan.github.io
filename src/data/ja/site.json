@@ -80,8 +80,8 @@
       "title": "対応する産業",
       "eyebrow": "ソリューション",
       "heading": "当社の設備が造るモーター",
-      "lede": "自動車、二輪・電動モビリティ、電動工具、ドローンおよび小型BLDC、家電、半導体パッケージング。設備は部品に合わせて仕様を決めるため、どの産業向けかによって治具と工具が決まります。",
-      "description": "自動車、電動モビリティ、電動工具、ドローンモーター、家電、半導体パッケージング向けのモーター生産設備。"
+      "lede": "ドローン・小型BLDCモーター、電動工具・家電、二輪・電動モビリティ、冷却ファン、半導体パッケージング。中小型ヘアピンステーターは試作（R&D）段階です。設備は部品に合わせて仕様を決めるため、どの産業向けかによって治具と工具が決まります。",
+      "description": "ドローン・BLDCモーター、電動工具・家電、電動モビリティ、半導体パッケージング向けのモーター生産設備。"
     },
     "about": {
       "title": "協群自動化について",
@@ -259,9 +259,9 @@
       {
         "heading": "ソリューション",
         "links": [
-          { "label": "ヘアピン試作",           "href": "/ja/solutions/ev-hairpin/" },
           { "label": "ドローン・BLDCモーター", "href": "/ja/solutions/drone-bldc/" },
           { "label": "電動工具・家電",         "href": "/ja/solutions/power-tools-appliances/" },
+          { "label": "ヘアピン試作（R&D）",    "href": "/ja/solutions/ev-hairpin/" },
           { "label": "ターンキー生産ライン",  "href": "/ja/turnkey/" },
           { "label": "対応産業",              "href": "/ja/solutions/" }
         ]

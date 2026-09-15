@@ -1,49 +1,11 @@
 {
-  "_note": "Capability / industry landing pages, routed at /solutions/<slug>/ by build.ps1 (template landing.html). English source; JA falls through to English until a ja/landings.json overlays. Copy is grounded in company.json facts and the timeline — hairpin is framed as prototyping/developing, matching where the company actually is. No specs or guarantees are invented.",
+  "_note": "Capability / industry landing pages, routed at /solutions/<slug>/ by build.ps1 (template landing.html). English source; JA falls through to English until a ja/landings.json overlays. Order is priority order and drives the /solutions/ cards: Drone & BLDC is the flagship focus and is featured first; power tools & appliances second; hairpin is framed as R&D / prototyping (where the company actually is) and comes last. Copy is grounded in company.json facts and the timeline. No specs or guarantees are invented.",
 
   "landings": [
     {
-      "slug": "ev-hairpin",
-      "nav": "Hairpin Prototyping",
-      "eyebrow": "Capability",
-      "title": "Mid-to-Small Hairpin Stator Prototyping & Custom Automation",
-      "lede": "We prototype and sample-test mid-to-small hairpin stators, co-developing new hairpin designs together with our customers. When a prototype proves out, we can custom-build the automation to produce it. We do not supply heavy automotive traction-motor lines at this stage.",
-      "metaDescription": "Mid-to-small hairpin stator prototyping and sample testing from Teamwork Automation — a joint R&D and prototyping partner, with custom automation built to a proven prototype. We do not supply heavy automotive traction-motor lines at this time.",
-      "intro": [
-        "Hairpin winding replaces round wire with formed rectangular conductors, packing the stator slot far more tightly for higher copper fill, efficiency and thermal performance. It is the direction motor design is moving — from e-bikes and scooters to small industrial and EV-class motors.",
-        "Our current focus is mid-to-small hairpin stator prototyping and sample testing. We work as a joint R&D and prototyping partner — developing and testing new hairpin designs together with customers, on the winding, insertion, fusing and test platform we have refined since 1992.",
-        "When a prototype succeeds, we have the engineering flexibility to scale it up and custom-build the automated equipment to produce it. To be clear about where we are today: we do not supply heavy automotive traction-motor lines at this stage — our strength is the prototyping, the sample testing, and the mid-to-small custom automation that follows a proven prototype."
-      ],
-      "highlightsTitle": "How we work on hairpin",
-      "highlights": [
-        { "title": "Prototyping & sample testing", "body": "Mid-to-small hairpin stator prototypes and sample runs, developed and tested against your slot geometry and conductor cross-section." },
-        { "title": "Joint R&D with customers", "body": "We co-develop and test new hairpin designs together as a prototyping partner — tuned to the real part, not adapted from a generic machine." },
-        { "title": "Custom automation, once it is proven", "body": "When a prototype proves out, we scale it into purpose-built automation for mid-to-small hairpin production." },
-        { "title": "Clear about scope", "body": "We do not supply heavy automotive traction-motor lines at this time. Our focus is mid-to-small hairpin prototyping and the custom automation that follows." }
-      ],
-      "processTitle": "The hairpin stages we prototype",
-      "processNote": "A hairpin stator flow typically runs these stages. We prototype and sample-test them against your part, then custom-build the automation your production needs.",
-      "process": [
-        { "title": "Slot insulation", "body": "Insulation paper inserted into the stator slots." },
-        { "title": "Hairpin forming", "body": "Rectangular conductors formed into hairpin (U) shapes." },
-        { "title": "Insertion", "body": "Formed hairpins inserted into the stator slots." },
-        { "title": "Twisting", "body": "Conductor ends twisted and aligned for connection." },
-        { "title": "Welding / fusing", "body": "Conductor ends joined, with process data logged." },
-        { "title": "Test", "body": "Electrical test and end-of-line quality verification." }
-      ],
-      "relatedTitle": "Related stator equipment we build",
-      "relatedMachines": [
-        { "label": "Out-slot brushless stator winding machine (TWM-929)", "href": "/products/out-slot-brushless-motor-stator-automatic-winding-machine/" },
-        { "label": "Stator production line", "href": "/products/stator-production-line/" },
-        { "label": "Stator fusing", "href": "/products/stator-fusing/" },
-        { "label": "Brushless slot insulation paper inserting machine", "href": "/products/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/" }
-      ]
-    },
-
-    {
       "slug": "drone-bldc",
       "nav": "Drone & BLDC",
-      "eyebrow": "Industry",
+      "eyebrow": "Main focus",
       "title": "Drone & BLDC Motor Production",
       "lede": "Out-slot and in-slot brushless stators at small diameters, where slot fill and repeatability decide flight time. Our first dedicated drone-motor line was delivered in 2023 and exported to the United States.",
       "metaDescription": "Drone and BLDC motor production equipment from Teamwork Automation — out-slot and in-slot brushless stator winding, insulation, fusing and test, including a dedicated drone-motor line delivered in 2023.",
@@ -88,6 +50,44 @@
         { "label": "Armature welding machine", "href": "/products/armature-welding-machine/" },
         { "label": "Balancing", "href": "/products/balancing/" },
         { "label": "Rotor & armature equipment", "href": "/products/motor-rotor-equipment/" }
+      ]
+    },
+
+    {
+      "slug": "ev-hairpin",
+      "nav": "Hairpin Prototyping",
+      "eyebrow": "R&D / Prototyping",
+      "title": "Mid-to-Small Hairpin Stator Prototyping & Custom Automation",
+      "lede": "We prototype and sample-test mid-to-small hairpin stators, co-developing new hairpin designs together with our customers. When a prototype proves out, we can custom-build the automation to produce it. We do not supply heavy automotive traction-motor lines at this stage.",
+      "metaDescription": "Mid-to-small hairpin stator prototyping and sample testing from Teamwork Automation — a joint R&D and prototyping partner, with custom automation built to a proven prototype. We do not supply heavy automotive traction-motor lines at this time.",
+      "intro": [
+        "Hairpin winding replaces round wire with formed rectangular conductors, packing the stator slot far more tightly for higher copper fill, efficiency and thermal performance. It is the direction motor design is moving — from e-bikes and scooters to small industrial and EV-class motors.",
+        "Our current focus is mid-to-small hairpin stator prototyping and sample testing. We work as a joint R&D and prototyping partner — developing and testing new hairpin designs together with customers, on the winding, insertion, fusing and test platform we have refined since 1992.",
+        "When a prototype succeeds, we have the engineering flexibility to scale it up and custom-build the automated equipment to produce it. To be clear about where we are today: we do not supply heavy automotive traction-motor lines at this stage — our strength is the prototyping, the sample testing, and the mid-to-small custom automation that follows a proven prototype."
+      ],
+      "highlightsTitle": "How we work on hairpin",
+      "highlights": [
+        { "title": "Prototyping & sample testing", "body": "Mid-to-small hairpin stator prototypes and sample runs, developed and tested against your slot geometry and conductor cross-section." },
+        { "title": "Joint R&D with customers", "body": "We co-develop and test new hairpin designs together as a prototyping partner — tuned to the real part, not adapted from a generic machine." },
+        { "title": "Custom automation, once it is proven", "body": "When a prototype proves out, we scale it into purpose-built automation for mid-to-small hairpin production." },
+        { "title": "Clear about scope", "body": "We do not supply heavy automotive traction-motor lines at this time. Our focus is mid-to-small hairpin prototyping and the custom automation that follows." }
+      ],
+      "processTitle": "The hairpin stages we prototype",
+      "processNote": "A hairpin stator flow typically runs these stages. We prototype and sample-test them against your part, then custom-build the automation your production needs.",
+      "process": [
+        { "title": "Slot insulation", "body": "Insulation paper inserted into the stator slots." },
+        { "title": "Hairpin forming", "body": "Rectangular conductors formed into hairpin (U) shapes." },
+        { "title": "Insertion", "body": "Formed hairpins inserted into the stator slots." },
+        { "title": "Twisting", "body": "Conductor ends twisted and aligned for connection." },
+        { "title": "Welding / fusing", "body": "Conductor ends joined, with process data logged." },
+        { "title": "Test", "body": "Electrical test and end-of-line quality verification." }
+      ],
+      "relatedTitle": "Related stator equipment we build",
+      "relatedMachines": [
+        { "label": "Out-slot brushless stator winding machine (TWM-929)", "href": "/products/out-slot-brushless-motor-stator-automatic-winding-machine/" },
+        { "label": "Stator production line", "href": "/products/stator-production-line/" },
+        { "label": "Stator fusing", "href": "/products/stator-fusing/" },
+        { "label": "Brushless slot insulation paper inserting machine", "href": "/products/horizontal-brushless-motor-slot-insulation-paper-inserting-machine/" }
       ]
     }
   ]
