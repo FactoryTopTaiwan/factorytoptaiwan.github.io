@@ -247,45 +247,44 @@
     "columns": [
       {
         "heading": "製品",
-        "wide": true,
         "links": [
-          { "label": "全機種",                        "href": "/ja/products/" },
-          { "label": "巻線機",                        "href": "/ja/products/tag/winding/" },
-          { "label": "BLDC・ブラシレス巻線",           "href": "/ja/products/tag/bldc-winding/" },
-          { "label": "ブラシ付・ユニバーサル巻線",      "href": "/ja/products/tag/brushed-winding/" },
-          { "label": "回転子・電機子設備",             "href": "/ja/products/motor-rotor-equipment/" },
-          { "label": "固定子設備",                    "href": "/ja/products/motor-stator-equipment/" },
-          { "label": "自動化生産ライン",               "href": "/ja/products/tag/production-line/" },
-          { "label": "半導体設備",                    "href": "/ja/products/semiconductor-equipment/" },
-          { "label": "総合カタログ",                  "href": "/ja/catalog/" }
+          { "label": "全機種",                   "href": "/ja/products/" },
+          { "label": "巻線機",                   "href": "/ja/products/tag/winding/" },
+          { "label": "BLDC・ブラシレス巻線",      "href": "/ja/products/tag/bldc-winding/" },
+          { "label": "ブラシ付・ユニバーサル巻線", "href": "/ja/products/tag/brushed-winding/" },
+          { "label": "回転子・電機子設備",        "href": "/ja/products/motor-rotor-equipment/" },
+          { "label": "固定子設備",               "href": "/ja/products/motor-stator-equipment/" }
         ]
       },
       {
-        "heading": "ソリューション・技術",
+        "heading": "ソリューション",
         "links": [
           { "label": "ヘアピン試作",           "href": "/ja/solutions/ev-hairpin/" },
           { "label": "ドローン・BLDCモーター", "href": "/ja/solutions/drone-bldc/" },
           { "label": "電動工具・家電",         "href": "/ja/solutions/power-tools-appliances/" },
           { "label": "ターンキー生産ライン",  "href": "/ja/turnkey/" },
-          { "label": "対応産業",              "href": "/ja/solutions/" },
-          { "label": "稼働動画（YouTube）",   "href": "https://www.youtube.com/@TeamworkAutomation", "external": true }
+          { "label": "対応産業",              "href": "/ja/solutions/" }
         ]
       },
       {
-        "heading": "会社情報",
+        "heading": "リソース",
         "links": [
-          { "label": "協群自動化について",     "href": "/ja/about/" },
-          { "label": "1992年からの歩み",       "href": "/ja/about/#history" },
-          { "label": "エンジニア採用",         "href": "/ja/contact/" }
+          { "label": "総合カタログ",          "href": "/ja/catalog/" },
+          { "label": "自動化生産ライン",       "href": "/ja/products/tag/production-line/" },
+          { "label": "半導体設備",            "href": "/ja/products/semiconductor-equipment/" },
+          { "label": "稼働動画（YouTube）",   "href": "https://www.youtube.com/@TeamworkAutomation", "external": true },
+          { "label": "サイトマップ",          "href": "/ja/sitemap/" }
         ]
       },
       {
-        "heading": "サポート・お問い合わせ",
+        "heading": "会社情報・サポート",
         "links": [
+          { "label": "協群自動化について",       "href": "/ja/about/" },
+          { "label": "1992年からの歩み",         "href": "/ja/about/#history" },
           { "label": "サポート・遠隔診断",       "href": "/ja/support/" },
           { "label": "お見積り依頼",             "href": "/ja/contact/" },
           { "label": "オンライン打ち合わせ予約", "href": "/ja/contact/#call" },
-          { "label": "サイトマップ",             "href": "/ja/sitemap/" }
+          { "label": "エンジニア採用",           "href": "/ja/contact/" }
         ]
       }
     ],

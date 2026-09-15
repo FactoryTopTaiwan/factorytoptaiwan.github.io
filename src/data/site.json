@@ -273,45 +273,44 @@
     "columns": [
       {
         "heading": "Products",
-        "wide": true,
         "links": [
-          { "label": "All machines",               "href": "/products/" },
-          { "label": "Winding machines",           "href": "/products/tag/winding/" },
-          { "label": "BLDC / brushless winding",   "href": "/products/tag/bldc-winding/" },
-          { "label": "Brushed / universal winding","href": "/products/tag/brushed-winding/" },
-          { "label": "Rotor & armature equipment", "href": "/products/motor-rotor-equipment/" },
-          { "label": "Stator equipment",           "href": "/products/motor-stator-equipment/" },
-          { "label": "Production lines",           "href": "/products/tag/production-line/" },
-          { "label": "Semiconductor equipment",    "href": "/products/semiconductor-equipment/" },
-          { "label": "Full catalogue (PDF)",       "href": "/catalog/" }
+          { "label": "All machines",                "href": "/products/" },
+          { "label": "Winding machines",            "href": "/products/tag/winding/" },
+          { "label": "BLDC / brushless winding",    "href": "/products/tag/bldc-winding/" },
+          { "label": "Brushed / universal winding", "href": "/products/tag/brushed-winding/" },
+          { "label": "Rotor & armature equipment",  "href": "/products/motor-rotor-equipment/" },
+          { "label": "Stator equipment",            "href": "/products/motor-stator-equipment/" }
         ]
       },
       {
-        "heading": "Solutions & technology",
+        "heading": "Solutions",
         "links": [
-          { "label": "Hairpin prototyping",        "href": "/solutions/ev-hairpin/" },
-          { "label": "Drone & BLDC motors",        "href": "/solutions/drone-bldc/" },
-          { "label": "Power tools & appliances",   "href": "/solutions/power-tools-appliances/" },
-          { "label": "Turnkey production lines",   "href": "/turnkey/" },
-          { "label": "Industries we build for",    "href": "/solutions/" },
-          { "label": "Watch machines running",     "href": "https://www.youtube.com/@TeamworkAutomation", "external": true }
+          { "label": "Hairpin prototyping",         "href": "/solutions/ev-hairpin/" },
+          { "label": "Drone & BLDC motors",         "href": "/solutions/drone-bldc/" },
+          { "label": "Power tools & appliances",    "href": "/solutions/power-tools-appliances/" },
+          { "label": "Turnkey production lines",    "href": "/turnkey/" },
+          { "label": "Industries we build for",     "href": "/solutions/" }
         ]
       },
       {
-        "heading": "Company",
+        "heading": "Resources",
         "links": [
-          { "label": "About Teamwork Automation",  "href": "/about/" },
-          { "label": "Our story since 1992",       "href": "/about/#history" },
-          { "label": "Engineering careers",        "href": "/contact/" }
+          { "label": "Full catalogue (PDF)",        "href": "/catalog/" },
+          { "label": "Production lines",            "href": "/products/tag/production-line/" },
+          { "label": "Semiconductor equipment",     "href": "/products/semiconductor-equipment/" },
+          { "label": "Watch machines running",      "href": "https://www.youtube.com/@TeamworkAutomation", "external": true },
+          { "label": "Sitemap",                     "href": "/sitemap/" }
         ]
       },
       {
-        "heading": "Support & contact",
+        "heading": "Company & Support",
         "links": [
-          { "label": "Support & remote diagnostics", "href": "/support/" },
-          { "label": "Request a quotation",          "href": "/contact/" },
-          { "label": "Book a video call",            "href": "/contact/#call" },
-          { "label": "Sitemap",                      "href": "/sitemap/" }
+          { "label": "About Teamwork Automation",   "href": "/about/" },
+          { "label": "Our story since 1992",        "href": "/about/#history" },
+          { "label": "Support & remote diagnostics","href": "/support/" },
+          { "label": "Request a quotation",         "href": "/contact/" },
+          { "label": "Book a video call",           "href": "/contact/#call" },
+          { "label": "Engineering careers",         "href": "/contact/" }
         ]
       }
     ],

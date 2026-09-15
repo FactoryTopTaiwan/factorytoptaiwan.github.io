@@ -820,15 +820,15 @@ img, video, svg { max-width: 100%; height: auto; display: block; }
 }
 .footer__col h3 {
   font-size: var(--step--1);
-  font-weight: 620;
-  letter-spacing: 0.11em;
+  font-weight: 640;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-bottom: var(--sp-4);
+  color: var(--ink);
+  margin-bottom: var(--sp-5);
 }
-.footer__list { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--sp-3); }
-.footer__list a { color: var(--ink-muted); text-decoration: none; }
-.footer__list a:hover { color: var(--ink); text-decoration: underline; }
+.footer__list { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--sp-4); line-height: 1.5; }
+.footer__list a { color: var(--ink-muted); text-decoration: none; line-height: 1.5; transition: color 0.15s ease; }
+.footer__list a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; }
 
 /* Brand column: positioning line + a real contact block, so the footer carries
    an address, phone and email the way a B2B buyer expects to find them. */
@@ -863,22 +863,16 @@ a.footer__contact-row:hover .footer__ico { color: var(--accent-ink); }
 .footer__heading { margin-bottom: var(--sp-4); }
 
 /* --- Desktop: balanced single-row layout ---------------------------------
-   auto-fit wrapped the five columns to four and stretched row-1 columns to the
-   tallest (Products), leaving Solutions/Company with empty gaps. Pin an explicit
-   five-track grid (brand, Products, Solutions, Company, Support) that never
-   wraps, top-align every column so short ones don't stretch, and render the long
-   Products list in two sub-columns so its height matches the rest. */
+   Brand/contact column + four strictly equal, top-aligned link columns
+   (Products, Solutions, Resources, Company & Support). All four headings sit
+   on one horizontal line; generous column gaps give the footer Apple-style
+   breathing room. No sub-column split — every list is a single clean column. */
 @media (min-width: 64rem) {
   .footer__grid {
-    grid-template-columns: 1.5fr 1.9fr 1fr 1fr 1.1fr;
+    grid-template-columns: 1.6fr repeat(4, 1fr);
     align-items: start;
-    gap: var(--sp-6);
-  }
-  .footer__list--split {
-    grid-auto-flow: column;
-    grid-template-rows: repeat(5, auto);
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: var(--sp-5);
+    column-gap: var(--sp-8);
+    row-gap: var(--sp-6);
   }
 }
 
@@ -887,9 +881,6 @@ a.footer__contact-row:hover .footer__ico { color: var(--accent-ink); }
    default) so the footer stays short instead of stacking every list. The brand
    column (contact block) has no toggle and stays open. */
 @media (max-width: 63.99rem) {
-  /* the two-column Products split is a desktop device only */
-  .footer__list--split { grid-template-columns: none; grid-auto-flow: row; }
-
   /* Accordion only once JS has enhanced the headings (.footer--accordion),
      so a no-JS phone still sees every list, just stacked. */
   .footer--accordion .footer__grid { gap: 0; }
