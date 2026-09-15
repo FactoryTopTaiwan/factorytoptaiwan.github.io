@@ -51,11 +51,6 @@
     "lede": "Short, high-speed clips of real processes — the fastest way for an engineer to judge whether our approach fits their part. Each demo pairs a 5–8 second loop with the numbers that matter.",
     "items": [
       {
-        "title": "EV hairpin stator forming & insertion",
-        "video": "Demo footage available on request",
-        "specs": [ "Process: hairpin form, insert and twist", "Cycle time: on request", "Part range: to your part" ]
-      },
-      {
         "title": "Drone / BLDC out-slot winding",
         "video": "Demo footage available on request",
         "specs": [ "Process: needle / flyer winding", "Wire: Ø0.2-1.5 mm", "Winding speed: up to 2000 rpm", "Stator OD: up to Ø180 mm", "Cycle time: on request" ]
@@ -64,6 +59,11 @@
         "title": "Armature stuff-type winding",
         "video": "Demo footage available on request",
         "specs": [ "Process: automatic stuffing", "Wire: 0.4-1.0 mm", "Winding speed: up to 2000 rpm", "Rotor OD: Ø25-55 mm", "Cycle time: on request" ]
+      },
+      {
+        "title": "EV hairpin stator forming & insertion (R&D / prototyping)",
+        "video": "Prototype footage available on request",
+        "specs": [ "Stage: R&D / prototyping — not heavy traction lines", "Process: hairpin form, insert and twist", "Cycle time: on request", "Part range: mid-to-small, to your part" ]
       },
       {
         "title": "Fusing / hot-staking",
