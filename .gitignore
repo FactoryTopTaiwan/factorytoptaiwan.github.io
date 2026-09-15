@@ -42,3 +42,6 @@ tmp/
 # in assets/images/ are published; these are large, regenerable, and would
 # double the repository size for no benefit.
 _media/
+
+# Session-local editor/preview config
+.claude/
