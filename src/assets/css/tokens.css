@@ -14,8 +14,8 @@
 
      Zero network cost, so no font swap and no layout shift on 4G. Swap in a
      self-hosted variable face here and nothing else has to change. */
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text",
-               Roboto, "Segoe UI Variable Text", "Segoe UI",
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI Variable Text", "Segoe UI", Roboto,
                "Noto Sans", "Helvetica Neue", Arial, sans-serif;
   /* Tabular figures for model numbers and specification values. Apple and
      Android first again, for the same reason. */

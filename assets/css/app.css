@@ -1229,9 +1229,12 @@ a.footer__contact-row:hover .footer__ico { color: var(--accent-ink); }
 @media (prefers-reduced-motion: no-preference) {
   [data-reveal] {
     opacity: 0;
-    transform: translateY(14px);
-    transition: opacity var(--dur-slow) var(--ease-out),
-                transform var(--dur-slow) var(--ease-out);
+    transform: translateY(24px);
+    /* Apple-style: a long, gently decelerating slide (cubic-bezier .16,1,.3,1)
+       paired with a plain ease-out fade, so motion settles silky rather than
+       snapping. will-change keeps it on the compositor. */
+    transition: transform 0.8s var(--ease-out), opacity 0.8s ease-out;
+    will-change: transform, opacity;
   }
   [data-reveal].is-revealed { opacity: 1; transform: none; }
 }

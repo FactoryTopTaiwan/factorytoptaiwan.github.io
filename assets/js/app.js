@@ -1453,11 +1453,11 @@
       return { prefix: m[1], target: n, suffix: m[3], skip: isYear };
     };
     var runCount = function (el, info) {
-      var dur = 1200, startTs = null;
+      var dur = 1500, startTs = null;
       var frame = function (ts) {
         if (startTs === null) startTs = ts;
         var p = Math.min((ts - startTs) / dur, 1);
-        var eased = 1 - Math.pow(1 - p, 3);           // easeOutCubic
+        var eased = 1 - Math.pow(1 - p, 5);           // easeOutQuint — gentler settle
         el.textContent = info.prefix + Math.round(eased * info.target).toLocaleString() + info.suffix;
         if (p < 1) requestAnimationFrame(frame);
       };
@@ -1471,7 +1471,7 @@
           var info = parseCount(e.target.getAttribute('data-count'));
           if (info && !info.skip) runCount(e.target, info);
         });
-      }, { threshold: 0.5 });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.35 });
       for (var ci = 0; ci < counters.length; ci++) {
         var info0 = parseCount(counters[ci].getAttribute('data-count'));
         if (!info0 || info0.skip) continue;          // leave years/non-numeric as authored
@@ -1494,12 +1494,15 @@
     entries.forEach(function (entry, n) {
       if (!entry.isIntersecting) return;
       var el = entry.target;
-      // Stagger siblings slightly so a grid resolves as a sequence, not a pop
-      var delay = Math.min(n * 55, 220);
+      // Stagger siblings so a grid resolves as a gentle sequence, not a pop
+      var delay = Math.min(n * 60, 300);
       setTimeout(function () { el.classList.add('is-revealed'); }, delay);
       io.unobserve(el);
     });
-  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+    // Fire as the element's top reaches ~85% down the viewport — the reveal is
+    // already underway before it slides into full view, which reads as natural
+    // rather than triggered.
+  }, { rootMargin: '0px 0px -15% 0px', threshold: 0 });
 
   for (var j = 0; j < targets.length; j++) io.observe(targets[j]);
 
