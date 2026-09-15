@@ -1167,6 +1167,73 @@
   </aside>
 </div>
 
+<!-- ==========================================================================
+     Full-catalogue (PDF) request. A light native <dialog> opened by any
+     catalogue trigger ([data-catalogue] or a link to /catalog/); app.js
+     intercepts the click so no-JS visitors still reach the /catalog/ page.
+     On submit it posts {type:"catalogue", ...} to site.inquiryEndpoint (the
+     same Apps Script Web App, text/plain so there is no CORS preflight); the
+     script emails the PDF link to the visitor and logs the lead.
+     ========================================================================== -->
+<dialog class="catreq" data-catreq
+        data-catreq-endpoint="https://script.google.com/macros/s/AKfycbwBjFnkctEYa1bvyj0Vhi08xY79aFks8Km7GLE44Uy9dkA341xGbU3pPyUua6PbdUU/exec"
+        data-catreq-mailto="iverson.hsu@fatop-global.com"
+        data-t-sending="送信中…"
+        data-t-bademail="有効なお仕事用メールアドレスをご入力ください。"
+        data-t-error="申し訳ございません。エラーが発生しました。次のメール宛にご連絡ください："
+        aria-labelledby="catreq-title">
+  <button class="catreq__x" type="button" data-catreq-close aria-label="閉じる">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+         stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  </button>
+
+  <form class="catreq__form" data-catreq-form novalidate>
+    <p class="eyebrow">製品カタログ</p>
+    <h2 class="catreq__title" id="catreq-title">総合カタログ（PDF）を入手</h2>
+    <p class="catreq__intro">お仕事用メールアドレスをご入力ください。協群自動化の総合機械カタログをメールでお送りします。本サイトの仕様は常に公開しており、フルPDFのみメールアドレスをお願いしています。</p>
+
+    <div class="catreq__field">
+      <label for="catreq-email">お仕事用メール</label>
+      <input id="catreq-email" name="email" type="email" autocomplete="email" required maxlength="160" inputmode="email">
+    </div>
+    <div class="catreq__row">
+      <div class="catreq__field">
+        <label for="catreq-name">お名前 <span class="catreq__opt">（任意）</span></label>
+        <input id="catreq-name" name="name" type="text" autocomplete="name" maxlength="120">
+      </div>
+      <div class="catreq__field">
+        <label for="catreq-company">会社名 <span class="catreq__opt">（任意）</span></label>
+        <input id="catreq-company" name="company" type="text" autocomplete="organization" maxlength="160">
+      </div>
+    </div>
+    <div class="catreq__field">
+      <label for="catreq-message">ご関心の内容 <span class="catreq__opt">（任意）</span></label>
+      <textarea id="catreq-message" name="message" rows="2" maxlength="1500"
+                placeholder="任意 — ご検討中のモーター種別や工程など。"></textarea>
+    </div>
+    <!-- Honeypot: off-screen. A bot fills it; a human never sees it. -->
+    <div class="catreq__hp" aria-hidden="true">
+      <label>Leave this field empty
+        <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+    </div>
+    <p class="catreq__err" data-catreq-error role="alert" hidden></p>
+    <button class="btn btn--primary btn--lg catreq__submit" type="submit" data-catreq-submit>
+      カタログをメールで受け取る
+      <span class="btn__arrow" aria-hidden="true">→</span>
+    </button>
+  </form>
+
+  <div class="catreq__done" data-catreq-done hidden>
+    <div class="catreq__done-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+           stroke-linecap="round" stroke-linejoin="round"><path d="m4 13 5 5L20 7"/></svg>
+    </div>
+    <h2 class="catreq__title">受信トレイをご確認ください</h2>
+    <p class="catreq__done-msg">ありがとうございます。カタログのダウンロードリンクをメールでお送りしました。数分経っても届かない場合は迷惑メールフォルダをご確認ください。</p>
+    <button class="btn btn--ghost" type="button" data-catreq-close>閲覧を続ける</button>
+  </div>
+</dialog>
+
 <!-- Mobile / tablet sticky action bar. Hidden until the list has an item. -->
 <div class="inq-bar" data-inq-bar hidden>
   <button class="inq-bar__btn" type="button" data-inq-open>
@@ -1176,6 +1243,6 @@
   </button>
 </div>
 
-<script src="/assets/js/app.js?v=245d6597e6" defer></script>
+<script src="/assets/js/app.js?v=99cf74a3ee" defer></script>
 </body>
 </html>

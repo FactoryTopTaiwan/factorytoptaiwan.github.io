@@ -1776,3 +1776,166 @@
 
   render();
 })();
+
+/* ==========================================================================
+   Full-catalogue (PDF) request modal
+   --------------------------------------------------------------------------
+   A light native <dialog> for requesting the catalogue PDF by email. Opened by
+   any [data-catalogue] element and by any link to /catalog/ (progressive
+   enhancement: without JS the link still navigates to the /catalog/ page). On
+   submit it posts {type:"catalogue", ...} to site.inquiryEndpoint using the
+   same text/plain, no-preflight pattern as the inquiry drawer; the Apps Script
+   emails the download link to the visitor and logs the lead.
+   ========================================================================== */
+(function () {
+  var dlg = document.querySelector('[data-catreq]');
+  if (!dlg) return;
+
+  var endpoint = (dlg.getAttribute('data-catreq-endpoint') || '').trim();
+  var mailto   = (dlg.getAttribute('data-catreq-mailto') || '').trim();
+  var form     = dlg.querySelector('[data-catreq-form]');
+  var doneEl   = dlg.querySelector('[data-catreq-done]');
+  var errEl    = dlg.querySelector('[data-catreq-error]');
+  var submit   = dlg.querySelector('[data-catreq-submit]');
+  var emailEl  = dlg.querySelector('#catreq-email');
+  var submitLabel = submit ? submit.innerHTML : '';
+  var lastFocus = null;
+  var T = {
+    sending: dlg.getAttribute('data-t-sending') || 'Sending…',
+    bademail: dlg.getAttribute('data-t-bademail') || 'Please enter a valid work email address.',
+    error: dlg.getAttribute('data-t-error') || 'Sorry, something went wrong. Please email us at'
+  };
+
+  function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+  function openModal() {
+    lastFocus = document.activeElement;
+    resetForm();
+    if (typeof dlg.showModal === 'function') dlg.showModal();
+    else dlg.setAttribute('open', '');
+    // Focus the first field once the dialog is painted.
+    setTimeout(function () { if (emailEl) emailEl.focus(); }, 30);
+  }
+  function closeModal() {
+    if (typeof dlg.close === 'function' && dlg.open) dlg.close();
+    else dlg.removeAttribute('open');
+    if (lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (e) {} }
+  }
+  function resetForm() {
+    if (doneEl) doneEl.hidden = true;
+    if (form) { form.hidden = false; form.reset(); }
+    if (errEl) errEl.hidden = true;
+    if (submit) { submit.disabled = false; submit.innerHTML = submitLabel; }
+  }
+  function showError(msg) {
+    if (!errEl) return;
+    errEl.textContent = msg + (mailto ? ' ' + mailto : '');
+    errEl.hidden = false;
+  }
+
+  // A trigger is any [data-catalogue], or any link whose path is /catalog/
+  // (en) or /ja/catalog/ (ja) — the footer "Full catalogue (PDF)" link and any
+  // catalogue call-to-action, without tagging each one by hand.
+  function isTrigger(el) {
+    var t = el.closest('[data-catalogue]');
+    if (t) return t;
+    var a = el.closest('a[href]');
+    if (!a) return null;
+    var href = a.getAttribute('href') || '';
+    if (/(^|\/)catalog\/(?:[?#]|$)/.test(href)) return a;
+    return null;
+  }
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-catreq-close]')) { e.preventDefault(); closeModal(); return; }
+    var trig = isTrigger(e.target);
+    if (trig) {
+      // Let modified clicks (new tab, download) behave normally.
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+      e.preventDefault();
+      openModal();
+    }
+  });
+
+  // Clicking the dialog backdrop closes it (native <dialog> reports clicks on
+  // itself when the ::backdrop is hit).
+  dlg.addEventListener('click', function (e) {
+    if (e.target === dlg) closeModal();
+  });
+  dlg.addEventListener('cancel', function () { /* Esc: default close is fine */ });
+
+  function onSubmit(e) {
+    e.preventDefault();
+    var email = (emailEl && emailEl.value.trim()) || '';
+    var name = (dlg.querySelector('#catreq-name') || {}).value || '';
+    var company = (dlg.querySelector('#catreq-company') || {}).value || '';
+    var message = (dlg.querySelector('#catreq-message') || {}).value || '';
+    var hp = (dlg.querySelector('[name="website"]') || {}).value || '';
+
+    if (hp) { succeed(); return; }                       // bot: silently "succeed"
+    if (!email || !validEmail(email)) {
+      if (errEl) { errEl.textContent = T.bademail; errEl.hidden = false; }
+      if (emailEl) emailEl.focus();
+      return;
+    }
+    if (errEl) errEl.hidden = true;
+
+    var payload = {
+      type: 'catalogue',
+      email: email, name: name.trim(), company: company.trim(),
+      message: message.trim(),
+      page: location.href, ts: new Date().toISOString()
+    };
+
+    // No endpoint configured -> fall back to a prefilled mailto, still "succeed".
+    if (!endpoint) {
+      if (mailto) {
+        var body = 'Please send me the full catalogue (PDF).\n\nEmail: ' + email +
+                   '\nName: ' + name + '\nCompany: ' + company + '\n';
+        window.location.href = 'mailto:' + mailto +
+          '?subject=' + encodeURIComponent('Full catalogue request') +
+          '&body=' + encodeURIComponent(body);
+      }
+      succeed();
+      return;
+    }
+
+    if (submit) { submit.disabled = true; submit.textContent = T.sending; }
+
+    var done = false;
+    var ctrl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 12000);
+
+    fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+      redirect: 'follow',
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function (r) {
+        var httpOk = r.ok;
+        return r.text().then(function (t) {
+          var d = {}; try { d = JSON.parse(t); } catch (e) {}
+          return { httpOk: httpOk, d: d };
+        });
+      })
+      .then(function (res) {
+        done = true; clearTimeout(timer);
+        var d = res.d || {};
+        if (res.httpOk && d.ok !== false && !d.error) { succeed(); }
+        else { fail(); }
+      })
+      .catch(function () { if (!done) { clearTimeout(timer); fail(); } });
+  }
+
+  function succeed() {
+    if (form) form.hidden = true;
+    if (doneEl) doneEl.hidden = false;
+  }
+  function fail() {
+    if (submit) { submit.disabled = false; submit.innerHTML = submitLabel; }
+    showError(T.error);
+  }
+
+  if (form) form.addEventListener('submit', onSubmit);
+})();

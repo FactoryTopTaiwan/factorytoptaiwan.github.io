@@ -2917,6 +2917,88 @@ body.vmodal-open { overflow: hidden; }
 }
 
 /* ==========================================================================
+   Full-catalogue (PDF) request modal — light native <dialog>
+   ========================================================================== */
+.catreq {
+  border: 0;
+  padding: 0;
+  width: min(92vw, 30rem);
+  max-width: 92vw;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 30px 90px rgba(8, 10, 14, 0.4);
+  overflow: hidden;
+}
+.catreq::backdrop { background: rgba(8, 10, 14, 0.55); }
+/* Center it and give a soft entrance. */
+.catreq[open] {
+  margin: auto;
+  animation: catreq-in 0.32s var(--ease-out);
+}
+@keyframes catreq-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.985); }
+  to   { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { .catreq[open] { animation: none; } }
+
+.catreq__form,
+.catreq__done { padding: var(--sp-6); }
+.catreq__title { font-size: var(--step-1); margin: 0 0 var(--sp-3); letter-spacing: -0.02em; }
+.catreq__intro { color: var(--ink-muted); margin: 0 0 var(--sp-5); font-size: var(--step--1); line-height: 1.55; }
+.catreq .eyebrow { margin-bottom: var(--sp-2); }
+
+.catreq__row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
+@media (max-width: 26rem) { .catreq__row { grid-template-columns: 1fr; } }
+
+.catreq__field { display: grid; gap: 0.35rem; margin-bottom: var(--sp-4); }
+.catreq__field label { font-size: var(--step--1); font-weight: 560; color: var(--ink); }
+.catreq__opt { color: var(--ink-faint); font-weight: 400; }
+.catreq__field input,
+.catreq__field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  color: var(--ink);
+  background: var(--bg);
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.7rem;
+}
+.catreq__field input:focus,
+.catreq__field textarea:focus {
+  outline: none;
+  border-color: var(--accent-ink);
+  box-shadow: 0 0 0 3px var(--accent-tint, rgba(194, 58, 0, 0.18));
+}
+.catreq__field textarea { resize: vertical; min-height: 3rem; }
+
+.catreq__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.catreq__err { color: var(--danger, #c0392b); font-size: var(--step--1); margin: 0 0 var(--sp-3); }
+.catreq__submit { width: 100%; justify-content: center; margin-top: var(--sp-2); }
+
+.catreq__x {
+  position: absolute;
+  top: 0.6rem; right: 0.6rem;
+  width: 2.1rem; height: 2.1rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: transparent; border: 0; color: var(--ink-muted);
+  cursor: pointer; border-radius: 50%;
+}
+.catreq__x:hover { background: var(--surface-hover); color: var(--ink); }
+.catreq__x svg { width: 1.3rem; height: 1.3rem; }
+
+.catreq__done { text-align: center; }
+.catreq__done-mark {
+  width: 3.4rem; height: 3.4rem; margin: 0 auto var(--sp-4);
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: var(--accent-tint, rgba(194, 58, 0, 0.14));
+  color: var(--accent-ink);
+}
+.catreq__done-mark svg { width: 1.8rem; height: 1.8rem; }
+.catreq__done-msg { color: var(--ink-muted); margin: 0 0 var(--sp-5); line-height: 1.55; }
+
+/* ==========================================================================
    Capability / industry landing pages
    ========================================================================== */
 .prose { max-width: var(--max-prose); }
