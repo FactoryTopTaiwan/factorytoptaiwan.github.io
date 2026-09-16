@@ -397,56 +397,39 @@
     });
   }
 
-  /* ---- Video facades -----------------------------------------------------
-     The page ships a poster and a button. YouTube is not contacted at all
+  /* ---- Video facades — inline embed (Option A) ---------------------------
+     The page ships a poster and a play button; YouTube is not contacted at all
      until someone presses play, so a reader who never watches pays no
      third-party request and collects no cookie.
 
-     No autoplay - client instruction. The reader clicks our facade to load
-     the embed, then clicks YouTube's own play control to start playback. Two
-     clicks, but that is the behaviour the client asked for after review.
+     On click the facade is replaced IN PLACE by an inline iframe inside its own
+     16:9 container — no modal, no pop-up, no forced fullscreen. autoplay=1 is
+     safe here because it only ever runs inside an iframe created BY the click
+     (a user gesture); nothing autoplays on page load. playsinline keeps mobile
+     playback in the container instead of the OS fullscreen player.
 
      Placed above the reveal-on-scroll block on purpose: that block returns
      early under prefers-reduced-motion. */
-  var vmodal = document.querySelector('[data-vmodal]');
-  var vframe = vmodal ? vmodal.querySelector('[data-vmodal-frame]') : null;
-  var openVideo = function (id, title) {
-    if (!vmodal || !vframe || !id) return;
-    var frame = document.createElement('iframe');
-    // No autoplay (client instruction): the modal loads the player paused with
-    // YouTube's own controls; the buyer presses play.
-    frame.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
-                '?rel=0&modestbranding=1&playsinline=1';
-    frame.title = title || 'Video';
-    frame.allow = 'autoplay; accelerometer; encrypted-media; picture-in-picture; web-share';
-    frame.referrerPolicy = 'strict-origin-when-cross-origin';
-    frame.setAttribute('allowfullscreen', '');
-    vframe.textContent = '';
-    vframe.appendChild(frame);
-    document.body.classList.add('vmodal-open');
-    try { vmodal.showModal(); } catch (e) { vmodal.setAttribute('open', ''); }
-  };
-  var closeVideo = function () {
-    if (!vmodal) return;
-    if (vframe) vframe.textContent = '';   // tear down the iframe → stop audio
-    document.body.classList.remove('vmodal-open');
-    try { vmodal.close(); } catch (e) { vmodal.removeAttribute('open'); }
-  };
-  if (vmodal) {
-    var vclose = vmodal.querySelector('[data-vmodal-close]');
-    if (vclose) vclose.addEventListener('click', closeVideo);
-    // Click on the backdrop (the dialog element itself, outside the frame).
-    vmodal.addEventListener('click', function (e) { if (e.target === vmodal) closeVideo(); });
-    // Esc: <dialog> fires 'cancel'; run our teardown too.
-    vmodal.addEventListener('cancel', function (e) { e.preventDefault(); closeVideo(); });
-  }
-  // Every video facade opens the shared modal instead of playing in place.
+  var YT_EMBED = 'https://www.youtube-nocookie.com/embed/';
+  var YT_PARAMS = '?autoplay=1&playsinline=1&rel=0&modestbranding=1';
   var facades = document.querySelectorAll('[data-video]');
   for (var v = 0; v < facades.length; v++) {
     (function (box) {
-      var trigger = box.querySelector('.vid__play') || box;
-      trigger.addEventListener('click', function () {
-        openVideo(box.getAttribute('data-video'), box.getAttribute('data-video-title'));
+      var playBtn = box.querySelector('.vid__play');
+      (playBtn || box).addEventListener('click', function () {
+        if (box.querySelector('iframe')) return;          // already playing
+        var id = box.getAttribute('data-video');
+        if (!id) return;
+        var frame = document.createElement('iframe');
+        frame.className = 'vid__frame';
+        frame.src = YT_EMBED + encodeURIComponent(id) + YT_PARAMS;
+        frame.title = box.getAttribute('data-video-title') || 'Video';
+        frame.allow = 'autoplay; accelerometer; encrypted-media; picture-in-picture; web-share';
+        frame.referrerPolicy = 'strict-origin-when-cross-origin';
+        frame.setAttribute('allowfullscreen', '');
+        if (playBtn && playBtn.parentNode === box) box.removeChild(playBtn);
+        else box.textContent = '';
+        box.appendChild(frame);
       });
     })(facades[v]);
   }
@@ -1066,11 +1049,12 @@
       openViewer(firstImageSlide);
     });
 
-    // Video slide: click-to-load YouTube facade, no autoplay (client
-    // instruction). Nothing loads from YouTube until the reader taps the
-    // poster; that tap swaps in the player, which loads PAUSED with YouTube's
-    // own controls — the buyer presses play. Leaving the slide or closing the
-    // modal tears the iframe down, so audio can never keep playing.
+    // Video slide: click-to-load YouTube facade, inline embed (Option A).
+    // Nothing loads from YouTube until the reader taps the poster; that tap
+    // swaps in an inline player that starts playing (autoplay=1, a user-gesture
+    // so it never fires on page load) right inside the gallery container.
+    // playsinline keeps mobile playback in-container. Leaving the slide or
+    // closing the lightbox tears the iframe down, so audio never keeps playing.
     var vplayBtns = lightbox.querySelectorAll('[data-lightbox-vplay]');
     for (var vp = 0; vp < vplayBtns.length; vp++) {
       vplayBtns[vp].addEventListener('click', function (e) {
@@ -1081,9 +1065,10 @@
         if (!vid) return;
         var f = document.createElement('iframe');
         f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(vid) +
-                '?rel=0&modestbranding=1&playsinline=1';
+                '?autoplay=1&playsinline=1&rel=0&modestbranding=1';
         f.title = wrap.getAttribute('data-lightbox-video-title') || 'Video';
         f.allow = 'autoplay; accelerometer; encrypted-media; picture-in-picture; web-share';
+        f.referrerPolicy = 'strict-origin-when-cross-origin';
         f.setAttribute('allowfullscreen', '');
         wrap.appendChild(f);
         this.hidden = true;

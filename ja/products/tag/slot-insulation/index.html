@@ -503,17 +503,9 @@
   </div>
 </footer>
 
-<!-- Shared video modal. Every video facade ([data-video]) opens the clip here
-     in a centered dark-backdrop dialog rather than redirecting to YouTube. The
-     iframe is built on open (youtube-nocookie, so nothing loads until play) and
-     torn down on close so audio never keeps playing. Native <dialog> gives Esc
-     and focus handling for free. -->
-<dialog class="vmodal" data-vmodal aria-label="この機械の稼働動画">
-  <button class="vmodal__close" type="button" data-vmodal-close aria-label="閉じる">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
-  </button>
-  <div class="vmodal__frame" data-vmodal-frame></div>
-</dialog>
+<!-- Video facades ([data-video]) now play inline (Option A): on click the
+     poster is replaced in place by an inline youtube-nocookie iframe inside its
+     own 16:9 container — no modal, no pop-up, no redirect. See app.js. -->
 
 <!-- ==========================================================================
      Add-to-Quote / Inquiry list. One panel: a right-hand drawer on desktop,
@@ -672,6 +664,6 @@
   </button>
 </div>
 
-<script src="/assets/js/app.js?v=99cf74a3ee" defer></script>
+<script src="/assets/js/app.js?v=9d0299d7ef" defer></script>
 </body>
 </html>
