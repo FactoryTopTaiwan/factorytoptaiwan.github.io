@@ -456,6 +456,20 @@ $appJsStamp = if (Test-Path $appJsPath) {
     [DateTime]::UtcNow.ToString('yyyyMMddHHmmss')
 }
 Add-Member -InputObject $site -NotePropertyName 'buildStamp' -NotePropertyValue $appJsStamp -Force
+# CSS cache-busting stamp: a content hash of the stylesheets, so a CSS-only edit
+# changes the ?v= query (independent of the app.js stamp) while identical builds
+# stay byte-identical. Lets a CDN cache /assets/css long without serving stale CSS.
+$cssPaths = @((Join-Path $SrcDir 'assets/css/tokens.css'), (Join-Path $SrcDir 'assets/css/app.css'))
+$cssStamp = if (@($cssPaths | Where-Object { Test-Path $_ }).Count) {
+    $acc = ''
+    foreach ($p in $cssPaths) { if (Test-Path $p) { $acc += (Get-FileHash $p -Algorithm SHA256).Hash } }
+    $sha = [System.Security.Cryptography.SHA256]::Create()
+    $bytes = [System.Text.Encoding]::UTF8.GetBytes($acc)
+    (($sha.ComputeHash($bytes) | ForEach-Object { $_.ToString('x2') }) -join '').Substring(0, 10)
+} else {
+    [DateTime]::UtcNow.ToString('yyyyMMddHHmmss')
+}
+Add-Member -InputObject $site -NotePropertyName 'cssStamp' -NotePropertyValue $cssStamp -Force
 # Decorate every product record with the display fields templates need inside
 # each loops (the engine does not walk parent scope), so tag pages, siblings
 # and family lists all get the same treatment as family products.
