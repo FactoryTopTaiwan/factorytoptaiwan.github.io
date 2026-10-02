@@ -20,15 +20,28 @@
 <meta property="og:title" content="サポートとサービス — Teamwork Automation">
 <meta property="og:description" content="協群自動化のモーター生産設備に対する遠隔診断、据付、オペレーター教育、補修部品の供給。">
 <meta property="og:url" content="https://fatop-global.com/ja/support/">
+<!-- Share card: product pages carry their own machine card (assets/images/og/
+     <slug>.jpg, set as page.ogImage in build.ps1); every other page falls back
+     to the brand card. JPEG, not WebP, because LinkedIn and some chat apps
+     still don't render WebP previews. -->
+<meta property="og:image" content="https://fatop-global.com/assets/images/og/og-default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="サポートとサービス — Teamwork Automation">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://fatop-global.com/assets/images/og/og-default.jpg">
 
 <meta name="theme-color" content="#08090B" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
 
-<!-- Favicon points at the same file as the header logo, so replacing the mark
-     replaces the tab icon too. No second asset to keep in sync. -->
+<!-- Icons: SVG mark for modern browsers, favicon.ico for the browsers and
+     tools that still request /favicon.ico, a PNG touch icon (iOS ignores SVG),
+     and a web manifest for Android home-screen installs. Root files are
+     hand-maintained (not in $Generated), so -Clean leaves them alone. -->
+<link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/assets/img/fatop-mark.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/assets/img/fatop-mark.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/assets/img/fatop-mark.svg" color="#C23A00">
 
 <link rel="stylesheet" href="/assets/css/tokens.css?v=57fb6303e9">
@@ -226,6 +239,52 @@
 
 
 
+
+<section class="section section--tight">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">サービス</p>
+      <h2>機械の生涯にわたるサービス</h2>
+    </div>
+    
+    
+    <div class="panels">
+      
+      <div class="panel">
+        <h3>据付・立ち上げ</h3>
+        <p>当社の技術者が世界各地のお客様工場で据付、試運転、立ち上げを行います。ビザや渡航の手配も当社が行い、現地の準備が整ってから通常2～4週間で派遣いたします。</p>
+      </div>
+      
+      <div class="panel">
+        <h3>オペレーター教育</h3>
+        <p>立ち上げ時に、お客様の部品とラインを使って、オペレーターおよび保全担当者への実地教育を行います。</p>
+      </div>
+      
+      <div class="panel">
+        <h3>受入検査（FAT・SAT）</h3>
+        <p>出荷前にお客様の部品で工場受入検査（FAT）を実施し（立会いまたは動画）、到着後は同じ基準で現地受入検査（SAT）を行います。</p>
+      </div>
+      
+      <div class="panel">
+        <h3>遠隔診断</h3>
+        <p>PLC搭載機はすべて安全な遠隔接続に対応しており、ソフトウェアやパラメータの不具合の多くは、現地訪問を待たずにインターネット経由で診断できます。</p>
+      </div>
+      
+      <div class="panel">
+        <h3>補修部品</h3>
+        <p>ラインに合わせた推奨予備品セットをご用意し、一般的な消耗部品は在庫しているため、定期交換品を迅速に出荷できます。</p>
+      </div>
+      
+      <div class="panel">
+        <h3>長期サポート・改造</h3>
+        <p>20～30年前に製造した当社の機械についても、保守、改造（アップグレード）、部品供給を継続しています。</p>
+      </div>
+      
+    </div>
+    
+    
+  </div>
+</section>
 
 <section class="section section--tight">
   <div class="shell">

@@ -20,15 +20,28 @@
 <meta property="og:title" content="Support and service — Teamwork Automation">
 <meta property="og:description" content="Remote diagnostics, installation, operator training and spare parts for Teamwork Automation motor production equipment.">
 <meta property="og:url" content="https://fatop-global.com/support/">
+<!-- Share card: product pages carry their own machine card (assets/images/og/
+     <slug>.jpg, set as page.ogImage in build.ps1); every other page falls back
+     to the brand card. JPEG, not WebP, because LinkedIn and some chat apps
+     still don't render WebP previews. -->
+<meta property="og:image" content="https://fatop-global.com/assets/images/og/og-default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Support and service — Teamwork Automation">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://fatop-global.com/assets/images/og/og-default.jpg">
 
 <meta name="theme-color" content="#08090B" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
 
-<!-- Favicon points at the same file as the header logo, so replacing the mark
-     replaces the tab icon too. No second asset to keep in sync. -->
+<!-- Icons: SVG mark for modern browsers, favicon.ico for the browsers and
+     tools that still request /favicon.ico, a PNG touch icon (iOS ignores SVG),
+     and a web manifest for Android home-screen installs. Root files are
+     hand-maintained (not in $Generated), so -Clean leaves them alone. -->
+<link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/assets/img/fatop-mark.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/assets/img/fatop-mark.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/assets/img/fatop-mark.svg" color="#C23A00">
 
 <link rel="stylesheet" href="/assets/css/tokens.css?v=57fb6303e9">
@@ -226,6 +239,52 @@
 
 
 
+
+<section class="section section--tight">
+  <div class="shell">
+    <div class="section__head">
+      <p class="eyebrow">Services</p>
+      <h2>Service across the whole life of the machine</h2>
+    </div>
+    
+    
+    <div class="panels">
+      
+      <div class="panel">
+        <h3>Installation &amp; commissioning</h3>
+        <p>Our own engineers install, run off and commission the line at your plant, anywhere in the world. We handle their visa and travel; typical mobilisation is two to four weeks from site readiness.</p>
+      </div>
+      
+      <div class="panel">
+        <h3>Operator training</h3>
+        <p>Hands-on training for your operators and maintenance staff during commissioning, on your parts and your line.</p>
+      </div>
+      
+      <div class="panel">
+        <h3>Acceptance testing (FAT &amp; SAT)</h3>
+        <p>A documented Factory Acceptance Test on your parts before shipment, witnessed on-site or by video, then a Site Acceptance Test against the same criteria at your plant.</p>
+      </div>
+      
+      <div class="panel">
+        <h3>Remote diagnostics</h3>
+        <p>Every PLC-equipped machine supports secure remote access, so most software and parameter faults are diagnosed over the internet without waiting for a site visit.</p>
+      </div>
+      
+      <div class="panel">
+        <h3>Spare parts</h3>
+        <p>A recommended spare-parts kit sized to your line, with common wear items held in stock so routine replacements ship quickly.</p>
+      </div>
+      
+      <div class="panel">
+        <h3>Long-life support &amp; upgrades</h3>
+        <p>We keep maintaining, upgrading and supplying parts for Teamwork machines built 20 to 30 years ago.</p>
+      </div>
+      
+    </div>
+    
+    
+  </div>
+</section>
 
 <section class="section section--tight">
   <div class="shell">

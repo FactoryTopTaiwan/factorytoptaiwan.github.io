@@ -696,6 +696,13 @@ foreach ($prod in $data.products) {
     }
     $schemaJson = $schema | ConvertTo-Json -Depth 10 -Compress
 
+    # Per-product share card, if one has been generated (assets/images/og/<slug>.jpg).
+    # Pages without one fall back to the brand card in layout.html.
+    $prodOg = ''
+    if (Test-Path (Join-Path $OutDir ("assets\images\og\{0}.jpg" -f $prod.slug))) {
+        $prodOg = ("/assets/images/og/{0}.jpg" -f $prod.slug)
+    }
+
     # Preload the product hero (the LCP element on a detail page) when present.
     $prodHeroPreload = ''
     if ($prod.hero -and $prod.hero.src) {
@@ -711,6 +718,7 @@ foreach ($prod in $data.products) {
         nav         = 'products'
         product     = $prod
         headExtra   = $prodHeroPreload
+        ogImage     = $prodOg
         siblings    = $siblings
         tagLinks    = $tagLinks
         desc        = $desc
@@ -755,7 +763,8 @@ $pages = @(
        eyebrow=$c.support.eyebrow; heading=$c.support.heading
        lede=$c.support.lede
        description=$c.support.description
-       blocks=@( @{ eyebrow=$c.support.blockEyebrow; title=$c.support.blockTitle; bullets=$company.capabilities.points } )
+       blocks=@( @{ eyebrow=$c.support.servicesEyebrow; title=$c.support.servicesTitle; items=$c.support.services },
+                 @{ eyebrow=$c.support.blockEyebrow; title=$c.support.blockTitle; bullets=$company.capabilities.points } )
        showContact=$true },
     @{ out='contact';   nav='contact';   title=$c.contact.title
        eyebrow=$c.contact.eyebrow; heading=$c.contact.heading

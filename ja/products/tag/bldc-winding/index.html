@@ -20,15 +20,28 @@
 <meta property="og:title" content="BLDC / brushless winding - 2 機種 — Teamwork Automation">
 <meta property="og:description" content="BLDC / brushless winding equipment from the Teamwork Automation catalogue: 2 機種 tagged BLDC / brushless winding.">
 <meta property="og:url" content="https://fatop-global.com/ja/products/tag/bldc-winding/">
+<!-- Share card: product pages carry their own machine card (assets/images/og/
+     <slug>.jpg, set as page.ogImage in build.ps1); every other page falls back
+     to the brand card. JPEG, not WebP, because LinkedIn and some chat apps
+     still don't render WebP previews. -->
+<meta property="og:image" content="https://fatop-global.com/assets/images/og/og-default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="BLDC / brushless winding - 2 機種 — Teamwork Automation">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://fatop-global.com/assets/images/og/og-default.jpg">
 
 <meta name="theme-color" content="#08090B" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
 
-<!-- Favicon points at the same file as the header logo, so replacing the mark
-     replaces the tab icon too. No second asset to keep in sync. -->
+<!-- Icons: SVG mark for modern browsers, favicon.ico for the browsers and
+     tools that still request /favicon.ico, a PNG touch icon (iOS ignores SVG),
+     and a web manifest for Android home-screen installs. Root files are
+     hand-maintained (not in $Generated), so -Clean leaves them alone. -->
+<link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/assets/img/fatop-mark.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/assets/img/fatop-mark.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/assets/img/fatop-mark.svg" color="#C23A00">
 
 <link rel="stylesheet" href="/assets/css/tokens.css?v=57fb6303e9">
