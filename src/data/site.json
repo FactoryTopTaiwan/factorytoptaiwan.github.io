@@ -33,7 +33,7 @@
     "meta": [
       "50 listed public companies guided through new plant launches",
       "Machines running in more than 20 countries",
-      "Remote diagnostics on any PLC-equipped machine"
+      "IoT-ready remote diagnostics on every machine"
     ]
   },
 
@@ -77,7 +77,7 @@
       "title": "Support and service",
       "eyebrow": "Support",
       "heading": "Repair without borders.",
-      "lede": "Any machine with a PLC can carry the remote monitoring module. When something stops, an engineer connects over the internet and diagnoses it — a fault eight thousand kilometres away does not have to wait for a flight to be booked.",
+      "lede": "Every machine ships ready for remote monitoring. When something stops, an engineer connects over the internet and diagnoses it — a fault eight thousand kilometres away does not have to wait for a flight to be booked.",
       "description": "Remote diagnostics, installation, operator training and spare parts for Teamwork Automation motor production equipment.",
       "blockEyebrow": "On the line",
       "blockTitle": "What the monitoring module gives you",
@@ -87,9 +87,9 @@
         { "title": "Installation & commissioning", "body": "Our own engineers install, run off and commission the line at your plant, anywhere in the world. We handle their visa and travel; typical mobilisation is two to four weeks from site readiness." },
         { "title": "Operator training", "body": "Hands-on training for your operators and maintenance staff during commissioning, on your parts and your line." },
         { "title": "Acceptance testing (FAT & SAT)", "body": "A documented Factory Acceptance Test on your parts before shipment, witnessed on-site or by video, then a Site Acceptance Test against the same criteria at your plant." },
-        { "title": "Remote diagnostics", "body": "Every PLC-equipped machine supports secure remote access, so most software and parameter faults are diagnosed over the internet without waiting for a site visit." },
-        { "title": "Spare parts", "body": "A recommended spare-parts kit sized to your line, with common wear items held in stock so routine replacements ship quickly." },
-        { "title": "Long-life support & upgrades", "body": "We keep maintaining, upgrading and supplying parts for Teamwork machines built 20 to 30 years ago." }
+        { "title": "IoT-ready remote diagnostics", "body": "Every machine ships ready for a secure network connection. Our engineers connect remotely and resolve more than 90% of operational issues on the spot, with no wait for a site visit." },
+        { "title": "Self-service spare parts", "body": "Modular construction makes standard wear-part replacement quick and intuitive for your own maintenance team, with no wait for a field technician. We size a recommended spare-parts kit to your line and keep common wear items in stock." },
+        { "title": "Built for zero unscheduled downtime", "body": "Our first design goal is a machine that keeps running: robust, conservatively engineered mechanics that rarely need physical repair. We still maintain, upgrade and supply parts for Teamwork machines built 20 to 30 years ago." }
       ]
     },
     "contact": {
