@@ -1445,6 +1445,10 @@ a.footer__contact-row:hover .footer__ico { color: var(--accent-ink); }
   border: var(--border) solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow-2);
+  /* Results plus the "ask an engineer" block must stay reachable on a
+     short phone screen, so the panel itself scrolls past the viewport. */
+  max-height: calc(100vh - 6rem); max-height: calc(100dvh - 6rem);
+  overflow-y: auto; overscroll-behavior: contain;
 }
 .search__input {
   width: 100%; padding: var(--sp-3) var(--sp-4);
@@ -1473,6 +1477,15 @@ a.footer__contact-row:hover .footer__ico { color: var(--accent-ink); }
 .search__fam { font-size: var(--step--1); color: var(--ink-faint); }
 
 .search__note { margin: var(--sp-3) 0 0; font-size: var(--step--1); color: var(--ink-faint); }
+.search__note--closest + .search__results { margin-top: var(--sp-2); }
+
+/* No-dead-end block: a hairline above separates it from any near matches. */
+.search__ask {
+  margin-top: var(--sp-3); padding-top: var(--sp-3);
+  border-top: var(--border) solid var(--line);
+}
+.search__asknote { margin: 0 0 var(--sp-3); font-size: var(--step--1); color: var(--ink-soft, var(--ink-faint)); }
+.search__askbtn { width: 100%; justify-content: center; text-align: center; white-space: normal; overflow-wrap: anywhere; }
 
 /* Below the width where the nav collapses, the panel spans the viewport rather
    than hanging off the right edge of a narrow header. */

@@ -1,0 +1,27 @@
+{
+  "_purpose": "Site-search vocabulary. Nothing here is shown on a page; it only widens what the search box understands. 'synonyms' are groups of words a buyer may use for the same thing: a query containing any member also matches the others. 'products' adds per-machine search-only variants (old names, misspellings, model typos) keyed by product slug. Number words are handled in app.js (three = 3, 3-in-1 = 3 in 1) and need no entry. Seeded from the corrections in terminology.json; the full list goes to the client for review in Batch B.",
+
+  "synonyms": [
+    ["shaft knurling", "shaft embossing", "knurling", "embossing"],
+    ["slot liner", "slot insulation", "slot insulation paper", "slot cell", "insulation paper", "paper inserting", "paper inserter"],
+    ["air core coil", "air coil", "aircore coil"],
+    ["dynamic balancing", "balancing", "balancer", "balance"],
+    ["varnish impregnation", "varnish", "trickle impregnation"],
+    ["stuffing type", "stuff type"],
+    ["brushless", "bldc"],
+    ["brushed", "carbon brush", "dc motor", "universal motor"],
+    ["winding", "winder"],
+    ["turning", "lathe"],
+    ["fusing", "hot staking", "welding"],
+    ["wedge", "slot wedge", "top stick"],
+    ["production line", "assembly line", "automation line", "automatic line"],
+    ["six axis", "6 axis", "robot arm", "robotic arm"],
+    ["drone", "uav", "multirotor"]
+  ],
+
+  "products": {
+    "armature-testing-machine": { "search": ["TWM-RT533"] },
+    "balancing": { "search": ["TWM-515", "NB-307A", "armature balancing machine"] },
+    "three-in-one-automatic-turning-machine": { "search": ["3 in 1", "three in one"] }
+  }
+}

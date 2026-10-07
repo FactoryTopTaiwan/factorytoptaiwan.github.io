@@ -324,6 +324,31 @@ function Read-LocaleJson {
     return $base
 }
 
+# Alternate names for one machine, from search-terms.json -> products.<slug>.
+#   aka     English names shown on the page ("Also known as") and in JSON-LD
+#   ja      Japanese names, shown instead of aka on the Japanese page
+#   zh      Chinese names: JSON-LD and search only, never mixed into the page
+#   search  search-only variants: old names, misspellings, model typos
+# Default returns what the page may show; -Schema adds zh; -All adds
+# everything the search index should understand.
+function Get-ProductAliases {
+    param([string]$Slug, [string]$Locale, [switch]$Schema, [switch]$All)
+    $out = @()
+    if (-not $searchTerms -or -not $searchTerms.products) { return $out }
+    $p = $searchTerms.products.PSObject.Properties[$Slug]
+    if (-not $p) { return $out }
+    $e = $p.Value
+    $has = { param($k) $e.PSObject.Properties[$k] -and @($e.$k).Count -gt 0 }
+    if ($Locale -eq 'ja' -and (& $has 'ja')) { $out += @($e.ja) }
+    elseif (& $has 'aka') { $out += @($e.aka) }
+    if ($Schema -or $All) { if (& $has 'zh') { $out += @($e.zh) } }
+    if ($All) {
+        if ($Locale -eq 'ja' -and (& $has 'aka')) { $out += @($e.aka) }
+        if (& $has 'search') { $out += @($e.search) }
+    }
+    return $out
+}
+
 $data    = Read-Json 'products.json'
 $company = Read-Json 'company.json'
 
@@ -423,6 +448,7 @@ $company   = Read-LocaleJson 'company.json'   $loc.code
 $about     = Read-LocaleJson 'about.json'     $loc.code
 $worldmap  = Read-Json 'worldmap.json'   # dotted world map points; locale-independent
 $landings  = Read-Json 'landings.json'   # capability/industry landing pages
+$searchTerms = Read-Json 'search-terms.json'   # search synonyms + per-product alternate names
 
 # Family (category) display order comes from product-order.json -- the single
 # ordering source shared with build-data.ps1. Reorder catalogue families to
@@ -661,6 +687,9 @@ foreach ($prod in $data.products) {
         }
         'category'    = $(if ($prod.familyName) { $prod.familyName } else { 'Motor production equipment' })
     }
+    # Alternate trade names, so Google matches the page to the words buyers use.
+    $schemaAka = @(Get-ProductAliases -Slug $prod.slug -Locale $loc.code -Schema)
+    if ($schemaAka.Count -gt 0) { $product['alternateName'] = $schemaAka }
     if ($prod.model)  { $product['mpn']         = $prod.model; $product['sku'] = $prod.model }
     if ($imageAbs)    { $product['image']       = $imageAbs }
     if ($prod.video)  {
@@ -914,12 +943,27 @@ foreach ($item in $data.products) {
     # "wedge insertion" reaches every machine tagged that way.
     $keys = @()
     if ($item.tags) { foreach ($tg in $item.tags) { $keys += $tg.label } }
+    # d: the page's own description and spec lines, so a buyer describing the
+    #    job ("commutator OD", "shaft end") finds the machine that does it.
+    #    The Japanese index carries the English lines too: buyers there often
+    #    type the English trade term.
+    $descLines = @()
+    if ($item.copy) {
+        if ($loc.code -eq 'ja' -and $item.copy.PSObject.Properties['jaDesc']) { $descLines += @($item.copy.jaDesc) }
+        if ($item.copy.PSObject.Properties['enDesc']) { $descLines += @($item.copy.enDesc) }
+        if ($item.copy.PSObject.Properties['enSpec']) { $descLines += @($item.copy.enSpec) }
+    }
+    # a: alternate names. The visible "also known as" names plus search-only
+    #    variants (old names, model typos) from search-terms.json.
+    $alias = @(Get-ProductAliases -Slug $item.slug -Locale $loc.code -All)
     $index.Add([pscustomobject]@{
         t = $item.title
         m = $(if ($item.model) { $item.model } else { '' })
         f = $famName
         u = ("{0}/products/{1}/" -f $UrlPfx, $item.slug)
         k = ($keys -join ' ')
+        a = ($alias -join ' | ')
+        d = ($descLines -join ' ')
     })
 }
 
@@ -946,9 +990,15 @@ foreach ($pg in $standing) {
     $index.Add([pscustomobject]@{ t = $pg.t; m = ''; f = $site.ui.company; u = $pg.u; k = '' })
 }
 
+# The file is { r: rows, s: synonym groups }. app.js also accepts the older bare
+# array, so a cached copy of the old shape still searches.
 # .ToArray(), never @(): @() throws ArgumentException on a Generic.List[object].
+$searchDoc = [ordered]@{
+    r = $index.ToArray()
+    s = @($(if ($searchTerms.synonyms) { $searchTerms.synonyms } else { @() }))
+}
 Write-Page -RelativePath ($OutPfx + 'search.json') `
-           -Html ($index.ToArray() | ConvertTo-Json -Depth 3 -Compress)
+           -Html ($searchDoc | ConvertTo-Json -Depth 4 -Compress)
 
 # --- Human sitemap ----------------------------------------------------------
 # Distinct from sitemap.xml: that one is for crawlers, this one is for a buyer

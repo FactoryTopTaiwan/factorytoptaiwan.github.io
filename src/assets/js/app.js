@@ -231,8 +231,21 @@
   /* ---- Site search -------------------------------------------------------
      A static host cannot run a query, so the whole index is one small JSON
      written at build time and fetched the first time search is opened. It is
-     around sixty entries, so a linear scan is faster than loading a search
+     around a hundred entries, so a linear scan is faster than loading a search
      library would be.
+
+     Buyers do not type our titles. They type "3 in 1", "winder", "bldc",
+     "armatures" or "windng", so both the index and the query go through the
+     same normalising before they are compared:
+       - number words become digits, and 3in1 / 3-in-1 / 三合一 become "3 in 1"
+       - plurals are folded (armatures = armature)
+       - filler words (machine, automatic, for, in...) are ignored
+       - synonym groups from search-terms.json widen a term (winder = winding)
+       - a term that matches nothing is retried against near spellings
+     Title, model and alternate names weigh most; family and tags next; the
+     page's description and spec lines least. If no machine matches every
+     term, the closest few are shown with an "ask an engineer" button, and the
+     query is logged (text only) so the vocabulary can be extended.
 
      This block sits ABOVE the reveal-on-scroll code on purpose: that block
      returns out of this function early under prefers-reduced-motion, so
@@ -245,7 +258,11 @@
     var searchList = searchBox.querySelector('.search__results');
     var searchNone = searchBox.querySelector('[data-search-empty]');
     var searchHint = searchBox.querySelector('[data-search-hint]');
-    var rows = null, fetching = false, active = -1, shown = [];
+    var searchNear = searchBox.querySelector('[data-search-closest]');
+    var searchAsk  = searchBox.querySelector('[data-search-ask]');
+    var askBtn     = searchBox.querySelector('[data-search-askbtn]');
+    var logUrl     = (searchBox.getAttribute('data-log') || '').trim();
+    var rows = null, synMap = {}, vocab = [], fetching = false, active = -1, shown = [];
 
     /* The control ships hidden so it never sits there looking usable while
        doing nothing. Script is running, so it can be honest now. */
@@ -253,55 +270,218 @@
 
     var bare = function (s) { return (s || '').toLowerCase().replace(/[^a-z0-9]/g, ''); };
 
+    var NUM = { one: 1, two: 2, three: 3, four: 4, five: 5,
+                six: 6, seven: 7, eight: 8, nine: 9, ten: 10 };
+    var CJK_NUM = { '二': 2, '三': 3, '四': 4, '五': 5 };
+    var STOP = { a: 1, an: 1, the: 1, of: 1, 'for': 1, and: 1, 'with': 1, 'in': 1,
+                 to: 1, machine: 1, equipment: 1, automatic: 1, type: 1 };
+
+    function norm(s) {
+      s = String(s || '').toLowerCase();
+      if (s.normalize) s = s.normalize('NFKC');
+      s = s.replace(/([二三四五])合一/g, function (_, n) {
+        return ' ' + CJK_NUM[n] + ' in 1 ';
+      });
+      s = s.replace(/\b(one|two|three|four|five|six|seven|eight|nine|ten)\b/g,
+                    function (w) { return NUM[w]; });
+      s = s.replace(/(\d)\s*-?\s*in\s*-?\s*(\d)/g, '$1 in $2');
+      return s.replace(/[^a-z0-9぀-ヿ㐀-鿿가-힯]+/g, ' ').trim();
+    }
+
+    function stem(w) {
+      if (/\d/.test(w)) return w;
+      if (w.length > 4 && /(ches|shes|sses|xes)$/.test(w)) return w.slice(0, -2);
+      if (w.length > 3 && /s$/.test(w) && !/ss$/.test(w)) return w.slice(0, -1);
+      return w;
+    }
+
+    function stems(s) { return s ? s.split(' ').map(stem) : []; }
+
+    function field(text, weight) {
+      var w = stems(norm(text)), set = {};
+      for (var i = 0; i < w.length; i++) { set[w[i]] = 1; vocab.push(w[i]); }
+      return { s: ' ' + w.join(' ') + ' ', w: set, x: weight };
+    }
+
+    function prep(list, groups) {
+      vocab = [];
+      for (var i = 0; i < list.length; i++) {
+        var r = list[i];
+        r._f = [ field([r.t, r.m, r.a].join(' '), 3),
+                 field([r.f, r.k].join(' '), 2),
+                 field(r.d, 1) ];
+        r._t = ' ' + stems(norm(r.t)).join(' ');
+        r._a = ' ' + stems(norm(r.a)).join(' ') + ' ';
+        r._mb = bare(r.m);
+      }
+      var seen = {}, uniq = [];
+      for (var v = 0; v < vocab.length; v++) {
+        if (!seen[vocab[v]]) { seen[vocab[v]] = 1; uniq.push(vocab[v]); }
+      }
+      vocab = uniq;
+      synMap = {};
+      for (var g = 0; g < (groups || []).length; g++) {
+        var grp = groups[g].map(function (p) { return stems(norm(p)).join(' '); });
+        for (var k = 0; k < grp.length; k++) synMap[grp[k]] = grp;
+      }
+    }
+
     function loadIndex() {
       if (rows || fetching) return;
       fetching = true;
       fetch(searchBox.getAttribute('data-src'))
         .then(function (r) { return r.ok ? r.json() : []; })
         .then(function (data) {
-          rows = data || [];
+          // { r: rows, s: synonym groups }; a bare array is the older shape.
+          var list = Array.isArray(data) ? data : ((data && data.r) || []);
+          prep(list, data && data.s);
+          rows = list;
           fetching = false;
           if (searchIn.value) render();
         })
         .catch(function () { rows = []; fetching = false; });
     }
 
+    /* Edit distance with an early exit, for typo tolerance. */
+    function within(a, b, max) {
+      if (Math.abs(a.length - b.length) > max) return false;
+      var prev = [], cur, i, j;
+      for (j = 0; j <= b.length; j++) prev[j] = j;
+      for (i = 1; i <= a.length; i++) {
+        cur = [i];
+        var low = i;
+        for (j = 1; j <= b.length; j++) {
+          cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1,
+                            prev[j - 1] + (a.charAt(i - 1) === b.charAt(j - 1) ? 0 : 1));
+          if (cur[j] < low) low = cur[j];
+        }
+        if (low > max) return false;
+        prev = cur;
+      }
+      return prev[b.length] <= max;
+    }
+
+    /* Split the query into terms. Each term is a list of acceptable forms:
+       itself, its synonym group, or (only when it matches nothing at all)
+       the index words within one or two typos of it. */
+    function parse(q) {
+      var toks = stems(norm(q)), terms = [], i = 0;
+      while (i < toks.length) {
+        var took = 0;
+        for (var n = Math.min(4, toks.length - i); n >= 1 && !took; n--) {
+          var phrase = toks.slice(i, i + n).join(' ');
+          if (synMap[phrase]) { terms.push({ v: synMap[phrase], w: phrase }); took = n; }
+        }
+        if (!took) { terms.push({ v: [toks[i]], w: toks[i] }); took = 1; }
+        i += took;
+      }
+      var real = terms.filter(function (t) { return !STOP[t.w]; });
+      if (real.length) terms = real;
+
+      for (var t = 0; t < terms.length; t++) {
+        var w = terms[t].w;
+        if (terms[t].v.length > 1 || w.length < 4 || !/^[a-z]+$/.test(w)) continue;
+        var known = false;
+        for (var k = 0; k < vocab.length && !known; k++) {
+          if (vocab[k].indexOf(w) === 0) known = true;
+        }
+        if (known) continue;
+        var max = w.length >= 8 ? 2 : 1, near = [];
+        for (var m = 0; m < vocab.length; m++) {
+          if (/^[a-z]+$/.test(vocab[m]) && within(w, vocab[m], max)) near.push(vocab[m]);
+        }
+        if (near.length) { terms[t].v = terms[t].v.concat(near); terms[t].fuzzy = true; }
+      }
+      return terms;
+    }
+
+    /* How well one form hits one field: whole word 3, word start 2, inside a
+       word 1. One- and two-digit numbers only count as whole words in a
+       title, name or tag, or "1" would match every model number and every
+       "1 year" in a description. */
+    function hit(f, v) {
+      if (v.indexOf(' ') > -1) return f.s.indexOf(' ' + v + ' ') > -1 ? 3 : 0;
+      if (/^\d{1,2}$/.test(v)) return (f.x > 1 && f.w[v]) ? 3 : 0;
+      if (f.w[v]) return 3;
+      if (f.s.indexOf(' ' + v) > -1) return 2;
+      if ((v.length >= 3 || /[^\x00-\x7f]/.test(v)) && f.s.indexOf(v) > -1) return 1;
+      return 0;
+    }
+
+    function termScore(row, term) {
+      var best = 0;
+      for (var i = 0; i < term.v.length; i++) {
+        var v = term.v[i];
+        for (var j = 0; j < row._f.length; j++) {
+          var s = hit(row._f[j], v) * row._f[j].x;
+          if (s > best) best = s;
+        }
+        var vb = bare(v);
+        if (vb.length >= 3 && row._mb && row._mb.indexOf(vb) > -1 && best < 9) best = 9;
+      }
+      return term.fuzzy ? best * 0.6 : best;
+    }
+
     /* A buyer arriving with a model number is the case that must never miss,
        so an exact or leading model match outranks everything. TWM929, twm-929
-       and TWM 929 all have to reach the same machine. */
-    function rank(row, q) {
-      var m = (row.m || '').toLowerCase(), t = (row.t || '').toLowerCase();
-      var qb = bare(q), mb = bare(row.m);
-      if (m && m === q) return 100;
-      if (mb && qb && mb === qb) return 98;
-      if (mb && qb && mb.indexOf(qb) === 0) return 90;
-      if (t.indexOf(q) === 0) return 70;
-      if (t.indexOf(q) > -1) return 55;
-      if ((row.f || '').toLowerCase().indexOf(q) > -1) return 35;
-      return 20;
+       and TWM 929 all reach the same machine. The whole query appearing in the
+       title or an alternate name comes next ("3 in 1"). */
+    function bonus(row, q) {
+      var qb = bare(q), mb = row._mb;
+      if (mb && qb && mb === qb) return 100;
+      if (mb && qb.length >= 3 && mb.indexOf(qb) === 0) return 60;
+      var nq = ' ' + stems(norm(q)).join(' ');
+      if (nq.length < 3) return 0;
+      if (row._t.indexOf(nq) === 0) return 30;
+      if (row._t.indexOf(nq) > -1 || row._a.indexOf(nq + ' ') > -1) return 20;
+      return 0;
     }
 
     function match(q) {
-      var terms = q.split(/\s+/).filter(Boolean);
-      var out = [];
+      var terms = parse(q);
+      if (!terms.length) return { rows: [], near: false };
+      var all = [], some = [], need = Math.ceil(terms.length / 2);
       for (var i = 0; i < rows.length; i++) {
-        var row = rows[i];
-        var hay = ((row.t || '') + ' ' + (row.m || '') + ' ' +
-                   (row.f || '') + ' ' + (row.k || '')).toLowerCase();
-        var hayBare = bare(hay);
-        var ok = true;
+        var row = rows[i], total = 0, got = 0;
         for (var j = 0; j < terms.length; j++) {
-          if (hay.indexOf(terms[j]) === -1 && hayBare.indexOf(bare(terms[j])) === -1) {
-            ok = false; break;
-          }
+          var s = termScore(row, terms[j]);
+          if (s > 0) { got++; total += s; }
         }
-        if (ok) out.push({ row: row, score: rank(row, q) });
+        if (!got) continue;
+        var item = { row: row, score: total + bonus(row, q), got: got };
+        if (got === terms.length) all.push(item);
+        else if (terms.length > 1 && got >= need) some.push(item);
       }
-      out.sort(function (a, b) {
+      var byScore = function (a, b) {
+        if (b.got !== a.got) return b.got - a.got;
         if (b.score !== a.score) return b.score - a.score;
         return (a.row.t || '').length - (b.row.t || '').length;
-      });
-      return out.slice(0, 8).map(function (x) { return x.row; });
+      };
+      var pick = function (x) { return x.row; };
+      if (all.length) return { rows: all.sort(byScore).slice(0, 8).map(pick), near: false };
+      return { rows: some.sort(byScore).slice(0, 5).map(pick), near: some.length > 0 };
+    }
+
+    /* Zero-result and near-miss queries are sent (the words only, no personal
+       data) to the inquiry endpoint, which appends them to a sheet. Sent once
+       the buyer pauses, at most once per query and ten times per page view. */
+    var logTimer = null, logged = {}, logCount = 0;
+    function logMiss(q, kind) {
+      clearTimeout(logTimer);
+      if (!logUrl || !kind || q.length < 2) return;
+      logTimer = setTimeout(function () { sendLog(q, kind); }, 2000);
+    }
+    function sendLog(q, kind) {
+      var key = q.toLowerCase();
+      if (logged[key] || logCount >= 10) return;
+      logged[key] = 1; logCount++;
+      var body = JSON.stringify({ type: 'search', q: q, result: kind,
+        lang: document.documentElement.lang || '', page: location.pathname });
+      try {
+        if (navigator.sendBeacon &&
+            navigator.sendBeacon(logUrl, new Blob([body], { type: 'text/plain' }))) return;
+      } catch (e) {}
+      try { fetch(logUrl, { method: 'POST', mode: 'no-cors', keepalive: true, body: body }); } catch (e) {}
     }
 
     function setActive(n) {
@@ -317,23 +497,33 @@
     }
 
     function render() {
-      var q = searchIn.value.trim().toLowerCase();
+      var q = searchIn.value.trim();
       searchList.textContent = '';
       active = -1;
+      searchNear.hidden = true;
+      searchAsk.hidden = true;
 
       if (!q) {
         shown = [];
         searchNone.hidden = true;
         searchHint.hidden = false;
         searchIn.setAttribute('aria-expanded', 'false');
+        clearTimeout(logTimer);
         return;
       }
       searchHint.hidden = true;
       if (!rows) { return; }
 
-      shown = match(q);
+      var res = match(q);
+      shown = res.rows;
       searchNone.hidden = shown.length > 0;
+      searchNear.hidden = !res.near;
       searchIn.setAttribute('aria-expanded', shown.length ? 'true' : 'false');
+      if (!shown.length || res.near) {
+        askBtn.textContent = (askBtn.getAttribute('data-t') || '{q}').replace('{q}', q);
+        searchAsk.hidden = false;
+      }
+      logMiss(q, !shown.length ? 'none' : (res.near ? 'closest' : ''));
 
       for (var i = 0; i < shown.length; i++) {
         var row = shown[i];
@@ -379,10 +569,20 @@
     searchIn.addEventListener('keydown', function (e) {
       if (e.key === 'ArrowDown') { e.preventDefault(); setActive(active + 1); }
       else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(active - 1); }
-      else if (e.key === 'Enter' && active > -1) {
+      else if (e.key === 'Enter' && searchList.children.length) {
         e.preventDefault();
-        searchList.children[active].firstChild.click();
+        searchList.children[active > -1 ? active : 0].firstChild.click();
       }
+    });
+
+    askBtn.addEventListener('click', function () {
+      var q = searchIn.value.trim();
+      if (!q) return;
+      var label = askBtn.getAttribute('data-item') || '';
+      openSearch(false);
+      document.dispatchEvent(new CustomEvent('fatop:ask', {
+        detail: { q: q, title: (label ? label + ': ' : '') + '“' + q + '”' }
+      }));
     });
 
     document.addEventListener('keydown', function (e) {
@@ -1747,6 +1947,20 @@
     if (e.target.closest('[data-inq-clear]')) { clearAll(); return; }
     var del = e.target.closest('[data-inq-del]');
     if (del) { remove(del.getAttribute('data-inq-del')); return; }
+  });
+
+  /* Search found nothing useful: the buyer's own words become a list item
+     (so the form's "at least one machine" rule is met and sales sees the
+     query), then the panel opens on the form with the notes field focused
+     for them to describe the job. */
+  document.addEventListener('fatop:ask', function (e) {
+    var d = e.detail || {};
+    if (!d.q) return;
+    add({ id: 'ask:' + d.q.toLowerCase(), model: '', title: d.title || d.q, url: '' });
+    resetPanel();
+    open();
+    var fNotes = form && form.querySelector('#inq-notes');
+    if (fNotes) fNotes.focus();
   });
 
   /* When reopening after a successful send, restore the form view. */

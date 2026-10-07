@@ -44,8 +44,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/assets/img/fatop-mark.svg" color="#C23A00">
 
-<link rel="stylesheet" href="/assets/css/tokens.css?v=57fb6303e9">
-<link rel="stylesheet" href="/assets/css/app.css?v=57fb6303e9">
+<link rel="stylesheet" href="/assets/css/tokens.css?v=f0ed3eb2bb">
+<link rel="stylesheet" href="/assets/css/app.css?v=f0ed3eb2bb">
 
 <script>
 /* Set the theme before first paint so there is no flash. */
@@ -108,7 +108,8 @@
            ships hidden and app.js reveals it. An input that silently does
            nothing is worse than no input at all. data-src carries the locale's
            index, because the script has no other way to know which one it is. -->
-      <div class="search" data-search data-src="/search.json" hidden>
+      <div class="search" data-search data-src="/search.json"
+           data-log="https://script.google.com/macros/s/AKfycbzVMChc7MomgtUDRZZasftbmJ_iQJ2pUIABp-1p8JUFYyUXvuz30-jhOr7GXbev2LMP/exec" hidden>
         <button class="search__open" type="button" aria-expanded="false"
                 aria-label="Search" title="Search">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
@@ -123,10 +124,18 @@
           <input class="search__input" id="site-search" type="search" autocomplete="off"
                  spellcheck="false" placeholder="Model number, machine or process"
                  role="combobox" aria-expanded="false" aria-controls="search-results"
-                 aria-autocomplete="list">
+                 aria-autocomplete="list" maxlength="150">
+          <p class="search__note search__note--closest" data-search-closest hidden>No exact match. Closest machines:</p>
           <ul class="search__results" id="search-results" role="listbox"
               aria-label="Search"></ul>
           <p class="search__note" data-search-empty hidden>Nothing matches that. Try a model number, or a process such as winding, fusing or balancing.</p>
+          <!-- No dead end: when nothing (or only a near miss) matches, the
+               buyer's own words go into the inquiry list as a question. -->
+          <div class="search__ask" data-search-ask hidden>
+            <p class="search__asknote">Not sure which machine fits? Describe the job and our engineers will suggest one.</p>
+            <button class="btn btn--primary search__askbtn" type="button" data-search-askbtn
+                    data-t="Ask an engineer about “{q}”" data-item="Question from search"></button>
+          </div>
           <p class="search__note" data-search-hint>Type a model number such as TWM-929, or a process such as fusing.</p>
         </div>
       </div>
@@ -1473,6 +1482,6 @@
   </button>
 </div>
 
-<script src="/assets/js/app.js?v=9d0299d7ef" defer></script>
+<script src="/assets/js/app.js?v=154aa87225" defer></script>
 </body>
 </html>

@@ -96,7 +96,8 @@
            ships hidden and app.js reveals it. An input that silently does
            nothing is worse than no input at all. data-src carries the locale's
            index, because the script has no other way to know which one it is. -->
-      <div class="search" data-search data-src="{{site.urlPrefix}}/search.json" hidden>
+      <div class="search" data-search data-src="{{site.urlPrefix}}/search.json"
+           data-log="{{site.inquiryEndpoint}}" hidden>
         <button class="search__open" type="button" aria-expanded="false"
                 aria-label="{{site.ui.search}}" title="{{site.ui.search}}">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
@@ -111,10 +112,18 @@
           <input class="search__input" id="site-search" type="search" autocomplete="off"
                  spellcheck="false" placeholder="{{site.ui.searchPlaceholder}}"
                  role="combobox" aria-expanded="false" aria-controls="search-results"
-                 aria-autocomplete="list">
+                 aria-autocomplete="list" maxlength="150">
+          <p class="search__note search__note--closest" data-search-closest hidden>{{site.ui.searchClosest}}</p>
           <ul class="search__results" id="search-results" role="listbox"
               aria-label="{{site.ui.search}}"></ul>
           <p class="search__note" data-search-empty hidden>{{site.ui.searchNone}}</p>
+          <!-- No dead end: when nothing (or only a near miss) matches, the
+               buyer's own words go into the inquiry list as a question. -->
+          <div class="search__ask" data-search-ask hidden>
+            <p class="search__asknote">{{site.ui.searchAskNote}}</p>
+            <button class="btn btn--primary search__askbtn" type="button" data-search-askbtn
+                    data-t="{{site.ui.searchAsk}}" data-item="{{site.ui.searchAskItem}}"></button>
+          </div>
           <p class="search__note" data-search-hint>{{site.ui.searchHint}}</p>
         </div>
       </div>
