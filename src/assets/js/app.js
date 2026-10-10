@@ -307,11 +307,13 @@
       vocab = [];
       for (var i = 0; i < list.length; i++) {
         var r = list[i];
-        r._f = [ field([r.t, r.m, r.a].join(' '), 3),
+        // x: the same page's names in the other languages, so a Japanese or
+        // Chinese term finds the page in whichever language is being browsed.
+        r._f = [ field([r.t, r.m, r.a, r.x].join(' '), 3),
                  field([r.f, r.k].join(' '), 2),
                  field(r.d, 1) ];
         r._t = ' ' + stems(norm(r.t)).join(' ');
-        r._a = ' ' + stems(norm(r.a)).join(' ') + ' ';
+        r._a = ' ' + stems(norm([r.a, r.x].join(' '))).join(' ') + ' ';
         r._mb = bare(r.m);
       }
       var seen = {}, uniq = [];

@@ -8,8 +8,9 @@
 <link rel="canonical" href="{{site.origin}}{{page.url}}">
 {{#if page.keywords}}<meta name="keywords" content="{{page.keywords}}">{{/if}}
 {{#each site.languages}}
-<link rel="alternate" hreflang="{{code}}" href="{{href}}">
+{{#if alt}}<link rel="alternate" hreflang="{{code}}" href="{{abs}}">{{/if}}
 {{/each}}
+<link rel="alternate" hreflang="x-default" href="{{site.xDefault}}">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{{site.name}}">

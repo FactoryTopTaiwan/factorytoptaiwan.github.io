@@ -1,0 +1,155 @@
+{
+    "_purpose":  "Same machine on the client\u0027s Chinese site (www.fatop.com.tw) per product slug: href is used by the language switcher and hreflang zh-TW; name is the official Chinese machine name, used by site search only. Products not listed fall back to the Chinese home page.",
+    "automatic-stuff-type-armature-winding-machine":  {
+                                                          "href":  "https://www.fatop.com.tw/automatic-stuff-type-armature-winding-machine.html",
+                                                          "name":  "崁入式轉子自動繞線機"
+                                                      },
+    "out-slot-brushless-motor-stator-automatic-winding-machine":  {
+                                                                      "href":  "https://www.fatop.com.tw/out-slot-brushless-motor-stator-automatic-winding-machine.html",
+                                                                      "name":  "外繞式無刷馬達定子繞線機"
+                                                                  },
+    "stator-production-line":  {
+                                   "href":  "https://www.fatop.com.tw/stator-production-line.html",
+                                   "name":  "內繞式無刷馬達定子繞線機"
+                               },
+    "hook-type-armature-automatic-winding-machine-horizontal":  {
+                                                                    "href":  "https://www.fatop.com.tw/%E9%A6%AC%E9%81%94%E8%BD%89%E5%AD%90%E7%B9%9E%E7%B7%9A%E6%A9%9F.html",
+                                                                    "name":  "勾式轉子自動繞線機(臥式)"
+                                                                },
+    "automatic-multi-axes-coil-winding-machine":  {
+                                                      "href":  "https://www.fatop.com.tw/automatic-multi-axes-coil-winding-machine.html",
+                                                      "name":  "多軸式線圈繞線機"
+                                                  },
+    "two-poles-type-stator-winding-machine-with-two-axes":  {
+                                                                "href":  "https://www.fatop.com.tw/two-poles-type-stator-winding-machine-with-two-axes.html",
+                                                                "name":  "兩極式定子繞線(單工位)"
+                                                            },
+    "air-coil-winding-machine":  {
+                                     "href":  "https://www.fatop.com.tw/air-coil-winding-machine.html",
+                                     "name":  "空心線圈繞線機"
+                                 },
+    "two-poles-type-stator-winding-machine-with-one-axle":  {
+                                                                "href":  "https://www.fatop.com.tw/two-poles-type-stator-winding-machine-with-one-axle.html",
+                                                                "name":  "兩極式定子繞線(雙工位)"
+                                                            },
+    "hook-type-armature-automatic-winding-machine-vertical":  {
+                                                                  "href":  "https://www.fatop.com.tw/hook-type-armature-automatic-winding-machine-vertical.html",
+                                                                  "name":  "勾式轉子自動繞線機(立式)"
+                                                              },
+    "horizontal-brushless-motor-slot-insulation-paper-inserting-machine":  {
+                                                                               "href":  "https://www.fatop.com.tw/show-1252807.html",
+                                                                               "name":  "臥式無刷馬達定子絕緣紙入槽機"
+                                                                           },
+    "vertical-brushless-motor-slot-insulation-paper-inserting-machine":  {
+                                                                             "href":  "https://www.fatop.com.tw/show-1254396.html",
+                                                                             "name":  "立式無刷馬達定子絕緣紙入槽機"
+                                                                         },
+    "vertical-slot-wedge-inserting-machine":  {
+                                                  "href":  "https://www.fatop.com.tw/show-1252885.html",
+                                                  "name":  "立式槽楔插入機"
+                                              },
+    "stator-fusing":  {
+                          "href":  "https://www.fatop.com.tw/stator-fusing.html",
+                          "name":  "無刷馬達定子直壓式點焊機"
+                      },
+    "hook-type-armature-automatic-winding-machine":  {
+                                                         "href":  "https://www.fatop.com.tw/%E9%A6%AC%E9%81%94%E8%BD%89%E5%AD%90%E7%B9%9E%E7%B7%9A%E6%A9%9F.html",
+                                                         "name":  "勾式轉子自動繞線機(臥式)"
+                                                     },
+    "shaft-embossing":  {
+                            "href":  "https://www.fatop.com.tw/shaft-embossing.html",
+                            "name":  "心軸壓花"
+                        },
+    "servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly":  {
+                                                                              "href":  "https://www.fatop.com.tw/servo-motor-hydraulic-pressure-rotor-commutator-impeller-assembly.html",
+                                                                              "name":  "軸心、整流子、風扇壓入設備(伺服壓台\\油壓壓台)"
+                                                                          },
+    "armature-slot-insulation-paper-inserting-machine":  {
+                                                             "href":  "https://www.fatop.com.tw/show-1252842.html",
+                                                             "name":  "馬達轉子絕緣紙入槽機"
+                                                         },
+    "commutator-slot-cutting":  {
+                                    "href":  "https://www.fatop.com.tw/commutator-slot-cutting.html",
+                                    "name":  "整流子切溝"
+                                },
+    "armature-slot-wedge-inserting-machine":  {
+                                                  "href":  "https://www.fatop.com.tw/show-1252848.html",
+                                                  "name":  "馬達轉子槽楔片插入機"
+                                              },
+    "armature-welding-machine":  {
+                                     "href":  "https://www.fatop.com.tw/armature-welding-machine.html",
+                                     "name":  "標準型電樞點焊機"
+                                 },
+    "armature-testing-machine":  {
+                                     "href":  "https://www.fatop.com.tw/show-654294.html",
+                                     "name":  "電樞自動綜合檢驗設備"
+                                 },
+    "varnish-bake":  {
+                         "href":  "https://www.fatop.com.tw/show-654297.html",
+                         "name":  "凡立水自動處理機"
+                     },
+    "turning-machine-for-armature-outer-diameter-of-commutator":  {
+                                                                      "href":  "https://www.fatop.com.tw/show-654300.html",
+                                                                      "name":  "馬達轉子整流子外徑車削"
+                                                                  },
+    "three-in-one-automatic-turning-machine":  {
+                                                   "href":  "https://www.fatop.com.tw/show-1252786.html",
+                                                   "name":  "三合一自動車削機"
+                                               },
+    "balancing":  {
+                      "href":  "https://www.fatop.com.tw/show-654303.html",
+                      "name":  "雙刀軸平衡減量車削機/微電腦均衡試驗機"
+                  },
+    "motor-stator-slot-insulation-paper-inserting-machine":  {
+                                                                 "href":  "https://www.fatop.com.tw/show-1252831.html",
+                                                                 "name":  "馬達定子絕緣紙入槽機"
+                                                             },
+    "varnish-bake-twm-301a":  {
+                                  "href":  "https://www.fatop.com.tw/varnish-bake-twm-301a.html",
+                                  "name":  "凡立水自動處理機"
+                              },
+    "cooling-fan-motor-automatic-production-line":  {
+                                                        "href":  "https://www.fatop.com.tw/show-1254103.html",
+                                                        "name":  "冷卻風扇馬達全自動生產線"
+                                                    },
+    "automatic-modular-production-line":  {
+                                              "href":  "https://www.fatop.com.tw/show-727647.html",
+                                              "name":  "馬達轉子全自動生產線"
+                                          },
+    "automatic-winding-machine-product-series":  {
+                                                     "href":  "https://www.fatop.com.tw/show-727675.html",
+                                                     "name":  "線圈自動化生產線"
+                                                 },
+    "automatic-modular-production-line-2":  {
+                                                "href":  "https://www.fatop.com.tw/show-727647.html",
+                                                "name":  "馬達轉子全自動生產線"
+                                            },
+    "bobbin":  {
+                   "href":  "https://www.fatop.com.tw/bobbin.html",
+                   "name":  "Bobbin自動生產線"
+               },
+    "scara":  {
+                  "href":  "https://www.fatop.com.tw/scara.html",
+                  "name":  "SCARA機械手臂之應用"
+              },
+    "application-of-six-axis-robotic-arm":  {
+                                                "href":  "https://www.fatop.com.tw/show-1254390.html",
+                                                "name":  "六軸機械手臂之應用"
+                                            },
+    "automatic-feeding-system":  {
+                                     "href":  "https://www.fatop.com.tw/show-728906.html",
+                                     "name":  "自動化供料系統"
+                                 },
+    "turntable-automatic-assembling-equipment":  {
+                                                     "href":  "https://www.fatop.com.tw/show-728968.html",
+                                                     "name":  "圓盤式自動裝配設備"
+                                                 },
+    "vibration-feeding-assembling-equipment":  {
+                                                   "href":  "https://www.fatop.com.tw/show-728984.html",
+                                                   "name":  "震動供料裝配設備"
+                                               },
+    "semiconductor-sealing-testing-process-equipment":  {
+                                                            "href":  "https://www.fatop.com.tw/show-728608.html",
+                                                            "name":  "半導體封測設備"
+                                                        }
+}

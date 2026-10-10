@@ -343,7 +343,9 @@ function Get-ProductAliases {
     elseif (& $has 'aka') { $out += @($e.aka) }
     if ($Schema -or $All) { if (& $has 'zh') { $out += @($e.zh) } }
     if ($All) {
+        # Search understands every language whatever page the buyer is on.
         if ($Locale -eq 'ja' -and (& $has 'aka')) { $out += @($e.aka) }
+        if ($Locale -ne 'ja' -and (& $has 'ja')) { $out += @($e.ja) }
         if (& $has 'search') { $out += @($e.search) }
     }
     return $out
@@ -401,8 +403,12 @@ function Build-Page {
     # the home page reads as "the switch did not work".
     $here = [string]$Page['url']
     $langs = @()
+    $xDefault = ''
     foreach ($l in $site.languages) {
         $href = $l.href
+        # The Chinese site is a separate domain; a product page points at the
+        # same machine there (zh-pages.json), everything else at its home page.
+        if ($l.external -and $Page['zhHref']) { $href = [string]$Page['zhHref'] }
         if (-not $l.external) {
             $bare = $here
             foreach ($other in $Locales) {
@@ -417,13 +423,20 @@ function Build-Page {
             $href = $pfx + $bare
             if (-not $href) { $href = '/' }
         }
+        # hreflang must be a fully-qualified URL or Google ignores it.
+        $abs = $href
+        if ($abs.StartsWith('/')) { $abs = $site.origin + $abs }
+        if ($l.code -eq 'en') { $xDefault = $abs }
         $langs += [pscustomobject]@{
-            code = $l.code; label = $l.label; href = $href
+            code = $l.code; label = $l.label; href = $href; abs = $abs
+            # hreflang only for a true equivalent page, never an external home page.
+            alt = ((-not $l.external) -or [bool]$Page['zhHref'])
             current = $l.current; external = $l.external
         }
     }
     $localSite = $site.PSObject.Copy()
     Add-Member -InputObject $localSite -NotePropertyName 'languages' -NotePropertyValue $langs -Force
+    Add-Member -InputObject $localSite -NotePropertyName 'xDefault' -NotePropertyValue $xDefault -Force
 
     $scope = @{
         site     = $localSite
@@ -439,6 +452,7 @@ function Build-Page {
 }
 
 $urls = New-Object System.Collections.Generic.List[string]
+$searchDocs = @{}   # locale code -> search index, written after the locale loop
 
 foreach ($loc in $Locales) {
 
@@ -449,6 +463,7 @@ $about     = Read-LocaleJson 'about.json'     $loc.code
 $worldmap  = Read-Json 'worldmap.json'   # dotted world map points; locale-independent
 $landings  = Read-Json 'landings.json'   # capability/industry landing pages
 $searchTerms = Read-Json 'search-terms.json'   # search synonyms + per-product alternate names
+$zhPages   = Read-Json 'zh-pages.json'      # product slug -> same machine on www.fatop.com.tw
 
 # Family (category) display order comes from product-order.json -- the single
 # ordering source shared with build-data.ps1. Reorder catalogue families to
@@ -753,6 +768,7 @@ foreach ($prod in $data.products) {
         desc        = $desc
         spec        = $spec
         schema      = $schemaJson
+        zhHref      = $(if ($zhPages.PSObject.Properties[$prod.slug]) { $zhPages.($prod.slug).href } else { '' })
         copy        = @{ summary = $summary; stage = $stage; motorTypes = $motorTypes }
     }
     $urls.Add(("{0}/products/{1}/" -f $UrlPfx, $prod.slug))
@@ -956,6 +972,8 @@ foreach ($item in $data.products) {
     # a: alternate names. The visible "also known as" names plus search-only
     #    variants (old names, model typos) from search-terms.json.
     $alias = @(Get-ProductAliases -Slug $item.slug -Locale $loc.code -All)
+    # The official Chinese name from the client's Chinese site, search only.
+    if ($zhPages.PSObject.Properties[$item.slug]) { $alias += $zhPages.($item.slug).name }
     $index.Add([pscustomobject]@{
         t = $item.title
         m = $(if ($item.model) { $item.model } else { '' })
@@ -997,8 +1015,9 @@ $searchDoc = [ordered]@{
     r = $index.ToArray()
     s = @($(if ($searchTerms.synonyms) { $searchTerms.synonyms } else { @() }))
 }
-Write-Page -RelativePath ($OutPfx + 'search.json') `
-           -Html ($searchDoc | ConvertTo-Json -Depth 4 -Compress)
+# Written after the locale loop, once every locale's rows exist, so each index
+# can carry the other languages' names (see "Cross-language search" below).
+$searchDocs[$loc.code] = @{ out = ($OutPfx + 'search.json'); doc = $searchDoc; pfx = $UrlPfx }
 
 # --- Human sitemap ----------------------------------------------------------
 # Distinct from sitemap.xml: that one is for crawlers, this one is for a buyer
@@ -1022,6 +1041,38 @@ Build-Page -Template 'page.html' -Out ($OutPfx + '404.html') -Page @{
 }
 
 } # end locale loop
+
+# --- Cross-language search ---------------------------------------------------
+# A buyer on the English site who types a Japanese or Chinese machine name
+# must still land on the English page. Every row gets x: the title, family and
+# tag words of the same page in the other locales. Pages are matched by their
+# path with the locale prefix removed (/ja/products/x/ == /products/x/).
+$byKey = @{}
+foreach ($code in $searchDocs.Keys) {
+    $sd = $searchDocs[$code]
+    $map = @{}
+    foreach ($row in $sd.doc.r) {
+        $key = [string]$row.u
+        if ($sd.pfx -and $key.StartsWith($sd.pfx + '/')) { $key = $key.Substring($sd.pfx.Length) }
+        $map[$key] = $row
+    }
+    $byKey[$code] = $map
+}
+foreach ($code in $searchDocs.Keys) {
+    foreach ($key in $byKey[$code].Keys) {
+        $row = $byKey[$code][$key]
+        $extra = @()
+        foreach ($other in $searchDocs.Keys) {
+            if ($other -eq $code) { continue }
+            $o = $byKey[$other][$key]
+            if (-not $o) { continue }
+            foreach ($v in @($o.t, $o.f, $o.k)) { if ($v -and $v -ne $row.t -and $v -ne $row.f -and $v -ne $row.k) { $extra += $v } }
+        }
+        Add-Member -InputObject $row -NotePropertyName 'x' -NotePropertyValue (($extra | Select-Object -Unique) -join ' | ') -Force
+    }
+    Write-Page -RelativePath $searchDocs[$code].out `
+               -Html ($searchDocs[$code].doc | ConvertTo-Json -Depth 4 -Compress)
+}
 
 Copy-Assets
 
