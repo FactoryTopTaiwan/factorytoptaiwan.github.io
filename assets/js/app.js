@@ -1,0 +1,2499 @@
+/* fatop-global.com — progressive enhancement only.
+   Nothing here is required for the page to be readable or navigable. */
+(function () {
+  'use strict';
+
+  /* ---- Theme toggle ----------------------------------------------------- */
+  var root = document.documentElement;
+  var toggle = document.getElementById('theme-toggle');
+
+  /* Three states: auto, light, dark. Auto is the absence of data-theme, which
+     lets the CSS fall through to prefers-color-scheme — so the page follows
+     whatever the device is doing, including a sunset schedule. Without it there
+     is no way back to the device setting once the button has been pressed. */
+  var MODES = ['auto', 'light', 'dark'];
+  // Labels come from the page (data-l-*), so a Japanese or Chinese page never
+  // gets an English tooltip written over its own.
+  var LABELS = {};
+  for (var mi = 0; mi < MODES.length; mi++) {
+    LABELS[MODES[mi]] = (toggle && toggle.getAttribute('data-l-' + MODES[mi])) || '';
+  }
+  // The same three states as a segmented control at the foot of the phone menu.
+  var themeSet = document.querySelectorAll('[data-theme-set]');
+
+  function storedMode() {
+    var m = root.getAttribute('data-theme');
+    return (m === 'light' || m === 'dark') ? m : 'auto';
+  }
+
+  function applyMode(mode) {
+    if (mode === 'auto') {
+      root.removeAttribute('data-theme');
+      try { localStorage.removeItem('theme'); } catch (e) {}
+    } else {
+      root.setAttribute('data-theme', mode);
+      try { localStorage.setItem('theme', mode); } catch (e) {}
+    }
+    if (toggle && LABELS[mode]) {
+      toggle.setAttribute('aria-label', LABELS[mode]);
+      toggle.setAttribute('title', LABELS[mode]);
+    }
+    // The map (and anything else theme-aware) listens for this.
+    try { document.dispatchEvent(new CustomEvent('fatop:theme', { detail: mode })); } catch (e) {}
+    for (var si = 0; si < themeSet.length; si++) {
+      themeSet[si].setAttribute('aria-pressed', themeSet[si].getAttribute('data-theme-set') === mode ? 'true' : 'false');
+    }
+  }
+
+  applyMode(storedMode());
+  if (toggle) {
+    toggle.addEventListener('click', function () {
+      var next = MODES[(MODES.indexOf(storedMode()) + 1) % MODES.length];
+      applyMode(next);
+    });
+  }
+  for (var ti = 0; ti < themeSet.length; ti++) {
+    themeSet[ti].addEventListener('click', function () {
+      applyMode(this.getAttribute('data-theme-set'));
+    });
+  }
+
+  /* ---- Language menu ----------------------------------------------------
+     The menu opens, closes and takes keyboard focus without any of this —
+     details/summary does that natively. All this adds is dismissing on Escape
+     or an outside click, which a native details element does not do. */
+  var langMenu = document.getElementById('lang-menu');
+  if (langMenu) {
+    document.addEventListener('click', function (e) {
+      if (langMenu.open && !langMenu.contains(e.target)) langMenu.open = false;
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && langMenu.open) {
+        langMenu.open = false;
+        var s = langMenu.querySelector('summary');
+        if (s) s.focus();
+      }
+    });
+  }
+
+  /* ---- Mobile navigation -------------------------------------------------
+     The button shipped without this, so below 64rem the entire navigation was
+     unreachable — the control was there, announced itself as a menu, and did
+     nothing. */
+  var navToggle = document.querySelector('.nav-toggle');
+  var nav = document.querySelector('.nav');
+  if (navToggle && nav) {
+    var setNav = function (open) {
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.classList.toggle('nav-open', open);
+      // Menu and search panel share the space under the header on phones:
+      // only one may be open, or the focused input sits hidden under the menu.
+      if (open) document.dispatchEvent(new CustomEvent('fatop:nav-open'));
+    };
+    document.addEventListener('fatop:search-open', function () { setNav(false); });
+    navToggle.addEventListener('click', function () {
+      setNav(navToggle.getAttribute('aria-expanded') !== 'true');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
+        setNav(false);
+        navToggle.focus();
+      }
+    });
+    // A link inside the panel should close it on the way out
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setNav(false);
+    });
+  }
+
+  /* ---- Header hairline on scroll ---------------------------------------- */
+  var header = document.getElementById('site-header');
+  if (header) {
+    var setStuck = function () {
+      header.setAttribute('data-stuck', window.scrollY > 8 ? 'true' : 'false');
+    };
+    setStuck();
+    window.addEventListener('scroll', setStuck, { passive: true });
+  }
+
+  /* ---- Footer accordion (mobile) ----------------------------------------
+     Below 64rem the four footer link columns collapse under their headings so
+     the footer stays short instead of stacking every list into a long scroll.
+     Progressive enhancement: the collapse CSS is gated on .footer--accordion,
+     added here, so a no-JS phone still shows every list. Desktop keeps all
+     lists open (the toggle is a no-op above 64rem). */
+  var footerToggles = document.querySelectorAll('[data-footer-toggle]');
+  if (footerToggles.length) {
+    var footerEl = document.querySelector('.footer');
+    if (footerEl) footerEl.classList.add('footer--accordion');
+    var footerMq = window.matchMedia('(max-width: 63.99rem)');
+    for (var fi = 0; fi < footerToggles.length; fi++) {
+      (function (h) {
+        var col = h.closest('[data-footer-col]');
+        if (!col) return;
+        h.setAttribute('role', 'button');
+        h.setAttribute('tabindex', '0');
+        h.setAttribute('aria-expanded', 'false');
+        var toggleCol = function () {
+          if (!footerMq.matches) return;            // desktop: lists always shown
+          var open = col.classList.toggle('is-open');
+          h.setAttribute('aria-expanded', open ? 'true' : 'false');
+        };
+        h.addEventListener('click', toggleCol);
+        h.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleCol(); }
+        });
+      })(footerToggles[fi]);
+    }
+    // Crossing back to desktop clears any open state so the grid never shows a
+    // stray mix; aria-expanded is reset to match.
+    var footerSync = function () {
+      if (footerMq.matches) return;
+      var opened = document.querySelectorAll('.footer__col.is-open');
+      for (var k = 0; k < opened.length; k++) {
+        opened[k].classList.remove('is-open');
+        var hh = opened[k].querySelector('[data-footer-toggle]');
+        if (hh) hh.setAttribute('aria-expanded', 'false');
+      }
+    };
+    if (footerMq.addEventListener) footerMq.addEventListener('change', footerSync);
+    else if (footerMq.addListener) footerMq.addListener(footerSync);
+  }
+
+  /* ---- Reach-us map (brand-dark, keyless) --------------------------------
+     A dark Leaflet map with CARTO dark tiles and a brand-accent pin, matching
+     the site rather than default Google styling. No API key. Leaflet is loaded
+     from a CDN only on pages that have a [data-map], and only once the map
+     scrolls near the viewport, so other pages stay dependency-free. Without JS
+     (or if the CDN fails) the container keeps a "View on Google Maps" link. */
+  var mapEls = document.querySelectorAll('[data-map]');
+  if (mapEls.length) {
+    var LEAFLET_CSS = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';
+    var LEAFLET_JS  = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
+    // Subresource Integrity: only these exact files are accepted from the CDN.
+    var LEAFLET_CSS_SRI = 'sha512-h9FcoyWjHcOcmEVkxOfTLnmZFWIH0iZhZT1H2TbOq55xssQGEJHEaIm+PgoUaZbRvQTNTluNOEfb1ZRy6D3BOw==';
+    var LEAFLET_JS_SRI  = 'sha512-puJW3E/qXDqYp9IfhAI54BJEaWIfloJ7JWs7OeD5i6ruC9JZL1gERT1wjtwXFlh7CjE7ZJ+/vcRZRkIYIb6p4g==';
+    var leafletState = 0; // 0 idle, 1 loading, 2 ready
+    var waiters = [];
+    var ensureLeaflet = function (cb) {
+      if (window.L) { cb(); return; }
+      waiters.push(cb);
+      if (leafletState !== 0) return;
+      leafletState = 1;
+      var css = document.createElement('link');
+      css.rel = 'stylesheet'; css.href = LEAFLET_CSS;
+      css.integrity = LEAFLET_CSS_SRI; css.crossOrigin = 'anonymous'; css.referrerPolicy = 'no-referrer';
+      document.head.appendChild(css);
+      var js = document.createElement('script');
+      js.src = LEAFLET_JS; js.async = true;
+      js.integrity = LEAFLET_JS_SRI; js.crossOrigin = 'anonymous'; js.referrerPolicy = 'no-referrer';
+      js.onload = function () { leafletState = 2; waiters.forEach(function (f) { f(); }); waiters = []; };
+      js.onerror = function () { leafletState = 0; }; // leave the fallback link in place
+      document.head.appendChild(js);
+    };
+    var pinSvg =
+      '<svg viewBox="0 0 24 34" width="30" height="42" aria-hidden="true">' +
+      '<path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.9 12 34 12 34s12-13.1 12-22.1C24 5.3 18.6 0 12 0z" fill="currentColor"/>' +
+      '<circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>';
+    // The theme the page is showing: an explicit choice, else the device's.
+    var pageTheme = function () {
+      var m = document.documentElement.getAttribute('data-theme');
+      if (m === 'light' || m === 'dark') return m;
+      return (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+    };
+    var initMap = function (el) {
+      if (el.dataset.mapInit) return;   // guard against IO + fallback double-init
+      el.dataset.mapInit = '1';
+      var lat = parseFloat(el.getAttribute('data-lat'));
+      var lng = parseFloat(el.getAttribute('data-lng'));
+      var zoom = parseInt(el.getAttribute('data-zoom'), 10) || 16;
+      var label = el.getAttribute('data-label') || '';
+      if (isNaN(lat) || isNaN(lng)) return;
+      el.innerHTML = ''; // drop the no-JS fallback link
+      if (zoom > 16) zoom = 16; // Esri dark canvas serves up to z16
+      var map = window.L.map(el, { scrollWheelZoom: false, zoomControl: true });
+      map.setView([lat, lng], zoom);
+      // Esri Gray Canvas, keyless and monochrome: the dark set in Dark Mode,
+      // the light set in Light Mode, swapped live when the theme changes.
+      var esri = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/';
+      var blankTile = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+      var tiles = [], tileTheme = '';
+      var setTiles = function () {
+        var want = pageTheme();
+        if (want === tileTheme) return;
+        tileTheme = want;
+        tiles.forEach(function (l) { map.removeLayer(l); });
+        var set = want === 'light' ? 'World_Light_Gray_' : 'World_Dark_Gray_';
+        tiles = [
+          window.L.tileLayer(esri + set + 'Base/MapServer/tile/{z}/{y}/{x}', {
+            maxZoom: 16, attribution: 'Tiles &copy; Esri', errorTileUrl: blankTile
+          }),
+          window.L.tileLayer(esri + set + 'Reference/MapServer/tile/{z}/{y}/{x}', {
+            maxZoom: 16, errorTileUrl: blankTile
+          })
+        ];
+        tiles.forEach(function (l) { l.addTo(map); });
+      };
+      setTiles();
+      document.addEventListener('fatop:theme', setTiles);
+      if (window.matchMedia) {
+        var mq = window.matchMedia('(prefers-color-scheme: light)');
+        if (mq.addEventListener) mq.addEventListener('change', setTiles);
+      }
+      var icon = window.L.divIcon({
+        className: 'reachus__pin', html: pinSvg,
+        iconSize: [30, 42], iconAnchor: [15, 42], popupAnchor: [0, -38]
+      });
+      window.L.marker([lat, lng], { icon: icon, title: label, keyboard: false })
+        .addTo(map)
+        .bindPopup('<strong>' + label + '</strong>');
+      // Only grab the wheel once the user interacts, so the page still scrolls.
+      map.on('focus', function () { map.scrollWheelZoom.enable(); });
+      map.on('blur', function () { map.scrollWheelZoom.disable(); });
+    };
+    var loadMap = function (el) { ensureLeaflet(function () { initMap(el); }); };
+    if ('IntersectionObserver' in window) {
+      var mapIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          mapIo.unobserve(e.target);
+          loadMap(e.target);
+        });
+      }, { rootMargin: '200px' });
+      for (var mi = 0; mi < mapEls.length; mi++) mapIo.observe(mapEls[mi]);
+    }
+    // Safety net: if the observer never fires (older browsers, or a page that
+    // renders without a visible viewport), still load the map shortly after
+    // load. The initMap guard prevents a double init.
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        for (var k = 0; k < mapEls.length; k++) {
+          if (!mapEls[k].dataset.mapInit) loadMap(mapEls[k]);
+        }
+      }, 1500);
+    });
+  }
+
+  /* ---- Site search -------------------------------------------------------
+     A static host cannot run a query, so the whole index is one small JSON
+     written at build time and fetched the first time search is opened. It is
+     around a hundred entries, so a linear scan is faster than loading a search
+     library would be.
+
+     Buyers do not type our titles. They type "3 in 1", "winder", "bldc",
+     "armatures" or "windng", so both the index and the query go through the
+     same normalising before they are compared:
+       - number words become digits, and 3in1 / 3-in-1 / 三合一 become "3 in 1"
+       - plurals are folded (armatures = armature)
+       - filler words (machine, automatic, for, in...) are ignored
+       - synonym groups from search-terms.json widen a term (winder = winding)
+       - a term that matches nothing is retried against near spellings
+     Title, model and alternate names weigh most; family and tags next; the
+     page's description and spec lines least. If no machine matches every
+     term, the closest few are shown with an "ask an engineer" button, and the
+     query is logged (text only) so the vocabulary can be extended.
+
+     This block sits ABOVE the reveal-on-scroll code on purpose: that block
+     returns out of this function early under prefers-reduced-motion, so
+     anything placed after it would never run for those readers. */
+  var searchBox = document.querySelector('[data-search]');
+  if (searchBox) {
+    var searchBtn  = searchBox.querySelector('.search__open');
+    var searchPane = searchBox.querySelector('.search__panel');
+    var searchIn   = searchBox.querySelector('.search__input');
+    var searchList = searchBox.querySelector('.search__results');
+    var searchNone = searchBox.querySelector('[data-search-empty]');
+    var searchHint = searchBox.querySelector('[data-search-hint]');
+    var searchNear = searchBox.querySelector('[data-search-closest]');
+    var searchAsk  = searchBox.querySelector('[data-search-ask]');
+    var askBtn     = searchBox.querySelector('[data-search-askbtn]');
+    var logUrl     = (searchBox.getAttribute('data-log') || '').trim();
+    var rows = null, synMap = {}, vocab = [], fetching = false, active = -1, shown = [];
+
+    /* The control ships hidden so it never sits there looking usable while
+       doing nothing. Script is running, so it can be honest now. */
+    searchBox.hidden = false;
+
+    var bare = function (s) { return (s || '').toLowerCase().replace(/[^a-z0-9]/g, ''); };
+
+    var NUM = { one: 1, two: 2, three: 3, four: 4, five: 5,
+                six: 6, seven: 7, eight: 8, nine: 9, ten: 10 };
+    var CJK_NUM = { '二': 2, '三': 3, '四': 4, '五': 5 };
+    var STOP = { a: 1, an: 1, the: 1, of: 1, 'for': 1, and: 1, 'with': 1, 'in': 1,
+                 to: 1, machine: 1, equipment: 1, automatic: 1, type: 1 };
+
+    function norm(s) {
+      s = String(s || '').toLowerCase();
+      if (s.normalize) s = s.normalize('NFKC');
+      s = s.replace(/([二三四五])合一/g, function (_, n) {
+        return ' ' + CJK_NUM[n] + ' in 1 ';
+      });
+      s = s.replace(/\b(one|two|three|four|five|six|seven|eight|nine|ten)\b/g,
+                    function (w) { return NUM[w]; });
+      s = s.replace(/(\d)\s*-?\s*in\s*-?\s*(\d)/g, '$1 in $2');
+      return s.replace(/[^a-z0-9぀-ヿ㐀-鿿가-힯]+/g, ' ').trim();
+    }
+
+    function stem(w) {
+      if (/\d/.test(w)) return w;
+      if (w.length > 4 && /(ches|shes|sses|xes)$/.test(w)) return w.slice(0, -2);
+      if (w.length > 3 && /s$/.test(w) && !/ss$/.test(w)) return w.slice(0, -1);
+      return w;
+    }
+
+    function stems(s) { return s ? s.split(' ').map(stem) : []; }
+
+    function field(text, weight) {
+      var w = stems(norm(text)), set = {};
+      for (var i = 0; i < w.length; i++) { set[w[i]] = 1; vocab.push(w[i]); }
+      return { s: ' ' + w.join(' ') + ' ', w: set, x: weight };
+    }
+
+    function prep(list, groups) {
+      vocab = [];
+      for (var i = 0; i < list.length; i++) {
+        var r = list[i];
+        // x: the same page's names in the other languages, so a Japanese or
+        // Chinese term finds the page in whichever language is being browsed.
+        r._f = [ field([r.t, r.m, r.a, r.x].join(' '), 3),
+                 field([r.f, r.k].join(' '), 2),
+                 field(r.d, 1) ];
+        r._t = ' ' + stems(norm(r.t)).join(' ');
+        r._a = ' ' + stems(norm([r.a, r.x].join(' '))).join(' ') + ' ';
+        r._mb = bare(r.m);
+      }
+      var seen = {}, uniq = [];
+      for (var v = 0; v < vocab.length; v++) {
+        if (!seen[vocab[v]]) { seen[vocab[v]] = 1; uniq.push(vocab[v]); }
+      }
+      vocab = uniq;
+      synMap = {};
+      for (var g = 0; g < (groups || []).length; g++) {
+        var grp = groups[g].map(function (p) { return stems(norm(p)).join(' '); });
+        for (var k = 0; k < grp.length; k++) synMap[grp[k]] = grp;
+      }
+    }
+
+    function loadIndex() {
+      if (rows || fetching) return;
+      fetching = true;
+      fetch(searchBox.getAttribute('data-src'))
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (data) {
+          // { r: rows, s: synonym groups }; a bare array is the older shape.
+          var list = Array.isArray(data) ? data : ((data && data.r) || []);
+          prep(list, data && data.s);
+          rows = list;
+          fetching = false;
+          if (searchIn.value) render();
+        })
+        .catch(function () { rows = []; fetching = false; });
+    }
+
+    /* Edit distance with an early exit, for typo tolerance. */
+    function within(a, b, max) {
+      if (Math.abs(a.length - b.length) > max) return false;
+      var prev = [], cur, i, j;
+      for (j = 0; j <= b.length; j++) prev[j] = j;
+      for (i = 1; i <= a.length; i++) {
+        cur = [i];
+        var low = i;
+        for (j = 1; j <= b.length; j++) {
+          cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1,
+                            prev[j - 1] + (a.charAt(i - 1) === b.charAt(j - 1) ? 0 : 1));
+          if (cur[j] < low) low = cur[j];
+        }
+        if (low > max) return false;
+        prev = cur;
+      }
+      return prev[b.length] <= max;
+    }
+
+    /* Split the query into terms. Each term is a list of acceptable forms:
+       itself, its synonym group, or (only when it matches nothing at all)
+       the index words within one or two typos of it. */
+    function parse(q) {
+      var toks = stems(norm(q)), terms = [], i = 0;
+      while (i < toks.length) {
+        var took = 0;
+        for (var n = Math.min(4, toks.length - i); n >= 1 && !took; n--) {
+          var phrase = toks.slice(i, i + n).join(' ');
+          if (synMap[phrase]) { terms.push({ v: synMap[phrase], w: phrase }); took = n; }
+        }
+        if (!took) { terms.push({ v: [toks[i]], w: toks[i] }); took = 1; }
+        i += took;
+      }
+      var real = terms.filter(function (t) { return !STOP[t.w]; });
+      if (real.length) terms = real;
+
+      for (var t = 0; t < terms.length; t++) {
+        var w = terms[t].w;
+        if (terms[t].v.length > 1 || w.length < 4 || !/^[a-z]+$/.test(w)) continue;
+        var known = false;
+        for (var k = 0; k < vocab.length && !known; k++) {
+          if (vocab[k].indexOf(w) === 0) known = true;
+        }
+        if (known) continue;
+        var max = w.length >= 8 ? 2 : 1, near = [];
+        for (var m = 0; m < vocab.length; m++) {
+          if (/^[a-z]+$/.test(vocab[m]) && within(w, vocab[m], max)) near.push(vocab[m]);
+        }
+        if (near.length) { terms[t].v = terms[t].v.concat(near); terms[t].fuzzy = true; }
+      }
+      return terms;
+    }
+
+    /* How well one form hits one field: whole word 3, word start 2, inside a
+       word 1. One- and two-digit numbers only count as whole words in a
+       title, name or tag, or "1" would match every model number and every
+       "1 year" in a description. */
+    function hit(f, v) {
+      if (v.indexOf(' ') > -1) return f.s.indexOf(' ' + v + ' ') > -1 ? 3 : 0;
+      if (/^\d{1,2}$/.test(v)) return (f.x > 1 && f.w[v]) ? 3 : 0;
+      if (f.w[v]) return 3;
+      if (f.s.indexOf(' ' + v) > -1) return 2;
+      if ((v.length >= 3 || /[^\x00-\x7f]/.test(v)) && f.s.indexOf(v) > -1) return 1;
+      return 0;
+    }
+
+    function termScore(row, term) {
+      var best = 0;
+      for (var i = 0; i < term.v.length; i++) {
+        var v = term.v[i];
+        for (var j = 0; j < row._f.length; j++) {
+          var s = hit(row._f[j], v) * row._f[j].x;
+          if (s > best) best = s;
+        }
+        var vb = bare(v);
+        if (vb.length >= 3 && row._mb && row._mb.indexOf(vb) > -1 && best < 9) best = 9;
+      }
+      return term.fuzzy ? best * 0.6 : best;
+    }
+
+    /* A buyer arriving with a model number is the case that must never miss,
+       so an exact or leading model match outranks everything. TWM929, twm-929
+       and TWM 929 all reach the same machine. The whole query appearing in the
+       title or an alternate name comes next ("3 in 1"). */
+    function bonus(row, q) {
+      var qb = bare(q), mb = row._mb;
+      if (mb && qb && mb === qb) return 100;
+      if (mb && qb.length >= 3 && mb.indexOf(qb) === 0) return 60;
+      var nq = ' ' + stems(norm(q)).join(' ');
+      if (nq.length < 3) return 0;
+      if (row._t.indexOf(nq) === 0) return 30;
+      if (row._t.indexOf(nq) > -1 || row._a.indexOf(nq + ' ') > -1) return 20;
+      return 0;
+    }
+
+    function match(q) {
+      var terms = parse(q);
+      if (!terms.length) return { rows: [], near: false };
+      var all = [], some = [], need = Math.ceil(terms.length / 2);
+      for (var i = 0; i < rows.length; i++) {
+        var row = rows[i], total = 0, got = 0;
+        for (var j = 0; j < terms.length; j++) {
+          var s = termScore(row, terms[j]);
+          if (s > 0) { got++; total += s; }
+        }
+        if (!got) continue;
+        var item = { row: row, score: total + bonus(row, q), got: got };
+        if (got === terms.length) all.push(item);
+        else if (terms.length > 1 && got >= need) some.push(item);
+      }
+      var byScore = function (a, b) {
+        if (b.got !== a.got) return b.got - a.got;
+        if (b.score !== a.score) return b.score - a.score;
+        return (a.row.t || '').length - (b.row.t || '').length;
+      };
+      var pick = function (x) { return x.row; };
+      if (all.length) return { rows: all.sort(byScore).slice(0, 8).map(pick), near: false };
+      return { rows: some.sort(byScore).slice(0, 5).map(pick), near: some.length > 0 };
+    }
+
+    /* Zero-result and near-miss queries are sent (the words only, no personal
+       data) to the inquiry endpoint, which appends them to a sheet. Sent once
+       the buyer pauses, at most once per query and ten times per page view. */
+    var logTimer = null, logged = {}, logCount = 0;
+    function logMiss(q, kind) {
+      clearTimeout(logTimer);
+      if (!logUrl || !kind || q.length < 2) return;
+      logTimer = setTimeout(function () { sendLog(q, kind); }, 2000);
+    }
+    function sendLog(q, kind) {
+      var key = q.toLowerCase();
+      if (logged[key] || logCount >= 10) return;
+      logged[key] = 1; logCount++;
+      var body = JSON.stringify({ type: 'search', q: q, result: kind,
+        lang: document.documentElement.lang || '', page: location.pathname });
+      try {
+        if (navigator.sendBeacon &&
+            navigator.sendBeacon(logUrl, new Blob([body], { type: 'text/plain' }))) return;
+      } catch (e) {}
+      try { fetch(logUrl, { method: 'POST', mode: 'no-cors', keepalive: true, body: body }); } catch (e) {}
+    }
+
+    function setActive(n) {
+      var items = searchList.children;
+      if (!items.length) { active = -1; return; }
+      if (n < 0) n = items.length - 1;
+      if (n >= items.length) n = 0;
+      for (var i = 0; i < items.length; i++) {
+        items[i].firstChild.setAttribute('aria-selected', i === n ? 'true' : 'false');
+      }
+      active = n;
+      items[n].firstChild.scrollIntoView({ block: 'nearest' });
+    }
+
+    function render() {
+      var q = searchIn.value.trim();
+      searchList.textContent = '';
+      active = -1;
+      searchNear.hidden = true;
+      searchAsk.hidden = true;
+
+      if (!q) {
+        shown = [];
+        searchNone.hidden = true;
+        searchHint.hidden = false;
+        searchIn.setAttribute('aria-expanded', 'false');
+        clearTimeout(logTimer);
+        return;
+      }
+      searchHint.hidden = true;
+      if (!rows) { return; }
+
+      var res = match(q);
+      shown = res.rows;
+      searchNone.hidden = shown.length > 0;
+      searchNear.hidden = !res.near;
+      searchIn.setAttribute('aria-expanded', shown.length ? 'true' : 'false');
+      if (!shown.length || res.near) {
+        askBtn.textContent = (askBtn.getAttribute('data-t') || '{q}').replace('{q}', q);
+        searchAsk.hidden = false;
+      }
+      logMiss(q, !shown.length ? 'none' : (res.near ? 'closest' : ''));
+
+      for (var i = 0; i < shown.length; i++) {
+        var row = shown[i];
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = row.u;
+        a.setAttribute('role', 'option');
+        a.setAttribute('aria-selected', 'false');
+        if (row.m) {
+          var model = document.createElement('span');
+          model.className = 'search__model model';
+          model.textContent = row.m;
+          a.appendChild(model);
+        }
+        var title = document.createElement('span');
+        title.className = 'search__title';
+        title.textContent = row.t;
+        a.appendChild(title);
+        if (row.f) {
+          var fam = document.createElement('span');
+          fam.className = 'search__fam';
+          fam.textContent = row.f;
+          a.appendChild(fam);
+        }
+        li.appendChild(a);
+        searchList.appendChild(li);
+      }
+    }
+
+    function openSearch(open) {
+      searchPane.hidden = !open;
+      searchBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      searchBox.classList.toggle('is-open', open);
+      if (open) {
+        document.dispatchEvent(new CustomEvent('fatop:search-open'));
+        loadIndex(); searchIn.focus();
+      }
+    }
+
+    document.addEventListener('fatop:nav-open', function () {
+      if (!searchPane.hidden) openSearch(false);
+    });
+
+    searchBtn.addEventListener('click', function () {
+      openSearch(searchPane.hidden);
+    });
+
+    searchIn.addEventListener('input', render);
+
+    searchIn.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); setActive(active + 1); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(active - 1); }
+      else if (e.key === 'Enter' && searchList.children.length) {
+        e.preventDefault();
+        searchList.children[active > -1 ? active : 0].firstChild.click();
+      }
+    });
+
+    askBtn.addEventListener('click', function () {
+      var q = searchIn.value.trim();
+      if (!q) return;
+      var label = askBtn.getAttribute('data-item') || '';
+      openSearch(false);
+      document.dispatchEvent(new CustomEvent('fatop:ask', {
+        detail: { q: q, title: (label ? label + ': ' : '') + '“' + q + '”' }
+      }));
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !searchPane.hidden) {
+        openSearch(false);
+        searchBtn.focus();
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!searchPane.hidden && !searchBox.contains(e.target)) openSearch(false);
+    });
+  }
+
+  /* ---- Video facades — inline embed (Option A) ---------------------------
+     The page ships a poster and a play button; YouTube is not contacted at all
+     until someone presses play, so a reader who never watches pays no
+     third-party request and collects no cookie.
+
+     On click the facade is replaced IN PLACE by an inline iframe inside its own
+     16:9 container — no modal, no pop-up, no forced fullscreen. autoplay=1 is
+     safe here because it only ever runs inside an iframe created BY the click
+     (a user gesture); nothing autoplays on page load. playsinline keeps mobile
+     playback in the container instead of the OS fullscreen player.
+
+     Placed above the reveal-on-scroll block on purpose: that block returns
+     early under prefers-reduced-motion. */
+  var YT_EMBED = 'https://www.youtube-nocookie.com/embed/';
+  var YT_PARAMS = '?autoplay=1&playsinline=1&rel=0&modestbranding=1';
+  var facades = document.querySelectorAll('[data-video]');
+  for (var v = 0; v < facades.length; v++) {
+    (function (box) {
+      var playBtn = box.querySelector('.vid__play');
+      (playBtn || box).addEventListener('click', function () {
+        if (box.querySelector('iframe')) return;          // already playing
+        var id = box.getAttribute('data-video');
+        if (!id) return;
+        var frame = document.createElement('iframe');
+        frame.className = 'vid__frame';
+        frame.src = YT_EMBED + encodeURIComponent(id) + YT_PARAMS;
+        frame.title = box.getAttribute('data-video-title') || 'Video';
+        frame.allow = 'autoplay; accelerometer; encrypted-media; picture-in-picture; web-share';
+        frame.referrerPolicy = 'strict-origin-when-cross-origin';
+        frame.setAttribute('allowfullscreen', '');
+        if (playBtn && playBtn.parentNode === box) box.removeChild(playBtn);
+        else box.textContent = '';
+        box.appendChild(frame);
+      });
+    })(facades[v]);
+  }
+
+  /* ---- Product PDF datasheet (client-side) -------------------------------
+     Builds a clean 2-page PDF from the LIVE page data on click, so it always
+     matches the current specs with no rebuild. jsPDF + autotable load from a
+     CDN only when the button is used. ?download=pdf auto-triggers it (used by
+     the inquiry confirmation email's link back to the product page). */
+  var pdfBtn = document.querySelector('[data-pdf]');
+  if (pdfBtn) {
+    // Pinned versions with Subresource Integrity: the browser refuses the file
+    // if the CDN ever serves anything other than these exact bytes.
+    var JSPDF_URL = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/4.2.1/jspdf.umd.min.js';
+    var JSPDF_SRI = 'sha512-plOdviVmws4Y3JAvbnpfKb2hVxKM1lCwsi3vmElYRj+tiDLffZ4FVUj5a8vyKJ9pIgl8JCAHEJ4D1iUKBecswg==';
+    var AUTOTABLE_URL = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/5.0.8/jspdf.plugin.autotable.min.js';
+    var AUTOTABLE_SRI = 'sha512-QLh0AACvI+3C+bmn3QdH6blN0NWBxwGvBDgV67TvKV5Q2knO9+/+lguVL23JQ9DR7CnfuOSYUBURlXjmJeK11Q==';
+    var pdfState = 0, pdfWaiters = [];
+    var loadScript = function (src, sri, cb) {
+      var s = document.createElement('script');
+      s.src = src; s.integrity = sri; s.crossOrigin = 'anonymous'; s.referrerPolicy = 'no-referrer';
+      s.onload = function () { cb(); };
+      s.onerror = function () { cb(new Error('load')); };
+      document.head.appendChild(s);
+    };
+    var ensurePdfLibs = function (cb) {
+      if (window.jspdf && window.jspdf.jsPDF) { cb(); return; }
+      pdfWaiters.push(cb);
+      if (pdfState !== 0) return; pdfState = 1;
+      loadScript(JSPDF_URL, JSPDF_SRI, function (e1) {
+        if (e1) { pdfState = 0; pdfWaiters = []; return; }
+        loadScript(AUTOTABLE_URL, AUTOTABLE_SRI, function () {
+          // AutoTable attaches itself when jsPDF is already on the page; make
+          // sure of it in case a future build stops doing that.
+          var J = window.jspdf && window.jspdf.jsPDF;
+          if (J && !J.API.autoTable && typeof window.applyPlugin === 'function') { try { window.applyPlugin(J); } catch (e) {} }
+          pdfState = 2; pdfWaiters.forEach(function (f) { f(); }); pdfWaiters = [];
+        });
+      });
+    };
+    var imgToJpeg = function (src, cb) {
+      if (!src) { cb(null); return; }
+      var img = new Image(); img.crossOrigin = 'anonymous';
+      img.onload = function () {
+        try {
+          var cv = document.createElement('canvas');
+          cv.width = img.naturalWidth; cv.height = img.naturalHeight;
+          var ctx = cv.getContext('2d');
+          ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, cv.width, cv.height);
+          ctx.drawImage(img, 0, 0);
+          cb(cv.toDataURL('image/jpeg', 0.92), img.naturalWidth, img.naturalHeight);
+        } catch (e) { cb(null); }
+      };
+      img.onerror = function () { cb(null); };
+      img.src = src;
+    };
+    var txt = function (sel) { var el = document.querySelector(sel); return el ? el.textContent.trim() : ''; };
+    var collectData = function () {
+      var specs = [].map.call(document.querySelectorAll('.spectable tr'), function (tr) {
+        var th = tr.querySelector('th'), td = tr.querySelector('td');
+        return [th ? th.textContent.trim() : '', td ? td.textContent.trim() : ''];
+      });
+      // No transcribed table: use the published specification list instead
+      // ("Label: value" lines), so the datasheet carries what the page shows.
+      if (!specs.length) {
+        specs = [].map.call(document.querySelectorAll('.prod__spec li'), function (li) {
+          var s = li.textContent.trim(), m = s.match(/^([^:：]{1,40})[:：]\s*([\s\S]+)$/);
+          return m ? [m[1].trim(), m[2].trim()] : ['', s];
+        }).filter(function (r) { return r[1] && !/^[＊*]/.test(r[1]); });
+      }
+      var highlights = [].map.call(document.querySelectorAll('.prod__head .factlist > div'), function (d) {
+        var dt = d.querySelector('dt'), dd = d.querySelector('dd');
+        return [dt ? dt.textContent.trim() : '', dd ? dd.textContent.trim() : ''];
+      });
+      var hero = document.querySelector('.prod__hero');
+      return {
+        model: pdfBtn.getAttribute('data-model') || '',
+        title: txt('.prod__head h1') || document.title,
+        summary: txt('.prod__head .lede'),
+        highlights: highlights,
+        specs: specs,
+        heroSrc: hero ? (hero.currentSrc || hero.src) : null,
+        company: pdfBtn.getAttribute('data-company') || '',
+        web: (pdfBtn.getAttribute('data-web') || '').replace(/^https?:\/\//, ''),
+        addr: pdfBtn.getAttribute('data-addr') || '',
+        phone: pdfBtn.getAttribute('data-phone') || '',
+        email: pdfBtn.getAttribute('data-email') || '',
+        tSubject: pdfBtn.getAttribute('data-t-subject') || 'Specifications subject to change without notice.',
+        tSpecHead: pdfBtn.getAttribute('data-t-spechead') || 'Specification',
+        tSpecs: pdfBtn.getAttribute('data-t-specs') || 'Specifications',
+        tNoSpec: pdfBtn.getAttribute('data-t-nospec') || 'Full specifications available on request — contact us.'
+      };
+    };
+    var makePdf = function (d, heroJpeg, hw, hh) {
+      var jsPDF = window.jspdf.jsPDF;
+      var doc = new jsPDF({ unit: 'mm', format: 'a4' });
+      // Japanese / Chinese pages embed their own subset of Noto Sans (built by
+      // tools/make-pdf-fonts.ps1): Helvetica has no CJK glyphs. jsPDF writes only
+      // the glyphs used into the PDF.
+      var F = 'helvetica';
+      if (pdfFonts) {
+        doc.addFileToVFS('cjk-400.ttf', pdfFonts[0]); doc.addFont('cjk-400.ttf', 'cjk', 'normal', 'Identity-H');
+        doc.addFileToVFS('cjk-700.ttf', pdfFonts[1]); doc.addFont('cjk-700.ttf', 'cjk', 'bold', 'Identity-H');
+        F = 'cjk';
+      }
+      // Line breaking. jsPDF's splitTextToSize breaks only at spaces, so a
+      // Chinese or Japanese sentence (no spaces) was pushed whole to the next
+      // line, or a glued Latin name broke mid-word. Here a line may break
+      // between any two CJK characters, never inside a Latin word.
+      var wrap = function (text, maxW) {
+        if (F !== 'cjk') return doc.splitTextToSize(text, maxW);
+        var toks = String(text).match(/[A-Za-z0-9][A-Za-z0-9.,:;'"%\/()\[\]+\-]*|\s+|[\s\S]/g) || [];
+        var lines = [], line = '';
+        for (var ti = 0; ti < toks.length; ti++) {
+          var tk = toks[ti], blank = /^\s+$/.test(tk);
+          if (!line && blank) continue;
+          if (!line || doc.getTextWidth(line + tk) <= maxW) { line += tk; continue; }
+          lines.push(line.replace(/\s+$/, ''));
+          line = blank ? '' : tk;
+        }
+        if (line) lines.push(line.replace(/\s+$/, ''));
+        return lines;
+      };
+      var W = doc.internal.pageSize.getWidth();
+      var H = doc.internal.pageSize.getHeight();
+      var M = 16, accent = [222, 82, 18], ink = [28, 32, 38], muted = [120, 128, 138];
+      var header = function () {
+        doc.setFont(F, 'normal'); doc.setFontSize(9);
+        doc.setTextColor(muted[0], muted[1], muted[2]);
+        doc.text(d.company || 'Teamwork Automation', M, 12);
+        if (d.web) doc.text(d.web, W - M, 12, { align: 'right' });
+        doc.setDrawColor(accent[0], accent[1], accent[2]); doc.setLineWidth(0.6);
+        doc.line(M, 15, W - M, 15);
+      };
+      var footer = function () {
+        var y = H - 14;
+        doc.setDrawColor(222); doc.setLineWidth(0.2); doc.line(M, y - 4, W - M, y - 4);
+        doc.setFont(F, 'normal'); doc.setFontSize(8);
+        doc.setTextColor(muted[0], muted[1], muted[2]);
+        if (d.addr) doc.text(d.addr, M, y);
+        var line2 = [d.phone, d.email].filter(Boolean).join('   |   ');
+        if (line2) doc.text(line2, M, y + 4);
+        doc.text(d.tSubject, W - M, y + 4, { align: 'right' });
+      };
+      header();
+      var y = 28;
+      if (d.model) {
+        doc.setFont(F, 'bold'); doc.setFontSize(11);
+        doc.setTextColor(accent[0], accent[1], accent[2]);
+        doc.text(d.model, M, y); y += 7;
+      }
+      doc.setFont(F, 'bold'); doc.setFontSize(19);
+      doc.setTextColor(ink[0], ink[1], ink[2]);
+      var titleLines = wrap(d.title, W - 2 * M);
+      doc.text(titleLines, M, y); y += titleLines.length * 8 + 2;
+      // hero image, contained in a box
+      if (heroJpeg && hw && hh) {
+        var boxW = W - 2 * M, boxH = 72;
+        var scale = Math.min(boxW / hw, boxH / hh);
+        var iw = hw * scale, ih = hh * scale;
+        var ix = M + (boxW - iw) / 2, iy = y;
+        doc.addImage(heroJpeg, 'JPEG', ix, iy, iw, ih);
+        y += boxH + 4;
+      }
+      if (d.summary) {
+        doc.setFont(F, 'normal'); doc.setFontSize(10.5);
+        doc.setTextColor(60, 66, 74);
+        // wrap(): CJK-aware line breaking (see makePdf).
+        var sLines = wrap(d.summary, W - 2 * M);
+        doc.text(sLines, M, y); y += sLines.length * 5 + 3;
+      }
+      if (d.highlights.length) {
+        doc.setFontSize(9.5);
+        d.highlights.forEach(function (h) {
+          doc.setTextColor(muted[0], muted[1], muted[2]);
+          doc.setFont(F, 'bold'); doc.text(h[0] + (F === 'cjk' ? '\uFF1A' : ':'), M, y);
+          doc.setFont(F, 'normal'); doc.setTextColor(ink[0], ink[1], ink[2]);
+          doc.text(h[1], M + 34, y); y += 5.5;
+        });
+        y += 2;
+      }
+      var body = d.specs.length ? d.specs : [[d.tSpecs, d.tNoSpec]];
+      doc.autoTable({
+        startY: y + 2,
+        head: [[d.tSpecHead, '']],
+        body: body,
+        margin: { top: 20, bottom: 20, left: M, right: M },
+        styles: { font: F, fontSize: 9.5, cellPadding: 2, textColor: ink, lineColor: [230, 232, 235], lineWidth: 0.1 },
+        headStyles: { fillColor: accent, textColor: 255, fontStyle: 'bold' },
+        alternateRowStyles: { fillColor: [246, 247, 248] },
+        columnStyles: { 0: { cellWidth: 62, fontStyle: 'bold', textColor: muted }, 1: { cellWidth: 'auto' } },
+        didDrawPage: function () { header(); footer(); }
+      });
+      var name = (d.model || (location.pathname.replace(/\/+$/, '').split('/').pop()) || 'datasheet') + '-datasheet.pdf';
+      doc.save(name);
+    };
+    // CJK font files (base64 for jsPDF's virtual file system), fetched once,
+    // only on a page that names them in data-font and only when the button is used.
+    var pdfFonts = null;
+    var toB64 = function (buf) {
+      var bytes = new Uint8Array(buf), s = '', CH = 0x8000;
+      for (var i = 0; i < bytes.length; i += CH) s += String.fromCharCode.apply(null, bytes.subarray(i, i + CH));
+      return btoa(s);
+    };
+    var loadPdfFonts = function (cb) {
+      var base = pdfBtn.getAttribute('data-font');
+      if (!base || pdfFonts) { cb(true); return; }
+      Promise.all([base + '-400.ttf', base + '-700.ttf'].map(function (u) {
+        return fetch(u).then(function (r) { if (!r.ok) throw new Error(u); return r.arrayBuffer(); });
+      })).then(function (bufs) { pdfFonts = [toB64(bufs[0]), toB64(bufs[1])]; cb(true); })
+        .catch(function () { cb(false); });
+    };    var busy = false;
+    var generate = function () {
+      if (busy) return; busy = true;
+      var original = pdfBtn.innerHTML;
+      pdfBtn.setAttribute('aria-busy', 'true');
+      pdfBtn.textContent = pdfBtn.getAttribute('data-generating') || 'Generating…';
+      var finish = function () { pdfBtn.innerHTML = original; pdfBtn.removeAttribute('aria-busy'); busy = false; };
+      ensurePdfLibs(function () {
+        if (!(window.jspdf && window.jspdf.jsPDF)) { finish(); return; }
+        var d = collectData();
+        loadPdfFonts(function (ok) {
+          // A CJK page never falls back to Helvetica: that is the garbled PDF this fixes.
+          if (!ok) { finish(); return; }
+          imgToJpeg(d.heroSrc, function (jpeg, hw, hh) {
+            // Logged, not swallowed: a silent failure here once hid a broken PDF.
+            try { makePdf(d, jpeg, hw, hh); } catch (e) { if (window.console) console.error('PDF datasheet failed', e); }
+            finish();
+          });
+        });
+      });
+    };
+    pdfBtn.addEventListener('click', generate);
+    // Auto-download when linked from the confirmation email (?download=pdf).
+    try {
+      if (new URLSearchParams(location.search).get('download') === 'pdf') {
+        window.addEventListener('load', function () { setTimeout(generate, 400); });
+      }
+    } catch (e) {}
+  }
+
+  /* ---- Mobile product carousel + immersive media viewer -----------------
+     Two connected pieces:
+     1. .pgal is the mobile-only swipe carousel inside .prod__media.
+        Native scroll-snap does the finger-following; we render pagination
+        dots and open the viewer on tap.
+     2. .lightbox is the immersive viewer. Single scroll-snap track holds
+        every image plus the YouTube video as media items. Pinch, double-
+        tap and pan zoom images; when zoomed, horizontal swipe locks so
+        the pan stays on the current image. Desktop keeps the sidebar
+        thumb rail (client's confirmed layout); mobile becomes full-screen
+        with a dark background and pagination dots. */
+
+  // ----- Mobile carousel ---------------------------------------------------
+  var pgals = document.querySelectorAll('[data-pgal]');
+  for (var pg = 0; pg < pgals.length; pg++) {
+    (function (pgal) {
+      var track  = pgal.querySelector('[data-pgal-track]');
+      var slides = pgal.querySelectorAll('[data-pgal-slide]');
+      var dotsEl = pgal.querySelector('[data-pgal-dots]');
+      var catsEl = pgal.querySelector('[data-pgal-cats]');
+      if (!track || !slides.length || !dotsEl) return;
+
+      // Build dots
+      var dots = [];
+      for (var i = 0; i < slides.length; i++) {
+        (function (i) {
+          var d = document.createElement('button');
+          d.type = 'button';
+          d.className = 'pgal__dot';
+          d.setAttribute('aria-label', (i + 1) + ' / ' + slides.length);   // language-neutral: no English on JA/ZH pages
+          d.addEventListener('click', function () {
+            slides[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          });
+          dotsEl.appendChild(d);
+          dots.push(d);
+        })(i);
+      }
+      dots[0].classList.add('is-active');
+
+      // Always initialize the mobile carousel to image index 0 (the same primary
+      // image Desktop uses). Guard against browser scroll-restoration or async
+      // layout leaving the track mid-scroll on load; stop once the user swipes.
+      var pgalUserMoved = false;
+      track.addEventListener('pointerdown', function () { pgalUserMoved = true; }, { passive: true });
+      var pgalResetFirst = function () { if (pgalUserMoved) return; try { track.scrollLeft = 0; } catch (e) {} };
+      pgalResetFirst();
+      requestAnimationFrame(pgalResetFirst);
+      window.addEventListener('load', pgalResetFirst);
+
+      // Category tab wiring: tab click scrolls to the first slide of that
+      // category; swipe/scroll updates which tab is active.
+      var catTabs = catsEl ? catsEl.querySelectorAll('[data-pgal-cat-tab]') : [];
+      function firstSlideOfCat(cat) {
+        for (var k = 0; k < slides.length; k++) {
+          if (slides[k].getAttribute('data-pgal-cat') === cat) return k;
+        }
+        return -1;
+      }
+      function setActiveCat(cat) {
+        for (var t = 0; t < catTabs.length; t++) {
+          var tk = catTabs[t].getAttribute('data-pgal-cat-tab');
+          catTabs[t].classList.toggle('is-active', tk === cat);
+        }
+      }
+      for (var ct = 0; ct < catTabs.length; ct++) {
+        (function (tab) {
+          var cat = tab.getAttribute('data-pgal-cat-tab');
+          tab.addEventListener('click', function () {
+            var idx = firstSlideOfCat(cat);
+            if (idx < 0) return;
+            // Instant jump between categories, not a page-by-page slide-through:
+            // the track's CSS scroll-behavior is smooth for finger momentum, so
+            // override it to 'auto' for this programmatic jump. scrollIntoView is
+            // synchronous under 'auto', so restore immediately after (rAF would
+            // stay unrestored while the tab is backgrounded).
+            var prev = track.style.scrollBehavior;
+            track.style.scrollBehavior = 'auto';
+            slides[idx].scrollIntoView({ inline: 'center', block: 'nearest' });
+            track.style.scrollBehavior = prev;
+            setActiveCat(cat);
+          });
+        })(catTabs[ct]);
+      }
+
+      // Active index tracking via IntersectionObserver drives both the
+      // dots AND the category tab highlight.
+      var active = 0;
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting && e.intersectionRatio > 0.6) {
+              var idx = Array.prototype.indexOf.call(slides, e.target);
+              if (idx >= 0 && idx !== active) {
+                dots[active] && dots[active].classList.remove('is-active');
+                dots[idx].classList.add('is-active');
+                active = idx;
+                var cat = slides[idx].getAttribute('data-pgal-cat');
+                if (cat) setActiveCat(cat);
+              }
+            }
+          });
+        }, { root: track, threshold: [0.6, 0.9] });
+        for (var s = 0; s < slides.length; s++) io.observe(slides[s]);
+      }
+
+      // Tap-to-open. Use a small drag-threshold so a swipe does not
+      // accidentally open the viewer.
+      var startX = 0, startY = 0, dragged = false;
+      track.addEventListener('pointerdown', function (e) {
+        startX = e.clientX; startY = e.clientY; dragged = false;
+      }, { passive: true });
+      track.addEventListener('pointermove', function (e) {
+        if (Math.abs(e.clientX - startX) > 8 || Math.abs(e.clientY - startY) > 8) {
+          dragged = true;
+        }
+      }, { passive: true });
+
+      for (var t2 = 0; t2 < slides.length; t2++) {
+        (function (t2) {
+          slides[t2].addEventListener('click', function () {
+            if (dragged) return;
+            // The video slide opens the image lightbox on its in-place VIDEO
+            // panel (Amazon-style single container — no secondary modal); image
+            // slides open at the matching index (image slides precede the video
+            // slide, so t2 maps 1:1 for images).
+            if (this.getAttribute('data-pgal-slide') === 'video') {
+              openViewer(0);
+              var vtab = document.querySelector('[data-lightbox-tab="video"]');
+              if (vtab) vtab.click();
+            } else {
+              openViewer(t2);
+            }
+          });
+        })(t2);
+      }
+    })(pgals[pg]);
+  }
+
+  // ----- Immersive viewer --------------------------------------------------
+  var lightbox = document.querySelector('[data-lightbox]');
+  var slides = [];
+  var mediaIdx = 0;
+  var trackEl = null;
+  var stage = null;
+  var count = null;
+  var dots = [];
+  var openViewer = function () {};
+  var closeViewer = function () {};
+
+  if (lightbox && typeof HTMLDialogElement !== 'undefined') {
+    var lbClose  = lightbox.querySelector('[data-lightbox-close]');
+    var lbPrev   = lightbox.querySelector('[data-lightbox-prev]');
+    var lbNext   = lightbox.querySelector('[data-lightbox-next]');
+    trackEl      = lightbox.querySelector('[data-lightbox-track]');
+    stage        = lightbox.querySelector('[data-lightbox-stage]');
+    count        = lightbox.querySelector('[data-lightbox-count]');
+    var dotsEl   = lightbox.querySelector('[data-lightbox-dots]');
+    var thumbs   = lightbox.querySelectorAll('[data-lightbox-thumb]');
+    slides = trackEl ? trackEl.querySelectorAll('[data-lightbox-slide]') : [];
+
+    // Declare these upfront so closures below and above can reference them.
+    // Function declarations inside blocks are strictly block-scoped in strict
+    // mode and did not resolve reliably here, so use assigned expressions.
+    var loadImg, preloadAdjacent, renderState, lbGoto, updateActive;
+
+    openViewer = function (idx) {
+      mediaIdx = Math.max(0, Math.min(idx || 0, slides.length - 1));
+      document.body.dataset.lbScroll = String(window.scrollY);
+      document.body.classList.add('lb-open');
+      try { lightbox.showModal(); } catch (e) { lightbox.setAttribute('open', ''); }
+      // Always open on the IMAGES view (video is a separate panel).
+      if (videoPanel) videoPanel.hidden = true;
+      if (stage) stage.classList.remove('is-video');
+      setTabsSelected('images');
+      // Snap and preload synchronously so state is consistent even if the
+      // browser throttles rAF while the dialog is animating in.
+      lbGoto(mediaIdx, false);
+      preloadAdjacent(mediaIdx);
+      // Backup rAF in case layout wasn't ready above.
+      requestAnimationFrame(function () { lbGoto(mediaIdx, false); });
+    };
+    closeViewer = function () {
+      var iframe = lightbox.querySelector('iframe');
+      if (iframe && iframe.parentNode) iframe.parentNode.removeChild(iframe);
+      var vplay = lightbox.querySelector('[data-lightbox-vplay]');
+      if (vplay) vplay.hidden = false;
+      var zs = lightbox.querySelectorAll('[data-lightbox-zoomer]');
+      for (var z = 0; z < zs.length; z++) resetZoom(zs[z]);
+      // Reset the VIDEO panel so the next open starts on IMAGES.
+      var vp = lightbox.querySelector('[data-lightbox-videopanel]');
+      if (vp) vp.hidden = true;
+      if (stage) stage.classList.remove('is-video');
+      try { lightbox.close(); } catch (e) { lightbox.removeAttribute('open'); }
+      document.body.classList.remove('lb-open');
+      var y = parseInt(document.body.dataset.lbScroll || '0', 10);
+      if (!isNaN(y)) window.scrollTo(0, y);
+    };
+
+    // Build dots
+    if (dotsEl) {
+      for (var d = 0; d < slides.length; d++) {
+        (function (d) {
+          var dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'lightbox__dot';
+          dot.setAttribute('aria-label', (d + 1) + ' / ' + slides.length);   // language-neutral
+          dot.addEventListener('click', function () { lbGoto(d, true); });
+          dotsEl.appendChild(dot);
+          dots.push(dot);
+        })(d);
+      }
+      if (dots[0]) dots[0].classList.add('is-active');
+    }
+
+    // Load full-size images lazily as they scroll into view
+    var imgs = trackEl.querySelectorAll('[data-lightbox-img]');
+    loadImg = function (img) {
+      if (img.dataset.loaded === '1') return;
+      var src = img.getAttribute('data-src');
+      var ss  = img.getAttribute('data-srcset');
+      if (src) img.src = src;
+      if (ss)  img.srcset = ss;
+      img.dataset.loaded = '1';
+    };
+
+    preloadAdjacent = function (i) {
+      var list = [i, i - 1, i + 1];
+      for (var k = 0; k < list.length; k++) {
+        var t = slides[list[k]];
+        if (!t) continue;
+        var im = t.querySelector('[data-lightbox-img]');
+        if (im) loadImg(im);
+      }
+    };
+
+    // Track-scroll → index update
+    var scrollTimer = null;
+    updateActive = function () {
+      if (!trackEl || !slides.length) return;
+      var w = trackEl.clientWidth || 1;
+      var idx = Math.round(trackEl.scrollLeft / w);
+      idx = Math.max(0, Math.min(idx, slides.length - 1));
+      if (idx !== mediaIdx) {
+        // leaving previous slide - reset its zoom, and stop video if it was the video slide
+        var prev = slides[mediaIdx];
+        if (prev) {
+          var pz = prev.querySelector('[data-lightbox-zoomer]');
+          if (pz) resetZoom(pz);
+          if (prev.getAttribute('data-lightbox-slide') === 'video') {
+            var iframe = prev.querySelector('iframe');
+            if (iframe && iframe.parentNode) iframe.parentNode.removeChild(iframe);
+            var vplay = prev.querySelector('[data-lightbox-vplay]');
+            if (vplay) vplay.hidden = false;
+          }
+        }
+      }
+      mediaIdx = idx;
+      renderState();
+      preloadAdjacent(idx);
+    };
+    if (trackEl) {
+      trackEl.addEventListener('scroll', function () {
+        if (scrollTimer) clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(updateActive, 60);
+      }, { passive: true });
+    }
+
+    // IMAGES and VIDEO are separate tab views. VIDEO is its own panel layered
+    // over the image stage (not a slide in the track), so switching is instant
+    // with no horizontal carousel animation.
+    var lbTabs     = lightbox.querySelectorAll('[data-lightbox-tab]');
+    var videoPanel = lightbox.querySelector('[data-lightbox-videopanel]');
+
+    // Tear down any playing YouTube iframe immediately, so audio never keeps
+    // playing after leaving the VIDEO view or closing the modal.
+    var stopVideoIframes = function () {
+      var frames = lightbox.querySelectorAll('.lightbox__video iframe');
+      for (var f = 0; f < frames.length; f++) {
+        if (frames[f].parentNode) frames[f].parentNode.removeChild(frames[f]);
+      }
+      var plays = lightbox.querySelectorAll('[data-lightbox-vplay]');
+      for (var p = 0; p < plays.length; p++) plays[p].hidden = false;
+    };
+
+    var setTabsSelected = function (kind) {
+      for (var t = 0; t < lbTabs.length; t++) {
+        lbTabs[t].setAttribute('aria-selected',
+          lbTabs[t].getAttribute('data-lightbox-tab') === kind ? 'true' : 'false');
+      }
+    };
+    // which = 'video', or an image index (0-based among image thumbs).
+    var setThumbsSelected = function (which) {
+      var imgIdx = -1;
+      for (var j = 0; j < thumbs.length; j++) {
+        var kind = thumbs[j].getAttribute('data-lightbox-thumb');
+        var sel = false;
+        if (which === 'video') { sel = (kind === 'video'); }
+        else if (kind === 'image') { imgIdx++; sel = (imgIdx === which); }
+        thumbs[j].setAttribute('aria-selected', sel ? 'true' : 'false');
+      }
+    };
+    var isVideoOpen = function () { return !!(stage && stage.classList.contains('is-video')); };
+
+    var showVideo = function () {
+      if (!videoPanel) return;
+      videoPanel.hidden = false;
+      if (stage) stage.classList.add('is-video');
+      setTabsSelected('video');
+      setThumbsSelected('video');
+      // Deselect the mobile category tabs so only VIDEO reads as active.
+      if (typeof setActiveCatTab === 'function') setActiveCatTab(null);
+    };
+    var showImages = function () {
+      if (videoPanel) videoPanel.hidden = true;
+      if (stage) stage.classList.remove('is-video');
+      stopVideoIframes();
+      setTabsSelected('images');
+      setThumbsSelected(mediaIdx);
+    };
+
+    renderState = function () {
+      if (count) count.textContent = (mediaIdx + 1) + ' / ' + slides.length;
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.toggle('is-active', i === mediaIdx);
+      }
+      if (!isVideoOpen()) {
+        setThumbsSelected(mediaIdx);
+        // Keep the mobile category tab (SOLUTIONS / FINISHED) in sync as the
+        // user swipes across the group boundary.
+        var curCat = slides[mediaIdx] && slides[mediaIdx].getAttribute('data-lightbox-cat');
+        if (curCat && typeof setActiveCatTab === 'function') setActiveCatTab(curCat);
+      }
+      if (lbPrev) lbPrev.hidden = mediaIdx <= 0;
+      if (lbNext) lbNext.hidden = mediaIdx >= slides.length - 1;
+    };
+
+    lbGoto = function (i, smooth) {
+      if (!trackEl || !slides.length) return;
+      i = Math.max(0, Math.min(i, slides.length - 1));
+      mediaIdx = i;
+      var w = trackEl.clientWidth;
+      var behavior = smooth ? 'smooth' : 'auto';
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) behavior = 'auto';
+      trackEl.scrollTo({ left: i * w, top: 0, behavior: behavior });
+      renderState();
+      preloadAdjacent(i);
+    };
+
+    // Thumb clicks. Image thumbs switch to IMAGES view (if needed) and swap the
+    // main preview instantly (no slide-through); the video thumb opens the VIDEO
+    // panel instantly. Image thumbs come first in the DOM, so an image thumb's
+    // running index maps 1:1 to its image-slide index.
+    var imgThumbIdx = -1;
+    for (var th = 0; th < thumbs.length; th++) {
+      (function (thumbEl) {
+        if (thumbEl.getAttribute('data-lightbox-thumb') === 'video') {
+          thumbEl.addEventListener('click', function () { showVideo(); });
+        } else {
+          imgThumbIdx++;
+          var idx = imgThumbIdx;
+          thumbEl.addEventListener('click', function () { showImages(); lbGoto(idx, false); });
+        }
+      })(thumbs[th]);
+    }
+
+    // Tab clicks: instant view switch, no track animation.
+    for (var tt = 0; tt < lbTabs.length; tt++) {
+      (function (tab) {
+        tab.addEventListener('click', function () {
+          if (tab.getAttribute('data-lightbox-tab') === 'video') showVideo();
+          else showImages();
+        });
+      })(lbTabs[tt]);
+    }
+
+    // Category tabs (mobile): SOLUTIONS / FINISHED. Clicking one jumps instantly
+    // to the first image of that category; swiping across a boundary updates
+    // which tab is highlighted (renderState below). Slides carry
+    // data-lightbox-cat so the boundary is known.
+    var lbCatTabs = lightbox.querySelectorAll('[data-lightbox-cat-tab]');
+    var firstSlideOfCatLb = function (cat) {
+      for (var s = 0; s < slides.length; s++) {
+        if (slides[s].getAttribute('data-lightbox-cat') === cat) return s;
+      }
+      return -1;
+    };
+    var setActiveCatTab = function (cat) {
+      for (var c = 0; c < lbCatTabs.length; c++) {
+        lbCatTabs[c].setAttribute('aria-selected',
+          lbCatTabs[c].getAttribute('data-lightbox-cat-tab') === cat ? 'true' : 'false');
+      }
+    };
+    for (var cti = 0; cti < lbCatTabs.length; cti++) {
+      (function (tab) {
+        tab.addEventListener('click', function () {
+          var cat = tab.getAttribute('data-lightbox-cat-tab');
+          var idx = firstSlideOfCatLb(cat);
+          showImages();
+          if (idx >= 0) lbGoto(idx, false);
+          setActiveCatTab(cat);
+        });
+      })(lbCatTabs[cti]);
+    }
+
+    // Nav buttons (desktop)
+    if (lbPrev) lbPrev.addEventListener('click', function () { lbGoto(mediaIdx - 1, true); });
+    if (lbNext) lbNext.addEventListener('click', function () { lbGoto(mediaIdx + 1, true); });
+
+    // Close controls
+    if (lbClose) lbClose.addEventListener('click', closeViewer);
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeViewer();
+    });
+    lightbox.addEventListener('cancel', function (e) {
+      // Esc key - let it close naturally via dialog behavior, but we
+      // still need to run our teardown.
+      e.preventDefault();
+      closeViewer();
+    });
+
+    // Keyboard nav (desktop)
+    document.addEventListener('keydown', function (e) {
+      if (!lightbox.open) return;
+      if (e.key === 'ArrowRight') lbGoto(mediaIdx + 1, true);
+      else if (e.key === 'ArrowLeft') lbGoto(mediaIdx - 1, true);
+      else if (e.key === 'Escape') closeViewer();
+    });
+
+    // Wire the hero + thumbs on the product page. Clicking the hero opens
+    // on the video (if the product has one) so the buyer sees the machine
+    // running first, matching Amazon's default VIDEO tab; clicking a
+    // specific image thumb opens on that image.
+    var firstImageSlide = 0;
+    for (var qq = 0; qq < slides.length; qq++) {
+      if (slides[qq].getAttribute('data-lightbox-slide') === 'image') { firstImageSlide = qq; break; }
+    }
+    // Level 1 (main product page) rules:
+    //  * Clicking the LARGE main image opens the Level 2 modal.
+    //  * Clicking a thumbnail only swaps the main image src (handled in
+    //    the "Product gallery thumbnails" block further down). Do not
+    //    wire a modal opener onto [data-prod-thumb] here.
+    var heroBtn = document.querySelector('[data-prod-zoom]');
+    if (heroBtn) heroBtn.addEventListener('click', function () {
+      openViewer(firstImageSlide);
+    });
+
+    // Video slide: click-to-load YouTube facade, inline embed (Option A).
+    // Nothing loads from YouTube until the reader taps the poster; that tap
+    // swaps in an inline player that starts playing (autoplay=1, a user-gesture
+    // so it never fires on page load) right inside the gallery container.
+    // playsinline keeps mobile playback in-container. Leaving the slide or
+    // closing the lightbox tears the iframe down, so audio never keeps playing.
+    var vplayBtns = lightbox.querySelectorAll('[data-lightbox-vplay]');
+    for (var vp = 0; vp < vplayBtns.length; vp++) {
+      vplayBtns[vp].addEventListener('click', function (e) {
+        e.stopPropagation();
+        var wrap = this.parentNode;
+        if (wrap.querySelector('iframe')) return;
+        var vid = wrap.getAttribute('data-lightbox-video-id');
+        if (!vid) return;
+        var f = document.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(vid) +
+                '?autoplay=1&playsinline=1&rel=0&modestbranding=1';
+        f.title = wrap.getAttribute('data-lightbox-video-title') || 'Video';
+        f.allow = 'autoplay; accelerometer; encrypted-media; picture-in-picture; web-share';
+        f.referrerPolicy = 'strict-origin-when-cross-origin';
+        f.setAttribute('allowfullscreen', '');
+        wrap.appendChild(f);
+        this.hidden = true;
+      });
+    }
+
+    // Recompute snap position on viewport resize
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      if (!lightbox.open) return;
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () { lbGoto(mediaIdx, false); }, 100);
+    });
+
+    // ----- Zoom + pan on image slides -------------------------------------
+    var zoomers = lightbox.querySelectorAll('[data-lightbox-zoomer]');
+    for (var zi = 0; zi < zoomers.length; zi++) attachZoom(zoomers[zi]);
+  }
+
+  function resetZoom(z) {
+    z.classList.remove('is-zoomed');
+    z.classList.remove('is-panning');
+    var img = z.querySelector('.lightbox__img');
+    if (img) {
+      img.style.transform = '';
+      img.dataset.scale = '1';
+      img.dataset.tx = '0';
+      img.dataset.ty = '0';
+    }
+    if (stage) stage.classList.remove('is-zoomed');
+  }
+
+  function attachZoom(z) {
+    var img = z.querySelector('.lightbox__img');
+    if (!img) return;
+
+    // Two zoom modes coexist on the same image element:
+    //  * Touch (pinch / double-tap / pan) uses translate + scale.
+    //  * Mouse (hover-follow, Amazon-style) uses transform-origin +
+    //    scale — cheaper and always stays inside the rigid frame.
+    // The image is transformed inside the .lightbox__zoomer, which is
+    // overflow:hidden, so nothing bleeds beyond the stage bounds.
+    var state = {
+      scale: 1, tx: 0, ty: 0,
+      startDist: 0, startScale: 1,
+      panStartX: 0, panStartY: 0, panning: false,
+      pointers: {},
+      pointerCount: 0,
+      lastTap: 0,
+      isHoverMode: false
+    };
+
+    var HOVER_SCALE = 2.4;
+
+    function applyTouch() {
+      img.style.transformOrigin = '50% 50%';
+      img.style.transform = 'translate(' + state.tx + 'px,' + state.ty + 'px) scale(' + state.scale + ')';
+      var isZoomed = state.scale > 1.02;
+      z.classList.toggle('is-zoomed', isZoomed);
+      if (stage) stage.classList.toggle('is-zoomed', isZoomed);
+    }
+
+    function applyHover(clientX, clientY) {
+      var rect = img.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) return;
+      var px = Math.min(Math.max((clientX - rect.left) / rect.width, 0), 1) * 100;
+      var py = Math.min(Math.max((clientY - rect.top) / rect.height, 0), 1) * 100;
+      img.style.transformOrigin = px + '% ' + py + '%';
+      img.style.transform = 'scale(' + HOVER_SCALE + ')';
+    }
+    function resetHover() {
+      state.isHoverMode = false;
+      z.classList.remove('is-hover-zoom');
+      img.style.transform = '';
+      img.style.transformOrigin = '50% 50%';
+      if (stage) stage.classList.remove('is-zoomed');
+    }
+
+    function clampPan() {
+      var rect = z.getBoundingClientRect();
+      var iw = img.naturalWidth || img.clientWidth;
+      var ih = img.naturalHeight || img.clientHeight;
+      var displayScale = Math.min(rect.width / iw, rect.height / ih) || 1;
+      var sw = iw * displayScale * state.scale;
+      var sh = ih * displayScale * state.scale;
+      var maxX = Math.max(0, (sw - rect.width) / 2);
+      var maxY = Math.max(0, (sh - rect.height) / 2);
+      state.tx = Math.min(maxX, Math.max(-maxX, state.tx));
+      state.ty = Math.min(maxY, Math.max(-maxY, state.ty));
+    }
+
+    function distance(p1, p2) {
+      var dx = p1.x - p2.x, dy = p1.y - p2.y;
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+    function pointerList() {
+      var list = [];
+      for (var k in state.pointers) if (state.pointers.hasOwnProperty(k)) list.push(state.pointers[k]);
+      return list;
+    }
+
+    // ---- Mouse click-to-zoom, then pan-follow (Amazon-style) --------------
+    // Hover shows a zoom-in cursor as an indication (CSS handles the cursor).
+    // Click activates zoom at the click point; while zoomed, mousemove pans
+    // the image (transform-origin follows the cursor). Click again exits.
+    // The container is overflow:hidden so nothing ever bleeds outside the
+    // rigid frame regardless of scale.
+    var hoverCapable = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    z.addEventListener('mousemove', function (e) {
+      if (!hoverCapable || !state.isHoverMode) return;
+      applyHover(e.clientX, e.clientY);
+    });
+    z.addEventListener('mouseleave', function () {
+      // Keep the zoom-in cursor state when the mouse briefly leaves the
+      // image but stays inside the modal - only reset when it actually
+      // leaves the zoomer. resetHover pulls the transform.
+      if (!state.isHoverMode) return;
+      resetHover();
+    });
+
+    // ---- Touch: pinch + pan + double-tap zoom ----------------------------
+    z.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'touch') return;
+      state.pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
+      state.pointerCount = pointerList().length;
+
+      if (state.pointerCount === 2) {
+        var pts = pointerList();
+        state.startDist = distance(pts[0], pts[1]);
+        state.startScale = state.scale;
+        z.classList.add('is-panning');
+        // Capturing keeps both fingers reporting to us through the pinch.
+        try { z.setPointerCapture(e.pointerId); } catch (err) {}
+      } else if (state.pointerCount === 1) {
+        state.panStartX = e.clientX;
+        state.panStartY = e.clientY;
+        state.panning = state.scale > 1.02;
+        if (state.panning) {
+          z.classList.add('is-panning');
+          // Only capture when the image is already zoomed (single-finger pan).
+          // At scale 1 we must NOT capture, or pointer capture steals the
+          // gesture and the native horizontal scroll-snap swipe (which browses
+          // between images) never runs.
+          try { z.setPointerCapture(e.pointerId); } catch (err) {}
+        }
+      }
+    });
+
+    z.addEventListener('pointermove', function (e) {
+      if (e.pointerType !== 'touch') return;
+      if (!state.pointers[e.pointerId]) return;
+      state.pointers[e.pointerId] = { x: e.clientX, y: e.clientY };
+
+      if (state.pointerCount === 2) {
+        var pts = pointerList();
+        var d = distance(pts[0], pts[1]);
+        if (state.startDist > 0) {
+          var ratio = d / state.startDist;
+          state.scale = Math.min(4, Math.max(1, state.startScale * ratio));
+          clampPan();
+          applyTouch();
+        }
+        e.preventDefault();
+      } else if (state.pointerCount === 1 && state.panning) {
+        var only = pointerList()[0];
+        state.tx += (only.x - state.panStartX);
+        state.ty += (only.y - state.panStartY);
+        state.panStartX = only.x;
+        state.panStartY = only.y;
+        clampPan();
+        applyTouch();
+        e.preventDefault();
+      }
+    });
+
+    function endPointer(e) {
+      if (e.pointerType !== 'touch') return;
+      if (state.pointers[e.pointerId]) delete state.pointers[e.pointerId];
+      state.pointerCount = pointerList().length;
+      if (state.pointerCount < 2) state.startDist = 0;
+      if (state.pointerCount === 0) {
+        z.classList.remove('is-panning');
+        if (state.scale <= 1.02) {
+          state.scale = 1; state.tx = 0; state.ty = 0; applyTouch();
+        }
+      }
+      try { z.releasePointerCapture(e.pointerId); } catch (err) {}
+    }
+    z.addEventListener('pointerup', endPointer);
+    z.addEventListener('pointercancel', endPointer);
+
+    // Click behaviour: on mouse pointers this is the primary zoom trigger
+    // (click to enter zoom-follow mode, click again to exit). On touch it
+    // becomes the double-tap toggle.
+    z.addEventListener('click', function (e) {
+      var isMouse = hoverCapable;
+      if (isMouse) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (state.isHoverMode) {
+          resetHover();
+        } else {
+          state.isHoverMode = true;
+          z.classList.add('is-hover-zoom');
+          if (stage) stage.classList.add('is-zoomed');
+          applyHover(e.clientX, e.clientY);
+        }
+        return;
+      }
+      // Touch: double-tap toggles a scale-2.2 zoom around the tap point.
+      var moved = Math.abs(e.clientX - state.panStartX) > 8 ||
+                  Math.abs(e.clientY - state.panStartY) > 8;
+      if (moved) return;
+      var now = Date.now();
+      if (now - state.lastTap < 350) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (state.scale > 1.02) {
+          state.scale = 1; state.tx = 0; state.ty = 0;
+        } else {
+          state.scale = 2.2;
+          var rect = z.getBoundingClientRect();
+          var cx = e.clientX - rect.left - rect.width / 2;
+          var cy = e.clientY - rect.top - rect.height / 2;
+          state.tx = -cx * (state.scale - 1);
+          state.ty = -cy * (state.scale - 1);
+          clampPan();
+        }
+        applyTouch();
+        state.lastTap = 0;
+      } else {
+        state.lastTap = now;
+      }
+    });
+
+    // Track slide changes so any lingering hover-zoom on a non-active
+    // slide is reset (transform stays cheap in the compositor otherwise).
+    z.addEventListener('lightbox:leave', function () {
+      if (state.isHoverMode) resetHover();
+    });
+  }
+
+  /* ---- Share menu --------------------------------------------------------
+     A small share popover on every product page. Opens with the platforms
+     that a corporate buyer actually uses to escalate a page: email, LinkedIn,
+     X, WhatsApp, plus copy-to-clipboard. Uses the Web Share API on mobile
+     where present, so the native sheet appears instead of the popover. */
+  var shareEls = document.querySelectorAll('[data-share]');
+  for (var s = 0; s < shareEls.length; s++) {
+    (function (box) {
+      var toggle = box.querySelector('[data-share-toggle]');
+      var menu   = box.querySelector('.share__menu');
+      var title  = box.getAttribute('data-share-title') || document.title;
+      var url    = box.getAttribute('data-share-url') || location.href;
+      var enc    = encodeURIComponent;
+
+      // Fill dynamic hrefs (need real url encoding, not template escape)
+      var eL = box.querySelector('[data-share-email]');
+      if (eL) eL.href = 'mailto:?subject=' + enc(title) + '&body=' + enc(url);
+      var iL = box.querySelector('[data-share-linkedin]');
+      if (iL) iL.href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + enc(url);
+      var xL = box.querySelector('[data-share-x]');
+      if (xL) xL.href = 'https://twitter.com/intent/tweet?url=' + enc(url) + '&text=' + enc(title);
+      var wL = box.querySelector('[data-share-whatsapp]');
+      if (wL) wL.href = 'https://api.whatsapp.com/send?text=' + enc(title + ' ' + url);
+
+      // Scrim for the mobile bottom-sheet variant.
+      var scrim = null;
+      function ensureScrim() {
+        if (scrim) return scrim;
+        scrim = document.createElement('div');
+        scrim.className = 'share-scrim';
+        document.body.appendChild(scrim);
+        scrim.addEventListener('click', closeMenu);
+        return scrim;
+      }
+      function closeMenu() {
+        menu.hidden = true;
+        toggle.setAttribute('aria-expanded', 'false');
+        if (scrim) scrim.classList.remove('is-open');
+      }
+      function openMenu() {
+        menu.hidden = false;
+        toggle.setAttribute('aria-expanded', 'true');
+        if (window.matchMedia('(max-width: 63.99rem)').matches) {
+          ensureScrim().classList.add('is-open');
+        }
+      }
+      toggle.addEventListener('click', function () {
+        // Native share sheet where available (mobile) - preferred UX
+        if (navigator.share) {
+          navigator.share({ title: title, url: url }).catch(function(){});
+          return;
+        }
+        if (menu.hidden) openMenu(); else closeMenu();
+      });
+
+      var copyBtn = box.querySelector('[data-share-copy]');
+      var copyLbl = box.querySelector('[data-share-copy-label]');
+      if (copyBtn && copyLbl) {
+        var origLabel = copyLbl.textContent;
+        copyBtn.addEventListener('click', function () {
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(url).then(function () {
+              copyLbl.textContent = box.getAttribute('data-share-copied-label') || 'Link copied';
+              setTimeout(function () { copyLbl.textContent = origLabel; }, 2000);
+            });
+          }
+        });
+      }
+
+      document.addEventListener('click', function (e) {
+        if (menu.hidden) return;
+        if (scrim && scrim.contains(e.target)) return;
+        if (!box.contains(e.target)) closeMenu();
+      });
+    })(shareEls[s]);
+  }
+
+  /* ---- Product gallery thumbnails ---------------------------------------
+     Click a thumbnail, swap the hero image. The template renders each thumb
+     as a <button> with data-src / data-srcset / data-w / data-h / data-alt,
+     so the swap is straight attribute copies and no data has to be fetched.
+     No visible active state on the thumbs deliberately: the hero above them
+     already shows which one is current.
+
+     Above the reveal-on-scroll block on purpose, since that block returns
+     early under prefers-reduced-motion. */
+  var galleries = document.querySelectorAll('[data-prod-gallery]');
+  for (var g = 0; g < galleries.length; g++) {
+    (function (root) {
+      var hero = root.querySelector('[data-prod-hero]');
+      if (!hero) return;
+      var thumbs = root.querySelectorAll('[data-prod-thumb]');
+      for (var t = 0; t < thumbs.length; t++) {
+        thumbs[t].addEventListener('click', function () {
+          hero.src    = this.getAttribute('data-src')    || hero.src;
+          hero.srcset = this.getAttribute('data-srcset') || hero.srcset;
+          hero.width  = this.getAttribute('data-w')      || hero.width;
+          hero.height = this.getAttribute('data-h')      || hero.height;
+          hero.alt    = this.getAttribute('data-alt')    || hero.alt;
+          // Mark the pressed thumb so it can be styled if the visual system
+          // ever calls for one; harmless if the CSS never uses it.
+          for (var j = 0; j < thumbs.length; j++) thumbs[j].removeAttribute('data-current');
+          this.setAttribute('data-current', 'true');
+        });
+      }
+    })(galleries[g]);
+  }
+
+  /* ---- Count-up stats ----------------------------------------------------
+     When a [data-count] value scrolls into view, count from 0 to the authored
+     number, keeping any prefix/suffix (e.g. "20+", "1992"). Respects
+     prefers-reduced-motion (leaves the final value in place). */
+  var counters = document.querySelectorAll('[data-count]');
+  if (counters.length) {
+    var reducedCount = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var parseCount = function (raw) {
+      var m = String(raw).match(/^(\D*)(\d[\d,]*)(.*)$/);
+      if (!m) return null;
+      var n = parseInt(m[2].replace(/,/g, ''), 10);
+      if (isNaN(n)) return null;
+      // A bare four-digit year (e.g. "1992") is a date, not a metric — don't
+      // animate it, and never comma-format it.
+      var isYear = !m[1] && !m[3] && n >= 1900 && n <= 2099;
+      return { prefix: m[1], target: n, suffix: m[3], skip: isYear };
+    };
+    var runCount = function (el, info) {
+      var dur = 1500, startTs = null;
+      var frame = function (ts) {
+        if (startTs === null) startTs = ts;
+        var p = Math.min((ts - startTs) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 5);           // easeOutQuint — gentler settle
+        el.textContent = info.prefix + Math.round(eased * info.target).toLocaleString() + info.suffix;
+        if (p < 1) requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    };
+    if (!reducedCount && 'IntersectionObserver' in window) {
+      var cio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          cio.unobserve(e.target);
+          var info = parseCount(e.target.getAttribute('data-count'));
+          if (info && !info.skip) runCount(e.target, info);
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.35 });
+      for (var ci = 0; ci < counters.length; ci++) {
+        var info0 = parseCount(counters[ci].getAttribute('data-count'));
+        if (!info0 || info0.skip) continue;          // leave years/non-numeric as authored
+        counters[ci].textContent = info0.prefix + '0' + info0.suffix;  // start at 0
+        cio.observe(counters[ci]);
+      }
+    }
+  }
+
+  /* ---- Reveal on scroll ------------------------------------------------- */
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var targets = document.querySelectorAll('[data-reveal]');
+
+  if (reduced || !('IntersectionObserver' in window)) {
+    for (var i = 0; i < targets.length; i++) targets[i].classList.add('is-revealed');
+    return;
+  }
+
+  var ioFired = false;
+  var io = new IntersectionObserver(function (entries) {
+    // The first callback reports what is already on screen at load (or where a
+    // reload restored the scroll position). Those show at once: animating
+    // them while the page is still loading is what read as stutter.
+    var first = !ioFired;
+    ioFired = true;   // the observer is alive, even if nothing is on screen yet
+    entries.forEach(function (entry, n) {
+      if (!entry.isIntersecting) return;
+      var el = entry.target;
+      io.unobserve(el);
+      if (first) { el.classList.add('is-instant', 'is-revealed'); return; }
+      // Stagger siblings so a grid resolves as a gentle sequence, not a pop
+      var delay = Math.min(n * 50, 200);
+      setTimeout(function () { el.classList.add('is-revealed'); }, delay);
+    });
+    // Fire as the element's top reaches ~85% down the viewport — the reveal is
+    // already underway before it slides into full view, which reads as natural
+    // rather than triggered.
+  }, { rootMargin: '0px 0px -15% 0px', threshold: 0 });
+
+  for (var j = 0; j < targets.length; j++) io.observe(targets[j]);
+
+  // Safety net: if the observer never fires at all (a non-visible viewport,
+  // prerender, or some embedded webviews), reveal everything so a reveal-gated
+  // page is never left blank — and finalise any count-up values.
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      // Keyed on the observer having run, not on something being revealed: a
+      // hero that fills the first screen leaves nothing revealed at load, and
+      // keying on that switched the scroll animation off for the home page.
+      if (targets.length && !ioFired) {
+        for (var k = 0; k < targets.length; k++) targets[k].classList.add('is-revealed');
+        var cs = document.querySelectorAll('[data-count]');
+        for (var q = 0; q < cs.length; q++) cs[q].textContent = cs[q].getAttribute('data-count');
+      }
+    }, 1200);
+  });
+})();
+
+/* ==========================================================================
+   Form field validation, shared by the inquiry drawer and the catalogue
+   request. A failed field gets a red border (aria-invalid), its own message
+   directly under it, and the first failure is scrolled into view and
+   focused. Messages clear as soon as the visitor edits the field.
+   ========================================================================== */
+(function () {
+  function errFor(input) {
+    var id = input.id + '-err';
+    var p = document.getElementById(id);
+    if (!p) {
+      p = document.createElement('p');
+      p.id = id; p.className = 'field-err'; p.hidden = true;
+      input.insertAdjacentElement('afterend', p);
+    }
+    return p;
+  }
+  function clear(input) {
+    input.removeAttribute('aria-invalid');
+    var p = document.getElementById(input.id + '-err');
+    if (p) p.hidden = true;
+    input.removeAttribute('aria-describedby');
+  }
+  window.fatopForm = {
+    /* rules: [{ el: input, ok: boolean, msg: string }] -> true when all pass */
+    check: function (rules) {
+      var first = null;
+      for (var i = 0; i < rules.length; i++) {
+        var r = rules[i];
+        if (!r.el) continue;
+        if (r.ok) { clear(r.el); continue; }
+        var p = errFor(r.el);
+        p.textContent = r.msg; p.hidden = false;
+        r.el.setAttribute('aria-invalid', 'true');
+        r.el.setAttribute('aria-describedby', p.id);
+        if (!first) first = r.el;
+      }
+      if (first) {
+        try { first.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) { first.scrollIntoView(); }
+        try { first.focus({ preventScroll: true }); } catch (e) { first.focus(); }
+      }
+      return !first;
+    },
+    clear: clear,
+    /* Clear a field's error while the visitor fixes it. */
+    watch: function (inputs) {
+      for (var i = 0; i < inputs.length; i++) {
+        if (!inputs[i]) continue;
+        inputs[i].addEventListener('input', function () {
+          if (this.getAttribute('aria-invalid')) clear(this);
+        });
+      }
+    },
+    validEmail: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+  };
+})();
+
+/* ==========================================================================
+   Add-to-Quote / Inquiry list
+   A B2B "collect several machines, send one request" flow. State lives in
+   localStorage; submission posts pure text (name, email, company, machines,
+   notes) to the Google Apps Script endpoint in site.inquiryEndpoint. When that
+   URL is not configured it falls back to a prefilled mailto so the button is
+   never dead. No prices, no account, no file upload.
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  var root = document.querySelector('[data-inq-root]');
+  if (!root) return;
+
+  var KEY = 'fatop.inquiry.v1';
+  var endpoint = (root.getAttribute('data-inq-endpoint') || '').trim();
+  var mailto = (root.getAttribute('data-inq-mailto') || '').trim();
+  var T = function (k) { return root.getAttribute('data-t-' + k) || ''; };
+
+  var panel   = root.querySelector('.inq__panel');
+  var listEl  = root.querySelector('[data-inq-list]');
+  var selWrap = root.querySelector('[data-inq-selected]');
+  var emptyEl = root.querySelector('[data-inq-empty]');
+  var form    = root.querySelector('[data-inq-form]');
+  var errEl   = root.querySelector('[data-inq-error]');
+  var doneEl  = root.querySelector('[data-inq-done]');
+  var submit  = root.querySelector('[data-inq-submit]');
+  var bar     = document.querySelector('[data-inq-bar]');
+  var trigger = document.querySelector('.inq-trigger');
+  var counts  = document.querySelectorAll('[data-inq-count]');
+  var lastFocus = null;
+
+  /* ---- storage --------------------------------------------------------- */
+  function load() {
+    try { var v = JSON.parse(localStorage.getItem(KEY)); return Array.isArray(v) ? v : []; }
+    catch (e) { return []; }
+  }
+  function save(items) {
+    try { localStorage.setItem(KEY, JSON.stringify(items)); } catch (e) {}
+  }
+  var items = load();
+
+  function has(id) { for (var i = 0; i < items.length; i++) if (items[i].id === id) return true; return false; }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  /* ---- render ---------------------------------------------------------- */
+  function syncAddButtons() {
+    var btns = document.querySelectorAll('[data-inq-add]');
+    for (var i = 0; i < btns.length; i++) {
+      var b = btns[i];
+      var on = has(b.getAttribute('data-inq-id'));
+      b.classList.toggle('is-added', on);
+      var lbl = b.querySelector('.inq-add__label');
+      if (lbl) lbl.textContent = on ? T('added') : T('add');
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+  }
+
+  function render() {
+    var n = items.length;
+    for (var i = 0; i < counts.length; i++) counts[i].textContent = n;
+
+    if (trigger) trigger.hidden = n === 0;
+    if (bar) bar.hidden = n === 0;
+
+    if (emptyEl) emptyEl.hidden = n > 0;
+    if (selWrap) selWrap.hidden = n === 0;
+    if (submit) submit.disabled = n === 0;
+
+    if (listEl) {
+      var html = '';
+      for (var k = 0; k < items.length; k++) {
+        var it = items[k];
+        html += '<li class="inq__item">' +
+          '<span class="inq__item-txt">' +
+            (it.model ? '<span class="inq__item-model">' + esc(it.model) + '</span> ' : '') +
+            '<span class="inq__item-title">' + esc(it.title) + '</span>' +
+          '</span>' +
+          '<button class="inq__item-x" type="button" data-inq-del="' + esc(it.id) + '" ' +
+                  'aria-label="' + esc(T('remove') + ': ' + it.title) + '">×</button>' +
+        '</li>';
+      }
+      listEl.innerHTML = html;
+    }
+    syncAddButtons();
+  }
+
+  /* ---- add / remove ---------------------------------------------------- */
+  function add(item) {
+    if (!item.id || has(item.id)) return;
+    items.push(item); save(items); render();
+  }
+  function remove(id) {
+    items = items.filter(function (x) { return x.id !== id; });
+    save(items); render();
+  }
+  function clearAll() { items = []; save(items); render(); }
+
+  /* ---- open / close ---------------------------------------------------- */
+  function open() {
+    lastFocus = document.activeElement;
+    // A thank-you left over from an earlier send must not greet a new
+    // inquiry: with machines on the list, always open on the form.
+    if (doneEl && !doneEl.hidden && items.length) resetPanel();
+    root.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    if (panel) panel.focus();
+    document.addEventListener('keydown', onKey);
+  }
+  function close() {
+    root.classList.remove('is-open');
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onKey);
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  function onKey(e) { if (e.key === 'Escape') close(); }
+
+  /* ---- submit ---------------------------------------------------------- */
+  function machinesText() {
+    return items.map(function (it) {
+      var url = it.url ? (location.origin + it.url) : '';
+      return (it.model ? it.model + ' — ' : '') + it.title + (url ? ' (' + url + ')' : '');
+    }).join('\n');
+  }
+  function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+  function showError(msg) {
+    if (!errEl) return;
+    errEl.textContent = msg; errEl.hidden = false;
+  }
+
+  function onSubmit(e) {
+    e.preventDefault();
+    if (!items.length) { showError(T('reqitems')); return; }
+    // Look fields up explicitly: form.name would return the form's own `name`
+    // property, not the <input name="name">.
+    var fName = form.querySelector('#inq-name');
+    var fEmail = form.querySelector('#inq-email');
+    var fCompany = form.querySelector('#inq-company');
+    var fNotes = form.querySelector('#inq-notes');
+    var fHp = form.querySelector('[data-hp]');
+    var name = fName.value.trim();
+    var email = fEmail.value.trim();
+    var company = fCompany.value.trim();
+    var notes = fNotes.value.trim();
+    var hp = fHp ? fHp.value : '';
+
+    // Every field not labelled "optional" is required, and nothing is sent -
+    // and no thank-you shown - until all of them pass.
+    errEl.hidden = true;
+    var ok = window.fatopForm.check([
+      { el: fName,  ok: !!name, msg: T('reqname') },
+      { el: fEmail, ok: !!email && validEmail(email), msg: email ? T('bademail') : T('reqemail') }
+    ]);
+    if (!ok) return;
+
+    var payload = {
+      name: name, email: email, company: company,
+      machines: machinesText(), notes: notes,
+      page: location.href, ts: new Date().toISOString()
+    };
+    // The trap field is only a hint now: browser autofill can fill it for a
+    // real buyer, so a filled trap is flagged for the sheet, never dropped
+    // and never answered with a fake "sent".
+    if (hp) payload.suspect = 1;
+
+    /* No endpoint configured yet -> prefilled mailto, then treat as done. */
+    if (!endpoint) {
+      var subject = 'Machinery inquiry (' + items.length + ') — ' + (company || name);
+      var body = 'Name: ' + name + '\nEmail: ' + email + '\nCompany: ' + company +
+                 '\n\nMachines:\n' + machinesText() + '\n\nNotes:\n' + notes + '\n';
+      window.location.href = 'mailto:' + mailto +
+        '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      succeed();
+      return;
+    }
+
+    submit.disabled = true;
+    submit.textContent = T('sending');
+
+    var done = false;
+    var ctrl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 12000);
+
+    /* text/plain keeps this a "simple" request, so the browser sends no CORS
+       preflight — the pattern Apps Script Web Apps support. */
+    fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+      redirect: 'follow',
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function (r) {
+        var httpOk = r.ok;
+        return r.text().then(function (t) {
+          var d = {}; try { d = JSON.parse(t); } catch (e) {}
+          return { httpOk: httpOk, d: d };
+        });
+      })
+      .then(function (res) {
+        done = true; clearTimeout(timer);
+        var d = res.d || {};
+        // Success only on the endpoint's explicit confirmation ({ok:true},
+        // sent after the row is written). Anything else - an empty 200, an
+        // HTML error page, {ok:false} - keeps the form and shows the error.
+        if (res.httpOk && d.ok === true) { succeed(); }
+        else { fail(); }
+      })
+      .catch(function () { if (!done) { clearTimeout(timer); fail(); } });
+  }
+
+  function succeed() {
+    clearAll();
+    if (form) { form.reset(); form.hidden = true; }
+    if (selWrap) selWrap.hidden = true;
+    if (emptyEl) emptyEl.hidden = true;
+    if (doneEl) doneEl.hidden = false;
+    if (!root.classList.contains('is-open')) open();
+  }
+  function fail() {
+    submit.disabled = false;
+    submit.textContent = T('send');
+    showError(T('error') + ' ' + mailto);
+  }
+
+  /* ---- wire up --------------------------------------------------------- */
+  document.addEventListener('click', function (e) {
+    var addBtn = e.target.closest('[data-inq-add]');
+    if (addBtn) {
+      var id = addBtn.getAttribute('data-inq-id');
+      if (has(id)) { remove(id); }
+      else {
+        add({
+          id: id,
+          model: addBtn.getAttribute('data-inq-model') || '',
+          title: addBtn.getAttribute('data-inq-title') || '',
+          url: addBtn.getAttribute('data-inq-url') || ''
+        });
+        addBtn.classList.remove('is-justAdded');
+        void addBtn.offsetWidth;
+        addBtn.classList.add('is-justAdded');
+      }
+      return;
+    }
+    /* "Request a quote": put this machine (or a general request) on the list
+       if it is not there yet, then open the drawer on the form. The link's
+       href stays as the no-script fallback. */
+    var quote = e.target.closest('[data-inq-quote]');
+    if (quote) {
+      e.preventDefault();
+      var qid = quote.getAttribute('data-inq-id');
+      var onlyIfEmpty = quote.hasAttribute('data-inq-ifempty');
+      if (qid && !has(qid) && !(onlyIfEmpty && items.length)) {
+        add({
+          id: qid,
+          model: quote.getAttribute('data-inq-model') || '',
+          title: quote.getAttribute('data-inq-title') || '',
+          url: quote.getAttribute('data-inq-url') || ''
+        });
+      }
+      resetPanel(); open();
+      return;
+    }
+    if (e.target.closest('[data-inq-open]')) { resetPanel(); open(); return; }
+    if (e.target.closest('[data-inq-close]')) { close(); return; }
+    if (e.target.closest('[data-inq-clear]')) { clearAll(); return; }
+    var del = e.target.closest('[data-inq-del]');
+    if (del) { remove(del.getAttribute('data-inq-del')); return; }
+  });
+
+  /* Search found nothing useful: the buyer's own words become a list item
+     (so the form's "at least one machine" rule is met and sales sees the
+     query), then the panel opens on the form with the notes field focused
+     for them to describe the job. */
+  document.addEventListener('fatop:ask', function (e) {
+    var d = e.detail || {};
+    if (!d.q) return;
+    add({ id: 'ask:' + d.q.toLowerCase(), model: '', title: d.title || d.q, url: '' });
+    resetPanel();
+    open();
+    var fNotes = form && form.querySelector('#inq-notes');
+    if (fNotes) fNotes.focus();
+  });
+
+  /* When reopening after a successful send, restore the form view. */
+  function resetPanel() {
+    if (doneEl) doneEl.hidden = true;
+    if (form) form.hidden = false;
+    if (errEl) errEl.hidden = true;
+    render();
+  }
+
+  if (form) {
+    form.addEventListener('submit', onSubmit);
+    window.fatopForm.watch([form.querySelector('#inq-name'), form.querySelector('#inq-email')]);
+  }
+
+  render();
+})();
+
+/* ==========================================================================
+   Full-catalogue (PDF) request modal
+   --------------------------------------------------------------------------
+   A light native <dialog> for requesting the catalogue PDF by email. Opened by
+   any [data-catalogue] element and by any link to /catalog/ (progressive
+   enhancement: without JS the link still navigates to the /catalog/ page). On
+   submit it posts {type:"catalogue", ...} to site.inquiryEndpoint using the
+   same text/plain, no-preflight pattern as the inquiry drawer; the Apps Script
+   emails the download link to the visitor and logs the lead.
+   ========================================================================== */
+(function () {
+  var dlg = document.querySelector('[data-catreq]');
+  if (!dlg) return;
+
+  var endpoint = (dlg.getAttribute('data-catreq-endpoint') || '').trim();
+  var mailto   = (dlg.getAttribute('data-catreq-mailto') || '').trim();
+  var form     = dlg.querySelector('[data-catreq-form]');
+  var doneEl   = dlg.querySelector('[data-catreq-done]');
+  var errEl    = dlg.querySelector('[data-catreq-error]');
+  var submit   = dlg.querySelector('[data-catreq-submit]');
+  var emailEl  = dlg.querySelector('#catreq-email');
+  var submitLabel = submit ? submit.innerHTML : '';
+  var lastFocus = null;
+  var T = {
+    sending: dlg.getAttribute('data-t-sending') || 'Sending…',
+    bademail: dlg.getAttribute('data-t-bademail') || 'Please enter a valid work email address.',
+    reqemail: dlg.getAttribute('data-t-reqemail') || dlg.getAttribute('data-t-bademail') || 'Please enter your email address.',
+    error: dlg.getAttribute('data-t-error') || 'Sorry, something went wrong. Please email us at'
+  };
+
+  function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+  function openModal() {
+    lastFocus = document.activeElement;
+    resetForm();
+    if (typeof dlg.showModal === 'function') dlg.showModal();
+    else dlg.setAttribute('open', '');
+    // Focus the first field once the dialog is painted.
+    setTimeout(function () { if (emailEl) emailEl.focus(); }, 30);
+  }
+  function closeModal() {
+    if (typeof dlg.close === 'function' && dlg.open) dlg.close();
+    else dlg.removeAttribute('open');
+    if (lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (e) {} }
+  }
+  function resetForm() {
+    if (doneEl) doneEl.hidden = true;
+    if (form) { form.hidden = false; form.reset(); }
+    if (errEl) errEl.hidden = true;
+    if (submit) { submit.disabled = false; submit.innerHTML = submitLabel; }
+    if (emailEl) window.fatopForm.clear(emailEl);
+  }
+  function showError(msg) {
+    if (!errEl) return;
+    errEl.textContent = msg + (mailto ? ' ' + mailto : '');
+    errEl.hidden = false;
+  }
+
+  // A trigger is any [data-catalogue], or any link whose path is /catalog/
+  // (en) or /ja/catalog/ (ja) — the footer "Full catalogue (PDF)" link and any
+  // catalogue call-to-action, without tagging each one by hand.
+  function isTrigger(el) {
+    var t = el.closest('[data-catalogue]');
+    if (t) return t;
+    var a = el.closest('a[href]');
+    if (!a) return null;
+    var href = a.getAttribute('href') || '';
+    if (/(^|\/)catalog\/(?:[?#]|$)/.test(href)) return a;
+    return null;
+  }
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-catreq-close]')) { e.preventDefault(); closeModal(); return; }
+    var trig = isTrigger(e.target);
+    if (trig) {
+      // Let modified clicks (new tab, download) behave normally.
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+      e.preventDefault();
+      openModal();
+    }
+  });
+
+  // Clicking the dialog backdrop closes it (native <dialog> reports clicks on
+  // itself when the ::backdrop is hit).
+  dlg.addEventListener('click', function (e) {
+    if (e.target === dlg) closeModal();
+  });
+  dlg.addEventListener('cancel', function () { /* Esc: default close is fine */ });
+
+  function onSubmit(e) {
+    e.preventDefault();
+    var email = (emailEl && emailEl.value.trim()) || '';
+    var name = (dlg.querySelector('#catreq-name') || {}).value || '';
+    var company = (dlg.querySelector('#catreq-company') || {}).value || '';
+    var message = (dlg.querySelector('#catreq-message') || {}).value || '';
+    var hp = (dlg.querySelector('[data-hp]') || {}).value || '';
+
+    // E-mail is the only field not labelled optional here, so it is the one
+    // that must pass before anything is sent or a thank-you is shown.
+    if (errEl) errEl.hidden = true;
+    if (!window.fatopForm.check([
+      { el: emailEl, ok: !!email && validEmail(email), msg: email ? T.bademail : T.reqemail }
+    ])) return;
+
+    var payload = {
+      type: 'catalogue',
+      email: email, name: name.trim(), company: company.trim(),
+      message: message.trim(),
+      page: location.href, ts: new Date().toISOString()
+    };
+    if (hp) payload.suspect = 1;   // autofill can fill the trap: flag, never drop
+
+    // No endpoint configured -> fall back to a prefilled mailto, still "succeed".
+    if (!endpoint) {
+      if (mailto) {
+        var body = 'Please send me the full catalogue (PDF).\n\nEmail: ' + email +
+                   '\nName: ' + name + '\nCompany: ' + company + '\n';
+        window.location.href = 'mailto:' + mailto +
+          '?subject=' + encodeURIComponent('Full catalogue request') +
+          '&body=' + encodeURIComponent(body);
+      }
+      succeed();
+      return;
+    }
+
+    if (submit) { submit.disabled = true; submit.textContent = T.sending; }
+
+    var done = false;
+    var ctrl = ('AbortController' in window) ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 12000);
+
+    fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+      redirect: 'follow',
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function (r) {
+        var httpOk = r.ok;
+        return r.text().then(function (t) {
+          var d = {}; try { d = JSON.parse(t); } catch (e) {}
+          return { httpOk: httpOk, d: d };
+        });
+      })
+      .then(function (res) {
+        done = true; clearTimeout(timer);
+        var d = res.d || {};
+        if (res.httpOk && d.ok === true) { succeed(); }   // explicit confirmation only
+        else { fail(); }
+      })
+      .catch(function () { if (!done) { clearTimeout(timer); fail(); } });
+  }
+
+  function succeed() {
+    if (form) form.hidden = true;
+    if (doneEl) doneEl.hidden = false;
+  }
+  function fail() {
+    if (submit) { submit.disabled = false; submit.innerHTML = submitLabel; }
+    showError(T.error);
+  }
+
+  if (form) {
+    form.addEventListener('submit', onSubmit);
+    window.fatopForm.watch([emailEl]);
+  }
+})();
+
+/* Hero stage switcher: moves along the line ONLY when the visitor asks -
+   click a side machine, an arrow or a step tab, press Left/Right, or swipe.
+   No timer anywhere: the client rules out auto-advance. Clicking the centre
+   machine follows its link to the product page. */
+(function () {
+  var ls = document.querySelector('[data-ls]');
+  if (!ls) return;
+  var items = ls.querySelectorAll('.ls__item');
+  var tabs = ls.querySelectorAll('[data-ls-go]');
+  var prev = ls.querySelector('[data-ls-prev]');
+  var next = ls.querySelector('[data-ls-next]');
+  var cap = {
+    zone: ls.querySelector('.ls__zone'), label: ls.querySelector('.ls__label'),
+    model: ls.querySelector('.ls__model'), cta: ls.querySelector('.ls__cta')
+  };
+  var n = items.length;
+  var active = parseInt(ls.getAttribute('data-active'), 10) || 0;
+
+  // Machines are promoted to their own GPU layer only while they glide, so
+  // they settle back to a sharp, re-rasterised image at rest (CSS .is-moving).
+  var moveTimer = 0;
+  function markMoving() {
+    if (!ls.classList.contains('is-ready')) return;
+    ls.classList.add('is-moving');
+    clearTimeout(moveTimer);
+    moveTimer = setTimeout(function () { ls.classList.remove('is-moving'); }, 1000);
+  }
+
+  function go(i) {
+    var target = Math.max(0, Math.min(n - 1, i));
+    if (target !== active) {
+      markMoving();
+      try { ls.dispatchEvent(new CustomEvent('fatop:station')); } catch (e) {}
+    }
+    active = target;
+    for (var k = 0; k < n; k++) {
+      var slot = Math.max(-3, Math.min(3, k - active));
+      items[k].setAttribute('data-slot', slot);
+      items[k].querySelector('.ls__machine').setAttribute('tabindex', slot === 0 ? '0' : '-1');
+    }
+    for (var t = 0; t < tabs.length; t++) {
+      if (t === active) tabs[t].setAttribute('aria-current', 'step');
+      else tabs[t].removeAttribute('aria-current');
+    }
+    var it = items[active];
+    cap.zone.textContent = it.getAttribute('data-zone');
+    cap.label.textContent = it.getAttribute('data-label');
+    cap.model.textContent = it.getAttribute('data-model');
+    var href = it.getAttribute('data-href');
+    cap.cta.setAttribute('href', href);
+    cap.cta.hidden = !href;   // plant stations without a product page
+    if (prev) prev.disabled = active === 0;
+    if (next) next.disabled = active === n - 1;
+  }
+
+  // A side machine comes to the centre instead of navigating away.
+  var dragged = false;
+  ls.addEventListener('click', function (e) {
+    var machine = e.target.closest('.ls__machine');
+    if (machine) {
+      var li = machine.parentNode;
+      if (dragged || li.getAttribute('data-slot') !== '0') {
+        e.preventDefault();
+        if (!dragged) go(Array.prototype.indexOf.call(items, li));
+      }
+      dragged = false;
+      return;
+    }
+    var tab = e.target.closest('[data-ls-go]');
+    if (tab) go(parseInt(tab.getAttribute('data-ls-go'), 10));
+  });
+  if (prev) prev.addEventListener('click', function () { go(active - 1); });
+  if (next) next.addEventListener('click', function () { go(active + 1); });
+  ls.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') { go(active - 1); e.preventDefault(); }
+    else if (e.key === 'ArrowRight') { go(active + 1); e.preventDefault(); }
+  });
+
+  // Swipe / drag: a horizontal move of 40px or more changes station.
+  var x0 = null, y0 = 0;
+  var scene = ls.querySelector('.ls__items');
+  scene.addEventListener('pointerdown', function (e) { x0 = e.clientX; y0 = e.clientY; dragged = false; });
+  scene.addEventListener('pointerup', function (e) {
+    if (x0 === null) return;
+    var dx = e.clientX - x0, dy = e.clientY - y0;
+    x0 = null;
+    if (Math.abs(dx) >= 40 && Math.abs(dx) > Math.abs(dy)) {
+      dragged = true;
+      go(active + (dx < 0 ? 1 : -1));
+    }
+  });
+  scene.addEventListener('pointercancel', function () { x0 = null; });
+
+  go(active);
+
+  // Transitions switch on only after the first frame has painted with every
+  // machine already in its slot, so nothing glides into place during load.
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () { ls.classList.add('is-ready'); });
+  });
+
+  // The dashed floor track runs only once the page has loaded and while the
+  // stage is on screen; on a slow connection an endless repaint competes with
+  // the images still arriving. Visitors who asked for less motion, or whose
+  // browser says Save-Data, keep it still.
+  // It runs in short bursts, not forever: animating stroke-dashoffset forces a
+  // style recalculation on every frame (measured: ~10% of a throttled phone
+  // CPU for as long as the hero was on screen). A few seconds after load and
+  // after each station change is enough to show the line "running".
+  var conn = navigator.connection || {};
+  if (conn.saveData) return;
+  var onScreen = true, loaded = document.readyState === 'complete', liveTimer = 0;
+  function pulse(ms) {
+    if (!onScreen || !loaded) return;
+    ls.classList.add('is-live');
+    clearTimeout(liveTimer);
+    liveTimer = setTimeout(function () { ls.classList.remove('is-live'); }, ms);
+  }
+  function stop() { clearTimeout(liveTimer); ls.classList.remove('is-live'); }
+  if (!loaded) window.addEventListener('load', function () { loaded = true; pulse(7200); });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) {
+      onScreen = es[0].isIntersecting;
+      if (onScreen) pulse(4800); else stop();
+    }).observe(ls);
+  }
+  ls.addEventListener('fatop:station', function () { pulse(4800); });
+  pulse(7200);
+})();

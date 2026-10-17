@@ -1,0 +1,353 @@
+/* ==========================================================================
+   Design tokens
+   Engineered, high-contrast, generous. One accent, reserved for interaction,
+   emphasis and data highlights — never decoration.
+   ========================================================================== */
+
+:root {
+  /* ---- Type ------------------------------------------------------------
+     The stack adapts to the reader's hardware by itself: each name resolves
+     only on its own platform, so order is what makes it work. Apple tokens go
+     first -- an iPhone or Mac with Microsoft Office installed also has Segoe
+     UI, and listing Segoe first would hand Apple users a Windows typeface
+     instead of SF Pro. Roboto follows for Android, then Segoe for Windows.
+
+     Zero network cost, so no font swap and no layout shift on 4G. Swap in a
+     self-hosted variable face here and nothing else has to change. */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont,
+               "SF Pro Text", "SF Pro Display",
+               "Segoe UI Variable Text", "Segoe UI", Roboto,
+               "Helvetica Neue", "Noto Sans", Arial, sans-serif;
+  /* Tabular figures for model numbers and specification values. Apple and
+     Android first again, for the same reason. */
+  --font-mono: ui-monospace, "SF Mono", "Roboto Mono", "Cascadia Mono",
+               "JetBrains Mono", Consolas, "Liberation Mono", monospace;
+
+  /* Fluid scale, 320px → 1600px viewport */
+  --step--1: clamp(0.833rem, 0.80rem + 0.16vw, 0.9rem);
+  --step-0:  clamp(1rem, 0.96rem + 0.20vw, 1.125rem);
+  --step-1:  clamp(1.20rem, 1.12rem + 0.40vw, 1.50rem);
+  --step-2:  clamp(1.44rem, 1.30rem + 0.70vw, 2.00rem);
+  --step-3:  clamp(1.73rem, 1.49rem + 1.19vw, 2.67rem);
+  --step-4:  clamp(2.07rem, 1.70rem + 1.87vw, 3.55rem);
+  --step-5:  clamp(2.49rem, 1.92rem + 2.85vw, 4.74rem);
+
+  --leading-tight: 1.04;
+  --leading-snug: 1.22;
+  --leading-body: 1.62;
+  --measure: 68ch;
+
+  /* ---- Space — 4px base ------------------------------------------------ */
+  --sp-1: 0.25rem;  --sp-2: 0.5rem;   --sp-3: 0.75rem;  --sp-4: 1rem;
+  --sp-5: 1.5rem;   --sp-6: 2rem;     --sp-7: 3rem;     --sp-8: 4rem;
+  --sp-9: 6rem;     --sp-10: 8rem;    --sp-11: 12rem;
+
+  /* Section rhythm shrinks on small screens */
+  --section-y: clamp(2.25rem, 1.25rem + 4.6vw, 5.25rem);
+
+  /* ---- Layout ---------------------------------------------------------- */
+  --max-page: 1560px;
+  --max-prose: 72ch;
+  --gutter: clamp(1.25rem, 0.5rem + 3vw, 4rem);
+  /* Softened again on client instruction — 8/14/18 gets us closer to the
+     Amazon product-card curve. Buttons and small controls take --radius,
+     mid-size containers --radius-lg, and hero/lightbox/large cards
+     --radius-xl. Border still 1px so the softer corner does not blur into
+     the surface. */
+  --radius: 8px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --border: 1px;
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 140ms;
+  --dur: 260ms;
+  --dur-slow: 620ms;
+
+  --z-header: 100;
+  --z-overlay: 200;
+}
+
+/* ==========================================================================
+   Colour — dark is the default rendering; light is fully supported.
+   Accent is a single hue in two strengths:
+     --accent         bright, for graphics, borders, active states
+     --accent-ink     darkened enough to carry white text at AA
+   ========================================================================== */
+
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg:            #08090B;
+  --bg-raised:     #0E1013;
+  --bg-sunken:     #050608;
+  --surface:       #14171B;
+  --surface-hover: #1B1F24;
+
+  --line:          #23282F;
+  --line-strong:   #333A43;
+
+  --ink:           #F2F4F7;   /* 18.1:1 on --bg */
+  --ink-muted:     #A2ACB9;   /*  8.7:1 */
+  --ink-faint:     #7A838E;   /*  5.2:1 on --bg, 4.8:1 on --surface */
+
+  --accent:        #D14022;   /* Porsche Lava Orange (M7U) - enameled copper wire */
+  --accent-hover:  #B23218;
+  --accent-ink:    #D14022;   /* 4.7:1 with white text - AA for normal text */
+  --accent-on:     #FFFFFF;
+  --accent-weak:   rgba(209, 64, 34, 0.12);
+  --accent-line:   rgba(209, 64, 34, 0.34);
+
+  --focus:         #63B3FF;
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.6);
+  --shadow-2: 0 12px 32px -12px rgba(0, 0, 0, 0.8);
+
+  /* Machine imagery reads best against a graphite vignette */
+  --media-bg: radial-gradient(120% 120% at 50% 0%, #1A1F25 0%, #0B0D10 72%);
+  /* ---- Stage: hero walk, Turnkey plant walk, About footprint band ------
+     The dark studio these blocks were designed in. Light Mode swaps every
+     value below for a white studio (2026-10-17); nothing else changes. */
+  --st-bg:            linear-gradient(to bottom, #0B0D10 0%, #14181D 58%, #1C2127 78%, #0E1013 100%);
+  --st-bg-glow:       rgba(255, 255, 255, 0.07);
+  --st-text:          #F5F5F7;
+  --st-title:         #FFFFFF;
+  --st-strong:        #E8E9EC;
+  --st-soft:          #C9CDD3;
+  --st-muted:         #A9AEB6;
+  --st-faint:         #9AA0A8;
+  --st-faint-2:       #8A9098;
+  --st-faintest:      #7C828A;
+  --st-sep:           #6B7178;
+  --st-accent-ink:    #E8735A;
+  --st-cta:           #FF8A66;
+  --st-hairline:      rgba(255, 255, 255, 0.07);
+  --st-floor-a:       rgba(255, 255, 255, 0.07);
+  --st-floor-b:       rgba(255, 255, 255, 0.025);
+  --st-track:         #FF7A4D;
+  --st-track-base:    rgba(255, 255, 255, 0.08);
+  --st-glow:          rgba(209, 64, 34, 0.16);
+  --st-glow-b:        rgba(209, 64, 34, 0.05);
+  --st-ctrl-bg:       rgba(255, 255, 255, 0.06);
+  --st-ctrl-bg-hover: rgba(255, 255, 255, 0.14);
+  --st-ctrl-line:     rgba(255, 255, 255, 0.16);
+  --st-ctrl-ink:      #FFFFFF;
+  --st-ctrl-shadow:   none;
+  --st-tab-sep:       rgba(255, 255, 255, 0.18);
+  --st-dot:           rgba(255, 255, 255, 0.28);
+  --st-dot-hover:     rgba(255, 255, 255, 0.6);
+  --st-panel-line:    rgba(255, 255, 255, 0.14);
+  --st-panel-a:       rgba(255, 255, 255, 0.08);
+  --st-panel-b:       rgba(255, 255, 255, 0.02);
+  --st-panel-inset:   rgba(255, 255, 255, 0.08);
+  --st-map-line:      rgba(255, 255, 255, 0.1);
+  --st-map-bg:        rgba(255, 255, 255, 0.03);
+  --st-node-bg:       rgba(255, 255, 255, 0.04);
+  --st-node-line-hover: rgba(255, 255, 255, 0.4);
+  --st-secondary-bg:  rgba(255, 255, 255, 0.94);
+  --st-secondary-line: transparent;
+  --st-side-1:        0.55;   /* opacity of the machines beside the centre */
+  --st-side-2:        0.28;   /* ...and one further back */
+  --st-side-hover:    0.8;
+  --st-band-bg:       #0a0d11;
+  --st-band-ink:      #FFFFFF;
+  --st-band-muted:    rgba(255, 255, 255, 0.74);
+  --st-band-legend:   rgba(255, 255, 255, 0.72);
+  --st-band-dots:     rgba(255, 255, 255, 0.22);
+  --st-band-fig-bg:   rgba(255, 255, 255, 0.02);
+  --st-band-fig-line: rgba(255, 255, 255, 0.12);
+  /* World maps (About band, Support/Contact): dots, arcs and pins. */
+  --map-dot-fill:      #F2F4F7;
+  --map-dot-opacity:   0.22;
+  --map-accent:        #D14022;
+  --map-arc-opacity:   0.55;
+  --map-arc-width:     1.4;
+  --map-halo-opacity:  0.18;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg:            #FFFFFF;
+  --bg-raised:     #F7F8F9;
+  --bg-sunken:     #EFF1F3;
+  --surface:       #FFFFFF;
+  --surface-hover: #F4F6F8;
+
+  --line:          #E1E5EA;
+  --line-strong:   #C6CDD5;
+
+  --ink:           #0B0E12;   /* 18.9:1 on white */
+  --ink-muted:     #4E5761;   /*  8.0:1 */
+  --ink-faint:     #626B75;   /*  5.4:1 on --bg, 4.8:1 on --bg-sunken */
+
+  --accent:        #D14022;   /* Porsche Lava Orange (M7U) - enameled copper wire */
+  --accent-hover:  #B23218;
+  --accent-ink:    #D14022;   /* 4.7:1 with white text - AA for normal text */
+  --accent-on:     #FFFFFF;
+  --accent-weak:   rgba(209, 64, 34, 0.12);
+  --accent-line:   rgba(209, 64, 34, 0.34);
+
+  --focus:         #0B5FCC;
+
+  --shadow-1: 0 1px 2px rgba(11, 14, 18, 0.07);
+  --shadow-2: 0 14px 34px -14px rgba(11, 14, 18, 0.22);
+
+  --media-bg: radial-gradient(120% 120% at 50% 0%, #F2F4F6 0%, #E3E7EB 72%);
+  /* Stage in Light Mode: a white photo studio. Off-white rather than pure
+     white so the light-grey anti-aliased edges of the cut-outs never show;
+     contact shadows stay as they are, so every machine stays grounded.
+     Text colours hold at least 4.5:1 on the lightest stage tone. */
+  --st-bg:            linear-gradient(to bottom, #FFFFFF 0%, #F6F7F9 50%, #E9ECF0 80%, #F2F4F6 100%);
+  --st-bg-glow:       rgba(255, 255, 255, 0.9);
+  --st-text:          #1B1F24;
+  --st-title:         #0B0E12;
+  --st-strong:        #1B1F24;
+  --st-soft:          #353C45;
+  --st-muted:         #48505A;
+  --st-faint:         #555D67;
+  --st-faint-2:       #59616B;
+  --st-faintest:      #5E6670;
+  --st-sep:           #9AA1A9;
+  --st-accent-ink:    #B4381B;
+  --st-cta:           #B4381B;
+  --st-hairline:      rgba(11, 14, 18, 0.08);
+  --st-floor-a:       rgba(11, 14, 18, 0.05);
+  --st-floor-b:       rgba(11, 14, 18, 0.018);
+  --st-track:         #E2552B;
+  --st-track-base:    rgba(11, 14, 18, 0.12);
+  --st-glow:          rgba(209, 64, 34, 0.10);
+  --st-glow-b:        rgba(209, 64, 34, 0.03);
+  --st-ctrl-bg:       #FFFFFF;
+  --st-ctrl-bg-hover: #EEF1F4;
+  --st-ctrl-line:     #CDD3DA;
+  --st-ctrl-ink:      #111418;
+  --st-ctrl-shadow:   0 1px 3px rgba(11, 14, 18, 0.10);
+  --st-tab-sep:       rgba(11, 14, 18, 0.16);
+  --st-dot:           rgba(11, 14, 18, 0.24);
+  --st-dot-hover:     rgba(11, 14, 18, 0.5);
+  --st-panel-line:    rgba(11, 14, 18, 0.10);
+  --st-panel-a:       #FFFFFF;
+  --st-panel-b:       #F1F3F6;
+  --st-panel-inset:   rgba(255, 255, 255, 0.9);
+  --st-map-line:      rgba(11, 14, 18, 0.09);
+  --st-map-bg:        rgba(255, 255, 255, 0.75);
+  --st-node-bg:       #FFFFFF;
+  --st-node-line-hover: rgba(11, 14, 18, 0.35);
+  --st-secondary-bg:  #FFFFFF;
+  --st-secondary-line: #D5D9DE;
+  --st-side-1:        0.62;
+  --st-side-2:        0.30;
+  --st-side-hover:    0.85;
+  --st-band-bg:       #F2F4F6;
+  --st-band-ink:      #0B0E12;
+  --st-band-muted:    #48505A;
+  --st-band-legend:   #48505A;
+  --st-band-dots:     #64748B;
+  --st-band-fig-bg:   #FFFFFF;
+  --st-band-fig-line: rgba(11, 14, 18, 0.08);
+  /* Light maps: solid slate dots (the landmass must read at a glance on a
+     white card) and a deeper orange so arcs and pins do not wash out. */
+  --map-dot-fill:      #64748B;
+  --map-dot-opacity:   1;
+  --map-accent:        #A3290A;
+  --map-arc-opacity:   0.9;
+  --map-arc-width:     1.6;
+  --map-halo-opacity:  0.24;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    color-scheme: light;
+
+    --bg:            #FFFFFF;
+    --bg-raised:     #F7F8F9;
+    --bg-sunken:     #EFF1F3;
+    --surface:       #FFFFFF;
+    --surface-hover: #F4F6F8;
+
+    --line:          #E1E5EA;
+    --line-strong:   #C6CDD5;
+
+    --ink:           #0B0E12;
+    --ink-muted:     #4E5761;
+    --ink-faint:     #6B747E;
+
+    --accent:        #D14022;   /* Porsche Lava Orange (M7U) - enameled copper wire */
+    --accent-hover:  #B23218;
+    --accent-ink:    #D14022;   /* 4.7:1 with white text - AA for normal text */
+    --accent-on:     #FFFFFF;
+    --accent-weak:   rgba(209, 64, 34, 0.12);
+    --accent-line:   rgba(209, 64, 34, 0.34);
+
+    --focus:         #0B5FCC;
+
+    --shadow-1: 0 1px 2px rgba(11, 14, 18, 0.07);
+    --shadow-2: 0 14px 34px -14px rgba(11, 14, 18, 0.22);
+
+    --media-bg: radial-gradient(120% 120% at 50% 0%, #F2F4F6 0%, #E3E7EB 72%);
+    /* Stage in Light Mode: a white photo studio. Off-white rather than pure
+       white so the light-grey anti-aliased edges of the cut-outs never show;
+       contact shadows stay as they are, so every machine stays grounded.
+       Text colours hold at least 4.5:1 on the lightest stage tone. */
+    --st-bg:            linear-gradient(to bottom, #FFFFFF 0%, #F6F7F9 50%, #E9ECF0 80%, #F2F4F6 100%);
+    --st-bg-glow:       rgba(255, 255, 255, 0.9);
+    --st-text:          #1B1F24;
+    --st-title:         #0B0E12;
+    --st-strong:        #1B1F24;
+    --st-soft:          #353C45;
+    --st-muted:         #48505A;
+    --st-faint:         #555D67;
+    --st-faint-2:       #59616B;
+    --st-faintest:      #5E6670;
+    --st-sep:           #9AA1A9;
+    --st-accent-ink:    #B4381B;
+    --st-cta:           #B4381B;
+    --st-hairline:      rgba(11, 14, 18, 0.08);
+    --st-floor-a:       rgba(11, 14, 18, 0.05);
+    --st-floor-b:       rgba(11, 14, 18, 0.018);
+    --st-track:         #E2552B;
+    --st-track-base:    rgba(11, 14, 18, 0.12);
+    --st-glow:          rgba(209, 64, 34, 0.10);
+    --st-glow-b:        rgba(209, 64, 34, 0.03);
+    --st-ctrl-bg:       #FFFFFF;
+    --st-ctrl-bg-hover: #EEF1F4;
+    --st-ctrl-line:     #CDD3DA;
+    --st-ctrl-ink:      #111418;
+    --st-ctrl-shadow:   0 1px 3px rgba(11, 14, 18, 0.10);
+    --st-tab-sep:       rgba(11, 14, 18, 0.16);
+    --st-dot:           rgba(11, 14, 18, 0.24);
+    --st-dot-hover:     rgba(11, 14, 18, 0.5);
+    --st-panel-line:    rgba(11, 14, 18, 0.10);
+    --st-panel-a:       #FFFFFF;
+    --st-panel-b:       #F1F3F6;
+    --st-panel-inset:   rgba(255, 255, 255, 0.9);
+    --st-map-line:      rgba(11, 14, 18, 0.09);
+    --st-map-bg:        rgba(255, 255, 255, 0.75);
+    --st-node-bg:       #FFFFFF;
+    --st-node-line-hover: rgba(11, 14, 18, 0.35);
+    --st-secondary-bg:  #FFFFFF;
+    --st-secondary-line: #D5D9DE;
+    --st-side-1:        0.62;
+    --st-side-2:        0.30;
+    --st-side-hover:    0.85;
+    --st-band-bg:       #F2F4F6;
+    --st-band-ink:      #0B0E12;
+    --st-band-muted:    #48505A;
+    --st-band-legend:   #48505A;
+    --st-band-dots:     #64748B;
+    --st-band-fig-bg:   #FFFFFF;
+    --st-band-fig-line: rgba(11, 14, 18, 0.08);
+    /* Light maps: solid slate dots (the landmass must read at a glance on a
+       white card) and a deeper orange so arcs and pins do not wash out. */
+    --map-dot-fill:      #64748B;
+    --map-dot-opacity:   1;
+    --map-accent:        #A3290A;
+    --map-arc-opacity:   0.9;
+    --map-arc-width:     1.6;
+    --map-halo-opacity:  0.24;
+  }
+}

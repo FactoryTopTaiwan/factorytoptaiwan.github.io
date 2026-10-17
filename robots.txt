@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /zh2/
+
+Sitemap: https://fatop-global.com/sitemap.xml
