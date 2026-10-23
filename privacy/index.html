@@ -48,8 +48,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/assets/img/fatop-mark.svg" color="#D14022">
 
-<link rel="stylesheet" href="/assets/css/tokens.css?v=ec1e236d34">
-<link rel="stylesheet" href="/assets/css/app.css?v=ec1e236d34">
+<link rel="stylesheet" href="/assets/css/tokens.css?v=ee2a336f6f">
+<link rel="stylesheet" href="/assets/css/app.css?v=ee2a336f6f">
 
 <script>
 /* Set the theme before first paint so there is no flash. */
@@ -342,6 +342,8 @@
         
         <p>The site is served by GitHub Pages through Cloudflare&#39;s network, which delivers the pages quickly and protects the site from attacks. Like any web server, GitHub and Cloudflare receive the request your browser makes - which includes your IP address - and may log it for security and abuse prevention. That processing is theirs, under their own terms. We have no access to those logs and we receive nothing from them.</p>
         
+        <p>When you send an inquiry or a catalogue request, the form also runs Cloudflare Turnstile, an automatic check that tells real visitors apart from automated spam using technical signals from your browser. We receive only the pass-or-fail result, never those signals.</p>
+        
       </section>
       
       <section class="legal__block">
@@ -605,6 +607,7 @@
           <label>Leave this field empty
             <input type="text" name="zq_hp" data-hp tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore></label>
         </div>
+        <div class="ts-slot" data-ts-slot data-ts-action="inquiry" data-sitekey="0x4AAAAAAFhDcnwUghpwCV7M"></div>
         <p class="inq__err" data-inq-error role="alert" hidden></p>
         <button class="btn btn--primary btn--lg inq__submit" type="submit" data-inq-submit>
           Send inquiry
@@ -673,6 +676,7 @@
       <label>Leave this field empty
         <input type="text" name="zq_hp" data-hp tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore></label>
     </div>
+    <div class="ts-slot" data-ts-slot data-ts-action="catalogue" data-sitekey="0x4AAAAAAFhDcnwUghpwCV7M"></div>
     <p class="catreq__err" data-catreq-error role="alert" hidden></p>
     <button class="btn btn--primary btn--lg catreq__submit" type="submit" data-catreq-submit>
       Email me the catalogue
@@ -700,6 +704,6 @@
   </button>
 </div>
 
-<script src="/assets/js/app.js?v=a278bfc2ae" defer></script>
+<script src="/assets/js/app.js?v=b12abbfaba" defer></script>
 </body>
 </html>

@@ -48,8 +48,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/assets/img/fatop-mark.svg" color="#D14022">
 
-<link rel="stylesheet" href="/assets/css/tokens.css?v=ec1e236d34">
-<link rel="stylesheet" href="/assets/css/app.css?v=ec1e236d34">
+<link rel="stylesheet" href="/assets/css/tokens.css?v=ee2a336f6f">
+<link rel="stylesheet" href="/assets/css/app.css?v=ee2a336f6f">
 
 <script>
 /* Set the theme before first paint so there is no flash. */
@@ -342,6 +342,8 @@
         
         <p>本サイトは GitHub Pages で配信し、高速な表示と攻撃からの保護のために Cloudflare のネットワークを経由しています。一般的なウェブサーバーと同様に、GitHub と Cloudflare はお客様のブラウザからのリクエスト（IP アドレスを含む）を受け取り、セキュリティと不正利用防止のために記録する場合があります。この処理は各社の規約に基づき各社が行うもので、当社はその記録にアクセスできず、何も受け取りません。</p>
         
+        <p>お問い合わせやカタログ請求を送信する際には、フォームで Cloudflare Turnstile も使用します。これはブラウザの技術的な情報をもとに、実際の訪問者と自動送信のスパムを見分ける自動チェックです。当社が受け取るのは判定結果（合格か不合格か）のみで、その情報自体は受け取りません。</p>
+        
       </section>
       
       <section class="legal__block">
@@ -605,6 +607,7 @@
           <label>この欄は空欄のままにしてください
             <input type="text" name="zq_hp" data-hp tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore></label>
         </div>
+        <div class="ts-slot" data-ts-slot data-ts-action="inquiry" data-sitekey="0x4AAAAAAFhDcnwUghpwCV7M"></div>
         <p class="inq__err" data-inq-error role="alert" hidden></p>
         <button class="btn btn--primary btn--lg inq__submit" type="submit" data-inq-submit>
           見積を送信
@@ -673,6 +676,7 @@
       <label>この欄は空欄のままにしてください
         <input type="text" name="zq_hp" data-hp tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore></label>
     </div>
+    <div class="ts-slot" data-ts-slot data-ts-action="catalogue" data-sitekey="0x4AAAAAAFhDcnwUghpwCV7M"></div>
     <p class="catreq__err" data-catreq-error role="alert" hidden></p>
     <button class="btn btn--primary btn--lg catreq__submit" type="submit" data-catreq-submit>
       カタログをメールで受け取る
@@ -700,6 +704,6 @@
   </button>
 </div>
 
-<script src="/assets/js/app.js?v=a278bfc2ae" defer></script>
+<script src="/assets/js/app.js?v=b12abbfaba" defer></script>
 </body>
 </html>

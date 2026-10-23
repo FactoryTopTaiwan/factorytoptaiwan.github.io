@@ -48,8 +48,8 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="/assets/img/fatop-mark.svg" color="#D14022">
 
-<link rel="stylesheet" href="/assets/css/tokens.css?v=ec1e236d34">
-<link rel="stylesheet" href="/assets/css/app.css?v=ec1e236d34">
+<link rel="stylesheet" href="/assets/css/tokens.css?v=ee2a336f6f">
+<link rel="stylesheet" href="/assets/css/app.css?v=ee2a336f6f">
 
 <script>
 /* Set the theme before first paint so there is no flash. */
@@ -342,6 +342,8 @@
         
         <p>本網站由 GitHub Pages 提供服務，並經由 Cloudflare 的網路傳送，以加快載入並保護網站免受攻擊。如同所有網頁伺服器，GitHub 與 Cloudflare 會收到您瀏覽器發出的請求（包含您的 IP 位址），並可能為安全與防濫用目的加以記錄。該處理由各公司依其條款進行，我們無法存取這些紀錄，也不會從中收到任何資料。</p>
         
+        <p>當您送出詢價或型錄索取表單時，表單也會使用 Cloudflare Turnstile。這是一項自動檢查，會依據您瀏覽器的技術資訊分辨真實訪客與自動化垃圾訊息；我們只會收到通過或未通過的結果，不會收到這些資訊本身。</p>
+        
       </section>
       
       <section class="legal__block">
@@ -605,6 +607,7 @@
           <label>此欄請保持空白
             <input type="text" name="zq_hp" data-hp tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore></label>
         </div>
+        <div class="ts-slot" data-ts-slot data-ts-action="inquiry" data-sitekey="0x4AAAAAAFhDcnwUghpwCV7M"></div>
         <p class="inq__err" data-inq-error role="alert" hidden></p>
         <button class="btn btn--primary btn--lg inq__submit" type="submit" data-inq-submit>
           送出詢價
@@ -673,6 +676,7 @@
       <label>此欄請保持空白
         <input type="text" name="zq_hp" data-hp tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore></label>
     </div>
+    <div class="ts-slot" data-ts-slot data-ts-action="catalogue" data-sitekey="0x4AAAAAAFhDcnwUghpwCV7M"></div>
     <p class="catreq__err" data-catreq-error role="alert" hidden></p>
     <button class="btn btn--primary btn--lg catreq__submit" type="submit" data-catreq-submit>
       寄送型錄給我
@@ -700,6 +704,6 @@
   </button>
 </div>
 
-<script src="/assets/js/app.js?v=a278bfc2ae" defer></script>
+<script src="/assets/js/app.js?v=b12abbfaba" defer></script>
 </body>
 </html>

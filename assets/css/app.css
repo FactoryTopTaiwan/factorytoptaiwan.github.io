@@ -3146,6 +3146,11 @@ body.lb-open { overflow: hidden; touch-action: none; }
 .inq__clear:hover { color: var(--ink); }
 
 .inq__form { display: grid; gap: var(--sp-4); }
+/* display:grid above beats the browser's [hidden] rule: without this the
+   sent form stayed on screen above the thank-you. */
+.inq__form[hidden] { display: none; }
+/* Turnstile slot: takes no room until the widget is mounted. */
+.ts-slot:empty { display: none; }
 .inq__field { display: grid; gap: var(--sp-2); }
 .inq__field label { font-size: var(--step--1); font-weight: 620; color: var(--ink); }
 .inq__opt { color: var(--ink-faint); font-weight: 400; }

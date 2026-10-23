@@ -1894,6 +1894,62 @@
     },
     validEmail: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
   };
+
+  /* Cloudflare Turnstile bot check for the inquiry and catalogue forms. The
+     script loads only once a visitor starts on a form, and the widget stays
+     invisible unless Cloudflare needs a click. A missing token never blocks a
+     send: the Apps Script records the row and flags it for a human instead. */
+  var tsLoad = null;
+  function tsReady() {
+    if (!tsLoad) tsLoad = new Promise(function (res, rej) {
+      if (window.turnstile) { res(window.turnstile); return; }
+      var s = document.createElement('script');
+      s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      s.async = true;
+      s.onload = function () { if (window.turnstile) res(window.turnstile); else rej(); };
+      s.onerror = function () { tsLoad = null; rej(); };
+      document.head.appendChild(s);
+    });
+    return tsLoad;
+  }
+  function tsMount(slot) {
+    if (!slot || !slot.getAttribute('data-sitekey') || slot.hasAttribute('data-ts-id')) return;
+    slot.setAttribute('data-ts-id', '');
+    tsReady().then(function (ts) {
+      var id = ts.render(slot, {
+        sitekey: slot.getAttribute('data-sitekey'),
+        action: slot.getAttribute('data-ts-action') || 'form',
+        appearance: 'interaction-only', size: 'flexible', language: 'auto',
+        // Handled: the send goes ahead without a token and the row is flagged.
+        'error-callback': function () { return true; }
+      });
+      slot.setAttribute('data-ts-id', id);
+    }).catch(function () { slot.removeAttribute('data-ts-id'); });
+  }
+  window.fatopTurnstile = {
+    watch: function (form, slot) {
+      if (form && slot) form.addEventListener('focusin', function () { tsMount(slot); });
+    },
+    /* Resolves with the token, or '' after waitMs - never rejects. */
+    token: function (slot, waitMs) {
+      return new Promise(function (res) {
+        if (!slot || !slot.getAttribute('data-sitekey')) { res(''); return; }
+        tsMount(slot);
+        var t0 = Date.now();
+        (function poll() {
+          var id = slot.getAttribute('data-ts-id'), tok = '';
+          try { if (id && window.turnstile) tok = window.turnstile.getResponse(id) || ''; } catch (e) {}
+          if (tok || Date.now() - t0 >= waitMs) { res(tok); return; }
+          setTimeout(poll, 200);
+        })();
+      });
+    },
+    /* A token is single-use: reset after every send, success or not. */
+    reset: function (slot) {
+      var id = slot && slot.getAttribute('data-ts-id');
+      try { if (id && window.turnstile) window.turnstile.reset(id); } catch (e) {}
+    }
+  };
 })();
 
 /* ==========================================================================
@@ -1923,6 +1979,7 @@
   var errEl   = root.querySelector('[data-inq-error]');
   var doneEl  = root.querySelector('[data-inq-done]');
   var submit  = root.querySelector('[data-inq-submit]');
+  var tsSlot  = root.querySelector('[data-ts-slot]');
   var bar     = document.querySelector('[data-inq-bar]');
   var trigger = document.querySelector('.inq-trigger');
   var counts  = document.querySelectorAll('[data-inq-count]');
@@ -2080,6 +2137,13 @@
     submit.disabled = true;
     submit.textContent = T('sending');
 
+    window.fatopTurnstile.token(tsSlot, 5000).then(function (tok) {
+      if (tok) payload.cfToken = tok;
+      send(payload);
+    });
+  }
+
+  function send(payload) {
     var done = false;
     var ctrl = ('AbortController' in window) ? new AbortController() : null;
     var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 12000);
@@ -2113,6 +2177,10 @@
 
   function succeed() {
     clearAll();
+    window.fatopTurnstile.reset(tsSlot);
+    // Restore the button now, so a later inquiry does not open on "Sending…".
+    submit.disabled = false;
+    submit.textContent = T('send');
     if (form) { form.reset(); form.hidden = true; }
     if (selWrap) selWrap.hidden = true;
     if (emptyEl) emptyEl.hidden = true;
@@ -2120,6 +2188,7 @@
     if (!root.classList.contains('is-open')) open();
   }
   function fail() {
+    window.fatopTurnstile.reset(tsSlot);
     submit.disabled = false;
     submit.textContent = T('send');
     showError(T('error') + ' ' + mailto);
@@ -2195,6 +2264,7 @@
   if (form) {
     form.addEventListener('submit', onSubmit);
     window.fatopForm.watch([form.querySelector('#inq-name'), form.querySelector('#inq-email')]);
+    window.fatopTurnstile.watch(form, tsSlot);
   }
 
   render();
@@ -2221,6 +2291,7 @@
   var errEl    = dlg.querySelector('[data-catreq-error]');
   var submit   = dlg.querySelector('[data-catreq-submit]');
   var emailEl  = dlg.querySelector('#catreq-email');
+  var tsSlot   = dlg.querySelector('[data-ts-slot]');
   var submitLabel = submit ? submit.innerHTML : '';
   var lastFocus = null;
   var T = {
@@ -2327,6 +2398,13 @@
 
     if (submit) { submit.disabled = true; submit.textContent = T.sending; }
 
+    window.fatopTurnstile.token(tsSlot, 5000).then(function (tok) {
+      if (tok) payload.cfToken = tok;
+      send(payload);
+    });
+  }
+
+  function send(payload) {
     var done = false;
     var ctrl = ('AbortController' in window) ? new AbortController() : null;
     var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 12000);
@@ -2354,10 +2432,12 @@
   }
 
   function succeed() {
+    window.fatopTurnstile.reset(tsSlot);
     if (form) form.hidden = true;
     if (doneEl) doneEl.hidden = false;
   }
   function fail() {
+    window.fatopTurnstile.reset(tsSlot);
     if (submit) { submit.disabled = false; submit.innerHTML = submitLabel; }
     showError(T.error);
   }
@@ -2365,6 +2445,7 @@
   if (form) {
     form.addEventListener('submit', onSubmit);
     window.fatopForm.watch([emailEl]);
+    window.fatopTurnstile.watch(form, tsSlot);
   }
 })();
 
