@@ -1912,6 +1912,12 @@
     });
     return tsLoad;
   }
+  function tsLang() {
+    var l = (document.documentElement.lang || '').toLowerCase();
+    if (l.indexOf('zh') === 0) return 'zh-tw';
+    if (l.indexOf('ja') === 0) return 'ja';
+    return 'en';
+  }
   function tsMount(slot) {
     if (!slot || !slot.getAttribute('data-sitekey') || slot.hasAttribute('data-ts-id')) return;
     slot.setAttribute('data-ts-id', '');
@@ -1919,7 +1925,8 @@
       var id = ts.render(slot, {
         sitekey: slot.getAttribute('data-sitekey'),
         action: slot.getAttribute('data-ts-action') || 'form',
-        appearance: 'interaction-only', size: 'flexible', language: 'auto',
+        // The page's language, not the browser's: each locale stays 100% its own.
+        appearance: 'interaction-only', size: 'flexible', language: tsLang(),
         // Handled: the send goes ahead without a token and the row is flagged.
         'error-callback': function () { return true; }
       });
